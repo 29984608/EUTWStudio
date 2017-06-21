@@ -190,7 +190,9 @@
 }
  /* tab选项卡 */
 .layui-body{
- 	padding-left: 10px;
+ 	padding: 0 5px;
+	margin-top:-5px;
+	margin-bottom:5px;
  }
 .larry-tab-menu{
 	width: 200px;
@@ -250,7 +252,7 @@
 	height: 100%;
 }
 .larry-tab-box>.layui-tab-title{
-	border-bottom: 1px solid #1AA094;
+	border-bottom: 2px solid #21a1a1;
 }
 .larry-tab-box .layui-tab-title cite{
 	font-style: normal;
@@ -356,9 +358,9 @@
 .form-control {
     height: 30px;
 }
-@media (min-width: 1200px)
+@media (min-width: 1200px){
 .col-lg-12 {
     width: 100%;
     float: left;
 }
-
+}

@@ -37,16 +37,16 @@
     padding-right: 50px;
     padding-top: 40px;
     padding-bottom: 20px;
-    box-shadow:0 -15px 30px #0d957a;
+	background: #e8e8e8;
+    box-shadow:0 -15px 30px gray;
     border-radius:5px;
-    z-index: 1000;
 }
 .layui-layout-login h1{
 	font-size:25px;
 	font-weight:bold;
 	text-align:center;
-	color:#45bda6;
-	text-shadow:0 0 1px #0e947a;
+	color:gray;
+	text-shadow:0 0 1px gray;
 	margin-bottom:15px;
 }
 .layui-layout-login h1 strong{
@@ -153,7 +153,7 @@
 	position:relative;
 }
 .layui-login-text p{
-	color:#53c6b0;
+	color:gray;
 	font-size:14px;
 	text-align:center;
 	margin:5px 0;
