@@ -21,4 +21,13 @@
     <!-- 默认匹配所有的请求 -->
     <url-pattern>/</url-pattern>
   </servlet-mapping>
+
+  <error-page>
+    <error-code>404</error-code>
+    <location>/public/404.jsp</location>
+  </error-page>
+  
+  <welcome-file-list>
+    <welcome-file>/WEB-INF/web/login.jsp</welcome-file>
+  </welcome-file-list>
 </web-app>

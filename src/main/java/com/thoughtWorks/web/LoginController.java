@@ -15,7 +15,7 @@ public class LoginController {
     @Autowired
     private PermissionService permissionService;
 
-    @RequestMapping(value = "/login")
+    @RequestMapping(value = "login")
     @ResponseBody
     private Result login(User user) {
         try {
@@ -24,6 +24,21 @@ public class LoginController {
             e.printStackTrace();
             return Result.failure("error");
         }
+    }
+
+    @RequestMapping("index")
+    public String index() {
+        return "index";
+    }
+
+    @RequestMapping("toLogin")
+    public String toLogin() {
+        return "login";
+    }
+
+    @RequestMapping("main")
+    public String main() {
+        return "main";
     }
 
 }
