@@ -28,16 +28,11 @@
             </div>
             <!-- 右侧常用菜单导航 -->
             <div class="larry-right-menu posb">
-                <!--<button class="layui-btn layui-btn-small" id="dianzhan">-->
-                <!--<i class="larry-icon larry-dianzan"></i>-->
-                <!--打赏作者-->
-                <!--</button>-->
+
                 <ul class="layui-nav clearfix">
+
                     <li class="layui-nav-item">
                         <a class="onFullScreen" id="FullScreen"><i class="larry-icon larry-quanping"></i>全屏</a>
-                    </li>
-                    <li class="layui-nav-item">
-                        <a id="lock"><i class="larry-icon larry-diannao5"></i>锁屏</a>
                     </li>
                     <li class="layui-nav-item">
                         <a id="clearCached"><i class="larry-icon larry-qingchuhuancun"></i>清除缓存</a>
@@ -45,17 +40,7 @@
                     <li class="layui-nav-item">
                         <a id="larryTheme"><i class="larry-icon larry-theme1"></i>设置主题</a>
                     </li>
-                    <!--<li class="layui-nav-item kjfs">
-                        <a class="kuaijiefangshi"><i class="larry-icon larry-kuaijie"></i><cite>快捷方式</cite></a>
-                        <dl class="layui-nav-child">
-                            <dd>
-                                <a href="http://www.larrycms.com/" target="_blank">网站主页</a>
-                            </dd>
-                            <dd>
-                                <a href="http://blog.larrycms.com/" target="_blank">我的博客</a>
-                            </dd>
-                        </dl>
-                    </li>-->
+
                     <li class="layui-nav-item exit">
                         <a id="logout"><i class="larry-icon larry-exit"></i><cite>退出</cite></a>
                     </li>
@@ -67,12 +52,12 @@
     <div class="layui-side larrycms-left" id="larry-side">
         <div class="layui-side-scroll">
             <!-- 管理员信息      -->
-            <!--<div class="user-info">
+            <div class="user-info">
                  <div class="photo">
-                     <img src="images/user.jpg" alt="">
+                     <img src="${baseurl}/public/images/user.jpg" alt="">
                  </div>
-                 <p>admin您好！欢迎登录</p>
-            </div>-->
+                 <p>hello <shiro:principal property="userName"/></p>
+            </div>
             <!-- 系统菜单 -->
             <div class="sys-menu-box">
                 <ul class="layui-nav layui-nav-tree" id="larrySideNav" lay-filter="side">
@@ -191,25 +176,6 @@
             <i class="larry-icon "></i>全部关闭选项卡
         </li>
     </ul>
-</div>
-<!-- 屏幕锁屏 -->
-<div class="lock-screen" style="display: none;">
-    <div class="lock-wrapper" id="lock-screen">
-        <div id="time"></div>
-        <div class="lock-box">
-            <img src="${baseurl}/public/images/user.jpg" alt="">
-            <h1>admin</h1>
-            <form action="" class="layui-form lock-form">
-                <div class="layui-form-item">
-                    <input type="password" name="lock_password" lay-verify="pass" placeholder="锁屏状态，请输入密码解锁"
-                           autocomplete="off" class="layui-input" autofocus="">
-                </div>
-                <div class="layui-form-item">
-                    <button class="layui-btn larry-btn" id="unlock">立即解锁</button>
-                </div>
-            </form>
-        </div>
-    </div>
 </div>
 </body>
 </html>

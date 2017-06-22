@@ -43,7 +43,8 @@ public class LoginController {
     @ResponseBody
     public Result getTopMenus() {
         try {
-            List<Map<String, String>> menus = permissionService.getTopMenus();
+            ActiveUser user = (ActiveUser) SecurityUtils.getSubject().getPrincipal();
+            List<Map<String, String>> menus = permissionService.getTopMenus(user.getRoleId());
 
             return Result.success(menus, Constant.SEARCH_SUCCESS);
         } catch (Exception e) {

@@ -37,8 +37,8 @@ public class PermissionServiceImpl implements PermissionService {
     }
 
     @Override
-    public List<Map<String, String>> getTopMenus() throws Exception {
-        return permissionDao.getTopMenus();
+    public List<Map<String, String>> getTopMenus(int roleId) throws Exception {
+        return permissionDao.getTopMenus(roleId);
     }
 
     @Override

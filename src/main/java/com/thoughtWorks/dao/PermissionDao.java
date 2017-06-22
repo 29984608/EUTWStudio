@@ -17,7 +17,7 @@ public interface PermissionDao {
 
     List<Permission> findPermissionListByRoleId(int roleId);
 
-    List<Map<String,String>> getTopMenus();
+    List<Map<String,String>> getTopMenus(int roleId);
 
     List<Map<String, String>> getSideMenus(String parentId);
 }
