@@ -19,10 +19,7 @@ layui.use(['jquery','layer','form'],function(){
         $('.larry-canvas').width(w).height(h);
     }).resize();
     
-    //登录链接测试，使用时可删除
-    $(".submit_btn").click(function(){
-      location.href="index.jsp";
-    });
+
     $(function(){
         $("#canvas").jParticle({
             background: "#E6E6E6",

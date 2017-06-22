@@ -9,6 +9,10 @@ public class Result {
 
     private String msg;
 
+    public Result(boolean result) {
+        this.result = result;
+    }
+
     public Result(boolean result, String msg) {
         this.result = result;
         this.data = msg;
@@ -25,8 +29,8 @@ public class Result {
         this.msg = msg;
     }
 
-    public static Result success(Object obj) {
-        return new Result(true, obj);
+    public static Result success() {
+        return new Result(true);
     }
 
     public static Result success(Object obj, String msg) {
@@ -34,9 +38,6 @@ public class Result {
     }
 
 
-    public static Result failure(String msg) {
-        return new Result(false, msg);
-    }
 
     public static Result failure(Object obj, String msg) {
         return new Result(false, obj, msg);

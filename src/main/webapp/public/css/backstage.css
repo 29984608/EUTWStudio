@@ -32,11 +32,11 @@ body{
 	top: 70px;
 	left: 203px;
 	width: calc(100% - 203px);
-	width: -moz-calc(100%-203px);
-	width: -webkit-calc(100%-203px);
-	height: calc(100%-100px);
-	height: -moz-calc(100%-100px);
-	height: -webkit-calc(100%-100px);
+	width: -moz-calc(100%- 203px);
+	width: -webkit-calc(100%- 203px);
+	height: calc(100%- 100px);
+	height: -moz-calc(100%- 100px);
+	height: -webkit-calc(100%- 100px);
 	margin: 0px;
 	overflow-x:hidden;
 	overflow-y:auto;
@@ -48,8 +48,8 @@ body{
 /*footer*/
 .layui-layout-admin .layui-footer{
 	width: calc(100% - 203px);
-	width: -moz-calc(100%-203px);
-	width: -webkit-calc(100%-203px);
+	width: -moz-calc(100%- 203px);
+	width: -webkit-calc(100%- 203px);
     height: 33px;
     padding: 5px 0;
     line-height: 33px;
@@ -81,8 +81,8 @@ body{
 }
 .header-menu .layui-main{
 	width: calc(100% - 203px);
-	width: -moz-calc(100%-203px);
-	width: -webkit-calc(100%-203px);
+	width: -moz-calc(100%- 203px);
+	width: -webkit-calc(100%- 203px);
 	height: 70px;
     top: 0px;
     left: 203px;
@@ -349,7 +349,7 @@ body{
 	z-index: 1005;
 }
 ul.layui-tab-title{
-	max-width: calc(100%-160px);
+	max-width: calc(100%- 160px);
 	height: 40px;
 	position: absolute;
     top: 0px;

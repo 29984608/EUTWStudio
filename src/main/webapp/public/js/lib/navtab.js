@@ -124,6 +124,7 @@ layui.define(['jquery','elements','layer','common'],function(exports){
 		// 若选项卡不存在
 		if (tabIndex === -1) {
 			globalTabIdIndex++;
+			alert(data.href)
 			var content = '<iframe src="' +baseUrl+ data.href + '" data-id="' + globalTabIdIndex + '"   name="ifr_' + globalTabIdIndex +  '"   id="ifr' + globalTabIdIndex + '" class="larry-iframe"></iframe>';
 			var title = '';
 
