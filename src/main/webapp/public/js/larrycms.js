@@ -31,14 +31,15 @@ layui.use(['elements', 'jquery', 'layer', 'larry', 'navtab', 'form', 'common'], 
         }
 // 001界面初始化
         AdminInit();
+        let firstTopMenuPid;
         $.ajaxSettings.async = false;
         $.ajax({
             url: baseUrl + "/getTopMenus?" + new Date().getTime(),
             type: "post",
             success: function (data) {
                 if (data.result) {
-
                     let result = data.data;
+                    firstTopMenuPid = result[0].pid;
                     larry.set({
                         elem: '#menu',
                         data: result,
@@ -48,36 +49,6 @@ layui.use(['elements', 'jquery', 'layer', 'larry', 'navtab', 'form', 'common'], 
                 }
             }
         });
-
-
-        // var result = [
-        //     {
-        //         "title": "系统管理",
-        //         "icon": "larry-xitongshezhi1",
-        //         "pid": "0"
-        //     },
-        //     {
-        //         "title": "内容管理",
-        //         "icon": "larry-neirongguanli",
-        //         "pid": "35"
-        //     },
-        //     {
-        //         "title": "微信公众",
-        //         "icon": "larry-weixingongzhongpingtai",
-        //         "pid": "40"
-        //     },
-        //     {
-        //         "title": "扩展模块",
-        //         "icon": "larry-ht_expand",
-        //         "pid": "46"
-        //     }
-        // ]
-        // larry.set({
-        //     elem: '#menu',
-        //     data: result,
-        //     cached: false
-        // });
-        // larry.render();
 
         var $menu = $('#menu');
         $menu.find('li.layui-nav-item').each(function () {
@@ -93,6 +64,13 @@ layui.use(['elements', 'jquery', 'layer', 'larry', 'navtab', 'form', 'common'], 
                     success: function (data) {
                         if (data.result) {
                             let result = data.data;
+                            if(id = firstTopMenuPid)
+                            result.unshift({
+                                title:'后台首页',
+                                icon:'larry-wangzhanshouye',
+                                href:baseUrl+'main'
+                            });
+
                             larry.set({
                                 elem: '#larrySideNav',
                                 data: result,
@@ -106,62 +84,11 @@ layui.use(['elements', 'jquery', 'layer', 'larry', 'navtab', 'form', 'common'], 
                         }
                     }
                 });
-                /*$.ajaxSettings.async = false;
-
-                 $.getJSON('../backstage/datas/pid_' + id + '.json?t=' + new Date(), {
-                 pid: id,
-                 Param: 'index_menu'
-                 }, function (result) {
-                 larry.set({
-                 elem: '#larrySideNav',
-                 data: result,
-                 spreadOne: true
-                 });
-                 larry.render();
-                 //监听左侧导航点击事件
-                 larry.on('click(side)', function (data) {
-                 navtab.tabAdd(data.field);
-                 });
-                 });*/
-
-                //
-                // var pid_40 = [{
-                //     "title": "微信配置",
-                //     "icon": "larry-weixinguanli",
-                //     "spread": "true",
-                //     "children": [{
-                //         "title": "微信接口设置",
-                //         "icon": "larry-api1",
-                //         "href": "html/temp.html"
-                //     }, {"title": "微信支付配置", "icon": "larry-iconzfb", "href": "html/temp.html"}]
-                // }]
-//                 var pid_46 = [{"title": "支付宝支付配置", "icon": "larry-zhifubao", "href": "html/temp.html"}]
-//                 var result;
-//                 if (id == 0)
-//                     result = pid_0;
-//                 if (id == 35)
-//                     result = pid_35;
-//                 if (id == 40)
-//                     result = pid_40;
-//                 if (id == 46)
-//                     result = pid_46;
-//
-//                 larry.set({
-//                     elem: '#larrySideNav',
-//                     data: result,
-//                     spreadOne: true
-//                 });
-//                 larry.render();
-// //监听左侧导航点击事件
-//                 larry.on('click(side)', function (data) {
-//                     navtab.tabAdd(data.field);
-//                 });
-
             });
 
         });
 // 左侧导航点击事件
-        $menu.find('li[data-pid=2]').click();
+        $menu.find(`li[data-pid=${firstTopMenuPid}]`).click();
         $("#larrySideNav").find("li").eq(0).addClass('layui-this');
         $.ajaxSettings.async = true;
 

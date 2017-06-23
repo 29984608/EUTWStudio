@@ -5,10 +5,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/rolePermission")
-public class System {
+public class RolePermissionController {
 
     @RequestMapping("/")
     public String index() {
         return "systemManage/rolePermission";
     }
+
+
 }
