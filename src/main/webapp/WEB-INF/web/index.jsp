@@ -53,10 +53,10 @@
         <div class="layui-side-scroll">
             <!-- 管理员信息      -->
             <div class="user-info">
-                 <div class="photo">
-                     <img src="${baseurl}/public/images/user.jpg" alt="">
-                 </div>
-                 <p>hello <shiro:principal property="userName"/></p>
+                <div class="photo">
+                    <img src="${baseurl}/public/images/user.jpg" alt="">
+                </div>
+                <p>hello <shiro:principal property="userName"/></p>
             </div>
             <!-- 系统菜单 -->
             <div class="sys-menu-box">

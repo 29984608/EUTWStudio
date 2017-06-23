@@ -68,6 +68,12 @@ public class LoginController {
         }
     }
 
+    @RequestMapping("logout")
+    public String logout() {
+        SecurityUtils.getSubject().logout();
+
+        return "login";
+    }
     @RequestMapping("index")
     public String index() {
         return "index";
