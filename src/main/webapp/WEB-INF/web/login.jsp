@@ -40,7 +40,6 @@
         <p>© 2017-thoughtWorks studio 版权所有</p>
     </div>
 </div>
-<script type="text/javascript" src="${baseurl}/public/common/layui/layui.js"></script>
 <script type="text/javascript" src="${baseurl}/public/common/js/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="${baseurl}/public/common/jsplugin/jparticle.jquery.js"></script>
 <script type="text/javascript" src="${baseurl}/public/js/login.js"></script>

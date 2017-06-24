@@ -126,7 +126,7 @@
     <!-- layui-layout-admin end -->
 </div>
 <!-- 加载js文件-->
-<script type="text/javascript" src="${baseurl}/public/common/layui/layui.js"></script>
+
 <script type="text/javascript" src="${baseurl}/public/js/larrycms.js"></script>
 <!-- 主题配置 -->
 <div class="larryThemeContent" id="LarryThemeSet" style="display:none;">

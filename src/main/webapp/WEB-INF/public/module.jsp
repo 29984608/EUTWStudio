@@ -1,3 +1,4 @@
+<script type="text/javascript" src="${baseurl}/public/common/layui/layui.js"></script>
 
 <script>
     layui.config({
@@ -20,6 +21,4 @@
             elem: '#larry-tab'
         });
     });
-
-
 </script>
