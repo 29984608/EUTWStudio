@@ -149,7 +149,7 @@
     let role = {
         list: function () {
             $.ajax({
-                url: baseUrl + "role/list",
+                url: baseUrl + "userRole/list",
                 data: {currentIndex: currentIndex, pageSize: pageSize},
                 success: function (data) {
                     if (data.result) {

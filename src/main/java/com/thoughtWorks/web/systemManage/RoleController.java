@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/role")
+@RequestMapping("/userRole")
 public class RoleController {
     @Resource
     private RoleService roleService;
