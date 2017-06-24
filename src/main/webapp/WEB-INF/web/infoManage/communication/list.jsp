@@ -155,7 +155,7 @@
                 <col width="150">
                 <col width="150">
                 <col width="350">
-                <col>
+                <col width="200">
             </colgroup>
 
             <thead>
