@@ -1,7 +1,9 @@
 package com.thoughtWorks.web.systemManage;
 
+import com.thoughtWorks.dto.Result;
 import com.thoughtWorks.entity.Role;
 import com.thoughtWorks.service.RoleService;
+import com.thoughtWorks.util.Constant;
 import com.thoughtWorks.util.PageUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,7 +32,7 @@ public class RoleController {
         try {
             List<Role> roles = roleService.queryList(page);
             data.put("roles", roles);
-            data.put("page",page);
+            data.put("page", page);
             data.put("result", true);
         } catch (Exception e) {
             e.printStackTrace();
@@ -38,4 +40,18 @@ public class RoleController {
         return data;
     }
 
+
+    @RequestMapping("add")
+    @ResponseBody
+    public Result add(Role role) {
+        try {
+            roleService.add(role);
+
+            return Result.success(null, Constant.ADD_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return Result.failure(null, Constant.ADD_FAILURE);
+    }
 }

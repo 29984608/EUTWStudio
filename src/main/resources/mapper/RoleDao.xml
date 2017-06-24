@@ -13,4 +13,8 @@
         SELECT count(1)
         FROM stuinfo.t_role
     </select>
+
+    <insert id="add" parameterType="Role">
+        INSERT INTO t_role (name, available) VALUES (#{name}, #{available})
+    </insert>
 </mapper>

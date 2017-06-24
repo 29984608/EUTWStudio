@@ -18,11 +18,16 @@ public class RoleServiceImpl implements RoleService {
     private RoleDao roleDao;
 
     @Override
-    public List<Role> queryList(PageUtil page) {
+    public List<Role> queryList(PageUtil page)throws Exception {
         Map<String, Integer> data = new HashMap<>();
         data.put("start", (page.getCurrentIndex()-1) * page.getPageSize());
         data.put("end", page.getCurrentIndex() * page.getPageSize() + page.getPageSize());
         page.setTotalSize(roleDao.queryTotalCount() / page.getPageSize());
         return roleDao.queryList(data);
+    }
+
+    @Override
+    public void add(Role role)throws Exception {
+        roleDao.add(role);
     }
 }

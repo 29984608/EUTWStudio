@@ -7,4 +7,6 @@ public class Constant {
     public static final String ACCOUNT_OR_PWD_ERROR = "帐号或密码错误";
 
 
+    public static final String ADD_SUCCESS = "添加成功";
+    public static final String ADD_FAILURE = "添加失败";
 }

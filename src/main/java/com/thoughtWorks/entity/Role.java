@@ -3,7 +3,7 @@ package com.thoughtWorks.entity;
 public class Role {
     private int id;
     private String name;
-    private int available;
+    private String available;
 
     public int getId() {
         return id;
@@ -21,11 +21,11 @@ public class Role {
         this.name = name;
     }
 
-    public int getAvailable() {
+    public String getAvailable() {
         return available;
     }
 
-    public void setAvailable(int available) {
+    public void setAvailable(String available) {
         this.available = available;
     }
 }

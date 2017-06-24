@@ -10,4 +10,6 @@ public interface RoleDao {
      List<Role> queryList(Map<String, Integer> page);
 
     Integer queryTotalCount();
+
+    void add(Role role);
 }

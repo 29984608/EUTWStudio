@@ -10,20 +10,4 @@
 <script>
     var baseUrl = "${baseurl}";
 
-    layui.config({
-        base: baseUrl+ '/public/js/'
-    }).extend({
-        elem: 'jqmodules/elem',
-        tabmenu: 'jqmodules/tabmenu',
-        jqmenu: 'jqmodules/jqmenu',
-        ajax: 'jqmodules/ajax',
-        dtable: 'jqmodules/dtable',
-        jqdate: 'jqmodules/jqdate',
-        modal: 'jqmodules/modal',
-        tags: 'jqmodules/tags',
-        jqform: 'jqmodules/jqform',
-        echarts: 'echarts',
-        tpl:    'lay/modules/laytpl'
-    }).use(['ajax', 'modal','tpl'],function () {
-    })
 </script>

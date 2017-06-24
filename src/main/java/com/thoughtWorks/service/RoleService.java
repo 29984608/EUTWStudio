@@ -7,5 +7,7 @@ import java.util.List;
 
 public interface RoleService {
 
-    List<Role> queryList(PageUtil page);
+    List<Role> queryList(PageUtil page) throws Exception;
+
+    void add(Role role) throws Exception;
 }

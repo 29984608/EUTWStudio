@@ -1,24 +1,19 @@
 <script type="text/javascript" src="${baseurl}/public/common/layui/layui.js"></script>
 
 <script>
+
     layui.config({
-        base: '${baseurl}/public/js/lib/' //layui自定义layui组件目录
+        base: baseUrl + '/public/js/'
     }).extend({
-        larry: 'larry',
-        navtab: 'navtab',
-        elemnts: 'elements',
-        common: 'common'
-    });
-    layui.use(['elements', 'jquery', 'layer', 'larry', 'navtab', 'form', 'common'], function () {
-        var $ = layui.jquery,
-            layer = layui.layer,
-            device = layui.device(),
-            elements = layui.elements(),
-            larry = layui.larry(),
-            form = layui.form(),
-            common = layui.common;
-        navtab = layui.navtab({
-            elem: '#larry-tab'
-        });
-    });
+        elem: 'jqmodules/elem',
+        tabmenu: 'jqmodules/tabmenu',
+        jqmenu: 'jqmodules/jqmenu',
+        ajax: 'jqmodules/ajax',
+        dtable: 'jqmodules/dtable',
+        jqdate: 'jqmodules/jqdate',
+        modal: 'jqmodules/modal',
+        tags: 'jqmodules/tags',
+        jqform: 'jqmodules/jqform',
+        echarts: 'echarts'
+    })
 </script>
