@@ -25,9 +25,9 @@
                     <li class="layui-btn layui-this" onclick="role.addRole()"><i class="layui-icon">&#xe60a;</i>添加角色
                     </li>
                 </ul>
-
             </blockquote>
             <div class="larry-separate"></div>
+
             <div class="layui-tab-content larry-personal-body clearfix mylog-info-box">
                 <div class="layui-form ">
                     <table id="example" class="layui-table lay-even " data-name="articleCatData">
