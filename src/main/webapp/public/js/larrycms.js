@@ -64,12 +64,14 @@ layui.use(['elements', 'jquery', 'layer', 'larry', 'navtab', 'form', 'common'], 
                     success: function (data) {
                         if (data.result) {
                             let result = data.data;
-                            if(id = firstTopMenuPid)
-                            result.unshift({
-                                title:'后台首页',
-                                icon:'larry-wangzhanshouye',
-                                href:baseUrl+'main'
-                            });
+                            if(id == firstTopMenuPid){
+                                result.unshift({
+                                    title:'后台首页',
+                                    icon:'larry-wangzhanshouye',
+                                    href:baseUrl+'main'
+                                });
+
+                            }
 
                             larry.set({
                                 elem: '#larrySideNav',
