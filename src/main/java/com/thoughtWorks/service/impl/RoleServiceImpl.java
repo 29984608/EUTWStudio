@@ -1,15 +1,14 @@
 package com.thoughtWorks.service.impl;
 
 import com.thoughtWorks.dao.RoleDao;
+import com.thoughtWorks.entity.Permission;
 import com.thoughtWorks.entity.Role;
 import com.thoughtWorks.service.RoleService;
 import com.thoughtWorks.util.PageUtil;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class RoleServiceImpl implements RoleService {
@@ -18,16 +17,73 @@ public class RoleServiceImpl implements RoleService {
     private RoleDao roleDao;
 
     @Override
-    public List<Role> queryList(PageUtil page)throws Exception {
+    public List<Role> queryList(PageUtil page) throws Exception {
         Map<String, Integer> data = new HashMap<>();
-        data.put("start", (page.getCurrentIndex()-1) * page.getPageSize());
+        data.put("start", (page.getCurrentIndex() - 1) * page.getPageSize());
         data.put("end", page.getCurrentIndex() * page.getPageSize() + page.getPageSize());
         page.setTotalSize(roleDao.queryTotalCount() / page.getPageSize());
         return roleDao.queryList(data);
     }
 
     @Override
-    public void add(Role role)throws Exception {
+    public void add(Role role) throws Exception {
         roleDao.add(role);
+    }
+
+    @Override
+    public Map<String, Object> viewPermission(String roleId) {
+        Map<String, Object> result = new HashMap<>();
+        Map<String, Object> nodes = new HashMap<>();
+        List<Permission> permissions = roleDao.queryAllPermission();
+        List<String> hasPermissions = roleDao.queryPermissionByRoleId(roleId);
+
+        changePermissionState(nodes, permissions, hasPermissions);
+
+        Collection<Object> topMenus = removeMapKey(nodes);
+        result.put("permissions", topMenus);
+        result.put("hasPermissions", hasPermissions);
+
+        return result;
+    }
+
+    private Collection<Object> removeMapKey(Map<String, Object> nodes) {
+        Collection<Object> topMenus = nodes.values();
+        Iterator<Object> iterator = topMenus.iterator();
+        while (iterator.hasNext()) {
+            Map<String,Object> next = (Map<String, Object>) iterator.next();
+            Collection<Object> sideMenus = ((Map<String, Object>) next.get("children")).values();
+            next.put("children",sideMenus);
+            Iterator<Object> iterator1 = sideMenus.iterator();
+            while (iterator1.hasNext()) {
+                Map<String,Object> next1 = (Map<String, Object>) iterator1.next();
+                Collection<Object> permission = ((Map<String, Object>) next1.get("children")).values();
+                next1.put("children", permission);
+            }
+        }
+
+        return topMenus;
+    }
+
+    private void changePermissionState(Map<String, Object> nodes, List<Permission> permissions, List<String> hasPermissions) {
+        for (Permission permission : permissions) {
+            String[] deep = permission.getParentIds().split("/");
+            Map<String, Object> node = new HashMap<>();
+            node.put("id", permission.getId());
+            node.put("name", permission.getName());
+
+            if (hasPermissions.contains(permission.getId().toString())) { //判断是否有该权限
+                node.put("has", true);
+            }
+            if (deep.length == 2) { // 一级菜单
+                node.put("children", new HashMap<String, Map<String, String>>());
+                nodes.put(permission.getId() + "", node);
+            } else if (deep.length == 3) {//二级菜单
+                node.put("children", new HashMap<String, Map<String, String>>());
+                ((Map<String, Object>) ((Map<String, Object>) nodes.get(deep[2])).get("children")).put(permission.getId() + "", node);
+            } else if (deep.length == 4) {//权限
+                Map<String, Object> children = (Map<String, Object>) ((Map<String, Object>) ((Map<String, Object>) nodes.get(deep[2])).get("children")).get(deep[3]);
+                ((Map<String, Object>) children.get("children")).put(permission.getId() + "", node);
+            }
+        }
     }
 }

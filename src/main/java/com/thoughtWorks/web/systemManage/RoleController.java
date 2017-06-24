@@ -54,4 +54,18 @@ public class RoleController {
 
         return Result.failure(null, Constant.ADD_FAILURE);
     }
+
+    @RequestMapping("viewPermission")
+    @ResponseBody
+    public Result viewPermission(String roleId) {
+        try {
+            Map<String, Object> data = roleService.viewPermission(roleId);
+
+            return Result.success(data, Constant.SEARCH_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return Result.failure(null, Constant.SEARCH_FAILURE);
+    }
 }

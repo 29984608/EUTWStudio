@@ -119,7 +119,7 @@
     <div class="layui-footer layui-larry-foot psob" id="larry-footer">
         <div class="layui-main">
 
-            <p> 2016-2017 © Write by Larry,LarryCMS. 版权所有,基于前端框架Layui1.09</p>
+            <p> 2017-2018 © Write by Eurasia ThoughtWorks Studio. 版权所有</p>
         </div>
     </div>
     <!-- footer end -->

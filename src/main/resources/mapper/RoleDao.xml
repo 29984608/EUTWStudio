@@ -17,4 +17,25 @@
     <insert id="add" parameterType="Role">
         INSERT INTO t_role (name, available) VALUES (#{name}, #{available})
     </insert>
+
+    <select id="queryAllPermission" resultType="Permission">
+        SELECT
+            id,
+            name,
+            parentid,
+            parentids
+        FROM stuinfo.t_permission
+        WHERE parentid != 0
+        ORDER BY sortstring ASC;
+    </select>
+
+    <select id="queryPermissionByRoleId" resultType="string" parameterType="string">
+        SELECT permission.id
+        FROM t_permission permission
+            LEFT JOIN (SELECT
+                           sys_permission_id,
+                           sys_role_id
+                       FROM t_role_permission) role ON role.sys_role_id = #{roleId}
+        WHERE role.sys_permission_id = permission.id
+    </select>
 </mapper>
