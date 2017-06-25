@@ -79,7 +79,7 @@
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <section class="panel">
                 <header class="panel-heading bm0">
-                    <span class='span-title'>系统概览</span>
+                    <span class='span-title'>毛良伟</span>
                     <span class="tools pull-right"><a href="javascript:;" class="iconpx-chevron-down"></a></span>
                 </header>
                 <div class="panel-body">
@@ -146,6 +146,7 @@
                             <tbody>
                             <tr>
                                 <td>
+                                    <button class="layui-btn"><i class="layui-icon">&#xe61f;</i> 添加</button>
                                     <button class="layui-btn"><i class="layui-icon">&#xe615;</i> 搜索</button>
                                     <button class="layui-btn layui-btn-normal"><i class="layui-icon">&#xe642;</i> 编辑</button>
                                     <button class="layui-btn  layui-btn-danger"><i class="layui-icon">&#xe640;</i> 删除</button>
