@@ -95,6 +95,11 @@
                                 </td>
                                 <td><span class="info">完成沟通信息模块页面，添加小图标</span></td>
                             </tr>
+                            <tr>
+                                <td><span class="tit">2017-6-25</span>
+                                </td>
+                                <td><span class="info">添加时间轴预览，修改分页样式，添加编辑时间轴功能</span></td>
+                            </tr>
 
                             </tbody>
                         </table>
