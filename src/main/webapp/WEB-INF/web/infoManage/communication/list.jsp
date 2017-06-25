@@ -29,20 +29,6 @@
                                 <option value="4">element</option>
                                 <option value="5">laytpl</option>
                                 <option value="6">upload</option>
-                                <option value="7">laydate</option>
-                                <option value="8">laypage</option>
-                                <option value="9">flow</option>
-                                <option value="10">util</option>
-                                <option value="11">code</option>
-                                <option value="12">tree</option>
-                                <option value="13">layedit</option>
-                                <option value="14">nav</option>
-                                <option value="15">tab</option>
-                                <option value="16">table</option>
-                                <option value="17">select</option>
-                                <option value="18">checkbox</option>
-                                <option value="19">switch</option>
-                                <option value="20">radio</option>
                             </select>
                         </div>
 
@@ -54,22 +40,6 @@
                                 <option value="2">form</option>
                                 <option value="3">layim</option>
                                 <option value="4">element</option>
-                                <option value="5">laytpl</option>
-                                <option value="6">upload</option>
-                                <option value="7">laydate</option>
-                                <option value="8">laypage</option>
-                                <option value="9">flow</option>
-                                <option value="10">util</option>
-                                <option value="11">code</option>
-                                <option value="12">tree</option>
-                                <option value="13">layedit</option>
-                                <option value="14">nav</option>
-                                <option value="15">tab</option>
-                                <option value="16">table</option>
-                                <option value="17">select</option>
-                                <option value="18">checkbox</option>
-                                <option value="19">switch</option>
-                                <option value="20">radio</option>
                             </select>
                         </div>
 
@@ -81,102 +51,58 @@
                                 <option value="3">layim</option>
                                 <option value="4">element</option>
                                 <option value="5">laytpl</option>
-                                <option value="6">upload</option>
-                                <option value="7">laydate</option>
-                                <option value="8">laypage</option>
-                                <option value="9">flow</option>
-                                <option value="10">util</option>
-                                <option value="11">code</option>
-                                <option value="12">tree</option>
-                                <option value="13">layedit</option>
-                                <option value="14">nav</option>
-                                <option value="15">tab</option>
-                                <option value="16">table</option>
-                                <option value="17">select</option>
-                                <option value="18">checkbox</option>
-                                <option value="19">switch</option>
-                                <option value="20">radio</option>
                             </select>
                         </div>
 
                         <div class="layui-input-inline">
-                            <select name="modules" lay-verify="required" lay-search="">
-                                <option value="">学号</option>
-                                <option value="1">layer</option>
-                                <option value="2">form</option>
-                                <option value="3">layim</option>
-                                <option value="4">element</option>
-                                <option value="5">laytpl</option>
-                                <option value="6">upload</option>
-                                <option value="7">laydate</option>
-                                <option value="8">laypage</option>
-                                <option value="9">flow</option>
-                                <option value="10">util</option>
-                                <option value="11">code</option>
-                                <option value="12">tree</option>
-                                <option value="13">layedit</option>
-                                <option value="14">nav</option>
-                                <option value="15">tab</option>
-                                <option value="16">table</option>
-                                <option value="17">select</option>
-                                <option value="18">checkbox</option>
-                                <option value="19">switch</option>
-                                <option value="20">radio</option>
-                            </select>
+                            <div class="layui-input-inline" style="width: 200px">
+                                <input name="password" lay-verify="pass" placeholder="请输入学生姓名" autocomplete="off"
+                                       class="layui-input" type="text">
+                            </div>
                         </div>
-                        <button class="layui-btn">查找</button>
+                        <button class="layui-btn"><i class="layui-icon">&#xe615;</i>查找</button>
                     </div>
 
                 </blockquote>
                 <div class="larry-separate"></div>
                 <div class="layui-tab-content larry-personal-body clearfix mylog-info-box">
-                    <a class="layui-btn">预览</a>
-                    <a class="layui-btn">打印</a>
-                    <a class="layui-btn layui-btn-danger">删除</a>
+                    <a class="layui-btn" id="addCommunication"><i class="layui-icon">&#xe608;</i> 添加</a>
+                    <a class="layui-btn"><i class="layui-icon">&#xe60a;</i>打印</a>
+
+                    <a class="layui-btn layui-btn-danger"><i class="layui-icon">&#xe640;</i>删除</a>
                     <div class="layui-form">
                         <table class="layui-table">
-                            <colgroup>
-                                <col width="100">
-                                <col width="150">
-                                <col width="150">
-                                <col width="150">
-                                <col width="150">
-                                <col width="350">
-                                <col width="250">
-                            </colgroup>
-
                             <thead>
                             <tr>
-                                <th><input type="checkbox" name="" lay-skin="primary" lay-filter="allChoose">&nbsp;&nbsp;&nbsp;全选
+                                <th><input type="checkbox" name="" lay-skin="primary" lay-filter="allChoose">
                                 </th>
                                 <th>学号</th>
                                 <th>姓名</th>
-                                <th>性别</th>
-                                <th>班级</th>
-                                <th>沟通内容</th>
+                                <th>沟通时间</th>
+                                <th>沟通导师</th>
+                                <th>沟通对象</th>
+                                <th>沟通方向</th>
                                 <th>操作</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
                                 <td><input type="checkbox" name="" lay-skin="primary"></td>
-                                <td>贤心</td>
-                                <td>汉族</td>
+                                <td>15610903150627</td>
+                                <td>张三</td>
                                 <td>1989-10-14</td>
-                                <td>人生似修行</td>
+                                <td>张三</td>
+                                <td>李四</td>
                                 <td>
                                     <p>question：123123</p>
-                                    <p>answ：123123</p>
                                 </td>
                                 <td>
-                                    <a class="layui-btn layui-btn-small" id="addCommunication"><i
-                                            class="layui-icon"></i></a>
+                                    <a class="layui-btn layui-btn-mini"  onclick="seeCommunication()">添加</a>
 
-                                    <a class="layui-btn layui-btn-small" id="alterCommunication"><i
-                                            class="layui-icon"></i></a>
+                                    <a class="layui-btn layui-btn-mini">编辑</a>
 
-                                    <a class="layui-btn layui-btn-small" id="delCommunication"><i
-                                            class="layui-icon"></i></a>
+                                    <a class="layui-btn layui-btn-mini layui-btn-normal">预览
+                                    </a>
                                 </td>
                             </tr>
                             </tbody>
@@ -184,7 +110,6 @@
                     </div>
                     <div id="demo7"></div>
                 </div>
-                <div id="demo1"></div>
             </form>
         </div>
     </div>
@@ -201,7 +126,6 @@
         </div>
 
 
-
         <div class="layui-form-item">
             <label class="layui-form-label">学生姓名</label>
             <div class="layui-input-inline">
@@ -213,7 +137,8 @@
         <div class="layui-form-item">
             <label class="layui-form-label">沟通时间</label>
             <div class="layui-input-inline">
-                <input name="date" id="date" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input" onclick="layui.laydate({elem: this})" type="text">
+                <input name="date" id="date" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off"
+                       class="layui-input" onclick="layui.laydate({elem: this})" type="text">
             </div>
         </div>
 
@@ -227,32 +152,17 @@
                     <option value="3">layim</option>
                     <option value="4">element</option>
                     <option value="5">laytpl</option>
-                    <option value="6">upload</option>
-                    <option value="7">laydate</option>
-                    <option value="8">laypage</option>
-                    <option value="9">flow</option>
-                    <option value="10">util</option>
-                    <option value="11">code</option>
-                    <option value="12">tree</option>
-                    <option value="13">layedit</option>
-                    <option value="14">nav</option>
-                    <option value="15">tab</option>
-                    <option value="16">table</option>
-                    <option value="17">select</option>
-                    <option value="18">checkbox</option>
-                    <option value="19">switch</option>
-                    <option value="20">radio</option>
                 </select>
             </div>
         </div>
 
 
-            <div class="layui-form-item">
-                <label class="layui-form-label">沟通内容</label>
-                <div class="layui-input-block">
-                    <textarea placeholder="请录入相关沟通内容" class="layui-textarea"></textarea>
-                </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">沟通内容</label>
+            <div class="layui-input-block">
+                <textarea placeholder="请录入相关沟通内容" class="layui-textarea"></textarea>
             </div>
+        </div>
         <div class="layui-form-item">
             <div class="layui-input-block">
                 <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
@@ -262,6 +172,28 @@
     </form>
 </div>
 
+<div id="seeInfo" style="display: none">
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+        <legend>张三学生沟通反馈记录</legend>
+    </fieldset>
+
+    <form class="layui-form" action="">
+
+        <%--<div class="layui-inline">--%>
+            <%--<label class="layui-form-label" style="width: auto">学生姓名</label>--%>
+            <%--<div class="layui-input-inline">--%>
+                <%--<input name="stuNo" lay-verify="stuNo" autocomplete="off" class="layui-input" type="text">--%>
+            <%--</div>--%>
+        <%--</div>--%>
+
+        <%--<div class="layui-inline">--%>
+            <%--<label class="layui-form-label" style="width: auto">学生学号</label>--%>
+            <%--<div class="layui-input-inline">--%>
+                <%--<input name="stuNo" lay-verify="stuNo" autocomplete="off" class="layui-input" type="text">--%>
+            <%--</div>--%>
+        <%--</div>--%>
+    </form>
+</div>
 
 <script>
     layui.use('form', function () {
@@ -285,8 +217,8 @@
 
         laypage({
             cont: 'demo7'
-            , pages: 100
-            , skip: true
+            , pages: 100 //总页数
+            , groups: 5 //连续显示分页数
         });
     });
 </script>
@@ -295,24 +227,22 @@
     $(document).ready(function () {
 
     })
+    
+    function seeCommunication() {
+        layer.open({
+            type: 1,
+            title: '沟通反馈记录详细信息',
+            area: ['100%', '100%'],
+            skin: 'yourclass',
+            content: $('#seeInfo'),
+        });
+    }
 
     $("#addCommunication").click(function () {
         layer.open({
             type: 1,
             title: '添加沟通反馈记录',
-            area: ['990px', '450px'],
-            offset: ['0px', '100px'],
-            skin: 'yourclass',
-            content: $('#addInfo'),
-        });
-    })
-
-    $("#alterCommunication").click(function () {
-        layer.open({
-            type: 1,
-            title: '添加沟通反馈记录',
-            area: ['990px', '450px'],
-            offset: ['0px', '100px'],
+            area: ['100%', '100%'],
             skin: 'yourclass',
             content: $('#addInfo'),
         });
@@ -415,6 +345,11 @@
             , pass: [/(.+){6,12}$/, '密码必须6到12位']
             , content: function (value) {
                 layedit.sync(editIndex);
+            }
+            ,stuNo:function (value) {
+                if (value.length<14){
+                    return '请输入正确格式的学号';
+                }
             }
         });
 

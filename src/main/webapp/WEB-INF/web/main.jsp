@@ -90,8 +90,9 @@
                             </colgroup>
                             <tbody>
                             <tr>
-                                <td><span class="tit">系统名称:</span></td>
-                                <td><a href="http://www.larrycms.com" title="LarryCMS官网" class="tit" target="_blank"><span class="info">LarryCMS</span></a></td>
+                                <td><span class="tit">2017-6-24</span>
+                                </td>
+                                <td><span class="info">完成沟通信息模块页面，添加小图标</span></td>
                             </tr>
 
                             </tbody>
