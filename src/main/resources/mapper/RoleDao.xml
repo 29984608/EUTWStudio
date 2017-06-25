@@ -3,6 +3,16 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.thoughtWorks.dao.RoleDao">
+    <select id="query" parameterType="string" resultType="Role">
+        SELECT *
+        FROM stuinfo.t_role
+        WHERE id = #{roleId}
+    </select>
+    <update id="update" parameterType="Role">
+        UPDATE stuinfo.t_role
+        SET stuinfo.t_role.name = #{name}, stuInfo.t_role.available = #{available}
+        WHERE stuinfo.t_role.id = #{id}
+    </update>
     <select id="queryList" parameterType="Map" resultType="Map">
         SELECT *
         FROM stuInfo.t_role

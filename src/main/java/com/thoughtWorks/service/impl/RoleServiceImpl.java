@@ -31,6 +31,16 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
+    public Role query(String roleId)throws Exception {
+        return roleDao.query(roleId);
+    }
+
+    @Override
+    public void update(Role role) throws Exception {
+        roleDao.update(role);
+    }
+
+    @Override
     public Map<String, Object> viewPermission(String roleId) {
         Map<String, Object> result = new HashMap<>();
         Map<String, Object> nodes = new HashMap<>();

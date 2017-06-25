@@ -17,4 +17,8 @@ public interface RoleDao {
     List<Permission> queryAllPermission();
 
     List<String> queryPermissionByRoleId(String roleId);
+
+    Role query(String roleId);
+
+    void update(Role role);
 }

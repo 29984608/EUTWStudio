@@ -13,4 +13,8 @@ public interface RoleService {
     void add(Role role) throws Exception;
 
     Map<String,Object> viewPermission(String roleId)throws Exception;
+
+    Role query(String roleId) throws Exception;
+
+    void update(Role role)throws Exception;
 }

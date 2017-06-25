@@ -9,5 +9,4 @@
 <script type="text/javascript" src="${baseurl}/public/common/layui/layui.js"></script>
 <script>
     var baseUrl = "${baseurl}";
-
 </script>

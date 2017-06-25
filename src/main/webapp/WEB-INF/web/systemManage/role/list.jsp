@@ -33,8 +33,8 @@
                     <table id="example" class="layui-table lay-even " data-name="articleCatData">
                         <thead>
                         <tr>
-                            <th width="30"><input type="checkbox" id="checkall" data-name="checkbox" lay-filter="check"
-                                                  lay-skin="primary"></th>
+                            <%--<th width="30"><input type="checkbox" id="checkall" data-name="checkbox" lay-filter="check"--%>
+                            <%--lay-skin="primary"></th>--%>
                             <th>序号</th>
                             <th>角色名称</th>
                             <th>是否可用</th>
@@ -52,57 +52,7 @@
     </div>
 </section>
 </body>
-<div id="add-subcat" style="margin: 10px;display: none">
-    <form id="role-add" lay-filter="role-add" class="layui-form layui-form-pane" method="post">
-        <div class="layui-form-item">
-            <label class="layui-form-label">角色名称</label>
-            <div class="layui-input-inline">
-                <input type="text" name="name" required jq-verify="required" jq-error="请输入角色名称"
-                       placeholder="请输入角色描述" autocomplete="off" class="layui-input ">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">状态</label>
-            <div class="layui-input-inline">
-                <input type="radio" name="available" title="启用" value="true" checked/>
-                <input type="radio" name="available" title="禁用" value="false"/>
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <div class="layui-input-block">
-                <button class="layui-btn" jq-submit>立即提交</button>
-                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-            </div>
-        </div>
-    </form>
-</div>
-
-<div id="tree" style="display: none"></div>
-<script id="list-tpl" type="text/html">
-
-    {{# layui.each(d.roles, function(index, item){ }}
-    <tr>
-        <td>
-            <input type="checkbox" name="id" lay-skin="primary">
-        </td>
-        <td>{{ item.id}}</td>
-        <td>{{ item.name}}</td>
-        <td>
-            <input type="checkbox" name="available" lay-skin="switch" lay-text="开启|关闭" {{#if (item.available=="true"){
-                   }}checked="checked" {{# } }}>
-        </td>
-        <td>
-            <button class="layui-btn layui-btn-mini " onclick="role.viewPermission({{item.id}})">
-                <i class="iconfont">&#xe649;</i>查看权限
-            </button>
-            <button class="layui-btn layui-btn-mini " onclick="role.updatePermission({{item.id}})">
-                <i class="iconfont">&#xe653;</i>配置权限
-            </button>
-        </td>
-    </tr>
-    {{# }); }}
-
-</script>
+<%@ include file="layer.jsp" %>
 <script type="text/javascript" src="${baseurl}/public/common/layui/layui.js"></script>
 <script type="text/javascript">
     let totalSize = 10;
@@ -157,9 +107,39 @@
                 layer.open({
                     type: 1,
                     title: '角色添加'
-                    , content: $("#add-subcat")
+                    , content: $("#add")
                 });
 
+            },
+            viewRole: function (id) {
+                $.ajax({
+                    url: baseUrl + "userRole/query",
+                    data: {roleId: id},
+                    success: function (data) {
+                        if (data.result) {
+                            data = data.data;
+                            $("#update_id").val(data.id);
+                            $("#update_name").val(data.name);
+                            let isAvailable = data.available === "true" ? true : false;
+                            $("#update_available_" + isAvailable + "").prop({checked: true});
+                            form.render();
+                            layer.open({
+                                type: 1,
+                                title: '角色修改'
+                                , content: $("#update")
+                            });
+                        }
+                    }
+                });
+            },
+            updateRole: function () {
+                let data = $("#update_form").serialize();
+                $.post(baseUrl + "/userRole/update", data, function (data) {
+                    layer.msg(data.msg);
+                    if (data.result) {
+                        setTimeout("location.reload()", 500);
+                    }
+                })
             },
             viewPermission: function (roleId) {
                 $.ajax({
@@ -176,10 +156,12 @@
                     }
                 })
 
-            },
+            }
+            ,
             updatePermission: function (roleId) {
 
-            },
+            }
+            ,
             showRoleTree: function (nodes) {
                 $("#tree").html("");
                 layui.tree({
@@ -192,34 +174,36 @@
                     , content: $("#tree"),
                     area: ['100%', '100%']
                 })
-            },
+            }
+            ,
             check: function (t, id) {
 
-            },
+            }
+            ,
             changePermissionToTree: function (data) {
                 let nodesStr = "[";
                 data.forEach(node => {
                     let children = node.children;
-                    let checked = node.has === true ? "checked":"";
+                    let checked = node.has === true ? "checked" : "";
                     nodesStr += `{"spread":true,`;
                     nodesStr += `"id":` + node.id + `,`;
-                    nodesStr += `"name":"<input type='checkbox' `+checked+`  onclick='role.check(this,` + node.id + `)' name='id'   style='position: absolute;' lay-skin='primary'><span style='margin-left: 20px'>` + node.name + '</span>"';
+                    nodesStr += `"name":"<input type='checkbox' ` + checked + `  onclick='role.check(this,` + node.id + `)' name='id'   style='position: absolute;' lay-skin='primary'><span style='margin-left: 20px'>` + node.name + '</span>"';
                     if (children.length === 0) {
                         nodesStr += "},"
                     } else {
                         nodesStr += ',"children":[';
                         children.forEach(sideNode => {
                             let permission = sideNode.children;
-                            let checked = sideNode.has === true ? "checked":"";
+                            let checked = sideNode.has === true ? "checked" : "";
                             nodesStr += `{"spread":true,`;
                             nodesStr += `"id":` + node.id + `,`;
-                            nodesStr += `"name":"<input type='checkbox' `+checked+`  onclick='role.check(this,` + sideNode.id + `)' name='id'   style='position: absolute;' lay-skin='primary'><span style='margin-left: 20px'>` + sideNode.name +"</span>";
+                            nodesStr += `"name":"<input type='checkbox' ` + checked + `  onclick='role.check(this,` + sideNode.id + `)' name='id'   style='position: absolute;' lay-skin='primary'><span style='margin-left: 20px'>` + sideNode.name + "</span>";
                             if (permission.length === 0) {
                                 nodesStr += '"},';
                             } else {
                                 permission.forEach(per => {
-                                    let checked = per.has === "true" ? "checked":"";
-                                    nodesStr += "<input type='checkbox' id='a3' "+checked+" name='id' onclick='role.check(this,3)' style='position: absolute;margin-left: 5px' lay-skin='primary'>";
+                                    let checked = per.has === "true" ? "checked" : "";
+                                    nodesStr += "<input type='checkbox' id='a3' " + checked + " name='id' onclick='role.check(this,3)' style='position: absolute;margin-left: 5px' lay-skin='primary'>";
                                     nodesStr += "<span style='margin-left: 25px'>" + per.name + "</span>";
                                 })
                                 nodesStr += '"},';
@@ -228,7 +212,7 @@
                         nodesStr = nodesStr.substr(0, nodesStr.length - 1) + "]},";
                     }
                 })
-                nodesStr = nodesStr.substr(0, nodesStr.length - 1)+"]";
+                nodesStr = nodesStr.substr(0, nodesStr.length - 1) + "]";
                 return JSON.parse(nodesStr);
             }
         }
