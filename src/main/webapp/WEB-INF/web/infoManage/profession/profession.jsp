@@ -2,7 +2,7 @@
 <%@ include file="../../../public/tag.jsp" %>
 <html>
 <head>
-    <title>教师沟通反馈页面</title>
+    <title>专业信息页面</title>
     <script type="text/javascript" src="${baseurl}/public/common/js/jquery-3.2.0.min.js"></script>
     <script src="${baseurl}/public/common/layui/layui.js" charset="utf-8"></script>
     <link rel="stylesheet" href="${baseurl}/public/common/layui/css/layui.css" media="all">
@@ -187,11 +187,11 @@
 </script>
 
 <script>
-    //修改系信息
+    //修改专业信息
     function updatainfo() {
         layer.open({
             type: 1,
-            title: '修改系信息',
+            title: '修改专业信息',
             skin: 'yourclass',
             content: $('#updatainfo')
         });
@@ -200,7 +200,7 @@
     function InfoPreview() {
         layer.open({
             type: 1,
-            title: '预览系信息',
+            title: '预览专业信息',
             skin: 'yourclass',
             content: $('#InfoPreview')
         });

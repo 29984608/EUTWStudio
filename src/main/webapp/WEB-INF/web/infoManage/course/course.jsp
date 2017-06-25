@@ -2,7 +2,7 @@
 <%@ include file="../../../public/tag.jsp" %>
 <html>
 <head>
-    <title>教师沟通反馈页面</title>
+    <title>课程页面</title>
     <script type="text/javascript" src="${baseurl}/public/common/js/jquery-3.2.0.min.js"></script>
     <script src="${baseurl}/public/common/layui/layui.js" charset="utf-8"></script>
     <link rel="stylesheet" href="${baseurl}/public/common/layui/css/layui.css" media="all">
