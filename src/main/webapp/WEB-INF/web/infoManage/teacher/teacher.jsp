@@ -202,6 +202,7 @@
         layer.open({
             type: 1,
             title: '修改老师信息',
+            area:['420px', '370px'],
             skin: 'yourclass',
             content: $('#updatainfo')
         });
@@ -210,6 +211,7 @@
         layer.open({
             type: 1,
             title: '预览老师信息',
+            area:['420px', '370px'],
             skin: 'yourclass',
             content: $('#InfoPreview')
         });

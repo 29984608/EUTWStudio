@@ -189,7 +189,7 @@
         layer.open({
             type: 1,
             title: '预览课程信息',
-            area:510,
+            area:['650px','350px'],
             skin: 'yourclass',
             content: $('#InfoPreview')
         });

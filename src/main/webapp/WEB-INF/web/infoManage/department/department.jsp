@@ -177,6 +177,7 @@
         layer.open({
             type: 1,
             title: '修改系信息',
+            area:['420px', '250px'],
             skin: 'yourclass',
             content: $('#updatainfo')
         });
@@ -186,6 +187,7 @@
         layer.open({
             type: 1,
             title: '预览系信息',
+            area:['420px', '250px'],
             skin: 'yourclass',
             content: $('#InfoPreview')
         });
