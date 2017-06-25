@@ -23,7 +23,7 @@
             <blockquote class="layui-elem-quote mylog-info-tit">
                 <ul class="layui-tab-title">
                     <shiro:hasPermission name="userRole:add">
-                        <li class="layui-btn layui-this" onclick="role.addRole()"><i class="layui-icon">&#xe60a;</i>添加角色
+                        <li class="layui-btn " onclick="role.addRole()"><i class="layui-icon">&#xe61f;</i>添加角色
                         </li>
                     </shiro:hasPermission>
 

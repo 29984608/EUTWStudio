@@ -69,6 +69,10 @@
                                 <td><span class="tit">2017-6-24</span></td>
                                 <td><span class="info">角色权限页面、角色对应的权限树状显示</span></td>
                             </tr>
+                            <tr>
+                                <td><span class="tit">2017-6-25</span></td>
+                                <td><span class="info">完成角色权限分配功能、到按钮级</span></td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>
@@ -98,7 +102,7 @@
                             <tr>
                                 <td><span class="tit">2017-6-25</span>
                                 </td>
-                                <td><span class="info">添加时间轴预览，修改分页样式，添加编辑时间轴功能</span></td>
+                                <td><span class="info">给沟通反馈页面添加时间轴预览，修改分页样式，添加编辑时间轴功能</span></td>
                             </tr>
 
                             </tbody>

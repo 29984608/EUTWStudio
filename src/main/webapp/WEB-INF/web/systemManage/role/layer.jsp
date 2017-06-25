@@ -62,8 +62,8 @@
                    }}checked="checked" {{# } }}>
         </td>
         <td>
-            <button class="layui-btn layui-btn-mini " onclick="role.viewRole({{item.id}})">
-                <i class="layui-icon">&#xe649;</i>角色修改
+            <button class="layui-btn layui-btn-mini layui-btn-normal" onclick="role.viewRole({{item.id}})">
+                <i class="layui-icon">&#xe642;</i>角色修改
             </button>
             <button class="layui-btn layui-btn-mini  layui-btn-danger" onclick="role.viewPermission({{item.id}})">
                 <i class="layui-icon">&#xe60a;</i>配置权限
