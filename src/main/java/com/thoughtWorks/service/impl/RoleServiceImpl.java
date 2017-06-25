@@ -31,13 +31,46 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public Role query(String roleId)throws Exception {
+    public Role query(String roleId) throws Exception {
         return roleDao.query(roleId);
     }
 
     @Override
     public void update(Role role) throws Exception {
         roleDao.update(role);
+    }
+
+    @Override
+    public void updateRolePermissions(String hasPers, String updatePers, String roleId) throws Exception {
+        List<String> oldPermissions = Arrays.asList(hasPers.split(","));
+        List<String> newPermissions = Arrays.asList(updatePers.split(","));
+        List<String> shouldDelete = shouldDeletePers(oldPermissions, newPermissions);
+        List<String> shouldInsert = shouldInsertPers(oldPermissions, newPermissions);
+
+        if (shouldDelete.size() != 0) roleDao.deleteRolePermissions(shouldDelete, roleId);
+        if (shouldInsert.size() != 0) roleDao.addRolePermissions(shouldInsert, roleId);
+    }
+
+    private List<String> shouldInsertPers(List<String> oldPermissions, List<String> newPermissions) {
+        List<String> shouldInsert = new ArrayList<>();
+        for (String permission : newPermissions) {
+            if (!oldPermissions.contains(permission)) {
+                shouldInsert.add(permission);
+            }
+        }
+
+        return shouldInsert;
+    }
+
+    private List<String> shouldDeletePers(List<String> oldPermissions, List<String> newPermissions) {
+        List<String> shouldInsert = new ArrayList<>();
+        for (String permission : oldPermissions) {
+            if (!newPermissions.contains(permission)) {
+                shouldInsert.add(permission);
+            }
+        }
+
+        return shouldInsert;
     }
 
     @Override
@@ -60,12 +93,12 @@ public class RoleServiceImpl implements RoleService {
         Collection<Object> topMenus = nodes.values();
         Iterator<Object> iterator = topMenus.iterator();
         while (iterator.hasNext()) {
-            Map<String,Object> next = (Map<String, Object>) iterator.next();
+            Map<String, Object> next = (Map<String, Object>) iterator.next();
             Collection<Object> sideMenus = ((Map<String, Object>) next.get("children")).values();
-            next.put("children",sideMenus);
+            next.put("children", sideMenus);
             Iterator<Object> iterator1 = sideMenus.iterator();
             while (iterator1.hasNext()) {
-                Map<String,Object> next1 = (Map<String, Object>) iterator1.next();
+                Map<String, Object> next1 = (Map<String, Object>) iterator1.next();
                 Collection<Object> permission = ((Map<String, Object>) next1.get("children")).values();
                 next1.put("children", permission);
             }

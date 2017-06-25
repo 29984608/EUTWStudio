@@ -58,7 +58,8 @@ public class LoginController {
     @ResponseBody
     public Result getSideMenus(String pid) {
         try {
-            List<Map<String, String>> sideMenus = permissionService.getSideMenus(pid);
+            ActiveUser user = (ActiveUser) SecurityUtils.getSubject().getPrincipal();
+            List<Map<String, String>> sideMenus = permissionService.getSideMenus(pid,user.getRoleId()+"");
 
             return Result.success(sideMenus, Constant.SEARCH_SUCCESS);
         } catch (Exception e) {

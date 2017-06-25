@@ -42,8 +42,8 @@ public class PermissionServiceImpl implements PermissionService {
     }
 
     @Override
-    public List<Map<String, String>> getSideMenus(String parentId) throws Exception {
-        List<Map<String, String>> sideMenus = permissionDao.getSideMenus(parentId);
+    public List<Map<String, String>> getSideMenus(String parentId,String roleId) throws Exception {
+        List<Map<String, String>> sideMenus = permissionDao.getSideMenus(parentId,roleId);
         return sideMenus;
     }
 }

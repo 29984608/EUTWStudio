@@ -68,7 +68,7 @@ CREATE TABLE `t_role` (
 
 LOCK TABLES `t_role` WRITE;
 /*!40000 ALTER TABLE `t_role` DISABLE KEYS */;
-INSERT INTO `t_role` VALUES (1,'管理员','true'),(2,'老师','false'),(3,'1233','true'),(4,'132','true'),(5,'1','2'),(6,'1231','true'),(7,'1231','true'),(8,'12312','true'),(9,'2342','true'),(10,'1231','true'),(11,'123213','true'),(12,'1231','true'),(13,'312','true'),(14,'1231','true'),(15,'2311','true'),(16,'1231','true'),(17,'12313','true'),(18,'1231','true'),(19,'1231','true'),(20,'1231','true'),(21,'33','true'),(22,'132','true'),(23,'23123','true'),(24,'1','2');
+INSERT INTO `t_role` VALUES (1,'管理员','true'),(2,'老师','true'),(3,'码换换','true'),(4,'毛毛','false'),(6,'1231','true'),(7,'1231','true'),(8,'12312','true'),(9,'2342','true'),(10,'1231','true'),(11,'123213','true'),(12,'1231','true'),(13,'312','true'),(14,'1231','true'),(15,'2311','true'),(16,'1231','true'),(17,'12313','true'),(18,'1231','true'),(19,'1231','true'),(20,'1231','true'),(21,'33','true'),(22,'132','true'),(23,'23123','true');
 /*!40000 ALTER TABLE `t_role` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -130,4 +130,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-06-24 20:40:41
+-- Dump completed on 2017-06-25 11:44:53

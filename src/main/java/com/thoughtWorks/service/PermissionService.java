@@ -18,5 +18,5 @@ public interface PermissionService {
 
     List<Map<String,String>> getTopMenus(int roleId)throws Exception;
 
-    List<Map<String, String>> getSideMenus(String parentId) throws Exception;
+    List<Map<String, String>> getSideMenus(String parentId,String roleId) throws Exception;
 }

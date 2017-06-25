@@ -22,8 +22,11 @@
         <div class="layui-tab">
             <blockquote class="layui-elem-quote mylog-info-tit">
                 <ul class="layui-tab-title">
-                    <li class="layui-btn layui-this" onclick="role.addRole()"><i class="layui-icon">&#xe60a;</i>添加角色
-                    </li>
+                    <shiro:hasPermission name="userRole:add">
+                        <li class="layui-btn layui-this" onclick="role.addRole()"><i class="layui-icon">&#xe60a;</i>添加角色
+                        </li>
+                    </shiro:hasPermission>
+
                 </ul>
             </blockquote>
             <div class="larry-separate"></div>
@@ -59,6 +62,7 @@
     let currentIndex = 1;
     let pageSize = 10;
     let role;
+    let roleid;
     let hasPermission;
     layui.use(['jquery', 'layer', 'element', 'laypage', 'form', 'laytpl', 'tree'], function () {
         window.jQuery = window.$ = layui.jquery;
@@ -147,6 +151,7 @@
                     data: {roleId: roleId},
                     success: function (data) {
                         if (data.result) {
+                            roleid = roleId;
                             console.log(data)
                             hasPermission = data.data.hasPermissions;
                             let nodes = role.changePermissionToTree(data.data.permissions);
@@ -155,10 +160,6 @@
                         }
                     }
                 })
-
-            }
-            ,
-            updatePermission: function (roleId) {
 
             }
             ,
@@ -172,14 +173,62 @@
                     type: 1,
                     title: '角色权限分配'
                     , content: $("#tree"),
-                    area: ['100%', '100%']
+                    area: ['100%', '100%'],
+                    btnAlign: 'l',
+                    btn: ['确定修改']
+                    , yes: function (index, layero) {
+                        console.log(hasPermission);
+                        let updatePermissions = "";
+                        let allNodes = $(".per");
+                        for (let i = 0; i < allNodes.length; ++i) {
+                            if ($(allNodes[i]).prop("checked")) {
+                                updatePermissions += $(allNodes[i]).val() + ",";
+                            }
+                        }
+                        $.post(baseUrl + "/userRole/updateRolePermissions", {
+                            hasPers: hasPermission.toString(),
+                            updatePers: updatePermissions,
+                            roleId: roleid
+                        }, function (data) {
+                            layer.msg(data.msg);
+                            if (data.result) {
+                                setTimeout("location.reload()", 500);
+                            }
+                        });
+                    }
                 })
-            }
-            ,
-            check: function (t, id) {
-
-            }
-            ,
+            },
+            check: function (t, type, parentId) {
+                let currentNodeChecked = $(t).prop("checked");
+                if (type === 1) {
+                    if (currentNodeChecked) return;
+                    let childrens = role.findChildrenNode(t, "side_");
+                    for (let i = 0; i < childrens.length; ++i) {
+                        $(childrens[i]).prop({checked: false});
+                        let permissions = role.findChildrenNode(childrens[i], "per_");
+                        for (let i = 0; i < permissions.length; ++i) {
+                            $(permissions[i]).prop({checked: false});
+                        }
+                    }
+                } else if (type === 2) {
+                    if (currentNodeChecked) {
+                        $(".top_" + parentId + "").prop({checked: true});
+                    } else {
+                        let permissions = role.findChildrenNode(t, "per_");
+                        for (let i = 0; i < permissions.length; ++i) {
+                            $(permissions[i]).prop({checked: false});
+                        }
+                    }
+                } else if (type === 3) {
+                    if (currentNodeChecked) {
+                        $(".currentId_" + parentId + "").prop({checked: true});
+                    }
+                }
+            },
+            findChildrenNode: function (t, type) {
+                let currentId = $(t).val();
+                return $("." + type + currentId + "");
+            },
             changePermissionToTree: function (data) {
                 let nodesStr = "[";
                 data.forEach(node => {
@@ -187,7 +236,7 @@
                     let checked = node.has === true ? "checked" : "";
                     nodesStr += `{"spread":true,`;
                     nodesStr += `"id":` + node.id + `,`;
-                    nodesStr += `"name":"<input type='checkbox' ` + checked + `  onclick='role.check(this,` + node.id + `)' name='id'   style='position: absolute;' lay-skin='primary'><span style='margin-left: 20px'>` + node.name + '</span>"';
+                    nodesStr += `"name":"<input value=` + node.id + ` type='checkbox' class='per top_` + node.id + `' ` + checked + `  onclick='role.check(this,1,null)' name='id'   style='position: absolute;' lay-skin='primary'><span style='margin-left: 20px'>` + node.name + '</span>"';
                     if (children.length === 0) {
                         nodesStr += "},"
                     } else {
@@ -197,13 +246,13 @@
                             let checked = sideNode.has === true ? "checked" : "";
                             nodesStr += `{"spread":true,`;
                             nodesStr += `"id":` + node.id + `,`;
-                            nodesStr += `"name":"<input type='checkbox' ` + checked + `  onclick='role.check(this,` + sideNode.id + `)' name='id'   style='position: absolute;' lay-skin='primary'><span style='margin-left: 20px'>` + sideNode.name + "</span>";
+                            nodesStr += `"name":"<input value=` + sideNode.id + ` type='checkbox' class='currentId_` + sideNode.id + ` per side_` + node.id + `'` + checked + `  onclick='role.check(this,2,` + node.id + `)' name='id'   style='position: absolute;' lay-skin='primary'><span style='margin-left: 20px'>` + sideNode.name + "</span>";
                             if (permission.length === 0) {
                                 nodesStr += '"},';
                             } else {
                                 permission.forEach(per => {
-                                    let checked = per.has === "true" ? "checked" : "";
-                                    nodesStr += "<input type='checkbox' id='a3' " + checked + " name='id' onclick='role.check(this,3)' style='position: absolute;margin-left: 5px' lay-skin='primary'>";
+                                    let checked = per.has === true ? "checked" : "";
+                                    nodesStr += "<input value=" + per.id + " type='checkbox' class='topId_`+node.id+` per per_" + sideNode.id + "' id='a3' " + checked + " name='id' onclick='role.check(this,3," + sideNode.id + ")' style='position: absolute;margin-left: 5px' lay-skin='primary'>";
                                     nodesStr += "<span style='margin-left: 25px'>" + per.name + "</span>";
                                 })
                                 nodesStr += '"},';

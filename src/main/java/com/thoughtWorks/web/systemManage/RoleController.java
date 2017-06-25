@@ -55,6 +55,20 @@ public class RoleController {
         return Result.failure(null, Constant.ADD_FAILURE);
     }
 
+    @RequestMapping("updateRolePermissions")
+    @ResponseBody
+    public Result updateRolePermissions(String hasPers, String updatePers, String roleId) {
+        try {
+            roleService.updateRolePermissions(hasPers, updatePers, roleId);
+
+            return Result.success(null, Constant.UPDATE_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return Result.failure(null, Constant.UPDATE_FAILURE);
+    }
+
     @RequestMapping("update")
     @ResponseBody
     public Result update(Role role) {
@@ -73,7 +87,7 @@ public class RoleController {
     @ResponseBody
     public Result query(String roleId) {
         try {
-           Role role = roleService.query(roleId);
+            Role role = roleService.query(roleId);
 
             return Result.success(role, Constant.SEARCH_FAILURE);
         } catch (Exception e) {

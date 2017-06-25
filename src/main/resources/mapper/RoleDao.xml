@@ -3,25 +3,43 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.thoughtWorks.dao.RoleDao">
+
+
+    <update id="deleteRolePermissions">
+        DELETE FROM t_role_permission
+        WHERE
+            sys_role_id = #{roleId} AND sys_permission_id IN
+        <foreach collection="shouldDelete" item="item" index="index" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </update>
+
+    <insert id="addRolePermissions">
+        INSERT INTO t_role_permission (sys_role_id, sys_permission_id) VALUES
+        <foreach collection="shouldInsert" item="perId"  separator="," close=";">
+            (#{roleId},#{perId})
+        </foreach>
+    </insert>
+
     <select id="query" parameterType="string" resultType="Role">
         SELECT *
-        FROM stuinfo.t_role
+        FROM t_role
         WHERE id = #{roleId}
     </select>
     <update id="update" parameterType="Role">
-        UPDATE stuinfo.t_role
-        SET stuinfo.t_role.name = #{name}, stuInfo.t_role.available = #{available}
-        WHERE stuinfo.t_role.id = #{id}
+        UPDATE t_role
+        SET t_role.name = #{name}, t_role.available = #{available}
+        WHERE t_role.id = #{id}
     </update>
     <select id="queryList" parameterType="Map" resultType="Map">
         SELECT *
-        FROM stuInfo.t_role
+        FROM t_role
         LIMIT #{start }, #{end}
     </select>
 
     <select id="queryTotalCount" resultType="int">
         SELECT count(1)
-        FROM stuinfo.t_role
+        FROM t_role
     </select>
 
     <insert id="add" parameterType="Role">
@@ -34,7 +52,7 @@
             name,
             parentid,
             parentids
-        FROM stuinfo.t_permission
+        FROM t_permission
         WHERE parentid != 0
         ORDER BY sortstring ASC;
     </select>

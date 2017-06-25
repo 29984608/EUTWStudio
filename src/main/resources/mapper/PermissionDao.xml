@@ -53,11 +53,13 @@
 
     <select id="getSideMenus" resultType="map" parameterType="string">
         SELECT
-            name title,
-            icon,
-            id   pid,
-            url  href
-        FROM t_permission
-        WHERE parentid = #{parentId}
+            permission.name title,
+            permission.icon,
+            permission.id   pid,
+            permission.url  href
+        FROM t_permission permission
+            LEFT JOIN (SELECT *
+                       FROM t_role_permission) role ON role.sys_role_id = #{roleId}
+        WHERE permission.id = role.sys_permission_id and parentid = #{parentId}
     </select>
 </mapper>

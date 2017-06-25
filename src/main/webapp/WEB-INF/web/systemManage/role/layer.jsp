@@ -47,7 +47,7 @@
         </div>
     </form>
 </div>
-<div id="tree" style="display: none"></div>
+<div id="tree" style="display: none;padding: 30px 0 0 30px"></div>
 <script id="list-tpl" type="text/html">
 
     {{# layui.each(d.roles, function(index, item){ }}
@@ -58,7 +58,7 @@
         <td>{{ index+1}}</td>
         <td>{{ item.name}}</td>
         <td>
-            <input type="checkbox" name="available" lay-skin="switch" lay-text="开启|关闭" {{#if (item.available=="true"){
+            <input type="checkbox" name="available"  lay-skin="switch" lay-text="开启|关闭" {{#if (item.available=="true"){
                    }}checked="checked" {{# } }}>
         </td>
         <td>
