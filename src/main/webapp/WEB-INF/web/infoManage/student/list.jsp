@@ -70,7 +70,7 @@
                                     <input type="text" name="title" lay-verify="title" autocomplete="off"
                                            placeholder="姓名" class="layui-input">
                                 </div>
-                                <button class="layui-btn">查找</button>
+                                <button class="layui-btn"><i class="layui-icon">&#xe615;</i>搜索</button>
                             </div>
                         </div>
                     </div>
@@ -108,8 +108,8 @@
                                 <td>男</td>
                                 <td>软件1501</td>
                                 <td>
-                                    <a class="layui-btn  layui-btn-small" onclick="updataStudentinfo()"><i class="layui-icon">&#xe642;</i>修改</a>
-                                    <a class="layui-btn  layui-btn-small" id="addCommunication"><i class="layui-icon">&#xe60a;</i>预览</a>
+                                    <a class="layui-btn  layui-btn-small layui-btn-normal"  onclick="updataStudentinfo()"><i class="layui-icon">&#xe642;</i> 编辑</a>
+                                    <a class="layui-btn  layui-btn-small" onclick="studentInfoPreview()"><i class="layui-icon">&#xe60a;</i>预览</a>
                                 </td>
                             </tr>
                             </tbody>
@@ -160,19 +160,13 @@
                        class="layui-input">
             </div>
         </div>
-
         <div class="layui-form-item">
             <label class="layui-form-label">性别</label>
             <div class="layui-input-inline">
-                <input name="date" id="date" lay-verify="required" placeholder="性别" autocomplete="off"
+                <input name="date" lay-verify="required" placeholder="性别" autocomplete="off"
                        class="layui-input"  type="text">
             </div>
         </div>
-
-
-
-
-
         <div class="layui-form-item">
             <div class="layui-input-block " style="margin-left: 24%">
                 <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
@@ -182,7 +176,59 @@
     </form>
     </div>
 </div>
+<div id="InfoPreview" style="display: none;width: auto;">
+    <div >
+        <form class="layui-form"   action="">
+            <div class="layui-form-item">
+                <label class="layui-form-label">学号</label>
+                <div class="layui-input-inline">
+                    <input name="password" required lay-verify="required" placeholder="学号" autocomplete="off"
+                           class="layui-input">
+                </div>
+            </div>
 
+            <div class="layui-form-item">
+                <label class="layui-form-label">班级</label>
+                <div class="layui-input-inline">
+                    <select name="modules" lay-verify="required" lay-search="">
+                        <option value="">班级</option>
+                        <option value="1">软件1501</option>
+                        <option value="1">软件1501</option>
+                        <option value="2">软件1502</option>
+                        <option value="3">软件1503</option>
+                        <option value="4">通信1501</option>
+                        <option value="5">通信1502</option>
+                        <option value="1">软件1501</option>
+                        <option value="2">软件1502</option>
+                        <option value="3">软件1503</option>
+                        <option value="4">通信1501</option>
+                        <option value="5">通信1502</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">姓名</label>
+                <div class="layui-input-inline">
+                    <input name="password" required lay-verify="required" placeholder="姓名" autocomplete="off"
+                           class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">性别</label>
+                <div class="layui-input-inline">
+                    <input name="date" id="date" lay-verify="required" placeholder="性别" autocomplete="off"
+                           class="layui-input"  type="text">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block " style="margin-left: 24%">
+                    <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 
 <script>
     layui.use('form', function () {
@@ -213,6 +259,7 @@
 </script>
 
 <script>
+    //修改学生信息
     function updataStudentinfo() {
         layer.open({
             type: 1,
@@ -221,29 +268,14 @@
             content: $('#updatainfo')
         });
     }
-    $(document).ready(function () {
-        $("#alterCommunication").click(function () {
-            layer.open({
-                type: 1,
-                title: '添加沟通反馈记录',
-                area: ['990px', '450px'],
-                offset: ['0px', '100px'],
-                skin: 'yourclass',
-                content: $('#updatainfo'),
-            });
-        })
-
-        $("#delCommunication").click(function () {
-            layer.open({
-                type: 1,
-                title: '添加沟通反馈记录',
-                area: ['990px', '450px'],
-                offset: ['0px', '100px'],
-                skin: 'yourclass',
-                content: $('#addInfo'),
-            });
-        })
-    })
+    function studentInfoPreview() {
+        layer.open({
+            type: 1,
+            title: '预览学生信息',
+            skin: 'yourclass',
+            content: $('#InfoPreview')
+        });
+    }
 </script>
 
 <script>
