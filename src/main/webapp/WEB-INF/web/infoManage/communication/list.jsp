@@ -71,10 +71,7 @@
                 </blockquote>
                 <div class="larry-separate"></div>
                 <div class="layui-tab-content larry-personal-body clearfix mylog-info-box">
-                    <a class="layui-btn" id="addCommunication"><i class="layui-icon">&#xe608;</i> 添加</a>
                     <a class="layui-btn"><i class="layui-icon">&#xe60a;</i>打印</a>
-
-                    <a class="layui-btn layui-btn-danger"><i class="layui-icon">&#xe640;</i>删除</a>
                     <div class="layui-form">
                         <table class="layui-table">
                             <thead>
