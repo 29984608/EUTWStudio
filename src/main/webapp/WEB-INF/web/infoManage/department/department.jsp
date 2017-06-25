@@ -16,11 +16,16 @@
 <section class="larry-grid">
     <div class="larry-personal">
         <div class="layui-tab">
+            <blockquote class="layui-elem-quote mylog-info-tit">
+                <a class="layui-btn"><i class="layui-icon">&#xe61f;</i>添加</a>
+                <a class="layui-btn"><i class="layui-icon">&#xe621;</i>打印</a>
+                <a class="layui-btn"><i class="layui-icon">&#xe61e;</i>导出</a>
+            </blockquote>
+
             <form class="layui-form" action="">
                 <div class="larry-separate"></div>
                 <div class="layui-tab-content larry-personal-body clearfix mylog-info-box">
-                    <a class="layui-btn"><i class="layui-icon">&#xe621;</i>打印</a>
-                    <a class="layui-btn"><i class="layui-icon">&#xe61e;</i>导出</a>
+
                     <div class="layui-form">
                         <table class="layui-table">
                             <colgroup>
