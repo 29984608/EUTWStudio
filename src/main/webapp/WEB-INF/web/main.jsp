@@ -68,7 +68,6 @@
                                     <td><span class="tit">2017-6-24</span></td>
                                     <td><span class="info">角色权限页面、角色对应的权限树状显示</span></td>
                                 </tr>
-
                             </tbody>
                         </table>
                     </div>
