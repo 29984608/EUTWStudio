@@ -18,5 +18,7 @@ public interface RoleService {
 
     void update(Role role) throws Exception;
 
-    void updateRolePermissions(String hasPers, String updatePers,String roleId) throws Exception;
+    void updateRolePermissions(String hasPers, String updatePers, String roleId) throws Exception;
+
+    void updateAvailable(Role role) throws Exception;
 }

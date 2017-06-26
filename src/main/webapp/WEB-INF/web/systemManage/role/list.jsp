@@ -19,7 +19,7 @@
         <div class="layui-tab">
             <blockquote class="layui-elem-quote mylog-info-tit">
                 <ul class="layui-tab-title">
-                    <shiro:hasPermission name="userRole:add">
+                    <shiro:hasPermission name="rolePermission:add">
                         <li class="layui-btn " onclick="role.addRole()"><i class="layui-icon">&#xe61f;</i>添加角色
                         </li>
                     </shiro:hasPermission>
@@ -260,6 +260,9 @@
                 })
                 nodesStr = nodesStr.substr(0, nodesStr.length - 1) + "]";
                 return JSON.parse(nodesStr);
+            },
+            updateAvailable(t, roleId){
+                alert($(t).prop("checked"));
             }
         }
         $(function () {
@@ -279,7 +282,14 @@
 
                 return false;
             })
-
+            form.on('switch(role-available)', function (data) {
+                $.post(baseUrl + "/userRole/updateAvailable", {
+                    available: data.elem.checked,
+                    id: data.value
+                }, function (data) {
+                    layer.msg(data.msg);
+                })
+            });
 
         });
     });

@@ -51,6 +51,11 @@ public class RoleServiceImpl implements RoleService {
         if (shouldInsert.size() != 0) roleDao.addRolePermissions(shouldInsert, roleId);
     }
 
+    @Override
+    public void updateAvailable(Role role) throws Exception {
+        roleDao.updateAvailable(role);
+    }
+
     private List<String> shouldInsertPers(List<String> oldPermissions, List<String> newPermissions) {
         List<String> shouldInsert = new ArrayList<>();
         for (String permission : newPermissions) {

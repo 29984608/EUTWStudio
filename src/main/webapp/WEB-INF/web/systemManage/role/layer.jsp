@@ -36,8 +36,8 @@
         <div class="layui-form-item">
             <label class="layui-form-label">状态</label>
             <div class="layui-input-inline">
-                <input type="radio" id="update_available_true" name="available" title="启用" value="true" />
-                <input type="radio" id="update_available_false" name="available" title="禁用" value="false" />
+                <input type="radio" id="update_available_true" name="available" title="启用" value="true"/>
+                <input type="radio" id="update_available_false" name="available" title="禁用" value="false"/>
             </div>
         </div>
         <div class="layui-form-item">
@@ -58,16 +58,28 @@
         <td>{{ index+1}}</td>
         <td>{{ item.name}}</td>
         <td>
-            <input type="checkbox" name="available"  lay-skin="switch" lay-text="开启|关闭" {{#if (item.available=="true"){
-                   }}checked="checked" {{# } }}>
+            <shiro:hasPermission name="rolePermission:available">
+                <input type="checkbox" name="available" value="{{item.id}}" lay-filter="role-available"
+                       lay-skin="switch" lay-text="开启|关闭" {{#if (item.available=="true"){
+                       }}checked="checked" {{# } }}>
+            </shiro:hasPermission>
+            <shiro:lacksPermission name="rolePermission:available">
+                <input type="checkbox" name="available" value="{{item.id}}" disabled lay-skin="switch" lay-text="开启|关闭"
+                       {{#if (item.available=="true"){
+                       }}checked="checked" {{# } }}>
+            </shiro:lacksPermission>
         </td>
         <td>
-            <button class="layui-btn layui-btn-mini layui-btn-normal" onclick="role.viewRole({{item.id}})">
-                <i class="layui-icon">&#xe642;</i>角色修改
-            </button>
-            <button class="layui-btn layui-btn-mini  layui-btn-danger" onclick="role.viewPermission({{item.id}})">
-                <i class="layui-icon">&#xe60a;</i>配置权限
-            </button>
+            <shiro:hasPermission name="rolePermission:update">
+                <button class="layui-btn layui-btn-mini layui-btn-normal" onclick="role.viewRole({{item.id}})">
+                    <i class="layui-icon">&#xe642;</i>角色修改
+                </button>
+            </shiro:hasPermission>
+            <shiro:hasPermission name="rolePermission:setting">
+                <button class="layui-btn layui-btn-mini  layui-btn-danger" onclick="role.viewPermission({{item.id}})">
+                    <i class="layui-icon">&#xe60a;</i>配置权限
+                </button>
+            </shiro:hasPermission>
         </td>
     </tr>
     {{# }); }}

@@ -2,7 +2,9 @@ package com.thoughtWorks.shiro;
 
 import com.thoughtWorks.entity.ActiveUser;
 import com.thoughtWorks.entity.Permission;
+import com.thoughtWorks.entity.Role;
 import com.thoughtWorks.service.PermissionService;
+import com.thoughtWorks.service.RoleService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -22,6 +24,8 @@ import java.util.List;
 public class CustomRealm extends AuthorizingRealm {
     @Autowired
     private PermissionService permissionService;
+    @Autowired
+    private RoleService roleService;
 
     /**
      * 进行认证
@@ -32,14 +36,18 @@ public class CustomRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
+        Role role = null;
         List<Permission> menu = null;
         ActiveUser activeUser = null;
         String userName = (String) token.getPrincipal();
         try {
             activeUser = permissionService.getSysUserByUserName(userName);
+            role = roleService.query(activeUser.getRoleId() + "");
         } catch (Exception e) {
             e.printStackTrace();
-            throw new UnknownAccountException();//没找到帐号
+        }
+        if ("false".equals(role.getAvailable())) {
+            throw new LockedAccountException();
         }
         if (activeUser == null) {
             throw new UnknownAccountException();//没找到帐号

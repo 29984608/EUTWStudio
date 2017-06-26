@@ -97,7 +97,6 @@ public class RoleController {
         return Result.failure(null, Constant.SEARCH_FAILURE);
     }
 
-
     @RequestMapping("viewPermission")
     @ResponseBody
     public Result viewPermission(String roleId) {
@@ -110,5 +109,19 @@ public class RoleController {
         }
 
         return Result.failure(null, Constant.SEARCH_FAILURE);
+    }
+
+    @RequestMapping("updateAvailable")
+    @ResponseBody
+    public Result updateAvailable(Role role) {
+        try {
+            roleService.updateAvailable(role);
+
+            return Result.success(null, Constant.UPDATE_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return Result.failure(null, Constant.UPDATE_FAILURE);
     }
 }

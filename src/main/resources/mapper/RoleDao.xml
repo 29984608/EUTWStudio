@@ -4,11 +4,16 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.thoughtWorks.dao.RoleDao">
 
+    <update id="updateAvailable" parameterType="Role">
+        UPDATE t_role
+        SET t_role.available = #{available}
+        WHERE t_role.id = #{id}
+    </update>
 
     <update id="deleteRolePermissions">
         DELETE FROM t_role_permission
         WHERE
-            sys_role_id = #{roleId} AND sys_permission_id IN
+        sys_role_id = #{roleId} AND sys_permission_id IN
         <foreach collection="shouldDelete" item="item" index="index" open="(" close=")" separator=",">
             #{item}
         </foreach>
@@ -16,7 +21,7 @@
 
     <insert id="addRolePermissions">
         INSERT INTO t_role_permission (sys_role_id, sys_permission_id) VALUES
-        <foreach collection="shouldInsert" item="perId"  separator="," close=";">
+        <foreach collection="shouldInsert" item="perId" separator="," close=";">
             (#{roleId},#{perId})
         </foreach>
     </insert>
