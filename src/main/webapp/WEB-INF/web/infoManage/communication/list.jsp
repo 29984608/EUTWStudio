@@ -103,7 +103,8 @@
 
                                     <a class="layui-btn layui-btn-normal layui-btn-small" onclick="upCommunication()"><i class="layui-icon">&#xe642;</i>编辑</a>
 
-                                    <a class="layui-btn layui-btn-small layui-btn-normal" onclick="seeCommunication()"><i class="layui-icon">&#xe60a;</i>预览
+                                    <%--<a class="layui-btn layui-btn-small layui-btn-normal" onclick="seeCommunication()"><i class="layui-icon">&#xe60a;</i>预览--%>
+                                        <a class="layui-btn  layui-btn-small" onclick="seeCommunication()"><i class="layui-icon">&#xe60a;</i>预览</a>
                                     </a>
                                 </td>
                             </tr>
