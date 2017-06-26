@@ -99,11 +99,11 @@
 
                                 </td>
                                 <td>
-                                    <a class="layui-btn layui-btn-mini"  onclick="addCommunication()"><i class="layui-icon">&#xe608;</i>添加</a>
+                                    <a class="layui-btn layui-btn-small"  onclick="addCommunication()"><i class="layui-icon">&#xe608;</i>添加</a>
 
-                                    <a class="layui-btn layui-btn-normal layui-btn-mini" onclick="upCommunication()"><i class="layui-icon">&#xe642;</i>编辑</a>
+                                    <a class="layui-btn layui-btn-normal layui-btn-small" onclick="upCommunication()"><i class="layui-icon">&#xe642;</i>编辑</a>
 
-                                    <a class="layui-btn layui-btn-mini layui-btn-normal" onclick="seeCommunication()"><i class="layui-icon">&#xe60a;</i>预览
+                                    <a class="layui-btn layui-btn-small layui-btn-normal" onclick="seeCommunication()"><i class="layui-icon">&#xe60a;</i>预览
                                     </a>
                                 </td>
                             </tr>
@@ -117,7 +117,7 @@
     </div>
 </section>
 
-<div id="addInfo" style="display: none;width: auto">
+<div id="addInfo" style="display: none;width: auto;margin-top: 20px">
     <form class="layui-form" action="">
         <div class="layui-form-item">
             <label class="layui-form-label" style="font-size: 16px">学生学号</label>
@@ -159,10 +159,10 @@
         </div>
 
 
-        <div class="layui-form-item">
+        <div class="layui-form-item" >
             <label class="layui-form-label" style="font-size: 16px;">沟通内容</label>
-            <div class="layui-input-block">
-                <textarea placeholder="请录入相关沟通内容" class="layui-textarea" style="font-size: 16px"></textarea>
+            <div class="layui-input-block" >
+                <textarea placeholder="请录入相关沟通内容" class="layui-textarea" style="font-size: 16px;margin-left: -40px"></textarea>
             </div>
         </div>
         <div class="layui-form-item">
