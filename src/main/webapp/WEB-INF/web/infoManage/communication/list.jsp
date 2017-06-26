@@ -331,8 +331,8 @@
             <div class="timelineMajor">
                 <h2 class="timelineMajorMarker"><span>1954</span></h2>
                 <dl class="timelineMinor">
-                    <dt id="19540517"><a>布朗诉教育委员会</a></dt>
-                    <dd class="timelineEvent" id="19540517EX" style="display:none;">
+                    <dt id="19740517"><a>布朗诉教育委员会</a></dt>
+                    <dd class="timelineEvent" id="19740517EX" style="display:none;">
                         <h3>1954年5月17日</h3>
                         <div class="layui-form-item layui-form-text">
                             <div class="layui-input-block" style="margin: auto">
@@ -350,8 +350,8 @@
             <div class="timelineMajor">
                 <h2 class="timelineMajorMarker"><span>1955</span></h2>
                 <dl class="timelineMinor">
-                    <dt id="19550828"><a>艾莫特·泰尔</a></dt>
-                    <dd class="timelineEvent" id="19550828EX" style="display:none;">
+                    <dt id="19750828"><a>艾莫特·泰尔</a></dt>
+                    <dd class="timelineEvent" id="19750828EX" style="display:none;">
                         <h3>1955年8月28日</h3>
                         <p>十四岁的非裔美国人埃米特被残忍杀害后，据说与白人妇女在访问亲戚在密西西比州。这是第一次，黑人和白人记者报道这次审判的集大成者”之一的第二十世纪最令人震惊的和持久的故事。”白被告，Roy Bryant和J.W. Milam，都被一个白人陪审团仅67分钟；后来他们详细描述为看杂志（付给他们4000美元）他们杀了为止。母亲坚持开放的棺材，和他残缺的身体，强大的图像引起强烈的反应，在全国和世界。</p>
 
@@ -361,8 +361,8 @@
 
 
                 <dl class="timelineMinor">
-                    <dt id="19551201"><a>罗萨公园</a></dt>
-                    <dd class="timelineEvent" id="19551201EX" style="display:none;">
+                    <dt id="19751201"><a>罗萨公园</a></dt>
+                    <dd class="timelineEvent" id="19751201EX" style="display:none;">
                         <h3>December 1, 1955</h3>
                         <p>
                             The arrest of Rosa Parks, a 42-year-old African-American seamstress and civil rights activist who refused to give up her bus seat to a white passenger, sets off a long anticipated bus boycott by residents of Montgomery, Ala. The 13-month protest and ensuing litigation eventually make it to the U.S. Supreme Court, which declares that segregation on public buses is unconstitutional.<sup>4</sup> The Montgomery bus boycott brings the Rev. Dr. Martin Luther King Jr. and his nonviolent approach to social change to the forefront of the civil rights movement.</p>
@@ -375,8 +375,8 @@
             <div class="timelineMajor">
                 <h2 class="timelineMajorMarker"><span>1957</span></h2>
                 <dl class="timelineMinor">
-                    <dt id="19570904"><a>小石城</a></dt>
-                    <dd class="timelineEvent" id="19570904EX" style="display:none;">
+                    <dt id="19770904"><a>小石城</a></dt>
+                    <dd class="timelineEvent" id="19770904EX" style="display:none;">
                         <h3>September 4, 1957</h3>
                         <p>
                             Three years removed from the Brown v. Board of Education decision, Arkansas Gov. Orval Faubus orders the National Guard to stop nine black students from attending the all-white Little Rock Central High School. President Dwight D. Eisenhower intervenes by federalizing the National Guard and deploying Army troops to protect the students, stripping the state of power. Media coverage of the physical and verbal harassment the black students were subjected to is reported and broadcast around the world. In the end, they successfully integrate Central High. <sup>5</sup></p>
@@ -389,8 +389,8 @@
             <div class="timelineMajor">
                 <h2 class="timelineMajorMarker"><span>1961</span></h2>
                 <dl class="timelineMinor">
-                    <dt id="19610504"><a>自由乘车运动</a></dt>
-                    <dd class="timelineEvent" id="19610504EX" style="display:none;">
+                    <dt id="19710504"><a>自由乘车运动</a></dt>
+                    <dd class="timelineEvent" id="19710504EX" style="display:none;">
                         <h3>May 4, 1961</h3>
 
                         <p>
@@ -403,8 +403,8 @@
             <div class="timelineMajor">
                 <h2 class="timelineMajorMarker"><span>1963</span></h2>
                 <dl class="timelineMinor">
-                    <dt id="19630828"><a>“我有一个梦想”</a></dt>
-                    <dd class="timelineEvent" id="19630828EX" style="display:none;">
+                    <dt id="19730828"><a>“我有一个梦想”</a></dt>
+                    <dd class="timelineEvent" id="19730828EX" style="display:none;">
                         <h3>August 28, 1963</h3>
 
                         <p>
@@ -425,8 +425,8 @@
                 <h2 class="timelineMajorMarker"><span>1964</span></h2>
 
                 <dl class="timelineMinor">
-                    <dt id="19640702"><a>民权法案</a></dt>
-                    <dd class="timelineEvent" id="19640702EX" style="display:none;">
+                    <dt id="19740702"><a>民权法案</a></dt>
+                    <dd class="timelineEvent" id="19740702EX" style="display:none;">
                         <h3>July 2, 1964</h3>
                         <p>
                             President Lyndon B. Johnson signs the Civil Rights Act of 1964, mandating equal opportunity employment, and complete desegregation of schools and other public facilities. It also outlaws unequal voter registration requirements.<sup>13</sup> Although it would take years for these changes to take effect in communities around the country, the law is a monumental victory for the civil rights movement.</p>
@@ -436,8 +436,8 @@
                 </dl><!-- /.timelineMinor -->
 
                 <dl class="timelineMinor">
-                    <dt id="19641014"><a>诺贝尔和平奖</a></dt>
-                    <dd class="timelineEvent" id="19641014EX" style="display:none;">
+                    <dt id="19741014"><a>诺贝尔和平奖</a></dt>
+                    <dd class="timelineEvent" id="19741014EX" style="display:none;">
                         <h3>October 14, 1964</h3>
                         <p>Martin Luther King Jr. is awarded the Nobel Peace Prize; at 35, he is the youngest recipient.</p>
                         <br class="clear">
