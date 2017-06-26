@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Component
 @RequestMapping("/communication")
-public class ConmunicationControler {
+public class CommunicationController {
 
     @RequestMapping()
     public String index() {
