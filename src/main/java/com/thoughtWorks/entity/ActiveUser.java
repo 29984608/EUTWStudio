@@ -4,11 +4,20 @@ import java.io.Serializable;
 import java.util.List;
 
 public class ActiveUser implements Serializable {
+    private boolean available;
     private String userName;
     private String password;
     private int roleId;
     private List<Permission> menus;// 菜单
     private List<Permission> permissions;// 权限
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
 
     public String getPassword() {
         return password;

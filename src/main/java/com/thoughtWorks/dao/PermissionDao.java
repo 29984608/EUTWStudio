@@ -2,15 +2,12 @@ package com.thoughtWorks.dao;
 
 import com.thoughtWorks.entity.ActiveUser;
 import com.thoughtWorks.entity.Permission;
-import com.thoughtWorks.entity.User;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
 
 public interface PermissionDao {
-
-    User login(User user);
 
     ActiveUser getSysUserByUserName(String userName);
 

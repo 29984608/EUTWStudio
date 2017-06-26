@@ -4,12 +4,9 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>layui</title>
-    <!-- 加载js文件-->
-    <script type="text/javascript" src="${baseurl}/public/common/layui/layui.js"></script>
+    <title></title>
     <script type="text/javascript" src="${baseurl}/public/common/js/jquery-3.2.0.min.js"></script>
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/common/layui/css/layui.css" media="all">
-    <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/common/layui/css/layui.css" media="all">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/common/bootstrap/css/bootstrap.min.css" media="all">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/common/css/global.css" media="all">

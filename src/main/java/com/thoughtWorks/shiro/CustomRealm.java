@@ -32,14 +32,29 @@ public class CustomRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
+        List<Permission> menu = null;
+        ActiveUser activeUser = null;
         String userName = (String) token.getPrincipal();
-        ActiveUser activeUser = permissionService.getSysUserByUserName(userName);
+        try {
+            activeUser = permissionService.getSysUserByUserName(userName);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new UnknownAccountException();//没找到帐号
+        }
         if (activeUser == null) {
             throw new UnknownAccountException();//没找到帐号
         }
+        if (!activeUser.isAvailable()) {
+            throw new LockedAccountException();
+        }
         //获得菜单
-        List<Permission> menu = permissionService.findMenuListByRoleId(activeUser.getRoleId());
+        try {
+            menu = permissionService.findMenuListByRoleId(activeUser.getRoleId());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         activeUser.setMenus(menu);
+
 
         //这里查询到用户的信息后，将用户的username和password放在simpleAuthenticationInfo中，以供submit.login();
         //new SimpleAuthenticationInfo(对象或则是userName或是对象,password,this.getName());  在这里第一个参数传入对象的时候，在后面可以使用(ActiveUser)SecurityUtils.getSubject().getPrincipal()获得对象
@@ -56,11 +71,16 @@ public class CustomRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
+        List<Permission> permissionList = null;
         //从 principals获取主身份信息
         //将getPrimaryPrincipal方法返回值转为真实身份类型（在上边的doGetAuthenticationInfo认证通过填充到SimpleAuthenticationInfo中身份类型），
         ActiveUser activeUser = (ActiveUser) principals.getPrimaryPrincipal();
         //获得所有的权限
-        List<Permission> permissionList = permissionService.findPermissionListByRoleId(activeUser.getRoleId());
+        try {
+            permissionList = permissionService.findPermissionListByRoleId(activeUser.getRoleId());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         List<String> permissions = new ArrayList<String>();
         if (permissionList != null) {
             for (Permission sysPermission : permissionList) {

@@ -11,4 +11,5 @@ public class Constant {
     public static final String ADD_FAILURE = "添加失败";
     public static final String UPDATE_SUCCESS = "修改成功";
     public static final String UPDATE_FAILURE = "修改失败";
+    public static final String ACCOUNT_IS_LOCK = "当前帐号被禁止登录";
 }

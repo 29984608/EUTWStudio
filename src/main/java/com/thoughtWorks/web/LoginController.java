@@ -6,6 +6,7 @@ import com.thoughtWorks.entity.ActiveUser;
 import com.thoughtWorks.service.PermissionService;
 import com.thoughtWorks.util.Constant;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
@@ -32,6 +33,8 @@ public class LoginController {
             subject.login(token);
         } catch (UnknownAccountException e) {
             return Result.failure(null, Constant.ACCOUNT_NOT_EXIST);
+        } catch (LockedAccountException e) {
+            return Result.failure(null, Constant.ACCOUNT_IS_LOCK);
         } catch (Exception e) {
             return Result.failure(null, Constant.ACCOUNT_OR_PWD_ERROR);
         }
