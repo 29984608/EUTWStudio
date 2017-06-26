@@ -115,7 +115,7 @@
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <section class="panel">
                 <header class="panel-heading bm0">
-                    <span class='span-title'>mahuan</span>
+                    <span class='span-title'>马欢欢</span>
                     <span class="tools pull-right"><a href="javascript:;" class="iconpx-chevron-down"></a></span>
                 </header>
                 <div class="panel-body">
@@ -130,6 +130,11 @@
                                 <td><span class="tit">2017-6-24</span>
                                 </td>
                                 <td><span class="info">完成沟通信息模块页面，添加小图标</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="tit">2017-6-25</span>
+                                </td>
+                                <td><span class="info">完成静态页面：学生信息页面、系信息页面、专业信息页面 </span></td>
                             </tr>
 
                             </tbody>
