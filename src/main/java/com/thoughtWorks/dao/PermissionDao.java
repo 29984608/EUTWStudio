@@ -18,4 +18,6 @@ public interface PermissionDao {
     List<Map<String,String>> getTopMenus(int roleId);
 
     List<Map<String, String>> getSideMenus(@Param("parentId") String parentId,@Param("roleId") String roleId);
+
+    List<Map<String,String>> queryMenus(int roleId);
 }

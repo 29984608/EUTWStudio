@@ -31,6 +31,18 @@
         WHERE t_permission.type != 'menu' AND t_permission.id = role.sys_permission_id
     </select>
 
+    <select id="queryMenus" resultType="Map" parameterType="int">
+        SELECT
+            permission.name title,
+            permission.icon,
+            permission.id   pid,
+            parentid,
+            permission.url  href
+        FROM t_permission permission
+            LEFT JOIN (SELECT *
+                       FROM t_role_permission) role ON role.sys_role_id = #{roleId}
+        WHERE type = "menu" AND role.sys_permission_id = permission.id ORDER BY parentid ASC
+    </select>
     <select id="getTopMenus" resultType="Map" parameterType="int">
         SELECT
             permission.name title,

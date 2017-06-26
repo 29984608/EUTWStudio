@@ -32,13 +32,15 @@ layui.use(['elements', 'jquery', 'layer', 'larry', 'navtab', 'form', 'common'], 
 // 001界面初始化
         AdminInit();
         let firstTopMenuPid;
+        let sideMenus;
         $.ajaxSettings.async = false;
         $.ajax({
-            url: baseUrl + "/getTopMenus?" + new Date().getTime(),
+            url: baseUrl + "/getMenus?" + new Date().getTime(),
             type: "post",
             success: function (data) {
                 if (data.result) {
-                    let result = data.data;
+                    let result = data.data.topMenus;
+                    sideMenus = data.data.sideMenus;
                     firstTopMenuPid = result[0].pid;
                     larry.set({
                         elem: '#menu',
@@ -51,40 +53,29 @@ layui.use(['elements', 'jquery', 'layer', 'larry', 'navtab', 'form', 'common'], 
         });
 
         var $menu = $('#menu');
+        let isLoad =  true;
         $menu.find('li.layui-nav-item').each(function () {
             var $that = $(this);
-//绑定一级导航的点击事件
             $that.on('click', function () {
                 var id = $that.data('pid');
-                $.ajaxSettings.async = false;
-                $.ajax({
-                    url: baseUrl + "/getSideMenus?" + new Date().getTime(),
-                    data: {pid: id},
-                    type: "post",
-                    success: function (data) {
-                        if (data.result) {
-                            let result = data.data;
-                            if(id == firstTopMenuPid){
-                                result.unshift({
-                                    title:'后台首页',
-                                    icon:'larry-wangzhanshouye',
-                                    href:baseUrl+'main'
-                                });
-
-                            }
-
-                            larry.set({
-                                elem: '#larrySideNav',
-                                data: result,
-                                spreadOne: true
-                            });
-                            larry.render();
-                            //监听左侧导航点击事件
-                            larry.on('click(side)', function (data) {
-                                navtab.tabAdd(data.field);
-                            });
-                        }
-                    }
+                let result = sideMenus[id];
+                if (id == firstTopMenuPid && isLoad) {
+                    isLoad = false;
+                    result.unshift({
+                        title: '后台首页',
+                        icon: 'larry-wangzhanshouye',
+                        href: baseUrl + 'main'
+                    });
+                }
+                larry.set({
+                    elem: '#larrySideNav',
+                    data: result,
+                    spreadOne: true
+                });
+                larry.render();
+                //监听左侧导航点击事件
+                larry.on('click(side)', function (data) {
+                    navtab.tabAdd(data.field);
                 });
             });
 
@@ -366,7 +357,7 @@ layui.use(['elements', 'jquery', 'layer', 'larry', 'navtab', 'form', 'common'], 
 
 // 登出系统
     $('#logout').on('click', function () {
-        var url =baseUrl+ '/logout';
+        var url = baseUrl + '/logout';
         common.logOut('退出登陆提示！', '你真的确定要退出系统吗？', url);
     })
 // 左侧导航菜单控制

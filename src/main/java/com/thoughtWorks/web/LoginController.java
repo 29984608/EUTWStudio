@@ -42,6 +42,21 @@ public class LoginController {
         return Result.success();
     }
 
+    @RequestMapping("getMenus")
+    @ResponseBody
+    public Result getMenus() {
+        try {
+            ActiveUser user = (ActiveUser) SecurityUtils.getSubject().getPrincipal();
+            Map<String, Object> menus = permissionService.getMenus(user.getRoleId());
+
+            return Result.success(menus, Constant.SEARCH_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return Result.failure(null, Constant.SEARCH_FAILURE);
+    }
+
     @RequestMapping("getTopMenus")
     @ResponseBody
     public Result getTopMenus() {
@@ -62,7 +77,7 @@ public class LoginController {
     public Result getSideMenus(String pid) {
         try {
             ActiveUser user = (ActiveUser) SecurityUtils.getSubject().getPrincipal();
-            List<Map<String, String>> sideMenus = permissionService.getSideMenus(pid,user.getRoleId()+"");
+            List<Map<String, String>> sideMenus = permissionService.getSideMenus(pid, user.getRoleId() + "");
 
             return Result.success(sideMenus, Constant.SEARCH_SUCCESS);
         } catch (Exception e) {
@@ -78,6 +93,7 @@ public class LoginController {
 
         return "login";
     }
+
     @RequestMapping("index")
     public String index() {
         return "index";
