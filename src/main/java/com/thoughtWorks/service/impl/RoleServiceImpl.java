@@ -1,6 +1,7 @@
 package com.thoughtWorks.service.impl;
 
 import com.thoughtWorks.dao.RoleDao;
+import com.thoughtWorks.entity.ActiveUser;
 import com.thoughtWorks.entity.Permission;
 import com.thoughtWorks.entity.Role;
 import com.thoughtWorks.service.RoleService;
@@ -18,10 +19,11 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public List<Role> queryList(PageUtil page) throws Exception {
-        Map<String, Integer> data = new HashMap<>();
+        Map<String, Object> data = new HashMap<>();
         data.put("start", (page.getCurrentIndex() - 1) * page.getPageSize());
-        data.put("end", page.getCurrentIndex() * page.getPageSize() + page.getPageSize());
-        page.setTotalSize(roleDao.queryTotalCount() / page.getPageSize());
+        data.put("end", (page.getCurrentIndex() - 1) * page.getPageSize() + page.getPageSize());
+        page.setTotalSize(roleDao.queryTotalCount());
+
         return roleDao.queryList(data);
     }
 
@@ -56,6 +58,22 @@ public class RoleServiceImpl implements RoleService {
         roleDao.updateAvailable(role);
     }
 
+    @Override
+    public List<Map<String, String>> queryUserRoleList(PageUtil page, String name) throws Exception {
+        Map<String, Object> data = new HashMap<>();
+        data.put("start", (page.getCurrentIndex() - 1) * page.getPageSize());
+        data.put("end", (page.getCurrentIndex() - 1) * page.getPageSize() + page.getPageSize());
+        data.put("name", "%" + name + "%");
+        page.setTotalSize(roleDao.queryUserRoleTotalCount("%" + name + "%"));
+
+        return roleDao.queryUserRoleList(data);
+    }
+
+    @Override
+    public List<Role> queryAll() throws Exception {
+        return roleDao.queryAll();
+    }
+
     private List<String> shouldInsertPers(List<String> oldPermissions, List<String> newPermissions) {
         List<String> shouldInsert = new ArrayList<>();
         for (String permission : newPermissions) {
@@ -65,6 +83,11 @@ public class RoleServiceImpl implements RoleService {
         }
 
         return shouldInsert;
+    }
+
+    @Override
+    public void updateUserRole(ActiveUser user) throws Exception {
+        roleDao.updateUserRole(user);
     }
 
     private List<String> shouldDeletePers(List<String> oldPermissions, List<String> newPermissions) {

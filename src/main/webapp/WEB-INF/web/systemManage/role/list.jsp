@@ -1,12 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ include file="../../../public/tag.jsp" %>
-<%@ include file="../../../public/module.jsp" %>
 <html>
 <head>
     <meta charset="utf-8">
     <title></title>
-    <script type="text/javascript" src="${baseurl}/public/common/js/jquery-3.2.0.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="${baseurl}/public/common/layui/css/layui.css" media="all">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/common/layui/css/layui.css" media="all">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/common/bootstrap/css/bootstrap.min.css" media="all">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/common/css/global.css" media="all">

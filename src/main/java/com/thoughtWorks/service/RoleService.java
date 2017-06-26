@@ -1,5 +1,6 @@
 package com.thoughtWorks.service;
 
+import com.thoughtWorks.entity.ActiveUser;
 import com.thoughtWorks.entity.Role;
 import com.thoughtWorks.util.PageUtil;
 
@@ -21,4 +22,10 @@ public interface RoleService {
     void updateRolePermissions(String hasPers, String updatePers, String roleId) throws Exception;
 
     void updateAvailable(Role role) throws Exception;
+
+    List<Map<String, String>> queryUserRoleList(PageUtil page, String name) throws Exception;
+
+    List<Role> queryAll() throws Exception;
+
+    void updateUserRole(ActiveUser user) throws Exception;
 }
