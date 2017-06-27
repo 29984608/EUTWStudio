@@ -77,6 +77,10 @@
                                 <td><span class="tit">2017-6-26</span></td>
                                 <td><span class="info">数据表设计、完成用户角色分配、培养模块</span></td>
                             </tr>
+                            <tr>
+                                <td><span class="tit">2017-6-27</span></td>
+                                <td><span class="info">完成系、专业、方向的页面和功能实现</span></td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>

@@ -1,6 +1,7 @@
 package com.thoughtWorks.service.impl;
 
 import com.thoughtWorks.dao.DepartmentDao;
+import com.thoughtWorks.entity.Department;
 import com.thoughtWorks.entity.Direction;
 import com.thoughtWorks.entity.Profession;
 import com.thoughtWorks.service.DepartmentService;
@@ -8,9 +9,7 @@ import com.thoughtWorks.util.PageUtil;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class DepartmentServiceImpl implements DepartmentService {
@@ -19,7 +18,131 @@ public class DepartmentServiceImpl implements DepartmentService {
     private DepartmentDao departmentDao;
 
     @Override
-    public List<Map<String, String>> queryDirectionList(PageUtil page) throws Exception{
+    public List<Map<String, String>> queryDepartmentList(PageUtil page) throws Exception {
+        Map<String, Object> data = new HashMap<>();
+        data.put("start", (page.getCurrentIndex() - 1) * page.getPageSize());
+        data.put("end", (page.getCurrentIndex() - 1) * page.getPageSize() + page.getPageSize());
+        page.setTotalSize(departmentDao.queryDepartmentTotalCount());
+
+        return departmentDao.queryDepartmentList(data);
+    }
+
+    @Override
+    public Map<String, List<Map<String, String>>> getProfessionAndDirectionData() throws Exception {
+        Map<String, List<Map<String, String>>> result = new HashMap<>();
+        Map<String, Object> data = new HashMap<>();
+        data.put("start", 0);
+        data.put("end", 10000);
+        result.put("directions", departmentDao.queryDirectionList(data));
+        result.put("professions", departmentDao.queryProfessionList(data));
+
+        return result;
+    }
+
+    @Override
+    public void addDepartment(String code, String name, String professionsIds, String directionsIds) throws Exception {
+        List<String> professions = Arrays.asList(professionsIds.split(","));
+        List<String> directions = Arrays.asList(directionsIds.split(","));
+        Department department = new Department(0, code, name);
+        departmentDao.addDepartment(department);
+
+        if (directions.size() != 0) departmentDao.updateDirectionDepartmentId(department.getId(), directions);
+        if (professions.size() != 0) departmentDao.updateProfessionDepartmentId(department.getId(), professions);
+    }
+
+    @Override
+    public void updateDepartment(Department department, String professionsIds, String directionsIds) throws Exception {
+        List<String> professions = Arrays.asList(professionsIds.split(","));
+        List<String> directions = Arrays.asList(directionsIds.split(","));
+        List<String> hasDirections = departmentDao.queryDirectionsByDepartmentId(String.valueOf(department.getId()));
+        List<String> hasProfessions = departmentDao.queryProfessionsByDepartmentId(String.valueOf(department.getId()));
+
+        List<String> shouldDeleteProfessionsDepartmentIds = shouldDelete(professions, hasProfessions);
+        List<String> shouldDeleteDirectionsDepartmentIds = shouldDelete(directions, hasDirections);
+
+        List<String> shouldInsertProfessionsDepartmentIds = shouldInsert(professions, hasProfessions);
+        List<String> shouldInsertDirectionsDepartmentIds = shouldInsert(directions, hasDirections);
+
+        if (shouldDeleteDirectionsDepartmentIds.size() != 0)
+            departmentDao.deleteDirectionsDepartmentId(shouldDeleteDirectionsDepartmentIds);
+        if (shouldDeleteProfessionsDepartmentIds.size() != 0)
+            departmentDao.deleteProfessionsDepartmentId(shouldDeleteProfessionsDepartmentIds);
+
+        if (shouldInsertDirectionsDepartmentIds.size() != 0)
+            departmentDao.insertDirectionsDepartmentIds(department.getId(), shouldInsertDirectionsDepartmentIds);
+        if (shouldInsertProfessionsDepartmentIds.size() != 0)
+            departmentDao.insertProfessionsDepartmentIds(department.getId(), shouldInsertProfessionsDepartmentIds);
+
+        departmentDao.updateDepartment(department);
+    }
+
+    private List<String> shouldInsert(List<String> oldIds, List<String> newIds) {
+        List<String> shouldDelete = new ArrayList<>();
+        for (String id : oldIds) {
+            if (!newIds.contains(id) && !"".equals(id)) {
+                shouldDelete.add(id);
+            }
+        }
+
+        return shouldDelete;
+    }
+
+    private List<String> shouldDelete(List<String> oldIds, List<String> newIds) {
+        List<String> shouldInsert = new ArrayList<>();
+        for (String id : newIds) {
+            if (!oldIds.contains(id) && !"".equals(id)) {
+                shouldInsert.add(id);
+            }
+        }
+
+        return shouldInsert;
+    }
+
+    @Override
+    public Map<String, List<Map<String, String>>> getFullProfessionAndDirectionData(String id) throws Exception {
+        Map<String, List<Map<String, String>>> professionAndDirectionData = getProfessionAndDirectionData();
+        List<String> directions = departmentDao.queryDirectionsByDepartmentId(id);
+        List<String> professions = departmentDao.queryProfessionsByDepartmentId(id);
+
+        changeDirectionCurrentState(professionAndDirectionData.get("directions"), directions);
+        changeProfessionCurrentState(professionAndDirectionData.get("professions"), professions);
+
+        return professionAndDirectionData;
+    }
+
+    private void changeDirectionCurrentState(List<Map<String, String>> dataList, List<String> directions) {
+        for (int i = 0; i < dataList.size(); ++i) {
+            Direction data = (Direction) dataList.get(i);
+            if (directions.contains(String.valueOf(data.getId())))
+                data.setDepartmentId("checked");
+            else if (!directions.contains(String.valueOf(data.getId())) && null != data.getDepartmentId() && !"".equals(data.getDepartmentId().trim()))
+                data.setDepartmentId("disabled");
+            else if (directions.contains(String.valueOf(data.getId())) && null != data.getDepartmentId() && "".equals(data.getDepartmentId().trim()))
+                data.setDepartmentId("");
+        }
+    }
+
+    private void changeProfessionCurrentState(List<Map<String, String>> dataList, List<String> professions) {
+        for (int i = 0; i < dataList.size(); ++i) {
+            Profession data = (Profession) dataList.get(i);
+            if (professions.contains(String.valueOf(data.getId())))
+                data.setDepartmentId("checked");
+            else if (!professions.contains(String.valueOf(data.getId())) && null != data.getDepartmentId() && !"".equals(data.getDepartmentId().trim()))
+                data.setDepartmentId("disabled");
+            else if (professions.contains(String.valueOf(data.getId())) && null != data.getDepartmentId() && "".equals(data.getDepartmentId().trim()))
+                data.setDepartmentId("");
+        }
+    }
+
+    @Override
+    public void deleteDepartment(String id) throws Exception {
+        departmentDao.deleteProfessionDepartmentIdByDepartmentId(id);
+        departmentDao.deleteDirectionDepartmentIdByDepartmentId(id);
+        departmentDao.deleteDepartment(id);
+    }
+
+    @Override
+    public List<Map<String, String>> queryDirectionList(PageUtil page) throws Exception {
         Map<String, Object> data = new HashMap<>();
         data.put("start", (page.getCurrentIndex() - 1) * page.getPageSize());
         data.put("end", (page.getCurrentIndex() - 1) * page.getPageSize() + page.getPageSize());
@@ -45,7 +168,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 
 
     @Override
-    public List<Map<String, String>> queryProfessionList(PageUtil page) throws Exception{
+    public List<Map<String, String>> queryProfessionList(PageUtil page) throws Exception {
         Map<String, Object> data = new HashMap<>();
         data.put("start", (page.getCurrentIndex() - 1) * page.getPageSize());
         data.put("end", (page.getCurrentIndex() - 1) * page.getPageSize() + page.getPageSize());

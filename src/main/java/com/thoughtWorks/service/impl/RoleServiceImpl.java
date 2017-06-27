@@ -91,14 +91,14 @@ public class RoleServiceImpl implements RoleService {
     }
 
     private List<String> shouldDeletePers(List<String> oldPermissions, List<String> newPermissions) {
-        List<String> shouldInsert = new ArrayList<>();
+        List<String> shouldDelete = new ArrayList<>();
         for (String permission : oldPermissions) {
             if (!newPermissions.contains(permission)) {
-                shouldInsert.add(permission);
+                shouldDelete.add(permission);
             }
         }
 
-        return shouldInsert;
+        return shouldDelete;
     }
 
     @Override

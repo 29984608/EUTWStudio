@@ -1,17 +1,17 @@
 package com.thoughtWorks.entity;
 
-public class Direction {
+public class Department {
     private int id;
     private String code;
     private String name;
-    private String departmentId;
 
-    public String getDepartmentId() {
-        return departmentId;
+    public Department() {
+
     }
-
-    public void setDepartmentId(String departmentId) {
-        this.departmentId = departmentId;
+    public Department(int id, String code, String name) {
+        this.id = id;
+        this.code = code;
+        this.name = name;
     }
 
     public int getId() {
