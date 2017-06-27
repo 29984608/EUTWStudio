@@ -18,9 +18,9 @@
     <div class="larry-personal">
         <div class="layui-tab">
             <blockquote class="layui-elem-quote mylog-info-tit">
-                <shiro:hasPermission name="courseModule:add">
+                <shiro:hasPermission name="direction:add">
                     <ul class="layui-tab-title">
-                        <li class="layui-btn " onclick="module.add()"><i class="layui-icon">&#xe61f;</i>添加模块
+                        <li class="layui-btn " onclick="direction.add()"><i class="layui-icon">&#xe61f;</i>添加专业方向
                         </li>
                     </ul>
                 </shiro:hasPermission>
@@ -33,8 +33,8 @@
                         <thead>
                         <tr>
                             <th>序号</th>
-                            <th>模块代码</th>
-                            <th>模块名称</th>
+                            <th>专业方向代码</th>
+                            <th>名称</th>
                             <th>操作</th>
                         </tr>
                         </thead>
@@ -50,20 +50,20 @@
 </section>
 </body>
 <script id="list-tpl" type="text/html">
-    {{# layui.each(d.modules, function(index, item){ }}
+    {{# layui.each(d.directions, function(index, item){ }}
     <tr>
         <td>{{ index+1}}</td>
         <td>{{ item.code}}</td>
         <td>{{ item.name}}</td>
         <td>
-            <shiro:hasPermission name="courseModule:update">
+            <shiro:hasPermission name="direction:update">
                 <button class="layui-btn layui-btn-mini layui-btn-normal"
-                        onclick="module.update('{{item.id}}','{{item.code}}','{{item.name}}')">
+                        onclick="direction.update('{{item.id}}','{{item.code}}','{{item.name}}')">
                     <i class="layui-icon">&#xe642;</i>修改
                 </button>
             </shiro:hasPermission>
-            <shiro:hasPermission name="courseModule:delete">
-                <button class="layui-btn layui-btn-mini  layui-btn-danger" onclick="module.delete('{{item.id}}')">
+            <shiro:hasPermission name="direction:delete">
+                <button class="layui-btn layui-btn-mini  layui-btn-danger" onclick="direction.delete('{{item.id}}')">
                     <i class="layui-icon">&#xe60a;</i>删除
                 </button>
             </shiro:hasPermission>
@@ -75,22 +75,22 @@
 <div id="add" style="margin: 10px;display: none">
     <form id="add-form" lay-filter="role-add" class="layui-form layui-form-pane" method="post">
         <div class="layui-form-item">
-            <label class="layui-form-label">模块代码</label>
+            <label class="layui-form-label">专业方向代码</label>
             <div class="layui-input-inline">
-                <input type="text" name="code"    jq-error="请输入角色名称"
-                       placeholder="请输入模块代码" autocomplete="off" class="layui-input ">
+                <input type="text" name="code"
+                       placeholder="请输入专业方向代码" autocomplete="off" class="layui-input ">
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">模块名称</label>
+            <label class="layui-form-label">专业方向名称</label>
             <div class="layui-input-inline">
-                <input type="text" name="name"   jq-error="请输入角色名称"
-                       placeholder="请输入模块名称" autocomplete="off" class="layui-input ">
+                <input type="text" name="name"
+                       placeholder="请输入专业方向名称" autocomplete="off" class="layui-input ">
             </div>
         </div>
         <div class="layui-form-item">
             <div class="layui-input-block">
-                <a class="layui-btn"   onclick="module.addAjax()">立即提交</a>
+                <a class="layui-btn"   onclick="direction.addAjax()">立即提交</a>
                 <button type="reset" class="layui-btn layui-btn-primary">重置</button>
             </div>
         </div>
@@ -100,22 +100,22 @@
     <form id="update-form" lay-filter="role-add" class="layui-form layui-form-pane" method="post">
         <input type="hidden" id="id" name="id"/>
         <div class="layui-form-item">
-            <label class="layui-form-label">模块代码</label>
+            <label class="layui-form-label">专业方向代码</label>
             <div class="layui-input-inline">
                 <input type="text" id="code" name="code" required jq-verify="required" jq-error="请输入角色名称"
-                       placeholder="请输入模块代码" autocomplete="off" class="layui-input ">
+                       placeholder="请输入专业方向代码" autocomplete="off" class="layui-input ">
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">模块名称</label>
+            <label class="layui-form-label">专业方向名称</label>
             <div class="layui-input-inline">
                 <input type="text" id="name" name="name" required jq-verify="required" jq-error="请输入角色名称"
-                       placeholder="请输入模块名称" autocomplete="off" class="layui-input ">
+                       placeholder="请输入专业方向名称" autocomplete="off" class="layui-input ">
             </div>
         </div>
         <div class="layui-form-item">
             <div class="layui-input-block">
-                <a class="layui-btn" onclick="module.updateAjax()">立即提交</a>
+                <a class="layui-btn" onclick="direction.updateAjax()">立即提交</a>
                 <button type="reset" class="layui-btn layui-btn-primary">重置</button>
             </div>
         </div>
@@ -126,7 +126,7 @@
     let totalSize = 10;
     let currentIndex = 1;
     let pageSize = 10;
-    let module;
+    let direction;
     layui.use(['jquery', 'layer', 'element', 'laypage', 'form', 'laytpl', 'tree'], function () {
         window.jQuery = window.$ = layui.jquery;
         window.layer = layui.layer;
@@ -135,7 +135,7 @@
             laytpl = layui.laytpl;
 
 
-        module = {
+        direction = {
             page: function () {
                 layui.laypage({
                     cont: 'demo1',
@@ -146,20 +146,20 @@
                     jump: function (obj, first) {
                         currentIndex = obj.curr;
                         if (!first) {
-                            module.list();
+                            direction.list();
                         }
                     }
                 });
             },
             list: function () {
                 $.ajax({
-                    url: baseUrl + "/courseModule/list",
+                    url: baseUrl + "/direction/list",
                     data: {currentIndex: currentIndex, pageSize: pageSize},
                     success: function (data) {
                         if (data.result) {
                             currentIndex = data.page.currentIndex;
                             totalSize = data.page.totalSize;
-                            module.page();
+                            direction.page();
                             laytpl($("#list-tpl").text()).render(data, function (html) {
                                 $("#list").html(html);
                             });
@@ -190,7 +190,7 @@
             delete: function (id) {
                 layer.confirm('确定删除？', {icon: 3, title: '提示'}, function (index) {
                     layer.close(index);
-                    $.post(baseUrl + "/courseModule/delete", {id: id}, function (data) {
+                    $.post(baseUrl + "/direction/delete", {id: id}, function (data) {
                         layer.msg(data.msg);
                         location.reload();
                     })
@@ -198,7 +198,7 @@
             },
             addAjax: function () {
                 let data = $("#add-form").serialize();
-                $.post(baseUrl + "/courseModule/add", data, function (data) {
+                $.post(baseUrl + "/direction/add", data, function (data) {
                     layer.msg(data.msg);
                     if (data.result) {
                         setTimeout("location.reload()", 500);
@@ -207,7 +207,7 @@
             },
             updateAjax: function () {
                 let data = $("#update-form").serialize();
-                $.post(baseUrl + "/courseModule/update", data, function (data) {
+                $.post(baseUrl + "/direction/update", data, function (data) {
                     layer.msg(data.msg);
                     if (data.result) {
                         setTimeout("location.reload()", 500);
@@ -217,7 +217,7 @@
             }
         };
         $(function () {
-            module.list();
+            direction.list();
         });
     });
 

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thoughtWorks.dao.DepartmentDao">
+    <select id="queryDirectTotalCount" resultType="long">
+        SELECT count(1)
+        FROM t_direction
+    </select>
+
+    <select id="queryDirectionList" resultType="Direction">
+        SELECT *
+        FROM t_direction
+        LIMIT #{start}, #{end}
+    </select>
+    <insert id="insertDirection" parameterType="Direction">
+        INSERT INTO t_direction (code, name) VALUES (#{code}, #{name})
+    </insert>
+
+    <update id="updateDirection" parameterType="Direction">
+        UPDATE t_direction
+        SET code = #{code}, name = #{name}
+        WHERE id = #{id}
+    </update>
+    <delete id="deleteDirection" parameterType="string">
+        DELETE FROM t_direction
+        WHERE id = #{id}
+    </delete>
+
+    <!--专业-->
+    <select id="queryProfessionTotalCount" resultType="long">
+        SELECT count(1)
+        FROM t_profession
+    </select>
+
+    <select id="queryProfessionList" resultType="Profession">
+        SELECT *
+        FROM t_profession
+        LIMIT #{start}, #{end}
+    </select>
+    <insert id="insertProfession" parameterType="Profession">
+        INSERT INTO t_profession (code, name) VALUES (#{code}, #{name})
+    </insert>
+
+    <update id="updateProfession" parameterType="Profession">
+        UPDATE t_profession
+        SET code = #{code}, name = #{name}
+        WHERE id = #{id}
+    </update>
+    <delete id="deleteProfession" parameterType="string">
+        DELETE FROM t_profession
+        WHERE id = #{id}
+    </delete>
+</mapper>

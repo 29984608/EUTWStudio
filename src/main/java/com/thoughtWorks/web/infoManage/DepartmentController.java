@@ -12,6 +12,6 @@ public class DepartmentController {
 
     @RequestMapping
     public String index() {
-        return "infoManage/department/department";
+        return "infoManage/department/list";
     }
 }
