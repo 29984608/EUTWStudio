@@ -18,12 +18,12 @@
     <div class="larry-personal">
         <div class="layui-tab">
             <blockquote class="layui-elem-quote mylog-info-tit">
-                <shiro:hasPermission name="classes:add">
-                <ul class="layui-tab-title">
-                    <li class="layui-btn " onclick="classes.addManual()"><i class="layui-icon">&#xe61f;</i>添加班级
-                    </li>
-                </ul>
-                </shiro:hasPermission>
+                <%--<shiro:hasPermission name="teacher:add">--%>
+                    <ul class="layui-tab-title">
+                        <li class="layui-btn " onclick="teacher.add()"><i class="layui-icon">&#xe61f;</i>添加班级
+                        </li>
+                    </ul>
+                <%--</shiro:hasPermission>--%>
             </blockquote>
             <div class="larry-separate"></div>
 
@@ -33,15 +33,17 @@
                         <thead>
                         <tr>
                             <th>序号</th>
-                            <th>班级代码</th>
-                            <th>名称</th>
+                            <th>工号</th>
+                            <th>名字</th>
+                            <th>性别</th>
+                            <th>系</th>
+                            <th>方向</th>
                             <th>操作</th>
                         </tr>
                         </thead>
                         <tbody id="list">
                         </tbody>
                     </table>
-
                 </div>
                 <div id="demo1"></div>
             </div>
@@ -49,13 +51,13 @@
     </div>
 </section>
 </body>
-<%@include file="layer.jsp" %>
+<%@include file="layer.jsp"  %>
 <script type="text/javascript" src="${baseurl}/public/common/layui/layui.js"></script>
 <script type="text/javascript">
     let totalSize = 10;
     let currentIndex = 1;
     let pageSize = 10;
-    let classes;
+    let teacher;
     layui.use(['jquery', 'layer', 'element', 'laypage', 'form', 'laytpl', 'tree'], function () {
         window.jQuery = window.$ = layui.jquery;
         window.layer = layui.layer;
@@ -64,7 +66,7 @@
             laytpl = layui.laytpl;
 
 
-        classes = {
+        teacher = {
             page: function () {
                 layui.laypage({
                     cont: 'demo1',
@@ -75,20 +77,20 @@
                     jump: function (obj, first) {
                         currentIndex = obj.curr;
                         if (!first) {
-                            classes.list();
+                            teacher.list();
                         }
                     }
                 });
             },
             list: function () {
                 $.ajax({
-                    url: baseUrl + "/classes/list",
+                    url: baseUrl + "/teacher/list",
                     data: {currentIndex: currentIndex, pageSize: pageSize},
                     success: function (data) {
                         if (data.result) {
                             currentIndex = data.page.currentIndex;
                             totalSize = data.page.totalSize;
-                            classes.page();
+                            teacher.page();
                             laytpl($("#list-tpl").text()).render(data, function (html) {
                                 $("#list").html(html);
                             });
@@ -97,7 +99,7 @@
                     }
                 });
             },
-            addManual: function () {
+            add: function () {
                 $.post(baseUrl + "/department/allDepartments", function (data) {
                     if (data.result) {
                         data = data.data;
@@ -145,15 +147,15 @@
             delete: function (id) {
                 layer.confirm('确定删除？', {icon: 3, title: '提示'}, function (index) {
                     layer.close(index);
-                    $.post(baseUrl + "/classes/delete", {id: id}, function (data) {
+                    $.post(baseUrl + "/teacher/delete", {id: id}, function (data) {
                         layer.msg(data.msg);
                         setTimeout("location.reload()", 500);
                     })
                 });
             },
-            addManualAjax: function () {
+            addAjax: function () {
                 let data = $("#add-form").serialize();
-                $.post(baseUrl + "/classes/addManual", data, function (data) {
+                $.post(baseUrl + "/teacher/add", data, function (data) {
                     layer.msg(data.msg);
                     if (data.result) {
                         setTimeout("location.reload()", 500);
@@ -162,7 +164,7 @@
             },
             updateAjax: function () {
                 let data = $("#update-form").serialize();
-                $.post(baseUrl + "/classes/update", data, function (data) {
+                $.post(baseUrl + "/teacher/update", data, function (data) {
                     layer.msg(data.msg);
                     if (data.result) {
                         setTimeout("location.reload()", 500);
@@ -173,7 +175,7 @@
         };
         ;
         $(function () {
-            classes.list();
+            teacher.list();
         });
     })
     ;

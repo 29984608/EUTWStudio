@@ -1,22 +1,25 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <script id="list-tpl" type="text/html">
-    {{# layui.each(d.classess, function(index, item){ }}
+    {{# layui.each(d.teachers, function(index, item){ }}
     <tr>
         <td>{{ index+1}}</td>
-        <td>{{ item.level}}</td>
+        <td>{{ item.no}}</td>
         <td>{{ item.name}}</td>
+        <td>{{ item.gender}}</td>
+        <td>{{ item.departmentName}}</td>
+        <td>{{ item.directionName}}</td>
         <td>
-            <shiro:hasPermission name="classes:update">
+            <%--<shiro:hasPermission name="teacher:update">--%>
             <button class="layui-btn layui-btn-mini layui-btn-normal"
-                    onclick="classes.update('{{item.id}}','{{item.level}}','{{item.name}}','{{item.departmentId}}')">
+                    onclick="teacher.update('{{item}}')">
                 <i class="layui-icon">&#xe642;</i>修改
             </button>
-            </shiro:hasPermission>
-            <shiro:hasPermission name="classes:delete">
-            <button class="layui-btn layui-btn-mini  layui-btn-danger" onclick="classes.delete('{{item.id}}')">
+            <%--</shiro:hasPermission>--%>
+            <%--<shiro:hasPermission name="teacher:delete">--%>
+            <button class="layui-btn layui-btn-mini  layui-btn-danger" onclick="teacher.delete('{{item.id}}')">
                 <i class="layui-icon">&#xe60a;</i>删除
             </button>
-            </shiro:hasPermission>
+            <%--</shiro:hasPermission>--%>
         </td>
     </tr>
     {{# }); }}
@@ -48,7 +51,7 @@
         </div>
         <div class="layui-form-item">
             <div class="layui-input-block">
-                <a class="layui-btn" onclick="classes.addManualAjax()">立即提交</a>
+                <a class="layui-btn" onclick="teacher.addManualAjax()">立即提交</a>
                 <button type="reset" class="layui-btn layui-btn-primary">重置</button>
             </div>
         </div>
@@ -81,7 +84,7 @@
         </div>
         <div class="layui-form-item">
             <div class="layui-input-block">
-                <a class="layui-btn" onclick="classes.updateAjax()">立即提交</a>
+                <a class="layui-btn" onclick="teacher.updateAjax()">立即提交</a>
             </div>
         </div>
     </form>

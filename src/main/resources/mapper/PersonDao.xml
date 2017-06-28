@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thoughtWorks.dao.PersonDao">
+    <select id="queryPersonTotalCount" resultType="long">
+        SELECT count(1)
+        FROM t_teacher
+    </select>
+
+    <select id="queryPersonList" resultType="Map">
+        SELECT
+            teacher.no,
+            teacher.name,
+            teacher.gender,
+            department.id   departmentId,
+            department.name departmentName,
+            direction.id    directionId,
+            direction.name  directionName
+        FROM t_teacher teacher
+            LEFT JOIN (SELECT
+                           id,
+                           name
+                       FROM t_department) department ON department.id = teacher.department_id
+            LEFT JOIN (SELECT
+                           id,
+                           name
+                       FROM t_direction) direction ON direction.id = teacher.direction_id
+        LIMIT #{start}, #{end}
+    </select>
+</mapper>
