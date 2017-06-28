@@ -1,6 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ include file="../public/tag.jsp" %>
-<%@ include file="../public/module.jsp" %>
 
 <html lang="en">
 <head>
