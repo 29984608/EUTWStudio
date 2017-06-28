@@ -59,4 +59,6 @@ public interface DepartmentDao {
     void deleteProfessionDepartmentIdByDepartmentId(String id);
 
     void deleteDepartment(String id);
+
+    List<Department> queryAllDepartments();
 }

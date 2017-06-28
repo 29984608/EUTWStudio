@@ -21,7 +21,7 @@ public class RoleServiceImpl implements RoleService {
     public List<Role> queryList(PageUtil page) throws Exception {
         Map<String, Object> data = new HashMap<>();
         data.put("start", (page.getCurrentIndex() - 1) * page.getPageSize());
-        data.put("end", (page.getCurrentIndex() - 1) * page.getPageSize() + page.getPageSize());
+        data.put("end", page.getPageSize());
         page.setTotalSize(roleDao.queryTotalCount());
 
         return roleDao.queryList(data);
@@ -62,7 +62,7 @@ public class RoleServiceImpl implements RoleService {
     public List<Map<String, String>> queryUserRoleList(PageUtil page, String name) throws Exception {
         Map<String, Object> data = new HashMap<>();
         data.put("start", (page.getCurrentIndex() - 1) * page.getPageSize());
-        data.put("end", (page.getCurrentIndex() - 1) * page.getPageSize() + page.getPageSize());
+        data.put("end", page.getPageSize());
         data.put("name", "%" + name + "%");
         page.setTotalSize(roleDao.queryUserRoleTotalCount("%" + name + "%"));
 

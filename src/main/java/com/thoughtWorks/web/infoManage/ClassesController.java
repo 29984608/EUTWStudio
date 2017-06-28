@@ -1,8 +1,8 @@
 package com.thoughtWorks.web.infoManage;
 
+import com.thoughtWorks.dao.TrainModuleDao;
 import com.thoughtWorks.dto.Result;
-import com.thoughtWorks.entity.CourseModule;
-import com.thoughtWorks.entity.Role;
+import com.thoughtWorks.entity.Classes;
 import com.thoughtWorks.service.TrainModuleService;
 import com.thoughtWorks.util.Constant;
 import com.thoughtWorks.util.PageUtil;
@@ -16,25 +16,25 @@ import java.util.List;
 import java.util.Map;
 
 @Component
-@RequestMapping("/courseModule")
-public class CourseModuleController {
-
+@RequestMapping("/classes")
+public class ClassesController {
     @Resource
     private TrainModuleService trainModuleService;
+    @Resource
+    private TrainModuleDao trainModuleDao;
 
     @RequestMapping()
     public String index() {
-        return "infoManage/courseModule/list";
+        return "infoManage/classes/list";
     }
-
 
     @RequestMapping("list")
     @ResponseBody
     public Map<String, Object> list(PageUtil page) {
         Map<String, Object> data = new HashMap<>();
         try {
-            List<Map<String, String>> modules = trainModuleService.queryTrainModuleList(page);
-            data.put("modules", modules);
+            List<Classes> classess = trainModuleService.queryClassesList(page);
+            data.put("classess", classess);
             data.put("page", page);
             data.put("result", true);
             data.put("msg", Constant.SEARCH_SUCCESS);
@@ -46,26 +46,11 @@ public class CourseModuleController {
         return data;
     }
 
-    @RequestMapping("add")
-    @ResponseBody
-    public Result add(CourseModule courseModule) {
-        try {
-            trainModuleService.insertCourseModule(courseModule);
-
-            return Result.success(null, Constant.ADD_SUCCESS);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return Result.failure(null, Constant.ADD_FAILURE);
-    }
-
-
     @RequestMapping("delete")
     @ResponseBody
     public Result delete(String id) {
         try {
-            trainModuleService.deleteCourseModule(id);
+            trainModuleDao.deleteClasses(id);
 
             return Result.success(null, Constant.DELETE_SUCCESS);
         } catch (Exception e) {
@@ -77,9 +62,9 @@ public class CourseModuleController {
 
     @RequestMapping("update")
     @ResponseBody
-    public Result update(CourseModule courseModule) {
+    public Result update(Classes classes) {
         try {
-            trainModuleService.updateCourseModule(courseModule);
+            trainModuleDao.updateClasses(classes);
 
             return Result.success(null, Constant.UPDATE_SUCCESS);
         } catch (Exception e) {
@@ -88,4 +73,19 @@ public class CourseModuleController {
 
         return Result.failure(null, Constant.UPDATE_FAILURE);
     }
+
+    @RequestMapping("addManual")
+    @ResponseBody
+    public Result addManual(Classes classes) {
+        try {
+            trainModuleDao.addClassesManual(classes);
+
+            return Result.success(null, Constant.ADD_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return Result.failure(null, Constant.ADD_FAILURE);
+    }
+
 }

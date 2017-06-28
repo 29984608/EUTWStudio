@@ -62,6 +62,9 @@
     <url-pattern>/</url-pattern>
   </servlet-mapping>
 
+  <session-config>
+    <session-timeout>32000</session-timeout>
+  </session-config>
   <error-page>
     <error-code>404</error-code>
     <location>/public/404.jsp</location>

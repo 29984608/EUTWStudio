@@ -102,21 +102,20 @@
         <div class="layui-form-item">
             <label class="layui-form-label">专业方向代码</label>
             <div class="layui-input-inline">
-                <input type="text" id="code" name="code" required jq-verify="required" jq-error="请输入角色名称"
+                <input type="text" id="code" name="code" required jq-verify="required"
                        placeholder="请输入专业方向代码" autocomplete="off" class="layui-input ">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">专业方向名称</label>
             <div class="layui-input-inline">
-                <input type="text" id="name" name="name" required jq-verify="required" jq-error="请输入角色名称"
+                <input type="text" id="name" name="name" required jq-verify="required"
                        placeholder="请输入专业方向名称" autocomplete="off" class="layui-input ">
             </div>
         </div>
         <div class="layui-form-item">
             <div class="layui-input-block">
                 <a class="layui-btn" onclick="direction.updateAjax()">立即提交</a>
-                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
             </div>
         </div>
     </form>

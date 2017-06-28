@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,6 +26,8 @@ public class DepartmentController {
     @Autowired
     private DepartmentService departmentService;
 
+    @Resource
+    private DepartmentDao departmentDao;
 
     @RequestMapping
     public String index() {
@@ -47,6 +50,20 @@ public class DepartmentController {
         }
 
         return data;
+    }
+
+    @RequestMapping("allDepartments")
+    @ResponseBody
+    public Result queryAllDepartments() {
+        try {
+            List<Department> departments = departmentDao.queryAllDepartments();
+
+            return Result.success(departments, Constant.SEARCH_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return Result.success(null, Constant.SEARCH_FAILURE);
     }
 
     /**

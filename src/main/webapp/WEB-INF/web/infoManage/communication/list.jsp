@@ -25,37 +25,13 @@
                 <blockquote class="layui-elem-quote mylog-info-tit">
 
                     <div class="layui-inline">
-                        <div class="layui-input-inline" style="width: auto">
-                            <select name="modules" lay-verify="required" lay-search="">
-                                <option value="">专业</option>
-                                <option value="1">layer</option>
-                                <option value="2">form</option>
-                                <option value="3">layim</option>
-                                <option value="4">element</option>
-                                <option value="5">laytpl</option>
-                                <option value="6">upload</option>
-                            </select>
-                        </div>
-
-
-                        <div class="layui-input-inline">
-                            <select name="modules" lay-verify="required" lay-search="">
-                                <option value="">年级</option>
-                                <option value="1">layer</option>
-                                <option value="2">form</option>
-                                <option value="3">layim</option>
-                                <option value="4">element</option>
-                            </select>
-                        </div>
-
                         <div class="layui-input-inline">
                             <select name="modules" lay-verify="required" lay-search="">
                                 <option value="">班级</option>
-                                <option value="1">layer</option>
-                                <option value="2">form</option>
-                                <option value="3">layim</option>
-                                <option value="4">element</option>
-                                <option value="5">laytpl</option>
+                                <option value="1">物业管理1701</option>
+                                <option value="2">物业管理1802</option>
+                                <option value="3">工程造价1601</option>
+                                <option value="4">房地产1701</option>
                             </select>
                         </div>
 
@@ -78,10 +54,8 @@
                             <tr>
                                 <th>学号</th>
                                 <th>姓名</th>
-                                <th>沟通时间</th>
-                                <th>沟通导师</th>
-                                <th>沟通对象</th>
-                                <th>沟通方向</th>
+                                <th>专业</th>
+                                <th>班级</th>
                                 <th>操作</th>
                             </tr>
                             </thead>
@@ -89,11 +63,9 @@
                             <tr>
                                 <td>15610903150627</td>
                                 <td>张三</td>
-                                <td>1989-10-14</td>
-                                <td>张三</td>
-                                <td>李四</td>
+                                <td>工程造价</td>
                                 <td>
-
+                                    工程造价1701
                                 </td>
                                 <td>
                                     <a class="layui-btn layui-btn-small" onclick="addCommunication()"><i

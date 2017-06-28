@@ -298,6 +298,7 @@
         layer.confirm('确定删除？', {icon: 3, title: '提示'}, function (index) {
             layer.close(index);
             $(t).parents(".content_node").remove();
+            layer.msg("删除成功");
         })
     };
 

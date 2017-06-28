@@ -3,27 +3,51 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.thoughtWorks.dao.TrainModuleDao">
-    <select id="queryUserRoleTotalCount" resultType="long">
+    <select id="queryTrainModuleTotalCount" resultType="long">
         SELECT count(1)
         FROM t_train_module
     </select>
 
-    <select id="queryUserRoleList" resultType="CourseModule">
+    <select id="queryTrainModuleList" resultType="CourseModule">
         SELECT *
         FROM t_train_module
         LIMIT #{start}, #{end}
     </select>
-    <insert id="insert" parameterType="CourseModule">
+    <insert id="insertCourseModule" parameterType="CourseModule">
         INSERT INTO t_train_module (code, name) VALUES (#{code}, #{name})
     </insert>
 
-    <update id="update" parameterType="CourseModule">
+    <update id="updateCourseModule" parameterType="CourseModule">
         UPDATE t_train_module
         SET code = #{code}, name = #{name}
         WHERE id = #{id}
     </update>
-    <delete id="delete" parameterType="string">
+    <delete id="deleteCourseModule" parameterType="string">
         DELETE FROM t_train_module
         WHERE id = #{id}
     </delete>
+
+    <!--课程-->
+    <select id="queryClassesTotalCount" resultType="long">
+        SELECT count(1)
+        FROM t_classes
+    </select>
+
+    <select id="queryClassesList" resultType="Classes">
+        SELECT *
+        FROM t_classes
+        LIMIT #{start}, #{end}
+    </select>
+    <update id="updateClasses" parameterType="Classes">
+        UPDATE t_classes
+        SET level = #{level}, name = #{name},department_id=#{departmentId}
+        WHERE id = #{id}
+    </update>
+    <delete id="deleteClasses" parameterType="string">
+        DELETE FROM t_classes
+        WHERE id = #{id}
+    </delete>
+    <insert id="addClassesManual" parameterType="Classes">
+        INSERT t_classes (department_id, level, name) VALUES (#{departmentId}, #{level}, #{name})
+    </insert>
 </mapper>
