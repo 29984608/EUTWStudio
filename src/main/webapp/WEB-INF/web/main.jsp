@@ -81,6 +81,10 @@
                                 <td><span class="tit">2017-6-27</span></td>
                                 <td><span class="info">完成系、专业、方向的页面和功能实现</span></td>
                             </tr>
+                            <tr>
+                                <td><span class="tit">2017-6-28</span></td>
+                                <td><span class="info">完成教师的列表显示、班级CURD、沟通反馈的添加和编辑页面;</span></td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>
