@@ -14,4 +14,6 @@ public class Constant {
     public static final String ACCOUNT_IS_LOCK = "当前帐号或角色被禁止";
     public static final String DELETE_SUCCESS = "删除成功";
     public static final String DELETE_FAILURE= "删除失败";
+    public static final String OPERATION_FAILURE = "操作失败";
+    public static final String OPERATION_SUCCESS = "操作成功";
 }

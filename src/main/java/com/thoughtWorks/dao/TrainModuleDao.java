@@ -2,6 +2,7 @@ package com.thoughtWorks.dao;
 
 import com.thoughtWorks.entity.Classes;
 import com.thoughtWorks.entity.CourseModule;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
@@ -27,4 +28,10 @@ public interface TrainModuleDao {
     void updateClasses(Classes classes);
 
     void addClassesManual(Classes classes);
+
+    List<Classes> queryClassessByDepartmentId(@Param("id") String id, @Param("start") int start, @Param("end") int end);
+
+    void updateClassTeacher(@Param("no") String no, @Param("ids") List<String> ids);
+
+    void deleteTeacherAllClassesId(String no);
 }

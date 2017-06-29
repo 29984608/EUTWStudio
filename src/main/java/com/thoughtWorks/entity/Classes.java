@@ -4,14 +4,14 @@ public class Classes {
     private long id;
     private String level;
     private String name;
-    private int teacherId;
+    private String teacherId;
     private int departmentId;
 
-    public int getTeacherId() {
+    public String getTeacherId() {
         return teacherId;
     }
 
-    public void setTeacherId(int teacherId) {
+    public void setTeacherId(String teacherId) {
         this.teacherId = teacherId;
     }
 

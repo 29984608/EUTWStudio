@@ -7,7 +7,19 @@
         SELECT count(1)
         FROM t_teacher
     </select>
-
+    <delete id="deleteTeacherById" parameterType="string">
+        DELETE FROM t_teacher
+        WHERE no = #{id}
+    </delete>
+    <insert id="addTeacher" parameterType="Teacher">
+        INSERT INTO t_teacher (no, name, department_id, direction_id, gender)
+        VALUES (#{no}, #{name}, #{departmentId}, #{directionId}, #{gender})
+    </insert>
+    <update id="updateTeacher" parameterType="Teacher">
+        UPDATE t_teacher
+        SET name = #{name}, department_id = #{departmentId}, direction_id = #{directionId}, gender = #{gender}
+        WHERE no = #{no}
+    </update>
     <select id="queryPersonList" resultType="Map">
         SELECT
             teacher.no,

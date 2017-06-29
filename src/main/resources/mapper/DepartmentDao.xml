@@ -44,12 +44,18 @@
         FROM t_profession
         WHERE department_id = #{id};
     </select>
-    <select id="queryDirectionsByDepartmentId" parameterType="string" resultType="string">
+
+    <!--专业方向-->
+    <select id="queryDirectionIdsByDepartmentId" parameterType="string" resultType="string">
         SELECT id
         FROM t_direction
         WHERE department_id = #{id};
     </select>
-    <!--专业方向-->
+    <select id="queryDirectionsByDepartmentId" parameterType="string" resultType="Direction">
+        SELECT *
+        FROM t_direction
+        WHERE department_id = #{id};
+    </select>
     <update id="deleteDirectionDepartmentIdByDepartmentId" parameterType="string">
         UPDATE t_direction
         SET department_id = ""

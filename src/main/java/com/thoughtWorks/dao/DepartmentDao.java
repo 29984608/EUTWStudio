@@ -42,7 +42,9 @@ public interface DepartmentDao {
 
     List<String> queryProfessionsByDepartmentId(String id);
 
-    List<String> queryDirectionsByDepartmentId(String id);
+    List<Direction> queryDirectionsByDepartmentId(String id);
+
+    List<String> queryDirectionIdsByDepartmentId(String id);
 
     void updateDepartment(Department department);
 

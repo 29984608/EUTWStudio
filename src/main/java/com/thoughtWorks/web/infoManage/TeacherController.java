@@ -1,5 +1,11 @@
 package com.thoughtWorks.web.infoManage;
 
+import com.thoughtWorks.dao.DepartmentDao;
+import com.thoughtWorks.dao.TrainModuleDao;
+import com.thoughtWorks.dto.Result;
+import com.thoughtWorks.entity.Classes;
+import com.thoughtWorks.entity.Department;
+import com.thoughtWorks.entity.Teacher;
 import com.thoughtWorks.service.PersonService;
 import com.thoughtWorks.util.Constant;
 import com.thoughtWorks.util.PageUtil;
@@ -8,9 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 @Component
@@ -19,6 +23,10 @@ public class TeacherController {
 
     @Resource
     private PersonService personService;
+    @Resource
+    private DepartmentDao departmentDao;
+    @Resource
+    private TrainModuleDao trainModuleDao;
 
     @RequestMapping()
     public String index() {
@@ -42,4 +50,88 @@ public class TeacherController {
 
         return data;
     }
+
+    @RequestMapping("loadDepartmentsAndDirectionsAndClasses")
+    @ResponseBody
+    public Result loadDepartmentsAndDirectionsAndClasses() {
+        try {
+            Map<String, Object> result = new HashMap<>();
+            List<Department> departments = departmentDao.queryAllDepartments();
+            result.put("departments", departments);
+            if (departments.size() != 0) {
+                result.put("directions", departmentDao.queryDirectionsByDepartmentId(String.valueOf(departments.get(0).getId())));
+//                查找系下班级时只查找最近三年的班级(当前年份-4 到 当前年份,大一到大四)
+                result.put("classess", trainModuleDao.queryClassessByDepartmentId(String.valueOf(departments.get(0).getId()), Calendar.getInstance().get(Calendar.YEAR) - 4, new Date().getYear()));
+            }
+
+            return Result.success(result, Constant.OPERATION_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return Result.failure(null, Constant.OPERATION_FAILURE);
+    }
+
+    @RequestMapping("loadDirectionsAndClassesByDepartmentId")
+    @ResponseBody
+    public Result loadDirectionsAndClassesByDepartmentId(String departmentId) {
+        try {
+            Map<String, Object> result = new HashMap<>();
+            List<Department> departments = departmentDao.queryAllDepartments();
+            result.put("departments", departments);
+            result.put("directions", departmentDao.queryDirectionsByDepartmentId(departmentId));
+            result.put("classess", trainModuleDao.queryClassessByDepartmentId(departmentId, Calendar.getInstance().get(Calendar.YEAR) - 4, new Date().getYear()));
+
+            return Result.success(result, Constant.OPERATION_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return Result.failure(null, Constant.OPERATION_FAILURE);
+    }
+
+
+    @RequestMapping("add")
+    @ResponseBody
+    public Result add(Teacher teacher, String classIds) {
+        try {
+            personService.addTeacher(teacher, classIds);
+
+            return Result.success(null, Constant.ADD_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return Result.failure(null, Constant.ADD_FAILURE);
+    }
+
+    @RequestMapping("update")
+    @ResponseBody
+    public Result update(Teacher teacher, String classIds) {
+        try {
+            personService.updateTeacher(teacher, classIds);
+
+            return Result.success(null, Constant.UPDATE_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return Result.failure(null, Constant.UPDATE_FAILURE);
+    }
+
+    @RequestMapping("delete")
+    @ResponseBody
+    public Result delete(String id) {
+        try {
+            personService.deleteTeacherById(id);
+
+            return Result.success(null, Constant.DELETE_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return Result.failure(null, Constant.DELETE_FAILURE);
+    }
+
+
 }

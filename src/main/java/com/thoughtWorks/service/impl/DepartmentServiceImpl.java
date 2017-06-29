@@ -54,7 +54,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     public void updateDepartment(Department department, String professionsIds, String directionsIds) throws Exception {
         List<String> professions = Arrays.asList(professionsIds.split(","));
         List<String> directions = Arrays.asList(directionsIds.split(","));
-        List<String> hasDirections = departmentDao.queryDirectionsByDepartmentId(String.valueOf(department.getId()));
+        List<String> hasDirections = departmentDao.queryDirectionIdsByDepartmentId(String.valueOf(department.getId()));
         List<String> hasProfessions = departmentDao.queryProfessionsByDepartmentId(String.valueOf(department.getId()));
 
         List<String> shouldDeleteProfessionsDepartmentIds = shouldDelete(professions, hasProfessions);
@@ -101,7 +101,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public Map<String, List<Map<String, String>>> getFullProfessionAndDirectionData(String id) throws Exception {
         Map<String, List<Map<String, String>>> professionAndDirectionData = getProfessionAndDirectionData();
-        List<String> directions = departmentDao.queryDirectionsByDepartmentId(id);
+        List<String> directions = departmentDao.queryDirectionIdsByDepartmentId(id);
         List<String> professions = departmentDao.queryProfessionsByDepartmentId(id);
 
         changeDirectionCurrentState(professionAndDirectionData.get("directions"), directions);
