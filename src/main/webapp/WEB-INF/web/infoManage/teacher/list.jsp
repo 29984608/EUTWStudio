@@ -18,12 +18,12 @@
     <div class="larry-personal">
         <div class="layui-tab">
             <blockquote class="layui-elem-quote mylog-info-tit">
-                <%--<shiro:hasPermission name="teacher:add">--%>
+                <shiro:hasPermission name="teacher:add">
                 <ul class="layui-tab-title">
                     <li class="layui-btn " onclick="teacher.add()"><i class="layui-icon">&#xe61f;</i>添加老师
                     </li>
                 </ul>
-                <%--</shiro:hasPermission>--%>
+                </shiro:hasPermission>
             </blockquote>
             <div class="larry-separate"></div>
 

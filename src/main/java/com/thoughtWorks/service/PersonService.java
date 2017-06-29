@@ -16,4 +16,6 @@ public interface PersonService {
     void updateTeacher(Teacher teacher, String classIds)throws Exception;
 
     void deleteTeacherById(String id)throws Exception;
+
+    List<Map<String,String>> queryStudentsByLikes(String userName, String professionId, String directionId, String name)throws Exception;
 }

@@ -9,17 +9,17 @@
         <td>{{ item.departmentName}}</td>
         <td>{{ item.directionName}}</td>
         <td>
-            <%--<shiro:hasPermission name="teacher:update">--%>
+            <shiro:hasPermission name="teacher:update">
             <button class="layui-btn layui-btn-mini layui-btn-normal"
                     onclick="teacher.update('{{item.no}}','{{item.departmentId}}','{{item.directionId}}','{{item.name}}','{{item.gender}}')">
                 <i class="layui-icon">&#xe642;</i>修改
             </button>
-            <%--</shiro:hasPermission>--%>
-            <%--<shiro:hasPermission name="teacher:delete">--%>
+            </shiro:hasPermission>
+            <shiro:hasPermission name="teacher:delete">
             <button class="layui-btn layui-btn-mini  layui-btn-danger" onclick="teacher.delete('{{item.no}}')">
                 <i class="layui-icon">&#xe60a;</i>删除
             </button>
-            <%--</shiro:hasPermission>--%>
+            </shiro:hasPermission>
         </td>
     </tr>
     {{# }); }}

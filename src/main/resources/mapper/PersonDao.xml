@@ -20,6 +20,26 @@
         SET name = #{name}, department_id = #{departmentId}, direction_id = #{directionId}, gender = #{gender}
         WHERE no = #{no}
     </update>
+    <select id="queryStudentsByLikes" parameterType="map" resultType="map">
+        SELECT student.no,student.name,student.gender,direction.name direction,profession.name profession,class.name
+        classes
+        FROM t_student student
+        LEFT JOIN (SELECT no, department_id FROM t_teacher) teacher ON teacher.no = 123
+        LEFT JOIN (SELECT id FROM t_department) department ON department.id = teacher.department_id
+        LEFT JOIN (SELECT id, name FROM t_direction) direction ON direction.id = student.direction_id
+        <if test="directionId!=0">
+            AND direction.id = #{directionId}
+        </if>
+        LEFT JOIN (SELECT id,name FROM t_profession) profession ON profession.id = student.profession_id
+        <if test="professionId!=0">
+            AND profession.id=#{professionId}
+        </if>
+        LEFT JOIN (SELECT id, name FROM t_classes) class ON class.id = student.classes_id
+        WHERE student.department_id = teacher.department_id
+        and direction_id =direction.id
+        and student.name
+        LIKE #{name}
+    </select>
     <select id="queryPersonList" resultType="Map">
         SELECT
             teacher.no,

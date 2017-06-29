@@ -50,4 +50,15 @@ public class PersonServiceImpl implements PersonService{
         personDao.deleteTeacherById(id);
         trainModuleDao.deleteTeacherAllClassesId(id);
     }
+
+    @Override
+    public List<Map<String, String>> queryStudentsByLikes(String userName, String professionId, String directionId, String name) throws Exception {
+        Map<String, String> data = new HashMap<>();
+        data.put("no",userName);
+        data.put("professionId",professionId);
+        data.put("directionId",directionId);
+        data.put("name","%"+name+"%");
+
+        return personDao.queryStudentsByLikes(data);
+    }
 }

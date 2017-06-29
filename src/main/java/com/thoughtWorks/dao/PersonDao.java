@@ -16,4 +16,6 @@ public interface PersonDao {
     void updateTeacher(Teacher teacher);
 
     void deleteTeacherById(String id);
+
+    List<Map<String,String>> queryStudentsByLikes(Map<String, String> data);
 }
