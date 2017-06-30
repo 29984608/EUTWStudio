@@ -40,7 +40,8 @@ public interface DepartmentDao {
 
     void updateProfessionDepartmentId(@Param("id") int id, @Param("professions") List<String> professions);
 
-    List<String> queryProfessionsByDepartmentId(String id);
+    List<Profession> queryProfessionsByDepartmentId(String id);
+    List<String> queryProfessionIdsByDepartmentId(String id);
 
     List<Direction> queryDirectionsByDepartmentId(String id);
 

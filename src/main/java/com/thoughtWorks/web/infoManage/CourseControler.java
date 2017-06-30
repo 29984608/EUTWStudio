@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Component
 @RequestMapping("/course")
-public class courseControler {
+public class CourseControler {
     @RequestMapping()
     public String index(){
         return "infoManage/course/course";

@@ -116,7 +116,7 @@
 
                                 <dd class="timelineEvent" id="2EX" style="display:none;">
                                  <textarea style="min-height: 50px;height: 70px;font-size: 12px;"
-                                           class="layui-textarea contents">美国最高法院相传一致9-0决定在布朗诉托皮卡教育局案，打开大门，民权运动最终种族融合在美国社会的各个方面。推翻Plessy v.
+                                           class="layui-textarea contents">美国最高法院相传一<br>致9-0决定在布朗诉托皮卡教育局案，打开大门，民权运动最终种族融合在美国社会的各个方面。推翻Plessy v.
                             Ferguson（1896），法院裁定“隔离的教育设施是不平等的。</textarea>
                                     <textarea style="min-height: 50px;height: 70px;font-size: 12px;"
                                               class="layui-textarea contents">美国最高法院相传一致9-0决定在布朗诉托皮卡教育局案，打开大门，民权运动最终种族融合在美国社会的各个方面。推翻Plessy v.

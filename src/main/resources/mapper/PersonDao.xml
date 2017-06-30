@@ -22,7 +22,7 @@
     </update>
     <select id="queryStudentsByLikes" parameterType="map" resultType="map">
         SELECT student.no,student.name,student.gender,direction.name direction,profession.name profession,class.name
-        classes
+        classes,teacher.department_id departmentId
         FROM t_student student
         LEFT JOIN (SELECT no, department_id FROM t_teacher) teacher ON teacher.no = 123
         LEFT JOIN (SELECT id FROM t_department) department ON department.id = teacher.department_id
@@ -37,6 +37,7 @@
         LEFT JOIN (SELECT id, name FROM t_classes) class ON class.id = student.classes_id
         WHERE student.department_id = teacher.department_id
         and direction_id =direction.id
+        AND profession.id = profession_id
         and student.name
         LIKE #{name}
     </select>
@@ -60,4 +61,16 @@
                        FROM t_direction) direction ON direction.id = teacher.direction_id
         LIMIT #{start}, #{end}
     </select>
+
+    <select id="queryTeacherByNo" parameterType="string" resultType="map">
+        SELECT *
+        FROM t_teacher
+        WHERE no = #{no}
+    </select>
+    <update id="distributedClass">
+        UPDATE t_student SET classes_id = #{classesId} WHERE t_student.no IN
+        <foreach collection="ids" open="(" close=")" separator="," item="item">
+            #{item}
+        </foreach>
+    </update>
 </mapper>

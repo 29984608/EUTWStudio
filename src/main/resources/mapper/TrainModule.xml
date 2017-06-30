@@ -68,4 +68,9 @@
         SET teacher_id = ""
         WHERE teacher_id = #{no}
     </delete>
+    <select id="loadTeacherHasClassess" resultType="Classes" parameterType="string">
+        SELECT *
+        FROM t_classes
+        WHERE teacher_id = #{no}
+    </select>
 </mapper>

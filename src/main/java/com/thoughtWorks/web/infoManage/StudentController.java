@@ -2,7 +2,9 @@ package com.thoughtWorks.web.infoManage;
 
 
 import com.thoughtWorks.dto.Result;
+import com.thoughtWorks.dto.SearchDto;
 import com.thoughtWorks.entity.ActiveUser;
+import com.thoughtWorks.entity.Classes;
 import com.thoughtWorks.service.PersonService;
 import com.thoughtWorks.util.Constant;
 import org.apache.shiro.SecurityUtils;
@@ -27,10 +29,11 @@ public class StudentController {
 
     @RequestMapping("list")
     @ResponseBody
-    public Result list(String professionId, String directionId, String name) {
+    public Result list(SearchDto searchDto) {
         try {
+            searchDto.setName(new String(searchDto.getName().getBytes("ISO-8859-1"), "UTF-8"));
             ActiveUser user = (ActiveUser) SecurityUtils.getSubject().getPrincipal();
-            List<Map<String,String>> students = personService.queryStudentsByLikes(user.getUserName(), professionId, directionId, name);
+            Map<String, Object> students = personService.queryStudentsByLikes(user.getUserName(), searchDto);
 
             return Result.success(students, Constant.SEARCH_SUCCESS);
         } catch (Exception e) {
@@ -38,5 +41,34 @@ public class StudentController {
         }
 
         return Result.failure(null, Constant.SEARCH_FAILURE);
+    }
+
+    @RequestMapping("loadTeacherHasClassess")
+    @ResponseBody
+    public Result loadTeacherHasClassess() {
+        try {
+            ActiveUser user = (ActiveUser) SecurityUtils.getSubject().getPrincipal();
+            List<Classes> classes = personService.loadTeacherHasClassess(user.getUserName());
+
+            return Result.success(classes, Constant.SEARCH_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return Result.failure(null, Constant.SEARCH_FAILURE);
+    }
+
+    @RequestMapping("distributedClass")
+    @ResponseBody
+    public Result distributedClass(String classesId,String studentIds) {
+        try {
+            personService.distributedClass(classesId, studentIds);
+
+            return Result.success(null, Constant.ADD_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return Result.failure(null, Constant.ADD_FAILURE);
     }
 }

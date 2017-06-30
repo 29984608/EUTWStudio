@@ -39,12 +39,16 @@
             #{item}
         </foreach>
     </update>
-    <select id="queryProfessionsByDepartmentId" parameterType="string" resultType="string">
+    <select id="queryProfessionIdsByDepartmentId" parameterType="string" resultType="string">
         SELECT id
         FROM t_profession
         WHERE department_id = #{id};
     </select>
-
+    <select id="queryProfessionsByDepartmentId" parameterType="string" resultType="Profession">
+        SELECT *
+        FROM t_profession
+        WHERE department_id = #{id};
+    </select>
     <!--专业方向-->
     <select id="queryDirectionIdsByDepartmentId" parameterType="string" resultType="string">
         SELECT id

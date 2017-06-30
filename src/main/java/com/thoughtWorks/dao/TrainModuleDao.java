@@ -34,4 +34,6 @@ public interface TrainModuleDao {
     void updateClassTeacher(@Param("no") String no, @Param("ids") List<String> ids);
 
     void deleteTeacherAllClassesId(String no);
+
+    List<Classes> loadTeacherHasClassess(String no);
 }

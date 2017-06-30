@@ -1,5 +1,7 @@
 package com.thoughtWorks.service;
 
+import com.thoughtWorks.dto.SearchDto;
+import com.thoughtWorks.entity.Classes;
 import com.thoughtWorks.entity.Teacher;
 import com.thoughtWorks.util.PageUtil;
 
@@ -17,5 +19,9 @@ public interface PersonService {
 
     void deleteTeacherById(String id)throws Exception;
 
-    List<Map<String,String>> queryStudentsByLikes(String userName, String professionId, String directionId, String name)throws Exception;
+    Map<String, Object> queryStudentsByLikes(String userName, SearchDto searchDto)throws Exception;
+
+    List<Classes> loadTeacherHasClassess(String no)throws Exception;
+
+    void distributedClass(String classesId, String studentIds)throws Exception;
 }
