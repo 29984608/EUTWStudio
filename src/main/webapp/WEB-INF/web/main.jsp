@@ -89,6 +89,10 @@
                                 <td><span class="tit">2017-6-29</span></td>
                                 <td><span class="info">完成教师分配班级 删除,分配班级的学生信息列表显示</span></td>
                             </tr>
+                            <tr>
+                                <td><span class="tit">2017-6-30</span></td>
+                                <td><span class="info">完成学生班级分配、沟通反馈学生信息显示、添加沟通反馈</span></td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>

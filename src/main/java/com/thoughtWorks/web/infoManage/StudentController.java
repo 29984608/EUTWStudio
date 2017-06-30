@@ -1,10 +1,12 @@
 package com.thoughtWorks.web.infoManage;
 
 
+import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 import com.thoughtWorks.dto.Result;
 import com.thoughtWorks.dto.SearchDto;
 import com.thoughtWorks.entity.ActiveUser;
 import com.thoughtWorks.entity.Classes;
+import com.thoughtWorks.entity.Student;
 import com.thoughtWorks.service.PersonService;
 import com.thoughtWorks.util.Constant;
 import org.apache.shiro.SecurityUtils;
@@ -43,6 +45,19 @@ public class StudentController {
         return Result.failure(null, Constant.SEARCH_FAILURE);
     }
 
+    @RequestMapping("student")
+    @ResponseBody
+    public Result student(String studentNo) {
+        try {
+            Student student = personService.queryStudentByNo(studentNo);
+
+            return Result.success(student, Constant.SEARCH_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return Result.failure(null, Constant.SEARCH_FAILURE);
+    }
     @RequestMapping("loadTeacherHasClassess")
     @ResponseBody
     public Result loadTeacherHasClassess() {

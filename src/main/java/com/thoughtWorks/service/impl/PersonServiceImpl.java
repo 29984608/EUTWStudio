@@ -4,20 +4,15 @@ import com.thoughtWorks.dao.DepartmentDao;
 import com.thoughtWorks.dao.PersonDao;
 import com.thoughtWorks.dao.TrainModuleDao;
 import com.thoughtWorks.dto.SearchDto;
-import com.thoughtWorks.entity.Classes;
-import com.thoughtWorks.entity.Direction;
-import com.thoughtWorks.entity.Profession;
-import com.thoughtWorks.entity.Teacher;
+import com.thoughtWorks.entity.*;
 import com.thoughtWorks.service.DepartmentService;
 import com.thoughtWorks.service.PersonService;
+import com.thoughtWorks.util.Constant;
 import com.thoughtWorks.util.PageUtil;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class PersonServiceImpl implements PersonService {
@@ -69,7 +64,7 @@ public class PersonServiceImpl implements PersonService {
         data.put("name", "%" + searchDto.getName() + "%");
         List<Map<String, String>> students = personDao.queryStudentsByLikes(data);
 
-        Map<String,String> teacher = personDao.queryTeacherByNo(userName);
+        Map<String, String> teacher = personDao.queryTeacherByNo(userName);
 
         List<Direction> directions = departmentDao.queryDirectionsByDepartmentId(String.valueOf(teacher.get("department_id")));
         List<Profession> professions = departmentDao.queryProfessionsByDepartmentId(String.valueOf(teacher.get("department_id")));
@@ -89,6 +84,25 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public void distributedClass(String classesId, String studentIds) throws Exception {
         List<String> ids = Arrays.asList(studentIds.split(","));
-        if(ids.size() != 0) personDao.distributedClass(classesId, ids);
+        if (ids.size() != 0) personDao.distributedClass(classesId, ids);
+    }
+
+    @Override
+    public List<Map<String, String>> queryStudentsByTeacherHasClasses(SearchDto searchDto, String no) throws Exception {
+        List<Classes> classes = trainModuleDao.queryClassesByTeacherHas(no);
+
+        return personDao.queryStudentsByClassesIdsAndLikeName("%" + searchDto.getName() + "%", classes);
+    }
+
+    @Override
+    public Student queryStudentByNo(String stuNo) throws Exception {
+        return personDao.queryStudentByNo(stuNo);
+    }
+
+    @Override
+    public void addCommunication( CommunicationContent communicationContent) throws Exception {
+        communicationContent.setTime(new Date());
+
+        personDao.addCommunication(communicationContent);
     }
 }

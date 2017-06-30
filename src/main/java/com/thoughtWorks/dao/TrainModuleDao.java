@@ -36,4 +36,6 @@ public interface TrainModuleDao {
     void deleteTeacherAllClassesId(String no);
 
     List<Classes> loadTeacherHasClassess(String no);
+
+    List<Classes> queryClassesByTeacherHas(String no);
 }

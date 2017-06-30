@@ -16,4 +16,6 @@ public class Constant {
     public static final String DELETE_FAILURE= "删除失败";
     public static final String OPERATION_FAILURE = "操作失败";
     public static final String OPERATION_SUCCESS = "操作成功";
+    //沟通反馈的内容每个问题和回答之间的分隔符
+    public static final String SPLIT_TAG = "$%$";
 }

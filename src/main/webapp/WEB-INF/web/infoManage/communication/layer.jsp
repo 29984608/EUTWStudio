@@ -1,15 +1,55 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<div id="addInfo" style="display: none;width: auto;margin-top: 20px">
-    <form class="layui-form layui-form-pane" style="padding: 30px">
+<script id="list-tpl" type="text/html">
+    {{# layui.each(d.data, function(index, item){ }}
+    <tr>
+        <th><input type="checkbox" value="{{item.no}}-{{item.name}}" class="no_checkbox" name="" lay-skin="primary"
+        ></th>
+        <td>{{ item.no}}</td>
+        <td>{{ item.name}}</td>
+        <td>{{ item.gender}}</td>
+        <td>{{ item.direction}}</td>
+        <td>{{ item.profession}}</td>
+        <td>
+            {{# if(item.classes === undefined){ }}
+            未分配
+            {{# }else{ }}
+            {{ item.classes}}
+            {{#}}}
+        </td>
+        <td>
+            <button class="layui-btn layui-btn-mini "
+                    onclick="communication.add('{{item.no}}')">
+                <i class="layui-icon">&#xe61f;</i>添加反馈
+            </button>
+            <%--<shiro:hasPermission name="communication:update">--%>
+            <button class="layui-btn layui-btn-mini layui-btn-normal"
+                    onclick="communication.update('{{item.no}}')">
+                <i class="layui-icon">&#xe642;</i>修改
+            </button>
+            <%--</shiro:hasPermission>--%>
+            <%--<shiro:hasPermission name="communication:delete">--%>
+            <button class="layui-btn layui-btn-mini  " onclick="communication.preview('{{item.no}}')">
+                <i class="layui-icon">&#xe60a;</i>预览
+            </button>
+            <%--</shiro:hasPermission>--%>
+        </td>
+    </tr>
+    {{# }); }}
+
+</script>
+<div id="add" style="display: none;width: auto;margin-top: 20px">
+    <form class="layui-form layui-form-pane" id="add_form" style="padding: 30px">
+        <input type="hidden" name="no" class="no">
         <div class="layui-form-item layui-form-pane">
+
             <label class="layui-form-label " style="font-size: 13px">学生学号</label>
             <div class="layui-input-inline">
-                <input name="password" disabled value="Acey" autocomplete="off"
-                       class="layui-input">
+                <input name="no" disabled  value="" autocomplete="off"
+                       class="layui-input no">
             </div>
             <label class="layui-form-label layui-form-pane" style="font-size: 13px">学生姓名</label>
             <div class="layui-input-inline">
-                <input name="password" disabled value="12121" autocomplete="off"
+                <input id="studentName" disabled value="" autocomplete="off"
                        class="layui-input">
             </div>
 
@@ -18,20 +58,20 @@
         <div class="layui-form-item layui-form-pane">
             <label class="layui-form-label " style="font-size: 13px">沟通项目</label>
             <div class="layui-input-inline">
-                <select name="modules" lay-verify="required" lay-search="">
-                    <option value="">学业指导</option>
-                    <option value="1">质量跟踪</option>
-                    <option value="2">生活服务</option>
-                    <option value="3">行为养成</option>
+                <select name="modules" id="direction" lay-verify="required" lay-search="">
+                    <option value="学业指导">学业指导</option>
+                    <option value="质量跟踪">质量跟踪</option>
+                    <option value="生活服务">生活服务</option>
+                    <option value="行为养成">行为养成</option>
                 </select>
             </div>
 
             <label class="layui-form-label " style="font-size: 13px">沟通对象</label>
             <div class="layui-input-inline">
-                <input type="radio" name="name" value="1" title="学生" checked>
-                <input type="radio" name="name" value="2" title="家长">
+                <input type="radio" name="name" lay-filter="talk" value="student" title="学生" checked>
+                <input type="radio" name="name" lay-filter="talk" value="parent" title="家长">
             </div>
-            <div class="layui-form-mid layui-word-aux">对象名字</div>
+            <div class="layui-form-mid layui-word-aux" id="talkName"></div>
         </div>
 
         <div class="layui-form-item layui-form-pane">
@@ -42,9 +82,9 @@
             <div class="layui-form-item content_node">
                 <label class="layui-form-label " style="font-size: 13px">Q&A</label>
                 <div class="layui-input-block">
-                    <textarea placeholder="请输入问题" class="layui-textarea contents"
+                    <textarea placeholder="请输入问题" class="layui-textarea add-contents"
                               style="width: 80%;min-height: 50px;height: 70px;font-size: 12px;"></textarea>
-                    <textarea placeholder="请输入回答" class="layui-textarea contents"
+                    <textarea placeholder="请输入回答" class="layui-textarea add-contents"
                               style="width: 80%;min-height: 50px;height: 70px;font-size: 12px;margin-left: .9%"></textarea>
                     <div class="layui-btn-group" style="margin-left: .9%">
                         <a onclick="addTalkContent()" class="layui-btn layui-btn-small"><i
@@ -57,13 +97,13 @@
 
         <div class="layui-form-item sub" style="margin:30px 0 0 20%">
             <div class="layui-input-block">
-                <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                <a class="layui-btn"  onclick="communication.addAjax()">立即提交</a>
             </div>
         </div>
     </form>
 </div>
 
-<div id="communication_info" style="display: none">
+<div id="update" style="display: none">
 
     <div class="container">
 
@@ -103,27 +143,27 @@
                                 <br class="clear">
                             </dd>
                         </dl>
-                            <dl class="timelineMinor">
-                                <dt id="2"><a style="font-size: 12px;color: peru">Q&A</a></dt>
-                                <div class="layui-btn-group" style="margin-bottom: 10px">
-                                    <a onclick="addTalkContent()" class="layui-btn layui-btn-small"><i
-                                            class="layui-icon">&#xe642;</i>修改 Q&A</a>
-                                    <a onclick="deleteContent(this)" class="layui-btn layui-btn-small layui-btn-danger"><i
-                                            class="layui-icon">&#xe640;</i>删除
-                                        Q&A
-                                    </a>
-                                </div>
+                        <dl class="timelineMinor">
+                            <dt id="2"><a style="font-size: 12px;color: peru">Q&A</a></dt>
+                            <div class="layui-btn-group" style="margin-bottom: 10px">
+                                <a onclick="addTalkContent()" class="layui-btn layui-btn-small"><i
+                                        class="layui-icon">&#xe642;</i>修改 Q&A</a>
+                                <a onclick="deleteContent(this)" class="layui-btn layui-btn-small layui-btn-danger"><i
+                                        class="layui-icon">&#xe640;</i>删除
+                                    Q&A
+                                </a>
+                            </div>
 
-                                <dd class="timelineEvent" id="2EX" style="display:none;">
+                            <dd class="timelineEvent" id="2EX" style="display:none;">
                                  <textarea style="min-height: 50px;height: 70px;font-size: 12px;"
                                            class="layui-textarea contents">美国最高法院相传一<br>致9-0决定在布朗诉托皮卡教育局案，打开大门，民权运动最终种族融合在美国社会的各个方面。推翻Plessy v.
                             Ferguson（1896），法院裁定“隔离的教育设施是不平等的。</textarea>
-                                    <textarea style="min-height: 50px;height: 70px;font-size: 12px;"
-                                              class="layui-textarea contents">美国最高法院相传一致9-0决定在布朗诉托皮卡教育局案，打开大门，民权运动最终种族融合在美国社会的各个方面。推翻Plessy v.
+                                <textarea style="min-height: 50px;height: 70px;font-size: 12px;"
+                                          class="layui-textarea contents">美国最高法院相传一致9-0决定在布朗诉托皮卡教育局案，打开大门，民权运动最终种族融合在美国社会的各个方面。推翻Plessy v.
                             Ferguson（1896），法院裁定“隔离的教育设施是不平等的。</textarea>
-                                    <br class="clear">
-                                </dd>
-                            </dl>
+                                <br class="clear">
+                            </dd>
+                        </dl>
                     </dd><!-- /.timelineEvent -->
                 </dl><!-- /.timelineMinor -->
             </div><!-- /.timelineMajor -->
@@ -274,9 +314,9 @@
     <div class="layui-form-item content_node">
                 <label class="layui-form-label " style="font-size: 13px">Q&A</label>
                 <div class="layui-input-block">
-                    <textarea placeholder="请输入问题" class="layui-textarea contents"
+                    <textarea placeholder="请输入问题" class="layui-textarea add-contents"
                               style="width: 80%;min-height: 50px;height: 70px;font-size: 12px;"></textarea>
-                    <textarea placeholder="请输入回答" class="layui-textarea contents"
+                    <textarea placeholder="请输入回答" class="layui-textarea add-contents"
                               style="width: 80%;min-height: 50px;height: 70px;font-size: 12px;margin-left: .9%"></textarea>
                     <div class="layui-btn-group" style="margin-left: .9%">
                         <a onclick="addTalkContent()" class="layui-btn layui-btn-small"><i class="layui-icon">&#xe608;</i>添加一条 Q&A</a>

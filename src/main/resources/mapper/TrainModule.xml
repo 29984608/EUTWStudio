@@ -50,6 +50,9 @@
     <insert id="addClassesManual" parameterType="Classes">
         INSERT t_classes (department_id, level, name) VALUES (#{departmentId}, #{level}, #{name})
     </insert>
+    <select id="queryClassesByTeacherHas" parameterType="string" resultType="Classes">
+        SELECT * FROM t_classes WHERE teacher_id = #{no}
+    </select>
     <select id="queryClassessByDepartmentId" resultType="Classes">
         SELECT *
         FROM t_classes

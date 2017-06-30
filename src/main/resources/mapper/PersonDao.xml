@@ -41,6 +41,52 @@
         and student.name
         LIKE #{name}
     </select>
+    <select id="queryStudentsByClassesIdsAndLikeName" resultType="map">
+        SELECT
+        student.no,
+        student.name,
+        student.gender,
+        direction.name direction,
+        profession.name profession,
+        class.name
+        classes,
+        teacher.department_id departmentId
+        FROM t_student student
+        LEFT JOIN (SELECT
+        no,
+        department_id
+        FROM t_teacher) teacher ON teacher.no = "admin"
+        LEFT JOIN (SELECT id
+        FROM t_department) department ON department.id = teacher.department_id
+        LEFT JOIN (SELECT
+        id,
+        name
+        FROM t_direction) direction ON direction.id = student.direction_id
+
+        LEFT JOIN (SELECT
+        id,
+        name
+        FROM t_profession) profession ON profession.id = student.profession_id
+
+        LEFT JOIN (SELECT
+        id,
+        name
+        FROM t_classes) class ON class.id = student.classes_id
+        WHERE student.department_id = teacher.department_id
+        AND direction_id = direction.id
+        AND profession.id = profession_id
+        AND
+        student.classes_id IN
+        <foreach collection="classes" open="(" close=")" separator="," item="item">
+            #{item.id}
+        </foreach>
+        and student.name LIKE #{name}
+    </select>
+    <select id="queryStudentByNo" parameterType="string" resultType="Student">
+        SELECT *
+        FROM t_student
+        WHERE no = #{stuNo}
+    </select>
     <select id="queryPersonList" resultType="Map">
         SELECT
             teacher.no,
@@ -73,4 +119,8 @@
             #{item}
         </foreach>
     </update>
+    <insert id="addCommunication" parameterType="CommunicationContent">
+        INSERT INTO t_communication (teacher_id, student_id, talk_name, direction, content) VALUES
+            (#{teacherId}, #{studentId}, #{talkName}, #{direction}, #{content})
+    </insert>
 </mapper>
