@@ -34,4 +34,6 @@ public interface PersonService {
     void addCommunication(CommunicationContent communicationContent) throws Exception;
 
     List<Map<String, Object>> queryCommunicationByStudentId(String studentNo) throws Exception;
+
+    void updateCommunicationContent(CommunicationContent communicationContent)throws Exception;
 }

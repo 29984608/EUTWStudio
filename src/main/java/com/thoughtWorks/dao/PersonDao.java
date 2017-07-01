@@ -34,4 +34,6 @@ public interface PersonDao {
     void addCommunication(CommunicationContent content);
 
     List<Map<String, Object>> queryCommunicationByStudentId(String studentNo);
+
+    void updateCommunicationContent(CommunicationContent communicationContent);
 }

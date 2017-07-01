@@ -87,6 +87,7 @@
 <script type="text/javascript">
     let communication;
     let student;
+    let no;
     layui.use(['jquery', 'layer', 'element', 'form', 'laytpl'], function () {
         window.jQuery = window.$ = layui.jquery;
         window.layer = layui.layer;
@@ -140,8 +141,8 @@
                 let talkName = $("#talkName").text();
                 let contents = "";
                 let contentNodes = $(".add-contents");
-                for (let i = 0; i < contentNodes.length; ++i){
-                    contents+=$(contentNodes[i]).val()+"$%$";
+                for (let i = 0; i < contentNodes.length; ++i) {
+                    contents += $(contentNodes[i]).val() + "$%$";
                 }
 
                 let data = {
@@ -155,25 +156,35 @@
                     setTimeout("location.reload()", 500);
                 })
             },
-            update: function (studentNo) {
-                layer.open({
-                    type: 1,
-                    title: '添加',
-                    area: ["100%", "100%"]
-                    , content: $("#update")
-                });
+            updateAjax: function (data) {
+                $.post(baseUrl + "/communication/updateContent", data, function (data) {
+                    layer.msg(data.msg);
+                })
             },
-            updateAjax: function () {
-
+            updateContent: function (id, qaId) {
+                let contents = "";
+                let contentNodes = $("#" + qaId + "").find(".update-contents");
+                for (let i = 0; i < contentNodes.length; ++i) {
+                    contents += $(contentNodes[i]).val() + "$%$";
+                }
+                let data = {
+                    id: id,
+                    content: contents
+                }
+                communication.updateAjax(data);
             },
-            delete: function () {
-
-            },
-            preview: function (studentNo) {
+            previewOrUpdate: function (studentNo, type) {
                 $.post(baseUrl + "/communication/communication", {studentNo: studentNo}, function (data) {
-                    if(data.result){
-                        console.log(data);
-                    }else{
+                    if (data.result) {
+                        showCommunicationContents(data.data, type);
+                        let title = type === "preview" ? "预览" : "添加";
+                        layer.open({
+                            type: 1,
+                            title: title,
+                            area: ["100%", "100%"]
+                            , content: $("#update")
+                        });
+                    } else {
                         layer.msg(data.msg);
                     }
                 });

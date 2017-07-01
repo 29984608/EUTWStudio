@@ -126,6 +126,7 @@
     <select id="queryCommunicationByStudentId" parameterType="string" resultType="map">
 
         SELECT
+            id,
             teacher.name teacherName,
             talk_name    talkName,
             content,
@@ -139,4 +140,11 @@
         WHERE communication.student_id = #{studentNo}
         ORDER BY time DESC
     </select>
+
+
+    <update id="updateCommunicationContent" parameterType="CommunicationContent">
+        UPDATE t_communication
+        SET content = #{content}
+        WHERE id = #{id}
+    </update>
 </mapper>

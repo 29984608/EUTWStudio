@@ -73,4 +73,19 @@ public class CommunicationController {
 
         return Result.failure(null, Constant.SEARCH_FAILURE);
     }
+
+    @RequestMapping("updateContent")
+    @ResponseBody
+    public Result updateContent(CommunicationContent communicationContent) {
+        try {
+            personService.updateCommunicationContent(communicationContent);
+
+            return Result.success(null, Constant.UPDATE_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return Result.failure(null, Constant.UPDATE_FAILURE);
+    }
+
 }

@@ -112,9 +112,15 @@ public class PersonServiceImpl implements PersonService {
         for (Map<String, Object> communication : communications) {
             String content = communication.get("content") + "";
             communication.put("contents", content.split(Constant.SPLIT_TAG));
+            String time = ((Date) communication.get("time")).toString();
+            communication.put("time", time.substring(0,time.length()-2));
         }
 
         return communications;
     }
 
+    @Override
+    public void updateCommunicationContent(CommunicationContent communicationContent) throws Exception {
+        personDao.updateCommunicationContent(communicationContent);
+    }
 }
