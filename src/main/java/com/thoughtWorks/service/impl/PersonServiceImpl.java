@@ -100,9 +100,21 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public void addCommunication( CommunicationContent communicationContent) throws Exception {
+    public void addCommunication(CommunicationContent communicationContent) throws Exception {
         communicationContent.setTime(new Date());
 
         personDao.addCommunication(communicationContent);
     }
+
+    @Override
+    public List<Map<String, Object>> queryCommunicationByStudentId(String studentNo) throws Exception {
+        List<Map<String, Object>> communications = personDao.queryCommunicationByStudentId(studentNo);
+        for (Map<String, Object> communication : communications) {
+            String content = communication.get("content") + "";
+            communication.put("contents", content.split(Constant.SPLIT_TAG));
+        }
+
+        return communications;
+    }
+
 }

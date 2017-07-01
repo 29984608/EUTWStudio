@@ -34,7 +34,7 @@ public class CommunicationController {
         try {
             searchDto.setName(new String(searchDto.getName().getBytes("ISO-8859-1"), "UTF-8"));
             ActiveUser user = (ActiveUser) SecurityUtils.getSubject().getPrincipal();
-            List<Map<String, String>> students = personService.queryStudentsByTeacherHasClasses(searchDto,user.getUserName());
+            List<Map<String, String>> students = personService.queryStudentsByTeacherHasClasses(searchDto, user.getUserName());
 
             return Result.success(students, Constant.SEARCH_SUCCESS);
         } catch (Exception e) {
@@ -58,5 +58,19 @@ public class CommunicationController {
         }
 
         return Result.failure(null, Constant.ADD_FAILURE);
+    }
+
+    @RequestMapping("communication")
+    @ResponseBody
+    public Result communication(String studentNo) {
+        try {
+            List<Map<String, Object>> communication = personService.queryCommunicationByStudentId(studentNo);
+
+            return Result.success(communication, Constant.SEARCH_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return Result.failure(null, Constant.SEARCH_FAILURE);
     }
 }

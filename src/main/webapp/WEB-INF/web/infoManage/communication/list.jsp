@@ -137,7 +137,7 @@
             addAjax: function () {
                 let no = $(".no").val();
                 let direction = $("#direction").val();
-                let talkName = $("#talkName").val();
+                let talkName = $("#talkName").text();
                 let contents = "";
                 let contentNodes = $(".add-contents");
                 for (let i = 0; i < contentNodes.length; ++i){
@@ -170,7 +170,13 @@
 
             },
             preview: function (studentNo) {
-
+                $.post(baseUrl + "/communication/communication", {studentNo: studentNo}, function (data) {
+                    if(data.result){
+                        console.log(data);
+                    }else{
+                        layer.msg(data.msg);
+                    }
+                });
             }
         };
         $(function () {

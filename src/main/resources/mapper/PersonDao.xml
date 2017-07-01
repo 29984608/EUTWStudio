@@ -123,4 +123,20 @@
         INSERT INTO t_communication (teacher_id, student_id, talk_name, direction, content) VALUES
             (#{teacherId}, #{studentId}, #{talkName}, #{direction}, #{content})
     </insert>
+    <select id="queryCommunicationByStudentId" parameterType="string" resultType="map">
+
+        SELECT
+            teacher.name teacherName,
+            talk_name    talkName,
+            content,
+            time,
+            direction
+        FROM t_communication communication
+            LEFT JOIN (SELECT
+                           no,
+                           name
+                       FROM t_teacher) teacher ON teacher.no = communication.teacher_id
+        WHERE communication.student_id = #{studentNo}
+        ORDER BY time DESC
+    </select>
 </mapper>
