@@ -93,6 +93,10 @@
                                 <td><span class="tit">2017-6-30</span></td>
                                 <td><span class="info">完成学生班级分配、沟通反馈学生信息显示、添加沟通反馈</span></td>
                             </tr>
+                            <tr>
+                                <td><span class="tit">2017-7-1</span></td>
+                                <td><span class="info">完成沟通反馈的预览、修改，课程信息的CURD</span></td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>
