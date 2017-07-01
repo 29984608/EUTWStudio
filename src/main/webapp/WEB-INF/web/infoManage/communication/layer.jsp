@@ -23,12 +23,12 @@
             </button>
             <%--<shiro:hasPermission name="communication:update">--%>
             <button class="layui-btn layui-btn-mini layui-btn-normal"
-                    onclick="communication.previewOrUpdate('{{item.no}}','update')">
+                    onclick="communication.previewOrUpdate('{{ item.name}}','{{item.no}}','update')">
                 <i class="layui-icon">&#xe642;</i>修改
             </button>
             <%--</shiro:hasPermission>--%>
             <%--<shiro:hasPermission name="communication:delete">--%>
-            <button class="layui-btn layui-btn-mini  " onclick="communication.previewOrUpdate('{{item.no}}','preview')">
+            <button class="layui-btn layui-btn-mini  " onclick="communication.previewOrUpdate('{{ item.name}}','{{item.no}}','preview')">
                 <i class="layui-icon">&#xe60a;</i>预览
             </button>
             <%--</shiro:hasPermission>--%>
@@ -107,7 +107,7 @@
 
     <div class="container">
 
-        <h1>张三的沟通反馈记录</h1>
+        <h1 ><span id="who"></span>的沟通反馈记录</h1>
 
         <div id="timelineContainer" class="timelineContainer">
 

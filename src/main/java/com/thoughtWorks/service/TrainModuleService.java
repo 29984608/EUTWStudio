@@ -1,6 +1,8 @@
 package com.thoughtWorks.service;
 
+import com.thoughtWorks.dto.SearchDto;
 import com.thoughtWorks.entity.Classes;
+import com.thoughtWorks.entity.Course;
 import com.thoughtWorks.entity.CourseModule;
 import com.thoughtWorks.util.PageUtil;
 
@@ -19,4 +21,13 @@ public interface TrainModuleService {
 
     List<Classes> queryClassesList(PageUtil page) throws Exception;
 
+    List<Map<String,String>> queryCoursesLikes(PageUtil page, SearchDto searchDto)throws Exception;
+
+    List<Map<String,String>> queryAllTrainModules() throws Exception;
+
+    void addCourse(Course course)throws Exception;
+
+    void updateCourse(Course course)throws Exception;
+
+    void deleteCourse(String id)throws Exception;
 }

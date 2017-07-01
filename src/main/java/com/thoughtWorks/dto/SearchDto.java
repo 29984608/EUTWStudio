@@ -5,7 +5,24 @@ public class SearchDto {
     private String departmentId;
     private String professionId;
     private String directionId;
+    private String moduleId;
+    private String semester;
 
+    public String getModuleId() {
+        return moduleId;
+    }
+
+    public void setModuleId(String moduleId) {
+        this.moduleId = moduleId;
+    }
+
+    public String getSemester() {
+        return semester;
+    }
+
+    public void setSemester(String semester) {
+        this.semester = semester;
+    }
 
     public String getName() {
         return name;

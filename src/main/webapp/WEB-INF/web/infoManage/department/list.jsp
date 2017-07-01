@@ -175,7 +175,7 @@
                     layer.close(index);
                     $.post(baseUrl + "/department/delete", {id: id}, function (data) {
                         layer.msg(data.msg);
-                        location.reload();
+                        setTimeout("location.reload()", 500);
                     })
                 });
             }

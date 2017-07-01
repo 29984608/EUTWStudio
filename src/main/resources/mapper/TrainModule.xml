@@ -7,7 +7,10 @@
         SELECT count(1)
         FROM t_train_module
     </select>
-
+    <select id="queryAllTrainModules" resultType="map">
+        SELECT *
+        FROM t_train_module;
+    </select>
     <select id="queryTrainModuleList" resultType="CourseModule">
         SELECT *
         FROM t_train_module
@@ -28,6 +31,53 @@
     </delete>
 
     <!--课程-->
+    <insert id="addCourse" parameterType="Course">
+        INSERT INTO t_course (code, name, school_score, school_hours, semester, nature, method, module_id)
+        VALUES (#{code}, #{name}, #{schoolScore}, #{schoolHours}, #{semester}, #{nature}, #{method}, #{moduleId})
+    </insert>
+    <update id="updateCourse" parameterType="Course">
+        UPDATE t_course
+        SET code     = #{code}, name = #{name}, school_score = #{schoolScore}, school_hours = #{schoolHours},
+            semester = #{semester}, nature = #{nature}, method = #{method}, module_id = #{moduleId}
+        WHERE id = #{id}
+    </update>
+    <delete id="deleteCourse" parameterType="string">
+        DELETE FROM t_course
+        WHERE id = #{id}
+    </delete>
+    <select id="queryCoursesTotalCount" resultType="long">
+        SELECT count(1)
+        FROM t_course
+    </select>
+
+    <select id="queryCoursesList" parameterType="map" resultType="map">
+        SELECT
+        t_course.id,
+        code,
+        t_course.name,
+        school_hours schoolHours,
+        school_score schoolScore,
+        semester,
+        method,
+        module.name moduleName,
+        module_id moduleId
+        FROM t_course
+        LEFT JOIN (SELECT
+        id,
+        name
+        FROM t_train_module) module ON module.id = t_course.module_id
+        <where>
+            <if test="moduleId != ''">
+                and module_id = #{moduleId}
+            </if>
+            <if test="semester != ''">
+                and semester = #{semester}
+            </if>
+            AND t_course.name LIKE #{name} LIMIT #{start}, #{end}
+        </where>
+
+    </select>
+    <!--班级-->
     <select id="queryClassesTotalCount" resultType="long">
         SELECT count(1)
         FROM t_classes
@@ -51,7 +101,9 @@
         INSERT t_classes (department_id, level, name) VALUES (#{departmentId}, #{level}, #{name})
     </insert>
     <select id="queryClassesByTeacherHas" parameterType="string" resultType="Classes">
-        SELECT * FROM t_classes WHERE teacher_id = #{no}
+        SELECT *
+        FROM t_classes
+        WHERE teacher_id = #{no}
     </select>
     <select id="queryClassessByDepartmentId" resultType="Classes">
         SELECT *

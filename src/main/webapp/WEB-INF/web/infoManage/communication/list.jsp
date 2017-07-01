@@ -173,7 +173,8 @@
                 }
                 communication.updateAjax(data);
             },
-            previewOrUpdate: function (studentNo, type) {
+            previewOrUpdate: function (name,studentNo, type) {
+                $("#who").text(name);
                 $.post(baseUrl + "/communication/communication", {studentNo: studentNo}, function (data) {
                     if (data.result) {
                         showCommunicationContents(data.data, type);
