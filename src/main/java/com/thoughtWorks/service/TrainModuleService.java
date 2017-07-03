@@ -4,6 +4,7 @@ import com.thoughtWorks.dto.SearchDto;
 import com.thoughtWorks.entity.Classes;
 import com.thoughtWorks.entity.Course;
 import com.thoughtWorks.entity.CourseModule;
+import com.thoughtWorks.entity.TrainModule;
 import com.thoughtWorks.util.PageUtil;
 
 import java.util.List;
@@ -30,4 +31,16 @@ public interface TrainModuleService {
     void updateCourse(Course course)throws Exception;
 
     void deleteCourse(String id)throws Exception;
+
+    List<Classes> queryTrainPrograms(PageUtil page)throws Exception;
+
+    Map<String,Object> loadDepartmentsAndDirectionsAndModuleCourses();
+
+    void addTrainProgram(TrainModule trainModule, String moduleCoursesStr)throws Exception;
+
+    List<Map<String,String>> loadModuleCoursesByProgram(int id)throws Exception;
+
+    void updateProgramModuleCourses(int id, String moduleCoursesStr)throws Exception;
+
+    void deleteProgramById(int id)throws Exception;
 }

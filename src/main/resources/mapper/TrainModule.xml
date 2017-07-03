@@ -3,6 +3,68 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.thoughtWorks.dao.TrainModuleDao">
+
+    <!--方案-->
+    <select id="queryTrainProgramTotalCount" resultType="long">
+        SELECT count(1)
+        FROM t_train_program;
+    </select>
+    <select id="queryTrainPrograms" parameterType="map" resultType="map">
+        SELECT
+            program.id,
+            level,
+            department.name department,
+            direction.name  direction
+        FROM t_train_program program
+            LEFT JOIN (SELECT
+                           id,
+                           name
+                       FROM t_department) department ON department.id = program.department_id
+            LEFT JOIN (SELECT
+                           id,
+                           name
+                       FROM t_direction) direction ON direction.id = program.direction_id
+        ORDER BY level DESC
+        LIMIT #{start}, #{end}
+    </select>
+    <insert id="addTrainProgram" parameterType="TrainModule" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO t_train_program (department_id, direction_id, level)
+        VALUES (#{departmentId}, #{directionId}, #{level})
+    </insert>
+    <insert id="addProgramModuleCourses" parameterType="map">
+        INSERT INTO t_program_module_course (program_id, module_id, cource_id) VALUES
+        <foreach collection="list" item="item" separator=",">
+            (#{item.programId},#{item.moduleId},#{item.courseId})
+        </foreach>
+    </insert>
+    <select id="queryModuleIdsByProgramId" parameterType="int" resultType="String">
+        SELECT cource_id
+        FROM t_course course
+            LEFT JOIN (SELECT
+                           program_id,
+                           cource_id
+                       FROM t_program_module_course) t ON t.cource_id = course.id
+        WHERE t.program_id = #{id}
+    </select>
+    <delete id="deleteProgramModuleCoursesByProgramId" parameterType="int">
+        DELETE FROM t_program_module_course
+        WHERE program_id = #{id}
+    </delete>
+    <delete id="deleteProgramById" parameterType="int">
+        DELETE FROM t_train_program
+        WHERE id = #{id}
+    </delete>
+    <!--模块-->
+    <select id="queryAllModuleCourses" resultType="map">
+        SELECT
+            module.id   id,
+            module.name moduleName,
+            course.id   courseId,
+            course.name courseName
+        FROM t_train_module module
+            LEFT JOIN (SELECT *
+                       FROM t_course) course ON module.id = course.module_id
+    </select>
     <select id="queryTrainModuleTotalCount" resultType="long">
         SELECT count(1)
         FROM t_train_module
