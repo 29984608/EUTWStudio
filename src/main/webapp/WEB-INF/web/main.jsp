@@ -97,6 +97,10 @@
                                 <td><span class="tit">2017-7-1</span></td>
                                 <td><span class="info">完成沟通反馈的预览、修改，课程信息的CURD</span></td>
                             </tr>
+                            <tr>
+                                <td><span class="tit">2017-7-3</span></td>
+                                <td><span class="info">完成人才培养方案CURDP</span></td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>
