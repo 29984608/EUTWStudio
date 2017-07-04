@@ -156,7 +156,8 @@
                 $.post(baseUrl + "/classes/addManual", data, function (data) {
                     layer.msg(data.msg);
                     if (data.result) {
-                        setTimeout("location.reload()", 500);
+                        $("#level-add").val("");
+                        $("#name-add").val("");
                     }
                 })
             },
