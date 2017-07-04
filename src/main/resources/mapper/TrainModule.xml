@@ -116,6 +116,7 @@
         SELECT
         t_course.id,
         code,
+        t_course.nature,
         t_course.name,
         school_hours schoolHours,
         school_score schoolScore,

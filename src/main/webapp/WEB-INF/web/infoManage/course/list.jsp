@@ -61,6 +61,7 @@
                             <th>学分</th>
                             <th>学时</th>
                             <th>开课学期</th>
+                            <th>课程性质</th>
                             <th>考核方式</th>
                             <th>操作</th>
                         </tr>
@@ -169,6 +170,7 @@
             },
             addAjax: function () {
                 let data = $("#add-form").serialize();
+                console.log(data);
                 $.post(baseUrl + "/course/add", data, function (data) {
                     layer.msg(data.msg);
                     if (data.result) {
@@ -177,12 +179,13 @@
                 })
 
             },
-            update: function (id, code, name, method, moduleId, schoolScore, schoolHours, semester) {
+            update: function (id, code, name, method, moduleId, schoolScore, schoolHours, semester, nature) {
                 $("#id").val(id);
                 $("#update-code").val(code);
                 $("#update-name").val(name);
                 $("#update-schoolScore").val(schoolScore);
                 $("#update-schoolHours").val(schoolHours);
+                $(($(".natures")[nature === "选修" ? 0 : 1])).prop({selected: true});
 
                 $("#update-module").html(course.loadSelectElementHtml(modules, moduleId));
                 $("#update-method").html(course.loadSelectElementHtml(methods, method));
@@ -196,7 +199,7 @@
                     , content: $("#update")
                 });
             },
-            updateAjax:function () {
+            updateAjax: function () {
                 let data = $("#update-form").serialize();
                 $.post(baseUrl + "/course/update", data, function (data) {
                     layer.msg(data.msg);
@@ -205,7 +208,7 @@
                     }
                 })
             },
-            delete:function (id) {
+            delete: function (id) {
                 layer.confirm('确定删除？', {icon: 3, title: '提示'}, function (index) {
                     layer.close(index);
                     $.post(baseUrl + "/course/delete", {id: id}, function (data) {

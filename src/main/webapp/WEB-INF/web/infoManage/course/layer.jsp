@@ -14,11 +14,12 @@
         <td>{{ item.schoolScore}}</td>
         <td>{{ item.schoolHours}}</td>
         <td>{{ item.semester}}</td>
+        <td>{{ item.nature}}</td>
         <td>{{ item.method}}</td>
         <td>
             <button class="layui-btn layui-btn-mini layui-btn-normal"
                     onclick="course.update('{{item.id}}','{{item.code}}','{{item.name}}','{{item.method}}',
-                                        '{{item.moduleId}}','{{item.schoolScore}}','{{item.schoolHours}}','{{item.semester}}')">
+                                        '{{item.moduleId}}','{{item.schoolScore}}','{{item.schoolHours}}','{{item.semester}}','{{item.nature}}')">
                 <i class="layui-icon">&#xe642;</i> 修改
             </button>
             <button class="layui-btn layui-btn-mini  layui-btn-danger" onclick="course.delete('{{item.id}}')">
@@ -43,25 +44,36 @@
                        placeholder="请输入课程名称" id="add-name" autocomplete="off" class="layui-input ">
             </div>
         </div>
-
         <div class="layui-form-item">
-            <label class="layui-form-label">课程学时</label>
-            <div class="layui-input-inline">
-                <input type="number" name="schoolHours"
-                       placeholder="请输入课程学时" id="add-schoolHours" autocomplete="off" class="layui-input ">
-            </div>
             <label class="layui-form-label">课程学分</label>
             <div class="layui-input-inline">
                 <input type="number" name="schoolScore"
                        placeholder="请输入课程学分" id="add-schoolScore" autocomplete="off" class="layui-input ">
             </div>
+            <label class="layui-form-label">课程学时</label>
+            <div class="layui-input-inline">
+                <input type="number" name="schoolHours"
+                       placeholder="请输入课程学时" id="add-schoolHours" autocomplete="off" class="layui-input ">
+            </div>
+            <label class="layui-form-label">开课学期</label>
+            <div class="layui-input-inline">
+                <select id="add-semester" name="semester">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                </select>
+            </div>
         </div>
 
         <div class="layui-form-item">
-            <label class="layui-form-label">模块</label>
+            <label class="layui-form-label">课程性质</label>
             <div class="layui-input-inline">
-                <select id="add-module" name="moduleId">
-                    <option value="0">请选择</option>
+                <select id="add-nature" name="nature">
+                    <option value="选修">选修</option>
+                    <option value="必修">必修</option>
                 </select>
             </div>
             <label class="layui-form-label">考核方式</label>
@@ -74,15 +86,10 @@
                     <option value="实践">实践</option>
                 </select>
             </div>
-            <label class="layui-form-label">开课学期</label>
+            <label class="layui-form-label">模块</label>
             <div class="layui-input-inline">
-                <select id="add-semester" name="semester">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
+                <select id="add-module" name="moduleId">
+                    <option value="0">请选择</option>
                 </select>
             </div>
         </div>
@@ -111,23 +118,30 @@
         </div>
 
         <div class="layui-form-item">
-            <label class="layui-form-label">课程学时</label>
-            <div class="layui-input-inline">
-                <input type="number" name="schoolHours"
-                       placeholder="请输入课程学时" id="update-schoolHours" autocomplete="off" class="layui-input ">
-            </div>
             <label class="layui-form-label">课程学分</label>
             <div class="layui-input-inline">
                 <input type="number" name="schoolScore"
                        placeholder="请输入课程学分" id="update-schoolScore" autocomplete="off" class="layui-input ">
             </div>
+            <label class="layui-form-label">课程学时</label>
+            <div class="layui-input-inline">
+                <input type="number" name="schoolHours"
+                       placeholder="请输入课程学时" id="update-schoolHours" autocomplete="off" class="layui-input ">
+            </div>
+            <label class="layui-form-label">开课学期</label>
+            <div class="layui-input-inline">
+                <select id="update-semester" name="semester">
+                    <option value="0">请选择</option>
+                </select>
+            </div>
         </div>
 
         <div class="layui-form-item">
-            <label class="layui-form-label">模块</label>
+            <label class="layui-form-label">课程性质</label>
             <div class="layui-input-inline">
-                <select id="update-module" name="moduleId">
-                    <option value="0">请选择</option>
+                <select id="update-nature" name="nature">
+                    <option class="natures" value="选修">选修</option>
+                    <option value="必修" class="natures">必修</option>
                 </select>
             </div>
             <label class="layui-form-label">考核方式</label>
@@ -136,9 +150,9 @@
                     <option value="0">请选择</option>
                 </select>
             </div>
-            <label class="layui-form-label">开课学期</label>
+            <label class="layui-form-label">模块</label>
             <div class="layui-input-inline">
-                <select id="update-semester" name="semester">
+                <select id="update-module" name="moduleId">
                     <option value="0">请选择</option>
                 </select>
             </div>
