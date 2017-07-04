@@ -86,6 +86,11 @@ public class PersonServiceImpl implements PersonService {
         List<String> ids = Arrays.asList(studentIds.split(","));
         if (ids.size() != 0) personDao.distributedClass(classesId, ids);
     }
+    @Override
+    public void distributedDirection(String directionId, String studentIds) throws Exception {
+        List<String> ids = Arrays.asList(studentIds.split(","));
+        if (ids.size() != 0) personDao.distributeDirection(directionId, ids);
+    }
 
     @Override
     public List<Map<String, String>> queryStudentsByTeacherHasClasses(SearchDto searchDto, String no) throws Exception {

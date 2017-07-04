@@ -87,4 +87,21 @@ public class DirectionController {
 
         return Result.failure(null, Constant.UPDATE_FAILURE);
     }
+
+    @RequestMapping("all")
+    @ResponseBody
+    public Result all() {
+        try {
+            PageUtil pageUtil = new PageUtil();
+            pageUtil.setCurrentIndex(1);
+            pageUtil.setPageSize(100000);
+            List<Map<String, String>> directions = departmentService.queryDirectionList(pageUtil);
+
+            return Result.success(directions, Constant.SEARCH_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return Result.failure(null, Constant.SEARCH_FAILURE);
+    }
 }

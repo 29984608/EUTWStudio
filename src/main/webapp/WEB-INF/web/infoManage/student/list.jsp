@@ -44,6 +44,7 @@
             <div class="larry-separate"></div>
             <div class="layui-tab-content larry-personal-body clearfix mylog-info-box">
                 <a class="layui-btn" onclick="student.add()"><i class="layui-icon">&#xe630;</i>分配班级</a>
+                <a class="layui-btn" onclick="student.distributeDirection()"><i class="layui-icon">&#xe630;</i>分配方向</a>
                 <a class="layui-form-mid layui-word-aux">请先勾选学生</a>
                 <div class="layui-form">
                     <table class="layui-table">
@@ -110,9 +111,27 @@
         </div>
     </form>
 </div>
+<div id="distribute_direction" style="margin: 10px;display: none">
+    <form id="direction-form" class="layui-form layui-form-pane" method="post">
+        <div class="layui-form-item">
+            <label class="layui-form-label">选择专业方向</label>
+            <div class="layui-input-inline">
+                <select id="directions">
+                    <option value="0">请选择</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item" style="margin-top: 30px">
+            <div class="layui-input-block">
+                <a class="layui-btn" onclick="student.distributeDirectionAjax()">立即提交</a>
+            </div>
+        </div>
+    </form>
+</div>
 <script type="text/javascript" src="${baseurl}/public/common/layui/layui.js"></script>
 <script type="text/javascript">
     let student;
+    let selectStudents;
     layui.use(['jquery', 'layer', 'element', 'form', 'laytpl'], function () {
         window.jQuery = window.$ = layui.jquery;
         window.layer = layui.layer;
@@ -179,6 +198,50 @@
                         });
                     }
                 })
+            },
+            distributeDirection:function () {
+                 selectStudents = $(".no_checkbox:checked");
+                if (selectStudents.length === 0) {
+                    layer.msg("请先勾选学生");
+                    return false;
+                }
+
+                $.post(baseUrl + "/direction/all", function (data) {
+                    if (data.result) {
+                        $("#directions").html(student.loadSelectElementHtml(data.data));
+                        form.render();
+                        layer.open({
+                            type: 1,
+                            title: '专业方向',
+                            area:["100%","100%"]
+                            , content: $("#distribute_direction")
+                        });
+                    }else{
+                        layer.msg(data.msg);
+                    }
+                })
+            },
+            distributeDirectionAjax:function () {
+                let directionId = $("#directions").val();
+
+                let studentIds = "";
+                for (let i = 0; i < selectStudents.length; ++i)studentIds += $(selectStudents[i]).val().split("-")[0] + ",";
+                console.log(studentIds);
+                let data = {
+                    directionId:directionId,
+                    studentIds:studentIds
+                }
+                let msg = "确定分配"+selectStudents.length+"个学生到该方向?"
+                layer.confirm(msg, {icon: 3, title: '提示'}, function (index) {
+                    layer.close(index);
+                    $.post(baseUrl + "/student/distributedDirection", data, function (data) {
+                        layer.msg(data.msg);
+                        if (data.result) {
+                            setTimeout("location.reload()", 500);
+                        }
+                    })
+                });
+
             },
             addAjax: function () {
                 let classesId = $("#classess").val();

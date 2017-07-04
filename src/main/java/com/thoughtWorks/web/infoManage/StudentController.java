@@ -58,6 +58,7 @@ public class StudentController {
 
         return Result.failure(null, Constant.SEARCH_FAILURE);
     }
+
     @RequestMapping("loadTeacherHasClassess")
     @ResponseBody
     public Result loadTeacherHasClassess() {
@@ -75,7 +76,7 @@ public class StudentController {
 
     @RequestMapping("distributedClass")
     @ResponseBody
-    public Result distributedClass(String classesId,String studentIds) {
+    public Result distributedClass(String classesId, String studentIds) {
         try {
             personService.distributedClass(classesId, studentIds);
 
@@ -85,5 +86,19 @@ public class StudentController {
         }
 
         return Result.failure(null, Constant.ADD_FAILURE);
+    }
+
+    @RequestMapping("distributedDirection")
+    @ResponseBody
+    public Result distributedDirection(String directionId, String studentIds) {
+        try {
+            personService.distributedDirection(directionId, studentIds);
+
+            return Result.success(null, Constant.UPDATE_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return Result.failure(null, Constant.UPDATE_FAILURE);
     }
 }

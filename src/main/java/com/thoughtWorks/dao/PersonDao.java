@@ -36,4 +36,6 @@ public interface PersonDao {
     List<Map<String, Object>> queryCommunicationByStudentId(String studentNo);
 
     void updateCommunicationContent(CommunicationContent communicationContent);
+
+    void distributeDirection(@Param("directionId") String directionId, @Param("ids") List<String> ids);
 }

@@ -119,6 +119,12 @@
             #{item}
         </foreach>
     </update>
+    <update id="distributeDirection">
+        UPDATE t_student SET direction_id=#{directionId} WHERE no IN
+        <foreach collection="ids" open="(" separator="," close=")" item="item">
+            #{item}
+        </foreach>
+    </update>
     <insert id="addCommunication" parameterType="CommunicationContent">
         INSERT INTO t_communication (teacher_id, student_id, talk_name, direction, content) VALUES
             (#{teacherId}, #{studentId}, #{talkName}, #{direction}, #{content})
