@@ -103,7 +103,7 @@
 </div>
 <div id="update" style="margin: 10px;display: none">
     <form id="update-form" class="layui-form layui-form-pane" method="post">
-        <input type="hidden" name="id" id="id" >
+        <input type="hidden" name="id" id="id">
         <div class="layui-form-item">
             <label class="layui-form-label">课程代码</label>
             <div class="layui-input-inline">
@@ -165,3 +165,13 @@
         </div>
     </form>
 </div>
+
+<div id="upload" style="display: none">
+    <form id="upload-form" class="layui-form layui-form-pane"  method="post" enctype="multipart/form-data"  style="padding: 20% 20%">
+        <div class="layui-form-item">
+            <input type="file" name="file" lay-ext="xls" lay-type="file" lay-title="请选择Excel文件" class=" layui-upload-file ">
+        </div>
+        <a class="layui-form-mid layui-word-aux">只支持 excel 2003 ，后缀为 .xls 的文件</a>
+    </form>
+</div>
+

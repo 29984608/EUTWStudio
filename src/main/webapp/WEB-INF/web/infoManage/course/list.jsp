@@ -93,13 +93,23 @@
         id: "5",
         name: "5"
     }, {id: "6", name: "6"}];
-    layui.use(['jquery', 'layer', 'element', 'form', 'laytpl', 'laypage'], function () {
+    layui.use(['jquery', 'layer', 'element', 'form', 'laytpl', 'laypage', 'upload'], function () {
         window.jQuery = window.$ = layui.jquery;
         window.layer = layui.layer;
         var element = layui.element(),
             form = layui.form(),
+            upload = layui.upload,
             laytpl = layui.laytpl;
 
+        upload({
+            url: baseUrl + '/course/importExcel',
+            before: function (input) {
+                layer.msg('上传中...');
+            },
+            success: function (data) {
+                layer.msg(data.data);
+            }
+        });
 
         course = {
             page: function () {
@@ -216,6 +226,14 @@
                         setTimeout("location.reload()", 500);
                     })
                 });
+            },
+            importExcel: function () {
+                layer.open({
+                    type: 1,
+                    title: '导入 excel',
+                    area: [300, 300]
+                    , content: $("#upload")
+                });
             }
         };
         $(function () {
@@ -225,6 +243,7 @@
                 $(".no_checkbox").prop({checked: data.elem.checked});
                 form.render();
             });
+
         });
     });
 

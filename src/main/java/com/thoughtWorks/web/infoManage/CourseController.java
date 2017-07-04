@@ -5,12 +5,16 @@ import com.thoughtWorks.dto.SearchDto;
 import com.thoughtWorks.entity.Course;
 import com.thoughtWorks.service.TrainModuleService;
 import com.thoughtWorks.util.Constant;
+import com.thoughtWorks.util.ImgUtil;
 import com.thoughtWorks.util.PageUtil;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,7 +36,7 @@ public class CourseController {
         Map<String, Object> data = new HashMap<>();
         try {
             searchDto.setName(new String(searchDto.getName().getBytes("ISO-8859-1"), "UTF-8"));
-            List<Map<String, String>> courses = trainModuleService.queryCoursesLikes(page,searchDto);
+            List<Map<String, String>> courses = trainModuleService.queryCoursesLikes(page, searchDto);
             List<Map<String, String>> modules = trainModuleService.queryAllTrainModules();
             data.put("courses", courses);
             data.put("modules", modules);
@@ -87,5 +91,19 @@ public class CourseController {
         }
 
         return Result.failure(null, Constant.DELETE_FAILURE);
+    }
+
+    @RequestMapping("importExcel")
+    @ResponseBody
+    public Result importExcel(MultipartFile file, HttpServletRequest request) {
+        try {
+            String imgPath = ImgUtil.saveImg(file, request.getRealPath("/images")+Constant.TEMP_IMAGE_PATH);
+
+            return Result.success(imgPath, Constant.UPLOAD_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return Result.failure(null, Constant.UPDATE_FAILURE);
     }
 }
