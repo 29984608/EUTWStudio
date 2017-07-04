@@ -21,7 +21,7 @@
                 <div class="layui-inline">
                     <div class="layui-inline">
                         <div class="layui-input-inline">
-                            <select lay-filter="student" id="direction_search">
+                            <select lay-filter="studentClass" id="direction_search">
                                 <option value="0">方向</option>
                             </select>
                         </div>
@@ -36,15 +36,15 @@
                             <input type="text" name="title" id="name_search" lay-verify="title" autocomplete="off"
                                    placeholder="姓名" class="layui-input">
                         </div>
-                        <a class="layui-btn" onclick="student.list()"><i class="layui-icon">&#xe615;</i>搜索</a>
+                        <a class="layui-btn" onclick="studentClass.list()"><i class="layui-icon">&#xe615;</i>搜索</a>
 
                     </div>
                 </div>
             </blockquote>
             <div class="larry-separate"></div>
             <div class="layui-tab-content larry-personal-body clearfix mylog-info-box">
-                <a class="layui-btn" onclick="student.add()"><i class="layui-icon">&#xe630;</i>分配班级</a>
-                <a class="layui-btn" onclick="student.distributeDirection()"><i class="layui-icon">&#xe630;</i>分配方向</a>
+                <a class="layui-btn" onclick="studentClass.add()"><i class="layui-icon">&#xe630;</i>分配班级</a>
+                <a class="layui-btn" onclick="studentClass.distributeDirection()"><i class="layui-icon">&#xe630;</i>分配方向</a>
                 <a class="layui-form-mid layui-word-aux">请先勾选学生</a>
                 <div class="layui-form">
                     <table class="layui-table">
@@ -71,7 +71,7 @@
 </section>
 </body>
 <script id="list-tpl" type="text/html">
-    {{# layui.each(d.data.students, function(index, item){ }}
+    {{# layui.each(d.data.studentClass, function(index, item){ }}
     <tr>
         <th><input type="checkbox" value="{{item.no}}-{{item.name}}" class="no_checkbox" name="" lay-skin="primary"
         ></th>
@@ -101,12 +101,12 @@
                 </select>
             </div>
         </div>
-        <div id="students">
+        <div id="studentClasss">
 
         </div>
         <div class="layui-form-item" style="margin-top: 30px">
             <div class="layui-input-block">
-                <a class="layui-btn" onclick="student.addAjax()">立即提交</a>
+                <a class="layui-btn" onclick="studentClass.addAjax()">立即提交</a>
             </div>
         </div>
     </form>
@@ -123,14 +123,14 @@
         </div>
         <div class="layui-form-item" style="margin-top: 30px">
             <div class="layui-input-block">
-                <a class="layui-btn" onclick="student.distributeDirectionAjax()">立即提交</a>
+                <a class="layui-btn" onclick="studentClass.distributeDirectionAjax()">立即提交</a>
             </div>
         </div>
     </form>
 </div>
 <script type="text/javascript" src="${baseurl}/public/common/layui/layui.js"></script>
 <script type="text/javascript">
-    let student;
+    let studentClass;
     let selectStudents;
     layui.use(['jquery', 'layer', 'element', 'form', 'laytpl'], function () {
         window.jQuery = window.$ = layui.jquery;
@@ -140,7 +140,7 @@
             laytpl = layui.laytpl;
 
 
-        student = {
+        studentClass = {
             list: function () {
                 let data = {
                     name: $("#name_search").val(),
@@ -148,12 +148,13 @@
                     professionId: $("#profession-search").val()
                 }
                 $.ajax({
-                    url: baseUrl + "/student/list",
+                    url: baseUrl + "/studentClass/list",
                     data: data,
                     success: function (data) {
                         if (data.result) {
-                            $("#profession-search").html("<option value='0'>专业</option>"+student.loadSelectElementHtml(data.data.professions));
-                            $("#direction_search").html("<option value='0'>方向</option>"+student.loadSelectElementHtml(data.data.directions));
+                            console.log(data)
+                            $("#profession-search").html("<option value='0'>专业</option>"+studentClass.loadSelectElementHtml(data.data.professions));
+                            $("#direction_search").html("<option value='0'>方向</option>"+studentClass.loadSelectElementHtml(data.data.directions));
 
                             laytpl($("#list-tpl").text()).render(data, function (html) {
                                 $("#list").html(html);
@@ -184,11 +185,11 @@
                     let val = $(selectStudents[i]).val().split("-");
                     _html += `<input type="checkbox" class="hasSelected" value="` + val[0] + `" title="` + val[1] + `" checked>`;
                 }
-                $("#students").html(_html);
+                $("#studentClasss").html(_html);
 
-                $.post(baseUrl + "/student/loadTeacherHasClassess", function (data) {
+                $.post(baseUrl + "/studentClass/loadTeacherHasClassess", function (data) {
                     if (data.result) {
-                        $("#classess").html("<option value='0'>班级</option>"+student.loadSelectElementHtml(data.data));
+                        $("#classess").html("<option value='0'>班级</option>"+studentClass.loadSelectElementHtml(data.data));
                         form.render();
                         layer.open({
                             type: 1,
@@ -199,23 +200,67 @@
                     }
                 })
             },
+            distributeDirection:function () {
+                 selectStudents = $(".no_checkbox:checked");
+                if (selectStudents.length === 0) {
+                    layer.msg("请先勾选学生");
+                    return false;
+                }
+
+                $.post(baseUrl + "/direction/all", function (data) {
+                    if (data.result) {
+                        $("#directions").html(studentClass.loadSelectElementHtml(data.data));
+                        form.render();
+                        layer.open({
+                            type: 1,
+                            title: '专业方向',
+                            area:["100%","100%"]
+                            , content: $("#distribute_direction")
+                        });
+                    }else{
+                        layer.msg(data.msg);
+                    }
+                })
+            },
+            distributeDirectionAjax:function () {
+                let directionId = $("#directions").val();
+
+                let studentClassIds = "";
+                for (let i = 0; i < selectStudents.length; ++i)studentClassIds += $(selectStudents[i]).val().split("-")[0] + ",";
+                console.log(studentClassIds);
+                let data = {
+                    directionId:directionId,
+                    studentIds:studentClassIds
+                }
+                let msg = "确定分配"+selectStudents.length+"个学生到该方向?"
+                layer.confirm(msg, {icon: 3, title: '提示'}, function (index) {
+                    layer.close(index);
+                    $.post(baseUrl + "/studentClass/distributedDirection", data, function (data) {
+                        layer.msg(data.msg);
+                        if (data.result) {
+                            setTimeout("location.reload()", 500);
+                        }
+                    })
+                });
+
+            },
             addAjax: function () {
                 let classesId = $("#classess").val();
                 if(classesId == "0") {
                     layer.msg("请选择一个班级");
                     return false;
                 }
-                let studentIds = "";
+                let studentClassIds = "";
                 let selectStudents = $(".hasSelected:checked");
-                for (let i = 0; i < selectStudents.length; ++i)studentIds += $(selectStudents[i]).val() + ",";
+                for (let i = 0; i < selectStudents.length; ++i)studentClassIds += $(selectStudents[i]).val() + ",";
                 let data = {
                     classesId:classesId,
-                    studentIds:studentIds
+                    studentIds:studentClassIds
                 }
                 let msg = "确定分配"+selectStudents.length+"个学生到该年级?"
                 layer.confirm(msg, {icon: 3, title: '提示'}, function (index) {
                     layer.close(index);
-                    $.post(baseUrl + "/student/distributedClass", data, function (data) {
+                    $.post(baseUrl + "/studentClass/distributedClass", data, function (data) {
                         layer.msg(data.msg);
                         if (data.result) {
                             setTimeout("location.reload()", 500);
@@ -226,8 +271,12 @@
             },
         };
         $(function () {
-            student.list();
+            studentClass.list();
 
+            form.on('checkbox(checkedAll)', function (data) {
+                $(".no_checkbox").prop({checked: data.elem.checked});
+                form.render();
+            });
         });
     });
 

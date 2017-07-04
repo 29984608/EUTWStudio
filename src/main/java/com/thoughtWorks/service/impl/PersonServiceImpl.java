@@ -69,7 +69,7 @@ public class PersonServiceImpl implements PersonService {
         List<Direction> directions = departmentDao.queryDirectionsByDepartmentId(String.valueOf(teacher.get("department_id")));
         List<Profession> professions = departmentDao.queryProfessionsByDepartmentId(String.valueOf(teacher.get("department_id")));
 
-        result.put("students", students);
+        result.put("studentClass", students);
         result.put("professions", professions);
         result.put("directions", directions);
 
