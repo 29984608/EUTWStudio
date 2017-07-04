@@ -60,7 +60,10 @@
             module.id   id,
             module.name moduleName,
             course.id   courseId,
-            course.name courseName
+            course.name courseName,
+            course.nature,
+            course.school_score schoolScore,
+            course.school_hours schoolHours
         FROM t_train_module module
             LEFT JOIN (SELECT *
                        FROM t_course) course ON module.id = course.module_id

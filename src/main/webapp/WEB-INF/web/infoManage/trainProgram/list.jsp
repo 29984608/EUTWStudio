@@ -158,10 +158,11 @@
                 });
             },
             preview: function (id, level, department, direction) {
-                $("#title-preview").text(level + "级"  + direction + "人才培养方案");
+                $("#title-preview").text(level + "级" + direction + "人才培养方案");
 
                 $.post(baseUrl + "/trainProgram/loadModuleCoursesByProgram", {id: id}, function (data) {
                     if (data.result) {
+                        console.log(data);
                         $("#modelCourses-preview").html(trainProgram.loadHasModuleCourse(data.data));
                         form.render();
                         layer.open({
@@ -244,36 +245,55 @@
                 return totalHtml;
             },
             loadHasModuleCourse: function (allModuleCourses) {
+                let electiveSocre = 0, compulsorySocre = 0;
+
                 let moduleCourses = [];
                 for (let i = 0; i < allModuleCourses.length; ++i)
-                   if(allModuleCourses[i].isChecked == "checked" ) moduleCourses.push(allModuleCourses[i]);
+                    if (allModuleCourses[i].isChecked == "checked") moduleCourses.push(allModuleCourses[i]);
                 let totalHtml = "";
                 let _html = "";
                 let moduleId = moduleCourses.length === 0 ? 0 : moduleCourses[0].id;
                 for (let i = 0; i < moduleCourses.length; ++i) {
-
+                    moduleCourses[i].nature === "选修" ? electiveSocre += moduleCourses[i].schoolScore : compulsorySocre += moduleCourses[i].schoolScore;
                     if (moduleCourses[i].id !== moduleId) {
                         totalHtml += `<div class="modules"  data='` + moduleId + `'> <div class="layui-form-item">
-                                          <label class="layui-form-label " style="margin-left: 5%">` + moduleCourses[i - 1].moduleName + `</label>
-                                             <div class="layui-input-block" >`
+                                          <label class="" style="margin-left: 5%">` + moduleCourses[i - 1].moduleName + `</label>
+                                             `
                             + _html + `
-                                             </div>
+
                                        </div></div>`;
 
                         moduleId = moduleCourses[i].id;
-                         _html = ` <input style="color: black" disabled class="course" type="checkbox" checked value="` + moduleCourses[i].courseId + `" title="` + moduleCourses[i].courseName + `" >`
+                        _html = ` <div class="layui-input-block" >
+                                            <p style="color: black"  class="course" >
+                                                <span style="margin-right: 40px"> ` + moduleCourses[i].courseName + `</span>
+                                                <span style="margin-right: 40px"> ` + moduleCourses[i].schoolScore + ` 学分</span>
+                                                <span style="margin-right: 40px"> ` + moduleCourses[i].schoolHours + ` 课时</span>
+                                                <span style="margin-right: 40px"> ` + moduleCourses[i].nature + `</span>
+                                            </p>
+                                   </div>`
                     } else {
-                         _html += ` <input style="color: black" disabled class="course" type="checkbox" checked value="` + moduleCourses[i].courseId + `" title="` + moduleCourses[i].courseName + `" >`
+                        _html += ` <div class="layui-input-block" >
+                                        <p style="color: black"  class="course" >
+                                            <span style="margin-right: 40px"> ` + moduleCourses[i].courseName + `</span>
+                                            <span style="margin-right: 40px"> ` + moduleCourses[i].schoolScore + ` 学分</span>
+                                            <span style="margin-right: 40px"> ` + moduleCourses[i].schoolHours + ` 课时</span>
+                                            <span style="margin-right: 40px"> ` + moduleCourses[i].nature + `</span>
+                                        </p>
+                                  </div>`
                     }
                     if (i === moduleCourses.length - 1 && moduleCourses[i].id === moduleId) {
                         totalHtml += ` <div class="modules"  data='` + moduleId + `'> <div class="layui-form-item">
-                                          <label class="layui-form-label "  style="margin-left: 5%">` + moduleCourses[i - 1].moduleName + `</label>
-                                             <div class="layui-input-block" >`
+                                          <label class=""  style="margin-left: 5%">` + moduleCourses[i - 1].moduleName + `</label>
+                                            `
                             + _html + `
-                                             </div>
                                        </div></div>`;
                     }
                 }
+
+                $("#electiveScore").text(electiveSocre);
+                $("#compulsoryScore").text(compulsorySocre);
+                $("#totalScore").text(compulsorySocre + electiveSocre);
                 return totalHtml;
             },
             loadLevel: function () {

@@ -32,7 +32,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">级</label>
             <div class="layui-input-inline">
-                <select id="level" name="level" >
+                <select id="level" name="level">
                     <option value="">请选择一个级</option>
 
                 </select>
@@ -99,17 +99,18 @@
 </div>
 
 <div id="preview" style="margin: 10px;display: none">
-    <form id="preview-form"  class="layui-form layui-form-pane" method="post">
+    <form id="preview-form" class="layui-form layui-form-pane" method="post">
         <fieldset class="layui-elem-field">
-            <legend id="title-preview" style="font-size: 30px;font-weight: 700">2017级物业方向人才培养方案</legend>
+            <legend id="title-preview" style="font-size: 30px;font-weight: 700;padding-left: 30%">2017级物业方向人才培养方案
+            </legend>
             <div class="layui-field-box">
-                <div id="modelCourses-preview">
+                <div id="modelCourses-preview" style="margin: 3% 0 0 20%">
 
                 </div>
             </div>
         </fieldset>
         <blockquote class="layui-elem-quote layui-quote-nm">
-            必修：100学分&nbsp;&nbsp;&nbsp;选修：8学分&nbsp;&nbsp;&nbsp;总计：108学分
+            必修：<span id="compulsoryScore">100</span>学分&nbsp;&nbsp;&nbsp;选修：<span id="electiveScore">8</span>学分&nbsp;&nbsp;&nbsp;总计：<span id="totalScore">108</span>学分
         </blockquote>
 
     </form>
