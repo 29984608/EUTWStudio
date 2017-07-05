@@ -14,7 +14,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -97,7 +96,7 @@ public class CourseController {
     @ResponseBody
     public Result importExcel(MultipartFile file, HttpServletRequest request) {
         try {
-            String imgPath = ImgUtil.saveImg(file, request.getRealPath("/images")+Constant.TEMP_IMAGE_PATH);
+            String imgPath = ImgUtil.saveImg(file, request.getServletContext().getRealPath("/images")+Constant.TEMP_IMAGE_PATH);
 
             return Result.success(imgPath, Constant.UPLOAD_SUCCESS);
         } catch (Exception e) {
