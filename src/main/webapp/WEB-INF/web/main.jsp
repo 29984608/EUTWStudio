@@ -101,6 +101,14 @@
                                 <td><span class="tit">2017-7-3</span></td>
                                 <td><span class="info">完成人才培养方案CURDP</span></td>
                             </tr>
+                            <tr>
+                                <td><span class="tit">2017-7-4</span></td>
+                                <td><span class="info">一些小的修改</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="tit">2017-7-5</span></td>
+                                <td><span class="info">excel 导入导出 util</span></td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>
