@@ -101,13 +101,14 @@
                 $.post(baseUrl + "/department/professionAndDirectionData", function (data) {
                     layer.msg(data.msg);
                     if (data.result) {
+                        console.log(data)
                         let _html = "";
                         let professions = data.data.professions;
                         let directions = data.data.directions;
                         professions.forEach(profession => {
                             let id = profession.id;
                             let name = profession.name;
-                            let isDisable = (profession.departmentId).trim() === "" ? "" : "disabled";
+                            let isDisable = (profession.departmentId) == null ? "" : "disabled";
                             _html += `<input type="checkbox" class="profession-add" value="` + id + `" title="` + name + `" ` + isDisable + `>`;
                         });
                         $("#professions-add").html(_html);
@@ -115,7 +116,7 @@
                         directions.forEach(direction => {
                             let id = direction.id;
                             let name = direction.name;
-                            let isDisable = (direction.departmentId).trim() === "" ? "" : "disabled";
+                            let isDisable = (direction.departmentId) == null ? "" : "disabled";
                             _html += `<input type="checkbox" class="direction-add" value="` + id + `" title="` + name + `" ` + isDisable + `>`;
                         });
                         $("#directions-add").html(_html);

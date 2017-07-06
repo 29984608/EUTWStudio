@@ -169,9 +169,9 @@
 <div id="upload" style="display: none">
     <form id="upload-form" class="layui-form layui-form-pane"  method="post" enctype="multipart/form-data"  style="padding: 20% 20%">
         <div class="layui-form-item">
-            <input type="file" name="file" lay-ext="xls" lay-type="file" lay-title="请选择Excel文件" class=" layui-upload-file ">
+            <input type="file" name="file" lay-ext="xls|xlsx" lay-type="file" lay-title="请选择Excel文件" class=" layui-upload-file ">
         </div>
-        <a class="layui-form-mid layui-word-aux">只支持 excel 2003 ，后缀为 .xls 的文件</a>
+        <%--<a class="layui-form-mid layui-word-aux">只支持 excel 2003 ，后缀为 .xls 的文件</a>--%>
     </form>
 </div>
 

@@ -107,7 +107,8 @@
                 layer.msg('上传中...');
             },
             success: function (data) {
-                layer.msg(data.data);
+                console.log(data)
+                layer.msg(data.msg);
             }
         });
 

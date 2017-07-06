@@ -7,6 +7,7 @@ import com.thoughtWorks.service.TrainModuleService;
 import com.thoughtWorks.util.Constant;
 import com.thoughtWorks.util.ImgUtil;
 import com.thoughtWorks.util.PageUtil;
+import com.thoughtWorks.util.excelUtil.ExcelUtil;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -14,6 +15,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -96,8 +99,11 @@ public class CourseController {
     @ResponseBody
     public Result importExcel(MultipartFile file, HttpServletRequest request) {
         try {
-            String imgPath = ImgUtil.saveImg(file, request.getServletContext().getRealPath("/images")+Constant.TEMP_IMAGE_PATH);
-
+            String imgPath = ImgUtil.saveImg(file, request.getServletContext().getRealPath("/images") + Constant.TEMP_IMAGE_PATH);
+            Collection<Map> maps = ExcelUtil.importExcel(Map.class, new File(imgPath), "yyyy-MM-dd HH:mm:ss", 0);
+            for(Map m : maps){
+                System.out.println(m);
+            }
             return Result.success(imgPath, Constant.UPLOAD_SUCCESS);
         } catch (Exception e) {
             e.printStackTrace();

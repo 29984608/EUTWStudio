@@ -109,6 +109,10 @@
                                 <td><span class="tit">2017-7-5</span></td>
                                 <td><span class="info">excel 导入导出 util</span></td>
                             </tr>
+                            <tr>
+                                <td><span class="tit">2017-7-6</span></td>
+                                <td><span class="info">excel 更改,jspdf 将 html 导出 pdf(太模糊),整理学生信息字段</span></td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>
