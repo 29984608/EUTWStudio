@@ -36,7 +36,7 @@
             </blockquote>
             <div class="larry-separate"></div>
             <div class="layui-tab-content larry-personal-body clearfix mylog-info-box">
-                <a class="layui-btn" onclick="communication.add()"><i class="layui-icon">&#xe630;</i>打印</a>
+                <a class="layui-btn" onclick="printPdf()"><i class="layui-icon">&#xe630;</i>打印</a>
                 <div class="layui-form">
                     <table class="layui-table">
                         <thead>
@@ -62,6 +62,7 @@
     </div>
 </section>
 </body>
+
 <%@include file="layer.jsp" %>
 <script type="text/javascript" src="${baseurl}/public/css/timeAsix/inc/colorbox.js"></script>
 <script type="text/javascript" src="${baseurl}/public/css/timeAsix/js/timeliner.min.js"></script>
@@ -84,6 +85,9 @@
         });
     });
 </script>
+<script type="text/javascript" src="${baseurl}/public/js/pdf/html2canvas.js"></script>
+<script type="text/javascript" src="${baseurl}/public/js/pdf/jspdf.debug.js"></script>
+<script type="text/javascript" src="${baseurl}/public/js/pdf/renderPDF.js"></script>
 <script type="text/javascript">
     let communication;
     let student;
@@ -200,7 +204,10 @@
             });
         });
     });
-
+    function printPdf() {
+        renderPDF(document.getElementById("container"),"content","a4", function(){
+        });
+    }
 
 </script>
 

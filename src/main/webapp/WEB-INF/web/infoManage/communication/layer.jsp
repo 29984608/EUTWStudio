@@ -104,8 +104,8 @@
 </div>
 
 <div id="update" style="display: none">
-
-    <div class="container">
+    <a class="layui-btn" onclick="printPdf()"><i class="layui-icon">&#xe630;</i>打印</a>
+    <div class="container" id="container">
 
         <h1 ><span id="who"></span>的沟通反馈记录</h1>
 
