@@ -153,4 +153,8 @@
         SET content = #{content}
         WHERE id = #{id}
     </update>
+    
+    <select id="queryStudentInfos" resultType="map">
+        select * from tttttt;
+    </select>
 </mapper>

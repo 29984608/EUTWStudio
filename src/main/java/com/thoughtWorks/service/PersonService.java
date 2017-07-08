@@ -38,4 +38,6 @@ public interface PersonService {
     void updateCommunicationContent(CommunicationContent communicationContent)throws Exception;
 
     void distributedDirection(String directionId, String studentIds)throws Exception;
+
+    List<Map<String, Object>> queryStudentInfos() throws Exception;
 }

@@ -93,6 +93,11 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
+    public List<Map<String, Object>> queryStudentInfos() {
+        return personDao.queryStudentInfos();
+    }
+
+    @Override
     public List<Map<String, String>> queryStudentsByTeacherHasClasses(SearchDto searchDto, String no) throws Exception {
         List<Classes> classes = trainModuleDao.queryClassesByTeacherHas(no);
 

@@ -38,4 +38,6 @@ public interface PersonDao {
     void updateCommunicationContent(CommunicationContent communicationContent);
 
     void distributeDirection(@Param("directionId") String directionId, @Param("ids") List<String> ids);
+
+    List<Map<String,Object>> queryStudentInfos();
 }

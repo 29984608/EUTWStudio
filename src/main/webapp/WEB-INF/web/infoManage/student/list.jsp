@@ -2,15 +2,20 @@
 <%@ include file="../../../public/tag.jsp" %>
 <html>
 <head>
-    <meta charset="utf-8">
     <title></title>
     <script type="text/javascript" src="${baseurl}/public/common/js/jquery-3.2.0.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="${baseurl}/public/common/layui/css/layui.css" media="all">
+    <script src="${baseurl}/public/common/layui/layui.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="${baseurl}/public/common/layui/css/layui.css" media="all">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/common/layui/css/layui.css" media="all">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/common/bootstrap/css/bootstrap.min.css" media="all">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/common/css/global.css" media="all">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/common.css" media="all">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/personal.css" media="all">
+    <%--时间轴--%>
+    <link rel="stylesheet" href="${baseurl}/public/css/timeAsix/css/screen.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="${baseurl}/public/css/timeAsix/css/responsive.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="${baseurl}/public/css/timeAsix/inc/colorbox.css" type="text/css" media="screen">
+
 </head>
 <body>
 <section class="larry-grid layui-form">
@@ -21,31 +26,16 @@
                 <div class="layui-inline">
                     <div class="layui-inline">
                         <div class="layui-input-inline">
-                            <select lay-filter="student" id="direction_search">
-                                <option value="0">方向</option>
-                            </select>
-                        </div>
-
-                        <div class="layui-input-inline" style="width: auto">
-                            <select lay-filter="profession" id="profession-search">
-                                <option value="0">专业</option>
-
-                            </select>
-                        </div>
-                        <div class="layui-input-inline">
                             <input type="text" name="title" id="name_search" lay-verify="title" autocomplete="off"
                                    placeholder="姓名" class="layui-input">
                         </div>
-                        <a class="layui-btn" onclick="student.list()"><i class="layui-icon">&#xe615;</i>搜索</a>
+                        <a class="layui-btn" onclick="communication.list()"><i class="layui-icon">&#xe615;</i>搜索</a>
 
                     </div>
                 </div>
             </blockquote>
             <div class="larry-separate"></div>
             <div class="layui-tab-content larry-personal-body clearfix mylog-info-box">
-                <a class="layui-btn" onclick="student.add()"><i class="layui-icon">&#xe630;</i>分配班级</a>
-                <a class="layui-btn" onclick="student.distributeDirection()"><i class="layui-icon">&#xe630;</i>分配方向</a>
-                <a class="layui-form-mid layui-word-aux">请先勾选学生</a>
                 <div class="layui-form">
                     <table class="layui-table">
                         <thead>
@@ -58,6 +48,7 @@
                             <th>方向</th>
                             <th>专业</th>
                             <th>班级</th>
+                            <th>操作</th>
                         </tr>
                         </thead>
                         <tbody id="list">
@@ -66,72 +57,41 @@
                     </table>
                 </div>
             </div>
+            <div id="demo1"></div>
         </div>
     </div>
 </section>
 </body>
-<script id="list-tpl" type="text/html">
-    {{# layui.each(d.data.students, function(index, item){ }}
-    <tr>
-        <th><input type="checkbox" value="{{item.no}}-{{item.name}}" class="no_checkbox" name="" lay-skin="primary"
-        ></th>
-        <td>{{ item.no}}</td>
-        <td>{{ item.name}}</td>
-        <td>{{ item.gender}}</td>
-        <td>{{ item.direction}}</td>
-        <td>{{ item.profession}}</td>
-        <td>
-            {{# if(item.classes === undefined){ }}
-            未分配
-            {{# }else{ }}
-            {{ item.classes}}
-            {{#}}}
-        </td>
-    </tr>
-    {{# }); }}
 
+<%@include file="layer.jsp" %>
+<script type="text/javascript" src="${baseurl}/public/css/timeAsix/inc/colorbox.js"></script>
+<script type="text/javascript" src="${baseurl}/public/css/timeAsix/js/timeliner.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $.timeliner({
+            startOpen: ['#19550828EX', '#19630828EX']
+        });
+        $.timeliner({
+            timelineContainer: '#timelineContainer_2'
+        });
+        // Colorbox Modal
+        $(".CBmodal").colorbox({
+            inline: true,
+            initialWidth: 100,
+            maxWidth: 682,
+            initialHeight: 100,
+            transition: "elastic",
+            speed: 750
+        });
+    });
 </script>
-<div id="add" style="margin: 10px;display: none">
-    <form id="add-form" class="layui-form layui-form-pane" method="post">
-        <div class="layui-form-item">
-            <label class="layui-form-label">选择一个班级</label>
-            <div class="layui-input-inline">
-                <select id="classess">
-                    <option value="0">请选择</option>
-                </select>
-            </div>
-        </div>
-        <div id="students">
-
-        </div>
-        <div class="layui-form-item" style="margin-top: 30px">
-            <div class="layui-input-block">
-                <a class="layui-btn" onclick="student.addAjax()">立即提交</a>
-            </div>
-        </div>
-    </form>
-</div>
-<div id="distribute_direction" style="margin: 10px;display: none">
-    <form id="direction-form" class="layui-form layui-form-pane" method="post">
-        <div class="layui-form-item">
-            <label class="layui-form-label">选择专业方向</label>
-            <div class="layui-input-inline">
-                <select id="directions">
-                    <option value="0">请选择</option>
-                </select>
-            </div>
-        </div>
-        <div class="layui-form-item" style="margin-top: 30px">
-            <div class="layui-input-block">
-                <a class="layui-btn" onclick="student.distributeDirectionAjax()">立即提交</a>
-            </div>
-        </div>
-    </form>
-</div>
-<script type="text/javascript" src="${baseurl}/public/common/layui/layui.js"></script>
+<script type="text/javascript" src="${baseurl}/public/js/pdf/html2canvas.js"></script>
+<script type="text/javascript" src="${baseurl}/public/js/pdf/jspdf.debug.js"></script>
+<script type="text/javascript" src="${baseurl}/public/js/pdf/renderPDF.js"></script>
 <script type="text/javascript">
+    let communication;
     let student;
-    let selectStudents;
+    let no;
     layui.use(['jquery', 'layer', 'element', 'form', 'laytpl'], function () {
         window.jQuery = window.$ = layui.jquery;
         window.layer = layui.layer;
@@ -139,99 +99,48 @@
             form = layui.form(),
             laytpl = layui.laytpl;
 
-
         student = {
-            list: function () {
+
+            page: function () {
+                layer.laypage({
+                    cont: 'demo1'
+                    ,pages: 100 //总页数
+                    ,groups: 5 //连续显示分页数
+                });
+            }
+
+            ,list: function () {
                 let data = {
                     name: $("#name_search").val(),
-                    directionId: $("#direction_search").val(),
-                    professionId: $("#profession-search").val()
                 }
                 $.ajax({
                     url: baseUrl + "/student/list",
                     data: data,
                     success: function (data) {
                         if (data.result) {
-                            $("#profession-search").html("<option value='0'>专业</option>"+student.loadSelectElementHtml(data.data.professions));
-                            $("#direction_search").html("<option value='0'>方向</option>"+student.loadSelectElementHtml(data.data.directions));
-
+                            console.log(data)
                             laytpl($("#list-tpl").text()).render(data, function (html) {
                                 $("#list").html(html);
                             });
                             form.render();
-
                         }
                     }
                 });
-            },
-            loadSelectElementHtml: function (data) {
-                let _html = "";
-                for (let i = 0; i < data.length; ++i) {
-                    _html += ` <option value="` + data[i].id + `">` + data[i].name + `</option>`;
-                }
+            }
 
-                return _html;
-            },
-            add: function () {
-                let _html = "";
-                let selectStudents = $(".no_checkbox:checked");
-                if (selectStudents.length === 0) {
-                    layer.msg("请先勾选学生");
-                    return false;
-                }
-                _html += `<label class="layui-form-label" style="margin-bottom: 20px">一共` + selectStudents.length + `人</label>`
-                for (let i = 0; i < selectStudents.length; ++i) {
-                    let val = $(selectStudents[i]).val().split("-");
-                    _html += `<input type="checkbox" class="hasSelected" value="` + val[0] + `" title="` + val[1] + `" checked>`;
-                }
-                $("#students").html(_html);
-
-                $.post(baseUrl + "/student/loadTeacherHasClassess", function (data) {
-                    if (data.result) {
-                        $("#classess").html("<option value='0'>班级</option>"+student.loadSelectElementHtml(data.data));
-                        form.render();
-                        layer.open({
-                            type: 1,
-                            title: '添加',
-                            area: ["100%", "100%"]
-                            , content: $("#add")
-                        });
-                    }
-                })
-            },
-            addAjax: function () {
-                let classesId = $("#classess").val();
-                if(classesId == "0") {
-                    layer.msg("请选择一个班级");
-                    return false;
-                }
-                let studentIds = "";
-                let selectStudents = $(".hasSelected:checked");
-                for (let i = 0; i < selectStudents.length; ++i)studentIds += $(selectStudents[i]).val() + ",";
-                let data = {
-                    classesId:classesId,
-                    studentIds:studentIds
-                }
-                let msg = "确定分配"+selectStudents.length+"个学生到该年级?"
-                layer.confirm(msg, {icon: 3, title: '提示'}, function (index) {
-                    layer.close(index);
-                    $.post(baseUrl + "/student/distributedClass", data, function (data) {
-                        layer.msg(data.msg);
-                        if (data.result) {
-                            setTimeout("location.reload()", 500);
-                        }
-                    })
-                });
-
-            },
         };
+
         $(function () {
             student.list();
 
+            form.on('radio(talk)', function (data) {
+                let talkName = data.value == "parent" ? student.parentName : student.name;
+                $("#talkName").text(talkName);
+            });
         });
     });
 
-
 </script>
+
 
 </html>
