@@ -204,11 +204,10 @@
             });
         });
     });
-    function printPdf() {
-        renderPDF(document.getElementById("container"),"content","a4", function(){
-        });
-    }
 
+    function printPdf() {
+        pdf(document.getElementById("container"),"content","a4")
+    }
 </script>
 
 

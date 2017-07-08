@@ -103,72 +103,25 @@
     </form>
 </div>
 
-<div id="update" style="display: none">
+<div id="update" style="display: none;background: #fff">
     <a class="layui-btn" onclick="printPdf()"><i class="layui-icon">&#xe630;</i>打印</a>
-    <div class="container" id="container">
+    <div class="container" id="container" style="padding:50px 30px">
 
-        <h1 ><span id="who"></span>的沟通反馈记录</h1>
+        <h1 style="text-align: center;margin-left: -30px"><span id="who"></span>的沟通反馈记录</h1>
 
         <div id="timelineContainer" class="timelineContainer">
 
-            <div class="timelineToggle"><p><a class="expandAll">+ 全部展开</a></p></div>
+            <div class="timelineToggle"><p><a class="expandAll ">+ 全部展开</a></p></div>
 
             <br class="clear">
             <div id="communication_container">
-                <%--&lt;%&ndash;一次沟通&ndas
-                h;%&gt;--%>
-                <%--<div class="timelineMajor">--%>
-                <%--<h2 class="timelineMajorMarker"><span>2016-6-6 12:12:12</span></h2>--%>
-                <%--<dl class="timelineMinor">--%>
-                <%--<dt id="19540517"><a>张老师 - 学业指导 - Acey</a></dt>--%>
-                <%--&lt;%&ndash;QA 容器&ndash;%&gt;--%>
-                <%--<dd class="timelineEvent" id="19540517EX" style="display:none;">--%>
-                <%--&lt;%&ndash; 一次Q&A&ndash;%&gt;--%>
-                <%--<dl class="timelineMinor">--%>
-                <%--<dt id="1"><a style="font-size: 12px;color: peru">Q&A</a></dt>--%>
-                <%--<dd class="timelineEvent" id="1EX" style="display:none;">--%>
-                <%--<p style="font-size: 12px;"--%>
-                <%--class=" contents">美国最高法院相传一致9-0决定在布朗诉托皮卡教育局案，打开大门，民权运动最终种族融合在美国社会的各个方面。推翻Plessy--%>
-                <%--v.--%>
-                <%--Ferguson（1896），法院裁定“隔离的教育设施是不平等的。</p>--%>
-                <%--<p style="font-size: 12px;"--%>
-                <%--class=" contents">美国最高法院相传一致9-0决定在布朗诉托皮卡教育局案，打开大门，民权运动最终种族融合在美国社会的各个方面。推翻Plessy--%>
-                <%--v.--%>
-                <%--Ferguson（1896），法院裁定“隔离的教育设施是不平等的。</p>--%>
-                <%--<br class="clear">--%>
-                <%--</dd>--%>
-                <%--</dl>--%>
-                <%--<dl class="timelineMinor">--%>
-                <%--<dt id="2"><a style="font-size: 12px;color: peru">Q&A</a></dt>--%>
-                <%--<div class="layui-btn-group" style="margin-bottom: 10px">--%>
-                <%--<a onclick="addTalkContent()" class="layui-btn layui-btn-small"><i--%>
-                <%--class="layui-icon">&#xe642;</i>修改 Q&A</a>--%>
-                <%--<a onclick="deleteContent(this)" class="layui-btn layui-btn-small layui-btn-danger"><i--%>
-                <%--class="layui-icon">&#xe640;</i>删除--%>
-                <%--Q&A--%>
-                <%--</a>--%>
-                <%--</div>--%>
 
-                <%--<dd class="timelineEvent " id="2EX" style="display:none;">--%>
-                <%--<textarea style="min-height: 50px;height: 55px;font-size: 12px;"--%>
-                <%--class="layui-textarea contents">美国最高法院相传一<br>致9-0决定在布朗诉托皮卡教育局案，打开大门，民权运动最终种族融合在美国社会的各个方面。推翻Plessy v.--%>
-                <%--Ferguson（1896），法院裁定“隔离的教育设施是不平等的。</textarea>--%>
-                <%--<textarea style="min-height: 50px;height: 55px;font-size: 12px;"--%>
-                <%--class="layui-textarea contents">美国最高法院相传一致9-0决定在布朗诉托皮卡教育局案，打开大门，民权运动最终种族融合在美国社会的各个方面。推翻Plessy v.--%>
-                <%--Ferguson（1896），法院裁定“隔离的教育设施是不平等的。</textarea>--%>
-                <%--<br class="clear">--%>
-                <%--</dd>--%>
-                <%--</dl>--%>
-                <%--</dd><!-- /.timelineEvent -->--%>
-                <%--</dl><!-- /.timelineMinor -->--%>
-                <%--</div><!-- /.timelineMajor -->--%>
             </div>
 
 
             <br class="clear">
-        </div><!-- /#timelineContainer -->
-
-    </div><!-- /.container -->
+        </div>
+    </div>
 
 </div>
 
