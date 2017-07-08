@@ -11,10 +11,6 @@
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/common/css/global.css" media="all">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/common.css" media="all">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/personal.css" media="all">
-    <%--时间轴--%>
-    <link rel="stylesheet" href="${baseurl}/public/css/timeAsix/css/screen.css" type="text/css" media="screen">
-    <link rel="stylesheet" href="${baseurl}/public/css/timeAsix/css/responsive.css" type="text/css" media="screen">
-    <link rel="stylesheet" href="${baseurl}/public/css/timeAsix/inc/colorbox.css" type="text/css" media="screen">
 
 </head>
 <body>
@@ -56,8 +52,8 @@
                         </tbody>
                     </table>
                 </div>
+                <div id="demo1"></div>
             </div>
-            <div id="demo1"></div>
         </div>
     </div>
 </section>
@@ -92,7 +88,10 @@
     let communication;
     let student;
     let no;
-    layui.use(['jquery', 'layer', 'element', 'form', 'laytpl'], function () {
+    let totalSize = 10;
+    let currentIndex = 1;
+    let pageSize = 5;
+    layui.use(['jquery', 'layer', 'element', 'laypage', 'form', 'laytpl', 'tree'], function () {
         window.jQuery = window.$ = layui.jquery;
         window.layer = layui.layer;
         var element = layui.element(),
@@ -101,21 +100,16 @@
 
         student = {
 
-            page: function () {
-                layer.laypage({
-                    cont: 'demo1'
-                    ,pages: 100 //总页数
-                    ,groups: 5 //连续显示分页数
-                });
-            }
 
-            ,list: function () {
-                let data = {
+
+            list: function () {
+               /* let data = {
                     name: $("#name_search").val(),
-                }
+                    page: {currentIndex: currentIndex, pageSize: pageSize},
+                }*/
                 $.ajax({
                     url: baseUrl + "/student/list",
-                    data: data,
+                    data: {currentIndex: currentIndex, pageSize: pageSize},
                     success: function (data) {
                         if (data.result) {
                             console.log(data)
@@ -132,15 +126,30 @@
 
         $(function () {
             student.list();
-
-            form.on('radio(talk)', function (data) {
-                let talkName = data.value == "parent" ? student.parentName : student.name;
-                $("#talkName").text(talkName);
-            });
         });
     });
 
 </script>
 
+<script>
+
+    layui.use(['laypage', 'layer'], function(){
+        var laypage = layui.laypage
+            ,layer = layui.layer;
+
+        laypage({
+            cont: 'demo1'
+            ,pages: totalSize //总页数
+            ,groups: 5 //连续显示分页数
+            ,skin: '#1E9FFF',
+            jump: function (obj, first) {
+                currentIndex = obj.curr;
+                if (!first) {
+                    profession.list();
+                }
+            }
+        });
+    });
+</script>
 
 </html>

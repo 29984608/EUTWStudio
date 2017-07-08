@@ -3,6 +3,7 @@ package com.thoughtWorks.web.infoManage;
 import com.thoughtWorks.dto.Result;
 import com.thoughtWorks.service.PersonService;
 import com.thoughtWorks.util.Constant;
+import com.thoughtWorks.util.PageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,10 +27,11 @@ public class StudentController {
 
     @RequestMapping("/list")
     @ResponseBody
-    public Map<String, Object> list() {
+    public Map<String, Object> list(PageUtil page) {
         Map<String, Object> data = new HashMap<>();
         try {
-            List<Map<String, Object>> studentInfos = personService.queryStudentInfos();
+            List<Map<String, Object>> studentInfos = personService.queryStudentInfos(page);
+            System.out.println(studentInfos);
             data.put("studentInfos", studentInfos);
             data.put("msg", Constant.SEARCH_SUCCESS);
             data.put("result", true);

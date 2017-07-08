@@ -157,4 +157,14 @@
     <select id="queryStudentInfos" resultType="map">
         select * from tttttt;
     </select>
+
+    <select id="queryStudentTotalCount" resultType="long">
+        select count(1) from tttttt;
+    </select>
+
+    <select id="queryStudentList" resultType="map">
+        SELECT *
+        FROM tttttt
+        LIMIT #{start}, #{end}
+    </select>
 </mapper>

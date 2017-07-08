@@ -4,6 +4,7 @@ import com.thoughtWorks.entity.Classes;
 import com.thoughtWorks.entity.CommunicationContent;
 import com.thoughtWorks.entity.Student;
 import com.thoughtWorks.entity.Teacher;
+import com.thoughtWorks.util.PageUtil;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -40,4 +41,8 @@ public interface PersonDao {
     void distributeDirection(@Param("directionId") String directionId, @Param("ids") List<String> ids);
 
     List<Map<String,Object>> queryStudentInfos();
+
+    List<Map<String,Object>> queryStudentList(Map<String, Object> data);
+
+    Long queryStudentTotalCount();
 }
