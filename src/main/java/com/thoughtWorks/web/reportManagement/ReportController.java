@@ -4,8 +4,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Component
-@RequestMapping("/port")
-public class PortController {
+@RequestMapping("/report")
+public class ReportController {
 
     @RequestMapping("profession")
     public String professionIndex() {

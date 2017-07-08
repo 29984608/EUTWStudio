@@ -18,7 +18,7 @@
 
 </head>
 <body>
-<section class="larry-grid layui-form">
+<section class=" layui-form">
     <div class="larry-personal">
         <div class="layui-tab">
             <blockquote class="layui-elem-quote mylog-info-tit" style="padding: 10px 20px;">
@@ -33,7 +33,7 @@
                 <button class="layui-btn" style="float: right" onclick="printPdf()"><i class="layui-icon">&#xe61e;</i>导出 EXCEl</button>
             </blockquote>
             <div class="larry-separate"></div>
-            <div class="layui-tab-content larry-personal-body clearfix mylog-info-box" style="margin: 5px 0px">
+            <div id="container" class="layui-tab-content larry-personal-body clearfix mylog-info-box" style="background: #fff;width: 100%;height: 100%;margin: 5px 0px">
                 <div style="text-align: center;font-size: 20px;font-weight: bold">高职学院专业人数统计表(<span id="level">2017</span>)
                     <span style="font-size: 13px;margin-left: 40px">统计日期:2017-6-3 12:12:21</span></div>
                 <table class="layui-table">
@@ -93,6 +93,128 @@
                         <td></td>
                         <td></td>
                     </tr>
+                    <tr>
+                        <th >3</th>
+                        <td>投资与理财</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>投资与理财</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th >3</th>
+                        <td>投资与理财</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>投资与理财</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th >3</th>
+                        <td>投资与理财</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>投资与理财</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th >3</th>
+                        <td>投资与理财</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>投资与理财</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th >3</th>
+                        <td>投资与理财</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>投资与理财</td>
+                        <td></td>
+                        <td></td>
+                    </tr> <tr>
+                        <th >3</th>
+                        <td>投资与理财</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>投资与理财</td>
+                        <td></td>
+                        <td></td>
+                    </tr> <tr>
+                        <th >3</th>
+                        <td>投资与理财</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>投资与理财</td>
+                        <td></td>
+                        <td></td>
+                    </tr> <tr>
+                        <th >3</th>
+                        <td>投资与理财</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>投资与理财</td>
+                        <td></td>
+                        <td></td>
+                    </tr> <tr>
+                        <th >3</th>
+                        <td>投资与理财</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>投资与理财</td>
+                        <td></td>
+                        <td></td>
+                    </tr> <tr>
+                        <th >3</th>
+                        <td>投资与理财</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>投资与理财</td>
+                        <td></td>
+                        <td></td>
+                    </tr> <tr>
+                        <th >3</th>
+                        <td>投资与理财</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>投资与理财</td>
+                        <td></td>
+                        <td></td>
+                    </tr> <tr>
+                        <th >3</th>
+                        <td>投资与理财</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>投资与理财</td>
+                        <td></td>
+                        <td></td>
+                    </tr> <tr>
+                        <th >3</th>
+                        <td>投资与理财</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>投资与理财</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
                     </tbody>
                 </table>
             </div>
@@ -129,7 +251,38 @@
     }
 
     function printPdf() {
-        renderPDF(document.getElementById("container"), "content", "a4", function () {
+
+        var w = $("#container").width();
+        var h = $("#container").height();
+
+        //要将 canvas 的宽高设置成容器宽高的 2 倍
+//        var canvas = document.createElement("canvas");
+//        canvas.width = w * 2;
+//        canvas.height = h * 2;
+//        canvas.style.width = w+ "px";
+//        canvas.style.height = h + "px";
+//        var context = canvas.getContext("2d");
+//        //然后将画布缩放，将图像放大两倍画到画布上
+//        context.scale(2, 2);
+//
+//        html2canvas(document.querySelector("#container"), {
+//            canvas: canvas,
+//            onrendered: function (canvas) {
+//                var url = canvas.toDataURL("image/png"); //base64数据
+//
+//
+//                var pdf = new jsPDF("p", "pt",'a3');
+//                if(w > 1200) {
+//                    pdf.addImage(url, 'JPEG', 0, 0, w/2-100,h/1.5);
+//                }else{
+//                    pdf.addImage(url, 'JPEG', 0, 0, w/2,h/1.5);
+//                }
+//
+//                pdf.save("222");
+//            }
+//        });
+
+        renderPDF(document.getElementById("container"), "content", 'a3', function () {
         });
     }
 

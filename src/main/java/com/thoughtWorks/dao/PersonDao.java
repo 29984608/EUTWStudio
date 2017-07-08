@@ -27,7 +27,7 @@ public interface PersonDao {
 
     void distributedClass(@Param("classesId") String classesId, @Param("ids") List<String> ids);
 
-    List<Map<String,String>> queryStudentsByClassesIdsAndLikeName(@Param("name") String name, @Param("classes") List<Classes> classes);
+    List<Map<String,String>> queryStudentsByClassesIdsAndLikeName(@Param("name") String name, @Param("classes") List<Classes> classes,@Param("no") String no);
 
     Student queryStudentByNo(String stuNo);
 

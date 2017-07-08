@@ -96,7 +96,7 @@ public class PersonServiceImpl implements PersonService {
     public List<Map<String, String>> queryStudentsByTeacherHasClasses(SearchDto searchDto, String no) throws Exception {
         List<Classes> classes = trainModuleDao.queryClassesByTeacherHas(no);
 
-        return personDao.queryStudentsByClassesIdsAndLikeName("%" + searchDto.getName() + "%", classes);
+        return personDao.queryStudentsByClassesIdsAndLikeName("%" + searchDto.getName() + "%", classes,no);
     }
 
     @Override
