@@ -158,13 +158,16 @@
         select * from tttttt;
     </select>
 
-    <select id="queryStudentTotalCount" resultType="long">
-        select count(1) from tttttt;
+    <select id="queryStudentTotalCount" parameterType="map" resultType="long">
+        select count(1) from tttttt
     </select>
 
     <select id="queryStudentList" resultType="map">
         SELECT *
         FROM tttttt
+        WHERE tttttt.name
+        LIKE #{name}
         LIMIT #{start}, #{pageSize}
     </select>
+
 </mapper>

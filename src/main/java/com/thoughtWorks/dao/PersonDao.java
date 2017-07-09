@@ -40,8 +40,6 @@ public interface PersonDao {
 
     void distributeDirection(@Param("directionId") String directionId, @Param("ids") List<String> ids);
 
-    List<Map<String,Object>> queryStudentInfos();
-
     List<Map<String,Object>> queryStudentList(Map<String, Object> data);
 
     Long queryStudentTotalCount();

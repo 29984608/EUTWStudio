@@ -1,5 +1,6 @@
 package com.thoughtWorks.web.infoManage;
 
+import com.thoughtWorks.dto.SearchDto;
 import com.thoughtWorks.service.PersonService;
 import com.thoughtWorks.util.Constant;
 import com.thoughtWorks.util.PageUtil;
@@ -26,10 +27,11 @@ public class StudentController {
 
     @RequestMapping("/list")
     @ResponseBody
-    public Map<String, Object> list(PageUtil page) {
+    public Map<String, Object> list(PageUtil page, SearchDto searchDto) {
         Map<String, Object> data = new HashMap<>();
         try {
-            List<Map<String, Object>> studentInfos = personService.queryStudentInfos(page);
+            List<Map<String, Object>> studentInfos = personService.queryStudentInfos(page,searchDto);
+            System.out.println(searchDto);
             data.put("studentInfos", studentInfos);
             data.put("msg", Constant.SEARCH_SUCCESS);
             data.put("page", page);

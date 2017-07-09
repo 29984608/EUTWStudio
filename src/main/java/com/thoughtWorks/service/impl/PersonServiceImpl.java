@@ -93,14 +93,14 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public List<Map<String, Object>> queryStudentInfos(PageUtil page)throws Exception {
+    public List<Map<String, Object>> queryStudentInfos(PageUtil page,SearchDto searchDto)throws Exception {
         Map<String, Object> data = new HashMap<>();
         data.put("start", (page.getCurrentIndex() - 1) * page.getPageSize());
         data.put("pageSize", page.getPageSize());
-        page.setTotalSize(personDao.queryStudentTotalCount());
-
-        System.out.println(data);
+        data.put("name", "%" + searchDto.getName() + "%");
+        System.out.println(searchDto.getName());
         System.out.println(personDao.queryStudentList(data));
+        page.setTotalSize(personDao.queryStudentTotalCount());
 
         return personDao.queryStudentList(data);
 

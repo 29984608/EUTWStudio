@@ -55,4 +55,16 @@ public class SearchDto {
     public void setDirectionId(String directionId) {
         this.directionId = directionId;
     }
+
+    @Override
+    public String toString() {
+        return "SearchDto{" +
+                "name='" + name + '\'' +
+                ", departmentId='" + departmentId + '\'' +
+                ", professionId='" + professionId + '\'' +
+                ", directionId='" + directionId + '\'' +
+                ", moduleId='" + moduleId + '\'' +
+                ", semester='" + semester + '\'' +
+                '}';
+    }
 }

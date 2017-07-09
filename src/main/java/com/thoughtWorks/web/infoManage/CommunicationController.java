@@ -32,7 +32,7 @@ public class CommunicationController {
     @ResponseBody
     public Result list(SearchDto searchDto) {
         try {
-            searchDto.setName(new String(searchDto.getName().getBytes("ISO-8859-1"), "UTF-8"));
+//            searchDto.setName(new String(searchDto.getName().getBytes("ISO-8859-1"), "UTF-8"));
             ActiveUser user = (ActiveUser) SecurityUtils.getSubject().getPrincipal();
             List<Map<String, String>> students = personService.queryStudentsByTeacherHasClasses(searchDto, user.getUserName());
 

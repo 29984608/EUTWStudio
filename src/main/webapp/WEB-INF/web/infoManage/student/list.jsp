@@ -25,7 +25,7 @@
                             <input type="text" name="title" id="name_search" lay-verify="title" autocomplete="off"
                                    placeholder="姓名" class="layui-input">
                         </div>
-                        <a class="layui-btn" onclick="communication.list()"><i class="layui-icon">&#xe615;</i>搜索</a>
+                        <a class="layui-btn" onclick="student.list()"><i class="layui-icon">&#xe615;</i>搜索</a>
 
                     </div>
                 </div>
@@ -92,10 +92,11 @@
             },
 
             list: function () {
+                let name = $("#name_search").val();
 
                 $.ajax({
                     url: baseUrl + "/student/list",
-                    data: {currentIndex: currentIndex, pageSize: pageSize},
+                    data: {currentIndex: currentIndex, pageSize: pageSize,name:name},
                     success: function (data) {
                         if (data.result) {
                             console.log(data.page.currentIndex)
