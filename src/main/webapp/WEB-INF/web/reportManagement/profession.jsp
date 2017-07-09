@@ -27,15 +27,16 @@
                         <input type="number" name="level" id="level_search" lay-verify="title" autocomplete="off"
                                placeholder="请输入一个级别" class="layui-input">
                     </div>
-                      <button class="layui-btn" onclick="communication.list()"><i class="layui-icon">&#xe615;</i>查询报表</button>
+                    <button class="layui-btn" onclick="profession.list()"><i class="layui-icon">&#xe615;</i>查询报表</button>
                 </div>
-                <button style="float: right;margin: 0 20px" class="layui-btn" onclick="printPdf()"><i class="layui-icon">&#xe621;</i>导出 PDF</button>
                 <button class="layui-btn" style="float: right" onclick="printPdf()"><i class="layui-icon">&#xe61e;</i>导出 EXCEl</button>
             </blockquote>
             <div class="larry-separate"></div>
-            <div id="container" class="layui-tab-content larry-personal-body clearfix mylog-info-box" style="background: #fff;width: 100%;height: 100%;margin: 5px 0px">
-                <div style="text-align: center;font-size: 20px;font-weight: bold">高职学院专业人数统计表(<span id="level">2017</span>)
-                    <span style="font-size: 13px;margin-left: 40px">统计日期:2017-6-3 12:12:21</span></div>
+            <div id="container" class="layui-tab-content larry-personal-body clearfix mylog-info-box"
+                 style="background: #fff;width: 100%;height: 100%;margin: 5px 0px">
+                <div style="text-align: center;font-size: 20px;font-weight: bold">高职学院专业人数统计表<span
+                        id="level">(2017)</span>
+                    <span style="font-size: 13px;margin-left: 40px">统计日期:<spqn id="time">2017-6-3 12:12:21</spqn></span></div>
                 <table class="layui-table">
                     <colgroup>
                         <col width="60">
@@ -61,160 +62,8 @@
                         <th>备注</th>
                     </tr>
                     </thead>
-                    <tbody>
-                    <tr>
-                        <th >1</th>
-                        <th rowspan="3">金融服务系金融服务系</th>
-                        <td>财务管理</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>财务管理</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th >2</th>
-                        <td>金融管理</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>金融管理</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th >3</th>
-                        <td>投资与理财</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>投资与理财</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th >3</th>
-                        <td>投资与理财</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>投资与理财</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th >3</th>
-                        <td>投资与理财</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>投资与理财</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th >3</th>
-                        <td>投资与理财</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>投资与理财</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th >3</th>
-                        <td>投资与理财</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>投资与理财</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th >3</th>
-                        <td>投资与理财</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>投资与理财</td>
-                        <td></td>
-                        <td></td>
-                    </tr> <tr>
-                        <th >3</th>
-                        <td>投资与理财</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>投资与理财</td>
-                        <td></td>
-                        <td></td>
-                    </tr> <tr>
-                        <th >3</th>
-                        <td>投资与理财</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>投资与理财</td>
-                        <td></td>
-                        <td></td>
-                    </tr> <tr>
-                        <th >3</th>
-                        <td>投资与理财</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>投资与理财</td>
-                        <td></td>
-                        <td></td>
-                    </tr> <tr>
-                        <th >3</th>
-                        <td>投资与理财</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>投资与理财</td>
-                        <td></td>
-                        <td></td>
-                    </tr> <tr>
-                        <th >3</th>
-                        <td>投资与理财</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>投资与理财</td>
-                        <td></td>
-                        <td></td>
-                    </tr> <tr>
-                        <th >3</th>
-                        <td>投资与理财</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>投资与理财</td>
-                        <td></td>
-                        <td></td>
-                    </tr> <tr>
-                        <th >3</th>
-                        <td>投资与理财</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>投资与理财</td>
-                        <td></td>
-                        <td></td>
-                    </tr> <tr>
-                        <th >3</th>
-                        <td>投资与理财</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>投资与理财</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
+                    <tbody id="report">
+
                     </tbody>
                 </table>
             </div>
@@ -222,71 +71,68 @@
     </div>
 </section>
 </body>
-
-
-<script type="text/javascript" src="${baseurl}/public/js/pdf/html2canvas.js"></script>
-<script type="text/javascript" src="${baseurl}/public/js/pdf/jspdf.debug.js"></script>
-<script type="text/javascript" src="${baseurl}/public/js/pdf/renderPDF.js"></script>
+<script type="text/javascript" src="${baseurl}/public/common/layui/layui.js"></script>
 <script type="text/javascript">
-
-    layui.use(['jquery', 'layer', 'element', 'form', 'laytpl'], function () {
+    let profession;
+    layui.use(['jquery', 'layer'], function () {
         window.jQuery = window.$ = layui.jquery;
         window.layer = layui.layer;
-        var element = layui.element(),
-            form = layui.form(),
-            laytpl = layui.laytpl;
-    })
-    $(function () {
-    });
 
-    function loadLevel() {
-        let currentYear = new Date().getFullYear();
-        let _html = "";
-        for (let i = 0; i < 5; ++i) {
-            let next = currentYear++;
-            _html += `<option value="` + next + `">` + next + `</option>`;
+
+        profession = {
+            list: function () {
+                let level = $("#level_search").val();
+                $.post(baseUrl + "/report/professionList", {level: level}, function (data) {
+                    if (data.result) {
+                        let date = new Date();
+                        $("#level").text(level)
+                        $("#time").text(date.getFullYear() + " 年 "+(date.getMonth()+1)+" 月 "+date.getDate()+" 日");
+                        profession.showPage(data.data);
+                    } else {
+                        layer.msg(data.msg);
+                    }
+                })
+            },
+            showPage: function (data) {
+                let index = 0;
+                let _html = "";
+                data.forEach(department => {
+                    let children = department.children;
+                    _html += `
+                     <tr>
+                        <th>` + (++index) + `</th>
+                        <th rowspan="` + children.length + `">` + department.name + `</th>
+                        <td>` + children[0].name + `</td>
+                        <td>` + (children[0].oldNumber == undefined ? 0 : children[0].oldNumber ) + `</td>
+                        <td>` + (children[0].turnIn == undefined ? 0 : children[0].turnIn ) + `</td>
+                        <td>` + (children[0].turnOut == undefined ? 0 : children[0].turnOut ) + `</td>
+                        <td>` + (children[0].name ) + `</td>
+                        <td>` + (children[0].nowNumber == undefined ? 0 : children[0].nowNumber ) + `</td>
+                        <td></td>
+                    </tr>
+                    `;
+                    for (let j = 1; j < children.length; ++j) {
+                        _html += `
+                     <tr>
+                        <th>` + ((++index) ) + `</th>
+                        <td>` + (children[j].name ) + `</td>
+                        <td>` + (children[j].oldNumber == undefined ? 0 : children[j].oldNumber ) + `</td>
+                        <td>` + (children[j].turnIn == undefined ? 0 : children[j].turnIn ) + `</td>
+                        <td>` + (children[j].turnOut == undefined ? 0 : children[j].turnOut ) + `</td>
+                        <td>` + (children[j].name ) + `</td>
+                        <td>` + (children[j].nowNumber == undefined ? 0 : children[j].nowNumber ) + `</td>
+                        <td></td>
+                    </tr>
+                    `;
+                    }
+                })
+                $("#report").html(_html);
+            }
         }
-
-        return _html;
-    }
-
-    function printPdf() {
-
-        var w = $("#container").width();
-        var h = $("#container").height();
-
-        //要将 canvas 的宽高设置成容器宽高的 2 倍
-//        var canvas = document.createElement("canvas");
-//        canvas.width = w * 2;
-//        canvas.height = h * 2;
-//        canvas.style.width = w+ "px";
-//        canvas.style.height = h + "px";
-//        var context = canvas.getContext("2d");
-//        //然后将画布缩放，将图像放大两倍画到画布上
-//        context.scale(2, 2);
-//
-//        html2canvas(document.querySelector("#container"), {
-//            canvas: canvas,
-//            onrendered: function (canvas) {
-//                var url = canvas.toDataURL("image/png"); //base64数据
-//
-//
-//                var pdf = new jsPDF("p", "pt",'a3');
-//                if(w > 1200) {
-//                    pdf.addImage(url, 'JPEG', 0, 0, w/2-100,h/1.5);
-//                }else{
-//                    pdf.addImage(url, 'JPEG', 0, 0, w/2,h/1.5);
-//                }
-//
-//                pdf.save("222");
-//            }
-//        });
-
-        renderPDF(document.getElementById("container"), "content", 'a3', function () {
-        });
-    }
+        $(function () {
+            profession.list();
+        })
+    })
 
 </script>
-
-
 </html>
