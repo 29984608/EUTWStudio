@@ -110,9 +110,18 @@
         DELETE FROM t_course
         WHERE id = #{id}
     </delete>
-    <select id="queryCoursesTotalCount" resultType="long">
+    <select id="queryCoursesTotalCount" resultType="long" parameterType="map">
         SELECT count(1)
         FROM t_course
+        <where>
+        <if test="moduleId != ''">
+            and module_id = #{moduleId}
+        </if>
+        <if test="semester != ''">
+            and semester = #{semester}
+        </if>
+        AND t_course.name LIKE #{name}
+    </where>
     </select>
 
     <select id="queryCoursesList" parameterType="map" resultType="map">

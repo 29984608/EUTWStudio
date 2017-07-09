@@ -41,7 +41,7 @@ public interface TrainModuleDao {
 
     List<Classes> queryClassesByTeacherHas(String no);
 
-    Long queryCoursesTotalCount();
+    Long queryCoursesTotalCount(Map<String, Object> data);
 
     List<Map<String,String>> queryCoursesList(Map<String, Object> data);
 

@@ -30,7 +30,7 @@ public class TrainModuleServiceImpl implements TrainModuleService {
         data.put("moduleId", searchDto.getModuleId());
         data.put("name", "%" + searchDto.getName() + "%");
         data.put("semester", searchDto.getSemester());
-        page.setTotalSize(trainModuleDao.queryCoursesTotalCount());
+        page.setTotalSize(trainModuleDao.queryCoursesTotalCount(data));
 
         return trainModuleDao.queryCoursesList(data);
     }
