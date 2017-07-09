@@ -1,6 +1,5 @@
 package com.thoughtWorks.web.infoManage;
 
-import com.thoughtWorks.dto.Result;
 import com.thoughtWorks.service.PersonService;
 import com.thoughtWorks.util.Constant;
 import com.thoughtWorks.util.PageUtil;
@@ -31,15 +30,17 @@ public class StudentController {
         Map<String, Object> data = new HashMap<>();
         try {
             List<Map<String, Object>> studentInfos = personService.queryStudentInfos(page);
-            System.out.println(studentInfos);
             data.put("studentInfos", studentInfos);
             data.put("msg", Constant.SEARCH_SUCCESS);
+            data.put("page", page);
             data.put("result", true);
-            return data;
+
         } catch (Exception e) {
             e.printStackTrace();
             data.put("msg", Constant.SEARCH_FAILURE);
+            data.put("result", false);
         }
+
         return data;
     }
 }

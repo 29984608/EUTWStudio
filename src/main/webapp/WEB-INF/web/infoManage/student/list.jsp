@@ -60,37 +60,13 @@
 </body>
 
 <%@include file="layer.jsp" %>
-<script type="text/javascript" src="${baseurl}/public/css/timeAsix/inc/colorbox.js"></script>
-<script type="text/javascript" src="${baseurl}/public/css/timeAsix/js/timeliner.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $.timeliner({
-            startOpen: ['#19550828EX', '#19630828EX']
-        });
-        $.timeliner({
-            timelineContainer: '#timelineContainer_2'
-        });
-        // Colorbox Modal
-        $(".CBmodal").colorbox({
-            inline: true,
-            initialWidth: 100,
-            maxWidth: 682,
-            initialHeight: 100,
-            transition: "elastic",
-            speed: 750
-        });
-    });
-</script>
+
 <script type="text/javascript" src="${baseurl}/public/js/pdf/html2canvas.js"></script>
-<script type="text/javascript" src="${baseurl}/public/js/pdf/jspdf.debug.js"></script>
-<script type="text/javascript" src="${baseurl}/public/js/pdf/renderPDF.js"></script>
 <script type="text/javascript">
-    let communication;
     let student;
-    let no;
-    let totalSize = 10;
+    let totalSize = 4;
     let currentIndex = 1;
-    let pageSize = 5;
+    let pageSize = 3;
     layui.use(['jquery', 'layer', 'element', 'laypage', 'form', 'laytpl', 'tree'], function () {
         window.jQuery = window.$ = layui.jquery;
         window.layer = layui.layer;
@@ -99,20 +75,33 @@
             laytpl = layui.laytpl;
 
         student = {
-
-
+            page: function () {
+                layui.laypage({
+                    cont: 'demo1',
+                    pages: totalSize, //总页数
+                    curr: currentIndex,
+                    groups: 5,//连续显示分页数
+                    skin: '#1E9FFF',
+                    jump: function (obj, first) {
+                        currentIndex = obj.curr;
+                        if (!first) {
+                            student.list();
+                        }
+                    }
+                });
+            },
 
             list: function () {
-               /* let data = {
-                    name: $("#name_search").val(),
-                    page: {currentIndex: currentIndex, pageSize: pageSize},
-                }*/
+
                 $.ajax({
                     url: baseUrl + "/student/list",
                     data: {currentIndex: currentIndex, pageSize: pageSize},
                     success: function (data) {
                         if (data.result) {
-                            console.log(data)
+                            console.log(data.page.currentIndex)
+                            currentIndex = data.page.currentIndex;
+                            totalSize = data.page.totalSize;
+                            student.page();
                             laytpl($("#list-tpl").text()).render(data, function (html) {
                                 $("#list").html(html);
                             });
@@ -129,27 +118,6 @@
         });
     });
 
-</script>
-
-<script>
-
-    layui.use(['laypage', 'layer'], function(){
-        var laypage = layui.laypage
-            ,layer = layui.layer;
-
-        laypage({
-            cont: 'demo1'
-            ,pages: totalSize //总页数
-            ,groups: 5 //连续显示分页数
-            ,skin: '#1E9FFF',
-            jump: function (obj, first) {
-                currentIndex = obj.curr;
-                if (!first) {
-                    profession.list();
-                }
-            }
-        });
-    });
 </script>
 
 </html>

@@ -165,6 +165,6 @@
     <select id="queryStudentList" resultType="map">
         SELECT *
         FROM tttttt
-        LIMIT #{start}, #{end}
+        LIMIT #{start}, #{pageSize}
     </select>
 </mapper>

@@ -41,4 +41,14 @@ public class PageUtil {
     public void setData(Object data) {
         this.data = data;
     }
+
+    @Override
+    public String toString() {
+        return "PageUtil{" +
+                "totalSize=" + totalSize +
+                ", currentIndex=" + currentIndex +
+                ", pageSize=" + pageSize +
+                ", data=" + data +
+                '}';
+    }
 }
