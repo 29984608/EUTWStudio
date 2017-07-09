@@ -119,7 +119,7 @@
                 });
             },
             add: function (studentNo) {
-                $.post(baseUrl + "/student/student", {studentNo: studentNo}, function (data) {
+                $.post(baseUrl + "/studentClass/student", {studentNo: studentNo}, function (data) {
                     if (data.result) {
                         student = data.data;
 
@@ -167,9 +167,9 @@
             },
             updateContent: function (id, qaId) {
                 let contents = "";
-                let contentNodes = $("#" + qaId + "").find(".update-contents");
+                let contentNodes = $("#id" + qaId + "EX").find(".update-contents");
                 for (let i = 0; i < contentNodes.length; ++i) {
-                    contents += $(contentNodes[i]).val() + "$%$";
+                    contents += $(contentNodes[i]).val() + "$%$";//Q&A 分隔符
                 }
                 let data = {
                     id: id,
@@ -206,7 +206,7 @@
     });
 
     function printPdf() {
-        pdf(document.getElementById("container"),"content","a4")
+        pdf(document.getElementById("container"),$("#exportPDFName").text(),"a4")
     }
 </script>
 

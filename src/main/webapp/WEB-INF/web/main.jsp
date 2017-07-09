@@ -113,6 +113,14 @@
                                 <td><span class="tit">2017-7-6</span></td>
                                 <td><span class="info">excel 更改,jspdf 将 html 导出 pdf(太模糊),整理学生信息字段</span></td>
                             </tr>
+                            <tr>
+                                <td><span class="tit">2017-7-7</span></td>
+                                <td><span class="info">报表整理(每张报表需要什么信息) 专业报表页面</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="tit">2017-7-8</span></td>
+                                <td><span class="info">导出 pdf（清晰版）</span></td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>

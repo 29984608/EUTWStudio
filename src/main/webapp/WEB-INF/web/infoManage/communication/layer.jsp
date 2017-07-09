@@ -175,7 +175,7 @@
                 <span>` + com.time + `</span></h2>
                 <dl class="timelineMinor">
                     <dt id="id` + com.id + `">
-                    <a>` + com.teacherName + ` - ` + com.direction + ` - ` + com.talkName + `</a></dt>
+                    <a id='exportPDFName'>` + com.teacherName + ` - ` + com.direction + ` - ` + com.talkName + `</a></dt>
                     <%--QA 容器--%>
                     <dd class="timelineEvent" id="id` + com.id + `EX" style="display:none;">
                 `;
@@ -195,7 +195,7 @@
              <dl class="timelineMinor" id="` + qaId + `">
                 <dt id="` + index + `"><a style="font-size: 12px;color: peru">Q&A</a></dt>
                 <div class="layui-btn-group" style="margin-bottom: 10px">
-                    <a onclick="communication.updateContent(` + id + `,'` + qaId + `')" class="layui-btn layui-btn-small"><i
+                    <a onclick="communication.updateContent(` + id + `,'` + id + `')" class="layui-btn layui-btn-small"><i
                             class="layui-icon">&#xe642;</i>修改 Q&A</a>
                 </div>
 
