@@ -36,14 +36,14 @@
                     <table class="layui-table">
                         <thead>
                         <tr>
-                            <th><input type="checkbox" lay-filter="checkedAll" name="" lay-skin="primary"
-                                       lay-filter="allChoose"></th>
                             <th>学号</th>
                             <th>姓名</th>
                             <th>性别</th>
+                            <th>系</th>
                             <th>方向</th>
                             <th>专业</th>
-                            <th>班级</th>
+                            <th>待添加</th>
+                            <th>待添加</th>
                             <th>操作</th>
                         </tr>
                         </thead>

@@ -31,7 +31,6 @@ public class StudentController {
         Map<String, Object> data = new HashMap<>();
         try {
             List<Map<String, Object>> studentInfos = personService.queryStudentInfos(page,searchDto);
-            System.out.println(searchDto);
             data.put("studentInfos", studentInfos);
             data.put("msg", Constant.SEARCH_SUCCESS);
             data.put("page", page);

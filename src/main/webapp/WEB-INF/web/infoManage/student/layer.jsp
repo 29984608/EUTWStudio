@@ -2,12 +2,13 @@
 <script id="list-tpl" type="text/html">
     {{# layui.each(d.studentInfos, function(index,item){ }}
     <tr>
-        <th><input type="checkbox" value="{{item.no}}-{{item.name}}" class="no_checkbox" name="" lay-skin="primary"></th>
         <td>{{ item.no}}</td>
         <td>{{ item.name}}</td>
-        <td>{{ item.rename}}</td>
-        <td>{{ item.birthday}}</td>
-        <td>{{ item.idcard}}</td>
+        <td>{{ item.gender}}</td>
+        <td>{{ item.depatmentName}}</td>
+        <td>{{ item.directionName}}</td>
+        <td>{{ item.classesName}}</td>
+        <td>{{ item.professionName}}</td>
         <td>
             {{# if(item.classes === undefined){ }}
             未分配

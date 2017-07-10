@@ -42,5 +42,5 @@ public interface PersonDao {
 
     List<Map<String,Object>> queryStudentList(Map<String, Object> data);
 
-    Long queryStudentTotalCount();
+    Long queryStudentTotalCount(String name);
 }
