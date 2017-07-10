@@ -41,8 +41,8 @@
                             <th>性别</th>
                             <th>系</th>
                             <th>方向</th>
+                            <th>班级</th>
                             <th>专业</th>
-                            <th>待添加</th>
                             <th>待添加</th>
                             <th>操作</th>
                         </tr>
@@ -64,9 +64,9 @@
 <script type="text/javascript" src="${baseurl}/public/js/pdf/html2canvas.js"></script>
 <script type="text/javascript">
     let student;
-    let totalSize = 4;
+    let totalSize = 10;
     let currentIndex = 1;
-    let pageSize = 3;
+    let pageSize = 10;
     layui.use(['jquery', 'layer', 'element', 'laypage', 'form', 'laytpl', 'tree'], function () {
         window.jQuery = window.$ = layui.jquery;
         window.layer = layui.layer;
