@@ -4,8 +4,6 @@
 package utilTest.excelUtil;
 
 
-import com.thoughtWorks.util.excelUtil.ExcelUtil;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -13,40 +11,56 @@ import java.io.OutputStream;
 import java.util.*;
 
 /**
- * The <code>TestExportMap</code>	
- * 
+ * The <code>TestExportMap</code>
+ *
  * @author SargerasWang
- * Created at 2014年9月21日 下午4:38:42
+ *         Created at 2014年9月21日 下午4:38:42
  */
 public class TestExportMap {
-  public static void main(String[] args) throws IOException {
-    List<Map<String,Object>> list = new ArrayList<>();
-    Map<String,Object> map =new LinkedHashMap<>();
-    map.put("name", "");
-    map.put("age", "");
-    map.put("birthday","");
-    map.put("sex","");
-    Map<String,Object> map2 =new LinkedHashMap<String, Object>();
-    map2.put("name", 1);
-    map2.put("age", null);
-    map2.put("sex", 1);
-    map.put("birthday",null);
-    Map<String,Object> map3 =new LinkedHashMap<String, Object>();
-    map3.put("name", "张三");
-    map3.put("age", 12);
-    map3.put("sex", "男");
-    map3.put("birthday",new Date());
-    list.add(map);
-    list.add(map2);
-    list.add(map3);
-    Map<String,String> map1 = new LinkedHashMap<>();
-    map1.put("name","姓名");
-    map1.put("age","年龄");
-    map1.put("birthday","出生日期");
-    map1.put("sex","性别");
-    File f= new File("/home/acey/Documents//asxc.xls");
-    OutputStream out = new FileOutputStream(f);
-    ExcelUtil.exportExcel(map1,list, f );
-    out.close();
-  }
+    public static void main(String[] args) throws IOException {
+        List<Map<String, Object>> list = new ArrayList<>();
+        Map<String, Object> map = new LinkedHashMap<>();
+        List<Map<String, String>> childrens = new ArrayList<>();
+        Map<String, String> children = new HashMap<>();
+        children.put("oldProfession", "财务管理");
+        children.put("oldNum", "2");
+        children.put("turnIn", "1");
+        children.put("turnOut", "2");
+        children.put("turnOut", "3");
+        children.put("nowProfession", "财务管理");
+        children.put("nowNumber", "2");
+        children.put("remark", "备注");
+
+        Map<String, String> children1 = new HashMap<>();
+        children1.put("oldProfession", "财务管理");
+        children1.put("oldNum", "2");
+        children1.put("turnIn", "1");
+        children1.put("turnOut", "2");
+        children1.put("turnOut", "3");
+        children1.put("nowProfession", "财务管理");
+        children1.put("nowNumber", "2");
+        children1.put("remark", "备注");
+
+        childrens.add(children);
+        childrens.add(children1);
+        map.put("name", "金融系2222222222222222222222");
+        map.put("children", childrens);
+
+        Map<String, String> map1 = new LinkedHashMap<>();
+        map1.put("index", "序号");
+        map1.put("name", "系名");
+        map1.put("oldProfession", "原录取专业");
+        map1.put("oldNum", "人数");
+        map1.put("turnIn", "转入");
+        map1.put("turnOut", "转出");
+        map1.put("turnOut", "转出");
+        map1.put("nowProfession", "现专业");
+        map1.put("nowNumber", "人数");
+        map1.put("remark", "备注");
+        list.add(map);
+        File f = new File("/home/acey/Documents//ass.xls");
+        OutputStream out = new FileOutputStream(f);
+//        ExcelReportUtil.exportExcel(map1, list, f, "专业报表");
+        out.close();
+    }
 }
