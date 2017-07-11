@@ -134,6 +134,7 @@
                 let name = $("#name-search").val();
                 $.ajax({
                     url: baseUrl + "/course/list",
+                    type:"post",
                     data: {
                         currentIndex: currentIndex,
                         pageSize: pageSize,

@@ -30,8 +30,6 @@
                     <table id="example" class="layui-table lay-even " data-name="articleCatData">
                         <thead>
                         <tr>
-                            <%--<th width="30"><input type="checkbox" id="checkall" data-name="checkbox" lay-filter="check"--%>
-                            <%--lay-skin="primary"></th>--%>
                             <th>序号</th>
                             <th>角色名称</th>
                             <th>是否可用</th>

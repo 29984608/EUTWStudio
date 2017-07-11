@@ -37,7 +37,6 @@ public class CourseController {
     public Map<String, Object> list(PageUtil page, SearchDto searchDto) {
         Map<String, Object> data = new HashMap<>();
         try {
-            searchDto.setName(new String(searchDto.getName().getBytes("ISO-8859-1"), "UTF-8"));
             List<Map<String, String>> courses = trainModuleService.queryCoursesLikes(page, searchDto);
             List<Map<String, String>> modules = trainModuleService.queryAllTrainModules();
             data.put("courses", courses);

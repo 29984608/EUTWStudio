@@ -118,6 +118,7 @@
                 let keyWork = $("#keyWork").val();
                 $.ajax({
                     url: baseUrl + "/roleDistribute/list",
+                    type:"post",
                     data: {currentIndex: currentIndex, pageSize: pageSize, name: keyWork},
                     success: function (data) {
                         layer.msg(data.msg);

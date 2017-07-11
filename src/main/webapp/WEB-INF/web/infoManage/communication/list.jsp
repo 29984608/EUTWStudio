@@ -107,6 +107,7 @@
                 $.ajax({
                     url: baseUrl + "/communication/list",
                     data: data,
+                    type:"post",
                     success: function (data) {
                         if (data.result) {
                             laytpl($("#list-tpl").text()).render(data, function (html) {

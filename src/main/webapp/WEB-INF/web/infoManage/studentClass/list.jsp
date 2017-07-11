@@ -150,6 +150,7 @@
                 $.ajax({
                     url: baseUrl + "/studentClass/list",
                     data: data,
+                    type:"post",
                     success: function (data) {
                         if (data.result) {
                             console.log(data)

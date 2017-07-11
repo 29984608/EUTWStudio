@@ -96,6 +96,7 @@
 
                 $.ajax({
                     url: baseUrl + "/student/list",
+                    type:"post",
                     data: {currentIndex: currentIndex, pageSize: pageSize,name:name},
                     success: function (data) {
                         if (data.result) {
