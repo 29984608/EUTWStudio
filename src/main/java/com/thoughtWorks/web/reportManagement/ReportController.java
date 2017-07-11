@@ -29,9 +29,15 @@ public class ReportController {
     public String professionIndex() {
         return "reportManagement/profession";
     }
+
     @RequestMapping("result")
     public String resultIndex() {
         return "reportManagement/result";
+    }
+
+    @RequestMapping("newStudentRegister")
+    public String newStudentRegisterIndex() {
+        return "reportManagement/newStudentRegister";
     }
 
 
@@ -65,7 +71,7 @@ public class ReportController {
         ResponseEntity<byte[]> responseEntity = null;
 
         try {
-            File file = reportService.exportProfessionReport(level,request);
+            File file = reportService.exportProfessionReport(level, request);
             responseEntity = getResponseEntity(file);
             file.delete();
         } catch (Exception e) {
