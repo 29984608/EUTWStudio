@@ -146,7 +146,6 @@
                     success: function (data) {
                         if (data.result) {
                             roleid = roleId;
-                            console.log(data)
                             hasPermission = data.data.hasPermissions;
                             let nodes = role.changePermissionToTree(data.data.permissions);
 
@@ -171,7 +170,6 @@
                     btnAlign: 'l',
                     btn: ['确定修改']
                     , yes: function (index, layero) {
-                        console.log(hasPermission);
                         let updatePermissions = "";
                         let allNodes = $(".per");
                         for (let i = 0; i < allNodes.length; ++i) {

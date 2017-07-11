@@ -27,16 +27,20 @@
                         <input type="number" name="level" id="level_search" lay-verify="title" autocomplete="off"
                                placeholder="请输入一个级别" class="layui-input">
                     </div>
-                    <button class="layui-btn" onclick="profession.list()"><i class="layui-icon">&#xe615;</i>查询报表</button>
+                    <button class="layui-btn" onclick="profession.list()"><i class="layui-icon">&#xe615;</i>查询报表
+                    </button>
                 </div>
-                <button class="layui-btn" style="float: right" onclick="printPdf()"><i class="layui-icon">&#xe61e;</i>导出 EXCEl</button>
+                <button class="layui-btn" style="float: right" onclick="profession.exportExcel()"><i class="layui-icon">&#xe61e;</i>导出
+                    EXCEl
+                </button>
             </blockquote>
             <div class="larry-separate"></div>
             <div id="container" class="layui-tab-content larry-personal-body clearfix mylog-info-box"
                  style="background: #fff;width: 100%;height: 100%;margin: 5px 0px">
                 <div style="text-align: center;font-size: 20px;font-weight: bold">高职学院专业人数统计表<span
                         id="level">(2017)</span>
-                    <span style="font-size: 13px;margin-left: 40px">统计日期:<spqn id="time">2017-6-3 12:12:21</spqn></span></div>
+                    <span style="font-size: 13px;margin-left: 40px">统计日期:<spqn id="time">2017-6-3 12:12:21</spqn></span>
+                </div>
                 <table class="layui-table">
                     <colgroup>
                         <col width="60">
@@ -86,12 +90,16 @@
                     if (data.result) {
                         let date = new Date();
                         $("#level").text(level)
-                        $("#time").text(date.getFullYear() + " 年 "+(date.getMonth()+1)+" 月 "+date.getDate()+" 日");
+                        $("#time").text(date.getFullYear() + " 年 " + (date.getMonth() + 1) + " 月 " + date.getDate() + " 日");
                         profession.showPage(data.data);
                     } else {
                         layer.msg(data.msg);
                     }
                 })
+            },
+            exportExcel: function () {
+                let level = $("#level_search").val();
+                location.href = baseUrl + "/report/exportProfessionReport?level=" + level;
             },
             showPage: function (data) {
                 let index = 0;

@@ -123,7 +123,7 @@
                             </tr>
                             <tr>
                                 <td><span class="tit">2017-7-9</span></td>
-                                <td><span class="info">完成专业报表、fix 班级维护模糊查询 bug </span></td>
+                                <td><span class="info">完成专业报1表、fix 班级维护模糊查询 bug </span></td>
                             </tr>
                             <tr>
                                 <td><span class="tit">2017-7-10</span></td>

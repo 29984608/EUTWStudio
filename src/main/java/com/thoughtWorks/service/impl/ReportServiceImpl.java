@@ -3,9 +3,11 @@ package com.thoughtWorks.service.impl;
 import com.thoughtWorks.dao.ReportDao;
 import com.thoughtWorks.service.ReportService;
 import com.thoughtWorks.util.excelUtil.ExcelReportUtil;
+import com.thoughtWorks.util.reportUtil.ProfessionReportUtil;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,7 +21,7 @@ public class ReportServiceImpl implements ReportService {
     private ReportDao reportDao;
 
     @Override
-    public File exportProfessionReport(String level) throws Exception {
+    public File exportProfessionReport(String level, HttpServletRequest request) throws Exception {
         Map<String, String> headers = new HashMap<>();
         headers.put("index", "序号");
         headers.put("departmentName", "系名");
@@ -31,8 +33,11 @@ public class ReportServiceImpl implements ReportService {
         headers.put("nowNumber", "人数");
         headers.put("remark", "备注");
         List<Map<String, Object>> dataSet = professionList(level);
-        File file = new File("/home/acey/Documents//ass.xls");
-        ExcelReportUtil.exportExcel(headers, dataSet, file, "专业报表");
+        String fileName = "高职学院专业人数统计表" + (level == null ? "" : level) + ".xls";
+        String path = request.getServletContext().getRealPath("images/temp") + "/" + fileName;
+        File file = new File(path);
+        new ProfessionReportUtil().exportExcel(headers, dataSet, file, fileName.substring(0, fileName.lastIndexOf(".")));
+
         return file;
     }
 
@@ -109,6 +114,7 @@ public class ReportServiceImpl implements ReportService {
             data.put(param, String.valueOf(oldNumber));
         }
     }
+
     private void subOne(Map<String, String> data, String param) {
         if (data.get(param) == null) {
             data.put(param, "1");

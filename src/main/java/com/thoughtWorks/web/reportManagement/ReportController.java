@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -27,6 +28,10 @@ public class ReportController {
     @RequestMapping("profession")
     public String professionIndex() {
         return "reportManagement/profession";
+    }
+    @RequestMapping("result")
+    public String resultIndex() {
+        return "reportManagement/result";
     }
 
 
@@ -56,12 +61,13 @@ public class ReportController {
     }
 
     @RequestMapping("exportProfessionReport")
-    public ResponseEntity<byte[]> exportProfessionReport(String level) throws IOException {
+    public ResponseEntity<byte[]> exportProfessionReport(String level, HttpServletRequest request) throws IOException {
         ResponseEntity<byte[]> responseEntity = null;
-        String fileName = "高职学院专业人数统计表 " + (level == null ? "" : level) + ".xls";
+
         try {
-            File file = reportService.exportProfessionReport(level);
-            responseEntity = getResponseEntity(fileName, file);
+            File file = reportService.exportProfessionReport(level,request);
+            responseEntity = getResponseEntity(file);
+            file.delete();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -69,8 +75,8 @@ public class ReportController {
         return responseEntity;
     }
 
-    private ResponseEntity<byte[]> getResponseEntity(String fileName, File file) throws IOException {
-        String dfileName = new String(fileName.getBytes("utf8"), "iso8859-1");
+    private ResponseEntity<byte[]> getResponseEntity(File file) throws IOException {
+        String dfileName = new String(file.getName().getBytes("utf8"), "iso8859-1");
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
         headers.setContentDispositionFormData("attachment", dfileName);
