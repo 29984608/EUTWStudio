@@ -68,7 +68,7 @@
 
             <label class="layui-form-label " style="font-size: 13px">沟通对象</label>
             <div class="layui-input-inline">
-                <input type="radio" name="name" lay-filter="talk" value="student" title="学生" checked>
+                <input type="radio" name="name" id="student_radio" lay-filter="talk" value="student" title="学生" checked>
                 <input type="radio" name="name" lay-filter="talk" value="parent" title="家长">
             </div>
             <div class="layui-form-mid layui-word-aux" id="talkName"></div>
@@ -104,7 +104,7 @@
 </div>
 
 <div id="update" style="display: none;background: #fff">
-    <a class="layui-btn" onclick="printPdf()"><i class="layui-icon">&#xe630;</i>打印</a>
+    <a class="layui-btn" onclick="printPdf()" id="printPDF"><i class="layui-icon">&#xe630;</i>打印</a>
     <div class="container" id="container" style="padding:50px 30px">
 
         <h1 style="text-align: center;margin-left: -30px"><span id="who"></span>的沟通反馈记录</h1>

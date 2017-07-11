@@ -120,7 +120,7 @@
                     let isChecked = classess[i].teacherId == no ? "checked" : "";
                     if (classess[i].level !== level) {
                         totalHtml += ` <div class="layui-form-item">
-                                          <label class="layui-form-label" style="width: 60px;margin-left: 5%">` + level + `</label>
+                                          <label class="layui-form-label" style="width:100px;margin-left: 5%">` + level + `</label>
                                              <div class="layui-input-block" >`
                             + _html + `
                                              </div>
@@ -133,7 +133,7 @@
                     }
                     if (i === classess.length - 1 && classess[i].level === level) {
                         totalHtml += ` <div class="layui-form-item">
-                                          <label class="layui-form-label" style="width: 60px;margin-left: 5%">` + level + `</label>
+                                          <label class="layui-form-label" style="width: 100px;margin-left: 5%">` + level + `</label>
                                              <div class="layui-input-block" >`
                             + _html + `
                                              </div>

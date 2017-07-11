@@ -107,7 +107,7 @@
                 $.ajax({
                     url: baseUrl + "/communication/list",
                     data: data,
-                    type:"post",
+                    type: "post",
                     success: function (data) {
                         if (data.result) {
                             laytpl($("#list-tpl").text()).render(data, function (html) {
@@ -124,6 +124,7 @@
                     if (data.result) {
                         student = data.data;
 
+                        $("#student_radio").prop({checked: true});
                         $(".no").val(student.no);
                         $("#studentName").val(student.name);
                         $("#talkName").text(student.name);
@@ -178,12 +179,20 @@
                 }
                 communication.updateAjax(data);
             },
-            previewOrUpdate: function (name,studentNo, type) {
+            previewOrUpdate: function (name, studentNo, type) {
                 $("#who").text(name);
+
                 $.post(baseUrl + "/communication/communication", {studentNo: studentNo}, function (data) {
                     if (data.result) {
                         showCommunicationContents(data.data, type);
-                        let title = type === "preview" ? "预览" : "添加";
+                        let title = null;
+                        if (type === "preview") {
+                            $("#printPDF").show();
+                            title = "预览"
+                        } else {
+                            $("#printPDF").hide();
+                            title = "修改"
+                        }
                         layer.open({
                             type: 1,
                             title: title,
@@ -207,7 +216,7 @@
     });
 
     function printPdf() {
-        pdf(document.getElementById("container"),$("#exportPDFName").text(),"a4")
+        pdf(document.getElementById("container"), $("#exportPDFName").text(), "a4")
     }
 </script>
 
