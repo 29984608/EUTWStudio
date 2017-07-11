@@ -2,18 +2,56 @@
 <script id="list-tpl" type="text/html">
     {{# layui.each(d.studentInfos, function(index,item){ }}
     <tr>
-        <td>{{ item.no}}</td>
-        <td>{{ item.name}}</td>
-        <td>{{ item.gender}}</td>
-        <td>{{ item.depatmentName}}</td>
-        <td>{{ item.directionName}}</td>
-        <td>{{ item.classesName}}</td>
-        <td>{{ item.professionName}}</td>
+
         <td>
-            {{# if(item.classes === undefined){ }}
+            {{# if(item.no === undefined){ }}
             未分配
             {{# }else{ }}
-            {{ item.classes}}
+            {{ item.no}}
+            {{#}}}
+        </td>
+
+        <td>
+            {{# if(item.name === undefined){ }}
+            未分配
+            {{# }else{ }}
+            {{ item.name}}
+            {{#}}}
+        </td>
+        <td>
+            {{# if(item.gender === undefined){ }}
+            未分配
+            {{# }else{ }}
+            {{ item.gender}}
+            {{#}}}
+        </td>
+        <td>
+            {{# if(item.depatmentName === undefined){ }}
+            未分配
+            {{# }else{ }}
+            {{ item.depatmentName}}
+            {{#}}}
+        </td>
+        <td>
+            {{# if(item.directionName === undefined){ }}
+            未分配
+            {{# }else{ }}
+            {{ item.directionName}}
+            {{#}}}
+        </td>
+
+        <td>
+            {{# if(item.classesName === undefined){ }}
+            未分配
+            {{# }else{ }}
+            {{ item.classesName}}
+            {{#}}}
+        </td>
+        <td>
+            {{# if(item.professionName === undefined){ }}
+            未分配
+            {{# }else{ }}
+            {{ item.professionName}}
             {{#}}}
         </td>
         <td>
