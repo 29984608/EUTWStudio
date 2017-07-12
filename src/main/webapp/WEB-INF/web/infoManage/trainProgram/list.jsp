@@ -158,7 +158,8 @@
                 });
             },
             preview: function (id, level, department, direction) {
-                $("#title-preview").text(level + "级" + direction + "人才培养方案");
+                let title = `西安欧亚学院高职学院` + department + level + `级` + direction + `方向人才培养方案`;
+                $("#title-preview").text(title);
 
                 $.post(baseUrl + "/trainProgram/loadModuleCoursesByProgram", {id: id}, function (data) {
                     if (data.result) {
