@@ -43,4 +43,12 @@ public interface TrainModuleService {
     void updateProgramModuleCourses(int id, String moduleCoursesStr)throws Exception;
 
     void deleteProgramById(int id)throws Exception;
+
+    List<Map<String,Object>> queryAllTestMethod(PageUtil pageUtil);
+
+    void addTestMethod(String name);
+
+    void updateTestMethod(String name,String id);
+
+    void deleteTestMethod(String id);
 }

@@ -40,4 +40,12 @@ public interface PersonService {
     void distributedDirection(String directionId, String studentIds)throws Exception;
 
     List<Map<String, Object>> queryStudentInfos(PageUtil page,SearchDto searchDto) throws Exception;
+
+    List<Map<String,Object>> queryAllDept(PageUtil pageUtil);
+
+    void addDept(String name);
+
+    void updateDept(String name, String id);
+
+    void deleteDept(String id);
 }

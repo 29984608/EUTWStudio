@@ -43,4 +43,14 @@ public interface PersonDao {
     List<Map<String,Object>> queryStudentList(Map<String, Object> data);
 
     Long queryStudentTotalCount(String name);
+
+    List<Map<String,Object>> queryAllDept(Map<String, Object> data);
+
+    Long queryDeptTotalCount();
+
+    void addDept(String name);
+
+    void updateDept(Map<String, Object> data);
+
+    void deleteDept(String id);
 }

@@ -203,4 +203,31 @@
         FROM t_classes
         WHERE teacher_id = #{no}
     </select>
+
+    <select id="queryTestMethodTotalCount" resultType="long">
+        SELECT COUNT(*)
+        FROM t_test_method
+    </select>
+
+    <select id="queryAllTestMethod" parameterType="map" resultType="map">
+        select *
+        from t_test_method
+        LIMIT #{start}, #{pageSize}
+    </select>
+
+    <insert id="addTestMethod" parameterType="map">
+        INSERT INTO stuinfo.t_test_method(name)
+        VALUES (#{name})
+    </insert>
+
+    <update id="updateTestMethod" parameterType="map">
+        UPDATE stuInfo.t_test_method
+        SET t_test_method.name = #{name}
+        WHERE stuInfo.t_test_method.id = #{id}
+    </update>
+
+    <delete id="deleteTestMethod" parameterType="string">
+        DELETE FROM stuInfo.t_test_method
+        WHERE id = #{id}
+    </delete>
 </mapper>
