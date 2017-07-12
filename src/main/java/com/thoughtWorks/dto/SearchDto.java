@@ -2,11 +2,29 @@ package com.thoughtWorks.dto;
 
 public class SearchDto {
     private String name;
+    private String studentNo;
+    private String classesId;
     private String departmentId;
     private String professionId;
     private String directionId;
     private String moduleId;
     private String semester;
+
+    public String getStudentNo() {
+        return studentNo;
+    }
+
+    public void setStudentNo(String studentNo) {
+        this.studentNo = studentNo;
+    }
+
+    public String getClassesId() {
+        return classesId;
+    }
+
+    public void setClassesId(String classesId) {
+        this.classesId = classesId;
+    }
 
     public String getModuleId() {
         return moduleId;

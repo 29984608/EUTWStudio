@@ -61,6 +61,8 @@ public class PersonServiceImpl implements PersonService {
         data.put("no", userName);
         data.put("professionId", searchDto.getProfessionId());
         data.put("directionId", searchDto.getDirectionId());
+        data.put("classesId", searchDto.getClassesId());
+        data.put("studentNo", searchDto.getStudentNo() + "%");
         data.put("name", "%" + searchDto.getName() + "%");
         List<Map<String, String>> students = personDao.queryStudentsByLikes(data);
 
@@ -68,10 +70,12 @@ public class PersonServiceImpl implements PersonService {
 
         List<Direction> directions = departmentDao.queryDirectionsByDepartmentId(String.valueOf(teacher.get("department_id")));
         List<Profession> professions = departmentDao.queryProfessionsByDepartmentId(String.valueOf(teacher.get("department_id")));
+        List<Classes> classes = trainModuleDao.queryClassesByTeacherHas(userName);
 
         result.put("studentClass", students);
         result.put("professions", professions);
         result.put("directions", directions);
+        result.put("classess", classes);
 
         return result;
     }
@@ -86,6 +90,7 @@ public class PersonServiceImpl implements PersonService {
         List<String> ids = Arrays.asList(studentIds.split(","));
         if (ids.size() != 0) personDao.distributedClass(classesId, ids);
     }
+
     @Override
     public void distributedDirection(String directionId, String studentIds) throws Exception {
         List<String> ids = Arrays.asList(studentIds.split(","));
@@ -93,7 +98,7 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public List<Map<String, Object>> queryStudentInfos(PageUtil page,SearchDto searchDto)throws Exception {
+    public List<Map<String, Object>> queryStudentInfos(PageUtil page, SearchDto searchDto) throws Exception {
         Map<String, Object> data = new HashMap<>();
         data.put("start", (page.getCurrentIndex() - 1) * page.getPageSize());
         data.put("pageSize", page.getPageSize());
@@ -137,7 +142,7 @@ public class PersonServiceImpl implements PersonService {
     public List<Map<String, String>> queryStudentsByTeacherHasClasses(SearchDto searchDto, String no) throws Exception {
         List<Classes> classes = trainModuleDao.queryClassesByTeacherHas(no);
 
-        return personDao.queryStudentsByClassesIdsAndLikeName("%" + searchDto.getName() + "%", classes,no);
+        return personDao.queryStudentsByClassesIdsAndLikeName("%" + searchDto.getName() + "%", classes, no);
     }
 
     @Override
@@ -159,7 +164,7 @@ public class PersonServiceImpl implements PersonService {
             String content = communication.get("content") + "";
             communication.put("contents", content.split(Constant.SPLIT_TAG));
             String time = ((Date) communication.get("time")).toString();
-            communication.put("time", time.substring(0,time.length()-2));
+            communication.put("time", time.substring(0, time.length() - 2));
         }
 
         return communications;
