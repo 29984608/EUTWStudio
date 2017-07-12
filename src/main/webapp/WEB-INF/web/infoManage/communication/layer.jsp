@@ -2,8 +2,6 @@
 <script id="list-tpl" type="text/html">
     {{# layui.each(d.data, function(index, item){ }}
     <tr>
-        <th><input type="checkbox" value="{{item.no}}-{{item.name}}" class="no_checkbox" name="" lay-skin="primary"
-        ></th>
         <td>{{ item.no}}</td>
         <td>{{ item.name}}</td>
         <td>{{ item.gender}}</td>
@@ -104,10 +102,10 @@
 </div>
 
 <div id="update" style="display: none;background: #fff">
-    <a class="layui-btn" onclick="printPdf()" id="printPDF"><i class="layui-icon">&#xe630;</i>打印</a>
+    <a class="layui-btn" onclick="printPdf()" id="printPDF"><i class="layui-icon">&#xe630;</i>导出 PDF</a>
     <div class="container" id="container" style="padding:50px 30px">
 
-        <h1 style="text-align: center;margin-left: -30px"><span id="who"></span>的沟通反馈记录</h1>
+        <h1 style="text-align: center;margin-left: -30px">西安欧亚学院高职学院<span id="who"></span>学生成长经历报告</h1>
 
         <div id="timelineContainer" class="timelineContainer">
 
@@ -219,10 +217,10 @@
              <dl class="timelineMinor">
                 <dt id="` + index + `"><a style="font-size: 12px;color: peru">Q&A</a></dt>
                 <dd class="timelineEvent" id="` + index + `EX" style="display:none;">
-                 <p style="font-size: 12px;"
-                           class=" contents">` + contents[index] + `</p>
-                    <p style="font-size: 12px;"
-                              class=" contents">` + contents[index + 1] + `</p>
+               <p style="font-size: 12px;"
+                           class=" contents"> <a style="font-size: 12px;color: peru">Q：</a> ` + contents[index] + `</p>
+                   <p style="font-size: 12px;"
+                              class=" contents"> <a style="font-size: 12px;color: peru">A：</a> ` + contents[index + 1] + `</p>
                     <br class="clear">
                 </dd>
             </dl>

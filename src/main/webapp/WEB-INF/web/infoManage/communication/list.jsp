@@ -36,13 +36,10 @@
             </blockquote>
             <div class="larry-separate"></div>
             <div class="layui-tab-content larry-personal-body clearfix mylog-info-box">
-                <a class="layui-btn" onclick="printPdf()"><i class="layui-icon">&#xe630;</i>打印</a>
                 <div class="layui-form">
                     <table class="layui-table">
                         <thead>
                         <tr>
-                            <th><input type="checkbox" lay-filter="checkedAll" name="" lay-skin="primary"
-                                       lay-filter="allChoose"></th>
                             <th>学号</th>
                             <th>姓名</th>
                             <th>性别</th>
