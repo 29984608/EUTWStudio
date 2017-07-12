@@ -20,17 +20,25 @@
 
                 <div class="layui-inline">
                     <div class="layui-inline">
-                        <div class="layui-input-inline">
-                            <select lay-filter="studentClass" id="direction_search">
-                                <option value="0">方向</option>
+                        <div class="layui-input-inline" style="width: auto">
+                            <select lay-filter="profession" id="profession_search">
+                                <option value="">专业</option>
+
                             </select>
                         </div>
-
-                        <div class="layui-input-inline" style="width: auto">
-                            <select lay-filter="profession" id="profession-search">
-                                <option value="0">专业</option>
-
+                        <div class="layui-input-inline">
+                            <select lay-filter="studentClass" id="direction_search">
+                                <option value="">方向</option>
                             </select>
+                        </div>
+                        <div class="layui-input-inline">
+                            <select  id="classes_search">
+                                <option value="">班级</option>
+                            </select>
+                        </div>
+                        <div class="layui-input-inline">
+                                <input type="text" name="title" id="no_search" lay-verify="title" autocomplete="off"
+                                       placeholder="学号" class="layui-input">
                         </div>
                         <div class="layui-input-inline">
                             <input type="text" name="title" id="name_search" lay-verify="title" autocomplete="off"
@@ -43,8 +51,8 @@
             </blockquote>
             <div class="larry-separate"></div>
             <div class="layui-tab-content larry-personal-body clearfix mylog-info-box">
-                <a class="layui-btn" onclick="studentClass.add()"><i class="layui-icon">&#xe630;</i>分配班级</a>
-                <a class="layui-btn" onclick="studentClass.distributeDirection()"><i class="layui-icon">&#xe630;</i>分配方向</a>
+                <a class="layui-btn" onclick="studentClass.add()"><i class="layui-icon">&#xe630;</i>班级选择</a>
+                <a class="layui-btn" onclick="studentClass.distributeDirection()"><i class="layui-icon">&#xe630;</i>就业方向</a>
                 <a class="layui-form-mid layui-word-aux">请先勾选学生</a>
                 <div class="layui-form">
                     <table class="layui-table">
@@ -144,18 +152,21 @@
             list: function () {
                 let data = {
                     name: $("#name_search").val(),
+                    studentNo: $("#no_search").val(),
                     directionId: $("#direction_search").val(),
-                    professionId: $("#profession-search").val()
-                }
+                    professionId: $("#profession_search").val(),
+                    classesId: $("#classes_search").val()
+                };
                 $.ajax({
                     url: baseUrl + "/studentClass/list",
                     data: data,
                     type:"post",
                     success: function (data) {
                         if (data.result) {
-                            console.log(data)
-                            $("#profession-search").html("<option value='0'>专业</option>"+studentClass.loadSelectElementHtml(data.data.professions));
-                            $("#direction_search").html("<option value='0'>方向</option>"+studentClass.loadSelectElementHtml(data.data.directions));
+                            console.log(data);
+                            $("#profession_search").html("<option value=''>专业</option>"+studentClass.loadSelectElementHtml(data.data.professions));
+                            $("#direction_search").html("<option value=''>方向</option>"+studentClass.loadSelectElementHtml(data.data.directions));
+                            $("#classes_search").html("<option value=''>年级</option>"+studentClass.loadSelectElementHtml(data.data.classess));
 
                             laytpl($("#list-tpl").text()).render(data, function (html) {
                                 $("#list").html(html);

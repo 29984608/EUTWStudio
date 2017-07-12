@@ -27,17 +27,21 @@
         LEFT JOIN (SELECT no, department_id FROM t_teacher) teacher ON teacher.no = #{no}
         LEFT JOIN (SELECT id FROM t_department) department ON department.id = teacher.department_id
         LEFT JOIN (SELECT id, name FROM t_direction) direction ON direction.id = student.direction_id
-        <if test="directionId!=0">
+        <if test="directionId!=''">
             AND direction.id = #{directionId}
         </if>
         LEFT JOIN (SELECT id,name FROM t_profession) profession ON profession.id = student.profession_id
-        <if test="professionId!=0">
+        <if test="professionId!=''">
             AND profession.id=#{professionId}
         </if>
         LEFT JOIN (SELECT id, name FROM t_classes) class ON class.id = student.classes_id
         WHERE student.department_id = teacher.department_id
         and direction_id =direction.id
         AND profession.id = profession_id
+        <if test="classesId!=''">
+            AND student.classes_id=#{classesId}
+        </if>
+        AND student.no LIKE #{studentNo}
         and student.name
         LIKE #{name}
     </select>
@@ -155,53 +159,55 @@
     </update>
 
     <select id="queryStudentInfos" resultType="map">
-        select * from tttttt;
+        SELECT *
+        FROM tttttt;
     </select>
 
     <select id="queryStudentTotalCount" parameterType="map" resultType="long">
-        select count(*) from t_student
+        SELECT count(*)
+        FROM t_student
         WHERE t_student.name
-        LIKE #{name}
+              LIKE #{name}
     </select>
 
     <select id="queryStudentList" resultType="map">
         SELECT
-          t_student.no,
-          t_student.name,
-          t_student.gender,
-          department.name depatmentName,
-          direction.name directionName,
-          classes.name classesName,
-          profession.name professionName
+            t_student.no,
+            t_student.name,
+            t_student.gender,
+            department.name depatmentName,
+            direction.name  directionName,
+            classes.name    classesName,
+            profession.name professionName
         FROM t_student
-          LEFT JOIN
+            LEFT JOIN
 
-          (SELECT
-             id,
-             NAME
-           FROM t_department) department ON department.id = t_student.department_id
+            (SELECT
+                 id,
+                 NAME
+             FROM t_department) department ON department.id = t_student.department_id
 
-          LEFT JOIN
-          (SELECT
-             id,
-             NAME
-           FROM t_direction) direction ON direction.id = t_student.direction_id
+            LEFT JOIN
+            (SELECT
+                 id,
+                 NAME
+             FROM t_direction) direction ON direction.id = t_student.direction_id
 
-          LEFT JOIN
-          (SELECT
-             id,
-             NAME
-           FROM t_classes) classes ON classes.id = t_student.department_id
+            LEFT JOIN
+            (SELECT
+                 id,
+                 NAME
+             FROM t_classes) classes ON classes.id = t_student.department_id
 
-          LEFT JOIN
-          (SELECT
-             id,
-             NAME
-           FROM t_profession) profession ON profession.id = t_student.direction_id
+            LEFT JOIN
+            (SELECT
+                 id,
+                 NAME
+             FROM t_profession) profession ON profession.id = t_student.direction_id
 
-           WHERE t_student.name
-                LIKE #{name}
-                LIMIT #{start}, #{pageSize}
+        WHERE t_student.name
+              LIKE #{name}
+        LIMIT #{start}, #{pageSize}
 
     </select>
 
