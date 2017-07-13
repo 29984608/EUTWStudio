@@ -19,7 +19,7 @@
         <div class="layui-tab">
             <blockquote class="layui-elem-quote mylog-info-tit">
                 <ul class="layui-tab-title">
-                    <li class="layui-btn " onclick="room.add()"><i class="layui-icon">&#xe61f;</i>添加考核方式
+                    <li class="layui-btn " onclick="room.add()"><i class="layui-icon">&#xe61f;</i>添加宿舍
                     </li>
                 </ul>
             </blockquote>
@@ -31,7 +31,8 @@
                         <thead>
                         <tr>
                             <th>序号</th>
-                            <th>考核方式</th>
+                            <th>楼层</th>
+                            <th>宿舍号</th>
                             <th>操作</th>
                         </tr>
                         </thead>
@@ -47,9 +48,10 @@
 </section>
 </body>
 <script id="list-tpl" type="text/html">
-    {{# layui.each(d.data.rooms, function(index, item){ }}
+    {{# layui.each(d.data.pageInfos, function(index, item){ }}
     <tr>
         <td>{{ index+1}}</td>
+        <td>{{ item.name}}</td>
         <td>{{ item.name}}</td>
         <td>
             <button class="layui-btn layui-btn-mini layui-btn-normal"
@@ -67,10 +69,10 @@
 <div id="add" style="margin: 10px;display: none">
     <form id="add-form" lay-filter="role-add" class="layui-form layui-form-pane" method="post">
         <div class="layui-form-item">
-            <label class="layui-form-label">考核方式</label>
+            <label class="layui-form-label">宿舍</label>
             <div class="layui-input-inline">
                 <input type="text" id="addRoomName"
-                       placeholder="请输入考核方式" autocomplete="off" class="layui-input ">
+                       placeholder="请输入宿舍号" autocomplete="off" class="layui-input ">
             </div>
         </div>
         <div class="layui-form-item">
@@ -86,10 +88,10 @@
         <input type="hidden" id="updateRoomId" name="id"/>
 
         <div class="layui-form-item">
-            <label class="layui-form-label">专业名称</label>
+            <label class="layui-form-label">宿舍</label>
             <div class="layui-input-inline">
                 <input type="text" id="updateRoomName" name="name" required jq-verify="required"
-                       placeholder="请输入专业名称" autocomplete="off" class="layui-input ">
+                       placeholder="请输入宿舍号" autocomplete="off" class="layui-input ">
             </div>
         </div>
         <div class="layui-form-item">
@@ -159,10 +161,10 @@
                 let name = $("#addRoomName").val();
                 layer.confirm('确定添加？', {icon: 3, title: '提示'}, function (index) {
                     layer.close(index);
-                    $.post(baseUrl + "room/add", {
+                    $.post(baseUrl + "dorm/room/add", {
                         name: name
                     }, function (data) {
-                        layer.msg(data.result);
+                        layer.msg(data.msg);
                         if (data.result) {
                             setTimeout("location.reload()", 500);
                         }
@@ -181,7 +183,7 @@
             delete: function (id) {
                 layer.confirm('确定删除？', {icon: 3, title: '提示'}, function (index) {
                     layer.close(index);
-                    $.post(baseUrl + "room/delete", {id: id}, function (data) {
+                    $.post(baseUrl + "dorm/room/delete", {id: id}, function (data) {
                         layer.msg(data.msg);
                         setTimeout("location.reload()", 400);
                     })
@@ -192,7 +194,7 @@
                 let id = $("#updateRoomId").val();
                 layer.confirm('确定修改？', {icon: 3, title: '提示'}, function (index) {
                     layer.close(index);
-                    $.post(baseUrl + "room/update", {
+                    $.post(baseUrl + "dorm/room/update", {
                         name: name,
                         id: id
                     }, function (data) {

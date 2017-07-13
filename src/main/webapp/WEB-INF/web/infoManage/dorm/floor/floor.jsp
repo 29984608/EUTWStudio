@@ -19,7 +19,7 @@
         <div class="layui-tab">
             <blockquote class="layui-elem-quote mylog-info-tit">
                 <ul class="layui-tab-title">
-                    <li class="layui-btn " onclick="floor.add()"><i class="layui-icon">&#xe61f;</i>添加考核方式
+                    <li class="layui-btn " onclick="floor.add()"><i class="layui-icon">&#xe61f;</i>添加楼层
                     </li>
                 </ul>
             </blockquote>
@@ -31,7 +31,8 @@
                         <thead>
                         <tr>
                             <th>序号</th>
-                            <th>考核方式</th>
+                            <th>区名称</th>
+                            <th>楼层</th>
                             <th>操作</th>
                         </tr>
                         </thead>
@@ -46,60 +47,7 @@
     </div>
 </section>
 </body>
-<script id="list-tpl" type="text/html">
-    {{# layui.each(d.data.floors, function(index, item){ }}
-    <tr>
-        <td>{{ index+1}}</td>
-        <td>{{ item.name}}</td>
-        <td>
-            <button class="layui-btn layui-btn-mini layui-btn-normal"
-                    onclick="floor.update('{{item.id}}','{{item.name}}')">
-                <i class="layui-icon">&#xe642;</i>修改
-            </button>
-            <button class="layui-btn layui-btn-mini  layui-btn-danger" onclick="floor.delete('{{item.id}}')">
-                <i class="layui-icon">&#xe60a;</i>删除
-            </button>
-        </td>
-    </tr>
-    {{# }); }}
-
-</script>
-<div id="add" style="margin: 10px;display: none">
-    <form id="add-form" lay-filter="role-add" class="layui-form layui-form-pane" method="post">
-        <div class="layui-form-item">
-            <label class="layui-form-label">考核方式</label>
-            <div class="layui-input-inline">
-                <input type="text" id="addFloorName"
-                       placeholder="请输入考核方式" autocomplete="off" class="layui-input ">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <div class="layui-input-block">
-                <a class="layui-btn" onclick="floor.addAjax()">立即提交</a>
-                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-            </div>
-        </div>
-    </form>
-</div>
-<div id="update" style="margin: 10px;display: none">
-    <form id="update-form" lay-filter="role-add" class="layui-form layui-form-pane" method="post">
-        <input type="hidden" id="updateFloorId" name="id"/>
-
-        <div class="layui-form-item">
-            <label class="layui-form-label">专业名称</label>
-            <div class="layui-input-inline">
-                <input type="text" id="updateFloorName" name="name" required jq-verify="required"
-                       placeholder="请输入专业名称" autocomplete="off" class="layui-input ">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <div class="layui-input-block">
-                <a class="layui-btn" onclick="floor.updateAjax()">立即提交</a>
-                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-            </div>
-        </div>
-    </form>
-</div>
+<%@ include file="layer.jsp" %>
 <script type="text/javascript" src="${baseurl}/public/common/layui/layui.js"></script>
 <script type="text/javascript">
     let totalSize = 10;
@@ -132,7 +80,7 @@
             },
             list: function () {
                 $.ajax({
-                    url: baseUrl + "floor/list",
+                    url: baseUrl + "dorm/floor/list",
                     data: {currentIndex: currentIndex, pageSize: pageSize},
                     success: function (data) {
                         if (data.result) {
@@ -140,8 +88,9 @@
                             totalSize = data.data.pageUtil.totalSize;
                             floor.page();
                             laytpl($("#list-tpl").text()).render(data, function (html) {
-                                $( "#list").html(html);
+                                $("#list").html(html);
                             });
+                            floor.loadSelectAreaHtml();
                             form.render();
 
                         }
@@ -151,17 +100,21 @@
             add: function () {
                 layer.open({
                     type: 1,
+                    area: ['390px', '260px'],
                     title: '添加'
                     , content: $("#add")
                 });
 
             },
-            addAjax:function () {
+            addAjax: function () {
                 let name = $("#addFloorName").val();
+                var options = $("#showAreasAdd option:selected");
+                var areaId = options.val();
                 layer.confirm('确定添加？', {icon: 3, title: '提示'}, function (index) {
                     layer.close(index);
-                    $.post(baseUrl + "floor/add", {
-                        name: name
+                    $.post(baseUrl + "dorm/floor/add", {
+                        name: name,
+                        areaId:areaId
                     }, function (data) {
                         layer.msg(data.result);
                         if (data.result) {
@@ -170,19 +123,46 @@
                     })
                 })
             },
-            update: function (id, name) {
+            update: function (id, name, areaName, area_id) {
                 $("#updateFloorName").val(name);
                 $("#updateFloorId").val(id);
+                $("#updateShowAreas").val(areaName);
+                $("#showAreasUpdates").html(floor.loadSelectAreaHtml(area_id));
                 layer.open({
                     type: 1,
+                    area: ["30%", "60%"],
                     title: '修改'
                     , content: $("#update")
                 });
             },
+            loadSelectAreaHtml: function (area_id) {
+                let _html = "";
+                $.post(baseUrl + "dorm/floor/selectArea", function (data) {
+                    $("#showAreasUpdates").html(floor.loadDepartmentOrDirection(data.data.dormInfos,area_id))
+                    laytpl($("#list-areas").text()).render(data, function (html) {
+                        $("#showAreasAdd").html(html);
+                    });
+                    form.render();
+                })
+
+                return _html;
+            },
+            loadDepartmentOrDirection: function (data, selectId) {
+                let _html = "";
+                for (let i = 0; i < data.length; ++i) {
+                    if (selectId == data[i].id) {
+                        _html += `<option selected value="` + data[i].id + `">` + data[i].name + `</option>`;
+                    } else {
+                        _html += `<option value="` + data[i].id + `">` + data[i].name + `</option>`;
+                    }
+                }
+
+                return _html;
+            },
             delete: function (id) {
                 layer.confirm('确定删除？', {icon: 3, title: '提示'}, function (index) {
                     layer.close(index);
-                    $.post(baseUrl + "floor/delete", {id: id}, function (data) {
+                    $.post(baseUrl + "dorm/floor/delete", {id: id}, function (data) {
                         layer.msg(data.msg);
                         setTimeout("location.reload()", 400);
                     })
@@ -193,7 +173,7 @@
                 let id = $("#updateFloorId").val();
                 layer.confirm('确定修改？', {icon: 3, title: '提示'}, function (index) {
                     layer.close(index);
-                    $.post(baseUrl + "floor/update", {
+                    $.post(baseUrl + "dorm/floor/update", {
                         name: name,
                         id: id
                     }, function (data) {
@@ -212,6 +192,49 @@
     });
 
 
+</script>
+
+<script>
+    layui.use(['form', 'layedit', 'laydate'], function () {
+        var form = layui.form()
+            , layer = layui.layer
+            , layedit = layui.layedit
+            , laydate = layui.laydate;
+
+        //创建一个编辑器
+        var editIndex = layedit.build('LAY_demo_editor');
+
+        //自定义验证规则
+        form.verify({
+            title: function (value) {
+                if (value.length < 5) {
+                    return '标题至少得5个字符啊';
+                }
+            }
+            , pass: [/(.+){6,12}$/, '密码必须6到12位']
+            , content: function (value) {
+                layedit.sync(editIndex);
+            }
+        });
+
+        //监听指定开关
+        form.on('switch(switchTest)', function (data) {
+            layer.msg('开关checked：' + (this.checked ? 'true' : 'false'), {
+                offset: '6px'
+            });
+            layer.tips('温馨提示：请注意开关状态的文字可以随意定义，而不仅仅是ON|OFF', data.othis)
+        });
+
+        //监听提交
+        form.on('submit(demo1)', function (data) {
+            layer.alert(JSON.stringify(data.field), {
+                title: '最终的提交信息'
+            })
+            return false;
+        });
+
+
+    });
 </script>
 
 </html>

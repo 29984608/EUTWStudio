@@ -28,4 +28,72 @@
         DELETE FROM stuinfo.t_area
         WHERE id = #{id}
     </delete>
+
+
+
+
+
+
+
+    <select id="queryFloors" resultType="map" parameterType="map">
+        select *,a.id areaId,a.name areaName from t_floor f,stuinfo.t_area a
+        WHERE f.area_id = a.id
+        limit #{start},#{pageSize}
+    </select>
+
+    <select id="queryFloorsTotalCount" resultType="long">
+        select count(*) from t_floor;
+    </select>
+
+    <insert id="addFloor" parameterType="string">
+        INSERT INTO stuinfo.t_floor(name,area_id)
+        VALUES(#{name},#{areaId})
+    </insert>
+
+    <update id="updateFloor" parameterType="map">
+        UPDATE stuinfo.t_floor
+        SET stuInfo.t_floor.name = #{name}
+        WHERE stuInfo.t_floor.id = #{id}
+    </update>
+
+    <delete id="deleteFloor" parameterType="string">
+        DELETE FROM stuinfo.t_floor
+        WHERE id = #{id}
+    </delete>
+
+    <select id="selectAreaOfFloor" resultType="map">
+        select * from stuinfo.t_area
+    </select>
+
+
+
+
+
+
+
+    <select id="queryRooms" resultType="map" parameterType="map">
+        select * from t_room
+        limit #{start},#{pageSize}
+    </select>
+
+    <select id="queryRoomsTotalCount" resultType="long">
+        select count(*) from t_room;
+    </select>
+
+    <insert id="addRoom" parameterType="string">
+        INSERT INTO stuinfo.t_room(name)
+        VALUES(#{name})
+    </insert>
+
+    <update id="updateRoom" parameterType="map">
+        UPDATE stuinfo.t_room
+        SET stuInfo.t_room.name = #{name}
+        WHERE stuInfo.t_room.id = #{id}
+    </update>
+
+    <delete id="deleteRoom" parameterType="string">
+        DELETE FROM stuinfo.t_room
+        WHERE id = #{id}
+    </delete>
+
 </mapper>
