@@ -181,7 +181,7 @@ CREATE TABLE `t_permission` (
 
 LOCK TABLES `t_permission` WRITE;
 /*!40000 ALTER TABLE `t_permission` DISABLE KEYS */;
-INSERT INTO `t_permission` VALUES (1,'权限',' ','',NULL,0,'0/',NULL,'1',NULL),(2,'系统管理','menu','/systemManage','larry-xitongshezhi1',1,'0/1/','1','1','permissionManage:'),(4,'添加','permission','','',6,'0/1/2/6/','3','1','rolePermission:add'),(6,'角色权限分配','menu','/userRole','larry-yonghuliebiao',2,'0/1/2/','2','1','rolePermission:'),(11,'用户角色分配','menu','/roleDistribute','larry-quanxianguanli',2,'0/1/2/','2','1','userRole:'),(12,'报表管理','menu','/report','larry-lanmuguanli1',1,'0/1/','1','1','port:'),(13,'专业人数报表','menu','/report/profession','larry-neirongguanli',12,'0/1/12/','2','1','professionPort:'),(14,'就业方向人数报表','menu','/report/directionPort','larry-neirongguanli',12,'0/1/12/','2','1','directionPort:'),(15,'信息管理','menu','/infoManage','larry-lanmuguanli1',1,'0/1/','1','1','infoManage:'),(16,'学生班级分配','menu','/studentClass','larry-gereninfo',15,'0/1/15/','2','1','studentClass:'),(17,'教师信息','menu','/teacher','larry-gereninfo',15,'0/1/15/','2','1','teacher:'),(18,'沟通反馈','menu','/communication','larry-neirong',15,'0/1/15/','2','1','communication:'),(19,'系信息维护','menu','/department','larry-jiankong1',15,'0/1/15/','2','1','department:'),(20,'专业维护','menu','/profession','larry-hrrq_xtrz',15,'0/1/15/','2','1','profession:'),(21,'课程信息','menu','/course','larry-hrrq_xtrz',15,'0/1/15/','2','1','course:'),(22,'修改','permission','','',6,'0/1/2/6/','3','1','rolePermission:update'),(23,'权限配置','permission',NULL,NULL,6,'0/1/2/6/','3','1','rolePermission:setting'),(24,'状态设置','permission',NULL,NULL,6,'0/1/2/6/','3','1','rolePermission:available'),(25,'角色修改','permission',NULL,NULL,11,'0/1/2/11/','3','1','userRole:update'),(26,'方向维护','menu','/direction','larry-hrrq_xtrz',15,'0/1/15/','2','1','direction:'),(27,'培养模块','menu','/courseModule','larry-kechengguanli',15,'0/1/15/','2','1','courseModule:'),(28,'添加','permission',NULL,NULL,27,'0/1/15/27/','3','1','courseModule:add'),(29,'修改','permission',NULL,NULL,27,'0/1/15/27/','3','1','courseModule:update'),(30,'删除','permission',NULL,NULL,27,'0/1/15/27/','3','1','courseModule:delete'),(31,'班级维护','menu','/classes','larry-tubiaozitimoban',15,'0/1/15/','2','1','classes:'),(32,'添加','permission',NULL,NULL,26,'0/1/15/26/','3','1','direction:add'),(33,'删除','permission',NULL,NULL,26,'0/1/15/26/','3','1','direction:delete'),(34,'修改','permission',NULL,NULL,26,'0/1/15/26/','3','1','direction:update'),(35,'添加','permission',NULL,NULL,20,'0/1/15/20/','3','1','profession:add'),(36,'删除','permission',NULL,NULL,20,'0/1/15/20/','3','1','profession:delete'),(37,'修改','permission',NULL,NULL,20,'0/1/15/20/','3','1','profession:update'),(38,'添加','permission',NULL,NULL,19,'0/1/15/19/','3','1','department:add'),(39,'删除','permission',NULL,NULL,19,'0/1/15/19/','3','1','department:delete'),(40,'修改','permission',NULL,NULL,19,'0/1/15/19/','3','1','department:update'),(41,'添加','permission',NULL,NULL,31,'0/1/15/31/','3','1','classes:add'),(42,'删除','permission',NULL,NULL,31,'0/1/15/31/','3','1','classes:delete'),(43,'修改','permission',NULL,NULL,31,'0/1/15/31/','3','1','classes:update'),(44,'添加','permission',NULL,NULL,17,'0/1/15/17/','3','1','teacher:add'),(45,'删除','permission',NULL,NULL,17,'0/1/15/17/','3','1','teacher:delete'),(46,'修改','permission',NULL,NULL,17,'0/1/15/17/','3','1','teacher:update'),(47,'人才培养方案','menu','/trainProgram','larry-gerenxinxi4',15,'0/1/15/','2','1','trainProgram:'),(48,'学生信息','menu','/student','larry-gerenxinxi4',15,'0/1/15/','2','1','student:'),(49,'学籍报表','menu','/port/studentInfo','larry-neirongguanli',12,'0/1/12/','2','1','studentInfoPort:'),(50,'成绩报表','menu','/report/result','larry-neirongguanli',12,'0/1/12/','2','1','resultReport:'),(51,'新生入学登记表','menu','/report/newStudentRegister','larry-neirongguanli',12,'0/1/12/','2','1','newStudentRegisterReport:'),(52,'考核方式','menu','/testMethod','larry-neirongguanli',15,'0/1/15/','2','1','testMethod:');
+INSERT INTO `t_permission` VALUES (1,'权限',' ','',NULL,0,'0/',NULL,'1',NULL),(2,'系统管理','menu','/systemManage','larry-xitongshezhi1',1,'0/1/','1','1','permissionManage:'),(4,'添加','permission','','',6,'0/1/2/6/','3','1','rolePermission:add'),(6,'角色权限分配','menu','/userRole','larry-yonghuliebiao',2,'0/1/2/','2','1','rolePermission:'),(11,'用户角色分配','menu','/roleDistribute','larry-quanxianguanli',2,'0/1/2/','2','1','userRole:'),(12,'报表管理','menu','/report','larry-lanmuguanli1',1,'0/1/','1','1','port:'),(13,'专业人数报表','menu','/report/profession','larry-neirongguanli',12,'0/1/12/','2','1','professionPort:'),(14,'就业方向人数报表','menu','/report/directionPort','larry-neirongguanli',12,'0/1/12/','2','1','directionPort:'),(15,'信息管理','menu','/infoManage','larry-lanmuguanli1',1,'0/1/','1','1','infoManage:'),(16,'学生班级','menu','/studentClass','larry-gereninfo',15,'0/1/15/','2','1','studentClass:'),(17,'行政管理','menu','/teacher','larry-gereninfo',15,'0/1/15/','2','1','teacher:'),(18,'沟通反馈','menu','/communication','larry-neirong',15,'0/1/15/','2','1','communication:'),(19,'系信息维护','menu','/department','larry-jiankong1',15,'0/1/15/','2','1','department:'),(20,'专业名称','menu','/profession','larry-hrrq_xtrz',15,'0/1/15/','2','1','profession:'),(21,'课程信息','menu','/course','larry-hrrq_xtrz',15,'0/1/15/','2','1','course:'),(22,'修改','permission','','',6,'0/1/2/6/','3','1','rolePermission:update'),(23,'权限配置','permission',NULL,NULL,6,'0/1/2/6/','3','1','rolePermission:setting'),(24,'状态设置','permission',NULL,NULL,6,'0/1/2/6/','3','1','rolePermission:available'),(25,'角色修改','permission',NULL,NULL,11,'0/1/2/11/','3','1','userRole:update'),(26,'方向维护','menu','/direction','larry-hrrq_xtrz',15,'0/1/15/','2','1','direction:'),(27,'课程类别','menu','/courseModule','larry-kechengguanli',15,'0/1/15/','2','1','courseModule:'),(28,'添加','permission',NULL,NULL,27,'0/1/15/27/','3','1','courseModule:add'),(29,'修改','permission',NULL,NULL,27,'0/1/15/27/','3','1','courseModule:update'),(30,'删除','permission',NULL,NULL,27,'0/1/15/27/','3','1','courseModule:delete'),(31,'班级维护','menu','/classes','larry-tubiaozitimoban',15,'0/1/15/','2','1','classes:'),(32,'添加','permission',NULL,NULL,26,'0/1/15/26/','3','1','direction:add'),(33,'删除','permission',NULL,NULL,26,'0/1/15/26/','3','1','direction:delete'),(34,'修改','permission',NULL,NULL,26,'0/1/15/26/','3','1','direction:update'),(35,'添加','permission',NULL,NULL,20,'0/1/15/20/','3','1','profession:add'),(36,'删除','permission',NULL,NULL,20,'0/1/15/20/','3','1','profession:delete'),(37,'修改','permission',NULL,NULL,20,'0/1/15/20/','3','1','profession:update'),(38,'添加','permission',NULL,NULL,19,'0/1/15/19/','3','1','department:add'),(39,'删除','permission',NULL,NULL,19,'0/1/15/19/','3','1','department:delete'),(40,'修改','permission',NULL,NULL,19,'0/1/15/19/','3','1','department:update'),(41,'添加','permission',NULL,NULL,31,'0/1/15/31/','3','1','classes:add'),(42,'删除','permission',NULL,NULL,31,'0/1/15/31/','3','1','classes:delete'),(43,'修改','permission',NULL,NULL,31,'0/1/15/31/','3','1','classes:update'),(44,'添加','permission',NULL,NULL,17,'0/1/15/17/','3','1','teacher:add'),(45,'删除','permission',NULL,NULL,17,'0/1/15/17/','3','1','teacher:delete'),(46,'修改','permission',NULL,NULL,17,'0/1/15/17/','3','1','teacher:update'),(47,'培养方案','menu','/trainProgram','larry-gerenxinxi4',15,'0/1/15/','2','1','trainProgram:'),(48,'学生信息','menu','/student','larry-gerenxinxi4',15,'0/1/15/','2','1','student:'),(49,'学籍报表','menu','/port/studentInfo','larry-neirongguanli',12,'0/1/12/','2','1','studentInfoPort:'),(50,'成绩报表','menu','/report/result','larry-neirongguanli',12,'0/1/12/','2','1','resultReport:'),(51,'新生入学登记表','menu','/report/newStudentRegister','larry-neirongguanli',12,'0/1/12/','2','1','newStudentRegisterReport:'),(52,'考核方式','menu','/testMethod','larry-neirongguanli',15,'0/1/15/','2','1','testMethod:');
 /*!40000 ALTER TABLE `t_permission` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -306,7 +306,7 @@ CREATE TABLE `t_role_permission` (
   `sys_role_id` int(11) NOT NULL COMMENT '角色id',
   `sys_permission_id` bigint(20) NOT NULL COMMENT '权限id',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=126 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=127 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -315,7 +315,7 @@ CREATE TABLE `t_role_permission` (
 
 LOCK TABLES `t_role_permission` WRITE;
 /*!40000 ALTER TABLE `t_role_permission` DISABLE KEYS */;
-INSERT INTO `t_role_permission` VALUES (9,1,2),(10,1,3),(12,1,5),(28,1,11),(55,1,6),(56,1,22),(69,1,15),(70,1,16),(71,1,17),(72,1,18),(75,1,21),(76,1,4),(80,2,2),(81,2,11),(82,2,5),(83,2,6),(84,2,15),(85,2,16),(86,2,17),(87,2,18),(88,2,19),(89,2,20),(90,2,21),(91,1,12),(92,1,13),(93,1,14),(94,1,23),(95,1,24),(96,1,25),(97,1,19),(98,1,20),(100,1,26),(101,1,27),(102,1,28),(103,1,29),(104,1,30),(105,1,31),(106,1,32),(107,1,33),(108,1,34),(109,1,35),(110,1,36),(111,1,37),(112,1,38),(113,1,39),(114,1,40),(115,1,41),(116,1,42),(117,1,43),(118,1,44),(119,1,45),(120,1,46),(121,1,47),(122,1,49),(123,1,48),(124,1,50),(125,1,51);
+INSERT INTO `t_role_permission` VALUES (9,1,2),(10,1,3),(12,1,5),(28,1,11),(55,1,6),(56,1,22),(69,1,15),(70,1,16),(71,1,17),(72,1,18),(75,1,21),(76,1,4),(80,2,2),(81,2,11),(82,2,5),(83,2,6),(84,2,15),(85,2,16),(86,2,17),(87,2,18),(88,2,19),(89,2,20),(90,2,21),(91,1,12),(92,1,13),(93,1,14),(94,1,23),(95,1,24),(96,1,25),(97,1,19),(98,1,20),(100,1,26),(101,1,27),(102,1,28),(103,1,29),(104,1,30),(105,1,31),(106,1,32),(107,1,33),(108,1,34),(109,1,35),(110,1,36),(111,1,37),(112,1,38),(113,1,39),(114,1,40),(115,1,41),(116,1,42),(117,1,43),(118,1,44),(119,1,45),(120,1,46),(121,1,47),(122,1,49),(123,1,48),(124,1,50),(125,1,51),(126,1,52);
 /*!40000 ALTER TABLE `t_role_permission` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -347,7 +347,7 @@ CREATE TABLE `t_student` (
 
 LOCK TABLES `t_student` WRITE;
 /*!40000 ALTER TABLE `t_student` DISABLE KEYS */;
-INSERT INTO `t_student` VALUES ('13290037150209','张三','男','29','14','8','12','1张三','12'),('14420625150297','acey','男','1','11','7','9',NULL,'9'),('14526354785642','冯杉','女','29','10','8','15',NULL,'12'),('14536254785635','马文华','男','1','9','8','8',NULL,'7'),('15364759645236','张红','女','29','10','9','14',NULL,'14'),('15610409153608','马欢','男','3','18','11','18',NULL,'18'),('15610409158745','赵天','男','2','13','10','18',NULL,'13'),('15610903150627','毛良伟','男','1','9','6','7',NULL,'7'),('15613548754126','陈明','男','1','12','7','11',NULL,'11'),('16510066257896','小明','男','29','18','8','11',NULL,'7'),('16610402180369','小花','女','29','17','8','15',NULL,'16');
+INSERT INTO `t_student` VALUES ('13290037150209','张三','男','29','14','8','7','1张三','12'),('14420625150297','acey','男','1','11','7','9',NULL,'9'),('14526354785642','冯杉','女','29','10','7','8',NULL,'12'),('14536254785635','马文华','男','1','9','8','8',NULL,'7'),('15364759645236','张红','女','29','10','7','14',NULL,'14'),('15610409153608','马欢','男','3','18','11','18',NULL,'18'),('15610409158745','赵天','男','2','13','10','18',NULL,'13'),('15610903150627','毛良伟','男','1','9','6','7',NULL,'7'),('15613548754126','陈明','男','1','12','7','11',NULL,'11'),('16510066257896','小明','男','29','18','8','11',NULL,'7'),('16610402180369','小花','女','29','17','8','15',NULL,'16');
 /*!40000 ALTER TABLE `t_student` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -389,7 +389,7 @@ CREATE TABLE `t_test_method` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='考核方式';
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COMMENT='考核方式';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -398,6 +398,7 @@ CREATE TABLE `t_test_method` (
 
 LOCK TABLES `t_test_method` WRITE;
 /*!40000 ALTER TABLE `t_test_method` DISABLE KEYS */;
+INSERT INTO `t_test_method` VALUES (1,'12'),(2,'12'),(3,'12'),(4,'12'),(5,'12'),(6,'12'),(7,'12'),(8,'12'),(9,'12'),(10,'12'),(11,'12'),(12,'12'),(13,'12'),(14,'12'),(15,'12'),(16,'12'),(17,'12'),(18,'12'),(19,'12');
 /*!40000 ALTER TABLE `t_test_method` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -422,7 +423,7 @@ CREATE TABLE `t_train_module` (
 
 LOCK TABLES `t_train_module` WRITE;
 /*!40000 ALTER TABLE `t_train_module` DISABLE KEYS */;
-INSERT INTO `t_train_module` VALUES (3,'1990031','岗位技能'),(4,'199004','能力拓展'),(11,'199001','通识教育'),(12,'199002','专业平台');
+INSERT INTO `t_train_module` VALUES (3,'1990031','通识教育'),(4,'199004','专业平台'),(11,'199001','岗位技能'),(12,'199002','能力拓展');
 /*!40000 ALTER TABLE `t_train_module` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -593,4 +594,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-07-11 19:49:20
+-- Dump completed on 2017-07-12 16:47:36

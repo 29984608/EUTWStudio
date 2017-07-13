@@ -2,7 +2,6 @@
 <script id="list-tpl" type="text/html">
     {{# layui.each(d.studentInfos, function(index,item){ }}
     <tr>
-
         <td>
             {{# if(item.no === undefined){ }}
             未分配
@@ -33,6 +32,13 @@
             {{#}}}
         </td>
         <td>
+            {{# if(item.professionName === undefined){ }}
+            未分配
+            {{# }else{ }}
+            {{ item.professionName}}
+            {{#}}}
+        </td>
+        <td>
             {{# if(item.directionName === undefined){ }}
             未分配
             {{# }else{ }}
@@ -47,13 +53,7 @@
             {{ item.classesName}}
             {{#}}}
         </td>
-        <td>
-            {{# if(item.professionName === undefined){ }}
-            未分配
-            {{# }else{ }}
-            {{ item.professionName}}
-            {{#}}}
-        </td>
+
         <td>
 
             <%--<shiro:hasPermission name="communication:update">--%>
