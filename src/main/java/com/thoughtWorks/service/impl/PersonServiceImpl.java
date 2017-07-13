@@ -112,6 +112,33 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
+    public List<Map<String, Object>> queryAllDept(PageUtil pageUtil) {
+        Map<String, Object> data = new HashMap<>();
+        data.put("start", (pageUtil.getCurrentIndex() - 1) * pageUtil.getPageSize());
+        data.put("pageSize", pageUtil.getPageSize());
+        pageUtil.setTotalSize(personDao.queryDeptTotalCount());
+        return personDao.queryAllDept(data);
+    }
+
+    @Override
+    public void addDept(String name) {
+        personDao.addDept(name);
+    }
+
+    @Override
+    public void updateDept(String name, String id) {
+        Map<String, Object> data = new HashMap<>();
+        data.put("id", id);
+        data.put("name", name);
+        personDao.updateDept(data);
+    }
+
+    @Override
+    public void deleteDept(String id) {
+        personDao.deleteDept(id);
+    }
+
+    @Override
     public List<Map<String, String>> queryStudentsByTeacherHasClasses(SearchDto searchDto, String no) throws Exception {
         List<Classes> classes = trainModuleDao.queryClassesByTeacherHas(no);
 

@@ -139,6 +139,33 @@ public class TrainModuleServiceImpl implements TrainModuleService {
     }
 
     @Override
+    public List<Map<String, Object>> queryAllTestMethod(PageUtil pageUtil) {
+        Map<String, Object> data = new HashMap<>();
+        data.put("start", (pageUtil.getCurrentIndex() - 1) * pageUtil.getPageSize());
+        data.put("pageSize", pageUtil.getPageSize());
+        pageUtil.setTotalSize(trainModuleDao.queryTestMethodTotalCount());
+        return trainModuleDao.queryAllTestMethod(data);
+    }
+
+    @Override
+    public void addTestMethod(String name) {
+        trainModuleDao.addTestMethod(name);
+    }
+
+    @Override
+    public void updateTestMethod(String name,String id) {
+        Map<String, Object> data = new HashMap<>();
+        data.put("id", id);
+        data.put("name", name);
+        trainModuleDao.updateTestMethod(data);
+    }
+
+    @Override
+    public void deleteTestMethod(String id) {
+        trainModuleDao.deleteTestMethod(id);
+    }
+
+    @Override
     public List<Classes> queryClassesList(PageUtil page) throws Exception {
         Map<String, Object> data = new HashMap<>();
         data.put("start", (page.getCurrentIndex() - 1) * page.getPageSize());

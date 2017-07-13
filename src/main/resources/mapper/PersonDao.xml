@@ -211,4 +211,29 @@
 
     </select>
 
+    <select id="queryAllDept" parameterType="map" resultType="map">
+        select * from t_dept
+        limit #{start},#{pageSize};
+    </select>
+
+    <select id="queryDeptTotalCount" resultType="long">
+        select COUNT(*) from t_dept;
+    </select>
+
+    <insert id="addDept" parameterType="map">
+        INSERT INTO t_dept(name)
+        VALUES (#{name})
+    </insert>
+
+    <update id="updateDept" parameterType="map">
+        UPDATE t_dept
+        SET name = #{name}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteDept" parameterType="string">
+        DELETE FROM t_dept
+        WHERE id = #{id}
+    </delete>
+
 </mapper>

@@ -68,4 +68,14 @@ public interface TrainModuleDao {
     void deleteProgramModuleCoursesByProgramId(int id);
 
     void deleteProgramById(int id);
+
+    List<Map<String,Object>> queryAllTestMethod(Map<String, Object> data);
+
+    Long queryTestMethodTotalCount();
+
+    void addTestMethod(String name);
+
+    void updateTestMethod(Map<String, Object> data);
+
+    void deleteTestMethod(String id);
 }
