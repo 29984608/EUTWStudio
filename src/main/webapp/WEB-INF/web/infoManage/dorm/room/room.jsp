@@ -31,6 +31,7 @@
                         <thead>
                         <tr>
                             <th>序号</th>
+                            <th>区</th>
                             <th>楼层</th>
                             <th>宿舍号</th>
                             <th>操作</th>
@@ -47,61 +48,8 @@
     </div>
 </section>
 </body>
-<script id="list-tpl" type="text/html">
-    {{# layui.each(d.data.pageInfos, function(index, item){ }}
-    <tr>
-        <td>{{ index+1}}</td>
-        <td>{{ item.name}}</td>
-        <td>{{ item.name}}</td>
-        <td>
-            <button class="layui-btn layui-btn-mini layui-btn-normal"
-                    onclick="room.update('{{item.id}}','{{item.name}}')">
-                <i class="layui-icon">&#xe642;</i>修改
-            </button>
-            <button class="layui-btn layui-btn-mini  layui-btn-danger" onclick="room.delete('{{item.id}}')">
-                <i class="layui-icon">&#xe60a;</i>删除
-            </button>
-        </td>
-    </tr>
-    {{# }); }}
 
-</script>
-<div id="add" style="margin: 10px;display: none">
-    <form id="add-form" lay-filter="role-add" class="layui-form layui-form-pane" method="post">
-        <div class="layui-form-item">
-            <label class="layui-form-label">宿舍</label>
-            <div class="layui-input-inline">
-                <input type="text" id="addRoomName"
-                       placeholder="请输入宿舍号" autocomplete="off" class="layui-input ">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <div class="layui-input-block">
-                <a class="layui-btn" onclick="room.addAjax()">立即提交</a>
-                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-            </div>
-        </div>
-    </form>
-</div>
-<div id="update" style="margin: 10px;display: none">
-    <form id="update-form" lay-filter="role-add" class="layui-form layui-form-pane" method="post">
-        <input type="hidden" id="updateRoomId" name="id"/>
-
-        <div class="layui-form-item">
-            <label class="layui-form-label">宿舍</label>
-            <div class="layui-input-inline">
-                <input type="text" id="updateRoomName" name="name" required jq-verify="required"
-                       placeholder="请输入宿舍号" autocomplete="off" class="layui-input ">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <div class="layui-input-block">
-                <a class="layui-btn" onclick="room.updateAjax()">立即提交</a>
-                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-            </div>
-        </div>
-    </form>
-</div>
+<%@include file="layer.jsp" %>
 <script type="text/javascript" src="${baseurl}/public/common/layui/layui.js"></script>
 <script type="text/javascript">
     let totalSize = 10;
@@ -142,7 +90,7 @@
                             totalSize = data.data.pageUtil.totalSize;
                             room.page();
                             laytpl($("#list-tpl").text()).render(data, function (html) {
-                                $( "#list").html(html);
+                                $("#list").html(html);
                             });
                             form.render();
                         }
@@ -150,19 +98,32 @@
                 });
             },
             add: function () {
+                $.post(baseUrl + "dorm/room/showAreaAndFloorInfosToAdd", function (data) {
+                    if (data.result) {
+                        $("#showAreasAdd").html(room.loadDepartmentOrDirection(data.data.queryAreaOfRoom))
+                        $("#showFloorsAdd").html(room.loadDepartmentOrDirection(data.data.queryFloorOfRoom))
+                    }
+                    form.render();
+                })
                 layer.open({
                     type: 1,
+                    area: ["30%", "70%"],
                     title: '添加'
                     , content: $("#add")
                 });
 
             },
-            addAjax:function () {
+            addAjax: function () {
+                var idFloor = $("#showFloorsAdd").val();
+                var idArea = $("#showAreasAdd").val();
                 let name = $("#addRoomName").val();
+
                 layer.confirm('确定添加？', {icon: 3, title: '提示'}, function (index) {
                     layer.close(index);
                     $.post(baseUrl + "dorm/room/add", {
-                        name: name
+                        name: name,
+                        floorId:idFloor,
+                        areaId:idArea
                     }, function (data) {
                         layer.msg(data.msg);
                         if (data.result) {
@@ -171,14 +132,22 @@
                     })
                 })
             },
-            update: function (id, name) {
-                $("#updateRoomName").val(name);
-                $("#updateRoomId").val(id);
-                layer.open({
-                    type: 1,
-                    title: '修改'
-                    , content: $("#update")
-                });
+            update: function (id, name, floorId,areaId) {
+                $.post(baseUrl + "dorm/room/showAreaAndFloorInfos", {areaId: areaId}, function (data) {
+//                    var areaId = $("#showAreasUpdate option").val();
+                    $("#updateRoomName").val(name);
+                    $("#updateRoomId").val(id);
+                    $("#showAreasUpdate").html(room.loadDepartmentOrDirection(data.data.queryAreaOfRoom,areaId))
+                    $("#showFloorsUpdate").html(room.loadDepartmentOrDirection(data.data.queryFloorOfRoom,floorId))
+                    form.render()
+                    layer.open({
+                        type: 1,
+                        area: ["30%", "70%"],
+                        title: '修改'
+                        , content: $("#update")
+                    });
+                })
+
             },
             delete: function (id) {
                 layer.confirm('确定删除？', {icon: 3, title: '提示'}, function (index) {
@@ -190,13 +159,15 @@
                 });
             },
             updateAjax: function () {
+                var idFloor = $("#showFloorsUpdate").val();
                 let name = $("#updateRoomName").val();
                 let id = $("#updateRoomId").val();
                 layer.confirm('确定修改？', {icon: 3, title: '提示'}, function (index) {
                     layer.close(index);
                     $.post(baseUrl + "dorm/room/update", {
                         name: name,
-                        id: id
+                        id: id,
+                        floorId:idFloor
                     }, function (data) {
                         layer.msg(data.msg);
 
@@ -205,13 +176,62 @@
                         }
                     })
                 })
-            }
+            },
+            loadDepartmentOrDirection: function (data, selectId) {
+                let _html = "";
+                for (let i = 0; i < data.length; ++i) {
+                    if (selectId == data[i].id) {
+                        _html += `<option  selected value="` + data[i].id + `">` + data[i].name + `</option>`;
+                    } else {
+                        _html += `<option value="` + data[i].id + `">` + data[i].name + `</option>`;
+                    }
+                }
+
+                return _html;
+            },
         };
         $(function () {
             room.list();
+
+            form.on('select(modules_1)', function (data) {
+                var id =data.value;
+
+                $.post(baseUrl + "dorm/room/showAreaAndFloorInfos", {areaId: data.value}, function (data) {
+                    if (data.result) {
+                        console.log(data)
+                        var queryAreaOfRoom = data.data.queryAreaOfRoom
+                        var queryFloorOfRoom = data.data.queryFloorOfRoom
+
+                        $("#showAreasAdd").html(room.loadDepartmentOrDirection(queryAreaOfRoom,id))
+                        $("#showFloorsAdd").html(room.loadDepartmentOrDirection(queryFloorOfRoom, "-"))
+
+                        $("#showAreasUpdate").html(room.loadDepartmentOrDirection(queryAreaOfRoom,id))
+                        $("#showFloorsUpdate").html(room.loadDepartmentOrDirection(queryFloorOfRoom, "-"))
+                        form.render();
+                    }
+                })
+            })
+
+            form.on('select(modules_1)', function (data) {
+                var id =data.value;
+
+                $.post(baseUrl + "dorm/room/showAreaAndFloorInfos", {areaId: data.value}, function (data) {
+                    if (data.result) {
+                        console.log(data)
+                        var queryAreaOfRoom = data.data.queryAreaOfRoom
+                        var queryFloorOfRoom = data.data.queryFloorOfRoom
+
+                        $("#showAreasAdd").html(room.loadDepartmentOrDirection(queryAreaOfRoom,id))
+                        $("#showFloorsAdd").html(room.loadDepartmentOrDirection(queryFloorOfRoom, "-"))
+
+                        $("#showAreasUpdate").html(room.loadDepartmentOrDirection(queryAreaOfRoom,id))
+                        $("#showFloorsUpdate").html(room.loadDepartmentOrDirection(queryFloorOfRoom, "-"))
+                        form.render();
+                    }
+                })
+            })
         });
     });
-
 
 </script>
 

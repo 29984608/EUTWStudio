@@ -32,11 +32,15 @@ public interface DormDao {
 
     List<Map<String,Object>> queryRooms(Map<String, Object> data);
 
-    void addRoom(String name);
+    void addRoom(Map<String,Object> data);
 
     void updateRoom(Map<String, Object> data);
 
     void deleteRoom(String id);
 
     List<Map<String,Object>> selectAreaOfFloor();
+
+    List<Map<String,Object>> queryAreaOfRoom(@Param("areaId") String areaId);
+
+    List<Map<String,Object>> queryFloorOfRoom(@Param("areaId") String areaId);
 }

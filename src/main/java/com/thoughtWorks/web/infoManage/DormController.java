@@ -41,7 +41,7 @@ public class DormController {
     public Result listArea(PageUtil pageUtil) {
         try {
             Map<String, Object> data = new HashMap<>();
-            List<Map<String,Object>> pageInfos = dormService.queryAreas(pageUtil);
+            List<Map<String, Object>> pageInfos = dormService.queryAreas(pageUtil);
             data.put("pageInfos", pageInfos);
             data.put("pageUtil", pageUtil);
 
@@ -50,7 +50,7 @@ public class DormController {
             e.printStackTrace();
         }
 
-        return Result.failure("null",Constant.SEARCH_FAILURE);
+        return Result.failure("null", Constant.SEARCH_FAILURE);
     }
 
     @RequestMapping("/area/add")
@@ -64,21 +64,21 @@ public class DormController {
             e.printStackTrace();
         }
 
-        return Result.failure("null",Constant.ADD_FAILURE);
+        return Result.failure("null", Constant.ADD_FAILURE);
     }
 
     @RequestMapping("/area/update")
     @ResponseBody
-    public Result updateArea(String name,String id) {
+    public Result updateArea(String name, String id) {
         try {
-            dormService.updateArea(name,id);
+            dormService.updateArea(name, id);
 
             return Result.success("null", Constant.UPDATE_SUCCESS);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return Result.failure("null",Constant.UPDATE_FAILURE);
+        return Result.failure("null", Constant.UPDATE_FAILURE);
     }
 
     @RequestMapping("/area/delete")
@@ -87,12 +87,12 @@ public class DormController {
         try {
             dormService.deleteArea(id);
 
-            return Result.success("null",Constant.DELETE_SUCCESS);
+            return Result.success("null", Constant.DELETE_SUCCESS);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return Result.failure("null",Constant.DELETE_FAILURE);
+        return Result.failure("null", Constant.DELETE_FAILURE);
     }
 
     @RequestMapping("/floor/list")
@@ -100,46 +100,45 @@ public class DormController {
     public Result listFloor(PageUtil pageUtil) {
         try {
             Map<String, Object> data = new HashMap<>();
-            List<Map<String,Object>> pageInfos = dormService.queryFloors(pageUtil);
+            List<Map<String, Object>> pageInfos = dormService.queryFloors(pageUtil);
             data.put("pageInfos", pageInfos);
             data.put("pageUtil", pageUtil);
 
-            System.out.println(data);
 
             return Result.success(data, Constant.SEARCH_SUCCESS);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return Result.failure("null",Constant.SEARCH_FAILURE);
+        return Result.failure("null", Constant.SEARCH_FAILURE);
     }
 
     @RequestMapping("/floor/add")
     @ResponseBody
-    public Result addFloor(String name,String areaId) {
+    public Result addFloor(String name, String areaId) {
         try {
-            dormService.addFloor(name,areaId);
+            dormService.addFloor(name, areaId);
 
             return Result.success("null", Constant.ADD_SUCCESS);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return Result.failure("null",Constant.ADD_FAILURE);
+        return Result.failure("null", Constant.ADD_FAILURE);
     }
 
     @RequestMapping("/floor/update")
     @ResponseBody
-    public Result updateFloor(String name,String id) {
+    public Result updateFloor(String name, String id) {
         try {
-            dormService.updateFloor(name,id);
+            dormService.updateFloor(name, id);
 
             return Result.success("null", Constant.UPDATE_SUCCESS);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return Result.failure("null",Constant.UPDATE_FAILURE);
+        return Result.failure("null", Constant.UPDATE_FAILURE);
     }
 
     @RequestMapping("/floor/delete")
@@ -148,12 +147,12 @@ public class DormController {
         try {
             dormService.deleteFloor(id);
 
-            return Result.success("null",Constant.DELETE_SUCCESS);
+            return Result.success("null", Constant.DELETE_SUCCESS);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return Result.failure("null",Constant.DELETE_FAILURE);
+        return Result.failure("null", Constant.DELETE_FAILURE);
     }
 
     @RequestMapping("/floor/selectArea")
@@ -161,14 +160,14 @@ public class DormController {
     public Result selectAreaOfFloor() {
         try {
             Map<String, Object> data = new HashMap<>();
-            List<Map<String,Object>> dormInfos = dormService.selectAreaOfFloor();
+            List<Map<String, Object>> dormInfos = dormService.selectAreaOfFloor();
             data.put("dormInfos", dormInfos);
-            System.out.println(data);
             return Result.success(data, Constant.SEARCH_SUCCESS);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return Result.failure("null",Constant.SEARCH_FAILURE);
+
+        return Result.failure("null", Constant.SEARCH_FAILURE);
     }
 
     @RequestMapping("/room/list")
@@ -176,7 +175,7 @@ public class DormController {
     public Result listRoom(PageUtil pageUtil) {
         try {
             Map<String, Object> data = new HashMap<>();
-            List<Map<String,Object>> pageInfos = dormService.queryRooms(pageUtil);
+            List<Map<String, Object>> pageInfos = dormService.queryRooms(pageUtil);
             data.put("pageInfos", pageInfos);
             data.put("pageUtil", pageUtil);
 
@@ -185,35 +184,36 @@ public class DormController {
             e.printStackTrace();
         }
 
-        return Result.failure("null",Constant.SEARCH_FAILURE);
+        return Result.failure("null", Constant.SEARCH_FAILURE);
     }
 
     @RequestMapping("/room/add")
     @ResponseBody
-    public Result addRoom(String name) {
+    public Result addRoom(String name, String floorId, String areaId) {
+
         try {
-            dormService.addRoom(name);
+            dormService.addRoom(name, floorId, areaId);
 
             return Result.success("null", Constant.ADD_SUCCESS);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return Result.failure("null",Constant.ADD_FAILURE);
+        return Result.failure("null", Constant.ADD_FAILURE);
     }
 
     @RequestMapping("/room/update")
     @ResponseBody
-    public Result updateRoom(String name,String id) {
+    public Result updateRoom(String name, String id, String floorId) {
         try {
-            dormService.updateRoom(name,id);
+            dormService.updateRoom(name, id, floorId);
 
             return Result.success("null", Constant.UPDATE_SUCCESS);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return Result.failure("null",Constant.UPDATE_FAILURE);
+        return Result.failure("null", Constant.UPDATE_FAILURE);
     }
 
     @RequestMapping("/room/delete")
@@ -222,11 +222,44 @@ public class DormController {
         try {
             dormService.deleteRoom(id);
 
-            return Result.success("null",Constant.DELETE_SUCCESS);
+            return Result.success("null", Constant.DELETE_SUCCESS);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return Result.failure("null",Constant.DELETE_FAILURE);
+        return Result.failure("null", Constant.DELETE_FAILURE);
+    }
+
+    @RequestMapping("/room/showAreaAndFloorInfos")
+    @ResponseBody
+    public Result showAreaAndFloorInfos(String areaId) {
+        try {
+
+            Map<String, Object> data = dormService.showAreaAndFloorInfos(areaId);
+
+            return Result.success(data, Constant.SEARCH_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return Result.failure("null", Constant.SEARCH_FAILURE);
+    }
+
+    @RequestMapping("/room/showAreaAndFloorInfosToAdd")
+    @ResponseBody
+    public Result showAreaAndFloorInfosToAdd(String areaId) {
+        try {
+
+            Map<String, Object> data = dormService.showAreaAndFloorInfos("1");
+
+            System.out.println("=============================" + data + "=================================");
+
+
+            return Result.success(data, Constant.SEARCH_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return Result.failure("null", Constant.SEARCH_FAILURE);
     }
 }

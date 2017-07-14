@@ -21,7 +21,7 @@ public class DormServiceImpl implements DormService {
     public List<Map<String, Object>> queryAreas(PageUtil pageUtil)throws Exception {
         Map<String, Object> data = new HashMap<>();
         data.put("start", (pageUtil.getCurrentIndex() - 1) * pageUtil.getPageSize());
-        data.put("pageSize", pageUtil.getCurrentIndex() * pageUtil.getPageSize());
+        data.put("pageSize", pageUtil.getPageSize());
         pageUtil.setTotalSize(dormDao.queryAreasTotalCount());
 
         return dormDao.queryAreas(data);
@@ -49,7 +49,7 @@ public class DormServiceImpl implements DormService {
     public List<Map<String, Object>> queryFloors(PageUtil pageUtil)throws Exception {
         Map<String, Object> data = new HashMap<>();
         data.put("start", (pageUtil.getCurrentIndex() - 1) * pageUtil.getPageSize());
-        data.put("pageSize", pageUtil.getCurrentIndex() * pageUtil.getPageSize());
+        data.put("pageSize",pageUtil.getPageSize());
         pageUtil.setTotalSize(dormDao.queryFloorsTotalCount());
 
         return dormDao.queryFloors(data);
@@ -79,22 +79,28 @@ public class DormServiceImpl implements DormService {
     public List<Map<String, Object>> queryRooms(PageUtil pageUtil) throws Exception {
         Map<String, Object> data = new HashMap<>();
         data.put("start", (pageUtil.getCurrentIndex() - 1) * pageUtil.getPageSize());
-        data.put("pageSize", pageUtil.getCurrentIndex() * pageUtil.getPageSize());
+        data.put("pageSize", pageUtil.getPageSize());
         pageUtil.setTotalSize(dormDao.queryRoomsTotalCount());
 
         return dormDao.queryRooms(data);
     }
 
     @Override
-    public void addRoom(String name) throws Exception {
-        dormDao.addRoom(name);
+    public void addRoom(String name,String floorId,String areaId) throws Exception {
+        Map<String, Object> data = new HashMap<>();
+        data.put("name", name);
+        data.put("floorId", floorId);
+        dormDao.addRoom(data);
     }
 
     @Override
-    public void updateRoom(String name, String id) throws Exception {
+    public void updateRoom(String name, String id,String floorId) throws Exception {
         Map<String, Object> data = new HashMap<>();
         data.put("name", name);
         data.put("id", id);
+        data.put("floorId", floorId);
+
+        System.out.println(data);
 
         dormDao.updateRoom(data);
     }
@@ -107,5 +113,13 @@ public class DormServiceImpl implements DormService {
     @Override
     public List<Map<String, Object>> selectAreaOfFloor()throws Exception {
         return dormDao.selectAreaOfFloor();
+    }
+
+    @Override
+    public Map<String, Object> showAreaAndFloorInfos(String areaId) throws Exception {
+        Map<String,Object> data = new HashMap<>();
+        data.put("queryAreaOfRoom",dormDao.queryAreaOfRoom(areaId));
+        data.put("queryFloorOfRoom",dormDao.queryFloorOfRoom(areaId));
+        return data;
     }
 }
