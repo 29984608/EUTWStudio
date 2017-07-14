@@ -23,7 +23,7 @@ public interface DormService {
 
     void deleteFloor(String id)throws Exception;
 
-    List<Map<String,Object>> queryRooms(PageUtil pageUtil)throws Exception;
+    List<Map<String,Object>> queryRooms(PageUtil pageUtil, Map<String, Object> data)throws Exception;
 
     void addRoom(String name,String floorId,String areaId)throws Exception;
 
@@ -34,4 +34,5 @@ public interface DormService {
     List<Map<String,Object>> selectAreaOfFloor()throws Exception;
 
     Map<String,Object> showAreaAndFloorInfos(String areaId)throws Exception;
+
 }

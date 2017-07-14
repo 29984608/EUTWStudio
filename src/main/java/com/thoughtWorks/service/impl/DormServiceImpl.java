@@ -76,13 +76,16 @@ public class DormServiceImpl implements DormService {
     }
 
     @Override
-    public List<Map<String, Object>> queryRooms(PageUtil pageUtil) throws Exception {
-        Map<String, Object> data = new HashMap<>();
-        data.put("start", (pageUtil.getCurrentIndex() - 1) * pageUtil.getPageSize());
-        data.put("pageSize", pageUtil.getPageSize());
-        pageUtil.setTotalSize(dormDao.queryRoomsTotalCount());
+    public List<Map<String, Object>> queryRooms(PageUtil pageUtil, Map<String, Object> data) throws Exception {
+        Map<String, Object> data1 = new HashMap<>();
+        data1.put("start", (pageUtil.getCurrentIndex() - 1) * pageUtil.getPageSize());
+        data1.put("pageSize", pageUtil.getPageSize());
+        data1.put("roomNo","%"+data.get("roomNo")+"%");
+        data1.put("areaId",data.get("areaId"));
+        data1.put("floorId",data.get("floorId"));
+        pageUtil.setTotalSize(dormDao.queryRoomsTotalCount(data1));
 
-        return dormDao.queryRooms(data);
+        return dormDao.queryRooms(data1);
     }
 
     @Override
@@ -120,6 +123,9 @@ public class DormServiceImpl implements DormService {
         Map<String,Object> data = new HashMap<>();
         data.put("queryAreaOfRoom",dormDao.queryAreaOfRoom(areaId));
         data.put("queryFloorOfRoom",dormDao.queryFloorOfRoom(areaId));
+
+        System.out.println("121212121212"+data);
+
         return data;
     }
 }

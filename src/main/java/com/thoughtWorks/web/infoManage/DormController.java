@@ -172,10 +172,16 @@ public class DormController {
 
     @RequestMapping("/room/list")
     @ResponseBody
-    public Result listRoom(PageUtil pageUtil) {
+    public Result listRoom(PageUtil pageUtil,String roomNo,String areaId,String floorId) {
+        System.out.println(roomNo);
+        System.out.println(areaId);
+        System.out.println(floorId);
         try {
             Map<String, Object> data = new HashMap<>();
-            List<Map<String, Object>> pageInfos = dormService.queryRooms(pageUtil);
+            data.put("roomNo",roomNo);
+            data.put("areaId",areaId);
+            data.put("floorId",floorId);
+            List<Map<String, Object>> pageInfos = dormService.queryRooms(pageUtil,data);
             data.put("pageInfos", pageInfos);
             data.put("pageUtil", pageUtil);
 
@@ -247,12 +253,11 @@ public class DormController {
 
     @RequestMapping("/room/showAreaAndFloorInfosToAdd")
     @ResponseBody
-    public Result showAreaAndFloorInfosToAdd(String areaId) {
+    public Result showAreaAndFloorInfosToAdd() {
         try {
 
             Map<String, Object> data = dormService.showAreaAndFloorInfos("1");
 
-            System.out.println("=============================" + data + "=================================");
 
 
             return Result.success(data, Constant.SEARCH_SUCCESS);
@@ -262,4 +267,22 @@ public class DormController {
 
         return Result.failure("null", Constant.SEARCH_FAILURE);
     }
+
+    @RequestMapping("/room/showAreaAndFloorInfosToQuery")
+    @ResponseBody
+    public Result showAreaAndFloorInfosToQuery() {
+        try {
+
+            Map<String, Object> data = dormService.showAreaAndFloorInfos("1");
+
+            return Result.success(data, Constant.SEARCH_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return Result.failure("null", Constant.SEARCH_FAILURE);
+    }
+
+
+
 }

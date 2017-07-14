@@ -30,11 +30,6 @@
     </delete>
 
 
-
-
-
-
-
     <select id="queryFloors" resultType="map" parameterType="map">
         select *,a.id areaId,a.name areaName from t_floor f,t_area a
         WHERE f.area_id = a.id
@@ -66,23 +61,45 @@
     </select>
 
 
-
-
-
-
-
     <select id="queryRooms" resultType="map" parameterType="map">
-        select r.id,r.name,r.floor_id,f.name floorName,a.name areaName,a.id areaId
+        select
+        r.id,
+        r.name,
+        r.floor_id,
+        f.name floorName,
+        a.name areaName,
+        a.id areaId
         from t_room r
         LEFT JOIN
         (select id,name,area_id from t_floor) f ON f.id = r.floor_id
         LEFT JOIN
         (select id,name from t_area) a ON f.area_id = a.id
-        limit #{start},#{pageSize}
+        <where>
+            <if test="areaId != ''">
+                AND area_id = #{areaId}
+            </if>
+            <if test="floorId != ''">
+                AND floor_id = #{floorId}
+            </if>
+            AND r.name LIKE #{roomNo} limit #{start},#{pageSize}
+        </where>
     </select>
 
     <select id="queryRoomsTotalCount" resultType="long">
-        select count(*) from t_room;
+        select count(*) from t_room r
+        LEFT JOIN
+        (select id,name,area_id from t_floor) f ON f.id = r.floor_id
+        LEFT JOIN
+        (select id,name from t_area) a ON f.area_id = a.id
+        <where>
+            <if test="areaId != ''">
+                AND area_id = #{areaId}
+            </if>
+            <if test="floorId != ''">
+                AND floor_id = #{floorId}
+            </if>
+            AND r.name LIKE #{roomNo}
+        </where>
     </select>
 
     <insert id="addRoom" parameterType="map">

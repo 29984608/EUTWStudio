@@ -28,7 +28,7 @@ public interface DormDao {
 
     void deleteFloor(String id);
 
-    Long queryRoomsTotalCount();
+    Long queryRoomsTotalCount(Map<String,Object> data);
 
     List<Map<String,Object>> queryRooms(Map<String, Object> data);
 

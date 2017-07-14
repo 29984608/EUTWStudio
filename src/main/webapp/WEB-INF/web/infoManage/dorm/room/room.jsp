@@ -14,15 +14,61 @@
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/personal.css" media="all">
 </head>
 <body>
-<section class="larry-grid">
+<section class="larry-grid layui-form">
     <div class="larry-personal">
         <div class="layui-tab">
-            <blockquote class="layui-elem-quote mylog-info-tit">
-                <ul class="layui-tab-title">
-                    <li class="layui-btn " onclick="room.add()"><i class="layui-icon">&#xe61f;</i>添加宿舍
-                    </li>
-                </ul>
-            </blockquote>
+            <form id="update-form" lay-filter="role-add" class="layui-form layui-form-pane" method="post">
+
+                <blockquote class="layui-elem-quote mylog-info-tit">
+
+                    <div class="layui-input-inline">
+                        <label class="layui-form-label">区</label>
+                        <div class="layui-inline">
+                            <div class="layui-input-inline">
+                                <select name="modules" lay-filter="modules_1" lay-verify="required" lay-search=""
+                                        id="queryAreas">
+                                    <option value="">直接选择或搜索选择</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="layui-input-inline">
+                        <label class="layui-form-label">楼层</label>
+                        <div class="layui-inline">
+                            <div class="layui-input-inline">
+                                <select name="modules1" lay-filter="modules_2" lay-verify="required" lay-search=""
+                                        id="queryFloors">
+                                    <option value="">直接选择或搜索选择</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="layui-input-inline">
+                        <label class="layui-form-label">宿舍</label>
+                        <div class="layui-inline">
+                            <div class="layui-input-inline">
+                                <div class="layui-inline">
+                                    <input type="text" name="title" id="roomNo" lay-verify="title"
+                                           autocomplete="off"
+                                           placeholder="宿舍号" value="" class="layui-input">
+                                </div>
+                                <a class="layui-btn" onclick="room.list()"><i class="layui-icon">&#xe615;</i>搜索</a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <br>
+                    <br>
+
+                    <ul class="layui-tab-title">
+                        <li class="layui-btn " onclick="room.add()"><i class="layui-icon">&#xe61f;</i>添加宿舍
+                        </li>
+                    </ul>
+                </blockquote>
+            </form>
             <div class="larry-separate"></div>
 
             <div class="layui-tab-content larry-personal-body clearfix mylog-info-box">
@@ -81,9 +127,18 @@
                 });
             },
             list: function () {
+                var areaId = $("#queryAreas").val();
+                var floorId = $("#queryFloors").val();
+                var roomNo = $("#roomNo").val();
                 $.ajax({
                     url: baseUrl + "dorm/room/list",
-                    data: {currentIndex: currentIndex, pageSize: pageSize},
+                    data: {
+                        currentIndex: currentIndex,
+                        pageSize: pageSize,
+                        areaId:areaId,
+                        floorId:floorId,
+                        roomNo:roomNo
+                    },
                     success: function (data) {
                         if (data.result) {
                             currentIndex = data.data.pageUtil.currentIndex;
@@ -94,14 +149,25 @@
                             });
                             form.render();
                         }
+                        room.query()
                     }
                 });
+            },
+            query: function () {
+                $.post(baseUrl + "dorm/room/showAreaAndFloorInfosToQuery", function (data) {
+                    if (data.result) {
+                        $("#queryAreas").html(room.loadDepartmentOrDirection(data.data.queryAreaOfRoom,"-"))
+                        $("#queryFloors").html(room.loadDepartmentOrDirection(data.data.queryFloorOfRoom,"-"))
+                    }
+                    form.render();
+                })
             },
             add: function () {
                 $.post(baseUrl + "dorm/room/showAreaAndFloorInfosToAdd", function (data) {
                     if (data.result) {
-                        $("#showAreasAdd").html(room.loadDepartmentOrDirection(data.data.queryAreaOfRoom))
-                        $("#showFloorsAdd").html(room.loadDepartmentOrDirection(data.data.queryFloorOfRoom))
+                        $("#showAreasAdd").html(room.loadDepartmentOrDirection(data.data.queryAreaOfRoom,"-"))
+                        $("#showFloorsAdd").html(room.loadDepartmentOrDirection(data.data.queryFloorOfRoom,"-"))
+
                     }
                     form.render();
                 })
@@ -122,8 +188,8 @@
                     layer.close(index);
                     $.post(baseUrl + "dorm/room/add", {
                         name: name,
-                        floorId:idFloor,
-                        areaId:idArea
+                        floorId: idFloor,
+                        areaId: idArea
                     }, function (data) {
                         layer.msg(data.msg);
                         if (data.result) {
@@ -132,13 +198,13 @@
                     })
                 })
             },
-            update: function (id, name, floorId,areaId) {
+            update: function (id, name, floorId, areaId) {
                 $.post(baseUrl + "dorm/room/showAreaAndFloorInfos", {areaId: areaId}, function (data) {
 //                    var areaId = $("#showAreasUpdate option").val();
                     $("#updateRoomName").val(name);
                     $("#updateRoomId").val(id);
-                    $("#showAreasUpdate").html(room.loadDepartmentOrDirection(data.data.queryAreaOfRoom,areaId))
-                    $("#showFloorsUpdate").html(room.loadDepartmentOrDirection(data.data.queryFloorOfRoom,floorId))
+                    $("#showAreasUpdate").html(room.loadDepartmentOrDirection(data.data.queryAreaOfRoom, areaId))
+                    $("#showFloorsUpdate").html(room.loadDepartmentOrDirection(data.data.queryFloorOfRoom, floorId))
                     form.render()
                     layer.open({
                         type: 1,
@@ -167,7 +233,7 @@
                     $.post(baseUrl + "dorm/room/update", {
                         name: name,
                         id: id,
-                        floorId:idFloor
+                        floorId: idFloor
                     }, function (data) {
                         layer.msg(data.msg);
 
@@ -178,7 +244,7 @@
                 })
             },
             loadDepartmentOrDirection: function (data, selectId) {
-                let _html = "";
+                let _html = "<option value=\"\">直接选择或搜索选择</option>";
                 for (let i = 0; i < data.length; ++i) {
                     if (selectId == data[i].id) {
                         _html += `<option  selected value="` + data[i].id + `">` + data[i].name + `</option>`;
@@ -194,38 +260,22 @@
             room.list();
 
             form.on('select(modules_1)', function (data) {
-                var id =data.value;
+                var id = data.value;
 
                 $.post(baseUrl + "dorm/room/showAreaAndFloorInfos", {areaId: data.value}, function (data) {
                     if (data.result) {
-                        console.log(data)
                         var queryAreaOfRoom = data.data.queryAreaOfRoom
                         var queryFloorOfRoom = data.data.queryFloorOfRoom
 
-                        $("#showAreasAdd").html(room.loadDepartmentOrDirection(queryAreaOfRoom,id))
+
+                        $("#showAreasAdd").html(room.loadDepartmentOrDirection(queryAreaOfRoom, id))
                         $("#showFloorsAdd").html(room.loadDepartmentOrDirection(queryFloorOfRoom, "-"))
 
-                        $("#showAreasUpdate").html(room.loadDepartmentOrDirection(queryAreaOfRoom,id))
+                        $("#showAreasUpdate").html(room.loadDepartmentOrDirection(queryAreaOfRoom, id))
                         $("#showFloorsUpdate").html(room.loadDepartmentOrDirection(queryFloorOfRoom, "-"))
-                        form.render();
-                    }
-                })
-            })
 
-            form.on('select(modules_1)', function (data) {
-                var id =data.value;
-
-                $.post(baseUrl + "dorm/room/showAreaAndFloorInfos", {areaId: data.value}, function (data) {
-                    if (data.result) {
-                        console.log(data)
-                        var queryAreaOfRoom = data.data.queryAreaOfRoom
-                        var queryFloorOfRoom = data.data.queryFloorOfRoom
-
-                        $("#showAreasAdd").html(room.loadDepartmentOrDirection(queryAreaOfRoom,id))
-                        $("#showFloorsAdd").html(room.loadDepartmentOrDirection(queryFloorOfRoom, "-"))
-
-                        $("#showAreasUpdate").html(room.loadDepartmentOrDirection(queryAreaOfRoom,id))
-                        $("#showFloorsUpdate").html(room.loadDepartmentOrDirection(queryFloorOfRoom, "-"))
+                        $("#queryAreas").html(room.loadDepartmentOrDirection(queryAreaOfRoom,id))
+                        $("#queryFloors").html(room.loadDepartmentOrDirection(queryFloorOfRoom), "-")
                         form.render();
                     }
                 })
@@ -234,5 +284,6 @@
     });
 
 </script>
+
 
 </html>

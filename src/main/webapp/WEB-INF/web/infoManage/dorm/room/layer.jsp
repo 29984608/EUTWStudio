@@ -22,7 +22,6 @@
 <div id="add" style="margin: 10px;display: none">
     <form id="add-form" lay-filter="role-add" class="layui-form layui-form-pane" method="post">
 
-
         <div class="layui-form-item">
             <label class="layui-form-label">区</label>
             <div class="layui-input-inline">
