@@ -52,4 +52,6 @@ public interface PersonDao {
     void updateDept(Map<String, Object> data);
 
     void deleteDept(String id);
+
+    Teacher selectUserById(String no);
 }

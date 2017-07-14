@@ -39,7 +39,7 @@ public class TeacherController {
         try {
             List<Map<String, String>> teachers = personService.queryTeachersList(page);
 
-             data.put("teachers", teachers);
+            data.put("teachers", teachers);
             data.put("page", page);
             data.put("result", true);
             data.put("msg", Constant.SEARCH_SUCCESS);
@@ -81,7 +81,7 @@ public class TeacherController {
             result.put("departments", departments);
             result.put("directions", departmentDao.queryDirectionsByDepartmentId(departmentId));
             result.put("classess", trainModuleDao.queryClassessByDepartmentId(departmentId, Calendar.getInstance().get(Calendar.YEAR) - 4, new Date().getYear()));
-            result.put("depts",departmentDao.queryDeptList());
+            result.put("depts", departmentDao.queryDeptList());
 
             return Result.success(result, Constant.OPERATION_SUCCESS);
         } catch (Exception e) {
@@ -136,18 +136,30 @@ public class TeacherController {
 
     @RequestMapping("queryDeptList")
     @ResponseBody
-    public Map<String, Object> queryDeptList(){
-        System.out.println("===============查找哦");
+    public Map<String, Object> queryDeptList() {
         Map<String, Object> data = new HashMap<String, Object>();
-        try{
-            List<Dept> depts=departmentDao.queryDeptList();
-            data.put("depts",depts);
+        try {
+            List<Dept> depts = departmentDao.queryDeptList();
+            data.put("depts", depts);
             data.put("msg", Constant.SEARCH_SUCCESS);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             data.put("msg", Constant.SEARCH_FAILURE);
         }
         return data;
+    }
+
+    @RequestMapping("selectUserById")
+    @ResponseBody
+    public Result selectUserById(String no) {
+        Teacher teacher = personService.selectUserById(no);
+        if (teacher != null) {
+            return Result.success(null, Constant.SEARCH_SUCCESS);
+
+        } else if (teacher == null) {
+            return Result.failure(null ,Constant.SEARCH_FAILURE);
+        }
+        return null;
     }
 
 }

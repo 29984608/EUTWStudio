@@ -196,4 +196,10 @@ public class PersonServiceImpl implements PersonService {
     public void updateCommunicationContent(CommunicationContent communicationContent) throws Exception {
         personDao.updateCommunicationContent(communicationContent);
     }
+
+    @Override
+    public Teacher selectUserById(String no) {
+        Teacher teacher = personDao.selectUserById(no);
+        return teacher;
+    }
 }

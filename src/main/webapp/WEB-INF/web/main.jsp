@@ -214,6 +214,11 @@
                                 </td>
                                 <td><span class="info">完成静态页面：学生信息页面、系信息页面、专业信息页面 </span></td>
                             </tr>
+                            <tr>
+                                <td><span class="tit">2017-7-13</span>
+                                </td>
+                                <td><span class="info">行政管理：添加教师类别字段对应显示不同部门和所属系，辅导员、行政 </span></td>
+                            </tr>
 
                             </tbody>
                         </table>

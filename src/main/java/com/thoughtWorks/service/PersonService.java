@@ -48,4 +48,6 @@ public interface PersonService {
     void updateDept(String name, String id);
 
     void deleteDept(String id);
+
+    Teacher selectUserById(String no);
 }

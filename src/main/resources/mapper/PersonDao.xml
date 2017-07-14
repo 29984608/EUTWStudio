@@ -246,4 +246,8 @@
         WHERE id = #{id}
     </delete>
 
+    <select id="selectUserById" resultType="Teacher" parameterType="string">
+        SELECT * from t_teacher
+        WHERE no=#{no}
+    </select>
 </mapper>
