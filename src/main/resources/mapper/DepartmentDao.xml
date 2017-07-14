@@ -148,4 +148,8 @@
         DELETE FROM t_profession
         WHERE id = #{id}
     </delete>
+    <!--部门-->
+    <select id="queryDeptList" resultType="Dept">
+        SELECT * from t_dept
+    </select>
 </mapper>

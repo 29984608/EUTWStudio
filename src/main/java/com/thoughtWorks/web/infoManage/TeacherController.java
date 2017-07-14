@@ -3,10 +3,7 @@ package com.thoughtWorks.web.infoManage;
 import com.thoughtWorks.dao.DepartmentDao;
 import com.thoughtWorks.dao.TrainModuleDao;
 import com.thoughtWorks.dto.Result;
-import com.thoughtWorks.entity.ActiveUser;
-import com.thoughtWorks.entity.Classes;
-import com.thoughtWorks.entity.Department;
-import com.thoughtWorks.entity.Teacher;
+import com.thoughtWorks.entity.*;
 import com.thoughtWorks.service.PersonService;
 import com.thoughtWorks.util.Constant;
 import com.thoughtWorks.util.PageUtil;
@@ -41,7 +38,8 @@ public class TeacherController {
         Map<String, Object> data = new HashMap<>();
         try {
             List<Map<String, String>> teachers = personService.queryTeachersList(page);
-            data.put("teachers", teachers);
+
+             data.put("teachers", teachers);
             data.put("page", page);
             data.put("result", true);
             data.put("msg", Constant.SEARCH_SUCCESS);
@@ -83,6 +81,7 @@ public class TeacherController {
             result.put("departments", departments);
             result.put("directions", departmentDao.queryDirectionsByDepartmentId(departmentId));
             result.put("classess", trainModuleDao.queryClassessByDepartmentId(departmentId, Calendar.getInstance().get(Calendar.YEAR) - 4, new Date().getYear()));
+            result.put("depts",departmentDao.queryDeptList());
 
             return Result.success(result, Constant.OPERATION_SUCCESS);
         } catch (Exception e) {
@@ -135,5 +134,20 @@ public class TeacherController {
         return Result.failure(null, Constant.DELETE_FAILURE);
     }
 
+    @RequestMapping("queryDeptList")
+    @ResponseBody
+    public Map<String, Object> queryDeptList(){
+        System.out.println("===============查找哦");
+        Map<String, Object> data = new HashMap<String, Object>();
+        try{
+            List<Dept> depts=departmentDao.queryDeptList();
+            data.put("depts",depts);
+            data.put("msg", Constant.SEARCH_SUCCESS);
+        }catch (Exception e){
+            e.printStackTrace();
+            data.put("msg", Constant.SEARCH_FAILURE);
+        }
+        return data;
+    }
 
 }

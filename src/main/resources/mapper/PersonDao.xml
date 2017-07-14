@@ -12,12 +12,14 @@
         WHERE no = #{id}
     </delete>
     <insert id="addTeacher" parameterType="Teacher">
-        INSERT INTO t_teacher (no, name, department_id, direction_id, gender)
-        VALUES (#{no}, #{name}, #{departmentId}, #{directionId}, #{gender})
+        INSERT INTO t_teacher (no, name, department_id, direction_id, gender,dept_id,classify)
+        VALUES (#{no}, #{name}, #{departmentId}, #{directionId}, #{gender},#{deptId},#{classify})
     </insert>
+
     <update id="updateTeacher" parameterType="Teacher">
         UPDATE t_teacher
         SET name = #{name}, department_id = #{departmentId}, direction_id = #{directionId}, gender = #{gender}
+        ,dept_id=#{deptId},classify=#{classify}
         WHERE no = #{no}
     </update>
     <select id="queryStudentsByLikes" parameterType="map" resultType="map">
@@ -96,10 +98,14 @@
             teacher.no,
             teacher.name,
             teacher.gender,
+            teacher.classify,
             department.id   departmentId,
             department.name departmentName,
             direction.id    directionId,
-            direction.name  directionName
+            direction.name  directionName,
+            dept.id deptId,
+            dept.name deptName
+
         FROM t_teacher teacher
             LEFT JOIN (SELECT
                            id,
@@ -109,6 +115,10 @@
                            id,
                            name
                        FROM t_direction) direction ON direction.id = teacher.direction_id
+            LEFT JOIN (SELECT
+                           id,
+                           name
+                       FROM t_dept) dept ON dept.id = teacher.dept_id
         LIMIT #{start}, #{end}
     </select>
 

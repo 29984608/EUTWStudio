@@ -1,6 +1,7 @@
 package com.thoughtWorks.dao;
 
 import com.thoughtWorks.entity.Department;
+import com.thoughtWorks.entity.Dept;
 import com.thoughtWorks.entity.Direction;
 import com.thoughtWorks.entity.Profession;
 import org.apache.ibatis.annotations.Param;
@@ -64,4 +65,7 @@ public interface DepartmentDao {
     void deleteDepartment(String id);
 
     List<Department> queryAllDepartments();
+
+    List<Dept> queryDeptList();
+
 }

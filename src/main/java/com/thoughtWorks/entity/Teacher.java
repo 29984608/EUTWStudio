@@ -6,6 +6,24 @@ public class Teacher {
     private String gender;
     private String departmentId;
     private String directionId;
+    private int deptId;
+    private String classify;
+
+    public int getDeptId() {
+        return deptId;
+    }
+
+    public void setDeptId(int deptId) {
+        this.deptId = deptId;
+    }
+
+    public String getClassify() {
+        return classify;
+    }
+
+    public void setClassify(String classify) {
+        this.classify = classify;
+    }
 
     public String getNo() {
         return no;

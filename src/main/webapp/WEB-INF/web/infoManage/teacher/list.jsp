@@ -19,10 +19,10 @@
         <div class="layui-tab">
             <blockquote class="layui-elem-quote mylog-info-tit">
                 <shiro:hasPermission name="teacher:add">
-                <ul class="layui-tab-title">
-                    <li class="layui-btn " onclick="teacher.add()"><i class="layui-icon">&#xe61f;</i>添加老师
-                    </li>
-                </ul>
+                    <ul class="layui-tab-title">
+                        <li class="layui-btn " onclick="teacher.add()"><i class="layui-icon">&#xe61f;</i>添加老师
+                        </li>
+                    </ul>
                 </shiro:hasPermission>
             </blockquote>
             <div class="larry-separate"></div>
@@ -36,8 +36,7 @@
                             <th>工号</th>
                             <th>名字</th>
                             <th>性别</th>
-                            <th>系</th>
-                            <th>方向</th>
+                            <th>所属类别</th>
                             <th>操作</th>
                         </tr>
                         </thead>
@@ -100,6 +99,19 @@
                     }
                 });
             },
+            chooseClassify: function (id) {
+
+                if (id == 1) {//职业导师
+                    $("#show_dept").hide();
+                    $("#show_career").show();
+                } else if (id == 2) {//辅导员或行政
+                    $("#show_dept").show();
+                    $("#show_career").hide();
+                    //数据库读取部门数据
+//                    teacher.loadDepartmentOrDirection(data, 0);
+                }
+            }
+            ,
             loadDepartmentOrDirection: function (data, selectId) {
                 let _html = "";
                 for (let i = 0; i < data.length; ++i) {
@@ -164,21 +176,31 @@
                 });
 
             },
-            update: function (no,departmentId,directionId,name,gender) {
-                $.post(baseUrl + "/teacher/loadDirectionsAndClassesByDepartmentId",{departmentId:departmentId}, function (data) {
+            update: function (no, departmentId, directionId, name, gender, classify, deptId) {
+                $.post(baseUrl + "/teacher/loadDirectionsAndClassesByDepartmentId", {departmentId: departmentId}, function (data) {
                     if (data.result) {
                         let departments = data.data.departments;
                         let directions = data.data.directions;
                         let classess = data.data.classess;
+                        let depts = data.data.depts;
                         $("#id").val(no)
                         $("#no-update").val(no);
                         $("#name-update").val(name);
+                        $("#classify_text").val(classify);
+                        $("#classify_hidden").val(classify);
                         if (gender === "男") $("#gender-man").prop({checked: true});
                         else $("#gender-woman").prop({checked: true});
-                        $("#department-update").html(teacher.loadDepartmentOrDirection(departments, departmentId));
-                        $("#direction-update").html(teacher.loadDepartmentOrDirection(directions, directionId));
-                        $("#classes-update").html(teacher.loadClasses(classess, no));
-
+                        if (classify === "职业导师") {
+                            $("#show_dept_update").hide();
+                            $("#show_career_update").show();
+                            $("#department-update").html(teacher.loadDepartmentOrDirection(departments, departmentId));
+                            $("#direction-update").html(teacher.loadDepartmentOrDirection(directions, directionId));
+                            $("#classes-update").html(teacher.loadClasses(classess, no));
+                        } else {
+                            $("#show_career_update").hide();
+                            $("#show_dept_update").show();
+                            $("#dept_update").html(teacher.loadDepartmentOrDirection(depts, deptId))
+                        }
                         form.render();
                         layer.open({
                             type: 1,
@@ -206,7 +228,6 @@
                     if ($(classes[i]).prop("checked")) classedIds += $(classes[i]).val() + ",";
                 }
                 data += "&classIds=" + classedIds;
-
                 $.post(baseUrl + "/teacher/add", data, function (data) {
                     layer.msg(data.msg);
                     if (data.result) {
@@ -215,20 +236,37 @@
                 })
             },
             updateAjax: function () {
-                let data = $("#update-form").serialize();
-                let classedIds = "";
-                let classes = $(".classId");
-                for (let i = 0; i < classes.length; ++i) {
-                    if ($(classes[i]).prop("checked")) classedIds += $(classes[i]).val() + ",";
+                if ($("#classify_text").val() === "职业导师") {
+                    $("#dept_update").val("0");
+                    let data = $("#update-form").serialize();
+                    console.log(data)
+                    let classedIds = "";
+                    let classes = $(".classId");
+                    for (let i = 0; i < classes.length; ++i) {
+                        if ($(classes[i]).prop("checked")) classedIds += $(classes[i]).val() + ",";
+                    }
+                    data += "&classIds=" + classedIds;
+                    layer.confirm('确定修改?如果您修改了系,那么原来的班级就会被删除', {icon: 3, title: '提示'}, function (index) {
+                        layer.close(index);
+                        $.post(baseUrl + "/teacher/update", data, function (data) {
+                            layer.msg(data.msg);
+                            setTimeout("location.reload()", 500);
+                        })
+                    });
+                } else {
+                    $("#department-update").val(0);
+                    $("#direction-update").val(0);
+                    $("#classes-update").val("");
+                    let data = $("#update-form").serialize();
+                    console.log(data)
+                    layer.confirm('确定修改?', {icon: 3, title: '提示'}, function (index) {
+                        layer.close(index);
+                        $.post(baseUrl + "/teacher/update", data, function (data) {
+                            layer.msg(data.msg);
+                            setTimeout("location.reload()", 500);
+                        })
+                    });
                 }
-                data += "&classIds=" + classedIds;
-                layer.confirm('确定修改?如果您修改了系,那么原来的班级就会被删除', {icon: 3, title: '提示'}, function (index) {
-                    layer.close(index);
-                    $.post(baseUrl + "/teacher/update", data, function (data) {
-                        layer.msg(data.msg);
-                        setTimeout("location.reload()", 500);
-                    })
-                });
             }
         };
         ;
@@ -246,14 +284,23 @@
 
                         $("#direction-update").html(teacher.loadDepartmentOrDirection(directions, "-"));
                         $("#classes-update").html(teacher.loadClasses(classess, "-"));
+
                         form.render();
                     }
                 });
             });
+            form.on('select(classify)', function (data) {
+                teacher.chooseClassify(data.value);
+                $.post(baseUrl + "/teacher/queryDeptList",
+                    function (data) {
+                        let depts = data.depts;
+                        $("#dept").html(teacher.loadDepartmentOrDirection(depts, "-"));
+                        form.render();
+                    })
+            });
 
         });
-    })
-    ;
+    });
 
 
 </script>

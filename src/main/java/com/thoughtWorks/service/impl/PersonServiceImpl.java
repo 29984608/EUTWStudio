@@ -35,17 +35,39 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public void addTeacher(Teacher teacher, String classIds) throws Exception {
-        List<String> ids = Arrays.asList(classIds.split(","));
+        List<String> ids;
+        if(teacher.getClassify().equals("1")){
+            teacher.setClassify("职业导师");
+            ids= Arrays.asList(classIds.split(","));
+            teacher.setDeptId(0);
+            if (ids.size() != 0) trainModuleDao.updateClassTeacher(teacher.getNo(), ids);
+        }else if(teacher.getClassify().equals("2")){
+            teacher.setClassify("系辅导员、行政");
+            teacher.setDepartmentId("0");
+            teacher.setDirectionId("0");
+        }
         personDao.addTeacher(teacher);
-        if (ids.size() != 0) trainModuleDao.updateClassTeacher(teacher.getNo(), ids);
+
     }
 
     @Override
     public void updateTeacher(Teacher teacher, String classIds) throws Exception {
-        List<String> ids = Arrays.asList(classIds.split(","));
+        List<String> ids;
+        if(teacher.getClassify().equals("职业导师")){
+            ids= Arrays.asList(classIds.split(","));
+            trainModuleDao.deleteTeacherAllClassesId(teacher.getNo());
+            if (ids.size() != 0) trainModuleDao.updateClassTeacher(teacher.getNo(), ids);
+        }else {
+            teacher.setDepartmentId("0");
+            teacher.setDirectionId("0");
+        }
         personDao.updateTeacher(teacher);
-        trainModuleDao.deleteTeacherAllClassesId(teacher.getNo());
-        if (ids.size() != 0) trainModuleDao.updateClassTeacher(teacher.getNo(), ids);
+
+
+//        List<String> ids = Arrays.asList(classIds.split(","));
+//        personDao.updateTeacher(teacher);
+//        trainModuleDao.deleteTeacherAllClassesId(teacher.getNo());
+//        if (ids.size() != 0) trainModuleDao.updateClassTeacher(teacher.getNo(), ids);
     }
 
     @Override
