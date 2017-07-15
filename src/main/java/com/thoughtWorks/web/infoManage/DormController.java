@@ -20,6 +20,11 @@ public class DormController {
     @Autowired
     private DormService dormService;
 
+    @RequestMapping()
+    public String index(){
+        return "infoManage/dormDemo/demo";
+    }
+
     @RequestMapping("/area")
     public String areaIndex() {
         return "infoManage/dorm/area/area";
@@ -40,7 +45,6 @@ public class DormController {
     @ResponseBody
     public Result listArea(PageUtil pageUtil,String areaId,String areaName) {
         try {
-            System.out.println(areaName);
             Map<String, Object> data = new HashMap<>();
             List<Map<String, Object>> pageInfos = dormService.queryAreas(pageUtil,areaId,areaName);
             data.put("pageInfos", pageInfos);
@@ -110,12 +114,6 @@ public class DormController {
             data.put("pageInfos", pageInfos);
             data.put("pageUtil", pageUtil);
 
-            System.out.println("-------------------------------+++++++++++++++++++++++++++++"+areaId);
-            System.out.println("-------------------------------+++++++++++++++++++++++++++++"+floorId);
-            System.out.println("-------------------------------+++++++++++++++++++++++++++++"+areaName);
-            System.out.println("-------------------------------+++++++++++++++++++++++++++++"+data);
-
-
             return Result.success(data, Constant.SEARCH_SUCCESS);
         } catch (Exception e) {
             e.printStackTrace();
@@ -183,12 +181,14 @@ public class DormController {
 
     @RequestMapping("/room/list")
     @ResponseBody
-    public Result listRoom(PageUtil pageUtil,String roomNo,String areaId,String floorId) {
+    public Result listRoom(PageUtil pageUtil,String roomNo,String areaId,String floorId,String areaName,String floorName) {
         try {
             Map<String, Object> data = new HashMap<>();
             data.put("roomNo",roomNo);
             data.put("areaId",areaId);
             data.put("floorId",floorId);
+            data.put("areaName",areaName);
+            data.put("floorName",floorName);
             List<Map<String, Object>> pageInfos = dormService.queryRooms(pageUtil,data);
             data.put("pageInfos", pageInfos);
             data.put("pageUtil", pageUtil);
@@ -250,8 +250,6 @@ public class DormController {
     public Result showAreaAndFloorInfos(String areaId) {
         try {
 
-            System.out.println("+++++++++++++++++++++++++++++++++++++");
-            System.out.println("+++++++++++++++++++++++++++++++++++++++++++++"+areaId);
             Map<String, Object> data = dormService.showAreaAndFloorInfos(areaId);
 
             return Result.success(data, Constant.SEARCH_SUCCESS);

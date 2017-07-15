@@ -6,6 +6,9 @@
     <meta charset="utf-8">
     <title></title>
     <script type="text/javascript" src="${baseurl}/public/common/js/jquery-3.2.0.min.js"></script>
+    <script type="text/javascript" src="${baseurl}/public/js/verify/messages_zh.js"></script>
+    <script type="text/javascript" src="${baseurl}/public/js/verify/jquery.metadata.js"></script>
+    <script type="text/javascript" src="${baseurl}/public/js/verify/jquery.validate.js"></script>
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/common/layui/css/layui.css" media="all">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/common/layui/css/layui.css" media="all">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/common/bootstrap/css/bootstrap.min.css" media="all">
@@ -16,17 +19,9 @@
 <body>
 
 <section class="larry-grid layui-form">
-
-    <blockquote class="layui-elem-quote mylog-info-tit">
-        <button class="layui-btn">区</button>
-        <button class="layui-btn">楼层</button>
-        <button class="layui-btn">宿舍</button>
-    </blockquote>
-
     <div class="larry-personal">
         <div class="layui-tab">
             <form id="update-form" lay-filter="role-add" class="layui-form layui-form-pane" method="post">
-
 
 
                 <blockquote class="layui-elem-quote mylog-info-tit">
@@ -35,8 +30,8 @@
                         <label class="layui-form-label">区</label>
                         <div class="layui-inline">
                             <div class="layui-input-inline">
-                                <select name="modules" lay-filter="modules_1" lay-verify="required" lay-search=""
-                                        id="queryAreas">
+                                <select name="modules" lay-filter="modules_3" lay-verify="required" lay-search=""
+                                        id="queryAreasInRoom">
                                     <option value="">直接选择或搜索选择</option>
                                 </select>
                             </div>
@@ -48,7 +43,7 @@
                         <div class="layui-inline">
                             <div class="layui-input-inline">
                                 <select name="modules1" lay-filter="modules_2" lay-verify="required" lay-search=""
-                                        id="queryFloors">
+                                        id="queryFloorsInRoom">
                                     <option value="">直接选择或搜索选择</option>
                                 </select>
                             </div>
@@ -134,17 +129,21 @@
                 });
             },
             list: function () {
-                var areaId = $("#queryAreas").val();
-                var floorId = $("#queryFloors").val();
+                var areaId = $("#queryAreasInRoom").val();
+                var floorId = $("#queryFloorsInRoom").val();
+                var areaName = $("#queryAreasInRoom").find("option:selected").text();
+                var floorName = $("#queryFloorsInRoom").find("option:selected").text();
                 var roomNo = $("#roomNo").val();
                 $.ajax({
                     url: baseUrl + "dorm/room/list",
                     data: {
                         currentIndex: currentIndex,
                         pageSize: pageSize,
-                        areaId:areaId,
-                        floorId:floorId,
-                        roomNo:roomNo
+                        areaId: areaId,
+                        floorId: floorId,
+                        roomNo: roomNo,
+                        areaName:areaName,
+                        floorName:floorName
                     },
                     success: function (data) {
                         if (data.result) {
@@ -163,8 +162,8 @@
             query: function () {
                 $.post(baseUrl + "dorm/room/showAreaAndFloorInfosToQuery", function (data) {
                     if (data.result) {
-                        $("#queryAreas").html(room.loadDepartmentOrDirection(data.data.queryAreaOfRoom,"-"))
-                        $("#queryFloors").html(room.loadDepartmentOrDirection(data.data.queryFloorOfRoom,"-"))
+                        $("#queryAreasInRoom").html(room.loadDepartmentOrDirection(data.data.queryAreaOfRoom, "-"))
+                        $("#queryFloorsInRoom").html(room.loadDepartmentOrDirection(data.data.queryFloorOfRoom, "-"))
                     }
                     form.render();
                 })
@@ -172,8 +171,8 @@
             add: function () {
                 $.post(baseUrl + "dorm/room/showAreaAndFloorInfosToAdd", function (data) {
                     if (data.result) {
-                        $("#showAreasAdd").html(room.loadDepartmentOrDirection(data.data.queryAreaOfRoom,"-"))
-                        $("#showFloorsAdd").html(room.loadDepartmentOrDirection(data.data.queryFloorOfRoom,"-"))
+                        $("#showAreasAdd").html(room.loadDepartmentOrDirection(data.data.queryAreaOfRoom, "-"))
+                        $("#showFloorsAdd").html(room.loadDepartmentOrDirection(data.data.queryFloorOfRoom, "-"))
 
                     }
                     form.render();
@@ -190,6 +189,22 @@
                 var idFloor = $("#showFloorsAdd").val();
                 var idArea = $("#showAreasAdd").val();
                 let name = $("#addRoomName").val();
+                let areaName = $("#showAreasAdd").find("option:selected").text();
+                let floorName = $("#showFloorsAdd").find("option:selected").text();
+                if (areaName === "一楼") {
+
+                } else if (areaName === "二楼") {
+
+                } else if (areaName === "三楼") {
+
+                } else if (areaName === "四楼") {
+
+                } else if (areaName === "五楼") {
+
+                } else if (areaName === "六楼") {
+
+                }
+
 
                 layer.confirm('确定添加？', {icon: 3, title: '提示'}, function (index) {
                     layer.close(index);
@@ -207,7 +222,6 @@
             },
             update: function (id, name, floorId, areaId) {
                 $.post(baseUrl + "dorm/room/showAreaAndFloorInfos", {areaId: areaId}, function (data) {
-//                    var areaId = $("#showAreasUpdate option").val();
                     $("#updateRoomName").val(name);
                     $("#updateRoomId").val(id);
                     $("#showAreasUpdate").html(room.loadDepartmentOrDirection(data.data.queryAreaOfRoom, areaId))
@@ -274,15 +288,40 @@
                         var queryAreaOfRoom = data.data.queryAreaOfRoom
                         var queryFloorOfRoom = data.data.queryFloorOfRoom
 
-
                         $("#showAreasAdd").html(room.loadDepartmentOrDirection(queryAreaOfRoom, id))
                         $("#showFloorsAdd").html(room.loadDepartmentOrDirection(queryFloorOfRoom, "-"))
+
+                        form.render();
+                    }
+                })
+            })
+
+            form.on('select(modules_2)', function (data) {
+                var id = data.value;
+
+                $.post(baseUrl + "dorm/room/showAreaAndFloorInfos", {areaId: data.value}, function (data) {
+                    if (data.result) {
+                        var queryAreaOfRoom = data.data.queryAreaOfRoom
+                        var queryFloorOfRoom = data.data.queryFloorOfRoom
 
                         $("#showAreasUpdate").html(room.loadDepartmentOrDirection(queryAreaOfRoom, id))
                         $("#showFloorsUpdate").html(room.loadDepartmentOrDirection(queryFloorOfRoom, "-"))
 
-                        $("#queryAreas").html(room.loadDepartmentOrDirection(queryAreaOfRoom,id))
-                        $("#queryFloors").html(room.loadDepartmentOrDirection(queryFloorOfRoom), "-")
+                        form.render();
+                    }
+                })
+            })
+
+            form.on('select(modules_3)', function (data) {
+                var id = data.value;
+
+                $.post(baseUrl + "dorm/room/showAreaAndFloorInfos", {areaId: data.value}, function (data) {
+                    if (data.result) {
+                        var queryAreaOfRoom = data.data.queryAreaOfRoom
+                        var queryFloorOfRoom = data.data.queryFloorOfRoom
+
+                        $("#queryAreasInRoom").html(room.loadDepartmentOrDirection(queryAreaOfRoom, id))
+                        $("#queryFloorsInRoom").html(room.loadDepartmentOrDirection(queryFloorOfRoom), "-")
                         form.render();
                     }
                 })
@@ -291,6 +330,5 @@
     });
 
 </script>
-
 
 </html>

@@ -73,7 +73,7 @@
         </div>
     </div>
 </section>
-</body>
+
 <script id="list-tpl" type="text/html">
     {{# layui.each(d.data.pageInfos, function(index, item){ }}
     <tr>
@@ -258,5 +258,5 @@
 
 
 </script>
-
+</body>
 </html>

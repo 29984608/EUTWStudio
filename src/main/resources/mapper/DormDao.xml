@@ -37,27 +37,15 @@
         WHERE id = #{id}
     </delete>
 
-
-    <select id="queryFloors1" resultType="map" parameterType="map">
-        select *,a.id areaId,a.name areaName from t_floor f,t_area a
-        WHERE f.area_id = a.id
-        limit #{start},#{pageSize}
-    </select>
-
     <select id="queryFloors" resultType="map" parameterType="map">
         select *,a.id areaId,a.name areaName from t_floor f
         LEFT JOIN
         (select id,name from t_area ) a on f.area_id = a.id
         WHERE TRUE
-        <if test="areaId != ''">
-            AND f.area_id LIKE  #{areaId}
-        </if>
         <if test="areaName != ''">
             AND a.name LIKE  #{areaName}
         </if>
-        <if test="floorId != ''">
-            AND f.id LIKE  #{floorId}
-        </if>
+
         <if test="floorName != ''">
             AND f.name LIKE  #{floorName}
         </if>
@@ -69,14 +57,8 @@
         LEFT JOIN
         (select id,name from t_area ) a on f.area_id = a.id
         WHERE TRUE
-        <if test="areaId != ''">
-            AND f.area_id LIKE  #{areaId}
-        </if>
         <if test="areaName != ''">
             AND a.name LIKE  #{areaName}
-        </if>
-        <if test="floorId != ''">
-            AND f.id LIKE  #{floorId}
         </if>
         <if test="floorName != ''">
             AND f.name LIKE  #{floorName}
@@ -118,11 +100,11 @@
         LEFT JOIN
         (select id,name from t_area) a ON f.area_id = a.id
         <where>
-            <if test="areaId != ''">
-                AND area_id = #{areaId}
+            <if test="areaName != ''">
+                AND a.name LIKE  #{areaName}
             </if>
-            <if test="floorId != ''">
-                AND floor_id = #{floorId}
+            <if test="floorName != ''">
+                AND f.name LIKE  #{floorName}
             </if>
             AND r.name LIKE #{roomNo} limit #{start},#{pageSize}
         </where>

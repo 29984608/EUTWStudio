@@ -23,15 +23,12 @@ public class DormServiceImpl implements DormService {
         data.put("start", (pageUtil.getCurrentIndex() - 1) * pageUtil.getPageSize());
         data.put("pageSize", pageUtil.getPageSize());
         data.put("areaId", "%" + areaId + "%");
-        System.out.println(areaName.length());
         if (areaName.length() > 50) {
             data.put("areaName", "%" + "%");
         } else {
             data.put("areaName", "%" + areaName + "%");
         }
         pageUtil.setTotalSize(dormDao.queryAreasTotalCount());
-
-        System.out.println(dormDao.queryAreas(data));
 
         return dormDao.queryAreas(data);
     }
@@ -59,16 +56,15 @@ public class DormServiceImpl implements DormService {
         Map<String, Object> data = new HashMap<>();
         data.put("start", (pageUtil.getCurrentIndex() - 1) * pageUtil.getPageSize());
         data.put("pageSize", pageUtil.getPageSize());
-        data.put("areaId", data1.get("areaId"));
-        data.put("floorId", data1.get("floorId"));
-        if (data1.get("areaName").toString().length() > 8) {
+
+        if (data1.get("areaName").toString().length() > 6) {
             data.put("areaName", "%" + "%");
         } else {
             data.put("areaName", data1.get("areaName"));
         }
 
-        if (data1.get("floorName").toString().length() > 8) {
-            data.put("floorName", "%"+"%");
+        if (data1.get("floorName").toString().length() > 6) {
+            data.put("floorName", "%" + "%");
         } else {
             data.put("floorName", data1.get("floorName"));
         }
@@ -105,8 +101,18 @@ public class DormServiceImpl implements DormService {
         data1.put("start", (pageUtil.getCurrentIndex() - 1) * pageUtil.getPageSize());
         data1.put("pageSize", pageUtil.getPageSize());
         data1.put("roomNo", "%" + data.get("roomNo") + "%");
-        data1.put("areaId", data.get("areaId"));
-        data1.put("floorId", data.get("floorId"));
+        if (data.get("areaName").toString().length()>6){
+            data1.put("areaName","");
+        }else {
+            data1.put("areaName","%"+data.get("areaName")+"%");
+        }
+
+        if (data.get("floorName").toString().length()>6){
+            data1.put("floorName","");
+        }else {
+            data1.put("floorName","%"+data.get("floorName")+"%");
+        }
+
         pageUtil.setTotalSize(dormDao.queryRoomsTotalCount(data1));
 
         return dormDao.queryRooms(data1);
@@ -127,7 +133,6 @@ public class DormServiceImpl implements DormService {
         data.put("id", id);
         data.put("floorId", floorId);
 
-        System.out.println(data);
 
         dormDao.updateRoom(data);
     }
@@ -147,8 +152,6 @@ public class DormServiceImpl implements DormService {
         Map<String, Object> data = new HashMap<>();
         data.put("queryAreaOfRoom", dormDao.queryAreaOfRoom(areaId));
         data.put("queryFloorOfRoom", dormDao.queryFloorOfRoom(areaId));
-
-        System.out.println("121212121212" + data);
 
         return data;
     }

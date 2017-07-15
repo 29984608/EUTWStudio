@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <title></title>
     <script type="text/javascript" src="${baseurl}/public/common/js/jquery-3.2.0.min.js"></script>
+    <script type="text/javascript" src="${baseurl}/public/js/verify/fm.validator.js"></script>
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/common/layui/css/layui.css" media="all">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/common/layui/css/layui.css" media="all">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/common/bootstrap/css/bootstrap.min.css" media="all">
@@ -15,12 +16,6 @@
 </head>
 <body>
 <section class="larry-grid">
-
-    <blockquote class="layui-elem-quote mylog-info-tit">
-        <button class="layui-btn">区</button>
-        <button class="layui-btn">楼层</button>
-        <button class="layui-btn">宿舍</button>
-    </blockquote>
 
     <div class="larry-personal">
         <div class="layui-tab">
@@ -33,7 +28,7 @@
                         <div class="layui-inline">
                             <div class="layui-input-inline">
                                 <select name="modules" lay-filter="modules_1" lay-verify="required" lay-search=""
-                                        id="queryAreas">
+                                        id="queryAreasInFloor">
                                     <option value="">直接选择或搜索选择</option>
                                 </select>
                             </div>
@@ -45,7 +40,7 @@
                         <div class="layui-inline">
                             <div class="layui-input-inline">
                                 <select name="modules1" lay-filter="modules_2" lay-verify="required" lay-search=""
-                                        id="queryFloors">
+                                        id="queryFloorsInFloor">
                                     <option value="">直接选择或搜索选择</option>
                                 </select>
                             </div>
@@ -73,17 +68,17 @@
                             <th>操作</th>
                         </tr>
                         </thead>
-                        <tbody id="list">
+                        <tbody id="listInFloor">
                         </tbody>
                     </table>
 
                 </div>
-                <div id="demo1"></div>
+                <div id="demo1InFloor"></div>
             </div>
         </div>
     </div>
 </section>
-</body>
+
 <%@ include file="layer.jsp" %>
 <script type="text/javascript" src="${baseurl}/public/common/layui/layui.js"></script>
 <script type="text/javascript">
@@ -100,9 +95,10 @@
 
 
         floor = {
+
             page: function () {
                 layui.laypage({
-                    cont: 'demo1',
+                    cont: 'demo1InFloor',
                     pages: totalSize, //总页数
                     curr: currentIndex,
                     groups: 5,//连续显示分页数
@@ -116,19 +112,19 @@
                 });
             },
             list: function () {
-                let areaId = $("#queryAreas").val();
-                let floorId = $("#queryFloors").val();
-                let areaName = $("#queryAreas").find("option:selected").text();
-                let floorName = $("#queryFloors").find("option:selected").text();
+                let areaId = $("#queryAreasInFloor").val();
+                let floorId = $("#queryFloorsInFloor").val();
+                let areaName = $("#queryAreasInFloor").find("option:selected").text();
+                let floorName = $("#queryFloorsInFloor").find("option:selected").text();
                 $.ajax({
                     url: baseUrl + "dorm/floor/list",
                     data: {
                         currentIndex: currentIndex,
                         pageSize: pageSize,
-                        areaId:areaId,
-                        floorId:floorId,
-                        areaName:areaName,
-                        floorName:floorName
+                        areaId: areaId,
+                        floorId: floorId,
+                        areaName: areaName,
+                        floorName: floorName
 
                     },
                     success: function (data) {
@@ -138,13 +134,13 @@
                             floor.page();
 
                             laytpl($("#list-tpl").text()).render(data, function (html) {
-                                $("#list").html(html);
+                                $("#listInFloor").html(html);
                             });
                             floor.loadSelectAreaHtml();
                             form.render();
                         }
-                        $("#queryAreas").html(floor.loadDepartmentOrDirection(data.data.showAreaAndFloorInfos.queryAreaOfRoom),"-")
-                        $("#queryFloors").html(floor.loadDepartmentOrDirection(data.data.showAreaAndFloorInfos.queryFloorOfRoom),"-")
+                        $("#queryAreasInFloor").html(floor.loadDepartmentOrDirection(data.data.showAreaAndFloorInfos.queryAreaOfRoom), "-")
+                        $("#queryFloorsInFloor").html(floor.loadDepartmentOrDirection(data.data.showAreaAndFloorInfos.queryFloorOfRoom), "-")
                     }
                 });
             },
@@ -158,14 +154,14 @@
 
             },
             addAjax: function () {
-                let name = $("#addFloorName").val();
-                var options = $("#showAreasAdd option:selected");
+                let name = $("#addFloorNameInFloor").val();
+                var options = $("#showAreasAddInFloor option:selected");
                 var areaId = options.val();
                 layer.confirm('确定添加？', {icon: 3, title: '提示'}, function (index) {
                     layer.close(index);
                     $.post(baseUrl + "dorm/floor/add", {
                         name: name,
-                        areaId:areaId
+                        areaId: areaId
                     }, function (data) {
                         layer.msg(data.msg);
                         if (data.result) {
@@ -175,10 +171,10 @@
                 })
             },
             update: function (id, name, areaName, area_id) {
-                $("#updateFloorName").val(name);
+                $("#updateFloorNameInFloor").val(name);
                 $("#updateFloorId").val(id);
                 $("#updateShowAreas").val(areaName);
-                $("#showAreasUpdates").html(floor.loadSelectAreaHtml(area_id));
+                $("#showAreasUpdatesInFloor").html(floor.loadSelectAreaHtml(area_id));
                 layer.open({
                     type: 1,
                     area: ["30%", "60%"],
@@ -189,9 +185,9 @@
             loadSelectAreaHtml: function (area_id) {
                 let _html = "";
                 $.post(baseUrl + "dorm/floor/selectArea", function (data) {
-                    $("#showAreasUpdates").html(floor.loadDepartmentOrDirection(data.data.dormInfos,area_id))
+                    $("#showAreasUpdatesInFloor").html(floor.loadDepartmentOrDirection(data.data.dormInfos, area_id))
                     laytpl($("#list-areas").text()).render(data, function (html) {
-                        $("#showAreasAdd").html(html);
+                        $("#showAreasAddInFloor").html(html);
                     });
                     form.render();
                 })
@@ -220,7 +216,7 @@
                 });
             },
             updateAjax: function () {
-                let name = $("#updateFloorName").val();
+                let name = $("#updateFloorNameInFloor").val();
                 let id = $("#updateFloorId").val();
                 layer.confirm('确定修改？', {icon: 3, title: '提示'}, function (index) {
                     layer.close(index);
@@ -248,8 +244,8 @@
                         var queryAreaOfRoom = data.data.queryAreaOfRoom
                         var queryFloorOfRoom = data.data.queryFloorOfRoom
 
-                        $("#queryAreas").html(floor.loadDepartmentOrDirection(queryAreaOfRoom,id))
-                        $("#queryFloors").html(floor.loadDepartmentOrDirection(queryFloorOfRoom), "-")
+                        $("#queryAreasInFloor").html(floor.loadDepartmentOrDirection(queryAreaOfRoom, id))
+                        $("#queryFloorsInFloor").html(floor.loadDepartmentOrDirection(queryFloorOfRoom), "-")
                         form.render();
                     }
                 })
@@ -302,5 +298,5 @@
 
     });
 </script>
-
+</body>
 </html>
