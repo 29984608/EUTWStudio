@@ -15,17 +15,54 @@
 </head>
 <body>
 <section class="larry-grid">
+
+    <blockquote class="layui-elem-quote mylog-info-tit">
+        <button class="layui-btn">区</button>
+        <button class="layui-btn">楼层</button>
+        <button class="layui-btn">宿舍</button>
+    </blockquote>
+
     <div class="larry-personal">
         <div class="layui-tab">
-            <blockquote class="layui-elem-quote mylog-info-tit">
+            <form id="update-form" lay-filter="role-add" class="layui-form layui-form-pane" method="post">
+
+                <blockquote class="layui-elem-quote mylog-info-tit">
+
+                    <div class="layui-input-inline">
+                        <label class="layui-form-label">区</label>
+                        <div class="layui-inline">
+                            <div class="layui-input-inline">
+                                <select name="modules" lay-filter="modules_1" lay-verify="required" lay-search=""
+                                        id="queryAreas">
+                                    <option value="">直接选择或搜索选择</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="layui-input-inline">
+                        <label class="layui-form-label">楼层</label>
+                        <div class="layui-inline">
+                            <div class="layui-input-inline">
+                                <select name="modules1" lay-filter="modules_2" lay-verify="required" lay-search=""
+                                        id="queryFloors">
+                                    <option value="">直接选择或搜索选择</option>
+                                </select>
+                            </div>
+                            <a class="layui-btn" onclick="floor.list()"><i class="layui-icon">&#xe615;</i>搜索</a>
+                        </div>
+                    </div>
+
+                </blockquote>
+            </form>
+
+            <div class="larry-separate"></div>
+
+            <div class="layui-tab-content larry-personal-body clearfix mylog-info-box">
                 <ul class="layui-tab-title">
                     <li class="layui-btn " onclick="floor.add()"><i class="layui-icon">&#xe61f;</i>添加楼层
                     </li>
                 </ul>
-            </blockquote>
-            <div class="larry-separate"></div>
-
-            <div class="layui-tab-content larry-personal-body clearfix mylog-info-box">
                 <div class="layui-form ">
                     <table id="example" class="layui-table lay-even " data-name="articleCatData">
                         <thead>
@@ -79,21 +116,35 @@
                 });
             },
             list: function () {
+                let areaId = $("#queryAreas").val();
+                let floorId = $("#queryFloors").val();
+                let areaName = $("#queryAreas").find("option:selected").text();
+                let floorName = $("#queryFloors").find("option:selected").text();
                 $.ajax({
                     url: baseUrl + "dorm/floor/list",
-                    data: {currentIndex: currentIndex, pageSize: pageSize},
+                    data: {
+                        currentIndex: currentIndex,
+                        pageSize: pageSize,
+                        areaId:areaId,
+                        floorId:floorId,
+                        areaName:areaName,
+                        floorName:floorName
+
+                    },
                     success: function (data) {
                         if (data.result) {
                             currentIndex = data.data.pageUtil.currentIndex;
                             totalSize = data.data.pageUtil.totalSize;
                             floor.page();
+
                             laytpl($("#list-tpl").text()).render(data, function (html) {
                                 $("#list").html(html);
                             });
                             floor.loadSelectAreaHtml();
                             form.render();
-
                         }
+                        $("#queryAreas").html(floor.loadDepartmentOrDirection(data.data.showAreaAndFloorInfos.queryAreaOfRoom),"-")
+                        $("#queryFloors").html(floor.loadDepartmentOrDirection(data.data.showAreaAndFloorInfos.queryFloorOfRoom),"-")
                     }
                 });
             },
@@ -116,7 +167,7 @@
                         name: name,
                         areaId:areaId
                     }, function (data) {
-                        layer.msg(data.result);
+                        layer.msg(data.msg);
                         if (data.result) {
                             setTimeout("location.reload()", 500);
                         }
@@ -148,7 +199,7 @@
                 return _html;
             },
             loadDepartmentOrDirection: function (data, selectId) {
-                let _html = "";
+                let _html = `<option value="">直接选择或搜索选择</option>`;
                 for (let i = 0; i < data.length; ++i) {
                     if (selectId == data[i].id) {
                         _html += `<option selected value="` + data[i].id + `">` + data[i].name + `</option>`;
@@ -188,6 +239,21 @@
         };
         $(function () {
             floor.list();
+
+            form.on('select(modules_1)', function (data) {
+                var id = data.value;
+
+                $.post(baseUrl + "dorm/room/showAreaAndFloorInfos", {areaId: data.value}, function (data) {
+                    if (data.result) {
+                        var queryAreaOfRoom = data.data.queryAreaOfRoom
+                        var queryFloorOfRoom = data.data.queryFloorOfRoom
+
+                        $("#queryAreas").html(floor.loadDepartmentOrDirection(queryAreaOfRoom,id))
+                        $("#queryFloors").html(floor.loadDepartmentOrDirection(queryFloorOfRoom), "-")
+                        form.render();
+                    }
+                })
+            })
         });
     });
 

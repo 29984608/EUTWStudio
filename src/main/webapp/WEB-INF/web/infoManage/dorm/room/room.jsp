@@ -14,10 +14,20 @@
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/personal.css" media="all">
 </head>
 <body>
+
 <section class="larry-grid layui-form">
+
+    <blockquote class="layui-elem-quote mylog-info-tit">
+        <button class="layui-btn">区</button>
+        <button class="layui-btn">楼层</button>
+        <button class="layui-btn">宿舍</button>
+    </blockquote>
+
     <div class="larry-personal">
         <div class="layui-tab">
             <form id="update-form" lay-filter="role-add" class="layui-form layui-form-pane" method="post">
+
+
 
                 <blockquote class="layui-elem-quote mylog-info-tit">
 
@@ -60,18 +70,15 @@
                     </div>
 
 
-                    <br>
-                    <br>
-
-                    <ul class="layui-tab-title">
-                        <li class="layui-btn " onclick="room.add()"><i class="layui-icon">&#xe61f;</i>添加宿舍
-                        </li>
-                    </ul>
                 </blockquote>
             </form>
             <div class="larry-separate"></div>
 
             <div class="layui-tab-content larry-personal-body clearfix mylog-info-box">
+                <ul class="layui-tab-title">
+                    <li class="layui-btn " onclick="room.add()"><i class="layui-icon">&#xe61f;</i>添加宿舍
+                    </li>
+                </ul>
                 <div class="layui-form ">
                     <table id="example" class="layui-table lay-even " data-name="articleCatData">
                         <thead>

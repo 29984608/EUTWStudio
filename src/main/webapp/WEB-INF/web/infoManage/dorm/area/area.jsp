@@ -15,17 +15,45 @@
 </head>
 <body>
 <section class="larry-grid">
+
+    <blockquote class="layui-elem-quote mylog-info-tit">
+        <button class="layui-btn">区</button>
+        <button class="layui-btn">楼层</button>
+        <button class="layui-btn">宿舍</button>
+    </blockquote>
+
     <div class="larry-personal">
         <div class="layui-tab">
-            <blockquote class="layui-elem-quote mylog-info-tit">
+
+            <form id="update-form1" lay-filter="role-add" class="layui-form layui-form-pane" method="post">
+
+                <blockquote class="layui-elem-quote mylog-info-tit">
+
+                    <div class="layui-input-inline">
+                        <label class="layui-form-label">区</label>
+                        <div class="layui-inline">
+                            <div class="layui-input-inline">
+                                <select name="modules" lay-filter="modules_1" lay-verify="required" lay-search=""
+                                        id="queryAreas">
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                            <a class="layui-btn" onclick="area.list()"><i class="layui-icon">&#xe615;</i>搜索</a>
+                        </div>
+                    </div>
+
+                </blockquote>
+            </form>
+
+
+
+            <div class="larry-separate"></div>
+
+            <div class="layui-tab-content larry-personal-body clearfix mylog-info-box">
                 <ul class="layui-tab-title">
                     <li class="layui-btn " onclick="area.add()"><i class="layui-icon">&#xe61f;</i>添加区
                     </li>
                 </ul>
-            </blockquote>
-            <div class="larry-separate"></div>
-
-            <div class="layui-tab-content larry-personal-body clearfix mylog-info-box">
                 <div class="layui-form ">
                     <table id="example" class="layui-table lay-even " data-name="articleCatData">
                         <thead>
@@ -131,15 +159,22 @@
                 });
             },
             list: function () {
+                let areaId = $("#queryAreas").val();
+                let areaName = $("#queryAreas").find("option:selected").text();
                 $.ajax({
                     url: baseUrl + "dorm/area/list",
-                    data: {currentIndex: currentIndex, pageSize: pageSize},
+                    data: {
+                        currentIndex: currentIndex,
+                        pageSize: pageSize,
+                        areaId:areaId,
+                        areaName:areaName
+                    },
                     success: function (data) {
                         if (data.result) {
                             currentIndex = data.data.pageUtil.currentIndex;
-
                             totalSize = data.data.pageUtil.totalSize;
                             area.page();
+                            $("#queryAreas").html(area.loadSelectElementHtml(data.data.pageInfos),"-")
                             laytpl($("#list-tpl").text()).render(data, function (html) {
                                 $( "#list").html(html);
                             });
@@ -148,6 +183,15 @@
                         }
                     }
                 });
+            },
+            loadSelectElementHtml: function (data, type) {
+                let _html = `<option value=''></option>`;
+                for (let i = 0; i < data.length; ++i) {
+                    let isSelected = data[i].id == type ? "selected" : "";
+                    _html += ` <option ` + isSelected + `  value="` + data[i].id + `">` + data[i].name + `</option>`;
+                }
+
+                return _html;
             },
             add: function () {
                 layer.open({

@@ -7,7 +7,7 @@ import java.util.Map;
 
 public interface DormService {
 
-    List<Map<String,Object>> queryAreas(PageUtil pageUtil)throws Exception;
+    List<Map<String,Object>> queryAreas(PageUtil pageUtil,String areaId,String areaName)throws Exception;
 
     void addArea(String name)throws Exception;
 
@@ -15,7 +15,7 @@ public interface DormService {
 
     void deleteArea(String id)throws Exception;
 
-    List<Map<String,Object>> queryFloors(PageUtil pageUtil)throws Exception;
+    List<Map<String,Object>> queryFloors(PageUtil pageUtil,Map<String,Object> data)throws Exception;
 
     void addFloor(String name,String areaId)throws Exception;
 

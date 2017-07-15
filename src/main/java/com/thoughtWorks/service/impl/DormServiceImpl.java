@@ -18,22 +18,31 @@ public class DormServiceImpl implements DormService {
     private DormDao dormDao;
 
     @Override
-    public List<Map<String, Object>> queryAreas(PageUtil pageUtil)throws Exception {
+    public List<Map<String, Object>> queryAreas(PageUtil pageUtil, String areaId, String areaName) throws Exception {
         Map<String, Object> data = new HashMap<>();
         data.put("start", (pageUtil.getCurrentIndex() - 1) * pageUtil.getPageSize());
         data.put("pageSize", pageUtil.getPageSize());
+        data.put("areaId", "%" + areaId + "%");
+        System.out.println(areaName.length());
+        if (areaName.length() > 50) {
+            data.put("areaName", "%" + "%");
+        } else {
+            data.put("areaName", "%" + areaName + "%");
+        }
         pageUtil.setTotalSize(dormDao.queryAreasTotalCount());
+
+        System.out.println(dormDao.queryAreas(data));
 
         return dormDao.queryAreas(data);
     }
 
     @Override
-    public void addArea(String name)throws Exception {
+    public void addArea(String name) throws Exception {
         dormDao.addArea(name);
     }
 
     @Override
-    public void updateArea(String name, String id)throws Exception {
+    public void updateArea(String name, String id) throws Exception {
         Map<String, Object> data = new HashMap<>();
         data.put("name", name);
         data.put("id", id);
@@ -41,27 +50,42 @@ public class DormServiceImpl implements DormService {
     }
 
     @Override
-    public void deleteArea(String id)throws Exception {
+    public void deleteArea(String id) throws Exception {
         dormDao.deleteArea(id);
     }
 
     @Override
-    public List<Map<String, Object>> queryFloors(PageUtil pageUtil)throws Exception {
+    public List<Map<String, Object>> queryFloors(PageUtil pageUtil, Map<String, Object> data1) throws Exception {
         Map<String, Object> data = new HashMap<>();
         data.put("start", (pageUtil.getCurrentIndex() - 1) * pageUtil.getPageSize());
-        data.put("pageSize",pageUtil.getPageSize());
-        pageUtil.setTotalSize(dormDao.queryFloorsTotalCount());
+        data.put("pageSize", pageUtil.getPageSize());
+        data.put("areaId", data1.get("areaId"));
+        data.put("floorId", data1.get("floorId"));
+        if (data1.get("areaName").toString().length() > 8) {
+            data.put("areaName", "%" + "%");
+        } else {
+            data.put("areaName", data1.get("areaName"));
+        }
+
+        if (data1.get("floorName").toString().length() > 8) {
+            data.put("floorName", "%"+"%");
+        } else {
+            data.put("floorName", data1.get("floorName"));
+        }
+
+
+        pageUtil.setTotalSize(dormDao.queryFloorsTotalCount(data));
 
         return dormDao.queryFloors(data);
     }
 
     @Override
-    public void addFloor(String name,String areaId)throws Exception {
-        dormDao.addFloor(name,areaId);
+    public void addFloor(String name, String areaId) throws Exception {
+        dormDao.addFloor(name, areaId);
     }
 
     @Override
-    public void updateFloor(String name, String id)throws Exception {
+    public void updateFloor(String name, String id) throws Exception {
         Map<String, Object> data = new HashMap<>();
         data.put("name", name);
         data.put("id", id);
@@ -70,7 +94,7 @@ public class DormServiceImpl implements DormService {
     }
 
     @Override
-    public void deleteFloor(String id)throws Exception {
+    public void deleteFloor(String id) throws Exception {
         dormDao.deleteFloor(id);
 
     }
@@ -80,16 +104,16 @@ public class DormServiceImpl implements DormService {
         Map<String, Object> data1 = new HashMap<>();
         data1.put("start", (pageUtil.getCurrentIndex() - 1) * pageUtil.getPageSize());
         data1.put("pageSize", pageUtil.getPageSize());
-        data1.put("roomNo","%"+data.get("roomNo")+"%");
-        data1.put("areaId",data.get("areaId"));
-        data1.put("floorId",data.get("floorId"));
+        data1.put("roomNo", "%" + data.get("roomNo") + "%");
+        data1.put("areaId", data.get("areaId"));
+        data1.put("floorId", data.get("floorId"));
         pageUtil.setTotalSize(dormDao.queryRoomsTotalCount(data1));
 
         return dormDao.queryRooms(data1);
     }
 
     @Override
-    public void addRoom(String name,String floorId,String areaId) throws Exception {
+    public void addRoom(String name, String floorId, String areaId) throws Exception {
         Map<String, Object> data = new HashMap<>();
         data.put("name", name);
         data.put("floorId", floorId);
@@ -97,7 +121,7 @@ public class DormServiceImpl implements DormService {
     }
 
     @Override
-    public void updateRoom(String name, String id,String floorId) throws Exception {
+    public void updateRoom(String name, String id, String floorId) throws Exception {
         Map<String, Object> data = new HashMap<>();
         data.put("name", name);
         data.put("id", id);
@@ -114,17 +138,17 @@ public class DormServiceImpl implements DormService {
     }
 
     @Override
-    public List<Map<String, Object>> selectAreaOfFloor()throws Exception {
+    public List<Map<String, Object>> selectAreaOfFloor() throws Exception {
         return dormDao.selectAreaOfFloor();
     }
 
     @Override
     public Map<String, Object> showAreaAndFloorInfos(String areaId) throws Exception {
-        Map<String,Object> data = new HashMap<>();
-        data.put("queryAreaOfRoom",dormDao.queryAreaOfRoom(areaId));
-        data.put("queryFloorOfRoom",dormDao.queryFloorOfRoom(areaId));
+        Map<String, Object> data = new HashMap<>();
+        data.put("queryAreaOfRoom", dormDao.queryAreaOfRoom(areaId));
+        data.put("queryFloorOfRoom", dormDao.queryFloorOfRoom(areaId));
 
-        System.out.println("121212121212"+data);
+        System.out.println("121212121212" + data);
 
         return data;
     }

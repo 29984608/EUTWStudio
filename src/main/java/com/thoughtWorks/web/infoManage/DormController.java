@@ -38,10 +38,11 @@ public class DormController {
 
     @RequestMapping("/area/list")
     @ResponseBody
-    public Result listArea(PageUtil pageUtil) {
+    public Result listArea(PageUtil pageUtil,String areaId,String areaName) {
         try {
+            System.out.println(areaName);
             Map<String, Object> data = new HashMap<>();
-            List<Map<String, Object>> pageInfos = dormService.queryAreas(pageUtil);
+            List<Map<String, Object>> pageInfos = dormService.queryAreas(pageUtil,areaId,areaName);
             data.put("pageInfos", pageInfos);
             data.put("pageUtil", pageUtil);
 
@@ -97,12 +98,22 @@ public class DormController {
 
     @RequestMapping("/floor/list")
     @ResponseBody
-    public Result listFloor(PageUtil pageUtil) {
+    public Result listFloor(PageUtil pageUtil,String areaId,String areaName,String floorId,String floorName) {
         try {
             Map<String, Object> data = new HashMap<>();
-            List<Map<String, Object>> pageInfos = dormService.queryFloors(pageUtil);
+            data.put("areaId", areaId);
+            data.put("floorId", floorId);
+            data.put("areaName", areaName);
+            data.put("floorName", floorName);
+            List<Map<String, Object>> pageInfos = dormService.queryFloors(pageUtil,data);
+            data.put("showAreaAndFloorInfos",dormService.showAreaAndFloorInfos("1"));
             data.put("pageInfos", pageInfos);
             data.put("pageUtil", pageUtil);
+
+            System.out.println("-------------------------------+++++++++++++++++++++++++++++"+areaId);
+            System.out.println("-------------------------------+++++++++++++++++++++++++++++"+floorId);
+            System.out.println("-------------------------------+++++++++++++++++++++++++++++"+areaName);
+            System.out.println("-------------------------------+++++++++++++++++++++++++++++"+data);
 
 
             return Result.success(data, Constant.SEARCH_SUCCESS);
@@ -173,9 +184,6 @@ public class DormController {
     @RequestMapping("/room/list")
     @ResponseBody
     public Result listRoom(PageUtil pageUtil,String roomNo,String areaId,String floorId) {
-        System.out.println(roomNo);
-        System.out.println(areaId);
-        System.out.println(floorId);
         try {
             Map<String, Object> data = new HashMap<>();
             data.put("roomNo",roomNo);
@@ -184,6 +192,7 @@ public class DormController {
             List<Map<String, Object>> pageInfos = dormService.queryRooms(pageUtil,data);
             data.put("pageInfos", pageInfos);
             data.put("pageUtil", pageUtil);
+
 
             return Result.success(data, Constant.SEARCH_SUCCESS);
         } catch (Exception e) {
@@ -241,6 +250,8 @@ public class DormController {
     public Result showAreaAndFloorInfos(String areaId) {
         try {
 
+            System.out.println("+++++++++++++++++++++++++++++++++++++");
+            System.out.println("+++++++++++++++++++++++++++++++++++++++++++++"+areaId);
             Map<String, Object> data = dormService.showAreaAndFloorInfos(areaId);
 
             return Result.success(data, Constant.SEARCH_SUCCESS);
