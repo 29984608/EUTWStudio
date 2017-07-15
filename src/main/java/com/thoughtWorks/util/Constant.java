@@ -24,4 +24,5 @@ public class Constant {
     public static final String TEMP_IMAGE_PATH = "/temp/";
 
     public static final String SHORT_TIME_PATTERN = "yyyy-MM-dd";
+    public static final String ACCOUNT_IS_EXIST = "帐号已存在";
 }

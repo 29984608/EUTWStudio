@@ -4,7 +4,9 @@ package com.thoughtWorks.web.infoManage;
 import com.thoughtWorks.dto.Result;
 import com.thoughtWorks.dto.SearchDto;
 import com.thoughtWorks.entity.ActiveUser;
+import com.thoughtWorks.entity.Classes;
 import com.thoughtWorks.entity.CommunicationContent;
+import com.thoughtWorks.entity.Direction;
 import com.thoughtWorks.service.PersonService;
 import com.thoughtWorks.util.Constant;
 import org.apache.shiro.SecurityUtils;
@@ -86,5 +88,60 @@ public class CommunicationController {
 
         return Result.failure(null, Constant.UPDATE_FAILURE);
     }
+
+    @RequestMapping("queryDirectionByDepartmentId")
+    @ResponseBody
+    public Result queryDirectionByDepartmentId(int departmentId) {
+        try {
+            List<Direction> list = personService.queryDirectionByDepartmentId(departmentId);
+            return Result.success(list, Constant.SEARCH_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return Result.failure(null, Constant.SEARCH_FAILURE);
+    }
+
+    @RequestMapping("queryDirectionByDepartment")
+    @ResponseBody
+    public Result queryDirectionByDepartment() {
+        try {
+            List<Direction> list = personService.queryDirectionByDepartment();
+
+            return Result.success(list, Constant.SEARCH_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return Result.failure(null, Constant.SEARCH_FAILURE);
+    }
+
+    @RequestMapping("queryClass")
+    @ResponseBody
+    public Result queryClass() {
+        try {
+            List<Classes> list = personService.queryClass();
+
+            return Result.success(list, Constant.SEARCH_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return Result.failure(null, Constant.SEARCH_FAILURE);
+    }
+
+    @RequestMapping("queryClassByDepartmentId")
+    @ResponseBody
+    public Result queryClassByDepartmentId(int departmentId) {
+        try {
+            List<Classes> list = personService.queryClassByDepartmentId(departmentId);
+
+            return Result.success(list, Constant.SEARCH_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return Result.failure(null, Constant.SEARCH_FAILURE);
+    }
+
 
 }

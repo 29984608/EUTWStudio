@@ -1,10 +1,7 @@
 package com.thoughtWorks.service;
 
 import com.thoughtWorks.dto.SearchDto;
-import com.thoughtWorks.entity.Classes;
-import com.thoughtWorks.entity.CommunicationContent;
-import com.thoughtWorks.entity.Student;
-import com.thoughtWorks.entity.Teacher;
+import com.thoughtWorks.entity.*;
 import com.thoughtWorks.util.PageUtil;
 
 import java.util.List;
@@ -49,5 +46,14 @@ public interface PersonService {
 
     void deleteDept(String id);
 
-    Teacher selectUserById(String no);
+    Teacher queryUserById(String no);
+
+    List<Direction>queryDirectionByDepartmentId(int departmentId);
+
+    List<Direction> queryDirectionByDepartment();
+
+    List<Classes> queryClass();
+
+    List<Classes> queryClassByDepartmentId(int departmentId);
+
 }

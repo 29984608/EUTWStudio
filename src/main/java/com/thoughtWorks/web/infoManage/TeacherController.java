@@ -136,30 +136,31 @@ public class TeacherController {
 
     @RequestMapping("queryDeptList")
     @ResponseBody
-    public Map<String, Object> queryDeptList() {
-        Map<String, Object> data = new HashMap<String, Object>();
+    public Result queryDeptList() {
         try {
             List<Dept> depts = departmentDao.queryDeptList();
-            data.put("depts", depts);
-            data.put("msg", Constant.SEARCH_SUCCESS);
+
+            return Result.success(depts, Constant.SEARCH_SUCCESS);
         } catch (Exception e) {
             e.printStackTrace();
-            data.put("msg", Constant.SEARCH_FAILURE);
         }
-        return data;
+
+        return Result.failure(null, Constant.SEARCH_FAILURE);
     }
 
-    @RequestMapping("selectUserById")
+    @RequestMapping("queryUserById")
     @ResponseBody
-    public Result selectUserById(String no) {
-        Teacher teacher = personService.selectUserById(no);
-        if (teacher != null) {
-            return Result.success(null, Constant.SEARCH_SUCCESS);
+    public Result queryUserById(String no) {
+        Teacher teacher = personService.queryUserById(no);
+        try{
+            if(teacher != null)
 
-        } else if (teacher == null) {
-            return Result.failure(null ,Constant.SEARCH_FAILURE);
+            return Result.success(null, Constant.ACCOUNT_IS_EXIST);
+        } catch (Exception e){
+            e.printStackTrace();
         }
-        return null;
+
+        return Result.failure(null ,Constant.SEARCH_FAILURE);
     }
 
 }

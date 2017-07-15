@@ -246,8 +246,24 @@
         WHERE id = #{id}
     </delete>
 
-    <select id="selectUserById" resultType="Teacher" parameterType="string">
+    <select id="queryUserById" resultType="Teacher" parameterType="string">
         SELECT * from t_teacher
         WHERE no=#{no}
     </select>
+    <select id="queryDirectionByDepartmentId" resultType="Direction" parameterType="int">
+        select * from t_direction
+        WHERE  department_id = #{departmentId}
+    </select>
+    <select id="queryDirectionByDepartment" resultType="Direction" >
+        select * from t_direction
+    </select>
+    <select id="queryClass" resultType="Classes" >
+        select * from t_classes
+    </select>
+    <select id="queryClassByDepartmentId" resultType="Classes" parameterType="int">
+        select * from t_classes
+        WHERE  department_id = #{departmentId}
+    </select>
+
+
 </mapper>

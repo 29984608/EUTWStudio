@@ -198,8 +198,32 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public Teacher selectUserById(String no) {
-        Teacher teacher = personDao.selectUserById(no);
-        return teacher;
+    public Teacher queryUserById(String no) {
+        return personDao.queryUserById(no);
     }
+
+    @Override
+    public List<Direction> queryDirectionByDepartmentId(int departmentId) {
+
+        return personDao.findDirectionByDepartmentId(departmentId);
+    }
+    @Override
+    public List<Direction> queryDirectionByDepartment() {
+
+        return personDao.queryDirectionByDepartment();
+    }
+     @Override
+    public List<Classes> queryClass() {
+
+       return   personDao.queryClass();
+    }
+
+    @Override
+    public List<Classes> queryClassByDepartmentId(int departmentId) {
+
+        return personDao.queryClassByDepartmentId(departmentId);
+    }
+
+
+
 }

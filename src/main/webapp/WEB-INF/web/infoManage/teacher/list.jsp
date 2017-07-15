@@ -290,9 +290,13 @@
                 teacher.chooseClassify(data.value);
                 $.post(baseUrl + "/teacher/queryDeptList",
                     function (data) {
-                        let depts = data.depts;
-                        $("#dept").html(teacher.loadDepartmentOrDirection(depts, "-"));
-                        form.render();
+                        if (data.result) {
+                            let depts = data.data;
+                            $("#dept").html(teacher.loadDepartmentOrDirection(depts, "-"));
+                            form.render();
+                        }else{
+                            layer.msg(data.msg);
+                        }
                     })
             });
 
@@ -301,10 +305,10 @@
     $(function () {
         $('#no-add').blur(function (data) {
             let no = $('#no-add').val()
-            $.post(baseUrl + "/teacher/selectUserById", {no: no}, function (data) {
+            $.post(baseUrl + "/teacher/queryUserById", {no: no}, function (data) {
                 if (data.result) {
                     $("#no-add").focus();
-                    layer.msg('用户已经存在', {icon: 5});
+                    layer.msg(data.msg);
                 }
             })
         })

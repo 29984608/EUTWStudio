@@ -1,9 +1,6 @@
 package com.thoughtWorks.dao;
 
-import com.thoughtWorks.entity.Classes;
-import com.thoughtWorks.entity.CommunicationContent;
-import com.thoughtWorks.entity.Student;
-import com.thoughtWorks.entity.Teacher;
+import com.thoughtWorks.entity.*;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -53,5 +50,14 @@ public interface PersonDao {
 
     void deleteDept(String id);
 
-    Teacher selectUserById(String no);
+    Teacher queryUserById(String no);
+
+    List<Direction> findDirectionByDepartmentId(int departmentId);
+
+    List<Direction> queryDirectionByDepartment();
+
+    List<Classes> queryClass();
+
+    List<Classes> queryClassByDepartmentId(int departmentId);
+
 }
