@@ -38,22 +38,22 @@ public interface PersonService {
 
     List<Map<String, Object>> queryStudentInfos(PageUtil page,SearchDto searchDto) throws Exception;
 
-    List<Map<String,Object>> queryAllDept(PageUtil pageUtil);
+    List<Map<String,Object>> queryAllDept(PageUtil pageUtil)throws Exception ;
 
-    void addDept(String name);
+    void addDept(String name)throws Exception ;
 
-    void updateDept(String name, String id);
+    void updateDept(String name, String id)throws Exception ;
 
-    void deleteDept(String id);
+    void deleteDept(String id)throws Exception ;
 
-    Teacher queryUserById(String no);
+    Teacher queryUserById(String no)throws Exception ;
 
-    List<Direction>queryDirectionByDepartmentId(int departmentId);
+    List<Direction>queryDirectionByDepartmentId(int departmentId)throws Exception ;
 
-    List<Direction> queryDirectionByDepartment();
+    List<Direction> queryDirectionByDepartment()throws Exception ;
 
-    List<Classes> queryClass();
+    List<Classes> queryClass()throws Exception ;
 
-    List<Classes> queryClassByDepartmentId(int departmentId);
+    List<Classes> queryClassByDepartmentId(int departmentId)throws Exception ;
 
 }

@@ -76,7 +76,7 @@ public class DepartmentServiceImpl implements DepartmentService {
         departmentDao.updateDepartment(department);
     }
 
-    private List<String> shouldInsert(List<String> oldIds, List<String> newIds) {
+    private List<String> shouldInsert(List<String> oldIds, List<String> newIds) throws Exception {
         List<String> shouldDelete = new ArrayList<>();
         for (String id : oldIds) {
             if (!newIds.contains(id) && !"".equals(id)) {
@@ -87,7 +87,7 @@ public class DepartmentServiceImpl implements DepartmentService {
         return shouldDelete;
     }
 
-    private List<String> shouldDelete(List<String> oldIds, List<String> newIds) {
+    private List<String> shouldDelete(List<String> oldIds, List<String> newIds) throws Exception {
         List<String> shouldInsert = new ArrayList<>();
         for (String id : newIds) {
             if (!oldIds.contains(id) && !"".equals(id)) {

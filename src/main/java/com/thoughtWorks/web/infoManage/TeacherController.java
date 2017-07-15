@@ -151,8 +151,9 @@ public class TeacherController {
     @RequestMapping("queryUserById")
     @ResponseBody
     public Result queryUserById(String no) {
-        Teacher teacher = personService.queryUserById(no);
+        Teacher teacher;
         try{
+             teacher= personService.queryUserById(no);
             if(teacher != null)
 
             return Result.success(null, Constant.ACCOUNT_IS_EXIST);

@@ -62,12 +62,6 @@ public class PersonServiceImpl implements PersonService {
             teacher.setDirectionId("0");
         }
         personDao.updateTeacher(teacher);
-
-
-//        List<String> ids = Arrays.asList(classIds.split(","));
-//        personDao.updateTeacher(teacher);
-//        trainModuleDao.deleteTeacherAllClassesId(teacher.getNo());
-//        if (ids.size() != 0) trainModuleDao.updateClassTeacher(teacher.getNo(), ids);
     }
 
     @Override
@@ -134,7 +128,7 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public List<Map<String, Object>> queryAllDept(PageUtil pageUtil) {
+    public List<Map<String, Object>> queryAllDept(PageUtil pageUtil) throws Exception {
         Map<String, Object> data = new HashMap<>();
         data.put("start", (pageUtil.getCurrentIndex() - 1) * pageUtil.getPageSize());
         data.put("pageSize", pageUtil.getPageSize());
@@ -143,12 +137,12 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public void addDept(String name) {
+    public void addDept(String name) throws Exception  {
         personDao.addDept(name);
     }
 
     @Override
-    public void updateDept(String name, String id) {
+    public void updateDept(String name, String id) throws Exception {
         Map<String, Object> data = new HashMap<>();
         data.put("id", id);
         data.put("name", name);
@@ -156,7 +150,7 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public void deleteDept(String id) {
+    public void deleteDept(String id)throws Exception  {
         personDao.deleteDept(id);
     }
 
@@ -198,28 +192,28 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public Teacher queryUserById(String no) {
+    public Teacher queryUserById(String no)throws Exception  {
         return personDao.queryUserById(no);
     }
 
     @Override
-    public List<Direction> queryDirectionByDepartmentId(int departmentId) {
+    public List<Direction> queryDirectionByDepartmentId(int departmentId) throws Exception {
 
         return personDao.findDirectionByDepartmentId(departmentId);
     }
     @Override
-    public List<Direction> queryDirectionByDepartment() {
+    public List<Direction> queryDirectionByDepartment()throws Exception  {
 
         return personDao.queryDirectionByDepartment();
     }
      @Override
-    public List<Classes> queryClass() {
+    public List<Classes> queryClass() throws Exception {
 
        return   personDao.queryClass();
     }
 
     @Override
-    public List<Classes> queryClassByDepartmentId(int departmentId) {
+    public List<Classes> queryClassByDepartmentId(int departmentId) throws Exception {
 
         return personDao.queryClassByDepartmentId(departmentId);
     }
