@@ -362,7 +362,7 @@
 
 
                         $("#queryAreaOfRoom").html(communication.loadDepartmentOrDirection(queryAreaOfRoom, id))
-                        $("#queryFloor").html(`<option value="">楼号</option>`).append(communication.loadDepartmentOrDirection(queryFloorOfRoom, "-"))
+                        $("#queryFloor").html(`<option value="">层号</option>`).append(communication.loadDepartmentOrDirection(queryFloorOfRoom, "-"))
 
                         form.render();
                     }

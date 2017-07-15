@@ -217,7 +217,17 @@
                             <tr>
                                 <td><span class="tit">2017-7-13</span>
                                 </td>
-                                <td><span class="info">行政管理：添加教师类别字段对应显示不同部门和所属系，辅导员、行政 </span></td>
+                                <td><span class="info">完成添加教师类别字段对应显示不同部门和所属系，辅导员、行政 </span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="tit">2017-7-14</span>
+                                </td>
+                                <td><span class="info">完成验证添加教师存在相同账户功能 </span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="tit">2017-7-15</span>
+                                </td>
+                                <td><span class="info">完成沟通反馈搜索功能-系、年级、方向班级、学号、姓名、楼层、楼号、房间号 表单关联功能完成 </span></td>
                             </tr>
 
                             </tbody>
@@ -245,8 +255,10 @@
                                 <td>
                                     <button class="layui-btn"><i class="layui-icon">&#xe61f;</i> 添加</button>
                                     <button class="layui-btn"><i class="layui-icon">&#xe615;</i> 搜索</button>
-                                    <button class="layui-btn layui-btn-normal"><i class="layui-icon">&#xe642;</i> 编辑</button>
-                                    <button class="layui-btn  layui-btn-danger"><i class="layui-icon">&#xe640;</i> 删除</button>
+                                    <button class="layui-btn layui-btn-normal"><i class="layui-icon">&#xe642;</i> 编辑
+                                    </button>
+                                    <button class="layui-btn  layui-btn-danger"><i class="layui-icon">&#xe640;</i> 删除
+                                    </button>
                                     <button class="layui-btn"><i class="layui-icon">&#xe60a;</i> 预览</button>
                                     <button class="layui-btn"><i class="layui-icon">&#xe621;</i> 打印</button>
                                     <button class="layui-btn"><i class="layui-icon">&#xe61e;</i> 导出</button>
