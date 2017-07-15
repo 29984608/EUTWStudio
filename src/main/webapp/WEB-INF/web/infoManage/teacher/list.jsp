@@ -58,7 +58,7 @@
     let pageSize = 10;
     let teacher;
     let classId = 0;
-    layui.use(['jquery', 'layer', 'element', 'laypage', 'form', 'laytpl', 'tree','layedit'], function () {
+    layui.use(['jquery', 'layer', 'element', 'laypage', 'form', 'laytpl', 'tree', 'layedit'], function () {
         window.jQuery = window.$ = layui.jquery;
         window.layer = layui.layer;
 
@@ -109,8 +109,6 @@
                 } else if (id == 2) {//辅导员或行政
                     $("#show_dept").show();
                     $("#show_career").hide();
-                    //数据库读取部门数据
-//                    teacher.loadDepartmentOrDirection(data, 0);
                 }
             }
             ,
@@ -259,7 +257,6 @@
                     $("#direction-update").val(0);
                     $("#classes-update").val("");
                     let data = $("#update-form").serialize();
-                    console.log(data)
                     layer.confirm('确定修改?', {icon: 3, title: '提示'}, function (index) {
                         layer.close(index);
                         $.post(baseUrl + "/teacher/update", data, function (data) {
@@ -298,34 +295,19 @@
                         form.render();
                     })
             });
-            form.on('submit(submit_a)', function(data){
-                $.post(baseUrl + "/teacher/selectUserById", {no: data.field.no}, function (data) {
 
-                });
-//                console.log(data.elem) //被执行事件的元素DOM对象，一般为button对象
-                console.log(data.form) //被执行提交的form对象，一般在存在form标签时才会返回
-                console.log() //当前容器的全部表单字段，名值对形式：{name: value}
-                return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-            });
         });
     });
-$(function () {
-    $('#no-add').blur(function (data) {
-        let no =$('#no-add').val()
-        $.post(baseUrl + "/teacher/selectUserById", {no:no}, function (data) {
-            if(data.result){
-               $("#no-add").focus();
-               layer.msg('用户已经存在', {icon: 6});
-           }
-
-
+    $(function () {
+        $('#no-add').blur(function (data) {
+            let no = $('#no-add').val()
+            $.post(baseUrl + "/teacher/selectUserById", {no: no}, function (data) {
+                if (data.result) {
+                    $("#no-add").focus();
+                    layer.msg('用户已经存在', {icon: 5});
+                }
+            })
         })
-
-
-
-
-
-    })
     })
 
 </script>
