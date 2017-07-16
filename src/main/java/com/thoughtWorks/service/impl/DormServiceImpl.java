@@ -23,7 +23,7 @@ public class DormServiceImpl implements DormService {
         data.put("start", (pageUtil.getCurrentIndex() - 1) * pageUtil.getPageSize());
         data.put("pageSize", pageUtil.getPageSize());
         data.put("areaId", "%" + areaId + "%");
-        if (areaName.length() > 50) {
+        if (areaName.length() > 6) {
             data.put("areaName", "%" + "%");
         } else {
             data.put("areaName", "%" + areaName + "%");

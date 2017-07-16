@@ -29,7 +29,7 @@
                             <div class="layui-input-inline">
                                 <select name="modules" lay-filter="modules_1" lay-verify="required" lay-search=""
                                         id="queryAreas">
-                                    <option value=""></option>
+                                    <option value="">直接选择或搜索选择</option>
                                 </select>
                             </div>
                             <a class="layui-btn" onclick="area.list()"><i class="layui-icon">&#xe615;</i>搜索</a>
@@ -168,15 +168,22 @@
                             currentIndex = data.data.pageUtil.currentIndex;
                             totalSize = data.data.pageUtil.totalSize;
                             area.page();
-                            $("#queryAreas").html(area.loadSelectElementHtml(data.data.pageInfos),"-")
                             laytpl($("#list-tpl").text()).render(data, function (html) {
                                 $( "#list").html(html);
                             });
                             form.render();
-
                         }
+                        area.queryAreas();
                     }
                 });
+            },
+            queryAreas: function () {
+                $.post(baseUrl + "dorm/room/showAreaAndFloorInfosToQuery", function (data) {
+                    if (data.result) {
+                        $("#queryAreas").html(area.loadSelectElementHtml(data.data.queryAreaOfRoom, "-"))
+                    }
+                    form.render();
+                })
             },
             loadSelectElementHtml: function (data, type) {
                 let _html = `<option value=''></option>`;
