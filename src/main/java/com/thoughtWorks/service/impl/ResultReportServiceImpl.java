@@ -33,4 +33,14 @@ public class ResultReportServiceImpl implements ResultReportService {
 
         return resultReportDao.queryStudentsLikes(data);
     }
+
+    @Override
+    public Map<String, String> queryStudentByNo(String no) throws Exception {
+        return resultReportDao.queryStudentByNo(no);
+    }
+
+    @Override
+    public List<Map<String,String>> queryStudentCourseResultByNo(String no) throws Exception {
+        return resultReportDao.queryStudentCourseResultByNo(no);
+    }
 }

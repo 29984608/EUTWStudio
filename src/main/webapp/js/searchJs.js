@@ -25,7 +25,6 @@ function loadAllDirections() {
 function loadAllClassess() {
     $.post(baseUrl + "/communication/queryClass", function (data) {
         if (data.result) {
-            console.log(data);
             $("#classes_search").html(`<option value="">班级</option>`).append(loadOptionsHtml(data.data, "-"));
         }
     });

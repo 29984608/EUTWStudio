@@ -162,9 +162,10 @@
                 });
             },
             preview: function (no) {
-
                 $.post(baseUrl + "/resultReport/preview", {studentNo: no}, function (data) {
                     if (data.result) {
+                        resultReport.loadStudentInfo(data.student);
+                        resultReport.loadResults(data.results);
                         layer.open({
                             type: 1,
                             title: "成绩单",
@@ -203,6 +204,52 @@
                         form.render();
                     }
                 })
+            },
+            loadStudentInfo: function (student) {
+                let originAddress = student.origin_address.split(ADDRESS_SPLIT_FLAG);
+                $("#name").text(student.studentName);
+                $("#gender").text(student.gender);
+                $("#famous_family").text(student.famous_family);
+                $("#address").text(originAddress[0] + originAddress[1]);
+                $("#headImg").attr({src: HEAD_IMAGE_PREFIX + student.head_image});
+                $("#no").text(student.no);
+                $("#political").text(student.political_status);
+                $("#idcard").text(student.idcard);
+                $("#profession").text(student.professionName);
+                $("#direction").text(student.directionName);
+                $("#in_school").text(student.in_school);
+            },
+            loadResults: function (results) {
+                $("#left_result").html("");
+                $("#right_result").html("");
+                let result_style, test_time, nature, course_name, credit, score, compulsory_score = 0,
+                    elective_score = 0;
+
+                for (let i = 0; i < results.length; ++i) {
+                    result_style = results[i].is_pass == 1 ? "" : `style="color:red"`;
+                    test_time = results[i].testTime;
+                    nature = results[i].nature == 0 ? "选修" : "必修";
+                    course_name = results[i].courseName;
+                    credit = results[i].credit;
+                    score = results[i].score;
+                    let _html = `
+                                 <tr  ` + result_style + `>
+                                    <td>` + test_time + `</td>
+                                    <td>` + nature + `</td>
+                                    <td>` + course_name + `</td>
+                                    <td>` + credit + `</td>
+                                    <td>` + score + `</td>
+                                </tr>`;
+                    if (i < 25) {
+                        $("#left_result").append(_html);
+                    } else {
+                        $("#right_result").append(_html);
+                    }
+                    if (nature === "选修" && results[i].is_pass == 1) elective_score += credit;
+                    if (nature === "必修" && results[i].is_pass == 1) compulsory_score += credit;
+                }
+                $("#elective_score").text(elective_score);
+                $("#compulsory_score").text(compulsory_score);
             }
         };
         $(function () {
@@ -217,15 +264,14 @@
 
                 $("#department_search").html(resultReport.loadClassByDepartmentId(data.value));
                 $("#direction_search").html(resultReport.loadDirectionsByDepartmentId(data.value));
-
             });
         });
     })
 
 
-    function printPdf() {
-        pdf(document.getElementById("container"), $("#exportPDFName").text(), "a4");
-        location.reload();
+    function exportPDF() {
+        pdf(document.getElementById("container"), $("#name").text(), "a3");
+//        location.reload();
     }
 </script>
 

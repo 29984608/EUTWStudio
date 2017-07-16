@@ -48,11 +48,11 @@ public class ResultReportController {
 
     @RequestMapping("preview")
     @ResponseBody
-    public Map<String, Object> preview(String no) {
+    public Map<String, Object> preview(String studentNo) {
         Map<String, Object> data = new HashMap<>();
         try {
-            Map<String,String> student = resultReportService.queryStudentByNo(no);
-            Map<String,String> results = resultReportService.queryStudentCourseResultByNo(no);
+            Map<String,String> student = resultReportService.queryStudentByNo(studentNo);
+            List<Map<String,String>> results = resultReportService.queryStudentCourseResultByNo(studentNo);
             data.put("student", student);
             data.put("results", results);
             data.put("result", true);
@@ -60,7 +60,7 @@ public class ResultReportController {
         } catch (Exception e) {
             e.printStackTrace();
             data.put("result", false);
-            data.put("msg", Constant.SEARCH_SUCCESS);
+            data.put("msg", Constant.SEARCH_FAILURE);
         }
 
         return data;

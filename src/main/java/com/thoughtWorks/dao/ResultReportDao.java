@@ -8,4 +8,8 @@ public interface ResultReportDao {
     List<Map<String,String>> queryStudentsLikes(Map<String, Object> data);
 
     Long queryStudentsLikesTotalCount(Map<String, Object> data);
+
+    Map<String,String> queryStudentByNo(String no);
+
+    List<Map<String,String>> queryStudentCourseResultByNo(String no);
 }

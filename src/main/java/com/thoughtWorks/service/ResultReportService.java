@@ -12,5 +12,5 @@ public interface ResultReportService {
 
     Map<String, String> queryStudentByNo(String no) throws Exception;
 
-    Map<String, String> queryStudentCourseResultByNo(String no) throws Exception;
+    List<Map<String,String>> queryStudentCourseResultByNo(String no) throws Exception;
 }
