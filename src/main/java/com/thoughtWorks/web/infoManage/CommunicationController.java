@@ -66,7 +66,6 @@ public class CommunicationController {
     public Result communication(String studentNo) {
         try {
             List<Map<String, Object>> communication = personService.queryCommunicationByStudentId(studentNo);
-
             return Result.success(communication, Constant.SEARCH_SUCCESS);
         } catch (Exception e) {
             e.printStackTrace();

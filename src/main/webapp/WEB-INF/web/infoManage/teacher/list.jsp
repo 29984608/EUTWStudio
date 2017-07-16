@@ -275,10 +275,8 @@
                     if (data.result) {
                         let directions = data.data.directions;
                         let classess = data.data.classess;
-
                         $("#direction").html(teacher.loadDepartmentOrDirection(directions, "-"));
                         $("#classes").html(teacher.loadClasses(classess, "-"));
-
                         $("#direction-update").html(teacher.loadDepartmentOrDirection(directions, "-"));
                         $("#classes-update").html(teacher.loadClasses(classess, "-"));
 

@@ -10,6 +10,33 @@ public class SearchDto {
     private String directionId;
     private String moduleId;
     private String semester;
+    private String areaId;
+    private String floorId;
+    private String roomId;
+
+    public String getAreaId() {
+        return areaId;
+    }
+
+    public void setAreaId(String areaId) {
+        this.areaId = areaId;
+    }
+
+    public String getFloorId() {
+        return floorId;
+    }
+
+    public void setFloorId(String floorId) {
+        this.floorId = floorId;
+    }
+
+    public String getRoomId() {
+        return roomId;
+    }
+
+    public void setRoomId(String roomId) {
+        this.roomId = roomId;
+    }
 
     public String getLevel() {
         return level;

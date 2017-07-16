@@ -36,12 +36,12 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public void addTeacher(Teacher teacher, String classIds) throws Exception {
         List<String> ids;
-        if(teacher.getClassify().equals("1")){
+        if (teacher.getClassify().equals("1")) {
             teacher.setClassify("职业导师");
-            ids= Arrays.asList(classIds.split(","));
+            ids = Arrays.asList(classIds.split(","));
             teacher.setDeptId(0);
             if (ids.size() != 0) trainModuleDao.updateClassTeacher(teacher.getNo(), ids);
-        }else if(teacher.getClassify().equals("2")){
+        } else if (teacher.getClassify().equals("2")) {
             teacher.setClassify("系辅导员、行政");
             teacher.setDepartmentId("0");
             teacher.setDirectionId("0");
@@ -53,11 +53,11 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public void updateTeacher(Teacher teacher, String classIds) throws Exception {
         List<String> ids;
-        if(teacher.getClassify().equals("职业导师")){
-            ids= Arrays.asList(classIds.split(","));
+        if (teacher.getClassify().equals("职业导师")) {
+            ids = Arrays.asList(classIds.split(","));
             trainModuleDao.deleteTeacherAllClassesId(teacher.getNo());
             if (ids.size() != 0) trainModuleDao.updateClassTeacher(teacher.getNo(), ids);
-        }else {
+        } else {
             teacher.setDepartmentId("0");
             teacher.setDirectionId("0");
         }
@@ -137,7 +137,7 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public void addDept(String name) throws Exception  {
+    public void addDept(String name) throws Exception {
         personDao.addDept(name);
     }
 
@@ -150,15 +150,16 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public void deleteDept(String id)throws Exception  {
+    public void deleteDept(String id) throws Exception {
         personDao.deleteDept(id);
     }
 
     @Override
     public List<Map<String, String>> queryStudentsByTeacherHasClasses(SearchDto searchDto, String no) throws Exception {
         List<Classes> classes = trainModuleDao.queryClassesByTeacherHas(no);
-
-        return personDao.queryStudentsByClassesIdsAndLikeName("%" + searchDto.getName() + "%", classes, no);
+        searchDto.setStudentNo("%"+searchDto.getStudentNo()+"%");
+        searchDto.setName("%"+searchDto.getName()+"%");
+        return personDao.queryStudentsByClassesIdsAndLikeName(searchDto, classes, no);
     }
 
     @Override
@@ -192,24 +193,26 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public Teacher queryUserById(String no)throws Exception  {
+    public Teacher queryUserById(String no) throws Exception {
         return personDao.queryUserById(no);
     }
 
     @Override
     public List<Direction> queryDirectionByDepartmentId(int departmentId) throws Exception {
 
-        return personDao.findDirectionByDepartmentId(departmentId);
+        return personDao.queryDirectionByDepartmentId(departmentId);
     }
+
     @Override
-    public List<Direction> queryDirectionByDepartment()throws Exception  {
+    public List<Direction> queryDirectionByDepartment() throws Exception {
 
         return personDao.queryDirectionByDepartment();
     }
-     @Override
+
+    @Override
     public List<Classes> queryClass() throws Exception {
 
-       return   personDao.queryClass();
+        return personDao.queryClass();
     }
 
     @Override
@@ -217,7 +220,6 @@ public class PersonServiceImpl implements PersonService {
 
         return personDao.queryClassByDepartmentId(departmentId);
     }
-
 
 
 }

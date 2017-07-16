@@ -22,75 +22,66 @@
     <div class="larry-personal">
         <div class="layui-tab">
             <blockquote class="layui-elem-quote mylog-info-tit">
+                <from id="searchInfo">
                 <div class="layui-inline">
                     <div class="layui-input-inline " style="width: auto ;margin-bottom: 10px;">
                         <select lay-filter="course" id="module_search">
                             <option value="">系</option>
-
                         </select>
                     </div>
 
                     <div class="layui-input-inline" style="width: auto;margin-bottom: 10px;">
                         <select lay-filter="profession" id="semester-search">
                             <option value="">年级</option>
-                            
-
                         </select>
                     </div>
 
                     <div class="layui-input-inline" style="width: auto;margin-bottom: 10px;">
                         <select lay-filter="t_direction" id="findDirection">
                             <option value="">方向</option>
-
-
                         </select>
                     </div>
 
                     <div class="layui-input-inline" style="width: auto;margin-bottom: 10px;">
                         <select lay-filter="profession" id="queryClass">
                             <option value="">班级</option>
-
-
                         </select>
                     </div>
                     <div class="layui-input-inline" style="width: auto ;margin-bottom: 10px;">
-                        <input type="text" name="title" id="name-search" lay-verify="title" autocomplete="off"
+                        <input type="text" name="no" id="no-search" lay-verify="title" autocomplete="off"
                                placeholder="学号" value="" class="layui-input">
                     </div>
                     <div class="layui-inline">
                         <div class="layui-input-inline" style="width: auto ;margin-bottom: 10px;">
-                            <input type="text" name="title" id="name_search" lay-verify="title" autocomplete="off"
+                            <input type="text" name="name" id="name_search" lay-verify="title" autocomplete="off"
                                    placeholder="姓名" class="layui-input">
                         </div>
                     </div>
                 </div>
                 <br>
                 <div class="layui-input-inline" style="width: auto ;margin-bottom: 10px;">
-                    <select lay-filter="queryAreaOfRoom" id="queryAreaOfRoom">
+                    <select lay-filter="queryAreaOfRoom" name="" id="queryAreaOfRoom">
                         <option value="">楼号</option>
-
-
                     </select>
                 </div>
                 <div class="layui-input-inline" style="width: auto ;margin-bottom: 10px;">
                     <select lay-filter="queryFloor" id="queryFloor">
                         <option value="">层号</option>
-
-
                     </select>
                 </div>
 
                 <div class="layui-inline">
                     <div class="layui-input-inline" style="width: auto ;margin-bottom: 10px;">
-                        <input type="text" name="title" lay-verify="title" autocomplete="off"
-                               placeholder="房间号码" class="layui-input">
+                        <input type="text" name="roomId" lay-verify="title" autocomplete="off"
+                               placeholder="房间号码" id="roomId" class="layui-input">
                     </div>
                 </div>
                 <a class="layui-btn" style="width: auto ;margin-bottom: 10px;" onclick="communication.list()"><i
                         class="layui-icon">&#xe615;</i>搜索</a>
 
-
+                </from>
             </blockquote>
+
         </div>
         <div class="larry-separate"></div>
         <div class="layui-tab-content larry-personal-body clearfix mylog-info-box">
@@ -157,14 +148,25 @@
         communication = {
             list: function () {
                 let data = {
+                    departmentId: $("#module_search").val(),
+                    professionId: $("#semester-search").val(),
+                    directionId: $("#findDirection").val(),
+                    classesId: $("#queryClass").val(),
+                    studentNo: $("#no-search").val(),
                     name: $("#name_search").val(),
+                    areaId: $("#queryAreaOfRoom").val(),
+                    floorId: $("#queryFloor").val(),
+                    roomId: $("#roomId").val(),
                 }
+
+                console.log(data)
                 $.ajax({
                     url: baseUrl + "/communication/list",
                     data: data,
                     type: "post",
                     success: function (data) {
                         if (data.result) {
+                            console.log(data)
                             laytpl($("#list-tpl").text()).render(data, function (html) {
                                 $("#list").html(html);
                             });
@@ -355,12 +357,9 @@
                 var id = data.value;
 
                 $.post(baseUrl + "dorm/room/showAreaAndFloorInfos", {areaId: data.value}, function (data) {
-                    console.log(data)
                     if (data.result) {
                         var queryAreaOfRoom = data.data.queryAreaOfRoom
                         var queryFloorOfRoom = data.data.queryFloorOfRoom
-
-
                         $("#queryAreaOfRoom").html(communication.loadDepartmentOrDirection(queryAreaOfRoom, id))
                         $("#queryFloor").html(`<option value="">层号</option>`).append(communication.loadDepartmentOrDirection(queryFloorOfRoom, "-"))
 
