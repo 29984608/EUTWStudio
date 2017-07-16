@@ -6,7 +6,6 @@
     <meta charset="utf-8">
     <title></title>
     <script type="text/javascript" src="${baseurl}/public/common/js/jquery-3.2.0.min.js"></script>
-    <script type="text/javascript" src="${baseurl}/public/js/verify/messages_zh.js"></script>
     <script type="text/javascript" src="${baseurl}/public/js/verify/jquery.metadata.js"></script>
     <script type="text/javascript" src="${baseurl}/public/js/verify/jquery.validate.js"></script>
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/common/layui/css/layui.css" media="all">
@@ -31,7 +30,7 @@
                         <div class="layui-inline">
                             <div class="layui-input-inline">
                                 <select name="modules" lay-filter="modules_3" lay-verify="required" lay-search=""
-                                        id="queryAreasInRoom">
+                                        id="queryAreas">
                                     <option value="">直接选择或搜索选择</option>
                                 </select>
                             </div>
@@ -43,7 +42,7 @@
                         <div class="layui-inline">
                             <div class="layui-input-inline">
                                 <select name="modules1" lay-filter="modules_2" lay-verify="required" lay-search=""
-                                        id="queryFloorsInRoom">
+                                        id="queryFloors">
                                     <option value="">直接选择或搜索选择</option>
                                 </select>
                             </div>
@@ -129,10 +128,10 @@
                 });
             },
             list: function () {
-                var areaId = $("#queryAreasInRoom").val();
-                var floorId = $("#queryFloorsInRoom").val();
-                var areaName = $("#queryAreasInRoom").find("option:selected").text();
-                var floorName = $("#queryFloorsInRoom").find("option:selected").text();
+                var areaId = $("#queryAreas").val();
+                var floorId = $("#queryFloors").val();
+                var areaName = $("#queryAreas").find("option:selected").text();
+                var floorName = $("#queryFloors").find("option:selected").text();
                 var roomNo = $("#roomNo").val();
                 $.ajax({
                     url: baseUrl + "dorm/room/list",
@@ -162,8 +161,8 @@
             query: function () {
                 $.post(baseUrl + "dorm/room/showAreaAndFloorInfosToQuery", function (data) {
                     if (data.result) {
-                        $("#queryAreasInRoom").html(room.loadDepartmentOrDirection(data.data.queryAreaOfRoom, "-"))
-                        $("#queryFloorsInRoom").html(room.loadDepartmentOrDirection(data.data.queryFloorOfRoom, "-"))
+                        $("#queryAreas").html(room.loadDepartmentOrDirection(data.data.queryAreaOfRoom, "-"))
+                        $("#queryFloors").html(room.loadDepartmentOrDirection(data.data.queryFloorOfRoom, "-"))
                     }
                     form.render();
                 })
@@ -320,8 +319,8 @@
                         var queryAreaOfRoom = data.data.queryAreaOfRoom
                         var queryFloorOfRoom = data.data.queryFloorOfRoom
 
-                        $("#queryAreasInRoom").html(room.loadDepartmentOrDirection(queryAreaOfRoom, id))
-                        $("#queryFloorsInRoom").html(room.loadDepartmentOrDirection(queryFloorOfRoom), "-")
+                        $("#queryAreas").html(room.loadDepartmentOrDirection(queryAreaOfRoom, id))
+                        $("#queryFloors").html(room.loadDepartmentOrDirection(queryFloorOfRoom), "-")
                         form.render();
                     }
                 })

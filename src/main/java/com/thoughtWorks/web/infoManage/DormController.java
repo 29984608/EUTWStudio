@@ -193,7 +193,6 @@ public class DormController {
             data.put("pageInfos", pageInfos);
             data.put("pageUtil", pageUtil);
 
-
             return Result.success(data, Constant.SEARCH_SUCCESS);
         } catch (Exception e) {
             e.printStackTrace();
