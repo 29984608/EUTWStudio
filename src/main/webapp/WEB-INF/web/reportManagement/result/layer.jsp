@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ include file="../../public/tag.jsp" %>
+<%@ include file="../../../public/tag.jsp" %>
 <html>
 <head>
     <title>学生成绩单</title>

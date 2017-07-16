@@ -3,12 +3,21 @@ package com.thoughtWorks.dto;
 public class SearchDto {
     private String name;
     private String studentNo;
+    private String level;
     private String classesId;
     private String departmentId;
     private String professionId;
     private String directionId;
     private String moduleId;
     private String semester;
+
+    public String getLevel() {
+        return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
+    }
 
     public String getStudentNo() {
         return studentNo;
