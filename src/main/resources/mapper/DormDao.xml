@@ -137,9 +137,9 @@
     </insert>
 
     <update id="updateRoom" parameterType="map">
-        UPDATE t_room roo
+        UPDATE t_room r
         SET r.name = #{name}, r.floor_id = #{floorId}
-        WHERE t_room.id = #{id}
+        WHERE r.id = #{id}
     </update>
 
     <delete id="deleteRoom" parameterType="string">
