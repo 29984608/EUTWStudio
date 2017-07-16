@@ -22,7 +22,7 @@ public class DormController {
 
     @RequestMapping()
     public String index(){
-        return "infoManage/dormDemo/demo";
+        return "infoManage/dorms/dorm";
     }
 
     @RequestMapping("/area")

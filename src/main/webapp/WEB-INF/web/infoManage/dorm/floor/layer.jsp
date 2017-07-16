@@ -52,7 +52,7 @@
         </div>
     </form>
 </div>
-<div id="update" style="margin: 10px;display: none">
+<div id="update" style="margin: 10px;display: none;text-align: center">
     <form id="update-form" lay-filter="role-add" class="layui-form layui-form-pane" method="post">
         <input type="hidden" id="updateFloorId" name="id"/>
 

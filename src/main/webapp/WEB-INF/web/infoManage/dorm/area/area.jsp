@@ -16,12 +16,6 @@
 <body>
 <section class="larry-grid">
 
-    <blockquote class="layui-elem-quote mylog-info-tit">
-        <button class="layui-btn">区</button>
-        <button class="layui-btn">楼层</button>
-        <button class="layui-btn">宿舍</button>
-    </blockquote>
-
     <div class="larry-personal">
         <div class="layui-tab">
 

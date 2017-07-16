@@ -179,7 +179,7 @@
                 })
                 layer.open({
                     type: 1,
-                    area: ["30%", "70%"],
+                    area: ['auto', "70%"],
                     title: '添加'
                     , content: $("#add")
                 });
@@ -229,7 +229,7 @@
                     form.render()
                     layer.open({
                         type: 1,
-                        area: ["30%", "70%"],
+                        area: ["auto", "70%"],
                         title: '修改'
                         , content: $("#update")
                     });
