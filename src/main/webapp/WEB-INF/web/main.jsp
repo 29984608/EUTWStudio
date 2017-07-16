@@ -166,21 +166,33 @@
                                 <td><span class="info">学生信息显示到页面,完成部分分页功能</span></td>
                             </tr>
                             <tr>
-                                <td><span class="tit">2017-6-9</span>
+                                <td><span class="tit">2017-7-9</span>
                                 </td>
                                 <td><span class="info">分页功能完善,完成搜索功能</span></td>
                             </tr>
 
                             <tr>
-                                <td><span class="tit">2017-6-10</span>
+                                <td><span class="tit">2017-7-10</span>
                                 </td>
                                 <td><span class="info">设计学生成绩单静态页面,将学生信息字段,添加到数据库</span></td>
                             </tr>
 
                             <tr>
-                                <td><span class="tit">2017-6-12</span>
+                                <td><span class="tit">2017-7-12</span>
                                 </td>
                                 <td><span class="info">完成考核方式页面,并实现增删改</span></td>
+                            </tr>
+
+                            <tr>
+                                <td><span class="tit">2017-7-15</span>
+                                </td>
+                                <td><span class="info">完成区,宿舍,楼层的维护,并整合</span></td>
+                            </tr>
+
+                            <tr>
+                                <td><span class="tit">2017-7-16</span>
+                                </td>
+                                <td><span class="info">添加学生信息字段</span></td>
                             </tr>
 
                             </tbody>

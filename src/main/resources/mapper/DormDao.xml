@@ -14,6 +14,7 @@
             <if test="areaName != ''">
                 AND name LIKE  #{areaName}
             </if>
+            ORDER BY id
             limit #{start},#{pageSize}
     </select>
 
@@ -49,6 +50,7 @@
         <if test="floorName != ''">
             AND f.name LIKE  #{floorName}
         </if>
+        ORDER BY a.id
         limit #{start},#{pageSize}
     </select>
 
@@ -106,7 +108,9 @@
             <if test="floorName != ''">
                 AND f.name LIKE  #{floorName}
             </if>
-            AND r.name LIKE #{roomNo} limit #{start},#{pageSize}
+            AND r.name LIKE #{roomNo}
+            ORDER BY a.id
+            limit #{start},#{pageSize}
         </where>
     </select>
 
@@ -133,9 +137,9 @@
     </insert>
 
     <update id="updateRoom" parameterType="map">
-        UPDATE t_room roo
+        UPDATE t_room r
         SET r.name = #{name}, r.floor_id = #{floorId}
-        WHERE t_room.id = #{id}
+        WHERE r.id = #{id}
     </update>
 
     <delete id="deleteRoom" parameterType="string">
