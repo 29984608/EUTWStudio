@@ -24,22 +24,21 @@
             <blockquote class="layui-elem-quote mylog-info-tit">
                 <div class="layui-inline">
                     <div class="layui-input-inline " style="width: auto ;margin-bottom: 10px;">
-                        <select lay-filter="course" id="module_search">
+                        <select lay-filter="department" id="department_search">
                             <option value="">系</option>
 
                         </select>
                     </div>
-
                     <div class="layui-input-inline" style="width: auto;margin-bottom: 10px;">
-                        <select lay-filter="profession" id="semester-search">
+                        <select lay-filter="profession" id="level_search">
                             <option value="">年级</option>
-                            
+
 
                         </select>
                     </div>
 
                     <div class="layui-input-inline" style="width: auto;margin-bottom: 10px;">
-                        <select lay-filter="t_direction" id="findDirection">
+                        <select lay-filter="t_direction" id="direction_search">
                             <option value="">方向</option>
 
 
@@ -47,14 +46,15 @@
                     </div>
 
                     <div class="layui-input-inline" style="width: auto;margin-bottom: 10px;">
-                        <select lay-filter="profession" id="queryClass">
+                        <select lay-filter="profession" id="classes_search">
                             <option value="">班级</option>
 
 
                         </select>
                     </div>
+
                     <div class="layui-input-inline" style="width: auto ;margin-bottom: 10px;">
-                        <input type="text" name="title" id="name-search" lay-verify="title" autocomplete="off"
+                        <input type="text" name="no" id="no_search" lay-verify="title" autocomplete="off"
                                placeholder="学号" value="" class="layui-input">
                     </div>
                     <div class="layui-inline">
@@ -63,31 +63,9 @@
                                    placeholder="姓名" class="layui-input">
                         </div>
                     </div>
+                    <a class="layui-btn" style="width: auto ;margin-bottom: 10px;" onclick="resultReport.list()"><i
+                            class="layui-icon">&#xe615;</i>搜索</a>
                 </div>
-                <br>
-                <div class="layui-input-inline" style="width: auto ;margin-bottom: 10px;">
-                    <select lay-filter="queryAreaOfRoom" id="queryAreaOfRoom">
-                        <option value="">楼号</option>
-
-
-                    </select>
-                </div>
-                <div class="layui-input-inline" style="width: auto ;margin-bottom: 10px;">
-                    <select lay-filter="queryFloor" id="queryFloor">
-                        <option value="">层号</option>
-
-
-                    </select>
-                </div>
-
-                <div class="layui-inline">
-                    <div class="layui-input-inline" style="width: auto ;margin-bottom: 10px;">
-                        <input type="text" name="title" lay-verify="title" autocomplete="off"
-                               placeholder="房间号码" class="layui-input">
-                    </div>
-                </div>
-                <a class="layui-btn" style="width: auto ;margin-bottom: 10px;" onclick="communication.list()"><i
-                        class="layui-icon">&#xe615;</i>搜索</a>
 
 
             </blockquote>
@@ -98,12 +76,12 @@
                 <table class="layui-table">
                     <thead>
                     <tr>
+                        <th>系</th>
+                        <th>年级</th>
+                        <th>就业方向</th>
+                        <th>班级</th>
                         <th>学号</th>
                         <th>姓名</th>
-                        <th>性别</th>
-                        <th>方向</th>
-                        <th>专业</th>
-                        <th>班级</th>
                         <th>操作</th>
                     </tr>
                     </thead>
@@ -112,6 +90,7 @@
                     </tbody>
                 </table>
             </div>
+            <div id="demo1"></div>
         </div>
     </div>
     </div>
@@ -119,52 +98,61 @@
 </body>
 
 <%@include file="layer.jsp" %>
-<script type="text/javascript" src="${baseurl}/public/css/timeAsix/inc/colorbox.js"></script>
-<script type="text/javascript" src="${baseurl}/public/css/timeAsix/js/timeliner.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $.timeliner({
-            startOpen: ['#19550828EX', '#19630828EX']
-        });
-        $.timeliner({
-            timelineContainer: '#timelineContainer_2'
-        });
-        // Colorbox Modal
-        $(".CBmodal").colorbox({
-            inline: true,
-            initialWidth: 100,
-            maxWidth: 682,
-            initialHeight: 100,
-            transition: "elastic",
-            speed: 750
-        });
-    });
-</script>
+
 <script type="text/javascript" src="${baseurl}/public/js/pdf/html2canvas.js"></script>
 <script type="text/javascript" src="${baseurl}/public/js/pdf/jspdf.debug.js"></script>
 <script type="text/javascript" src="${baseurl}/public/js/pdf/renderPDF.js"></script>
+<script type="text/javascript" src="${baseurl}/public/common/layui/layui.js"></script>
+<script type="text/javascript" src="${baseurl}/js/searchJs.js"></script>
 <script type="text/javascript">
-    let communication;
-    let student;
-    let no;
-    layui.use(['jquery', 'layer', 'element', 'form', 'laytpl'], function () {
+    let resultReport;
+    let totalSize = 10;
+    let currentIndex = 1;
+    let pageSize = 10;
+    let department;
+    layui.use(['jquery', 'layer', 'element', 'laypage', 'form', 'laytpl'], function () {
         window.jQuery = window.$ = layui.jquery;
         window.layer = layui.layer;
         var element = layui.element(),
             form = layui.form(),
             laytpl = layui.laytpl;
 
-        communication = {
+        resultReport = {
+            page: function () {
+                layui.laypage({
+                    cont: 'demo1',
+                    pages: totalSize, //总页数
+                    curr: currentIndex,
+                    groups: 5,//连续显示分页数
+                    skin: '#1E9FFF',
+                    jump: function (obj, first) {
+                        currentIndex = obj.curr;
+                        if (!first) {
+                            resultReport.list();
+                        }
+                    }
+                });
+            },
             list: function () {
                 let data = {
+                    departmentId: $("#department_search").val(),
+                    level: $("#level_search").val(),
+                    directionId: $("#direction_search").val(),
+                    classesId: $("#classes_search").val(),
+                    studentNo: $("#no_search").val(),
                     name: $("#name_search").val(),
-                }
+                    currentIndex: currentIndex,
+                    pageSize: pageSize
+                };
                 $.ajax({
-                    url: baseUrl + "/communication/list",
+                    url: baseUrl + "/resultReport/list",
                     data: data,
                     type: "post",
                     success: function (data) {
                         if (data.result) {
+                            currentIndex = data.page.currentIndex;
+                            totalSize = data.page.totalSize;
+                            resultReport.page();
                             laytpl($("#list-tpl").text()).render(data, function (html) {
                                 $("#list").html(html);
                             });
@@ -173,85 +161,15 @@
                     }
                 });
             },
-            add: function (studentNo) {
-                $.post(baseUrl + "/studentClass/student", {studentNo: studentNo}, function (data) {
-                    if (data.result) {
-                        student = data.data;
+            preview: function (no) {
 
-                        $("#student_radio").prop({checked: true});
-                        $(".no").val(student.no);
-                        $("#studentName").val(student.name);
-                        $("#talkName").text(student.name);
-                        form.render();
+                $.post(baseUrl + "/resultReport/preview", {studentNo: no}, function (data) {
+                    if (data.result) {
                         layer.open({
                             type: 1,
-                            title: '添加',
+                            title: "成绩单",
                             area: ["100%", "100%"]
-                            , content: $("#add")
-                        });
-                    } else {
-                        layer.msg(data.msg);
-                    }
-                })
-
-            },
-            addAjax: function () {
-                let no = $(".no").val();
-                let direction = $("#direction").val();
-                let talkName = $("#talkName").text();
-                let contents = "";
-                let contentNodes = $(".add-contents");
-                for (let i = 0; i < contentNodes.length; ++i) {
-                    contents += $(contentNodes[i]).val() + "$%$";
-                }
-
-                let data = {
-                    "studentId": no,
-                    "direction": direction,
-                    "talkName": talkName,
-                    "content": contents
-                }
-                $.post(baseUrl + "/communication/add", data, function (data) {
-                    layer.msg(data.msg);
-                    setTimeout("location.reload()", 500);
-                })
-            },
-            updateAjax: function (data) {
-                $.post(baseUrl + "/communication/updateContent", data, function (data) {
-                    layer.msg(data.msg);
-                })
-            },
-            updateContent: function (id, qaId) {
-                let contents = "";
-                let contentNodes = $("#id" + qaId + "EX").find(".update-contents");
-                for (let i = 0; i < contentNodes.length; ++i) {
-                    contents += $(contentNodes[i]).val() + "$%$";//Q&A 分隔符
-                }
-                let data = {
-                    id: id,
-                    content: contents
-                }
-                communication.updateAjax(data);
-            },
-            previewOrUpdate: function (name, studentNo, type) {
-                $("#who").text(name);
-
-                $.post(baseUrl + "/communication/communication", {studentNo: studentNo}, function (data) {
-                    if (data.result) {
-                        showCommunicationContents(data.data, type);
-                        let title = null;
-                        if (type === "preview") {
-                            $("#printPDF").show();
-                            title = "预览"
-                        } else {
-                            $("#printPDF").hide();
-                            title = "修改"
-                        }
-                        layer.open({
-                            type: 1,
-                            title: title,
-                            area: ["100%", "100%"]
-                            , content: $("#update")
+                            , content: $("#preview")
                         });
                     } else {
                         layer.msg(data.msg);
@@ -269,108 +187,41 @@
                 }
 
                 return _html;
-            },
+            }, loadDirectionsByDepartmentId: function (id) {
+                $.post(baseUrl + "/communication/queryDirectionByDepartmentId", {departmentId: id}, function (data) {
+                    if (data.result) {
+                        $("#direction_search").html(`<option value="">方向</option>`).append(loadOptionsHtml(data.data, "-"));
 
-            select: function () {
-                $.post(baseUrl + "/department/allDepartments", function (data) {
-                    if (data.result) {
-                        $("#module_search").html( `<option value="" selected>系</option>`).append(communication.loadDepartmentOrDirection(data.data  ,"-"));
-                        form.render();
-                    }
-                });
-            },
-            nowDate:function () {
-                let date = new Date();
-                let year=date.getFullYear();
-                let differ =year-2017;
-                if(differ>=0){
-                    for(let i =differ;i>=0;i--){
-                        $("#semester-search").append(`<option value="`+year+`">`+(year+i)+`</option>`)
-                    }
-                    form.render();
-                }
-            },
-            direction:function (data) {
-                $.post(baseUrl +"/communication/queryDirectionByDepartmentId",{departmentId:data},function (data) {
-                    if (data.result) {
-                        $("#findDirection").html(`<option value="">方向</option>`).append(communication.loadDepartmentOrDirection(data.data, "-"))
                         form.render();
                     }
                 })
-            },
-            directionOne:function () {
-                $.post(baseUrl +"/communication/queryDirectionByDepartment",function (data) {
+            }, loadClassByDepartmentId: function (id) {
+                $.post(baseUrl + "/communication/queryClassByDepartmentId", {departmentId: id}, function (data) {
                     if (data.result) {
-                        $("#findDirection").html(`<option value="">方向</option>`).append(communication.loadDepartmentOrDirection(data.data, "-"))
-                        form.render();
-                    }
-                })
-            },
-            queryClass:function () {
-                $.post(baseUrl +"/communication/queryClass",function (data) {
-                    if (data.result) {
-                        $("#queryClass").html(`<option value="">班级</option>`).append(communication.loadDepartmentOrDirection(data.data, "-"))
-                        form.render();
-                    }
-                })
-            },
-            queryClassByDepartmentId:function (data) {
-                $.post(baseUrl +"/communication/queryClassByDepartmentId",{departmentId:data},function (data) {
-                    if (data.result) {
-                        $("#queryClass").html(`<option value="">班级</option>`).append(communication.loadDepartmentOrDirection(data.data, "-"))
-                        form.render();
-                    }
-                })
-            },
-            queryFloorAndAreaOfRoom :function () {
-                $.post(baseUrl +"/dorm/room/showAreaAndFloorInfosToQuery",function (data) {
-                    if (data.result) {
-                        $("#queryFloor").html(`<option value="">层号</option>`).append(communication.loadDepartmentOrDirection(data.data.queryFloorOfRoom, "-"))
-                        $("#queryAreaOfRoom").html(`<option value="">楼号</option>`).append(communication.loadDepartmentOrDirection(data.data.queryAreaOfRoom, "-"))
+                        $("#classes_search").html(`<option value="">班级</option>`).append(loadOptionsHtml(data.data, "-"));
+
                         form.render();
                     }
                 })
             }
-
-
-
         };
         $(function () {
-            communication.list();
-            communication.select();
-            communication.nowDate();
-            communication.directionOne();
-            communication.queryClass();
-            communication.queryFloorAndAreaOfRoom();
-            form.on('radio(talk)', function (data) {
-                let talkName = data.value == "parent" ? student.parentName : student.name;
-                $("#talkName").text(talkName);
-            });
-            form.on('select(course)', function (data) {
-                communication.direction(data.value);
-                communication.queryClassByDepartmentId(data.value);
+            loadALlDepartments();
+            loadAllDirections();
+            loadAllLevels();
+            loadAllClassess();
+            resultReport.list();
+            form.render();
+
+            form.on('select(department)', function (data) {
+
+                $("#department_search").html(resultReport.loadClassByDepartmentId(data.value));
+                $("#direction_search").html(resultReport.loadDirectionsByDepartmentId(data.value));
 
             });
-            form.on('select(queryAreaOfRoom)', function (data) {
-                var id = data.value;
-
-                $.post(baseUrl + "dorm/room/showAreaAndFloorInfos", {areaId: data.value}, function (data) {
-                    console.log(data)
-                    if (data.result) {
-                        var queryAreaOfRoom = data.data.queryAreaOfRoom
-                        var queryFloorOfRoom = data.data.queryFloorOfRoom
-
-
-                        $("#queryAreaOfRoom").html(communication.loadDepartmentOrDirection(queryAreaOfRoom, id))
-                        $("#queryFloor").html(`<option value="">层号</option>`).append(communication.loadDepartmentOrDirection(queryFloorOfRoom, "-"))
-
-                        form.render();
-                    }
-                })
-            })
         });
     })
-    ;
+
 
     function printPdf() {
         pdf(document.getElementById("container"), $("#exportPDFName").text(), "a4");
