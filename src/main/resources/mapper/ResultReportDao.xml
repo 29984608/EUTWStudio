@@ -4,11 +4,43 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.thoughtWorks.dao.ResultReportDao">
 
-    <select id="queryStudentsLikes" parameterType="map">
-        SELECT
+    <select id="queryStudentsLikesTotalCount" parameterType="map" resultType="long">
+        SELECT count(1) FROM t_student student
+        LEFT JOIN (SELECT
+        id,
+        name
+        FROM t_department) department ON department.id = student.department_id
+        LEFT JOIN (SELECT
+        id,
+        name
+        FROM t_direction) direction ON direction.id = student.direction_id
+        LEFT JOIN (SELECT
+        id,
+        name
+        FROM t_classes) classes ON classes.id = student.classes_id
+        <where>
+            <if test="departmentId!=''">
+                department_id = #{departmentId}
+            </if>
+            <if test="level!=''">
+                AND level = #{level}
+            </if>
+            <if test="directionId!=''">
+                AND direction_id = #{directionId}
+            </if>
+            <if test="classesId!=''">
+                student.classes_id = #{classesId}
+            </if>
+
+            AND no LIKE #{no}
+            and student.name like #{name}
+        </where>
+    </select>
+    <select id="queryStudentsLikes" parameterType="map" resultType="map">
+        SELECT no,
         department.name departmentName,
         level,
-        direction.name directionName,classes.name classesName,no,student.name
+        direction.name directionName,classes.name classesName,no,student.name studentName
         FROM t_student student
         LEFT JOIN (SELECT
         id,
@@ -32,9 +64,47 @@
             <if test="directionId!=''">
                 AND direction_id = #{directionId}
             </if>
+            <if test="classesId!=''">
+                student.classes_id = #{classesId}
+            </if>
             AND no LIKE #{no}
-            and name like #{name}
+            and student.name like #{name}
         </where>
-
+        limit #{start},#{end}
+    </select>
+    <select id="queryStudentByNo" parameterType="string" resultType="map">
+        SELECT
+            no,
+            head_image,
+            student.name    studentName,
+            gender,
+            famous_family,
+            origin_address,
+            political_status,
+            idcard,
+            profession.name professionName,
+            direction.name  directionName,
+            in_school
+        FROM t_student student
+            LEFT JOIN (SELECT
+                           id,
+                           name
+                       FROM t_profession) profession ON profession.id = student.profession_id
+            LEFT JOIN (SELECT
+                           id,
+                           name
+                       FROM t_direction) direction ON direction.id = student.direction_id
+        WHERE no = #{no}
+    </select>
+    <select id="queryStudentCourseResultByNo" parameterType="string" resultType="map">
+        SELECT
+            test_entry_time testTime,
+            nature,
+            course_name     courseName,
+            credit,
+            score,
+            is_pass
+        FROM t_result
+        WHERE no = #{no} ORDER BY is_pass DESC,test_entry_time ASC
     </select>
 </mapper>
