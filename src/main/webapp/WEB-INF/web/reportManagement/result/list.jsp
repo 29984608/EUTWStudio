@@ -222,12 +222,13 @@
             loadResults: function (results) {
                 $("#left_result").html("");
                 $("#right_result").html("");
-                let result_style, test_time, nature, course_name, credit, score, compulsory_score = 0,
-                    elective_score = 0;
+                let result_style, test_time, nature, course_name, credit, score, compulsory_score = 0, elective_score = 0;
+
 
                 for (let i = 0; i < results.length; ++i) {
+                    let testTime = results[i].testTime.split("-");
                     result_style = results[i].is_pass == 1 ? "" : `style="color:red"`;
-                    test_time = results[i].testTime;
+                    test_time = testTime[0] + testTime[1];
                     nature = results[i].nature == 0 ? "选修" : "必修";
                     course_name = results[i].courseName;
                     credit = results[i].credit;
