@@ -147,7 +147,7 @@
             add: function () {
                 layer.open({
                     type: 1,
-                    area: ['390px', '260px'],
+                    area: 'auto',
                     title: '添加'
                     , content: $("#add")
                 });
@@ -177,7 +177,7 @@
                 $("#showAreasUpdates").html(floor.loadSelectAreaHtml(area_id));
                 layer.open({
                     type: 1,
-                    area: ['auto','60%'],
+                    area: 'auto',
                     title: '修改',
                     content: $("#update")
                 });

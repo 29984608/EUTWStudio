@@ -18,8 +18,15 @@
             limit #{start},#{pageSize}
     </select>
 
-    <select id="queryAreasTotalCount" resultType="long">
-        select count(*) from t_area;
+    <select id="queryAreasTotalCount" resultType="long" parameterType="map">
+        select count(*) from t_area
+        WHERE TRUE
+        <if test="areaId != ''">
+            AND id LIKE  #{areaId}
+        </if>
+        <if test="areaName != ''">
+            AND name LIKE  #{areaName}
+        </if>
     </select>
 
     <insert id="addArea" parameterType="string">

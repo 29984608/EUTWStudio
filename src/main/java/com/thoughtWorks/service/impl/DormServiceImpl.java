@@ -28,7 +28,7 @@ public class DormServiceImpl implements DormService {
         } else {
             data.put("areaName", "%" + areaName + "%");
         }
-        pageUtil.setTotalSize(dormDao.queryAreasTotalCount());
+        pageUtil.setTotalSize(dormDao.queryAreasTotalCount(data));
 
         return dormDao.queryAreas(data);
     }

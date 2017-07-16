@@ -8,7 +8,7 @@ import java.util.Map;
 public interface DormDao {
 
 
-    Long queryAreasTotalCount();
+    Long queryAreasTotalCount(Map<String,Object> data);
 
     List<Map<String,Object>> queryAreas(Map<String, Object> data);
 
