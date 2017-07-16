@@ -30,11 +30,6 @@ public class ReportController {
         return "reportManagement/profession";
     }
 
-    @RequestMapping("result")
-    public String resultIndex() {
-        return "reportManagement/result";
-    }
-
     @RequestMapping("newStudentRegister")
     public String newStudentRegisterIndex() {
         return "reportManagement/newStudentRegister";
