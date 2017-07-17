@@ -1,10 +1,12 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <script id="list-tpl" type="text/html">
-    {{# layui.each(d.data, function(index, item){ }}
+    {{# layui.each(d.students, function(index, item){ }}
     <tr>
         <td>{{ item.no}}</td>
         <td>{{ item.name}}</td>
         <td>{{ item.gender}}</td>
+        <td>{{ item.department}}</td>
+        <td>{{ item.level}}</td>
         <td>{{ item.direction}}</td>
         <td>{{ item.profession}}</td>
         <td>
@@ -14,6 +16,9 @@
             {{ item.classes}}
             {{#}}}
         </td>
+        <td>{{ item.area}}</td>
+        <td>{{ item.floor}}</td>
+        <td>{{ item.room}}</td>
         <td>
             <button class="layui-btn layui-btn-mini "
                     onclick="communication.add('{{item.no}}')">

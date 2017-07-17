@@ -61,7 +61,7 @@
                 <br>
                 <div class="layui-input-inline" style="width: auto ;margin-bottom: 10px;">
                     <select lay-filter="queryAreaOfRoom" name="" id="queryAreaOfRoom">
-                        <option value="">楼号</option>
+                        <option value="">区号</option>
                     </select>
                 </div>
                 <div class="layui-input-inline" style="width: auto ;margin-bottom: 10px;">
@@ -92,9 +92,14 @@
                         <th>学号</th>
                         <th>姓名</th>
                         <th>性别</th>
+                        <th>系</th>
+                        <th>年级</th>
                         <th>方向</th>
                         <th>专业</th>
                         <th>班级</th>
+                        <th>区号</th>
+                        <th>层号</th>
+                        <th>房间号</th>
                         <th>操作</th>
                     </tr>
                     </thead>
@@ -103,6 +108,7 @@
                     </tbody>
                 </table>
             </div>
+            <div id="demo1"></div>
         </div>
     </div>
     </div>
@@ -135,10 +141,13 @@
 <script type="text/javascript" src="${baseurl}/public/js/pdf/jspdf.debug.js"></script>
 <script type="text/javascript" src="${baseurl}/public/js/pdf/renderPDF.js"></script>
 <script type="text/javascript">
+    let totalSize = 10;
+    let currentIndex = 1;
+    let pageSize = 10;
     let communication;
     let student;
     let no;
-    layui.use(['jquery', 'layer', 'element', 'form', 'laytpl'], function () {
+    layui.use(['jquery', 'layer', 'element','laypage', 'form', 'laytpl'], function () {
         window.jQuery = window.$ = layui.jquery;
         window.layer = layui.layer;
         var element = layui.element(),
@@ -146,6 +155,21 @@
             laytpl = layui.laytpl;
 
         communication = {
+            page: function () {
+                layui.laypage({
+                    cont: 'demo1',
+                    pages: totalSize, //总页数
+                    curr: currentIndex,
+                    groups: 5,//连续显示分页数
+                    skin: '#1E9FFF',
+                    jump: function (obj, first) {
+                        currentIndex = obj.curr;
+                        if (!first) {
+                            communication.list();
+                        }
+                    }
+                });
+            },
             list: function () {
                 let data = {
                     departmentId: $("#module_search").val(),
@@ -157,16 +181,19 @@
                     areaId: $("#queryAreaOfRoom").val(),
                     floorId: $("#queryFloor").val(),
                     roomId: $("#roomId").val(),
+                    currentIndex: currentIndex,
+                    pageSize: pageSize
                 }
-
-                console.log(data)
                 $.ajax({
                     url: baseUrl + "/communication/list",
                     data: data,
                     type: "post",
                     success: function (data) {
+                        console.log(data)
                         if (data.result) {
-                            console.log(data)
+                            currentIndex = data.page.currentIndex;
+                            totalSize = data.page.totalSize;
+                            communication.page();
                             laytpl($("#list-tpl").text()).render(data, function (html) {
                                 $("#list").html(html);
                             });
@@ -328,7 +355,7 @@
                 $.post(baseUrl +"/dorm/room/showAreaAndFloorInfosToQuery",function (data) {
                     if (data.result) {
                         $("#queryFloor").html(`<option value="">层号</option>`).append(communication.loadDepartmentOrDirection(data.data.queryFloorOfRoom, "-"))
-                        $("#queryAreaOfRoom").html(`<option value="">楼号</option>`).append(communication.loadDepartmentOrDirection(data.data.queryAreaOfRoom, "-"))
+                        $("#queryAreaOfRoom").html(`<option value="">区号</option>`).append(communication.loadDepartmentOrDirection(data.data.queryAreaOfRoom, "-"))
                         form.render();
                     }
                 })
