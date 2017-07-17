@@ -76,7 +76,7 @@
                                placeholder="房间号码" id="roomId" class="layui-input">
                     </div>
                 </div>
-                <a class="layui-btn" style="width: auto ;margin-bottom: 10px;" onclick="communication.list()"><i
+                <a class="layui-btn" style="width: auto ;margin-bottom: 10px;" onclick="currentIndex=1;communication.list()"><i
                         class="layui-icon">&#xe615;</i>搜索</a>
 
                 </from>
