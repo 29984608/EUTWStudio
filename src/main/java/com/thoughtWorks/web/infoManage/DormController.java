@@ -27,18 +27,18 @@ public class DormController {
 
     @RequestMapping("/area")
     public String areaIndex() {
-        return "infoManage/dorm/area/area";
+        return "infoManage/dorms/dorm/area/area";
     }
 
     @RequestMapping("/floor")
     public String floorIndex() {
-        return "infoManage/dorm/floor/floor";
+        return "infoManage/dorms/dorm/floor/floor";
     }
 
 
     @RequestMapping("/room")
     public String roomIndex() {
-        return "infoManage/dorm/room/room";
+        return "infoManage/dorms/dorm/room/room";
     }
 
     @RequestMapping("/area/list")
@@ -244,7 +244,7 @@ public class DormController {
         return Result.failure("null", Constant.DELETE_FAILURE);
     }
 
-    @RequestMapping("/room/showAreaAndFloorInfos")
+    @RequestMapping("/room/showAreaAndFloors")
     @ResponseBody
     public Result showAreaAndFloorInfos(String areaId) {
         try {
@@ -259,14 +259,12 @@ public class DormController {
         return Result.failure("null", Constant.SEARCH_FAILURE);
     }
 
-    @RequestMapping("/room/showAreaAndFloorInfosToAdd")
+    @RequestMapping("/room/showAreaAndFloorsToAdd")
     @ResponseBody
     public Result showAreaAndFloorInfosToAdd() {
         try {
 
             Map<String, Object> data = dormService.showAreaAndFloorInfos("1");
-
-
 
             return Result.success(data, Constant.SEARCH_SUCCESS);
         } catch (Exception e) {
@@ -276,7 +274,7 @@ public class DormController {
         return Result.failure("null", Constant.SEARCH_FAILURE);
     }
 
-    @RequestMapping("/room/showAreaAndFloorInfosToQuery")
+    @RequestMapping("/room/showAreaAndFloorsToQuery")
     @ResponseBody
     public Result showAreaAndFloorInfosToQuery() {
         try {

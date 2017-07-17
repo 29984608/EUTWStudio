@@ -172,7 +172,7 @@
         WHERE id = #{id}
     </update>
 
-    <select id="queryStudentInfos" resultType="map">
+    <select id="queryStudents" resultType="map">
         SELECT *
         FROM tttttt;
     </select>
@@ -180,47 +180,43 @@
     <select id="queryStudentTotalCount" parameterType="map" resultType="long">
         SELECT count(*)
         FROM t_student
-        WHERE t_student.name
-              LIKE #{name}
     </select>
 
     <select id="queryStudentList" resultType="map">
         SELECT
-            t_student.no,
-            t_student.name,
-            t_student.gender,
+            s.no,
+            s.name,
+            s.gender,
             department.name depatmentName,
             direction.name  directionName,
             classes.name    classesName,
             profession.name professionName
-        FROM t_student
+        FROM t_student s
             LEFT JOIN
 
             (SELECT
                  id,
                  NAME
-             FROM t_department) department ON department.id = t_student.department_id
+             FROM t_department) department ON department.id = s.department_id
 
             LEFT JOIN
             (SELECT
                  id,
                  NAME
-             FROM t_direction) direction ON direction.id = t_student.direction_id
+             FROM t_direction) direction ON direction.id = s.direction_id
 
             LEFT JOIN
             (SELECT
                  id,
                  NAME
-             FROM t_classes) classes ON classes.id = t_student.department_id
+             FROM t_classes) classes ON classes.id = s.department_id
 
             LEFT JOIN
             (SELECT
                  id,
                  NAME
-             FROM t_profession) profession ON profession.id = t_student.direction_id
+             FROM t_profession) profession ON profession.id = s.profession_id
 
-        WHERE t_student.name
-              LIKE #{name}
         LIMIT #{start}, #{pageSize}
 
     </select>

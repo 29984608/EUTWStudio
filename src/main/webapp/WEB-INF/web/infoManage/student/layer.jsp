@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <script id="list-tpl" type="text/html">
-    {{# layui.each(d.studentInfos, function(index,item){ }}
+    {{# layui.each(d.student, function(index,item){ }}
     <tr>
         <td>
             {{# if(item.no === undefined){ }}
@@ -43,6 +43,38 @@
             未分配
             {{# }else{ }}
             {{ item.directionName}}
+            {{#}}}
+        </td>
+
+        <td>
+            {{# if(item.classesName === undefined){ }}
+            未分配
+            {{# }else{ }}
+            {{ item.classesName}}
+            {{#}}}
+        </td>
+
+        <td>
+            {{# if(item.classesName === undefined){ }}
+            未分配
+            {{# }else{ }}
+            {{ item.classesName}}
+            {{#}}}
+        </td>
+
+        <td>
+            {{# if(item.classesName === undefined){ }}
+            未分配
+            {{# }else{ }}
+            {{ item.classesName}}
+            {{#}}}
+        </td>
+
+        <td>
+            {{# if(item.classesName === undefined){ }}
+            未分配
+            {{# }else{ }}
+            {{ item.classesName}}
             {{#}}}
         </td>
 

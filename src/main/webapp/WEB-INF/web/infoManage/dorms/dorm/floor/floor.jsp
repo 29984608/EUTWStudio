@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ include file="../../../../public/tag.jsp" %>
+<%@ include file="../../../../../public/tag.jsp" %>
 
 <html>
 <head>
@@ -44,7 +44,7 @@
                                     <option value="">直接选择或搜索选择</option>
                                 </select>
                             </div>
-                            <a class="layui-btn" onclick="floor.list()"><i class="layui-icon">&#xe615;</i>搜索</a>
+                            <a class="layui-btn" onclick="currentIndex = 1;floor.list()"><i class="layui-icon">&#xe615;</i>搜索</a>
                         </div>
                     </div>
 
