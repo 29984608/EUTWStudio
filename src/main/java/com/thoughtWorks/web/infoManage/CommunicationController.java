@@ -9,12 +9,14 @@ import com.thoughtWorks.entity.CommunicationContent;
 import com.thoughtWorks.entity.Direction;
 import com.thoughtWorks.service.PersonService;
 import com.thoughtWorks.util.Constant;
+import com.thoughtWorks.util.PageUtil;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -32,17 +34,23 @@ public class CommunicationController {
 
     @RequestMapping("list")
     @ResponseBody
-    public Result list(SearchDto searchDto) {
-        try {
-            ActiveUser user = (ActiveUser) SecurityUtils.getSubject().getPrincipal();
-            List<Map<String, String>> students = personService.queryStudentsByTeacherHasClasses(searchDto, user.getUserName());
+    public Map<String, Object> list(SearchDto searchDto, PageUtil page) {
+        Map<String, Object> data = new HashMap<>();
 
-            return Result.success(students, Constant.SEARCH_SUCCESS);
+        try {
+//            ActiveUser user = (ActiveUser) SecurityUtils.getSubject().getPrincipal();
+            List<Map<String, String>> students = personService.queryStudentsByTeacherHasClasses(searchDto, page);
+
+            data.put("students", students);
+            data.put("page", page);
+            data.put("result", true);
+            data.put("msg", Constant.SEARCH_SUCCESS);
         } catch (Exception e) {
             e.printStackTrace();
+            data.put("msg", Constant.SEARCH_FAILURE);
         }
 
-        return Result.failure(null, Constant.SEARCH_FAILURE);
+        return data;
     }
 
     @RequestMapping("add")

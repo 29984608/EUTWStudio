@@ -86,6 +86,7 @@
             and student.classes_id LIKE #{searchDto.classesId}
             and student.no LIKE #{searchDto.studentNo}
         </if>
+        LIMIT #{start}, #{pageSize}
     </select>
     <select id="queryStudentsCount" resultType="long">
         SELECT count(*)

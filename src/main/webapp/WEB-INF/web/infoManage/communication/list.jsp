@@ -103,6 +103,7 @@
                     </tbody>
                 </table>
             </div>
+            <div id="demo1"></div>
         </div>
     </div>
     </div>
@@ -135,10 +136,13 @@
 <script type="text/javascript" src="${baseurl}/public/js/pdf/jspdf.debug.js"></script>
 <script type="text/javascript" src="${baseurl}/public/js/pdf/renderPDF.js"></script>
 <script type="text/javascript">
+    let totalSize = 10;
+    let currentIndex = 1;
+    let pageSize = 10;
     let communication;
     let student;
     let no;
-    layui.use(['jquery', 'layer', 'element', 'form', 'laytpl'], function () {
+    layui.use(['jquery', 'layer', 'element','laypage', 'form', 'laytpl'], function () {
         window.jQuery = window.$ = layui.jquery;
         window.layer = layui.layer;
         var element = layui.element(),
@@ -146,6 +150,21 @@
             laytpl = layui.laytpl;
 
         communication = {
+            page: function () {
+                layui.laypage({
+                    cont: 'demo1',
+                    pages: totalSize, //总页数
+                    curr: currentIndex,
+                    groups: 5,//连续显示分页数
+                    skin: '#1E9FFF',
+                    jump: function (obj, first) {
+                        currentIndex = obj.curr;
+                        if (!first) {
+                            communication.list();
+                        }
+                    }
+                });
+            },
             list: function () {
                 let data = {
                     departmentId: $("#module_search").val(),
@@ -157,6 +176,8 @@
                     areaId: $("#queryAreaOfRoom").val(),
                     floorId: $("#queryFloor").val(),
                     roomId: $("#roomId").val(),
+                    currentIndex: currentIndex,
+                    pageSize: pageSize
                 }
 
                 console.log(data)
@@ -165,8 +186,11 @@
                     data: data,
                     type: "post",
                     success: function (data) {
+                        console.log(data)
                         if (data.result) {
-                            console.log(data)
+                            currentIndex = data.page.currentIndex;
+                            totalSize = data.page.totalSize;
+                            communication.page();
                             laytpl($("#list-tpl").text()).render(data, function (html) {
                                 $("#list").html(html);
                             });

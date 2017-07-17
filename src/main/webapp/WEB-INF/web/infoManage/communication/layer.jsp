@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <script id="list-tpl" type="text/html">
-    {{# layui.each(d.data, function(index, item){ }}
+    {{# layui.each(d.students, function(index, item){ }}
     <tr>
         <td>{{ item.no}}</td>
         <td>{{ item.name}}</td>

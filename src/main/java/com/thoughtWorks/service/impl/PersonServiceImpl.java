@@ -155,11 +155,15 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public List<Map<String, String>> queryStudentsByTeacherHasClasses(SearchDto searchDto, String no) throws Exception {
+    public List<Map<String, String>> queryStudentsByTeacherHasClasses(SearchDto searchDto, PageUtil page) throws Exception {
+        Map<String, Object> data = new HashMap<>();
         searchDto.setStudentNo("%"+searchDto.getStudentNo()+"%");
         searchDto.setName("%"+searchDto.getName()+"%");
-        long count =  personDao.queryStudentsCount(searchDto);
-        return personDao.queryStudentsByClassesIdsAndLikeName(searchDto);
+        data.put("start", (page.getCurrentIndex() - 1) * page.getPageSize());
+        data.put("pageSize", page.getPageSize());
+        data.put("searchDto",searchDto);
+        page.setTotalSize(personDao.queryStudentsCount(searchDto));
+        return personDao.queryStudentsByClassesIdsAndLikeName(data);
     }
 
     @Override
