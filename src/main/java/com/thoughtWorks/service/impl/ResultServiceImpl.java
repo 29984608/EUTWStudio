@@ -41,13 +41,18 @@ public class ResultServiceImpl implements ResultService {
         data.put("start", (pageUtil.getCurrentIndex() - 1) * pageUtil.getPageSize());
         data.put("pageSize", pageUtil.getPageSize());
         pageUtil.setTotalSize(resultDao.queryRankStudentsTotalCountLikes(data));
+
         List<Map<String, String>> students = resultDao.queryStudentLimit(data);
+        if(students.size() == 0) return studentsTotalScores;
+
         List<Map<String, String>> studentsScores = resultDao.queryStudentScores(students);
         if (studentsScores.size() != 0) studentsTotalScores = getStudentsTotalScore(studentsScores, students);
         studentsAverageScores = getStudentsAverageScore(studentsTotalScores);
         sortStudentScoreDesc(studentsAverageScores);
+        int endIndex = (Integer) data.get("pageSize") + (Integer) data.get("start");
+        if(endIndex > studentsAverageScores.size()) endIndex = studentsAverageScores.size();
 
-        return studentsAverageScores;
+        return studentsAverageScores.subList((Integer) data.get("start"), endIndex);
     }
 
     private void sortStudentScoreDesc(List<Map<String, String>> studentsAverageScores) {

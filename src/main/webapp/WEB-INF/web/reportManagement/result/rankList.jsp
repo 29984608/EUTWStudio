@@ -38,7 +38,7 @@
                         </select>
                     </div>
                     <div class="layui-input-inline" style="width: auto;margin-bottom: 10px;">
-                        <select  id="direction_search">
+                        <select id="direction_search">
                             <option value="">方向</option>
 
 
@@ -61,12 +61,9 @@
                         <th>系</th>
                         <th>年级</th>
                         <th>就业方向</th>
-                        <th>班级</th>
                         <th>学号</th>
                         <th>姓名</th>
-                        <th>课程代码</th>
-                        <th>课程名称</th>
-                        <th>分数</th>
+                        <th>平均分</th>
                     </tr>
                     </thead>
                     <tbody id="list">
@@ -86,22 +83,21 @@
         <td>{{ item.departmentName}}</td>
         <td>{{ item.level}}</td>
         <td>{{ item.directionName}}</td>
-        <td>{{ item.classesName}}</td>
         <td>{{ item.no}}</td>
         <td>{{ item.studentName}}</td>
-        <td>{{ item.courseCode}}</td>
-        <td>{{ item.courseName}}</td>
         <td>{{ item.score}}</td>
     </tr>
     {{# }); }}
 
 </script>
 <script type="text/javascript" src="${baseurl}/public/common/layui/layui.js"></script>
+<script type="text/javascript" src="${baseurl}/js/searchJs.js"></script>
 <script type="text/javascript">
     let rank;
     let totalSize = 10;
     let currentIndex = 1;
     let pageSize = 10;
+    let level;
     layui.use(['jquery', 'layer', 'element', 'laypage', 'form', 'laytpl'], function () {
         window.jQuery = window.$ = layui.jquery;
         window.layer = layui.layer;
@@ -139,7 +135,6 @@
                     type: "post",
                     success: function (data) {
                         if (data.result) {
-                            console.log(data);
                             currentIndex = data.page.currentIndex;
                             totalSize = data.page.totalSize;
                             rank.page();
@@ -147,16 +142,40 @@
                                 $("#list").html(html);
                             });
                             form.render();
-                        }else{
+                        } else {
                             layer.msg(data.msg);
                         }
                     }
                 });
+            },loadDirectionsByDepartmentId: function (id) {
+                $.post(baseUrl + "/communication/queryDirectionByDepartmentId", {departmentId: id}, function (data) {
+                    if (data.result) {
+                        $("#direction_search").html(`<option value="">方向</option>`).append(loadOptionsHtml(data.data, "-"));
+
+                        form.render();
+                    }
+                })
+            },
+            loadAllLevels:function () {
+            let date = new Date();
+            let year = date.getFullYear();
+            let differ = year - 2017;
+            if (differ >= 0) {
+                for (let i = differ; i >= 0; i--) {
+                    $("#level_search").html(`<option value="` + year + `">` + (year + i) + `</option>`)
+                }
             }
+        }
         };
         $(function () {
+            loadALlDepartments();
+            loadAllDirections();
+            rank.loadAllLevels();
             rank.list();
-
+            form.render();
+            form.on('select(department)', function (data) {
+                $("#direction_search").html(rank.loadDirectionsByDepartmentId(data.value));
+            });
         });
     })
 

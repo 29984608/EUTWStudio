@@ -75,7 +75,6 @@
             </if>
         </where>
         ORDER BY   level DESC ,student.no DESC
-        limit #{start},#{pageSize}
     </select>
     <select id="queryStudentScores" parameterType="map" resultType="map">
         SELECT no,score FROM t_result

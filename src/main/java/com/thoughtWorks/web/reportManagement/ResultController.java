@@ -1,12 +1,10 @@
 package com.thoughtWorks.web.reportManagement;
 
-import com.thoughtWorks.dto.Result;
 import com.thoughtWorks.dto.SearchDto;
 import com.thoughtWorks.service.ResultService;
 import com.thoughtWorks.util.Constant;
 import com.thoughtWorks.util.PageUtil;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
