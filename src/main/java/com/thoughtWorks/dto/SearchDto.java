@@ -8,11 +8,50 @@ public class SearchDto {
     private String departmentId;
     private String professionId;
     private String directionId;
+
     private String moduleId;
     private String semester;
+
     private String areaId;
     private String floorId;
     private String roomId;
+
+    private String courseCode;
+    private String courseName;
+    private String lessThanScore;
+    private String moreThanScore;
+
+    public String getCourseCode() {
+        return courseCode;
+    }
+
+    public void setCourseCode(String courseCode) {
+        this.courseCode = courseCode;
+    }
+
+    public String getCourseName() {
+        return courseName;
+    }
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
+
+    public String getLessThanScore() {
+        return lessThanScore;
+    }
+
+    public void setLessThanScore(String lessThanScore) {
+        this.lessThanScore = lessThanScore;
+    }
+
+    public String getMoreThanScore() {
+        return moreThanScore;
+    }
+
+    public void setMoreThanScore(String moreThanScore) {
+        this.moreThanScore = moreThanScore;
+    }
 
     public String getAreaId() {
         return areaId;

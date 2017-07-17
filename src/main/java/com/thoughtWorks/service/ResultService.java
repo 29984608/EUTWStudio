@@ -1,10 +1,13 @@
 package com.thoughtWorks.service;
 
-import javax.servlet.http.HttpServletRequest;
-import java.io.File;
+import com.thoughtWorks.dto.SearchDto;
+import com.thoughtWorks.util.PageUtil;
+
 import java.util.List;
 import java.util.Map;
 
 public interface ResultService {
 
+
+    List<Map<String,String>> querySearchList(SearchDto searchDto, PageUtil pageUtil) throws Exception;
 }

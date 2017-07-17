@@ -28,7 +28,7 @@ public class ResultReportServiceImpl implements ResultReportService {
         data.put("no", searchDto.getStudentNo() + "%");
         data.put("name", "%" + searchDto.getName() + "%");
         data.put("start", (pageUtil.getCurrentIndex() - 1) * pageUtil.getPageSize());
-        data.put("end", pageUtil.getPageSize());
+        data.put("pageSize", pageUtil.getPageSize());
         pageUtil.setTotalSize(resultReportDao.queryStudentsLikesTotalCount(data));
 
         return resultReportDao.queryStudentsLikes(data);
