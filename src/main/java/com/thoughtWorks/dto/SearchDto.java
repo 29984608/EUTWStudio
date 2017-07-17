@@ -3,6 +3,7 @@ package com.thoughtWorks.dto;
 public class SearchDto {
     private String name;
     private String studentNo;
+
     private String level;
     private String classesId;
     private String departmentId;
