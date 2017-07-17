@@ -3,7 +3,6 @@ package com.thoughtWorks.dao;
 import com.thoughtWorks.dto.SearchDto;
 import com.thoughtWorks.entity.*;
 import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
 import java.util.Map;
 
@@ -25,7 +24,8 @@ public interface PersonDao {
 
     void distributedClass(@Param("classesId") String classesId, @Param("ids") List<String> ids);
 
-    List<Map<String,String>> queryStudentsByClassesIdsAndLikeName(@Param("searchDto")SearchDto searchDto, @Param("classes") List<Classes> classes, @Param("no") String no);
+    List<Map<String,String>> queryStudentsByClassesIdsAndLikeName(@Param("searchDto")SearchDto searchDto);
+    long queryStudentsCount(@Param("searchDto")SearchDto searchDto);
 
     Student queryStudentByNo(String stuNo);
 

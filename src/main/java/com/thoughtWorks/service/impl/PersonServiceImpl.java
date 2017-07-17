@@ -156,10 +156,10 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public List<Map<String, String>> queryStudentsByTeacherHasClasses(SearchDto searchDto, String no) throws Exception {
-        List<Classes> classes = trainModuleDao.queryClassesByTeacherHas(no);
         searchDto.setStudentNo("%"+searchDto.getStudentNo()+"%");
         searchDto.setName("%"+searchDto.getName()+"%");
-        return personDao.queryStudentsByClassesIdsAndLikeName(searchDto, classes, no);
+        long count =  personDao.queryStudentsCount(searchDto);
+        return personDao.queryStudentsByClassesIdsAndLikeName(searchDto);
     }
 
     @Override
