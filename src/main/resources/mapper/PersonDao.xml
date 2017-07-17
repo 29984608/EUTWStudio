@@ -130,7 +130,25 @@
         student.name LIKE #{searchDto.name}
         and student.no LIKE #{searchDto.studentNo}
         <if test=" searchDto.classesId !=''">
-            and student.classes_id = #{searchDto.classesId}
+            and student.classes_id LIKE #{searchDto.classesId}
+        </if>
+        <if test=" searchDto.departmentId !=''">
+            and student.department_id = #{searchDto.departmentId}
+        </if>
+        <if test=" searchDto.professionId !=''">
+            and student.level = #{searchDto.professionId}
+        </if>
+        <if test=" searchDto.directionId !=''">
+            and student.direction_id = #{searchDto.directionId}
+        </if>
+        <if test=" searchDto.areaId !=''">
+            and student.area_id = #{searchDto.areaId}
+        </if>
+        <if test=" searchDto.floorId !=''">
+            and student.floor_id = #{searchDto.floorId}
+        </if>
+        <if test=" searchDto.roomId !=''">
+            and student.room_id = #{searchDto.roomId}
         </if>
     </select>
     <select id="queryStudentByNo" parameterType="string" resultType="Student">
