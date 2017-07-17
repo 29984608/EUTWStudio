@@ -23,30 +23,28 @@
         <div class="layui-tab">
             <blockquote class="layui-elem-quote mylog-info-tit">
                 <div class="layui-inline">
-                    <div class="layui-input-inline" style="width: auto ;margin-bottom: 10px;">
-                        <input type="text" name="courseCode" id="course_code_search" lay-verify="title"
-                               autocomplete="off"
-                               placeholder="课程代码" value="" class="layui-input">
+                    <div class="layui-input-inline" style="width: auto;margin-bottom: 10px;">
+                        <select lay-filter="department" id="department_search">
+                            <option value="">系</option>
+
+
+                        </select>
                     </div>
-                    <div class="layui-inline">
-                        <div class="layui-input-inline" style="width: auto ;margin-bottom: 10px;">
-                            <input type="text" name="courseName" id="course_name_search" lay-verify="title"
-                                   autocomplete="off"
-                                   placeholder="课程名称" class="layui-input">
-                        </div>
+                    <div class="layui-input-inline" style="width: auto;margin-bottom: 10px;">
+                        <select lay-filter="level" id="level_search">
+                            <option value="">年级</option>
+
+
+                        </select>
                     </div>
-                    <div class="layui-inline">
-                        <label class="layui-form-label">范围</label>
-                        <div class="layui-input-inline" style="width: 100px;">
-                            <input type="text" name="lessThanScore" id="less_than_score_score" placeholder="0" autocomplete="off" class="layui-input">
-                        </div>
+                    <div class="layui-input-inline" style="width: auto;margin-bottom: 10px;">
+                        <select  id="direction_search">
+                            <option value="">方向</option>
+
+
+                        </select>
                     </div>
-                    <div class="layui-inline">
-                        <label class="layui-form-label" style="margin-left: -28%"> - </label>
-                        <div class="layui-input-inline" style="width: 100px;">
-                            <input type="text" name="moreThanScore" id="more_than_score_score" placeholder="100" autocomplete="off" class="layui-input">
-                        </div>
-                    </div>
+
                     <a class="layui-btn" style="width: auto ;margin-bottom: 10px;" onclick="rank.list()"><i
                             class="layui-icon">&#xe615;</i>搜索</a>
                 </div>
@@ -129,10 +127,9 @@
             },
             list: function () {
                 let data = {
-                    courseCode: $("#course_code_search").val(),
-                    courseName: $("#course_name_search").val(),
-                    lessThanScore: $("#less_than_score_score").val(),
-                    moreThanScore: $("#more_than_score_score").val(),
+                    departmentId: $("#department_search").val(),
+                    directionId: $("#direction_search").val(),
+                    level: $("#level_search").val(),
                     currentIndex: currentIndex,
                     pageSize: pageSize
                 };

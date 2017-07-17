@@ -10,4 +10,6 @@ public interface ResultService {
 
 
     List<Map<String,String>> querySearchList(SearchDto searchDto, PageUtil pageUtil) throws Exception;
+
+    List<Map<String,String>> queryRankList(SearchDto searchDto, PageUtil pageUtil)throws Exception;
 }

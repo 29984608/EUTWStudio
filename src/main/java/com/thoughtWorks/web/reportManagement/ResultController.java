@@ -49,4 +49,21 @@ public class ResultController {
         return data;
     }
 
+    @RequestMapping("rankList")
+    @ResponseBody
+    public Map<String,Object> rankList(SearchDto searchDto, PageUtil pageUtil) {
+        Map<String, Object> data = new HashMap<>();
+        try {
+            List<Map<String, String>> results = resultService.queryRankList(searchDto,pageUtil);
+            data.put("results", results);
+            data.put("page", pageUtil);
+            data.put("result", true);
+            data.put("msg", Constant.SEARCH_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+            data.put("result", false);
+            data.put("msg", Constant.SEARCH_FAILURE);
+        }
+        return data;
+    }
 }
