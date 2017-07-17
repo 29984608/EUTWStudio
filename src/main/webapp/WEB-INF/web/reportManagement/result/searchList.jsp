@@ -36,7 +36,7 @@
                         </div>
                     </div>
                     <div class="layui-inline">
-                        <label class="layui-form-label">范围</label>
+                        <label class="layui-form-label">分数</label>
                         <div class="layui-input-inline" style="width: 100px;">
                             <input type="text" name="lessThanScore" id="less_than_score_score" placeholder="0" autocomplete="off" class="layui-input">
                         </div>
@@ -47,7 +47,7 @@
                             <input type="text" name="moreThanScore" id="more_than_score_score" placeholder="100" autocomplete="off" class="layui-input">
                         </div>
                     </div>
-                    <a class="layui-btn" style="width: auto ;margin-bottom: 10px;" onclick="search.list()"><i
+                    <a class="layui-btn" style="width: auto ;margin-bottom: 10px;" onclick="search_.list()"><i
                             class="layui-icon">&#xe615;</i>搜索</a>
                 </div>
 
@@ -100,7 +100,7 @@
 </script>
 <script type="text/javascript" src="${baseurl}/public/common/layui/layui.js"></script>
 <script type="text/javascript">
-    let search;
+    let search_;
     let totalSize = 10;
     let currentIndex = 1;
     let pageSize = 10;
@@ -111,7 +111,7 @@
             form = layui.form(),
             laytpl = layui.laytpl;
 
-        search = {
+        search_ = {
             page: function () {
                 layui.laypage({
                     cont: 'demo1',
@@ -122,7 +122,7 @@
                     jump: function (obj, first) {
                         currentIndex = obj.curr;
                         if (!first) {
-                            search.list();
+                            search_.list();
                         }
                     }
                 });
@@ -142,10 +142,9 @@
                     type: "post",
                     success: function (data) {
                         if (data.result) {
-                            console.log(data);
                             currentIndex = data.page.currentIndex;
                             totalSize = data.page.totalSize;
-                            search.page();
+                            search_.page();
                             laytpl($("#list-tpl").text()).render(data, function (html) {
                                 $("#list").html(html);
                             });
@@ -158,7 +157,7 @@
             }
         };
         $(function () {
-            search.list();
+            search_.list();
 
         });
     })

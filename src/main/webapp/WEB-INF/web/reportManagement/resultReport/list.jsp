@@ -165,7 +165,8 @@
                 $.post(baseUrl + "/resultReport/preview", {studentNo: no}, function (data) {
                     if (data.result) {
                         resultReport.loadStudentInfo(data.student);
-                        resultReport.loadResults(data.results);
+                        if (data.results != null)
+                            resultReport.loadResults(data.results);
                         layer.open({
                             type: 1,
                             title: "成绩单",
@@ -206,11 +207,14 @@
                 })
             },
             loadStudentInfo: function (student) {
-                let originAddress = student.origin_address.split(ADDRESS_SPLIT_FLAG);
+                if (student.origin_address != null) {
+                    let originAddress = student.origin_address.split(ADDRESS_SPLIT_FLAG);
+                    $("#address").text(originAddress[0] + originAddress[1]);
+                } else  $("#address").text("");
                 $("#name").text(student.studentName);
                 $("#gender").text(student.gender);
                 $("#famous_family").text(student.famous_family);
-                $("#address").text(originAddress[0] + originAddress[1]);
+
                 $("#headImg").attr({src: HEAD_IMAGE_PREFIX + student.head_image});
                 $("#no").text(student.no);
                 $("#political").text(student.political_status);
@@ -222,13 +226,17 @@
             loadResults: function (results) {
                 $("#left_result").html("");
                 $("#right_result").html("");
-                let result_style, test_time, nature, course_name, credit, score, compulsory_score = 0, elective_score = 0;
+                let result_style, test_time, nature, course_name, credit, score, compulsory_score = 0,
+                    elective_score = 0;
 
 
                 for (let i = 0; i < results.length; ++i) {
-                    let testTime = results[i].testTime.split("-");
+                    if (results[i].testTime != null) {
+                        let testTime = results[i].testTime.split("-");
+                        test_time = testTime[0] + testTime[1];
+                    } else test_time = "";
                     result_style = results[i].is_pass == 1 ? "" : `style="color:red"`;
-                    test_time = testTime[0] + testTime[1];
+
                     nature = results[i].nature == 0 ? "选修" : "必修";
                     course_name = results[i].courseName;
                     credit = results[i].credit;
