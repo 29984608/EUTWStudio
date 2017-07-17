@@ -119,13 +119,18 @@
             and student.floor_id = #{searchDto.floorId}
         </if>
         <if test=" searchDto.roomId !=''">
-            and student.room_id = #{searchDto.roomId}
+            and room.name LIKE #{searchDto.roomId}
         </if>
         LIMIT #{start}, #{pageSize}
     </select>
     <select id="queryStudentsCount" resultType="long">
         SELECT count(*)
         FROM t_student student
+        LEFT JOIN (SELECT
+        id,
+        name
+        FROM t_room) room ON room.id = student.room_id
+
         WHERE
         student.name LIKE #{searchDto.name}
         and student.no LIKE #{searchDto.studentNo}
@@ -148,7 +153,7 @@
             and student.floor_id = #{searchDto.floorId}
         </if>
         <if test=" searchDto.roomId !=''">
-            and student.room_id = #{searchDto.roomId}
+            and room.name LIKE #{searchDto.roomId}
         </if>
     </select>
     <select id="queryStudentByNo" parameterType="string" resultType="Student">

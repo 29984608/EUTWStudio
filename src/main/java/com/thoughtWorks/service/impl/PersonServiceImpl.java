@@ -155,6 +155,7 @@ public class PersonServiceImpl implements PersonService {
         Map<String, Object> data = new HashMap<>();
         searchDto.setStudentNo("%"+searchDto.getStudentNo()+"%");
         searchDto.setName("%"+searchDto.getName()+"%");
+        searchDto.setRoomId("%"+searchDto.getRoomId()+"%");
         data.put("start", (page.getCurrentIndex() - 1) * page.getPageSize());
         data.put("pageSize", page.getPageSize());
         data.put("searchDto",searchDto);

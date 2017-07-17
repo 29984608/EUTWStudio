@@ -81,6 +81,7 @@ public class CommunicationController {
             e.printStackTrace();
         }
 
+
         return Result.failure(null, Constant.SEARCH_FAILURE);
     }
 
