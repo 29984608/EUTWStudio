@@ -1,8 +1,6 @@
 package com.thoughtWorks.web.reportManagement;
 
-import com.thoughtWorks.dto.Result;
 import com.thoughtWorks.dto.SearchDto;
-import com.thoughtWorks.service.ReportService;
 import com.thoughtWorks.service.ResultReportService;
 import com.thoughtWorks.util.Constant;
 import com.thoughtWorks.util.PageUtil;
@@ -24,7 +22,7 @@ public class ResultReportController {
 
     @RequestMapping("")
     public String index() {
-        return "reportManagement/result/list";
+        return "reportManagement/resultReport/list";
     }
 
     @RequestMapping("list")

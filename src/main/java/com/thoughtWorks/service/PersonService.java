@@ -24,7 +24,7 @@ public interface PersonService {
 
     void distributedClass(String classesId, String studentIds) throws Exception;
 
-    List<Map<String, String>> queryStudentsByTeacherHasClasses(SearchDto searchDto, String no) throws Exception;
+    List<Map<String, String>> queryStudentsByTeacherHasClasses(SearchDto searchDto, PageUtil page) throws Exception;
 
     Student queryStudentByNo(String stuNo) throws Exception;
 

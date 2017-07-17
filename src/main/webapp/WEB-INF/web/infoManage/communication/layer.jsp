@@ -1,10 +1,12 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <script id="list-tpl" type="text/html">
-    {{# layui.each(d.data, function(index, item){ }}
+    {{# layui.each(d.students, function(index, item){ }}
     <tr>
         <td>{{ item.no}}</td>
         <td>{{ item.name}}</td>
         <td>{{ item.gender}}</td>
+        <td>{{ item.department}}</td>
+        <td>{{ item.level}}</td>
         <td>{{ item.direction}}</td>
         <td>{{ item.profession}}</td>
         <td>
@@ -14,6 +16,9 @@
             {{ item.classes}}
             {{#}}}
         </td>
+        <td>{{ item.area}}</td>
+        <td>{{ item.floor}}</td>
+        <td>{{ item.room}}</td>
         <td>
             <button class="layui-btn layui-btn-mini "
                     onclick="communication.add('{{item.no}}')">
@@ -106,7 +111,33 @@
     <div class="container" id="container" style="padding:50px 30px">
 
         <h1 style="text-align: center;margin-left: -30px">西安欧亚学院高职学院<span id="who"></span>学生成长经历报告</h1>
+        <div style="">
 
+            <table  class="layui-table lay-even " data-name="articleCatData">
+                <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>工号</th>
+                    <th>名字</th>
+                    <th>性别</th>
+                    <th>所属类别</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th>序号</th>
+                    <th>工号</th>
+                    <th>名字</th>
+                    <th>性别</th>
+                    <th>所属类别</th>
+                    <th>操作</th>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        </div>
         <div id="timelineContainer" class="timelineContainer">
 
             <div class="timelineToggle"><p><a class="expandAll ">+ 全部展开</a></p></div>

@@ -70,7 +70,7 @@
             AND no LIKE #{no}
             and student.name like #{name}
         </where>
-        limit #{start},#{end}
+        limit #{start},#{pageSize}
     </select>
     <select id="queryStudentByNo" parameterType="string" resultType="map">
         SELECT
