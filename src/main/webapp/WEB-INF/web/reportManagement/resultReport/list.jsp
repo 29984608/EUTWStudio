@@ -63,7 +63,7 @@
                                    placeholder="姓名" class="layui-input">
                         </div>
                     </div>
-                    <a class="layui-btn" style="width: auto ;margin-bottom: 10px;" onclick="resultReport.list()"><i
+                    <a class="layui-btn" style="width: auto ;margin-bottom: 10px;" onclick="currentIndex=1;resultReport.list()"><i
                             class="layui-icon">&#xe615;</i>搜索</a>
                 </div>
 

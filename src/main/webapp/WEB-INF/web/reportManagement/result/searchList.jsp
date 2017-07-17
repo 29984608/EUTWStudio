@@ -47,7 +47,7 @@
                             <input type="text" name="moreThanScore" id="more_than_score_score" placeholder="100" autocomplete="off" class="layui-input">
                         </div>
                     </div>
-                    <a class="layui-btn" style="width: auto ;margin-bottom: 10px;" onclick="search_.list()"><i
+                    <a class="layui-btn" style="width: auto ;margin-bottom: 10px;" onclick="currentIndex=1;search_.list()"><i
                             class="layui-icon">&#xe615;</i>搜索</a>
                 </div>
 
