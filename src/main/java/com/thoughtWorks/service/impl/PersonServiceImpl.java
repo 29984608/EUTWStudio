@@ -121,11 +121,9 @@ public class PersonServiceImpl implements PersonService {
         data.put("name", "%" + searchDto.getName() + "%");
 
         page.setTotalSize(personDao.queryStudentTotalCount("%" + searchDto.getName() + "%"));
-        System.out.println(personDao.queryStudentTotalCount("%" + searchDto.getName() + "%"));
         return personDao.queryStudentList(data);
 
     }
-
     @Override
     public List<Map<String, Object>> queryAllDept(PageUtil pageUtil) throws Exception {
         Map<String, Object> data = new HashMap<>();
