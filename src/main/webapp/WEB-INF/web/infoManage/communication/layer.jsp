@@ -139,7 +139,6 @@
             </table>
         </div>
 
-        </div>
         <div id="timelineContainer" class="timelineContainer">
 
             <div class="timelineToggle"><p><a class="expandAll ">+ 全部展开</a></p></div>

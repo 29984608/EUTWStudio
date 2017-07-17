@@ -407,8 +407,7 @@
     ;
 
     function printPdf() {
-        pdf(document.getElementById("container"), $("#exportPDFName").text(), "a4");
-        location.reload();
+        pdf(document.getElementById("container"), $("#exportPDFName").text(), "a3");
     }
 </script>
 
