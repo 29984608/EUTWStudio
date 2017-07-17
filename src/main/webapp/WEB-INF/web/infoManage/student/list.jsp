@@ -139,7 +139,7 @@
                                            autocomplete="off"
                                            placeholder="姓名" class="layui-input" style="margin-right: 3px">
                                 </div>
-                                <a class="layui-btn" onclick="currentIndex = 1;room.list()"><i class="layui-icon">&#xe615;</i>搜索</a>
+                                <a class="layui-btn" onclick="currentIndex = 1;student.list()"><i class="layui-icon">&#xe615;</i>搜索</a>
                             </div>
                         </div>
                     </div>
@@ -229,14 +229,14 @@
                     data: {
                         currentIndex: currentIndex,
                         pageSize: pageSize,
-                        department_search: department_search,
-                        level_search: level_search,
-                        direction_search: direction_search,
-                        classes_search: classes_search,
-                        area_search: area_search,
-                        floor_search: floor_search,
-                        roomNo_search: roomNo_search,
-                        studentNo_search: studentNo_search,
+                        departmentId: department_search,
+                        level: level_search,
+                        directionId: direction_search,
+                        classesId: classes_search,
+                        areaId: area_search,
+                        floorId: floor_search,
+                        roomId: roomNo_search,
+                        studentNo: studentNo_search,
                         name: name,
                         sex: sex,
                         TypeOfAccommodation: TypeOfAccommodation

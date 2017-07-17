@@ -3,6 +3,8 @@ package com.thoughtWorks.dao;
 import com.thoughtWorks.dto.SearchDto;
 import com.thoughtWorks.entity.*;
 import org.apache.ibatis.annotations.Param;
+import org.apache.poi.hssf.record.ObjRecord;
+
 import java.util.List;
 import java.util.Map;
 
@@ -39,7 +41,7 @@ public interface PersonDao {
 
     List<Map<String,Object>> queryStudentList(Map<String, Object> data);
 
-    Long queryStudentTotalCount(String name);
+    Long queryStudentTotalCount(Map<String,Object> data);
 
     List<Map<String,Object>> queryAllDept(Map<String, Object> data);
 

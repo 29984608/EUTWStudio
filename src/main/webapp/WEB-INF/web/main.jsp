@@ -239,7 +239,17 @@
                             <tr>
                                 <td><span class="tit">2017-7-15</span>
                                 </td>
-                                <td><span class="info">完成沟通反馈搜索功能-系、年级、方向班级、学号、姓名、楼层、楼号、房间号 表单关联功能完成 </span></td>
+                                <td><span class="info">完成页面沟通反馈按照系、年级、方向班级、学号、姓名、楼层、楼号、房间号 表单的关联 </span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="tit">2017-7-16</span>
+                                </td>
+                                <td><span class="info">完成沟通反馈搜索功能：按照不同信息搜索完成 </span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="tit">2017-7-17</span>
+                                </td>
+                                <td><span class="info">预览学生成长经历中增加学生基本信息，沟通反馈页面分页功能完成</span></td>
                             </tr>
 
                             </tbody>

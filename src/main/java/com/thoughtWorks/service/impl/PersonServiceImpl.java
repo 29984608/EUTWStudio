@@ -117,9 +117,12 @@ public class PersonServiceImpl implements PersonService {
         Map<String, Object> data = new HashMap<>();
         data.put("start", (page.getCurrentIndex() - 1) * page.getPageSize());
         data.put("pageSize", page.getPageSize());
-        data.put("name", "%" + searchDto.getName() + "%");
+        data.put("searchDto", searchDto);
 
-        page.setTotalSize(personDao.queryStudentTotalCount("%" + searchDto.getName() + "%"));
+        page.setTotalSize(personDao.queryStudentTotalCount(data));
+        System.out.println("++++++++++++++++++++++++++++"+personDao.queryStudentList(data));
+        System.out.println("++++++++++++++++++++++++++++"+searchDto);
+
         return personDao.queryStudentList(data);
 
     }
