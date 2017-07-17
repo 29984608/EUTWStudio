@@ -61,4 +61,6 @@ public interface PersonDao {
 
     List<Classes> queryClassByDepartmentId(int departmentId);
 
+    List<Map<String ,Object>> queryStudentInfoById(String studentNo )throws Exception ;
+
 }

@@ -74,6 +74,8 @@ public class CommunicationController {
     public Result communication(String studentNo) {
         try {
             List<Map<String, Object>> communication = personService.queryCommunicationByStudentId(studentNo);
+            List<Map<String,Object>> student =personService.queryStudentInfoById(studentNo);
+            communication.addAll(student);
             return Result.success(communication, Constant.SEARCH_SUCCESS);
         } catch (Exception e) {
             e.printStackTrace();

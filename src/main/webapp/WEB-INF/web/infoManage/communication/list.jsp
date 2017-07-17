@@ -266,8 +266,16 @@
                 $("#who").text(name);
 
                 $.post(baseUrl + "/communication/communication", {studentNo: studentNo}, function (data) {
+                    console.log(data.data[(data.data.length-1)].profession)
                     if (data.result) {
                         showCommunicationContents(data.data, type);
+                        $("#name").text(data.data[(data.data.length-1)].name);
+                        $("#gender").text(data.data[(data.data.length-1)].gender);
+                        $("#native_place").text(data.data[(data.data.length-1)].native_place);
+                        $("#idcard").text(data.data[(data.data.length-1)].idcard);
+                        $("#profession").text(data.data[(data.data.length-1)].profession);
+                        $("#direction2").text(data.data[(data.data.length-1)].direction);
+                        $("#political_status").text(data.data[(data.data.length-1)].political_status);
                         let title = null;
                         if (type === "preview") {
                             $("#printPDF").show();
@@ -352,7 +360,7 @@
                 })
             },
             queryFloorAndAreaOfRoom :function () {
-                $.post(baseUrl +"/dorm/room/showAreaAndFloorInfosToQuery",function (data) {
+                $.post(baseUrl +"/dorm/room/showAreaAndFloorsToQuery",function (data) {
                     if (data.result) {
                         $("#queryFloor").html(`<option value="">层号</option>`).append(communication.loadDepartmentOrDirection(data.data.queryFloorOfRoom, "-"))
                         $("#queryAreaOfRoom").html(`<option value="">区号</option>`).append(communication.loadDepartmentOrDirection(data.data.queryAreaOfRoom, "-"))

@@ -5,7 +5,6 @@ import com.thoughtWorks.dao.PersonDao;
 import com.thoughtWorks.dao.TrainModuleDao;
 import com.thoughtWorks.dto.SearchDto;
 import com.thoughtWorks.entity.*;
-import com.thoughtWorks.service.DepartmentService;
 import com.thoughtWorks.service.PersonService;
 import com.thoughtWorks.util.Constant;
 import com.thoughtWorks.util.PageUtil;
@@ -121,7 +120,6 @@ public class PersonServiceImpl implements PersonService {
         data.put("name", "%" + searchDto.getName() + "%");
 
         page.setTotalSize(personDao.queryStudentTotalCount("%" + searchDto.getName() + "%"));
-        System.out.println(personDao.queryStudentTotalCount("%" + searchDto.getName() + "%"));
         return personDao.queryStudentList(data);
 
     }
@@ -222,6 +220,12 @@ public class PersonServiceImpl implements PersonService {
     public List<Classes> queryClassByDepartmentId(int departmentId) throws Exception {
 
         return personDao.queryClassByDepartmentId(departmentId);
+    }
+
+    @Override
+    public List<Map<String, Object>> queryStudentInfoById(String studentNo) throws Exception {
+
+        return personDao.queryStudentInfoById(studentNo);
     }
 
 

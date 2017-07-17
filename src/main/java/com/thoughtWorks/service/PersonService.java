@@ -56,4 +56,6 @@ public interface PersonService {
 
     List<Classes> queryClassByDepartmentId(int departmentId)throws Exception ;
 
+    List<Map<String ,Object>> queryStudentInfoById(String studentNo )throws Exception ;
+
 }
