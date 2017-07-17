@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ include file="../../../../public/tag.jsp" %>
+<%@ include file="../../../../../public/tag.jsp" %>
 
 <html>
 <head>
@@ -32,7 +32,7 @@
                                     <option value="">直接选择或搜索选择</option>
                                 </select>
                             </div>
-                            <a class="layui-btn" onclick="area.list()"><i class="layui-icon">&#xe615;</i>搜索</a>
+                            <a class="layui-btn" onclick="currentIndex = 1;area.list()"><i class="layui-icon">&#xe615;</i>搜索</a>
                         </div>
                     </div>
 
@@ -178,7 +178,7 @@
                 });
             },
             queryAreas: function () {
-                $.post(baseUrl + "dorm/room/showAreaAndFloorInfosToQuery", function (data) {
+                $.post(baseUrl + "dorm/room/showAreaAndFloorsToQuery", function (data) {
                     if (data.result) {
                         $("#queryAreas").html(area.loadSelectElementHtml(data.data.queryAreaOfRoom, "-"))
                     }

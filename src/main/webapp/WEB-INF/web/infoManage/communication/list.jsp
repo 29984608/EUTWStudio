@@ -76,7 +76,7 @@
                                placeholder="房间号码" id="roomId" class="layui-input">
                     </div>
                 </div>
-                <a class="layui-btn" style="width: auto ;margin-bottom: 10px;" onclick="communication.list()"><i
+                <a class="layui-btn" style="width: auto ;margin-bottom: 10px;" onclick="currentIndex=1;communication.list()"><i
                         class="layui-icon">&#xe615;</i>搜索</a>
 
                 </from>
@@ -266,8 +266,16 @@
                 $("#who").text(name);
 
                 $.post(baseUrl + "/communication/communication", {studentNo: studentNo}, function (data) {
+                    console.log(data.data[(data.data.length-1)].profession)
                     if (data.result) {
                         showCommunicationContents(data.data, type);
+                        $("#name").text(data.data[(data.data.length-1)].name);
+                        $("#gender").text(data.data[(data.data.length-1)].gender);
+                        $("#native_place").text(data.data[(data.data.length-1)].native_place);
+                        $("#idcard").text(data.data[(data.data.length-1)].idcard);
+                        $("#profession").text(data.data[(data.data.length-1)].profession);
+                        $("#direction2").text(data.data[(data.data.length-1)].direction);
+                        $("#political_status").text(data.data[(data.data.length-1)].political_status);
                         let title = null;
                         if (type === "preview") {
                             $("#printPDF").show();
@@ -352,7 +360,7 @@
                 })
             },
             queryFloorAndAreaOfRoom :function () {
-                $.post(baseUrl +"/dorm/room/showAreaAndFloorInfosToQuery",function (data) {
+                $.post(baseUrl +"/dorm/room/showAreaAndFloorsToQuery",function (data) {
                     if (data.result) {
                         $("#queryFloor").html(`<option value="">层号</option>`).append(communication.loadDepartmentOrDirection(data.data.queryFloorOfRoom, "-"))
                         $("#queryAreaOfRoom").html(`<option value="">区号</option>`).append(communication.loadDepartmentOrDirection(data.data.queryAreaOfRoom, "-"))
@@ -399,8 +407,7 @@
     ;
 
     function printPdf() {
-        pdf(document.getElementById("container"), $("#exportPDFName").text(), "a4");
-        location.reload();
+        pdf(document.getElementById("container"), $("#exportPDFName").text(), "a3");
     }
 </script>
 

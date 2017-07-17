@@ -9,6 +9,8 @@ public class SearchDto {
     private String departmentId;
     private String professionId;
     private String directionId;
+    private String sex;
+    private String TypeOfAccommodation;     //住宿类型
 
     private String moduleId;
     private String semester;
@@ -21,6 +23,22 @@ public class SearchDto {
     private String courseName;
     private String lessThanScore;
     private String moreThanScore;
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public String getTypeOfAccommodation() {
+        return TypeOfAccommodation;
+    }
+
+    public void setTypeOfAccommodation(String typeOfAccommodation) {
+        TypeOfAccommodation = typeOfAccommodation;
+    }
 
     public String getCourseCode() {
         return courseCode;
@@ -154,11 +172,23 @@ public class SearchDto {
     public String toString() {
         return "SearchDto{" +
                 "name='" + name + '\'' +
+                ", studentNo='" + studentNo + '\'' +
+                ", level='" + level + '\'' +
+                ", classesId='" + classesId + '\'' +
                 ", departmentId='" + departmentId + '\'' +
                 ", professionId='" + professionId + '\'' +
                 ", directionId='" + directionId + '\'' +
+                ", sex='" + sex + '\'' +
+                ", TypeOfAccommodation='" + TypeOfAccommodation + '\'' +
                 ", moduleId='" + moduleId + '\'' +
                 ", semester='" + semester + '\'' +
+                ", areaId='" + areaId + '\'' +
+                ", floorId='" + floorId + '\'' +
+                ", roomId='" + roomId + '\'' +
+                ", courseCode='" + courseCode + '\'' +
+                ", courseName='" + courseName + '\'' +
+                ", lessThanScore='" + lessThanScore + '\'' +
+                ", moreThanScore='" + moreThanScore + '\'' +
                 '}';
     }
 }

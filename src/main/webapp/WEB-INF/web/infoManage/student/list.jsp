@@ -17,19 +17,135 @@
 <section class="larry-grid layui-form">
     <div class="larry-personal">
         <div class="layui-tab">
-            <blockquote class="layui-elem-quote mylog-info-tit">
+            <form id="update-form" lay-filter="role-add" class="layui-form layui-form-pane" method="post">
+                <blockquote class="layui-elem-quote mylog-info-tit">
 
-                <div class="layui-inline">
-                    <div class="layui-inline">
+                    <div class="layui-form-item">
                         <div class="layui-input-inline">
-                            <input type="text" name="title" id="name_search" lay-verify="title" autocomplete="off"
-                                   placeholder="姓名" class="layui-input">
+                            <div class="layui-inline">
+                                <div class="layui-input-inline">
+                                    <select name="modules" lay-filter="department" lay-verify="required" lay-search=""
+                                            id="department_search">
+                                        <option value="">系</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
-                        <a class="layui-btn" onclick="student.list()"><i class="layui-icon">&#xe615;</i>搜索</a>
 
+                        <div class="layui-input-inline">
+                            <div class="layui-inline">
+                                <div class="layui-input-inline">
+                                    <select name="modules1" lay-filter="modules_2" lay-verify="required" lay-search=""
+                                            id="level_search">
+                                        <option value="">年级</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-input-inline">
+                            <div class="layui-inline">
+                                <div class="layui-input-inline">
+                                    <select name="modules" lay-filter="modules_3" lay-verify="required" lay-search=""
+                                            id="direction_search">
+                                        <option value="">方向</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-input-inline">
+                            <div class="layui-inline">
+                                <div class="layui-input-inline">
+                                    <select name="modules1" lay-filter="modules_2" lay-verify="required" lay-search=""
+                                            id="classes_search">
+                                        <option value="">班级</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </blockquote>
+                    <div>
+                        <div class="layui-form-item">
+                            <div class="layui-form-inline">
+                                <label class="layui-form-label">性别</label>
+                                <div class="layui-input-inline" id="sex">
+                                    <input type="radio" name="sex" value="男" title="男" checked="">
+                                    <input type="radio" name="sex" value="女" title="女">
+                                </div>
+
+                                <label class="layui-form-label">住宿类型</label>
+                                <div class="layui-input-inline" id="TypeOfAccommodation" onclick="student.showDormAndHideDorm()">
+                                    <input type="radio" name="TypeOfAccommodation" value="1" title="校内" checked=""
+                                            >
+                                    <input type="radio" name="TypeOfAccommodation" value="2" title="校外"
+                                           >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <span id="dorm">
+                            <div class="layui-input-inline">
+                                <div class="layui-inline">
+                                    <div class="layui-input-inline">
+                                        <select name="modules" lay-filter="dorm" lay-verify="required" lay-search=""
+                                                id="area_search">
+                                            <option value="">区</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="layui-input-inline">
+                                <div class="layui-inline">
+                                    <div class="layui-input-inline">
+                                        <select name="modules1" lay-filter="modules_2" lay-verify="required"
+                                                lay-search=""
+                                                id="floor_search">
+                                            <option value="">楼层</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="layui-inline" style="margin-right: -15px">
+                                <div class="layui-inline">
+                                    <div class="layui-input-inline">
+                                        <input type="text" name="title" id="roomNo_search" lay-verify="title"
+                                               autocomplete="off"
+                                               placeholder="宿舍" class="layui-input">
+                                    </div>
+                                </div>
+                            </div>
+                        </span>
+
+                        <div class="layui-inline" style="margin-right: -15px">
+                            <div class="layui-inline">
+                                <div class="layui-input-inline">
+                                    <input type="text" name="title" id="studentNo_search" lay-verify="title"
+                                           autocomplete="off"
+                                           placeholder="学号" class="layui-input">
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="layui-inline" style="margin-right: -15px">
+                            <div class="layui-inline" style="margin-right: -10px">
+                                <div class="layui-input-inline">
+                                    <input type="text" name="title" id="studentName_search" lay-verify="title"
+                                           autocomplete="off"
+                                           placeholder="姓名" class="layui-input" style="margin-right: 3px">
+                                </div>
+                                <a class="layui-btn" onclick="currentIndex = 1;room.list()"><i class="layui-icon">&#xe615;</i>搜索</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </blockquote>
+            </form>
             <div class="larry-separate"></div>
             <div class="layui-tab-content larry-personal-body clearfix mylog-info-box">
                 <div class="layui-form">
@@ -43,6 +159,10 @@
                             <th>专业</th>
                             <th>方向</th>
                             <th>班级</th>
+                            <th>住宿类型</th>
+                            <th>区</th>
+                            <th>楼层</th>
+                            <th>宿舍</th>
                             <th>操作</th>
                         </tr>
                         </thead>
@@ -91,12 +211,36 @@
             },
 
             list: function () {
-                let name = $("#name_search").val();
+                let department_search = $("#department_search").val();
+                let level_search = $("#level_search").val();
+                let direction_search = $("#direction_search").val();
+                let classes_search = $("#classes_search").val();
+                let area_search = $("#area_search").val();
+                let floor_search = $("#floor_search").val();
+                let roomNo_search = $("#roomNo_search").val();
+                let studentNo_search = $("#studentNo_search").val();
+                let name = $("#studentName_search").val();
+                let sex = $("input[name='sex']:checked").val();
+                let TypeOfAccommodation = $("input[name='TypeOfAccommodation']:checked").val();
 
                 $.ajax({
                     url: baseUrl + "/student/list",
-                    type:"post",
-                    data: {currentIndex: currentIndex, pageSize: pageSize,name:name},
+                    type: "post",
+                    data: {
+                        currentIndex: currentIndex,
+                        pageSize: pageSize,
+                        department_search: department_search,
+                        level_search: level_search,
+                        direction_search: direction_search,
+                        classes_search: classes_search,
+                        area_search: area_search,
+                        floor_search: floor_search,
+                        roomNo_search: roomNo_search,
+                        studentNo_search: studentNo_search,
+                        name: name,
+                        sex: sex,
+                        TypeOfAccommodation: TypeOfAccommodation
+                    },
                     success: function (data) {
                         if (data.result) {
                             currentIndex = data.page.currentIndex;
@@ -109,12 +253,145 @@
                         }
                     }
                 });
-            }
+            },
+            showDormAndHideDorm: function () {
+                if ($("input[name='TypeOfAccommodation']:checked").val() === "1") {
+                    $("#dorm").show();
+                } else {
+                    $("#dorm").hide();
+                }
+            },
+            loadDirectionsByDepartmentId: function (id) {
+                $.post(baseUrl + "/communication/queryDirectionByDepartmentId", {departmentId: id}, function (data) {
+                    if (data.result) {
+                        $("#direction_search").html(`<option value="">方向</option>`).append(loadOptionsHtml(data.data, "-"));
 
+                        form.render();
+                    }
+                })
+            }, loadClassByDepartmentId: function (id) {
+                $.post(baseUrl + "/communication/queryClassByDepartmentId", {departmentId: id}, function (data) {
+                    if (data.result) {
+                        $("#classes_search").html(`<option value="">班级</option>`).append(loadOptionsHtml(data.data, "-"));
+
+                        form.render();
+                    }
+                })
+            },
+            loadDepartmentOrDirectionArea: function (data, selectId) {
+                let _html = "<option value=\"\">区</option>";
+                for (let i = 0; i < data.length; ++i) {
+                    if (selectId == data[i].id) {
+                        _html += `<option  selected value="` + data[i].id + `">` + data[i].name + `</option>`;
+                    } else {
+                        _html += `<option value="` + data[i].id + `">` + data[i].name + `</option>`;
+                    }
+                }
+
+                return _html;
+            },
+            loadDepartmentOrDirectionFloor: function (data, selectId) {
+                let _html = "<option value=\"\">楼层</option>";
+                for (let i = 0; i < data.length; ++i) {
+                    if (selectId == data[i].id) {
+                        _html += `<option  selected value="` + data[i].id + `">` + data[i].name + `</option>`;
+                    } else {
+                        _html += `<option value="` + data[i].id + `">` + data[i].name + `</option>`;
+                    }
+                }
+
+                return _html;
+            },
         };
 
+
+        function loadALlDepartments() {
+            $.post(baseUrl + "/department/allDepartments", function (data) {
+                if (data.result) {
+                    $("#department_search").html(`<option value="" selected>系</option>`).append(loadOptionsHtml(data.data, "-"));
+                }
+            });
+        }
+
+        function loadAllLevels() {
+            let date = new Date();
+            let year = date.getFullYear();
+            let differ = year - 2017;
+            if (differ >= 0) {
+                for (let i = differ; i >= 0; i--) {
+                    $("#level_search").append(`<option value="` + year + `">` + (year + i) + `</option>`)
+                }
+            }
+        }
+
+        function loadAllDirections() {
+            $.post(baseUrl + "/communication/queryDirectionByDepartment", function (data) {
+                if (data.result) {
+                    $("#direction_search").html(`<option value="">方向</option>`).append(loadOptionsHtml(data.data, "-"))
+                }
+            })
+        }
+
+        function loadAllClassess() {
+            $.post(baseUrl + "/communication/queryClass", function (data) {
+                if (data.result) {
+                    $("#classes_search").html(`<option value="">班级</option>`).append(loadOptionsHtml(data.data, "-"));
+                }
+            });
+        }
+
+        function loadOptionsHtml(data, selectId) {
+            let _html = "";
+            for (let i = 0; i < data.length; ++i) {
+                if (selectId == data[i].id) {
+                    _html += `<option  selected value="` + data[i].id + `">` + data[i].name + `</option>`;
+                } else {
+                    _html += `<option value="` + data[i].id + `">` + data[i].name + `</option>`;
+                }
+            }
+
+            return _html;
+        }
+
+        function queryAreaAndFloor() {
+            $.post(baseUrl + "dorm/room/showAreaAndFloorsToQuery", function (data) {
+                if (data.result) {
+                    $("#area_search").html(student.loadDepartmentOrDirectionArea(data.data.queryAreaOfRoom, "-"))
+                    $("#floor_search").html(student.loadDepartmentOrDirectionFloor(data.data.queryFloorOfRoom, "-"))
+                }
+                form.render();
+            })
+        }
+
         $(function () {
+            queryAreaAndFloor();
+            loadALlDepartments();
+            loadAllDirections();
+            loadAllLevels();
+            loadAllClassess();
             student.list();
+            form.render();
+
+            form.on('select(department)', function (data) {
+
+                $("#department_search").html(student.loadClassByDepartmentId(data.value));
+                $("#direction_search").html(student.loadDirectionsByDepartmentId(data.value));
+            });
+
+            form.on('select(dorm)', function (data) {
+                var id = data.value;
+
+                $.post(baseUrl + "dorm/room/showAreaAndFloors", {areaId: data.value}, function (data) {
+                    if (data.result) {
+                        var queryAreaOfRoom = data.data.queryAreaOfRoom
+                        var queryFloorOfRoom = data.data.queryFloorOfRoom
+
+                        $("#area_search").html(student.loadDepartmentOrDirectionArea(queryAreaOfRoom, id))
+                        $("#floor_search").html(student.loadDepartmentOrDirectionFloor(queryFloorOfRoom), "-")
+                        form.render();
+                    }
+                })
+            })
         });
     });
 

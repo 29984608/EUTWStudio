@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ include file="../../../../public/tag.jsp" %>
+<%@ include file="../../../../../public/tag.jsp" %>
 
 <html>
 <head>
@@ -21,7 +21,7 @@
     <div class="larry-personal">
         <div class="layui-tab">
             <form id="update-form" lay-filter="role-add" class="layui-form layui-form-pane" method="post">
-
+`
 
                 <blockquote class="layui-elem-quote mylog-info-tit">
 
@@ -58,11 +58,10 @@
                                            autocomplete="off"
                                            placeholder="宿舍号" value="" class="layui-input">
                                 </div>
-                                <a class="layui-btn" onclick="room.list()"><i class="layui-icon">&#xe615;</i>搜索</a>
+                                <a class="layui-btn" onclick="currentIndex = 1;room.list()"><i class="layui-icon">&#xe615;</i>搜索</a>
                             </div>
                         </div>
                     </div>
-
 
                 </blockquote>
             </form>
@@ -154,12 +153,12 @@
                             });
                             form.render();
                         }
-                        room.query()
+                        room.queryAreaAndFloor()
                     }
                 });
             },
-            query: function () {
-                $.post(baseUrl + "dorm/room/showAreaAndFloorInfosToQuery", function (data) {
+            queryAreaAndFloor: function () {
+                $.post(baseUrl + "dorm/room/showAreaAndFloorsToQuery", function (data) {
                     if (data.result) {
                         $("#queryAreas").html(room.loadDepartmentOrDirection(data.data.queryAreaOfRoom, "-"))
                         $("#queryFloors").html(room.loadDepartmentOrDirection(data.data.queryFloorOfRoom, "-"))
@@ -168,7 +167,7 @@
                 })
             },
             add: function () {
-                $.post(baseUrl + "dorm/room/showAreaAndFloorInfosToAdd", function (data) {
+                $.post(baseUrl + "dorm/room/showAreaAndFloorsToAdd", function (data) {
                     if (data.result) {
                         $("#showAreasAdd").html(room.loadDepartmentOrDirection(data.data.queryAreaOfRoom, "-"))
                         $("#showFloorsAdd").html(room.loadDepartmentOrDirection(data.data.queryFloorOfRoom, "-"))
@@ -220,7 +219,7 @@
                 })
             },
             update: function (id, name, floorId, areaId) {
-                $.post(baseUrl + "dorm/room/showAreaAndFloorInfos", {areaId: areaId}, function (data) {
+                $.post(baseUrl + "dorm/room/showAreaAndFloors", {areaId: areaId}, function (data) {
                     $("#updateRoomName").val(name);
                     $("#updateRoomId").val(id);
                     $("#showAreasUpdate").html(room.loadDepartmentOrDirection(data.data.queryAreaOfRoom, areaId))
@@ -282,7 +281,7 @@
             form.on('select(modules_1)', function (data) {
                 var id = data.value;
 
-                $.post(baseUrl + "dorm/room/showAreaAndFloorInfos", {areaId: data.value}, function (data) {
+                $.post(baseUrl + "dorm/room/showAreaAndFloors", {areaId: data.value}, function (data) {
                     if (data.result) {
                         var queryAreaOfRoom = data.data.queryAreaOfRoom
                         var queryFloorOfRoom = data.data.queryFloorOfRoom
@@ -298,7 +297,7 @@
             form.on('select(modules_2)', function (data) {
                 var id = data.value;
 
-                $.post(baseUrl + "dorm/room/showAreaAndFloorInfos", {areaId: data.value}, function (data) {
+                $.post(baseUrl + "dorm/room/showAreaAndFloors", {areaId: data.value}, function (data) {
                     if (data.result) {
                         var queryAreaOfRoom = data.data.queryAreaOfRoom
                         var queryFloorOfRoom = data.data.queryFloorOfRoom
@@ -314,7 +313,7 @@
             form.on('select(modules_3)', function (data) {
                 var id = data.value;
 
-                $.post(baseUrl + "dorm/room/showAreaAndFloorInfos", {areaId: data.value}, function (data) {
+                $.post(baseUrl + "dorm/room/showAreaAndFloors", {areaId: data.value}, function (data) {
                     if (data.result) {
                         var queryAreaOfRoom = data.data.queryAreaOfRoom
                         var queryFloorOfRoom = data.data.queryFloorOfRoom

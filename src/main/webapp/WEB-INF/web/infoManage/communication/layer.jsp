@@ -111,6 +111,33 @@
     <div class="container" id="container" style="padding:50px 30px">
 
         <h1 style="text-align: center;margin-left: -30px">西安欧亚学院高职学院<span id="who"></span>学生成长经历报告</h1>
+        <div style="">
+
+            <table  class="layui-table lay-even " data-name="articleCatData">
+                <thead>
+                <tr>
+                    <th>姓名</th>
+                    <th>性别</th>
+                    <th>籍贯</th>
+                    <th>身份证号码</th>
+                    <th>专业</th>
+                    <th>就业方向</th>
+                    <th>政治面貌</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th id="name"></th>
+                    <th id ="gender"></th>
+                    <th id="native_place"></th>
+                    <th id="idcard"></th>
+                    <th id="profession"></th>
+                    <th id="direction2"></th>
+                    <th id="political_status"></th>
+                </tr>
+                </tbody>
+            </table>
+        </div>
 
         <div id="timelineContainer" class="timelineContainer">
 
@@ -170,7 +197,7 @@
 
     function showCommunicationContents(data, type) {
         let communication = ""
-        for (let i = 0; i < data.length; ++i) {
+        for (let i = 0; i < data.length-1; ++i) {
             let com = data[i];
             communication += `
             <div class="timelineMajor">

@@ -36,7 +36,7 @@ public interface PersonService {
 
     void distributedDirection(String directionId, String studentIds)throws Exception;
 
-    List<Map<String, Object>> queryStudentInfos(PageUtil page,SearchDto searchDto) throws Exception;
+    List<Map<String, Object>> queryStudents(PageUtil page,SearchDto searchDto) throws Exception;
 
     List<Map<String,Object>> queryAllDept(PageUtil pageUtil)throws Exception ;
 
@@ -55,5 +55,7 @@ public interface PersonService {
     List<Classes> queryClass()throws Exception ;
 
     List<Classes> queryClassByDepartmentId(int departmentId)throws Exception ;
+
+    List<Map<String ,Object>> queryStudentInfoById(String studentNo )throws Exception ;
 
 }

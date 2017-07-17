@@ -5,7 +5,6 @@ import com.thoughtWorks.dao.PersonDao;
 import com.thoughtWorks.dao.TrainModuleDao;
 import com.thoughtWorks.dto.SearchDto;
 import com.thoughtWorks.entity.*;
-import com.thoughtWorks.service.DepartmentService;
 import com.thoughtWorks.service.PersonService;
 import com.thoughtWorks.util.Constant;
 import com.thoughtWorks.util.PageUtil;
@@ -114,19 +113,16 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public List<Map<String, Object>> queryStudentInfos(PageUtil page, SearchDto searchDto) throws Exception {
+    public List<Map<String, Object>> queryStudents(PageUtil page, SearchDto searchDto) throws Exception {
         Map<String, Object> data = new HashMap<>();
         data.put("start", (page.getCurrentIndex() - 1) * page.getPageSize());
         data.put("pageSize", page.getPageSize());
         data.put("name", "%" + searchDto.getName() + "%");
 
         page.setTotalSize(personDao.queryStudentTotalCount("%" + searchDto.getName() + "%"));
-        List<Map<String, Object>> maps = personDao.queryStudentList(data);
-        System.out.println(maps);
         return personDao.queryStudentList(data);
 
     }
-
     @Override
     public List<Map<String, Object>> queryAllDept(PageUtil pageUtil) throws Exception {
         Map<String, Object> data = new HashMap<>();
@@ -159,6 +155,7 @@ public class PersonServiceImpl implements PersonService {
         Map<String, Object> data = new HashMap<>();
         searchDto.setStudentNo("%"+searchDto.getStudentNo()+"%");
         searchDto.setName("%"+searchDto.getName()+"%");
+        searchDto.setRoomId("%"+searchDto.getRoomId()+"%");
         data.put("start", (page.getCurrentIndex() - 1) * page.getPageSize());
         data.put("pageSize", page.getPageSize());
         data.put("searchDto",searchDto);
@@ -223,6 +220,12 @@ public class PersonServiceImpl implements PersonService {
     public List<Classes> queryClassByDepartmentId(int departmentId) throws Exception {
 
         return personDao.queryClassByDepartmentId(departmentId);
+    }
+
+    @Override
+    public List<Map<String, Object>> queryStudentInfoById(String studentNo) throws Exception {
+
+        return personDao.queryStudentInfoById(studentNo);
     }
 
 
