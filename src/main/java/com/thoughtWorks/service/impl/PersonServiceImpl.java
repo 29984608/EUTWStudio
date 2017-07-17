@@ -123,7 +123,6 @@ public class PersonServiceImpl implements PersonService {
         return personDao.queryStudentList(data);
 
     }
-
     @Override
     public List<Map<String, Object>> queryAllDept(PageUtil pageUtil) throws Exception {
         Map<String, Object> data = new HashMap<>();

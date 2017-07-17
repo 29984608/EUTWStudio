@@ -69,65 +69,63 @@
                         <div class="layui-form-item">
                             <div class="layui-form-inline">
                                 <label class="layui-form-label">性别</label>
-                                <div class="layui-input-inline">
+                                <div class="layui-input-inline" id="sex">
                                     <input type="radio" name="sex" value="男" title="男" checked="">
                                     <input type="radio" name="sex" value="女" title="女">
                                 </div>
 
                                 <label class="layui-form-label">住宿类型</label>
-                                <div class="layui-input-inline">
-                                    <input type="radio" name="TypeOfAccommodation" value="1" title="校内" checked="">
-                                    <input type="radio" name="TypeOfAccommodation" value="2" title="校外">
+                                <div class="layui-input-inline" id="TypeOfAccommodation" onclick="student.showDormAndHideDorm()">
+                                    <input type="radio" name="TypeOfAccommodation" value="1" title="校内" checked=""
+                                            >
+                                    <input type="radio" name="TypeOfAccommodation" value="2" title="校外"
+                                           >
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <div>
-                        <div class="layui-form-item">
-
-
-                        </div>
-                    </div>
-
 
                     <div class="layui-form-item">
-                        <div class="layui-input-inline">
-                            <div class="layui-inline">
-                                <div class="layui-input-inline">
-                                    <select name="modules" lay-filter="dorm" lay-verify="required" lay-search=""
-                                            id="area_search">
-                                        <option value="">区</option>
-                                    </select>
+                        <span id="dorm">
+                            <div class="layui-input-inline">
+                                <div class="layui-inline">
+                                    <div class="layui-input-inline">
+                                        <select name="modules" lay-filter="dorm" lay-verify="required" lay-search=""
+                                                id="area_search">
+                                            <option value="">区</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="layui-input-inline">
-                            <div class="layui-inline">
-                                <div class="layui-input-inline">
-                                    <select name="modules1" lay-filter="modules_2" lay-verify="required" lay-search=""
-                                            id="floor_search">
-                                        <option value="">楼层</option>
-                                    </select>
+                            <div class="layui-input-inline">
+                                <div class="layui-inline">
+                                    <div class="layui-input-inline">
+                                        <select name="modules1" lay-filter="modules_2" lay-verify="required"
+                                                lay-search=""
+                                                id="floor_search">
+                                            <option value="">楼层</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+
+                            <div class="layui-inline" style="margin-right: -15px">
+                                <div class="layui-inline">
+                                    <div class="layui-input-inline">
+                                        <input type="text" name="title" id="roomNo_search" lay-verify="title"
+                                               autocomplete="off"
+                                               placeholder="宿舍" class="layui-input">
+                                    </div>
+                                </div>
+                            </div>
+                        </span>
 
                         <div class="layui-inline" style="margin-right: -15px">
                             <div class="layui-inline">
                                 <div class="layui-input-inline">
-                                    <input type="text" name="title" id="roomNo" lay-verify="title" autocomplete="off"
-                                           placeholder="宿舍" class="layui-input">
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="layui-inline" style="margin-right: -15px">
-                            <div class="layui-inline">
-                                <div class="layui-input-inline">
-                                    <input type="text" name="title" id="xuehao" lay-verify="title" autocomplete="off"
+                                    <input type="text" name="title" id="studentNo_search" lay-verify="title"
+                                           autocomplete="off"
                                            placeholder="学号" class="layui-input">
                                 </div>
 
@@ -137,10 +135,11 @@
                         <div class="layui-inline" style="margin-right: -15px">
                             <div class="layui-inline" style="margin-right: -10px">
                                 <div class="layui-input-inline">
-                                    <input type="text" name="title" id="xingming" lay-verify="title" autocomplete="off"
+                                    <input type="text" name="title" id="studentName_search" lay-verify="title"
+                                           autocomplete="off"
                                            placeholder="姓名" class="layui-input" style="margin-right: 3px">
                                 </div>
-                                <a class="layui-btn" onclick="room.list()"><i class="layui-icon">&#xe615;</i>搜索</a>
+                                <a class="layui-btn" onclick="currentIndex = 1;room.list()"><i class="layui-icon">&#xe615;</i>搜索</a>
                             </div>
                         </div>
                     </div>
@@ -212,12 +211,36 @@
             },
 
             list: function () {
-                let name = $("#name_search").val();
+                let department_search = $("#department_search").val();
+                let level_search = $("#level_search").val();
+                let direction_search = $("#direction_search").val();
+                let classes_search = $("#classes_search").val();
+                let area_search = $("#area_search").val();
+                let floor_search = $("#floor_search").val();
+                let roomNo_search = $("#roomNo_search").val();
+                let studentNo_search = $("#studentNo_search").val();
+                let name = $("#studentName_search").val();
+                let sex = $("input[name='sex']:checked").val();
+                let TypeOfAccommodation = $("input[name='TypeOfAccommodation']:checked").val();
 
                 $.ajax({
                     url: baseUrl + "/student/list",
                     type: "post",
-                    data: {currentIndex: currentIndex, pageSize: pageSize, name: name},
+                    data: {
+                        currentIndex: currentIndex,
+                        pageSize: pageSize,
+                        department_search: department_search,
+                        level_search: level_search,
+                        direction_search: direction_search,
+                        classes_search: classes_search,
+                        area_search: area_search,
+                        floor_search: floor_search,
+                        roomNo_search: roomNo_search,
+                        studentNo_search: studentNo_search,
+                        name: name,
+                        sex: sex,
+                        TypeOfAccommodation: TypeOfAccommodation
+                    },
                     success: function (data) {
                         if (data.result) {
                             currentIndex = data.page.currentIndex;
@@ -230,6 +253,13 @@
                         }
                     }
                 });
+            },
+            showDormAndHideDorm: function () {
+                if ($("input[name='TypeOfAccommodation']:checked").val() === "1") {
+                    $("#dorm").show();
+                } else {
+                    $("#dorm").hide();
+                }
             },
             loadDirectionsByDepartmentId: function (id) {
                 $.post(baseUrl + "/communication/queryDirectionByDepartmentId", {departmentId: id}, function (data) {

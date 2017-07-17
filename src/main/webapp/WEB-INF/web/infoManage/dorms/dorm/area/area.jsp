@@ -178,7 +178,7 @@
                 });
             },
             queryAreas: function () {
-                $.post(baseUrl + "dorm/room/showAreaAndFloorInfosToQuery", function (data) {
+                $.post(baseUrl + "dorm/room/showAreaAndFloorsToQuery", function (data) {
                     if (data.result) {
                         $("#queryAreas").html(area.loadSelectElementHtml(data.data.queryAreaOfRoom, "-"))
                     }

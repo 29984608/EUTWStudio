@@ -36,8 +36,6 @@ public class StudentController {
             data.put("page", page);
             data.put("result", true);
 
-            System.out.println("++++++++++++++++++++++"+data);
-
         } catch (Exception e) {
             e.printStackTrace();
             data.put("msg", Constant.SEARCH_FAILURE);
