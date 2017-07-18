@@ -11,9 +11,11 @@ import java.util.Map;
 public interface ResultService {
 
 
-    List<Map<String,String>> querySearchList(SearchDto searchDto, PageUtil pageUtil) throws Exception;
+    List<Map<String,Object>> querySearchList(SearchDto searchDto, PageUtil pageUtil) throws Exception;
 
     List<Map<String, Object>>  queryRankList(SearchDto searchDto, PageUtil pageUtil)throws Exception;
 
     File exportRankReport(SearchDto searchDto, HttpServletRequest request)throws Exception;
+
+    File exportSearchReport(SearchDto searchDto, HttpServletRequest request)throws Exception;
 }

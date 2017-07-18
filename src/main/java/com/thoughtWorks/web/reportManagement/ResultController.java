@@ -45,7 +45,7 @@ public class ResultController {
     public Map<String, Object> searchList(SearchDto searchDto, PageUtil pageUtil) {
         Map<String, Object> data = new HashMap<>();
         try {
-            List<Map<String, String>> results = resultService.querySearchList(searchDto, pageUtil);
+            List<Map<String, Object>> results = resultService.querySearchList(searchDto, pageUtil);
             data.put("results", results);
             data.put("page", pageUtil);
             data.put("result", true);
@@ -84,6 +84,21 @@ public class ResultController {
         searchDto.setLevel(new String(searchDto.getLevel().getBytes("iso8859-1"), "utf-8"));
         try {
             File file = resultService.exportRankReport(searchDto, request);
+            responseEntity = getResponseEntity(file);
+            file.delete();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return responseEntity;
+    }
+
+    @RequestMapping("exportSearchReportExcel")
+    public ResponseEntity<byte[]> exportSearchReportExcel(SearchDto searchDto, HttpServletRequest request) throws IOException {
+        ResponseEntity<byte[]> responseEntity = null;
+        searchDto.setCourseName(new String(searchDto.getCourseName().getBytes("iso8859-1"), "utf-8"));
+        try {
+            File file = resultService.exportSearchReport(searchDto, request);
             responseEntity = getResponseEntity(file);
             file.delete();
         } catch (Exception e) {
