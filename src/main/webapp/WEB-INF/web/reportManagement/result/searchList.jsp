@@ -38,17 +38,23 @@
                     <div class="layui-inline">
                         <label class="layui-form-label">分数</label>
                         <div class="layui-input-inline" style="width: 100px;">
-                            <input type="text" name="lessThanScore" id="less_than_score_score" placeholder="0" autocomplete="off" class="layui-input">
+                            <input type="text" name="lessThanScore" id="less_than_score_score" placeholder="0"
+                                   autocomplete="off" value="0" class="layui-input">
                         </div>
                     </div>
                     <div class="layui-inline">
                         <label class="layui-form-label" style="margin-left: -28%"> - </label>
                         <div class="layui-input-inline" style="width: 100px;">
-                            <input type="text" name="moreThanScore" id="more_than_score_score" placeholder="100" autocomplete="off" class="layui-input">
+                            <input type="text" name="moreThanScore" value="100" id="more_than_score_score"
+                                   placeholder="100"
+                                   autocomplete="off" class="layui-input">
                         </div>
                     </div>
-                    <a class="layui-btn" style="width: auto ;margin-bottom: 10px;" onclick="currentIndex=1;search_.list()"><i
+                    <a class="layui-btn" style="width: auto ;margin-bottom: 10px;"
+                       onclick="currentIndex=1;search_.list()"><i
                             class="layui-icon">&#xe615;</i>搜索</a>
+                    <a class="layui-btn" style="width: auto ;margin-bottom: 10px;" onclick="search_.exportExcel()"><i
+                            class="layui-icon">&#xe61e;</i>导出 Excel</a>
                 </div>
 
 
@@ -149,11 +155,22 @@
                                 $("#list").html(html);
                             });
                             form.render();
-                        }else{
+                        } else {
                             layer.msg(data.msg);
                         }
                     }
                 });
+            },
+            exportExcel: function () {
+                let courseCode = $("#course_code_search").val()
+                let courseName = $("#course_name_search").val()
+                let lessThanScore = $("#less_than_score_score").val()
+                let moreThanScore = $("#more_than_score_score").val()
+                location.href = baseUrl + "/result/exportSearchReportExcel?" +
+                    "courseCode=" + courseCode +
+                    "&courseName=" + courseName +
+                    "&lessThanScore=" + lessThanScore +
+                    "&moreThanScore=" + moreThanScore
             }
         };
         $(function () {

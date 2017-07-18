@@ -91,4 +91,20 @@ public class ExcelReportUtil {
 
         return cellStyle;
     }
+
+    protected void setSheetRowData(HSSFSheet sheet, List<Map<String, Object>> dataset, String[] keys, int rowIndex) {
+        for (int i = 0; i < dataset.size(); ++i) {
+            HSSFRow row = sheet.createRow(rowIndex++);
+
+            //设置序号
+            HSSFCell cell = row.createCell(0);
+            cell.setCellValue(new HSSFRichTextString(String.valueOf(rowIndex - 2)));
+
+            int columnIndex = 1;
+            for (String key : keys) {
+                cell = row.createCell(columnIndex++);
+                cell.setCellValue(new HSSFRichTextString(dataset.get(i).get(key)+""));
+            }
+        }
+    }
 }
