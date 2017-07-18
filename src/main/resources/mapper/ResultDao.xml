@@ -17,6 +17,7 @@
             AND score &gt; #{lessThanScore}
         </if>
     </sql>
+
     <select id="querySearchStudentsTotalCountLikes" parameterType="map" resultType="long">
         SELECT count(1)
         FROM t_student student

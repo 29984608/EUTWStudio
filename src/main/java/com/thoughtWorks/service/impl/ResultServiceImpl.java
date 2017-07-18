@@ -4,18 +4,56 @@ import com.thoughtWorks.dao.ResultDao;
 import com.thoughtWorks.dto.SearchDto;
 import com.thoughtWorks.service.ResultService;
 import com.thoughtWorks.util.PageUtil;
+import com.thoughtWorks.util.reportUtil.ResultReportUtil;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.*;
 
 @Service
 public class ResultServiceImpl implements ResultService {
 
     @Resource
     private ResultDao resultDao;
+
+    @Override
+    public File exportRankReport(SearchDto searchDto, HttpServletRequest request) throws Exception {
+        PageUtil pageUtil = new PageUtil();
+        pageUtil.setCurrentIndex(1);
+        pageUtil.setPageSize(9999999);
+
+        Map<String, String> headers = getRankReportHeaders();
+        List<Map<String, Object>> dataSet = queryRankList(searchDto, pageUtil);
+        StringBuffer fileName = new StringBuffer("高职学院成绩排行报表(")
+                                        .append(searchDto.getDepartmentName())
+                                        .append(searchDto.getLevel()).append("级")
+                                        .append(searchDto.getDirectionName())
+                                        .append(").xls");
+        File file = getReportFile(request, headers, dataSet, fileName.toString());
+
+        return file;
+    }
+
+    private File getReportFile(HttpServletRequest request, Map<String, String> headers, List<Map<String, Object>> dataSet, String fileName) throws FileNotFoundException {
+        String path = request.getServletContext().getRealPath("images/temp") + "/" + fileName;
+        File file = new File(path);
+        new ResultReportUtil().exportExcel(headers, dataSet, file, fileName.substring(0, fileName.lastIndexOf(".")));
+        return file;
+    }
+
+    private Map<String, String> getRankReportHeaders() {
+        Map<String, String> headers = new HashMap<>();
+        headers.put("department", "系");
+        headers.put("level", "年级");
+        headers.put("direction", "就业方向");
+        headers.put("no", "学号");
+        headers.put("name", "姓名");
+        headers.put("score", "分数");
+        return headers;
+    }
 
     @Override
     public List<Map<String, String>> querySearchList(SearchDto searchDto, PageUtil pageUtil) throws Exception {
@@ -32,7 +70,7 @@ public class ResultServiceImpl implements ResultService {
     }
 
     @Override
-    public List<Map<String, String>> queryRankList(SearchDto searchDto, PageUtil pageUtil) throws Exception {
+    public List<Map<String, Object>> queryRankList(SearchDto searchDto, PageUtil pageUtil) throws Exception {
         List<Map<String, String>> studentsTotalScores = null, studentsAverageScores = null;
         Map<String, Object> data = new HashMap<>();
         data.put("departmentId", searchDto.getDepartmentId());
@@ -43,16 +81,31 @@ public class ResultServiceImpl implements ResultService {
         pageUtil.setTotalSize(resultDao.queryRankStudentsTotalCountLikes(data));
 
         List<Map<String, String>> students = resultDao.queryStudentLimit(data);
-        if(students.size() == 0) return studentsTotalScores;
+        if (students.size() == 0) return null;
 
         List<Map<String, String>> studentsScores = resultDao.queryStudentScores(students);
         if (studentsScores.size() != 0) studentsTotalScores = getStudentsTotalScore(studentsScores, students);
         studentsAverageScores = getStudentsAverageScore(studentsTotalScores);
         sortStudentScoreDesc(studentsAverageScores);
         int endIndex = (Integer) data.get("pageSize") + (Integer) data.get("start");
-        if(endIndex > studentsAverageScores.size()) endIndex = studentsAverageScores.size();
+        if (endIndex > studentsAverageScores.size()) endIndex = studentsAverageScores.size();
+        studentsAverageScores = studentsAverageScores.subList((Integer) data.get("start"), endIndex);
 
-        return studentsAverageScores.subList((Integer) data.get("start"), endIndex);
+        return toValueObjectMap(studentsAverageScores);
+    }
+
+    private List<Map<String, Object>> toValueObjectMap(List<Map<String, String>> studentsAverageScores) {
+        Map<String, Object> temp;
+        List<Map<String, Object>> scoreRankObject = new ArrayList<>();
+        for (Map<String, String> data : studentsAverageScores) {
+            temp = new HashMap<>();
+            Set<String> keys = data.keySet();
+            for (String key : keys)
+                temp.put(key, data.get(key));
+            scoreRankObject.add(temp);
+        }
+
+        return scoreRankObject;
     }
 
     private void sortStudentScoreDesc(List<Map<String, String>> studentsAverageScores) {

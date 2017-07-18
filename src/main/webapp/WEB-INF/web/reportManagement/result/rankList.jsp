@@ -47,6 +47,8 @@
 
                     <a class="layui-btn" style="width: auto ;margin-bottom: 10px;" onclick="rank.list()"><i
                             class="layui-icon">&#xe615;</i>搜索</a>
+                    <a class="layui-btn" style="width: auto ;margin-bottom: 10px;" onclick="rank.exportExcel()"><i
+                            class="layui-icon">&#xe61e;</i>导出 Excel</a>
                 </div>
 
 
@@ -147,7 +149,7 @@
                         }
                     }
                 });
-            },loadDirectionsByDepartmentId: function (id) {
+            }, loadDirectionsByDepartmentId: function (id) {
                 $.post(baseUrl + "/communication/queryDirectionByDepartmentId", {departmentId: id}, function (data) {
                     if (data.result) {
                         $("#direction_search").html(`<option value="">方向</option>`).append(loadOptionsHtml(data.data, "-"));
@@ -156,16 +158,26 @@
                     }
                 })
             },
-            loadAllLevels:function () {
-            let date = new Date();
-            let year = date.getFullYear();
-            let differ = year - 2017;
-            if (differ >= 0) {
-                for (let i = differ; i >= 0; i--) {
-                    $("#level_search").html(`<option value="` + year + `">` + (year + i) + `</option>`)
+            loadAllLevels: function () {
+                let date = new Date();
+                let year = date.getFullYear();
+                let differ = year - 2017;
+                if (differ >= 0) {
+                    for (let i = differ; i >= 0; i--) {
+                        $("#level_search").html(`<option value="` + year + `">` + (year + i) + `</option>`)
+                    }
                 }
+            },
+            exportExcel: function () {
+                let departmentName = $("#department_search").val() == "" ? "" : $("#department_search").find("option:selected").text();
+                let directionName = $("#direction_search").val() == "" ? "" : $("#direction_search").find("option:selected").text();
+                location.href = baseUrl + "/result/exportRankReportExcel?" +
+                    "departmentName=" + departmentName +
+                    "&directionName=" + directionName +
+                    "&departmentId=" + $("#department_search").val() +
+                    "&directionId=" + $("#direction_search").val() +
+                    "&level=" + $("#level_search").val()
             }
-        }
         };
         $(function () {
             loadALlDepartments();

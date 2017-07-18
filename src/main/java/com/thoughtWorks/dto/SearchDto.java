@@ -7,8 +7,10 @@ public class SearchDto {
     private String level;
     private String classesId;
     private String departmentId;
+    private String departmentName;
     private String professionId;
     private String directionId;
+    private String directionName;
     private String sex;
     private String TypeOfAccommodation;     //住宿类型
 
@@ -23,6 +25,22 @@ public class SearchDto {
     private String courseName;
     private String lessThanScore;
     private String moreThanScore;
+
+    public String getDepartmentName() {
+        return departmentName;
+    }
+
+    public void setDepartmentName(String departmentName) {
+        this.departmentName = departmentName;
+    }
+
+    public String getDirectionName() {
+        return directionName;
+    }
+
+    public void setDirectionName(String directionName) {
+        this.directionName = directionName;
+    }
 
     public String getSex() {
         return sex;

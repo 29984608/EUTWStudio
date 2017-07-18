@@ -1,5 +1,7 @@
 package com.thoughtWorks.dao;
 
+import com.thoughtWorks.dto.SearchDto;
+
 import java.util.List;
 import java.util.Map;
 
@@ -16,4 +18,5 @@ public interface ResultDao {
     List<Map<String,String>> queryStudentLimit(Map<String, Object> data);
 
     List<Map<String,String>> queryStudentScores(List<Map<String, String>> students);
+
 }
