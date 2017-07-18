@@ -113,20 +113,6 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public List<Map<String, Object>> queryStudents(PageUtil page, SearchDto searchDto) throws Exception {
-        Map<String, Object> data = new HashMap<>();
-        data.put("start", (page.getCurrentIndex() - 1) * page.getPageSize());
-        data.put("pageSize", page.getPageSize());
-        data.put("searchDto", searchDto);
-
-        page.setTotalSize(personDao.queryStudentTotalCount(data));
-        System.out.println("++++++++++++++++++++++++++++"+personDao.queryStudentList(data));
-        System.out.println("++++++++++++++++++++++++++++"+searchDto);
-
-        return personDao.queryStudentList(data);
-
-    }
-    @Override
     public List<Map<String, Object>> queryAllDept(PageUtil pageUtil) throws Exception {
         Map<String, Object> data = new HashMap<>();
         data.put("start", (pageUtil.getCurrentIndex() - 1) * pageUtil.getPageSize());
@@ -231,5 +217,19 @@ public class PersonServiceImpl implements PersonService {
         return personDao.queryStudentInfoById(studentNo);
     }
 
+    @Override
+    public List<Map<String, Object>> queryStudentList(SearchDto searchDto, PageUtil page) throws Exception {
+        Map<String, Object> data = new HashMap<>();
+        searchDto.setStudentNo("%"+searchDto.getStudentNo()+"%");
+        searchDto.setName("%"+searchDto.getName()+"%");
+        searchDto.setRoomId("%"+searchDto.getRoomId()+"%");
+        data.put("start", (page.getCurrentIndex() - 1) * page.getPageSize());
+        data.put("pageSize", page.getPageSize());
+        data.put("searchDto",searchDto);
+
+        page.setTotalSize(personDao.queryStudentsListCount(searchDto));
+        return personDao.queryStudentList(data);
+
+    }
 
 }

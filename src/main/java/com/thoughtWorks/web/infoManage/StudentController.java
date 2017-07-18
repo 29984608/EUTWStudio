@@ -30,7 +30,7 @@ public class StudentController {
     public Map<String, Object> list(PageUtil page, SearchDto searchDto) {
         Map<String, Object> data = new HashMap<>();
         try {
-            List<Map<String, Object>> student = personService.queryStudents(page,searchDto);
+            List<Map<String, Object>> student = personService.queryStudentList(searchDto,page);
             data.put("student", student);
             data.put("msg", Constant.SEARCH_SUCCESS);
             data.put("page", page);

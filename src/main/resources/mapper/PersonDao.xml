@@ -47,6 +47,147 @@
         and student.name
         LIKE #{name}
     </select>
+
+    <select id="queryStudentList" resultType="map" parameterType="map">
+        SELECT
+        student.no,
+        student.name,
+        student.gender,
+        department.name department,
+        profession.name profession,
+        direction.name direction,
+        class.name classes,
+        area.name area,
+        floor.name floor,
+        room.name room
+        FROM t_student student
+
+        LEFT JOIN (SELECT
+        id,
+        name
+        FROM t_department) department ON department.id = student.department_id
+        LEFT JOIN (SELECT
+        id,
+        name
+        FROM t_direction) direction ON direction.id = student.direction_id
+
+        LEFT JOIN (SELECT
+        id,
+        name
+        FROM t_profession) profession ON profession.id = student.profession_id
+
+        LEFT JOIN (SELECT
+        id,
+        name
+        FROM t_classes) class ON class.id = student.classes_id
+
+        LEFT JOIN (SELECT
+        id,
+        name
+        FROM t_area) area ON area.id = student.area_id
+        LEFT JOIN (SELECT
+        id,
+        name
+        FROM t_floor) floor ON floor.id = student.floor_id
+        LEFT JOIN (SELECT
+        id,
+        name
+        FROM t_room) room ON room.id = student.room_id
+        WHERE department_id = department.id
+        AND direction_id = direction.id
+        AND profession.id = profession_id
+
+        and student.name LIKE #{searchDto.name}
+        and student.no LIKE #{searchDto.studentNo}
+        <if test=" searchDto.classesId !=''">
+            and student.classes_id LIKE #{searchDto.classesId}
+        </if>
+        <if test=" searchDto.sex !=''">
+            and student.gender = #{searchDto.sex}
+        </if>
+        <if test=" searchDto.departmentId !=''">
+            and student.department_id = #{searchDto.departmentId}
+        </if>
+
+        <if test=" searchDto.directionId !=''">
+            and student.direction_id = #{searchDto.directionId}
+        </if>
+
+        <if test=" searchDto.areaId !=''">
+            and student.area_id = #{searchDto.areaId}
+        </if>
+        <if test=" searchDto.floorId !=''">
+            and student.floor_id = #{searchDto.floorId}
+        </if>
+        <if test=" searchDto.roomId !=''">
+            and room.name LIKE #{searchDto.roomId}
+        </if>
+        limit #{start},#{pageSize}
+    </select>
+    <select id="queryStudentsListCount"  resultType="long">
+        SELECT count(*)
+        FROM t_student student
+        LEFT JOIN (SELECT
+        id,
+        name
+        FROM t_department) department ON department.id = student.department_id
+        LEFT JOIN (SELECT
+        id,
+        name
+        FROM t_direction) direction ON direction.id = student.direction_id
+
+        LEFT JOIN (SELECT
+        id,
+        name
+        FROM t_profession) profession ON profession.id = student.profession_id
+
+        LEFT JOIN (SELECT
+        id,
+        name
+        FROM t_classes) class ON class.id = student.classes_id
+
+        LEFT JOIN (SELECT
+        id,
+        name
+        FROM t_area) area ON area.id = student.area_id
+        LEFT JOIN (SELECT
+        id,
+        name
+        FROM t_floor) floor ON floor.id = student.floor_id
+        LEFT JOIN (SELECT
+        id,
+        name
+        FROM t_room) room ON room.id = student.room_id
+        WHERE department_id = department.id
+        AND direction_id = direction.id
+        AND profession.id = profession_id
+
+        and student.name LIKE #{searchDto.name}
+        and student.no LIKE #{searchDto.studentNo}
+        <if test=" searchDto.classesId !=''">
+            and student.classes_id LIKE #{searchDto.classesId}
+        </if>
+        <if test=" searchDto.sex !=''">
+            and student.gender = #{searchDto.sex}
+        </if>
+        <if test=" searchDto.departmentId !=''">
+            and student.department_id = #{searchDto.departmentId}
+        </if>
+
+        <if test=" searchDto.directionId !=''">
+            and student.direction_id = #{searchDto.directionId}
+        </if>
+
+        <if test=" searchDto.areaId !=''">
+            and student.area_id = #{searchDto.areaId}
+        </if>
+        <if test=" searchDto.floorId !=''">
+            and student.floor_id = #{searchDto.floorId}
+        </if>
+        <if test=" searchDto.roomId !=''">
+            and room.name LIKE #{searchDto.roomId}
+        </if>
+    </select>
     <select id="queryStudentsByClassesIdsAndLikeName" resultType="map">
         SELECT
         student.no,
@@ -236,10 +377,6 @@
         WHERE id = #{id}
     </update>
 
-    <select id="queryStudents" resultType="map">
-        SELECT *
-        FROM tttttt;
-    </select>
 
     <select id="queryStudentTotalCount" parameterType="map" resultType="long">
         SELECT count(*)
@@ -275,83 +412,6 @@
         </if>
     </select>
 
-    <select id="queryStudentList" resultType="map">
-        SELECT
-        student.no,
-        student.name,
-        student.gender,
-        student.level,
-        direction.name direction,
-        profession.name profession,
-        class.name classes,
-        department.name department,
-        area.name area,
-        floor.name floor,
-        room.name room
-        FROM t_student student
-
-        LEFT JOIN (SELECT
-        id,
-        name
-        FROM t_department) department ON department.id = student.department_id
-        LEFT JOIN (SELECT
-        id,
-        name
-        FROM t_direction) direction ON direction.id = student.direction_id
-
-        LEFT JOIN (SELECT
-        id,
-        name
-        FROM t_profession) profession ON profession.id = student.profession_id
-
-        LEFT JOIN (SELECT
-        id,
-        name
-        FROM t_classes) class ON class.id = student.classes_id
-
-        LEFT JOIN (SELECT
-        id,
-        name
-        FROM t_area) area ON area.id = student.area_id
-        LEFT JOIN (SELECT
-        id,
-        name
-        FROM t_floor) floor ON floor.id = student.floor_id
-        LEFT JOIN (SELECT
-        id,
-        name
-        FROM t_room) room ON room.id = student.room_id
-
-        WHERE student.department_id = department.id
-        AND direction_id = direction.id
-        AND profession.id = profession_id
-
-        and student.name LIKE #{searchDto.name}
-        and student.no LIKE #{searchDto.studentNo}
-        <if test=" searchDto.classesId !=''">
-            and student.classes_id LIKE #{searchDto.classesId}
-        </if>
-        <if test=" searchDto.departmentId !=''">
-            and student.department_id = #{searchDto.departmentId}
-        </if>
-        <if test=" searchDto.professionId !=''">
-            and student.level = #{searchDto.professionId}
-        </if>
-        <if test=" searchDto.directionId !=''">
-            and student.direction_id = #{searchDto.directionId}
-        </if>
-        <if test=" searchDto.areaId !=''">
-            and student.area_id = #{searchDto.areaId}
-        </if>
-        <if test=" searchDto.floorId !=''">
-            and student.floor_id = #{searchDto.floorId}
-        </if>
-        <if test=" searchDto.roomId !=''">
-            and room.name LIKE #{searchDto.roomId}
-        </if>
-        LIMIT #{start}, #{pageSize}
-
-    </select>
 
     <select id="queryAllDept" parameterType="map" resultType="map">
         select * from t_dept
@@ -386,10 +446,10 @@
         select * from t_direction
         WHERE  department_id = #{departmentId}
     </select>
-    <select id="queryDirectionByDepartment" resultType="Direction" >
+    <select id="queryDirectionByDepartment" resultType="Direction">
         select * from t_direction
     </select>
-    <select id="queryClass" resultType="Classes" >
+    <select id="queryClass" resultType="Classes">
         select * from t_classes
     </select>
     <select id="queryClassByDepartmentId" resultType="Classes" parameterType="int">
