@@ -111,7 +111,7 @@
     <div class="container" id="container" style="padding:50px 30px">
 
         <h1 style="text-align: center;margin-left: -30px">西安欧亚学院高职学院<span id="who"></span>学生成长经历报告</h1>
-        <div style="">
+        <div style="margin:40px 0">
 
             <table  class="layui-table lay-even " data-name="articleCatData">
                 <thead>

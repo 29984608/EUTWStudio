@@ -1,11 +1,12 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ include file="../../../public/tag.jsp" %>
+
 <html>
 <head>
+    <meta charset="utf-8">
     <title></title>
     <script type="text/javascript" src="${baseurl}/public/common/js/jquery-3.2.0.min.js"></script>
-    <script src="${baseurl}/public/common/layui/layui.js" charset="utf-8"></script>
-    <link rel="stylesheet" href="${baseurl}/public/common/layui/css/layui.css" media="all">
+    <link rel="stylesheet" type="text/css" href="${baseurl}/public/common/layui/css/layui.css" media="all">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/common/layui/css/layui.css" media="all">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/common/bootstrap/css/bootstrap.min.css" media="all">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/common/css/global.css" media="all">
@@ -18,103 +19,64 @@
 
 </head>
 <body>
-<section class="larry-grid layui-form">
+<section class="larry-grid">
     <div class="larry-personal">
         <div class="layui-tab">
-            <blockquote class="layui-elem-quote mylog-info-tit">
-                <from id="searchInfo">
-                <div class="layui-inline">
-                    <div class="layui-input-inline " style="width: auto ;margin-bottom: 10px;">
-                        <select lay-filter="course" id="module_search">
-                            <option value="">系</option>
-                        </select>
+
+            <div class="larry-separate"></div>
+
+            <div id="update" style="background: #fff">
+                <a class="layui-btn" onclick="printPdf()" id="printPDF"><i class="layui-icon">&#xe630;</i>导出 PDF</a>
+                <div class="container" id="container" style="padding:50px 30px">
+
+                    <h1 style="text-align: center;margin-left: -30px">西安欧亚学院高职学院<span id="who"></span>学生成长经历报告</h1>
+                    <div style="margin:40px 0">
+
+                        <table  class="layui-table lay-even " data-name="articleCatData">
+                            <thead>
+                            <tr>
+                                <th>姓名</th>
+                                <th>性别</th>
+                                <th>籍贯</th>
+                                <th>身份证号码</th>
+                                <th>专业</th>
+                                <th>就业方向</th>
+                                <th>政治面貌</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th id="name"></th>
+                                <th id ="gender"></th>
+                                <th id="native_place"></th>
+                                <th id="idcard"></th>
+                                <th id="profession"></th>
+                                <th id="direction2"></th>
+                                <th id="political_status"></th>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
 
-                    <div class="layui-input-inline" style="width: auto;margin-bottom: 10px;">
-                        <select lay-filter="profession" id="semester-search">
-                            <option value="">年级</option>
-                        </select>
-                    </div>
+                    <div id="timelineContainer" class="timelineContainer">
 
-                    <div class="layui-input-inline" style="width: auto;margin-bottom: 10px;">
-                        <select lay-filter="t_direction" id="findDirection">
-                            <option value="">方向</option>
-                        </select>
-                    </div>
+                        <div class="timelineToggle"><p><a class="expandAll ">+ 全部展开</a></p></div>
 
-                    <div class="layui-input-inline" style="width: auto;margin-bottom: 10px;">
-                        <select lay-filter="profession" id="queryClass">
-                            <option value="">班级</option>
-                        </select>
-                    </div>
-                    <div class="layui-input-inline" style="width: auto ;margin-bottom: 10px;">
-                        <input type="text" name="no" id="no-search" lay-verify="title" autocomplete="off"
-                               placeholder="学号" value="" class="layui-input">
-                    </div>
-                    <div class="layui-inline">
-                        <div class="layui-input-inline" style="width: auto ;margin-bottom: 10px;">
-                            <input type="text" name="name" id="name_search" lay-verify="title" autocomplete="off"
-                                   placeholder="姓名" class="layui-input">
+                        <br class="clear">
+                        <div id="communication_container">
+
                         </div>
+
+
+                        <br class="clear">
                     </div>
                 </div>
-                <br>
-                <div class="layui-input-inline" style="width: auto ;margin-bottom: 10px;">
-                    <select lay-filter="queryAreaOfRoom" name="" id="queryAreaOfRoom">
-                        <option value="">区号</option>
-                    </select>
-                </div>
-                <div class="layui-input-inline" style="width: auto ;margin-bottom: 10px;">
-                    <select lay-filter="queryFloor" id="queryFloor">
-                        <option value="">层号</option>
-                    </select>
-                </div>
 
-                <div class="layui-inline">
-                    <div class="layui-input-inline" style="width: auto ;margin-bottom: 10px;">
-                        <input type="text" name="roomId" lay-verify="title" autocomplete="off"
-                               placeholder="房间号码" id="roomId" class="layui-input">
-                    </div>
-                </div>
-                <a class="layui-btn" style="width: auto ;margin-bottom: 10px;" onclick="currentIndex=1;communication.list()"><i
-                        class="layui-icon">&#xe615;</i>搜索</a>
-
-                </from>
-            </blockquote>
-
-        </div>
-        <div class="larry-separate"></div>
-        <div class="layui-tab-content larry-personal-body clearfix mylog-info-box">
-            <div class="layui-form">
-                <table class="layui-table">
-                    <thead>
-                    <tr>
-                        <th>学号</th>
-                        <th>姓名</th>
-                        <th>性别</th>
-                        <th>系</th>
-                        <th>年级</th>
-                        <th>方向</th>
-                        <th>专业</th>
-                        <th>班级</th>
-                        <th>区号</th>
-                        <th>层号</th>
-                        <th>房间号</th>
-                        <th>操作</th>
-                    </tr>
-                    </thead>
-                    <tbody id="list">
-
-                    </tbody>
-                </table>
             </div>
-            <div id="demo1"></div>
         </div>
-    </div>
     </div>
 </section>
 </body>
-
 <%@include file="layer.jsp" %>
 <script type="text/javascript" src="${baseurl}/public/css/timeAsix/inc/colorbox.js"></script>
 <script type="text/javascript" src="${baseurl}/public/css/timeAsix/js/timeliner.min.js"></script>
@@ -266,6 +228,7 @@
 
                 $.post(baseUrl + "/communication/communication", {studentNo: studentNo}, function (data) {
                     if (data.result) {
+                        console.log(data)
                         showCommunicationContents(data.data, type);
                         $("#name").text(data.data[(data.data.length-1)].name);
                         $("#gender").text(data.data[(data.data.length-1)].gender);
@@ -282,15 +245,7 @@
                             $("#printPDF").hide();
                             title = "修改"
                         }
-                        layer.open({
-                            type: 1,
-                            title: title,
-                            area: ["100%", "100%"]
-                            , content: $("#update"),
-                            cancel: function(){
-                            location.reload();
-                        }
-                        });
+
                     } else {
                         layer.msg(data.msg);
                     }
@@ -374,6 +329,7 @@
 
         };
         $(function () {
+            communication.previewOrUpdate('小','15642142536258','preview');
             communication.list();
             communication.select();
             communication.nowDate();
@@ -406,9 +362,55 @@
     })
     ;
 
+    function showCommunicationContents(data, type) {
+        let communication = ""
+        for (let i = 0; i < data.length-1; ++i) {
+            let com = data[i];
+            communication += `
+            <div class="timelineMajor">
+                <h2 class="timelineMajorMarker">
+                <span>` + com.time + `</span></h2>
+                <dl class="timelineMinor">
+                    <dt id="id` + com.id + `">
+                    <a id='exportPDFName'>` + com.teacherName + ` - ` + com.direction + ` - ` + com.talkName + `</a></dt>
+                    <%--QA 容器--%>
+                    <dd class="timelineEvent" id="id` + com.id + `EX" style="display:none;">
+                `;
+
+            loadPreviewQA(com.contents);
+            communication += `</dd></dl></div>`;
+
+        }
+
+        $("#communication_container").html(communication);
+    }
+
+    function loadPreviewQA(contents) {
+        let QA = "";
+        for (let index = 0; index < contents.length; index += 2) {
+            QA += `
+             <dl class="timelineMinor">
+                <dt id="` + index + `"><a style="font-size: 12px;color: peru">Q&A</a></dt>
+                <dd class="timelineEvent" id="` + index + `EX" style="display:none;">
+               <p style="font-size: 12px;"
+                           class=" contents"> <a style="font-size: 12px;color: peru">Q：</a> ` + contents[index] + `</p>
+                   <p style="font-size: 12px;"
+                              class=" contents"> <a style="font-size: 12px;color: peru">A：</a> ` + contents[index + 1] + `</p>
+                    <br class="clear">
+                </dd>
+            </dl>
+         `;
+        }
+        return QA;
+    }
+
     function printPdf() {
         pdf(document.getElementById("container"), $("#exportPDFName").text(), "a3");
     }
+
+
+
+
 </script>
 
 
