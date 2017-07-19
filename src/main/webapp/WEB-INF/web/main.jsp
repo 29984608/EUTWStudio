@@ -251,6 +251,11 @@
                                 </td>
                                 <td><span class="info">预览学生成长经历中增加学生基本信息，沟通反馈页面分页功能完成</span></td>
                             </tr>
+                            <tr>
+                                <td><span class="tit">2017-7-18</span>
+                                </td>
+                                <td><span class="info">成长记录完成：页面及显示个人信息和沟通记录功能完成</span></td>
+                            </tr>
 
                             </tbody>
                         </table>

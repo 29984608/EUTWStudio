@@ -404,10 +404,17 @@
   student.gender,
   student.native_place,
   student.idcard,
+  student.level,
   student.political_status,
+  department.name department,
   direction.name direction,
   profession.name profession
 FROM t_student student
+ LEFT JOIN (SELECT
+        id,
+        name
+        FROM t_department) department ON department.id = student.department_id
+
   LEFT JOIN (SELECT
                id,
                name
