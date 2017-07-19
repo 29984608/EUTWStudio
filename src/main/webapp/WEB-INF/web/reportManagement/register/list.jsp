@@ -462,18 +462,18 @@
             }
         };
         $(function () {
-            loadALlDepartments();
-            loadAllDirections();
-            loadAllLevels();
-            loadAllClassess();
-            resultReport.list();
-            form.render();
-
-            form.on('select(department)', function (data) {
-
-                $("#department_search").html(resultReport.loadClassByDepartmentId(data.value));
-                $("#direction_search").html(resultReport.loadDirectionsByDepartmentId(data.value));
-            });
+//            loadALlDepartments();
+//            loadAllDirections();
+//            loadAllLevels();
+//            loadAllClassess();
+//            resultReport.list();
+//            form.render();
+//
+//            form.on('select(department)', function (data) {
+//
+//                $("#department_search").html(resultReport.loadClassByDepartmentId(data.value));
+//                $("#direction_search").html(resultReport.loadDirectionsByDepartmentId(data.value));
+//            });
         });
     })
 

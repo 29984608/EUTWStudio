@@ -30,9 +30,13 @@ public class ReportServiceImpl implements ReportService {
         headers.put("no", "123712987123");
         headers.put("in_time", "1990-2-2");
         String fileName = "高职学院学生入学登记表.xls";
+
+        List<Map<String, Object>> dataSet = new ArrayList<>();
+        Map<String, Object> data = new HashMap<>();
+        dataSet.add(data);
         String path = request.getServletContext().getRealPath("images/temp") + "/" + fileName;
         File file = new File(path);
-        new NewStudentRegisterReportUtil().exportExcel(null, null, file, fileName.substring(0, fileName.lastIndexOf(".")));
+        new NewStudentRegisterReportUtil().exportExcel(headers, dataSet, file, fileName.substring(0, fileName.lastIndexOf(".")));
 
         return file;
     }
@@ -49,6 +53,7 @@ public class ReportServiceImpl implements ReportService {
         headers.put("name1", "现专业");
         headers.put("nowNumber", "人数");
         headers.put("remark", "备注");
+
         List<Map<String, Object>> dataSet = professionList(level);
         String fileName = "高职学院专业人数统计表" + (level == null ? "" : level) + ".xls";
         String path = request.getServletContext().getRealPath("images/temp") + "/" + fileName;
