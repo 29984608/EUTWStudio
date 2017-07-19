@@ -39,10 +39,6 @@ public interface PersonDao {
 
     void distributeDirection(@Param("directionId") String directionId, @Param("ids") List<String> ids);
 
-    List<Map<String,Object>> queryStudentList(Map<String, Object> data);
-
-    Long queryStudentTotalCount(Map<String,Object> data);
-
     List<Map<String,Object>> queryAllDept(Map<String, Object> data);
 
     Long queryDeptTotalCount();
@@ -65,4 +61,7 @@ public interface PersonDao {
 
     List<Map<String ,Object>> queryStudentInfoById(String studentNo )throws Exception ;
 
+    Long queryStudentsListCount( @Param("searchDto") SearchDto searchDto);
+
+    List<Map<String,Object>> queryStudentList(Map<String, Object> data);
 }

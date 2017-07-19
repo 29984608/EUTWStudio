@@ -25,24 +25,32 @@
             {{#}}}
         </td>
         <td>
-            {{# if(item.depatmentName === undefined){ }}
+            {{# if(item.department === undefined){ }}
             未分配
             {{# }else{ }}
-            {{ item.depatmentName}}
+            {{ item.department}}
             {{#}}}
         </td>
         <td>
-            {{# if(item.professionName === undefined){ }}
+            {{# if(item.profession === undefined){ }}
             未分配
             {{# }else{ }}
-            {{ item.professionName}}
+            {{ item.profession}}
             {{#}}}
         </td>
         <td>
-            {{# if(item.directionName === undefined){ }}
+            {{# if(item.direction === undefined){ }}
             未分配
             {{# }else{ }}
-            {{ item.directionName}}
+            {{ item.direction}}
+            {{#}}}
+        </td>
+
+        <td>
+            {{# if(item.classes === undefined){ }}
+            未分配
+            {{# }else{ }}
+            {{ item.classes}}
             {{#}}}
         </td>
 
@@ -55,34 +63,26 @@
         </td>
 
         <td>
-            {{# if(item.classesName === undefined){ }}
+            {{# if(item.area === undefined){ }}
             未分配
             {{# }else{ }}
-            {{ item.classesName}}
+            {{ item.area}}
             {{#}}}
         </td>
 
         <td>
-            {{# if(item.classesName === undefined){ }}
+            {{# if(item.floor === undefined){ }}
             未分配
             {{# }else{ }}
-            {{ item.classesName}}
+            {{ item.floor}}
             {{#}}}
         </td>
 
         <td>
-            {{# if(item.classesName === undefined){ }}
+            {{# if(item.room === undefined){ }}
             未分配
             {{# }else{ }}
-            {{ item.classesName}}
-            {{#}}}
-        </td>
-
-        <td>
-            {{# if(item.classesName === undefined){ }}
-            未分配
-            {{# }else{ }}
-            {{ item.classesName}}
+            {{ item.room}}
             {{#}}}
         </td>
 
