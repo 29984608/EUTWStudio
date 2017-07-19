@@ -124,7 +124,7 @@
             and student.direction_id = #{searchDto.directionId}
         </if>
 
-        <if test="TypeOfAccommodation == 1">
+        <if test="TypeOfAccommodation != 2">
             <if test=" searchDto.areaId !=''">
                 and student.area_id = #{searchDto.areaId}
             </if>
