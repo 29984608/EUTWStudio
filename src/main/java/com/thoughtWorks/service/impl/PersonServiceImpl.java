@@ -142,12 +142,12 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public List<Map<String, String>> queryStudentsByTeacherHasClasses(SearchDto searchDto, PageUtil page) throws Exception {
         Map<String, Object> data = new HashMap<>();
-        searchDto.setStudentNo("%"+searchDto.getStudentNo()+"%");
-        searchDto.setName("%"+searchDto.getName()+"%");
-        searchDto.setRoomId("%"+searchDto.getRoomId()+"%");
+        searchDto.setStudentNo("%" + searchDto.getStudentNo() + "%");
+        searchDto.setName("%" + searchDto.getName() + "%");
+        searchDto.setRoomId("%" + searchDto.getRoomId() + "%");
         data.put("start", (page.getCurrentIndex() - 1) * page.getPageSize());
         data.put("pageSize", page.getPageSize());
-        data.put("searchDto",searchDto);
+        data.put("searchDto", searchDto);
         page.setTotalSize(personDao.queryStudentsCount(searchDto));
         return personDao.queryStudentsByClassesIdsAndLikeName(data);
     }
@@ -220,14 +220,28 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public List<Map<String, Object>> queryStudentList(SearchDto searchDto, PageUtil page) throws Exception {
         Map<String, Object> data = new HashMap<>();
-        searchDto.setStudentNo("%"+searchDto.getStudentNo()+"%");
-        searchDto.setName("%"+searchDto.getName()+"%");
-        searchDto.setRoomId("%"+searchDto.getRoomId()+"%");
+        searchDto.setStudentNo("%" + searchDto.getStudentNo() + "%");
+        searchDto.setName("%" + searchDto.getName() + "%");
+        searchDto.setRoomId("%" + searchDto.getRoomId() + "%");
+        if (searchDto.getSex() == null) {
+            searchDto.setSex("%" + "%");
+        } else {
+            searchDto.setSex("%" + searchDto.getSex() + "%");
+        }
+
+        if (searchDto.getTypeOfAccommodation()==null){
+            searchDto.setTypeOfAccommodation("");
+        }else {
+            searchDto.setTypeOfAccommodation(searchDto.getTypeOfAccommodation());
+        }
         data.put("start", (page.getCurrentIndex() - 1) * page.getPageSize());
         data.put("pageSize", page.getPageSize());
-        data.put("searchDto",searchDto);
+        data.put("searchDto", searchDto);
+
+        System.out.println(personDao.queryStudentList(data));
 
         page.setTotalSize(personDao.queryStudentsListCount(searchDto));
+
         return personDao.queryStudentList(data);
 
     }
