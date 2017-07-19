@@ -3,6 +3,7 @@ package com.thoughtWorks.service.impl;
 import com.thoughtWorks.dao.ReportDao;
 import com.thoughtWorks.service.ReportService;
 import com.thoughtWorks.util.excelUtil.ExcelReportUtil;
+import com.thoughtWorks.util.reportUtil.NewStudentRegisterReportUtil;
 import com.thoughtWorks.util.reportUtil.ProfessionReportUtil;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,22 @@ public class ReportServiceImpl implements ReportService {
 
     @Resource
     private ReportDao reportDao;
+
+    @Override
+    public File exportRegisterReport(HttpServletRequest request) throws Exception {
+        Map<String, String> headers = new HashMap<>();
+        headers.put("fenyuan", "高职学院");
+        headers.put("professionName", "酒店管理");
+        headers.put("classesName","酒店管理1708班");
+        headers.put("no", "123712987123");
+        headers.put("in_time", "1990-2-2");
+        String fileName = "高职学院学生入学登记表.xls";
+        String path = request.getServletContext().getRealPath("images/temp") + "/" + fileName;
+        File file = new File(path);
+        new NewStudentRegisterReportUtil().exportExcel(null, null, file, fileName.substring(0, fileName.lastIndexOf(".")));
+
+        return file;
+    }
 
     @Override
     public File exportProfessionReport(String level, HttpServletRequest request) throws Exception {
