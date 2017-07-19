@@ -32,6 +32,20 @@
             {{#}}}
         </td>
         <td>
+            {{# if(item.level === undefined){ }}
+            未分配
+            {{# }else{ }}
+            {{ item.level}}
+            {{#}}}
+        </td>
+        <td>
+            {{# if(item.stay_type === "1"){ }}
+            校内
+            {{# }else{ }}
+            校外
+            {{#}}}
+        </td>
+        <td>
             {{# if(item.profession === undefined){ }}
             未分配
             {{# }else{ }}
@@ -51,14 +65,6 @@
             未分配
             {{# }else{ }}
             {{ item.classes}}
-            {{#}}}
-        </td>
-
-        <td>
-            {{# if(item.classesName === undefined){ }}
-            未分配
-            {{# }else{ }}
-            {{ item.classesName}}
             {{#}}}
         </td>
 

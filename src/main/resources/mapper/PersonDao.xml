@@ -53,6 +53,8 @@
         student.no,
         student.name,
         student.gender,
+        student.level,
+        student.stay_type,
         department.name department,
         profession.name profession,
         direction.name direction,
@@ -93,18 +95,27 @@
         id,
         name
         FROM t_room) room ON room.id = student.room_id
+
         WHERE department_id = department.id
         AND direction_id = direction.id
-        AND profession.id = profession_id
+        AND profession_id = profession.id
 
         and student.name LIKE #{searchDto.name}
         and student.no LIKE #{searchDto.studentNo}
+        and student.gender LIKE #{searchDto.sex}
+
         <if test=" searchDto.classesId !=''">
             and student.classes_id LIKE #{searchDto.classesId}
         </if>
-        <if test=" searchDto.sex !=''">
-            and student.gender = #{searchDto.sex}
+
+        <if test=" searchDto.TypeOfAccommodation != ''">
+            and student.stay_type = #{searchDto.TypeOfAccommodation}
         </if>
+
+        <if test=" searchDto.level != ''">
+            and student.level = #{searchDto.level}
+        </if>
+
         <if test=" searchDto.departmentId !=''">
             and student.department_id = #{searchDto.departmentId}
         </if>
@@ -113,15 +124,18 @@
             and student.direction_id = #{searchDto.directionId}
         </if>
 
-        <if test=" searchDto.areaId !=''">
-            and student.area_id = #{searchDto.areaId}
+        <if test="TypeOfAccommodation == 1">
+            <if test=" searchDto.areaId !=''">
+                and student.area_id = #{searchDto.areaId}
+            </if>
+            <if test=" searchDto.floorId !=''">
+                and student.floor_id = #{searchDto.floorId}
+            </if>
+            <if test=" searchDto.roomId !=''">
+                and room.name LIKE #{searchDto.roomId}
+            </if>
         </if>
-        <if test=" searchDto.floorId !=''">
-            and student.floor_id = #{searchDto.floorId}
-        </if>
-        <if test=" searchDto.roomId !=''">
-            and room.name LIKE #{searchDto.roomId}
-        </if>
+
         limit #{start},#{pageSize}
     </select>
     <select id="queryStudentsListCount"  resultType="long">
@@ -160,18 +174,25 @@
         FROM t_room) room ON room.id = student.room_id
         WHERE department_id = department.id
         AND direction_id = direction.id
-        AND profession.id = profession_id
+        AND profession_id = profession.id
 
         and student.name LIKE #{searchDto.name}
         and student.no LIKE #{searchDto.studentNo}
+        and student.gender LIKE #{searchDto.sex}
         <if test=" searchDto.classesId !=''">
             and student.classes_id LIKE #{searchDto.classesId}
         </if>
-        <if test=" searchDto.sex !=''">
-            and student.gender = #{searchDto.sex}
-        </if>
+
         <if test=" searchDto.departmentId !=''">
             and student.department_id = #{searchDto.departmentId}
+        </if>
+
+        <if test=" searchDto.TypeOfAccommodation != ''">
+            and student.stay_type = #{searchDto.TypeOfAccommodation}
+        </if>
+
+        <if test=" searchDto.level != ''">
+            and student.level = #{searchDto.level}
         </if>
 
         <if test=" searchDto.directionId !=''">

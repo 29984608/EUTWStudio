@@ -69,14 +69,18 @@
                         <div class="layui-form-item">
                             <div class="layui-form-inline">
                                 <label class="layui-form-label">性别</label>
-                                <div class="layui-input-inline" id="sex">
-                                    <input type="radio" name="sex" value="男" title="男" checked="">
+                                <div class="layui-input-inline" id="sex" style="width: 30%">
+                                    <input type="radio" name="sex" value="" title="全部" checked="">
+                                    <input type="radio" name="sex" value="男" title="男">
                                     <input type="radio" name="sex" value="女" title="女">
                                 </div>
 
                                 <label class="layui-form-label">住宿类型</label>
-                                <div class="layui-input-inline" id="TypeOfAccommodation" onclick="student.showDormAndHideDorm()">
-                                    <input type="radio" name="TypeOfAccommodation" value="1" title="校内" checked=""
+                                <div class="layui-input-inline" id="TypeOfAccommodation" onclick="student.showDormAndHideDorm()" style="width: 40%">
+
+                                    <input type="radio" name="TypeOfAccommodation" value="" title="全部" checked=""
+                                    >
+                                    <input type="radio" name="TypeOfAccommodation" value="1" title="校内"
                                             >
                                     <input type="radio" name="TypeOfAccommodation" value="2" title="校外"
                                            >
@@ -156,10 +160,11 @@
                             <th>姓名</th>
                             <th>性别</th>
                             <th>系</th>
+                            <th>年级</th>
+                            <th>住宿类型</th>
                             <th>专业</th>
                             <th>方向</th>
                             <th>班级</th>
-                            <th>住宿类型</th>
                             <th>区</th>
                             <th>楼层</th>
                             <th>宿舍</th>
