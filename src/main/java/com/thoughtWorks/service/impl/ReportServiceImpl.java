@@ -33,6 +33,7 @@ public class ReportServiceImpl implements ReportService {
 
         List<Map<String, Object>> dataSet = new ArrayList<>();
         Map<String, Object> data = new HashMap<>();
+        data.put("headImage",request.getServletContext().getRealPath("images/user") + "/user.jpg");
         dataSet.add(data);
         String path = request.getServletContext().getRealPath("images/temp") + "/" + fileName;
         File file = new File(path);

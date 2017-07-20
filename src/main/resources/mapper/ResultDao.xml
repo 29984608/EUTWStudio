@@ -11,10 +11,10 @@
             AND result.course_name LIKE #{courseName}
         </if>
         <if test="moreThanScore!=''">
-            AND score &lt; #{moreThanScore}
+            AND score &lt;= #{moreThanScore}
         </if>
         <if test="lessThanScore!=''">
-            AND score &gt; #{lessThanScore}
+            AND score &gt;= #{lessThanScore}
         </if>
     </sql>
 
