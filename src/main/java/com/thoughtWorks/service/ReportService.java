@@ -11,5 +11,5 @@ public interface ReportService {
 
     File exportProfessionReport(String level,HttpServletRequest request)throws Exception;
 
-    File exportRegisterReport(HttpServletRequest request)throws Exception;
+
 }

@@ -21,26 +21,6 @@ public class ReportServiceImpl implements ReportService {
     @Resource
     private ReportDao reportDao;
 
-    @Override
-    public File exportRegisterReport(HttpServletRequest request) throws Exception {
-        Map<String, String> headers = new HashMap<>();
-        headers.put("fenyuan", "高职学院");
-        headers.put("professionName", "酒店管理");
-        headers.put("classesName","酒店管理1708班");
-        headers.put("no", "123712987123");
-        headers.put("in_time", "1990-2-2");
-        String fileName = "高职学院学生入学登记表.xls";
-
-        List<Map<String, Object>> dataSet = new ArrayList<>();
-        Map<String, Object> data = new HashMap<>();
-        data.put("headImage",request.getServletContext().getRealPath("images/user") + "/user.jpg");
-        dataSet.add(data);
-        String path = request.getServletContext().getRealPath("images/temp") + "/" + fileName;
-        File file = new File(path);
-        new NewStudentRegisterReportUtil().exportExcel(headers, dataSet, file, fileName.substring(0, fileName.lastIndexOf(".")));
-
-        return file;
-    }
 
     @Override
     public File exportProfessionReport(String level, HttpServletRequest request) throws Exception {
