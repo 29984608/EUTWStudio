@@ -6,7 +6,7 @@ import java.util.Map;
 
 public interface NewStudentRegisterService {
 
-    File exportRegisterReport(HttpServletRequest request)throws Exception;
+    File exportRegisterReport(String no, HttpServletRequest request)throws Exception;
 
     Map<String,Object> queryStudentByNo(String no)throws Exception;
 }

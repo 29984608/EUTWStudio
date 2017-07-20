@@ -43,12 +43,13 @@ public class RegisterController {
 
         return Result.failure(null, Constant.SEARCH_FAILURE);
     }
+
     @RequestMapping("exportRegisterReport")
-    public ResponseEntity<byte[]> exportRegisterReport( HttpServletRequest request) throws IOException {
+    public ResponseEntity<byte[]> exportRegisterReport(String no,HttpServletRequest request) throws IOException {
         ResponseEntity<byte[]> responseEntity = null;
 
         try {
-            File file = newStudentRegisterService.exportRegisterReport( request);
+            File file = newStudentRegisterService.exportRegisterReport(no,request);
             responseEntity = getResponseEntity(file);
             file.delete();
         } catch (Exception e) {

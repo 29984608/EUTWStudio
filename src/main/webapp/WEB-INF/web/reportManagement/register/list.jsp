@@ -276,7 +276,7 @@
                 })
             },
             exportRegisterReport: function () {
-                location.href = baseUrl + "/newStudentRegister/exportRegisterReport";
+                location.href = baseUrl + "/newStudentRegister/exportRegisterReport?no="+$("#no").text()+"";
             }
         };
         $(function () {
@@ -295,11 +295,6 @@
         });
     })
 
-
-    function exportPDF() {
-        pdf(document.getElementById("container"), $("#name").text(), "a3");
-//        location.reload();
-    }
 </script>
 
 
