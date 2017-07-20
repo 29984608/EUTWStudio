@@ -260,7 +260,7 @@
                 });
             },
             showDormAndHideDorm: function () {
-                if ($("input[name='TypeOfAccommodation']:checked").val() === "1") {
+                if ($("input[name='TypeOfAccommodation']:checked").val() === "1" || $("input[name='TypeOfAccommodation']:checked").val() === "") {
                     $("#dorm").show();
                 } else {
                     $("#dorm").hide();

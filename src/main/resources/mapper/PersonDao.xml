@@ -104,6 +104,7 @@
         and student.no LIKE #{searchDto.studentNo}
         and student.gender LIKE #{searchDto.sex}
 
+
         <if test=" searchDto.classesId !=''">
             and student.classes_id LIKE #{searchDto.classesId}
         </if>
@@ -124,7 +125,7 @@
             and student.direction_id = #{searchDto.directionId}
         </if>
 
-        <if test="TypeOfAccommodation == 1">
+        <if test="searchDto.TypeOfAccommodation == ''">
             <if test=" searchDto.areaId !=''">
                 and student.area_id = #{searchDto.areaId}
             </if>
@@ -138,7 +139,7 @@
 
         limit #{start},#{pageSize}
     </select>
-    <select id="queryStudentsListCount"  resultType="long">
+    <select id="queryStudentsListCount" resultType="long">
         SELECT count(*)
         FROM t_student student
         LEFT JOIN (SELECT
@@ -199,15 +200,19 @@
             and student.direction_id = #{searchDto.directionId}
         </if>
 
-        <if test=" searchDto.areaId !=''">
-            and student.area_id = #{searchDto.areaId}
+
+        <if test="searchDto.TypeOfAccommodation == 1">
+            <if test=" searchDto.areaId !=''">
+                and student.area_id = #{searchDto.areaId}
+            </if>
+            <if test=" searchDto.floorId !=''">
+                and student.floor_id = #{searchDto.floorId}
+            </if>
+            <if test=" searchDto.roomId !=''">
+                and room.name LIKE #{searchDto.roomId}
+            </if>
         </if>
-        <if test=" searchDto.floorId !=''">
-            and student.floor_id = #{searchDto.floorId}
-        </if>
-        <if test=" searchDto.roomId !=''">
-            and room.name LIKE #{searchDto.roomId}
-        </if>
+
     </select>
     <select id="queryStudentsByClassesIdsAndLikeName" resultType="map">
         SELECT
