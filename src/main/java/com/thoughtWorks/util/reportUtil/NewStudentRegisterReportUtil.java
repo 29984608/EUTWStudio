@@ -3,6 +3,7 @@ package com.thoughtWorks.util.reportUtil;
 import com.thoughtWorks.util.excelUtil.ExcelReportUtil;
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.util.CellRangeAddress;
 
 import javax.imageio.ImageIO;
@@ -37,15 +38,18 @@ public class NewStudentRegisterReportUtil extends ExcelReportUtil {
     @Override
     protected void writeCellData(HSSFSheet sheet, List<Map<String, Object>> dataset, HSSFWorkbook workbook) {
         try {
-//            sheet.setColumnWidth((short) 1, (short) 5000);
-//            sheet.setColumnWidth((short) 2, (short) 4500);
-//            sheet.setColumnWidth((short) 6, (short) 4500);
-
+            sheet.setColumnWidth((short) 3, (short) 4000);
+            sheet.setColumnWidth((short) 5, (short) 4500);
+            sheet.setColumnWidth((short) 7, (short) 4500);
+            sheet.setColumnWidth((short) 10, (short) 2500);
             setBasicInformation(sheet, dataset, workbook);
 
             setOwnExperience(sheet, dataset);
 
             setFamilyInformation(sheet, dataset);
+
+            setDefaultRowHeight(sheet);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -61,10 +65,10 @@ public class NewStudentRegisterReportUtil extends ExcelReportUtil {
         setFontSize(cellStyle,(short)14);
         setAlignMentCenter(cellStyle);
         cell.setCellStyle(cellStyle);
-        cell.setCellValue(new HSSFRichTextString("直系亲属或主要社会关系情况"));
+        cell.setCellValue(new HSSFRichTextString("直系亲属或主要社会关系情况:"));
         sheet.addMergedRegion(new CellRangeAddress(rowIndex, rowIndex, 0, 10));
 
-        String[] params = {"称呼", "姓名", "政治面貌", "职务", "工作单位", "联系电话"};
+        String[] params = {"称呼:", "姓名:", "政治面貌:", "职务:", "工作单位:", "联系电话:"};
         row = sheet.createRow(++rowIndex);
         int columnIndex = 0;
         for (int i = 0; i < params.length; ++i) {
@@ -161,46 +165,45 @@ public class NewStudentRegisterReportUtil extends ExcelReportUtil {
 
         // the second row data
         Map<String, String> params = new LinkedHashMap<>();
-        params.put("studentName", "姓名");
-        params.put("gender", "性别");
-        params.put("born", "出生年月");
-        params.put("famous_family", "民族");
-        params.put("is_marry", "婚否");
+        params.put("studentName", "姓名:");
+        params.put("gender", "性别:");
+        params.put("born", "出生年月:");
+        params.put("famous_family", "民族:");
+        params.put("is_marry", "婚否:");
         setBasicInformationRows(sheet, rowIndex, params, data);
 
         // the third row data
         ++rowIndex;
         params.clear();
-        params.put("origin_address", "籍贯");
-        params.put("political_status", "政治面貌");
-        params.put("culture_high", "文化程度");
-        params.put("student_classify", "学生类别");
+        params.put("origin_address", "籍贯:");
+        params.put("political_status", "政治面貌:");
+        params.put("culture_high", "文化程度:");
+        params.put("student_classify", "学生类别:");
         setBasicInformationThirdRow(sheet, rowIndex, params, data);
 
         // the forth row data
         ++rowIndex;
         params.clear();
-        params.put("actual_address", "家庭住址");
-        params.put("family_zip_code", "邮政编码");
-        params.put("family_phone", "电话");
+        params.put("actual_address", "家庭住址:");
+        params.put("family_zip_code", "邮政编码:");
+        params.put("family_phone", "电话:");
         setBasicInformationForthRow(sheet, rowIndex, params, data);
 
         // the fifth row data
         ++rowIndex;
         params.clear();
-        params.put("own_experience", "何时何地经何人介绍加入何党派或团体组织");
+        params.put("own_experience", "何时何地经何人介绍加入何党派或团体组织:");
         setBasicInformationFifthOrSixthRow(sheet, rowIndex, params, data);
 
         // the sixth row data
         ++rowIndex;
         params.clear();
-        params.put("own_punishment", "何时何地因何原因受过何奖励或处分");
+        params.put("own_punishment", "何时何地因何原因受过何奖励或处分:");
         setBasicInformationFifthOrSixthRow(sheet, rowIndex, params, data);
     }
 
     private void setHeadImage(HSSFSheet sheet, Map<String, Object> data, HSSFWorkbook workbook) {
-        FileOutputStream fileOut = null;
-        BufferedImage bufferImg = null;
+        BufferedImage bufferImg;
         try {
             ByteArrayOutputStream byteArrayOut = new ByteArrayOutputStream();
             bufferImg = ImageIO.read(new File(data.get("headImage").toString()));
@@ -225,7 +228,7 @@ public class NewStudentRegisterReportUtil extends ExcelReportUtil {
         sheet.addMergedRegion(new CellRangeAddress(rowIndex, rowIndex, 0, 4));
         cell = row.createCell(5);
         cell.setCellValue(new HSSFRichTextString(dataset.get(key) == null ? "" : dataset.get(key) + ""));
-        sheet.addMergedRegion(new CellRangeAddress(rowIndex, rowIndex, 5, 11));
+        sheet.addMergedRegion(new CellRangeAddress(rowIndex, rowIndex, 5, 10));
     }
 
     private void setBasicInformationForthRow(HSSFSheet sheet, int rowIndex, Map<String, String> params, Map<String, Object> dataset) {
@@ -272,7 +275,7 @@ public class NewStudentRegisterReportUtil extends ExcelReportUtil {
         HSSFCell cell;
         int columnIndex = 0;
         HSSFRow row = sheet.createRow(rowIndex);
-        setDefaultRowHeight(row);
+
         Set<String> keys = params.keySet();
         for (String key : keys) {
             cell = row.createCell(columnIndex++);
@@ -282,7 +285,11 @@ public class NewStudentRegisterReportUtil extends ExcelReportUtil {
         }
     }
 
-    private void setDefaultRowHeight(HSSFRow row) {
-        row.setHeightInPoints(20);
+    private void setDefaultRowHeight(HSSFSheet sheet) {
+        Iterator<Row> rowIterator = sheet.rowIterator();
+        rowIterator.next();
+        while (rowIterator.hasNext()) {
+            rowIterator.next().setHeightInPoints(20);
+        }
     }
 }
