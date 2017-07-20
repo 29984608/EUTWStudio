@@ -44,4 +44,12 @@ public class StudentController {
 
         return data;
     }
+    @RequestMapping("/update")
+    @ResponseBody
+    public Map<String,Object> update(String studentNo){
+        Map<String, Object> data = new HashMap<>();
+
+        return null;
+    }
+
 }

@@ -256,6 +256,11 @@
                                 </td>
                                 <td><span class="info">成长记录完成：页面及显示个人信息和沟通记录功能完成</span></td>
                             </tr>
+                            <tr>
+                                <td><span class="tit">2017-7-19</span>
+                                </td>
+                                <td><span class="info">学生预览个人信息页面：完成学生预览页面布局</span></td>
+                            </tr>
 
                             </tbody>
                         </table>

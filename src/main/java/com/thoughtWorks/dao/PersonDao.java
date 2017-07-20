@@ -64,4 +64,7 @@ public interface PersonDao {
     Long queryStudentsListCount( @Param("searchDto") SearchDto searchDto);
 
     List<Map<String,Object>> queryStudentList(Map<String, Object> data);
+
+    List<Map<String,Object>> updataByStudentNo(String studentNo);
 }
+
