@@ -3,6 +3,7 @@ package com.thoughtWorks.util.excelUtil;
 import com.thoughtWorks.util.DateUtil;
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.hssf.util.HSSFColor;
+import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.usermodel.XSSFFont;
@@ -11,6 +12,7 @@ import java.io.*;
 import java.util.*;
 
 public class ExcelReportUtil {
+    private HSSFWorkbook workbook;
 
     /**
      * @param headers 表格属性列名数组
@@ -23,10 +25,9 @@ public class ExcelReportUtil {
         OutputStream out = new FileOutputStream(file);
 
         // 声明一个工作薄
-        HSSFWorkbook workbook = new HSSFWorkbook();
+        workbook = new HSSFWorkbook();
         // 生成一个表格
         HSSFSheet sheet = workbook.createSheet();
-
         write2Sheet(sheet, headers, dataset, title, workbook);
 
         try {
@@ -103,8 +104,23 @@ public class ExcelReportUtil {
             int columnIndex = 1;
             for (String key : keys) {
                 cell = row.createCell(columnIndex++);
-                cell.setCellValue(new HSSFRichTextString(dataset.get(i).get(key)+""));
+                cell.setCellValue(new HSSFRichTextString(dataset.get(i).get(key) + ""));
             }
         }
     }
+
+    protected CellStyle createCellStyle() {
+        return workbook.createCellStyle();
+    }
+
+    protected void setFontSize(CellStyle cellStyle, short size) {
+        HSSFFont font = workbook.createFont();
+        font.setFontHeightInPoints(size);
+        cellStyle.setFont(font);
+    }
+
+    protected void setAlignMentCenter(CellStyle cellStyle) {
+        cellStyle.setAlignment(HSSFCellStyle.ALIGN_CENTER);
+    }
+
 }
