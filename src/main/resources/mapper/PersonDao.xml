@@ -516,4 +516,8 @@ WHERE direction_id = direction.id
       AND profession.id = profession_id
       AND student.no=#{studentNo}
     </select>
+
+    <select id="updataByStudentNo" parameterType="String" resultType="map">
+
+    </select>
 </mapper>

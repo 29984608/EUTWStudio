@@ -307,6 +307,15 @@
 
                 return _html;
             },
+            preview:function (studentNo) {
+//                $.post(baseUrl+"")
+                layer.open({
+                    type: 1,
+                    title: "学生信息",
+                    area: ["100%", "100%"]
+                    , content: $("#update")
+                });
+            }
         };
 
 
