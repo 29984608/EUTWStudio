@@ -308,13 +308,66 @@
                 return _html;
             },
             preview:function (studentNo) {
-//                $.post(baseUrl+"")
+                $.post(baseUrl+"/student/update",{studentNo:studentNo},function (data) {
+                    $("#phone").text("").append(data.student[0].student_contact_method);
+                    $("#qq").text("").append(data.student[0].qq);
+                    $("#email").text("").append(data.student[0].email);
+                    $("#images").text("").attr("src",HEAD_IMAGE_PREFIX+data.student[0].head_image);
+                    $("#studentNo").text("").append(data.student[0].no);
+                    $("#studentName").text("").append(data.student[0].name);
+                    $("#studentSex").text("").append(data.student[0].gender);
+                    $("#famous_family").text("").append(data.student[0].famous_family);
+                    $("#idcard").text("").append(data.student[0].idcard);
+                    $("#native_place").text("").append(data.student[0].native_place);
+                    $("#born").text("").append(data.student[0].born);
+                    $("#political_status").text("").append(data.student[0].political_status);
+                    $("#blood").text("").append(data.student[0].blood);
+                    $("#height").text("").append(data.student[0].height);
+                    $("#weight").text("").append(data.student[0].weight);
+                    $("#health_status").text("").append(data.student[0].health_status);
+                    $("#is_marry").text("").append(data.student[0].is_marry);
+                    $("#family_zip_code").text("").append(data.student[0].family_zip_code);
+                    $("#family_phone").text("").append(data.student[0].family_phone);
+                    $("#family").html("")
+                    for(var i =0 ;i<data.family.length;i++){
+                        $("#family").append("<tr> <th>"+data.family[i].relationship+"：</th>"+
+                        "<th  >政治面貌："+data.family[i].political_status+"</th>"+
+                        "<th colspan='2'>工作单位："+data.family[i].work_place+"</th>"+
+                        "<th >职务："+data.family[i].staff+"</th>"+
+                        "<th>联系电话："+data.family[i].phone+"</th> </tr>");
+                    }
+                    $("#emergency_contact_name").text("").append(data.student[0].emergency_contact_name);
+                    $("#emergency_contact_method").text("").append(data.student[0].emergency_contact_method);
+                    $("#experience_div").html("")
+                    for(var i =0 ;i<data.experience.length;i++){
+                        $("#experience_div").append("<tr> <th>"+data.experience[i].start_time+"-"+data.experience[i].end_time+"：</th>"+
+                            "<th  >"+data.experience[i].work_place+"</th>"+
+                            "<th >"+data.experience[i].staff+"</th>");
+                    }
+                    $("#student_type").text("").append(data.student[0].student_type);
+                    $("#sat_score").text("").append(data.student[0].sat_score);
+                    $("#profession").text("").append(data.student[0].profession);
+                    $("#direction").text("").append(data.student[0].direction);
+                    $("#classes").text("").append(data.student[0].classes);
+                    $("#student_status").text("").append(data.student[0].student_status);
+                    $("#practice_learning_type").text("").append(data.student[0].practice_learning_type);
+                    $("#payment_status_first_year").text("").append(data.student[0].payment_status_first_year);
+                    $("#payment_status_second_year").text("").append(data.student[0].payment_status_second_year);
+                    $("#payment_status_third_year").text("").append(data.student[0].payment_status_third_year);
+                    $("#area").text("").append(data.student[0].area);
+                    $("#floor").text("").append(data.student[0].floor);
+                    $("#room").text("").append(data.student[0].room);
+                    $("#hard_type").text("").append(data.student[0].hard_type);
+                    $("#own_punishment").text("").append(data.student[0].own_punishment);
+
+                });
                 layer.open({
                     type: 1,
                     title: "学生信息",
                     area: ["100%", "100%"]
                     , content: $("#update")
                 });
+
             }
         };
 

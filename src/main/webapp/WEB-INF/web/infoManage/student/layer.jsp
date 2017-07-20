@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+
 <script id="list-tpl" type="text/html">
     {{# layui.each(d.student, function(index,item){ }}
     <tr>
@@ -111,25 +112,25 @@
 
 </script>
 
-<div id="update" style="display: none;margin-top: 40px;">
+<div id="update" style="display: none; background:#F8F8F8">
     <div class="container" id="container" style=" background: #fff">
-        <h1 style="text-align: center;margin-left: -30px ;color:#00ab9f ">西安欧亚学院高职学院学生档案</h1>
+        <h1 style="text-align: center;margin-left: -30px;margin-top: 40px; ;color:#00ab9f ">西安欧亚学院高职学院学生档案</h1>
         <div style="margin-top: 40px;">
-            <div style="width: 25%; height: 130%; float: left;border-right: 1px solid #00ab9f">
+            <div style="width: 25%; height: 100%; float: left;border-right: 1px solid #00ab9f">
                 <div style="width:140px; height: 200px; margin:10px 50px;border: 2px solid #00ab9f">
-                    <img src="images/user/huan.jpg" style="width: 100%" height="100%"/>
+                    <img  id="images" style="width: 100%" height="100%"/>
                 </div>
                 <div style="width:220px; height: 240px; margin:10px 30px;">
                     <table class="layui-table lay-even " data-name="articleCatData">
                         <tbody>
                         <tr>
-                            <th>TEL：<span>15802953175</span></th>
+                            <th>TEL：<span id="phone"></span></th>
                         </tr>
                         <tr>
-                            <th>QQ：<span>821453366</span></th>
+                            <th>QQ：<span id="qq"></span></th>
                         </tr>
                         <tr>
-                            <th>E-mail：<span>821453366@qq.com</span></th>
+                            <th>E-mail：<span id="email"></span></th>
                         </tr>
                         </tbody>
                     </table>
@@ -139,74 +140,49 @@
                 <h4 style="color: #00ab9f;font-weight: bold">基本信息</h4>
                 <table class="layui-table lay-even " data-name="articleCatData"
                        style="border: 0px solid red">
-                    <tbody>
+                    <tbody >
                     <tr>
-                        <th colspan="2">学号：<span>15610409147856</span></th>
-                        <th>姓名：<span>毛良伟</span></th>
-                        <th>性别：<span>男</span></th>
-                        <th>民族：<span>汉族</span></th>
-                        <th>身份证号：<span>610424187451235362</span></th>
+                        <th colspan="2">学号：<span id="studentNo"></span></th>
+                        <th>姓名：<span id="studentName"></span></th>
+                        <th>性别：<span id="studentSex"></span></th>
+                        <th>民族：<span id="famous_family"></span></th>
+                        <th>身份证号：<span id="idcard"></span></th>
                     </tr>
                     <tr>
-                        <th colspan="3">籍贯：<span>陕西西安</span></th>
-                        <th colspan="3">出生日期：<span>1996-03-26</span></th>
+                        <th colspan="3">籍贯：<span id="native_place"></span></th>
+                        <th colspan="3">出生日期：<span id="born"></span></th>
                     </tr>
                     <tr>
-                        <th colspan="3">政治面貌：<span>共青团员</span></th>
-                        <th colspan="3">血型：<span>O型</span></th>
+                        <th colspan="3">政治面貌：<span id="political_status"></span></th>
+                        <th colspan="3">血型：<span id="blood"></span></th>
                     </tr>
                     <tr>
-                        <th colspan="2">身高：<span>175cm</span></th>
-                        <th>体重：<span>62kg</span></th>
-                        <th colspan="2">健康状况：<span>良好</span></th>
-                        <th>婚否：<span>未婚</span></th>
+                        <th colspan="2">身高：<span id="height"></span>cm</th>
+                        <th>体重：<span id="weight"></span>kg</th>
+                        <th colspan="2">健康状况：<span id="health_status"></span></th>
+                        <th>婚否：<span id="is_marry"></span></th>
                     </tr>
                     <tr>
-                        <th colspan="6">邮编编码：<span>713366</span></th>
+                        <th colspan="6">邮编编码：<span id="family_zip_code"></span></th>
                     </tr>
                     <tr>
-                        <th colspan="6">家庭电话：<span>029-35350123</span></th>
+                        <th colspan="6">家庭电话：<span id="family_phone"></span></th>
                     </tr>
-                    <tr>
-                        <th>父亲：</th>
-                        <th>政治面貌：<span>共产党员</span></th>
-                        <th colspan="2">工作单位：<span>陕西省西安</span></th>
-                        <th>职务：<span>汉族</span></th>
-                        <th>联系电话：<span>15802953456</span></th>
-                    </tr>
-                    <tr>
-                        <th>母亲：</th>
-                        <th>政治面貌：<span>共产党员</span></th>
-                        <th colspan="2">工作单位：<span>陕西省西安</span></th>
-                        <th>职务：<span>汉族</span></th>
-                        <th>联系电话：<span>13802953456</span></th>
-                    </tr>
-                    <tr>
-                        <th colspan="3">紧急联系人：<span>张老师</span></th>
+                    <tbody id="family">
 
-                        <th colspan="3">联系方式：<span>13542153654</span></th>
+                    </tbody>
+                    <tr>
+                        <th colspan="3">紧急联系人：<span id="emergency_contact_name"></span></th>
+
+                        <th colspan="3">联系方式：<span id="emergency_contact_method"></span></th>
                     </tr>
                     </tbody>
                 </table>
                 <h4 style="color: #00ab9f;font-weight: bold ;padding-top: 15px;">教育经历</h4>
                 <table class="layui-table lay-even " data-name="articleCatData"
                        style="border: 0px solid red">
-                    <tbody>
-                    <tr>
-                        <th><span>2001年06月30日- 2004年09月30日</span></th>
-                        <th><span>西安市天鹅小学</span></th>
-                        <th><span>班长</span></th>
-                    </tr>
-                    <tr>
-                        <th><span>2004年06月30日- 2009年09月30日</span></th>
-                        <th><span>西安市铁一中附小</span></th>
-                        <th><span>班长</span></th>
-                    </tr>
-                    <tr>
-                        <th><span>2009年06月30日- 2016年09月30日</span></th>
-                        <th><span>西安市铁一中</span></th>
-                        <th><span>班长</span></th>
-                    </tr>
+                    <tbody id="experience_div">
+
                     </tbody>
                 </table>
                 <h4 style="color: #00ab9f;font-weight: bold ;padding-top: 15px;">学业信息</h4>
@@ -214,31 +190,37 @@
                        style="border: 0px solid red">
                     <tbody>
                     <tr>
-                        <th colspan="2">学生类别：<span>普通高考</span></th>
-                        <th colspan="2">高考成绩：<span>592分</span></th>
+                        <th colspan="2">学生类别：<span id="student_type"></span></th>
+                        <th colspan="2">高考成绩：<span id="sat_score"></span></th>
 
                     </tr>
                     <tr>
-                        <th>录取专业：<span>通信工程</span></th>
-                        <th>现专业：<span>软件工程</span></th>
-                        <th>就业方向：<span>中软国际订单</span></th>
-                        <th>班级：<span>软件1503班</span></th>
+                        <th>录取专业：<span id=""></span></th>
+                        <th>现专业：<span id="profession"></span></th>
+                        <th>就业方向：<span id="direction"></span></th>
+                        <th>班级：<span id="classes"></span></th>
                     </tr>
                     <tr>
-                        <th colspan="2">职业导师：<span>张老师</span></th>
-                        <th colspan="2">社区辅导员：<span>孙老师</span></th>
+                        <th colspan="2">职业导师：<span ></span></th>
+                        <th colspan="2">社区辅导员：<span></span></th>
                     </tr>
                     <tr>
-                        <th colspan="2">学籍状态：<span>在读</span></th>
-                        <th colspan="2">缴费状态：<span>全额已付</span></th>
+                        <th colspan="2">学籍状态：<span id="student_status"></span></th>
+                        <th colspan="2">实践类型：<span id="practice_learning_type"></span></th>
                     </tr>
 
                     <tr>
-                        <th colspan="2">实践类型：<span>未实践</span></th>
-                        <th colspan="2">宿舍位置：<span>北区：626</span></th>
+                        <th colspan="4">缴费状态：
+                            第一年：(<span id="payment_status_first_year"></span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            第二年：(<span id="payment_status_second_year"></span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            第三年：(<span id="payment_status_third_year"></span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                        </th>
+
                     </tr>
                     <tr>
-                        <th colspan="4">困难类别：<span>贫困</span></th>
+                        <th colspan="2">宿舍位置：<span id="area"></span>&nbsp;-&nbsp;<span id="floor"></span>&nbsp;-&nbsp;<span id="room"></span>房间</th>
+                        <th colspan="2">困难类别：<span id="hard_type"></span></th>
                     </tr>
                     </tbody>
                 </table>
@@ -247,8 +229,7 @@
                        style="border: 0px solid red">
                     <tbody>
                     <tr>
-                        <th ><div>2017年07月19日 获得陕西蓝桥杯二等奖</div>
-                            <div>2017年07月19日 获得陕西蓝桥杯二等奖</div>
+                        <th id="own_punishment">
                         </th>
                     </tr>
                     </tbody>
