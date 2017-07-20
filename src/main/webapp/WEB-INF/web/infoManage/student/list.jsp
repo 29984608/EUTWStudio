@@ -260,7 +260,7 @@
                 });
             },
             showDormAndHideDorm: function () {
-                if ($("input[name='TypeOfAccommodation']:checked").val() === "1" || $("input[name='TypeOfAccommodation']:checked").val() === "") {
+                if ($("input[name='TypeOfAccommodation']:checked").val() === "1") {
                     $("#dorm").show();
                 } else {
                     $("#dorm").hide();
@@ -378,6 +378,7 @@
         }
 
         $(function () {
+            student.showDormAndHideDorm();
             queryAreaAndFloor();
             loadALlDepartments();
             loadAllDirections();

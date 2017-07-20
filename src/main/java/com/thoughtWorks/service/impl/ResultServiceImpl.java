@@ -92,8 +92,8 @@ public class ResultServiceImpl implements ResultService {
         Map<String, Object> data = new HashMap<>();
         data.put("courseCode", searchDto.getCourseCode());
         data.put("courseName", "%" + searchDto.getCourseName() + "%");
-        data.put("lessThanScore", Integer.parseInt(searchDto.getLessThanScore()));
-        data.put("moreThanScore", Integer.parseInt(searchDto.getMoreThanScore()));
+        data.put("lessThanScore", Integer.parseInt("".equals(searchDto.getLessThanScore())?"0":searchDto.getLessThanScore()));
+        data.put("moreThanScore", Integer.parseInt("".equals(searchDto.getMoreThanScore())?"100":searchDto.getMoreThanScore()));
         data.put("start", (pageUtil.getCurrentIndex() - 1) * pageUtil.getPageSize());
         data.put("pageSize", pageUtil.getPageSize());
         pageUtil.setTotalSize(resultDao.querySearchStudentsTotalCountLikes(data));
@@ -104,7 +104,7 @@ public class ResultServiceImpl implements ResultService {
 
     @Override
     public List<Map<String, Object>> queryRankList(SearchDto searchDto, PageUtil pageUtil) throws Exception {
-        List<Map<String, String>> studentsTotalScores = null, studentsAverageScores = null;
+        List<Map<String, String>> studentsTotalScores = new ArrayList<>(), studentsAverageScores;
         Map<String, Object> data = new HashMap<>();
         data.put("departmentId", searchDto.getDepartmentId());
         data.put("level", searchDto.getLevel());

@@ -67,3 +67,4 @@ public interface PersonDao {
 
     List<Map<String,Object>> updataByStudentNo(String studentNo);
 }
+

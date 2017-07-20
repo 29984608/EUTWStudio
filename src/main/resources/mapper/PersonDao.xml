@@ -109,9 +109,7 @@
             and student.classes_id LIKE #{searchDto.classesId}
         </if>
 
-        <if test=" searchDto.TypeOfAccommodation != ''">
-            and student.stay_type = #{searchDto.TypeOfAccommodation}
-        </if>
+
 
         <if test=" searchDto.level != ''">
             and student.level = #{searchDto.level}
@@ -125,14 +123,22 @@
             and student.direction_id = #{searchDto.directionId}
         </if>
 
-        <if test="searchDto.TypeOfAccommodation == ''">
-            <if test=" searchDto.areaId !=''">
+        <if test=" searchDto.TypeOfAccommodation != ''">
+            and student.stay_type = #{searchDto.TypeOfAccommodation}
+        </if>
+
+        <if test=" searchDto.areaId !=''">
+            <if test="searchDto.TypeOfAccommodation == 1">
                 and student.area_id = #{searchDto.areaId}
             </if>
-            <if test=" searchDto.floorId !=''">
+        </if>
+        <if test=" searchDto.floorId !=''">
+            <if test="searchDto.TypeOfAccommodation == 1">
                 and student.floor_id = #{searchDto.floorId}
             </if>
-            <if test=" searchDto.roomId !=''">
+        </if>
+        <if test=" searchDto.roomId !=''">
+            <if test="searchDto.TypeOfAccommodation == 1">
                 and room.name LIKE #{searchDto.roomId}
             </if>
         </if>

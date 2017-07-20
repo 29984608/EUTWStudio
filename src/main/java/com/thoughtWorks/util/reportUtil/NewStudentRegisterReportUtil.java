@@ -2,8 +2,14 @@ package com.thoughtWorks.util.reportUtil;
 
 import com.thoughtWorks.util.excelUtil.ExcelReportUtil;
 import org.apache.poi.hssf.usermodel.*;
+import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.util.CellRangeAddress;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.*;
 
 public class NewStudentRegisterReportUtil extends ExcelReportUtil {
@@ -35,9 +41,7 @@ public class NewStudentRegisterReportUtil extends ExcelReportUtil {
 //            sheet.setColumnWidth((short) 2, (short) 4500);
 //            sheet.setColumnWidth((short) 6, (short) 4500);
 
-//            sheet.addMergedRegion(new CellRangeAddress(1, 1, 1, 1));
-
-            setBasicInformation(sheet, dataset);
+            setBasicInformation(sheet, dataset, workbook);
 
             setOwnExperience(sheet, dataset);
 
@@ -53,10 +57,14 @@ public class NewStudentRegisterReportUtil extends ExcelReportUtil {
         HSSFRow row = sheet.createRow(rowIndex);
 
         cell = row.createCell(0);
+        CellStyle cellStyle = createCellStyle();
+        setFontSize(cellStyle,(short)14);
+        setAlignMentCenter(cellStyle);
+        cell.setCellStyle(cellStyle);
         cell.setCellValue(new HSSFRichTextString("直系亲属或主要社会关系情况"));
         sheet.addMergedRegion(new CellRangeAddress(rowIndex, rowIndex, 0, 10));
 
-        String[] params = {"称呼", "姓名", "政治面貌","职务", "工作单位","联系电话"};
+        String[] params = {"称呼", "姓名", "政治面貌", "职务", "工作单位", "联系电话"};
         row = sheet.createRow(++rowIndex);
         int columnIndex = 0;
         for (int i = 0; i < params.length; ++i) {
@@ -65,7 +73,7 @@ public class NewStudentRegisterReportUtil extends ExcelReportUtil {
                 cell.setCellValue(new HSSFRichTextString(params[i]));
                 sheet.addMergedRegion(new CellRangeAddress(rowIndex, rowIndex, columnIndex, columnIndex + 5));
                 columnIndex += 6;
-            } else{
+            } else {
                 cell = row.createCell(columnIndex);
                 cell.setCellValue(new HSSFRichTextString(params[i]));
                 ++columnIndex;
@@ -80,7 +88,7 @@ public class NewStudentRegisterReportUtil extends ExcelReportUtil {
                     cell.setCellValue(new HSSFRichTextString());
                     sheet.addMergedRegion(new CellRangeAddress(rowIndex, rowIndex, columnIndex, columnIndex + 5));
                     columnIndex += 6;
-                } else{
+                } else {
                     cell = row.createCell(columnIndex);
                     cell.setCellValue(new HSSFRichTextString());
                     ++columnIndex;
@@ -95,6 +103,10 @@ public class NewStudentRegisterReportUtil extends ExcelReportUtil {
         HSSFRow row = sheet.createRow(rowIndex);
 
         cell = row.createCell(0);
+        CellStyle cellStyle = createCellStyle();
+        setFontSize(cellStyle,(short)14);
+        setAlignMentCenter(cellStyle);
+        cell.setCellStyle(cellStyle);
         cell.setCellValue(new HSSFRichTextString("本人学历及社会经历(从小学起)"));
         sheet.addMergedRegion(new CellRangeAddress(rowIndex, rowIndex, 0, 10));
 
@@ -141,9 +153,11 @@ public class NewStudentRegisterReportUtil extends ExcelReportUtil {
         }
     }
 
-    private void setBasicInformation(HSSFSheet sheet, List<Map<String, Object>> dataset) {
+    private void setBasicInformation(HSSFSheet sheet, List<Map<String, Object>> dataset, HSSFWorkbook workbook) {
         Map<String, Object> data = dataset.get(0);
         int rowIndex = 2;
+
+        setHeadImage(sheet, data, workbook);
 
         // the second row data
         Map<String, String> params = new LinkedHashMap<>();
@@ -184,6 +198,23 @@ public class NewStudentRegisterReportUtil extends ExcelReportUtil {
         setBasicInformationFifthOrSixthRow(sheet, rowIndex, params, data);
     }
 
+    private void setHeadImage(HSSFSheet sheet, Map<String, Object> data, HSSFWorkbook workbook) {
+        FileOutputStream fileOut = null;
+        BufferedImage bufferImg = null;
+        try {
+            ByteArrayOutputStream byteArrayOut = new ByteArrayOutputStream();
+            bufferImg = ImageIO.read(new File(data.get("headImage").toString()));
+            ImageIO.write(bufferImg, "jpg", byteArrayOut);
+
+            HSSFPatriarch patriarch = sheet.createDrawingPatriarch();
+            HSSFClientAnchor anchor = new HSSFClientAnchor(0, 0, 0, 0, (short) 10, 1, (short) 11, 5);
+            patriarch.createPicture(anchor, workbook.addPicture(byteArrayOut.toByteArray(), HSSFWorkbook.PICTURE_TYPE_JPEG));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
     private void setBasicInformationFifthOrSixthRow(HSSFSheet sheet, int rowIndex, Map<String, String> params, Map<String, Object> dataset) {
         HSSFCell cell;
         String key = params.keySet().iterator().next();
@@ -207,12 +238,10 @@ public class NewStudentRegisterReportUtil extends ExcelReportUtil {
             cell = row.createCell(columnIndex++);
             cell.setCellValue(new HSSFRichTextString(params.get(key)));
             if ("actual_address".equals(key)) {
-                sheet.addMergedRegion(new CellRangeAddress(rowIndex, rowIndex, columnIndex - 1, columnIndex));
-                ++columnIndex;
-                cell = row.createCell(columnIndex++);
+                cell = row.createCell(columnIndex);
                 cell.setCellValue(new HSSFRichTextString(dataset.get(key) == null ? "" : dataset.get(key) + ""));
-                sheet.addMergedRegion(new CellRangeAddress(rowIndex, rowIndex, columnIndex - 1, columnIndex));
-                ++columnIndex;
+                sheet.addMergedRegion(new CellRangeAddress(rowIndex, rowIndex, columnIndex, columnIndex + 5));
+                columnIndex += 5;
             } else {
                 cell = row.createCell(columnIndex++);
                 cell.setCellValue(new HSSFRichTextString(dataset.get(key) == null ? "" : dataset.get(key) + ""));
@@ -243,7 +272,7 @@ public class NewStudentRegisterReportUtil extends ExcelReportUtil {
         HSSFCell cell;
         int columnIndex = 0;
         HSSFRow row = sheet.createRow(rowIndex);
-
+        setDefaultRowHeight(row);
         Set<String> keys = params.keySet();
         for (String key : keys) {
             cell = row.createCell(columnIndex++);
@@ -251,5 +280,9 @@ public class NewStudentRegisterReportUtil extends ExcelReportUtil {
             cell = row.createCell(columnIndex++);
             cell.setCellValue(new HSSFRichTextString(dataset.get(key) == null ? "" : dataset.get(key) + ""));
         }
+    }
+
+    private void setDefaultRowHeight(HSSFRow row) {
+        row.setHeightInPoints(20);
     }
 }
