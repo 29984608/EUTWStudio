@@ -9,4 +9,5 @@ public interface ReportDao {
     List<Map<String,String>> queryDepartments();
 
     List<Map<String,String>> queryProfessions();
+
 }

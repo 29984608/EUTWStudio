@@ -57,4 +57,7 @@ public interface PersonService {
     List<Map<String ,Object>> queryStudentInfoById(String studentNo )throws Exception ;
 
     List<Map<String,Object>> queryStudentList(SearchDto searchDto, PageUtil page)throws Exception;
+
+  Map<String,Object> updateByStudentNo(String studentNo)throws Exception;
+
 }

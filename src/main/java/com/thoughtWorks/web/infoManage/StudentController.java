@@ -44,4 +44,21 @@ public class StudentController {
 
         return data;
     }
+    @RequestMapping("/update")
+    @ResponseBody
+    public Map<String,Object> update(String studentNo){
+        Map<String, Object> data = new HashMap<>();
+        try {
+
+            data.putAll(personService.updateByStudentNo(studentNo));
+            data.put("msg", Constant.SEARCH_SUCCESS);
+            data.put("result", true);
+        }catch (Exception e){
+            new RuntimeException(e);
+            data.put("msg", Constant.SEARCH_FAILURE);
+            data.put("result", false);
+        }
+        return data;
+    }
+
 }

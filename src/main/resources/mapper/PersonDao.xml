@@ -110,7 +110,6 @@
         </if>
 
 
-
         <if test=" searchDto.level != ''">
             and student.level = #{searchDto.level}
         </if>
@@ -521,5 +520,70 @@ FROM t_student student
 WHERE direction_id = direction.id
       AND profession.id = profession_id
       AND student.no=#{studentNo}
+    </select>
+
+    <select id="updateByStudentNo" parameterType="String" resultType="map">
+        SELECT
+          student.*,
+          direction.name direction,
+          profession.name profession,
+          class.name classes,
+          department.name department,
+          area.name area,
+          floor.name floor,
+          room.name room
+
+        FROM t_student student
+
+          LEFT JOIN (SELECT
+                       id,
+                       name
+                     FROM t_department) department ON department.id = student.department_id
+          LEFT JOIN (SELECT
+                       id,
+                       name
+                     FROM t_direction) direction ON direction.id = student.direction_id
+
+          LEFT JOIN (SELECT
+                       id,
+                       name
+                     FROM t_profession) profession ON profession.id = student.profession_id
+
+          LEFT JOIN (SELECT
+                       id,
+                       name
+                     FROM t_classes) class ON class.id = student.classes_id
+
+          LEFT JOIN (SELECT
+                       id,
+                       name
+                     FROM t_area) area ON area.id = student.area_id
+          LEFT JOIN (SELECT
+                       id,
+                       name
+                     FROM t_floor) floor ON floor.id = student.floor_id
+          LEFT JOIN (SELECT
+                       id,
+                       name
+                     FROM t_room) room ON room.id = student.room_id
+
+        WHERE student.department_id = department.id
+              AND direction_id = direction.id
+              AND profession.id = profession_id
+              and student.no =#{studentNo}
+
+    </select>
+    <select id="updateFamilyByStudentNo" parameterType="String" resultType="map">
+        SELECT
+          family.*
+        FROM t_student_family family
+        WHERE  family.no =#{studentNo}
+    </select>
+    <select id="updateExperienceByStudentNo" parameterType="String" resultType="map">
+        SELECT
+          experience.*
+        FROM t_student_experience experience
+        WHERE  experience.no =#{studentNo}
+
     </select>
 </mapper>

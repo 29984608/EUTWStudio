@@ -244,4 +244,15 @@ public class PersonServiceImpl implements PersonService {
 
     }
 
+    @Override
+    public Map<String, Object>updateByStudentNo(String studentNo) throws Exception{
+        Map<String ,Object> data = new HashMap<>();
+
+       data.put("student",personDao.updateByStudentNo(studentNo));
+       data.put("family",personDao.updateFamilyByStudentNo(studentNo));
+       data.put("experience",personDao.updateExperienceByStudentNo(studentNo));
+        return data;
+    }
+
+
 }

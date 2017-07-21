@@ -64,4 +64,11 @@ public interface PersonDao {
     Long queryStudentsListCount( @Param("searchDto") SearchDto searchDto);
 
     List<Map<String,Object>> queryStudentList(Map<String, Object> data);
+
+    List<Map<String,Object>> updateByStudentNo(String studentNo)throws Exception;
+
+    List<Map<String,Object>> updateExperienceByStudentNo(String studentNo)throws Exception;
+
+    List<Map<String,Object>> updateFamilyByStudentNo(String studentNo)throws Exception;
 }
+
