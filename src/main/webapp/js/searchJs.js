@@ -43,3 +43,15 @@ function loadOptionsHtml(data, selectId) {
 
     return _html;
 }
+
+function getSearchLevels() {
+    let levels = [];
+    let currentMonth = new Date().getMonth() + 1;
+    let currentYear = new Date().getFullYear();
+    if (currentMonth > 8) levels.push(currentYear);
+    levels.push(currentYear-1);
+    levels.push(currentYear-2);
+    if (currentMonth <= 8) levels.push(currentYear - 3);
+
+    return levels;
+}
