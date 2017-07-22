@@ -3,6 +3,7 @@ package com.thoughtWorks.service.impl;
 import com.thoughtWorks.dao.DirectionReportDao;
 import com.thoughtWorks.service.DirectionReportService;
 import com.thoughtWorks.util.DateUtil;
+import com.thoughtWorks.util.reportUtil.DirectionReportUtil;
 import com.thoughtWorks.util.reportUtil.ProfessionReportUtil;
 import org.springframework.stereotype.Service;
 
@@ -31,7 +32,7 @@ public class DirectionReportServiceImpl implements DirectionReportService {
 
         String path = request.getServletContext().getRealPath("images/temp") + "/" + fileName;
         File file = new File(path);
-        new ProfessionReportUtil().exportExcel(headers, directionList, file, fileName.substring(0, fileName.lastIndexOf(".")));
+        new DirectionReportUtil().exportExcel(headers, directionList, file, fileName.substring(0, fileName.lastIndexOf(".")));
 
         return file;
     }
