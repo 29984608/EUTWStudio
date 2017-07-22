@@ -1,9 +1,8 @@
 package com.thoughtWorks.service.impl;
 
-import com.thoughtWorks.dao.ProfessionReportDao;
-import com.thoughtWorks.service.ProfessionReportService;
+import com.thoughtWorks.dao.DirectionReportDao;
+import com.thoughtWorks.service.DirectionReportService;
 import com.thoughtWorks.util.DateUtil;
-import com.thoughtWorks.util.reportUtil.NewStudentRegisterReportUtil;
 import com.thoughtWorks.util.reportUtil.ProfessionReportUtil;
 import org.springframework.stereotype.Service;
 
@@ -13,36 +12,36 @@ import java.io.File;
 import java.util.*;
 
 @Service
-public class ProfessionReportServiceImpl implements ProfessionReportService {
+public class DirectionReportServiceImpl implements DirectionReportService {
 
     @Resource
-    private ProfessionReportDao professionReportDao;
+    private DirectionReportDao directionReportDao;
     @Override
-    public File exportProfessionReport(HttpServletRequest request) throws Exception {
-        List<Map<String, Object>> professionList = professionList();
+    public File exportReport(HttpServletRequest request) throws Exception {
+        List<Map<String, Object>> directionList = this.directionList();
         List<Integer> searchLevels = DateUtil.getSearchLevels();
         Map<String, String> headers = new HashMap<>();
-        headers.put("index", "序号");
+        headers.put("index", "序号系");
         headers.put("departmentName", "系");
-        headers.put("professionName",  "专业");
+        headers.put("directionName",  "就业方向");
         headers.put("level1",  Integer.toString(searchLevels.get(0)));
         headers.put("level2",  Integer.toString(searchLevels.get(1)));
         headers.put("level3",  Integer.toString(searchLevels.get(2)));
-        String fileName = "高职学院专业人数统计表.xls";
+        String fileName = "高职学院就业方向人数统计表.xls";
 
         String path = request.getServletContext().getRealPath("images/temp") + "/" + fileName;
         File file = new File(path);
-        new ProfessionReportUtil().exportExcel(headers, professionList, file, fileName.substring(0, fileName.lastIndexOf(".")));
+        new ProfessionReportUtil().exportExcel(headers, directionList, file, fileName.substring(0, fileName.lastIndexOf(".")));
 
         return file;
     }
 
     @Override
-    public List<Map<String, Object>> professionList() throws Exception {
+    public List<Map<String, Object>> directionList() throws Exception {
         List<Map<String, Object>> statisticStudents = null;
         List<Integer> searchLevels = DateUtil.getSearchLevels();
 
-        List<Map<String, Object>> students = professionReportDao.queryProfessionReport(searchLevels);
+        List<Map<String, Object>> students = directionReportDao.queryDirectionReport(searchLevels);
         if (students.size() != 0) statisticStudents = statisticStudentsCount(students);
 
         return statisticStudents;
@@ -58,7 +57,7 @@ public class ProfessionReportServiceImpl implements ProfessionReportService {
                 departmentName = (String) student.get("departmentName");
                 temp = new LinkedHashMap<>();
                 temp.put("departmentName", departmentName);
-                temp.put("professions", new ArrayList<>());
+                temp.put("directions", new ArrayList<>());
                 statisticStudents.add(temp);
             }
             setDepartmentProfessionStudentCount(temp, student);
@@ -68,28 +67,28 @@ public class ProfessionReportServiceImpl implements ProfessionReportService {
     }
 
     private void setDepartmentProfessionStudentCount(Map<String, Object> tempDepartment, Map<String, Object> student) {
-        String professionName = (String) student.get("professionName");
-        List<Map<String, Object>> professions = (List<Map<String, Object>>) tempDepartment.get("professions");
+        String directionName = (String) student.get("directionName");
+        List<Map<String, Object>> directions = (List<Map<String, Object>>) tempDepartment.get("directions");
 
-        if (professions.size() == 0)
-            professions.add(createProfession(professionName));
+        if (directions.size() == 0)
+            directions.add(createDirection(directionName));
 
         boolean flag = false;
-        for (Map<String, Object> profession : professions) {
-            if (profession.get("professionName").toString().equals(professionName)) {
+        for (Map<String, Object> direction : directions) {
+            if (direction.get("directionName").toString().equals(directionName)) {
                 flag = true;
-                setLevelCount(profession, student);
+                setLevelCount(direction, student);
             }
         }
         if (!flag) {
-            professions.add(createProfession(professionName));
-            setLevelCount(professions.get(professions.size() - 1), student);
+            directions.add(createDirection(directionName));
+            setLevelCount(directions.get(directions.size() - 1), student);
         }
     }
 
-    private void setLevelCount(Map<String, Object> profession, Map<String, Object> student) {
+    private void setLevelCount(Map<String, Object> direction, Map<String, Object> student) {
         List<Integer> searchLevels = DateUtil.getSearchLevels();
-        List<Map<String, Integer>> levels = (List<Map<String, Integer>>) profession.get("levels");
+        List<Map<String, Integer>> levels = (List<Map<String, Integer>>) direction.get("levels");
         if (levels.size() == 0) {
             for (int i = 0; i < searchLevels.size(); ++i) {
                 Map<String, Integer> temp = new HashMap<>();
@@ -106,12 +105,12 @@ public class ProfessionReportServiceImpl implements ProfessionReportService {
         }
     }
 
-    private Map<String, Object> createProfession(String professionName) {
-        Map<String, Object> tempProfession = new HashMap<>();
-        tempProfession.put("professionName", professionName);
-        tempProfession.put("levels", new ArrayList<>());
+    private Map<String, Object> createDirection(String directionName) {
+        Map<String, Object> tempDirection = new HashMap<>();
+        tempDirection.put("directionName", directionName);
+        tempDirection.put("levels", new ArrayList<>());
 
-        return tempProfession;
+        return tempDirection;
     }
 
 
