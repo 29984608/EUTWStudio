@@ -5,6 +5,7 @@ import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.usermodel.XSSFFont;
 
@@ -113,14 +114,31 @@ public class ExcelReportUtil {
         return workbook.createCellStyle();
     }
 
-    protected void setFontSize(CellStyle cellStyle, short size) {
+    private void setFontSize(CellStyle cellStyle, short size) {
         HSSFFont font = workbook.createFont();
         font.setFontHeightInPoints(size);
         cellStyle.setFont(font);
     }
 
-    protected void setAlignMentCenter(CellStyle cellStyle) {
+    protected CellStyle setAlignmentCenter(CellStyle cellStyle,HSSFCell cell) {
         cellStyle.setAlignment(HSSFCellStyle.ALIGN_CENTER);
+        cellStyle.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);
+        cell.setCellStyle(cellStyle);
+
+        return cellStyle;
     }
 
+    protected CellStyle setCellFontStyle(CellStyle cellStyle,HSSFCell cell,short fontSize) {
+        setFontSize(cellStyle, fontSize);
+        cell.setCellStyle(cellStyle);
+
+        return cellStyle;
+    }
+    protected void setDefaultRowHeight(HSSFSheet sheet, Integer height) {
+        Iterator<Row> rowIterator = sheet.rowIterator();
+        rowIterator.next();
+        while (rowIterator.hasNext()) {
+            rowIterator.next().setHeightInPoints(height);
+        }
+    }
 }

@@ -9,7 +9,7 @@ public interface ProfessionReportService {
 
     List<Map<String,Object>> professionList()throws Exception;
 
-    File exportProfessionReport(String level, HttpServletRequest request)throws Exception;
+    File exportProfessionReport( HttpServletRequest request)throws Exception;
 
 
 }

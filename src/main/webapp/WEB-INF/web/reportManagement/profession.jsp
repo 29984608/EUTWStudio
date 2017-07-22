@@ -68,8 +68,7 @@
                 })
             },
             exportExcel: function () {
-                let level = $("#level_search").val();
-                location.href = baseUrl + "/report/exportProfessionReport?level=" + level;
+                location.href = baseUrl + "/professionReport/exportExcel";
             },
             showPage: function (data) {
                 let index = 0;

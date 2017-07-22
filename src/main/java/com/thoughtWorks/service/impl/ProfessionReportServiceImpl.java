@@ -1,10 +1,9 @@
 package com.thoughtWorks.service.impl;
 
 import com.thoughtWorks.dao.ProfessionReportDao;
-import com.thoughtWorks.dao.ReportDao;
 import com.thoughtWorks.service.ProfessionReportService;
-import com.thoughtWorks.service.ReportService;
 import com.thoughtWorks.util.DateUtil;
+import com.thoughtWorks.util.reportUtil.NewStudentRegisterReportUtil;
 import com.thoughtWorks.util.reportUtil.ProfessionReportUtil;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +17,25 @@ public class ProfessionReportServiceImpl implements ProfessionReportService {
 
     @Resource
     private ProfessionReportDao professionReportDao;
+    @Override
+    public File exportProfessionReport(HttpServletRequest request) throws Exception {
+        List<Map<String, Object>> professionList = professionList();
+        List<Integer> searchLevels = DateUtil.getSearchLevels();
+        Map<String, String> headers = new HashMap<>();
+        headers.put("index", "序号系");
+        headers.put("departmentName", "系");
+        headers.put("professionName",  "专业");
+        headers.put("level1",  Integer.toString(searchLevels.get(0)));
+        headers.put("level2",  Integer.toString(searchLevels.get(1)));
+        headers.put("level3",  Integer.toString(searchLevels.get(2)));
+        String fileName = "高职学院专业人数统计表.xls";
+
+        String path = request.getServletContext().getRealPath("images/temp") + "/" + fileName;
+        File file = new File(path);
+        new ProfessionReportUtil().exportExcel(headers, professionList, file, fileName.substring(0, fileName.lastIndexOf(".")));
+
+        return file;
+    }
 
     @Override
     public List<Map<String, Object>> professionList() throws Exception {
@@ -96,8 +114,5 @@ public class ProfessionReportServiceImpl implements ProfessionReportService {
         return tempProfession;
     }
 
-    @Override
-    public File exportProfessionReport(String level, HttpServletRequest request) throws Exception {
-        return null;
-    }
+
 }

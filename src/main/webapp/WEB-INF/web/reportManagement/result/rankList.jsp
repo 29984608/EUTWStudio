@@ -161,7 +161,9 @@
             loadAllLevels: function () {
                 let date = new Date();
                 let year = date.getFullYear();
-                let differ = year - 2017;
+                let month = date.getMonth() + 1;
+                year = month > 8 ? year : year - 1;
+                let differ = year - 2016;
                 if (differ >= 0) {
                     for (let i = differ; i >= 0; i--) {
                         $("#level_search").html(`<option value="` + year + `">` + (year + i) + `</option>`)

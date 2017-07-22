@@ -51,7 +51,7 @@ public class NewStudentRegisterReportUtil extends ExcelReportUtil {
 
             setFamilyInformation(sheet, dataset);
 
-            setDefaultRowHeight(sheet);
+            setDefaultRowHeight(sheet,20);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -65,11 +65,10 @@ public class NewStudentRegisterReportUtil extends ExcelReportUtil {
         HSSFRow row = sheet.createRow(rowIndex);
 
         cell = row.createCell(0);
-        CellStyle cellStyle = createCellStyle();
-        setFontSize(cellStyle, (short) 14);
-        setAlignMentCenter(cellStyle);
-        cell.setCellStyle(cellStyle);
         cell.setCellValue(new HSSFRichTextString("直系亲属或主要社会关系情况"));
+        CellStyle cellStyle = createCellStyle();
+        cellStyle = setAlignmentCenter(cellStyle,cell);
+        setCellFontStyle(cellStyle,cell, (short)14);
         sheet.addMergedRegion(new CellRangeAddress(rowIndex, rowIndex, 0, 10));
         Map<String, String> params = new LinkedHashMap<>();
         params.put("relationship", "称呼");
@@ -114,11 +113,10 @@ public class NewStudentRegisterReportUtil extends ExcelReportUtil {
         HSSFRow row = sheet.createRow(rowIndex);
 
         cell = row.createCell(0);
-        CellStyle cellStyle = createCellStyle();
-        setFontSize(cellStyle, (short) 14);
-        setAlignMentCenter(cellStyle);
-        cell.setCellStyle(cellStyle);
         cell.setCellValue(new HSSFRichTextString("本人学历及社会经历(从小学起)"));
+        CellStyle cellStyle = createCellStyle();
+        cellStyle = setAlignmentCenter(cellStyle,cell);
+        setCellFontStyle(cellStyle,cell, (short)14);
         sheet.addMergedRegion(new CellRangeAddress(rowIndex, rowIndex, 0, 10));
 
         Map<String, String> params = new LinkedHashMap<>();
@@ -328,11 +326,5 @@ public class NewStudentRegisterReportUtil extends ExcelReportUtil {
         }
     }
 
-    private void setDefaultRowHeight(HSSFSheet sheet) {
-        Iterator<Row> rowIterator = sheet.rowIterator();
-        rowIterator.next();
-        while (rowIterator.hasNext()) {
-            rowIterator.next().setHeightInPoints(20);
-        }
-    }
+
 }
