@@ -22,4 +22,23 @@
     <select id="queryDepartments" resultType="map">
         SELECT * FROM t_department
     </select>
+    <select id="queryDormPeopleNumber" parameterType="List" resultType="map">
+        SELECT
+        department.name department,
+        student.level,
+        student.stay_type,
+        student.no,
+        student.name
+        FROM t_student student
+        LEFT JOIN (SELECT
+        id,
+        name
+        FROM t_department ) department ON department.id = student.department_id
+        WHERE
+        <foreach collection="list"  item="level"  separator="OR">
+        student.level =#{level}
+        </foreach>
+        AND student.department_id = department.id
+        order by department.name asc,student.stay_type ASC ,student.level ASC
+    </select>
 </mapper>

@@ -44,6 +44,8 @@ public class ReportServiceImpl implements ReportService {
         return file;
     }
 
+
+
     @Override
     public List<Map<String, Object>> professionList(String level) throws Exception {
         String like = null == level || "".equals(level) ? "%%" : "%" + level + "%";
@@ -125,5 +127,11 @@ public class ReportServiceImpl implements ReportService {
             int oldNumber = Integer.parseInt(data.get(param)) - 1;
             data.put(param, String.valueOf(oldNumber));
         }
+    }
+
+    @Override
+    public List<Map<String, Object>> queryDormPeopleNumber(List<Integer> levels) {
+
+        return reportDao.queryDormPeopleNumber(levels);
     }
 }
