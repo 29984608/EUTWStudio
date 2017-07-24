@@ -38,39 +38,46 @@
                         <col width="160">
                         <col width="160">
                         <col width="160">
+                        <col width="160">
                         <col>
                     </colgroup>
                     <thead>
                     <tr>
                         <th>序号</th>
                         <th>系别</th>
-                        <th>年份</th>
-                        <th>校内人数</th>
-                        <th>校外人数</th>
-                        <th>备注</th>
+                        <th>住宿类型</th>
+                        <th>2015</th>
+                        <th>2016</th>
+                        <th>2017</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
                         <td>1</td>
-                        <td rowspan="3">金融服务系</td>
-                        <td>2015</td>
-                        <td>3520</td>
-                        <td>3000</td>
-                        <td rowspan="3"></td>
+                        <td rowspan="2">金融服务系</td>
+                        <td>校内</td>
+                        <td>333</td>
+                        <td>333</td>
+                        <td>333</td>
                     </tr>
                     <tr>
                         <td>2</td>
-                        <td>2016</td>
-                        <td>4021</td>
-                        <td>4000</td>
+                        <td>校外</td>
+                        <td>444</td>
+                        <td>444</td>
+                        <td>444</td>
                     </tr>
                     <tr>
-                        <td>3</td>
-                        <td>2017</td>
-                        <td>4035</td>
-                        <td>4000</td>
+                    <tr>
+                        <td>X</td>
+                        <td>合计</td>
+                        <td>5000</td>
+                        <td>500</td>
+                        <td>500</td>
+                        <td>500</td>
                     </tr>
+                    </tr>
+
                     </tbody>
                 </table>
             </div>
