@@ -3,6 +3,7 @@ package com.thoughtWorks.service.impl;
 import com.thoughtWorks.dao.CommunicationReportDao;
 import com.thoughtWorks.service.CommunicationReportService;
 import com.thoughtWorks.util.DateUtil;
+import com.thoughtWorks.util.reportUtil.CommunicationReportUtil;
 import com.thoughtWorks.util.reportUtil.DirectionReportUtil;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +23,7 @@ public class CommunicationReportServiceImpl implements CommunicationReportServic
 
     @Override
     public File exportReport(HttpServletRequest request) throws Exception {
-        List<Map<String, Object>> directionList = null;
+        List<Map<String, Object>> communicationList = communicationList();
         List<Integer> searchLevels = DateUtil.getSearchLevels();
         Map<String, String> headers = new HashMap<>();
         headers.put("teacher", "职业导师");
@@ -34,7 +35,7 @@ public class CommunicationReportServiceImpl implements CommunicationReportServic
 
         String path = request.getServletContext().getRealPath("images/temp") + "/" + fileName;
         File file = new File(path);
-        new DirectionReportUtil().exportExcel(headers, directionList, file, fileName.substring(0, fileName.lastIndexOf(".")));
+        new CommunicationReportUtil().exportExcel(headers, communicationList, file, fileName.substring(0, fileName.lastIndexOf(".")));
 
         return file;
     }

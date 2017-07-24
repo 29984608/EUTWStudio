@@ -75,16 +75,16 @@
                 let index = 0;
                 let _html = "";
                 let totalCount = 0;
-                data.forEach(department => {
+                data.forEach(teacher => {
                     let littleCount = 0;
-                    let communications = department.communications;
-                    let levels = communications[0].levels;
+                    let types = teacher.type;
+                    let levels = types[0].levels;
 
                     _html += `
                      <tr>
                         <th>` + (++index) + `</th>
-                        <th rowspan="` + communications.length + `">` + department.departmentName + `</th>
-                        <th>` + communications[0].communicationName + `</th>
+                        <th rowspan="` + types.length + `">` + teacher.teacher + `</th>
+                        <th>` + types[0].type + `</th>
                         `;
                     for (let j = 0; j < levels.length; ++j) {
                         _html += `<th>` + levels[j].count + `</th>`;
@@ -92,13 +92,13 @@
                     }
                     _html += ` </tr>`;
 
-                    for (let i = 1; i < communications.length; ++i) {
-                        let communication = communications[i];
-                        levels = communication.levels;
+                    for (let i = 1; i < types.length; ++i) {
+                        let type = types[i];
+                        levels = type.levels;
                         _html += `
                              <tr>
                                 <th>` + (++index) + `</th>
-                                <th>` + communication.communicationName + `</th>
+                                <th>` + type.type + `</th>
                           `;
                         for (let j = 0; j < levels.length; ++j) {
                             _html += `<th>` + levels[j].count + `</th>`;
@@ -130,8 +130,8 @@
                 $("#head").html("");
                 $("#head").append(`
                         <td>序号</td>
-                        <td>系</td>
-                        <td>就业方向</td>
+                        <td>职业导师</td>
+                        <td>沟通类型</td>
                 `);
                 getSearchLevels().forEach(level => $("#head").append(`<td>` + level + `</td>`));
             }

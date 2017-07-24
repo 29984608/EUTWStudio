@@ -27,7 +27,7 @@
             <div id="container" class="layui-tab-content larry-personal-body clearfix mylog-info-box"
                  style="background: #fff;width: 100%;height: 100%;margin: 5px 0px">
 
-                <div style="text-align: center;font-size: 20px;font-weight: bold">高职学院学籍管理班级人数统计报表
+                <div style="text-align: center;font-size: 20px;font-weight: bold">高职学院职业导师沟通次数报表
                     <span style="font-size: 13px;margin-left: 40px">统计日期:<spqn id="time">2017-6-3 12:12:21</spqn></span>
                 </div>
                 <table class="layui-table">
@@ -61,7 +61,7 @@
                         let date = new Date();
                         $("#time").text(date.getFullYear() + " 年 " + (date.getMonth() + 1) + " 月 " + date.getDate() + " 日");
                         studentInfo.loadTableHead();
-                        studentInfo.s wwwwwwwwwwwwwwwwwhowPage(data.data);
+                        studentInfo.showPage(data.data);
                     } else {
                         layer.msg(data.msg);
                     }
@@ -74,7 +74,7 @@
                 let index = 0;
                 let _html = "";
                 let totalCount = 0;
-                data.forEach(department => {
+                data.forEach(teacher => {
                     let littleCount = 0;
                     let studentInfos = department.studentInfos;
                     let levels = studentInfos[0].levels;
@@ -129,8 +129,8 @@
                 $("#head").html("");
                 $("#head").append(`
                         <td>序号</td>
-                        <td>系</td>
-                        <td>专业</td>
+                        <td>职业导师</td>
+                        <td>沟通类型</td>
                 `);
                 getSearchLevels().forEach(level => $("#head").append(`<td>` + level + `</td>`));
             }
