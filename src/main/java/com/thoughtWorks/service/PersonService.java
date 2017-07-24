@@ -60,4 +60,5 @@ public interface PersonService {
 
   Map<String,Object> updateByStudentNo(String studentNo)throws Exception;
 
+    List<Map<String,Object>> queryStudentsToUpdate(String studentNo)throws Exception;
 }

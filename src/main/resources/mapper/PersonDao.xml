@@ -586,4 +586,23 @@ WHERE direction_id = direction.id
         WHERE  experience.no =#{studentNo}
 
     </select>
+
+    <select id="queryStudentsToUpdate" parameterType="string" resultType="map">
+        select
+            student.*,
+            family.name parentsName,
+            family.relationship parentsRelationship,
+            family.work_place parentsWork_place,
+            family.political_status parentsPolitical_status,
+            family.phone parentsPhone,
+            family.staff parentsStaff
+
+            from t_student student
+
+            LEFT JOIN (
+              select * from
+              t_student_family) family on student.no = family.no
+
+            WHERE student.no = #{studentNo}
+    </select>
 </mapper>

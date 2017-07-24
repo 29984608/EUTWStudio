@@ -11,6 +11,10 @@
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/common/css/global.css" media="all">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/common.css" media="all">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/personal.css" media="all">
+    <%--省市区联动--%>
+    <script src="${baseurl}/js/city/distpicker.js"></script>
+    <script src="${baseurl}/js/city/main.js"></script>
+    <script src="${baseurl}/js/city/distpicker.data.js"></script>
 
 </head>
 <body>
@@ -76,14 +80,15 @@
                                 </div>
 
                                 <label class="layui-form-label">住宿类型</label>
-                                <div class="layui-input-inline" id="TypeOfAccommodation" onclick="student.showDormAndHideDorm()" style="width: 40%">
+                                <div class="layui-input-inline" id="TypeOfAccommodation"
+                                     onclick="student.showDormAndHideDorm()" style="width: 40%">
 
                                     <input type="radio" name="TypeOfAccommodation" value="" title="全部" checked=""
                                     >
                                     <input type="radio" name="TypeOfAccommodation" value="1" title="校内"
-                                            >
+                                    >
                                     <input type="radio" name="TypeOfAccommodation" value="2" title="校外"
-                                           >
+                                    >
                                 </div>
                             </div>
                         </div>
@@ -229,7 +234,7 @@
                 let TypeOfAccommodation = $("input[name='TypeOfAccommodation']:checked").val();
 
                 $.ajax({
-                    url: baseUrl + "/student/list",
+                    url: baseUrl + "student/list",
                     type: "post",
                     data: {
                         currentIndex: currentIndex,
@@ -307,12 +312,12 @@
 
                 return _html;
             },
-            preview:function (studentNo) {
-                $.post(baseUrl+"/student/update",{studentNo:studentNo},function (data) {
+            preview: function (studentNo) {
+                $.post(baseUrl + "/student/update", {studentNo: studentNo}, function (data) {
                     $("#phone").text("").append(data.student[0].student_contact_method);
                     $("#qq").text("").append(data.student[0].qq);
                     $("#email").text("").append(data.student[0].email);
-                    $("#images").text("").attr("src",HEAD_IMAGE_PREFIX+data.student[0].head_image);
+                    $("#images").text("").attr("src", HEAD_IMAGE_PREFIX + data.student[0].head_image);
                     $("#studentNo").text("").append(data.student[0].no);
                     $("#studentName").text("").append(data.student[0].name);
                     $("#studentSex").text("").append(data.student[0].gender);
@@ -329,20 +334,20 @@
                     $("#family_zip_code").text("").append(data.student[0].family_zip_code);
                     $("#family_phone").text("").append(data.student[0].family_phone);
                     $("#family").html("")
-                    for(var i =0 ;i<data.family.length;i++){
-                        $("#family").append("<tr> <th>"+data.family[i].relationship+"：</th>"+
-                        "<th  >政治面貌："+data.family[i].political_status+"</th>"+
-                        "<th colspan='2'>工作单位："+data.family[i].work_place+"</th>"+
-                        "<th >职务："+data.family[i].staff+"</th>"+
-                        "<th>联系电话："+data.family[i].phone+"</th> </tr>");
+                    for (var i = 0; i < data.family.length; i++) {
+                        $("#family").append("<tr> <th>" + data.family[i].relationship + "：</th>" +
+                            "<th  >政治面貌：" + data.family[i].political_status + "</th>" +
+                            "<th colspan='2'>工作单位：" + data.family[i].work_place + "</th>" +
+                            "<th >职务：" + data.family[i].staff + "</th>" +
+                            "<th>联系电话：" + data.family[i].phone + "</th> </tr>");
                     }
                     $("#emergency_contact_name").text("").append(data.student[0].emergency_contact_name);
                     $("#emergency_contact_method").text("").append(data.student[0].emergency_contact_method);
                     $("#experience_div").html("")
-                    for(var i =0 ;i<data.experience.length;i++){
-                        $("#experience_div").append("<tr> <th>"+data.experience[i].start_time+"-"+data.experience[i].end_time+"：</th>"+
-                            "<th  >"+data.experience[i].work_place+"</th>"+
-                            "<th >"+data.experience[i].staff+"</th>");
+                    for (var i = 0; i < data.experience.length; i++) {
+                        $("#experience_div").append("<tr> <th>" + data.experience[i].start_time + "-" + data.experience[i].end_time + "：</th>" +
+                            "<th  >" + data.experience[i].work_place + "</th>" +
+                            "<th >" + data.experience[i].staff + "</th>");
                     }
                     $("#student_type").text("").append(data.student[0].student_type);
                     $("#sat_score").text("").append(data.student[0].sat_score);
@@ -368,6 +373,92 @@
                     , content: $("#update")
                 });
 
+            },
+            studentUpdate: function (studentName, studentNo) {
+                $.ajax({
+                    url: "${baseurl}/student/studentUpdate",
+                    data: {studentNo: studentNo},
+                    success: function (data) {
+                        if (data.result) {
+                            $("#updateStudentNo").val(data.students[0].no)
+                            $("#updateStudentName").val(data.students[0].name);
+                            $("input:radio[value='" + data.students[0].gender + "']").prop('checked', 'true');
+                            $("#updateStudentNationalities").val(data.students[0].famous_family);
+                            $("#updateStudentIdCard").val(data.students[0].idcard);
+                            $("#updateStudentNativePlace").val(data.students[0].native_place);
+                            $("#updateStudentBirthday").val(data.students[0].born);
+                            alert(data.students[0].born)
+                            $("input:radio[value='" + data.students[0].is_marry + "']").prop('checked', 'true');
+                            alert(data.students[0].is_marry)
+                            $("#updateStudentHeight").val(data.students[0].height);
+                            $("#updateStudentWight").val(data.students[0].weight);
+                            $("input:radio[value='" + data.students[0].health_status + "']").prop('checked', 'true');
+                            $("input:radio[value='" + data.students[0].student_type + "']").prop('checked', 'true');
+
+                            var count = $("#updateStudentBloodType option").length;
+                            for (var i = 0; i < count; i++) {
+                                if ($("#updateStudentBloodType").get(0).options[i].text == data.students[0].blood) {
+                                    $("#updateStudentBloodType").get(0).options[i].selected = true;
+                                }
+                            }
+
+                            var count1 = $("#updateStudentPoliticalOutlook option").length;
+                            for (var i = 0; i < count1; i++) {
+                                if ($("#updateStudentPoliticalOutlook").get(0).options[i].text === data.students[0].political_status) {
+                                    $("#updateStudentPoliticalOutlook").get(0).options[i].selected = true;
+                                }
+                            }
+
+                            var count2 = $("#updateStudent_pre_school_education option").length;
+                            for (var i = 0; i < count2; i++) {
+                                if ($("#updateStudent_pre_school_education").get(0).options[i].text === data.students[0].pre_school_education) {
+                                    $("#updateStudent_pre_school_education").get(0).options[i].selected = true;
+                                }
+                            }
+
+                            $("input:radio[value='" + data.students[0].student_classify + "']").prop('checked', 'true');
+                            $("#Identity_card_address").val(data.students[0].idcard_address);
+
+                            var address = (data.students[0].actual_address).split("-")
+                            var province3 = $("#province3 option").length;
+                            for (var i = 0; i < province3; i++) {
+                                if ($("#province3").get(0).options[i].text === address[0]) {
+                                    $("#province3").get(0).options[i].selected = true;
+                                }
+                            }
+                            var city3 = $("#city3 option").length;
+                            for (var i = 0; i < city3; i++) {
+                                if ($("#city3").get(0).options[i].text === address[1]) {
+                                    $("#city3").get(0).options[i].selected = true;
+                                }
+                            }
+                            var district3 = $("#district3 option").length;
+                            for (var i = 0; i < district3; i++) {
+                                if ($("#district3").get(0).options[i].text === address[2]) {
+                                    $("#district3").get(0).options[i].selected = true;
+                                }
+                            }
+                            $("#detailedAddress").val(address[3])
+
+                            $("#updateStudentZip_code").val(data.students[0].family_zip_code)
+                            $("#updateStudentHome_phone").val(data.students[0].family_phone)
+                            $("#updateStudentFather").val(data.students[0].parentName)
+                            $("#")
+                            $("#")
+                            $("#")
+                            $("#")
+                            $("#")
+                            $("#")
+                            form.render();
+                        }
+                    }
+                })
+                layer.open({
+                    type: 1,
+                    title: "学生信息修改",
+                    area: ["100%", "100%"],
+                    content: $("#updateStudent")
+                })
             }
         };
 
@@ -460,9 +551,95 @@
                     }
                 })
             })
+
+            //监听指定开关
+            form.on('switch(switchTest)', function (data) {
+                layer.msg('开关checked：' + (this.checked ? 'true' : 'false'), {
+                    offset: '6px'
+                });
+                layer.tips('温馨提示：请注意开关状态的文字可以随意定义，而不仅仅是ON|OFF', data.othis)
+            });
+
+            //监听提交
+            form.on('submit(demo1)', function (data) {
+                layer.alert(JSON.stringify(data.field), {
+                    title: '最终的提交信息'
+                })
+                return false;
+            });
+
+
+            //监听select选择
+            form.on('select(politicalOutlook)', function (data) {
+                console.log(data.elem); //得到select原始DOM对象
+                console.log(data.value); //得到被选中的值
+                console.log(data.othis); //得到美化后的DOM对象
+
+                if (data.value === '6') {
+                    $("#otherParty").show();
+                } else {
+                    $("#otherParty").hide();
+                }
+            });
+
+            form.on('select(politicalOutlook1)', function (data) {
+                if (data.value === '6') {
+                    $("#otherParty1").show();
+                } else {
+                    $("#otherParty1").hide();
+                }
+            })
+
+            form.on('select(politicalOutlook2)', function (data) {
+                if (data.value === '6') {
+                    $("#otherParty1").show();
+                } else {
+                    $("#otherParty1").hide();
+                }
+            })
+
+            //监听select选择
+            form.on('select(pre_school_education)', function (data) {
+                console.log(data.elem); //得到select原始DOM对象
+                console.log(data.value); //得到被选中的值
+                console.log(data.othis); //得到美化后的DOM对象
+
+                if (data.value === '3') {
+                    $("#pre_school_education").show();
+                } else {
+                    $("#pre_school_education").hide();
+                }
+            });
         });
     });
 
 </script>
+
+<script>
+    layui.use(['form', 'layedit', 'laydate'], function () {
+        var form = layui.form()
+            , layer = layui.layer
+            , layedit = layui.layedit
+            , laydate = layui.laydate;
+
+        //创建一个编辑器
+        var editIndex = layedit.build('LAY_demo_editor');
+
+        //自定义验证规则
+        form.verify({
+            title: function (value) {
+                if (value.length < 5) {
+                    return '标题至少得5个字符啊';
+                }
+            }
+            , pass: [/(.+){6,12}$/, '密码必须6到12位']
+            , content: function (value) {
+                layedit.sync(editIndex);
+            }
+        });
+
+    });
+</script>
+
 
 </html>

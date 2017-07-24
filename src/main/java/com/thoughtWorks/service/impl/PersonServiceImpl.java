@@ -254,5 +254,10 @@ public class PersonServiceImpl implements PersonService {
         return data;
     }
 
+    @Override
+    public List<Map<String, Object>> queryStudentsToUpdate(String studentNo) throws Exception {
+        return personDao.queryStudentsToUpdate(studentNo);
+    }
+
 
 }

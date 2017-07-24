@@ -9,6 +9,6 @@
 <script type="text/javascript" src="${baseurl}/public/common/layui/layui.js"></script>
 <script>
     var baseUrl = "${baseurl}";
-    var ADDRESS_SPLIT_FLAG = "$%$";
+    var ADDRESS_SPLIT_FLAG = "-";
     var HEAD_IMAGE_PREFIX = baseUrl+"/images/user/"
 </script>

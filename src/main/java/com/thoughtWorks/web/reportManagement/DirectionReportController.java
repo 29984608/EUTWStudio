@@ -1,7 +1,7 @@
 package com.thoughtWorks.web.reportManagement;
 
 import com.thoughtWorks.dto.Result;
-import com.thoughtWorks.service.NewStudentRegisterService;
+import com.thoughtWorks.service.DirectionReportService;
 import com.thoughtWorks.util.Constant;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -12,30 +12,29 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 import static com.thoughtWorks.util.FileUtil.getResponseEntity;
 
 @Component
-@RequestMapping("/newStudentRegister")
-public class RegisterController {
+@RequestMapping("/directionReport")
+public class DirectionReportController {
     @Resource
-    private NewStudentRegisterService newStudentRegisterService;
-
+    private DirectionReportService directionReportService;
 
     @RequestMapping("")
-    public String newStudentRegisterIndex() {
-        return "reportManagement/register/list";
+    public String index() {
+        return "reportManagement/direction";
     }
 
-
-    @RequestMapping("student")
+    @RequestMapping("list")
     @ResponseBody
-    public Result student(String no) {
+    public Result list() {
         try {
-            Map<String, Object> student = newStudentRegisterService.queryStudentByNo(no);
+            List<Map<String, Object>> data = directionReportService.directionList();
 
-            return Result.success(student, Constant.SEARCH_SUCCESS);
+            return Result.success(data, Constant.SEARCH_SUCCESS);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -43,12 +42,12 @@ public class RegisterController {
         return Result.failure(null, Constant.SEARCH_FAILURE);
     }
 
-    @RequestMapping("exportRegisterReport")
-    public ResponseEntity<byte[]> exportRegisterReport(String no,HttpServletRequest request) throws IOException {
+    @RequestMapping("exportExcel")
+    public ResponseEntity<byte[]> exportReport(HttpServletRequest request) throws IOException {
         ResponseEntity<byte[]> responseEntity = null;
 
         try {
-            File file = newStudentRegisterService.exportRegisterReport(no,request);
+            File file = directionReportService.exportReport(request);
             responseEntity = getResponseEntity(file);
             file.delete();
         } catch (Exception e) {

@@ -2,7 +2,6 @@ package com.thoughtWorks.web.reportManagement;
 
 import com.thoughtWorks.dto.Result;
 import com.thoughtWorks.service.ProfessionReportService;
-import com.thoughtWorks.service.ReportService;
 import com.thoughtWorks.util.Constant;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -43,12 +42,12 @@ public class ProfessionReportController {
         return Result.failure(null, Constant.SEARCH_FAILURE);
     }
 
-    @RequestMapping("exportProfessionReport")
-    public ResponseEntity<byte[]> exportProfessionReport(String level, HttpServletRequest request) throws IOException {
+    @RequestMapping("exportExcel")
+    public ResponseEntity<byte[]> exportProfessionReport(HttpServletRequest request) throws IOException {
         ResponseEntity<byte[]> responseEntity = null;
 
         try {
-            File file = professionReportService.exportProfessionReport(level, request);
+            File file = professionReportService.exportProfessionReport(request);
             responseEntity = getResponseEntity(file);
             file.delete();
         } catch (Exception e) {

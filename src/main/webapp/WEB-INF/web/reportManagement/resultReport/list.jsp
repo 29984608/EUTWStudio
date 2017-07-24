@@ -209,7 +209,7 @@
             loadStudentInfo: function (student) {
                 if (student.origin_address != null) {
                     let originAddress = student.origin_address.split(ADDRESS_SPLIT_FLAG);
-                    $("#address").text(originAddress[0] + originAddress[1]);
+                    $("#address").text(originAddress[0] ==  undefined ? "":originAddress[0]  + originAddress[1] ===  undefined ? "":originAddress[1]);
                 } else  $("#address").text("");
                 $("#name").text(student.studentName);
                 $("#gender").text(student.gender);
