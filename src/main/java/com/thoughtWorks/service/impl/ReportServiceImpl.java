@@ -2,6 +2,7 @@ package com.thoughtWorks.service.impl;
 
 import com.thoughtWorks.dao.ReportDao;
 import com.thoughtWorks.service.ReportService;
+import com.thoughtWorks.util.DateUtil;
 import com.thoughtWorks.util.excelUtil.ExcelReportUtil;
 import com.thoughtWorks.util.reportUtil.NewStudentRegisterReportUtil;
 import com.thoughtWorks.util.reportUtil.ProfessionReportUtil;
@@ -130,8 +131,8 @@ public class ReportServiceImpl implements ReportService {
     }
 
     @Override
-    public List<Map<String, Object>> queryDormPeopleNumber(List<Integer> levels) {
+    public List<Map<String, Object>> queryDormPeopleNumber() {
 
-        return reportDao.queryDormPeopleNumber(levels);
+        return reportDao.queryDormPeopleNumber(DateUtil.getSearchLevels());
     }
 }

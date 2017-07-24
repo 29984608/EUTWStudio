@@ -1,6 +1,8 @@
 package com.thoughtWorks.web.reportManagement;
 
+import com.thoughtWorks.dto.Result;
 import com.thoughtWorks.service.ReportService;
+import com.thoughtWorks.util.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +16,7 @@ import java.util.Map;
 
 @Component
 @RequestMapping("/dormRegister")
-public class DormRegister {
+public class DormRegisterController {
     @Autowired
     private ReportService reportService;
 
@@ -25,14 +27,16 @@ public class DormRegister {
 
     @RequestMapping("/dormList")
     @ResponseBody
-    public Map<String,Object> DormList() throws Exception {
-        Map<String,Object> data =new HashMap<>();
-        List<Integer> list = new ArrayList<>();
-        list.add(2015);
-        list.add(2016);
-        list.add(2017);
-        List a =reportService.queryDormPeopleNumber(list);
-        data.put("data",a);
-        return data;
+    public Result DormList() throws Exception {
+        try {
+            List<Map<String, Object>> data =reportService.queryDormPeopleNumber();
+
+            return Result.success(data, Constant.SEARCH_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return Result.failure(null, Constant.SEARCH_FAILURE);
     }
+
 }
