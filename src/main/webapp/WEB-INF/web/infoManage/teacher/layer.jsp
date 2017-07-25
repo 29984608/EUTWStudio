@@ -48,7 +48,8 @@
             <div class="layui-input-inline">
                 <select id="classify" name="classify"  lay-filter="classify">
                     <option value="1">职业导师</option>
-                    <option value="2">系辅导员、行政</option>
+                    <option value="2">行政</option>
+                    <option value="3">社区导员</option>
                 </select>
             </div>
         </div>
@@ -87,6 +88,23 @@
 
             </div>
 
+        </div>
+
+        <div id="show_community" style="display: none">
+            <div class="layui-form-item">
+                <label class="layui-form-label">区号</label>
+                <div class="layui-input-inline" >
+                <select lay-filter="queryAreaOfRoom" name="areaId" id="queryAreaOfRoom">
+                    <option value="">选择区号</option>
+                </select>
+            </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">层号</label>
+                <div id="floor" >
+
+                </div>
+            </div>
         </div>
         <div class="layui-form-item" style="margin-top: 30px">
             <div class="layui-input-block">
