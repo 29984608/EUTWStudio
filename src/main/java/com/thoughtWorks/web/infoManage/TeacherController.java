@@ -94,9 +94,9 @@ public class TeacherController {
 
     @RequestMapping("add")
     @ResponseBody
-    public Result add(Teacher teacher, String classIds) {
+    public Result add(Teacher teacher, String classIds,String floorIds,int areaId) {
         try {
-            personService.addTeacher(teacher, classIds);
+            personService.addTeacher(teacher, classIds,floorIds,areaId);
 
             return Result.success(null, Constant.ADD_SUCCESS);
         } catch (Exception e) {

@@ -89,6 +89,23 @@
             </div>
 
         </div>
+
+        <div id="show_community" style="display: none">
+            <div class="layui-form-item">
+                <label class="layui-form-label">区号</label>
+                <div class="layui-input-inline" >
+                <select lay-filter="queryAreaOfRoom" name="areaId" id="queryAreaOfRoom">
+                    <option value="">选择区号</option>
+                </select>
+            </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">层号</label>
+                <div id="floor" >
+
+                </div>
+            </div>
+        </div>
         <div class="layui-form-item" style="margin-top: 30px">
             <div class="layui-input-block">
                 <a class="layui-btn"  onclick="teacher.addAjax()">立即提交</a>

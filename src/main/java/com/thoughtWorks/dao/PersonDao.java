@@ -82,5 +82,7 @@ public interface PersonDao {
     List<Map<String, Object>> queryStudentsClassList() throws Exception;
 
     List<Map<String,Object>> queryStudentExperienceList() throws Exception;
+
+    void insertCommunityTeacher(@Param("no") String no,@Param("areaId") int areaId,@Param("floorId") List<String> floorId)throws Exception;
 }
 
