@@ -30,7 +30,7 @@ public class StudentController {
     public Map<String, Object> list(PageUtil page, SearchDto searchDto) {
         Map<String, Object> data = new HashMap<>();
         try {
-            List<Map<String, Object>> student = personService.queryStudentList(searchDto, page);
+            List<Map<String,Object>> student = personService.queryStudentList(searchDto, page);
             data.put("student", student);
             data.put("msg", Constant.SEARCH_SUCCESS);
             data.put("page", page);
@@ -65,14 +65,25 @@ public class StudentController {
     @RequestMapping("/studentUpdate")
     @ResponseBody
     public Map<String, Object> studentUpdate(String studentNo) {
-        System.out.println(studentNo);
         Map<String, Object> data = new HashMap<>();
         try {
-            List<Map<String, Object>> students = personService.queryStudentsToUpdate(studentNo);
+            Map<String,Object> students = personService.queryStudentsToUpdate(studentNo);
+            List<Map<String, Object>> students_family = personService.queryStudentFamily(studentNo);
+            List<Map<String, String>> professionList = personService.queryStudentsProfessionList();
+            List<Map<String, String>> directionList = personService.queryStudentsDirection();
+            List<Map<String, Object>> classesList = personService.queryStudentsClassList();
+            List<Map<String, Object>> experienceList = personService.queryStudentExperienceList();
+            System.out.println(directionList);
             data.put("students", students);
+            data.put("students_family", students_family);
+            data.put("professionList",professionList);
+            data.put("directionList",directionList);
+            data.put("classesList", classesList);
+            data.put("experienceList", experienceList);
             data.put("msg", Constant.SEARCH_SUCCESS);
             data.put("result", true);
-//            System.out.println("+++++++++++++++++++++++++"+data);
+            System.out.println("-++-"+professionList);
+//            System.out.println(123);
         } catch (Exception e) {
             data.put("msg", Constant.SEARCH_FAILURE);
             data.put("result", false);

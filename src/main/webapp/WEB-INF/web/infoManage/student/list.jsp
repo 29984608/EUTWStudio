@@ -379,76 +379,242 @@
                     url: "${baseurl}/student/studentUpdate",
                     data: {studentNo: studentNo},
                     success: function (data) {
+                        let student = data.students;
+                        let family = data.students_family;
+                        let professionList = data.professionList;
+                        let directionList = data.directionList;
+                        let classesList = data.classesList;
+                        let experienceList = data.experienceList;
                         if (data.result) {
-                            $("#updateStudentNo").val(data.students[0].no)
-                            $("#updateStudentName").val(data.students[0].name);
-                            $("input:radio[value='" + data.students[0].gender + "']").prop('checked', 'true');
-                            $("#updateStudentNationalities").val(data.students[0].famous_family);
-                            $("#updateStudentIdCard").val(data.students[0].idcard);
-                            $("#updateStudentNativePlace").val(data.students[0].native_place);
-                            $("#updateStudentBirthday").val(data.students[0].born);
-                            alert(data.students[0].born)
-                            $("input:radio[value='" + data.students[0].is_marry + "']").prop('checked', 'true');
-                            alert(data.students[0].is_marry)
-                            $("#updateStudentHeight").val(data.students[0].height);
-                            $("#updateStudentWight").val(data.students[0].weight);
-                            $("input:radio[value='" + data.students[0].health_status + "']").prop('checked', 'true');
-                            $("input:radio[value='" + data.students[0].student_type + "']").prop('checked', 'true');
+                            $("#updateStudentNo").val(student.no)
+                            $("#updateStudentName").val(student.name);
+                            $("input:radio[value='" + student.gender + "']").prop('checked', 'true');
+                            $("#updateStudentNationalities").val(student.famous_family);
+                            $("#updateStudentIdCard").val(student.idcard);
+                            $("#updateStudentNativePlace").val(student.native_place);
+                            $("#updateStudentBirthday").val(student.born);
+                            $("input[type='radio'][name='isMarry'][value='" + student.is_marry + "']").attr("checked", "checked");
+                            $("#updateStudentHeight").val(student.height);
+                            $("#updateStudentWight").val(student.weight);
+                            $("input:radio[value='" + student.health_status + "']").prop('checked', 'true');
+                            $("input:radio[value=" + student.student_type + "]").prop('checked', 'true');
 
                             var count = $("#updateStudentBloodType option").length;
                             for (var i = 0; i < count; i++) {
-                                if ($("#updateStudentBloodType").get(0).options[i].text == data.students[0].blood) {
+                                if ($("#updateStudentBloodType").get(0).options[i].text == student.blood) {
                                     $("#updateStudentBloodType").get(0).options[i].selected = true;
                                 }
                             }
 
                             var count1 = $("#updateStudentPoliticalOutlook option").length;
                             for (var i = 0; i < count1; i++) {
-                                if ($("#updateStudentPoliticalOutlook").get(0).options[i].text === data.students[0].political_status) {
+                                if ($("#updateStudentPoliticalOutlook").get(0).options[i].text === student.political_status) {
                                     $("#updateStudentPoliticalOutlook").get(0).options[i].selected = true;
                                 }
                             }
 
                             var count2 = $("#updateStudent_pre_school_education option").length;
                             for (var i = 0; i < count2; i++) {
-                                if ($("#updateStudent_pre_school_education").get(0).options[i].text === data.students[0].pre_school_education) {
+                                if ($("#updateStudent_pre_school_education").get(0).options[i].text === student.pre_school_education) {
                                     $("#updateStudent_pre_school_education").get(0).options[i].selected = true;
                                 }
                             }
 
-                            $("input:radio[value='" + data.students[0].student_classify + "']").prop('checked', 'true');
-                            $("#Identity_card_address").val(data.students[0].idcard_address);
+                            $("input:radio[value='" + student.student_classify + "']").prop('checked', 'true');
+                            $("#Identity_card_address").val(student.idcard_address);
 
-                            var address = (data.students[0].actual_address).split("-")
-                            var province3 = $("#province3 option").length;
-                            for (var i = 0; i < province3; i++) {
-                                if ($("#province3").get(0).options[i].text === address[0]) {
-                                    $("#province3").get(0).options[i].selected = true;
-                                }
-                            }
-                            var city3 = $("#city3 option").length;
-                            for (var i = 0; i < city3; i++) {
-                                if ($("#city3").get(0).options[i].text === address[1]) {
-                                    $("#city3").get(0).options[i].selected = true;
-                                }
-                            }
-                            var district3 = $("#district3 option").length;
-                            for (var i = 0; i < district3; i++) {
-                                if ($("#district3").get(0).options[i].text === address[2]) {
-                                    $("#district3").get(0).options[i].selected = true;
-                                }
-                            }
-                            $("#detailedAddress").val(address[3])
+                            $("#detailedAddresses").val(student.actual_address)
+                            $("#update_name_of_the_source").val(student.origin_address)
 
-                            $("#updateStudentZip_code").val(data.students[0].family_zip_code)
-                            $("#updateStudentHome_phone").val(data.students[0].family_phone)
-                            $("#updateStudentFather").val(data.students[0].parentName)
-                            $("#")
-                            $("#")
-                            $("#")
-                            $("#")
-                            $("#")
-                            $("#")
+                            $("#updateStudentZip_code").val(student.family_zip_code)
+                            $("#updateStudentHome_phone").val(student.family_phone)
+
+                            $("#family_information").append(``)
+
+                            for (let i = 0; i < data.students_family.length; i++) {
+                                $("#family_member_information").append(
+                                    `<tr id="family_information1">
+                                        <th colspan="2"><span>
+                               <div class="layui-input-inline" style="width: 60%">
+                                   <input type="text" name="text" required lay-verify="required"
+                                          placeholder="请输入内容" autocomplete="off" class="layui-input"
+                                          id="updateStudentFather">
+                                </div>
+                           </span></th>
+                                        <th colspan="4">政治面貌：<span>
+                               <div class="layui-input-inline" style="width: 30%">
+                                 <select name="politicalOutlook1" lay-filter="politicalOutlook1"
+                                         id="updateStudentFather_political_status">
+                                   <option value="">请选择</option>
+                                   <option value="1">中共党员</option>
+                                   <option value="2">预备党员</option>
+                                   <option value="3">共青团员</option>
+                                   <option value="4">积极分子</option>
+                                   <option value="5">群众</option>
+                                   <option value="6">其他党派</option>
+                                 </select>
+                               </div>
+                               <span id="otherParty1" style="display: none">其他党派:
+                                     <div class="layui-input-inline">
+                                       <div class="layui-input-inline">
+                                         <input type="text" name="otherPartyName" required
+                                                lay-verify="required" placeholder="请输入党派名称"
+                                                autocomplete="off" class="layui-input"
+                                                id="other_updateStudentFather_political_status">
+                                       </div>
+                                     </div>
+                               </span>
+                           </span></th>
+                                    </tr>`
+                                ).append(`<tr id="family_information2">
+                                        <th colspan="2">工作单位：<span>
+                               <div class="layui-input-inline" style="width: 60%">
+                                   <input type="text" name="text" required lay-verify="required"
+                                          placeholder="请输入内容" autocomplete="off" class="layui-input"
+                                          id="updateStudentFather_employer">
+                                </div>
+                           </span></th>
+                                        <th colspan="2">职务：<span>
+                               <div class="layui-input-inline" style="width: 60%">
+                                   <input type="text" name="text" required lay-verify="required"
+                                          placeholder="请输入内容" autocomplete="off" class="layui-input"
+                                          id="updateStudentFather_duties">
+                                </div>
+                           </span></th>
+                                        <th colspan="2">联系电话：<span>
+                               <div class="layui-input-inline" style="width: 60%">
+                                   <input type="text" name="text" required lay-verify="required"
+                                          placeholder="请输入内容" autocomplete="off" class="layui-input"
+                                          id="updateStudentFather_phone">
+                                </div>
+                           </span></th>
+                                    </tr>`)
+
+                            }
+                            $("#updateStudentFather").val(student.parentName)
+
+                            $("input[type='radio'][name='whetherToTransfer'][value='" + student.account_in + "']").attr("checked", "checked");
+                            $("input[type='radio'][name='is_the_file_transferred'][value='" + student.file_in + "']").attr("checked", "checked");
+                            $("input[type='radio'][name='birthplaceName'][value='" + student.area_origin_name + "']").attr("checked", "checked");
+                            $("#Pre_school_name").val(student.pre_school_name);
+
+                            $("#updateStudent_emergency_contact").val(student.emergency_contact_name);
+                            $("#updateStudent_emergency_contact_phone").val(student.emergency_contact_method);
+
+                            $("#Pre_enrollment_file_unit").val(student.pre_school_file_where_location);
+
+                            let school_account_where_the_police_station_detailed = student.pre_school_account_where_station.replace("-", "");
+                            $("#school_account_where_the_police_station_detailed").val(school_account_where_the_police_station_detailed);
+
+                            $("#studentsProfessionList").html("").append(`<option value=""></option>` + loadOptionsHtml(professionList, student.origin_profession_id));
+                            $("#studentsNowProfessional").html("").append(`<option value=""></option>` + loadOptionsHtml(professionList, student.profession_id));
+                            $("#employment_direction").html("").append(`<option value=""></option>` + loadOptionsHtml(directionList, student.direction_id));
+                            $("#student_class").html("").append(`<option value=""></option>` + loadOptionsHtml(classesList, student.classes_id));
+
+                            for (let i = 0; i < experienceList.length; i++) {
+                                $("#educational_experience").append(`<tr>
+                                        <th colspan="2"><span>
+                                            <div class="layui-input-inline" style="width: 30%;float: left">
+                                                <input name="date" lay-verify="date" placeholder="yyyy-mm-dd"
+                                                       autocomplete="off" class="layui-input educational_experience_start"
+                                                       onclick="layui.laydate({elem: this})" type="text"
+                                                       id="educational_experience_start">
+                                            </div>
+                                            <span style="float: left;margin-top: 0px"><p class="layui-input-inline" style="align-content:center">--至--</p></span>
+                                             <div class="layui-input-inline" style="width: 30%;float: left">
+                                                <input name="date" lay-verify="date" placeholder="yyyy-mm-dd"
+                                                       autocomplete="off" class="layui-input educational_experience_end"
+                                                       onclick="layui.laydate({elem: this})" type="text"
+                                                       id="educational_experience_end">
+                                            </div>
+                                        </span></th>
+                                        <th colspan="2"><span>
+                                            <div class="layui-input-inline" style="width: 90%">
+                                                <input type="text" name="text" required lay-verify="required"
+                                                       placeholder="请输入学校名称" autocomplete="off" class="layui-input update_schoolName" id="update_schoolName">
+                                             </div>
+                                        </span></th>
+                                        <th colspan="2"><span>
+                                            <div class="layui-input-inline" style="width: 90%">
+                                                <input type="text" name="text" required lay-verify="required"
+                                                       placeholder="担任什么职务" autocomplete="off" class="layui-input update_duties" id="update_duties">
+                                             </div>
+                                        </span></th>
+                                    </tr>`)
+
+                            }
+
+                            let updateSchoolName = $(".update_schoolName");
+                            let educational_experience_start = $(".educational_experience_start");
+                            let educational_experience_end = $(".educational_experience_end");
+                            let update_duties = $(".update_duties");
+                            for (let i = 0; i < experienceList.length; i++) {
+                                $(updateSchoolName[i]).val(experienceList[i].work_place);
+                                $(educational_experience_start[i]).val(experienceList[i].start_time);
+                                $(educational_experience_end[i]).val(experienceList[i].end_time);
+                                $(update_duties[i]).val(experienceList[i].staff);
+                            }
+
+
+                            $("input[type='radio'][name='student_type1'][value='" + student.student_type + "']").attr("checked", "checked");
+                            $("#upadte_SAT_score").val(student.sat_score);
+
+
+                            var count3 = $("#update_student_status option").length;
+                            for (var i = 0; i < count3; i++) {
+                                if ($("#update_student_status").get(0).options[i].text == student.student_status) {
+                                    $("#update_student_status").get(0).options[i].selected = true;
+                                }
+                            }
+                            var count4 = $("#update_payment_status option").length;
+                            for (var i = 0; i < count4; i++) {
+                                if ($("#update_payment_status").get(0).options[i].text == student.payment_status_first_year) {
+                                    $("#update_payment_status").get(0).options[i].selected = true;
+                                }
+                            }
+                            var count5 = $("#update_payment_status2 option").length;
+                            for (var i = 0; i < count5; i++) {
+                                if ($("#update_payment_status2").get(0).options[i].text == student.payment_status_second_year) {
+                                    $("#update_payment_status2").get(0).options[i].selected = true;
+                                }
+                            }
+                            var count6 = $("#update_payment_status3 option").length;
+                            for (var i = 0; i < count6; i++) {
+                                if ($("#update_payment_status3").get(0).options[i].text == student.payment_status_third_year) {
+                                    $("#update_payment_status3").get(0).options[i].selected = true;
+                                }
+                            }
+                            var count7 = $("#update_practical_type option").length;
+                            for (var i = 0; i < count7; i++) {
+                                if ($("#update_practical_type").get(0).options[i].text == student.practice_learning_type) {
+                                    $("#update_practical_type").get(0).options[i].selected = true;
+                                }
+                            }
+
+                            $("#Amount_of_arrears").val(student.arrears_first_year);
+                            $("#Amount_of_arrears2").val(student.arrears_second_year);
+                            $("#Amount_of_arrears3").val(student.arrears_third_year);
+
+                            if (student.arrears_first_year != null) {
+                                $("#showAmount_of_arrears").show();
+                            } else {
+                                $("#showAmount_of_arrears").hide();
+                            }
+
+                            if (student.arrears_second_year != null) {
+                                $("#showAmount_of_arrears2").show();
+                            } else {
+                                $("#showAmount_of_arrears2").hide();
+                            }
+
+                            if (student.arrears_third_year != null) {
+                                $("#showAmount_of_arrears3").show();
+                            } else {
+                                $("#showAmount_of_arrears3").hide();
+                            }
+
+                            $("input[type='radio'][name='update_hard_type'][value='" + student.hard_type + "']").attr("checked", "checked");
+
                             form.render();
                         }
                     }
@@ -459,6 +625,19 @@
                     area: ["100%", "100%"],
                     content: $("#updateStudent")
                 })
+            },
+
+            updateDetailedAddress: function () {
+                $("#updateDetailedAddress").show()
+            },
+            showUpdate_name_of_the_source: function () {
+                $("#showUpdate_name_of_the_source").show();
+            },
+            update_Pre_enrollment_file_unit: function () {
+                $("#update_Pre_enrollment_file_unit").show();
+            },
+            school_account_where_the_police_station_detailed: function () {
+                $("#show_Pre_school_account_where_the_police_station_detailed").show();
             }
         };
 
@@ -608,6 +787,39 @@
                     $("#pre_school_education").show();
                 } else {
                     $("#pre_school_education").hide();
+                }
+            })
+
+            //监听缴费状态
+            form.on('select(update_payment_status)', function (data) {
+                if (data.value == 5) {
+                    $("#showAmount_of_arrears").show();
+                    alert(12);
+                } else {
+                    $("#showAmount_of_arrears").hide();
+                }
+            })
+            form.on('select(update_payment_status2)', function (data) {
+                if (data.value == 5) {
+                    $("#showAmount_of_arrears2").show();
+                } else {
+                    $("#showAmount_of_arrears2").hide();
+                }
+            })
+            form.on('select(update_payment_status3)', function (data) {
+                if (data.value == 5) {
+                    $("#showAmount_of_arrears3").show();
+                } else {
+                    $("#showAmount_of_arrears3").hide();
+                }
+            })
+
+            //监听实践类型
+            form.on('select(update_practical_type)', function (data) {
+                if (data.value == 5) {
+                    $("#show_other_practical_type").show();
+                } else {
+                    $("#show_other_practical_type").hide();
                 }
             });
         });

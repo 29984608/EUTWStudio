@@ -58,7 +58,17 @@ public interface PersonService {
 
     List<Map<String,Object>> queryStudentList(SearchDto searchDto, PageUtil page)throws Exception;
 
-  Map<String,Object> updateByStudentNo(String studentNo)throws Exception;
+    Map<String, Object> updateByStudentNo(String studentNo) throws Exception;
 
-    List<Map<String,Object>> queryStudentsToUpdate(String studentNo)throws Exception;
+    Map<String,Object> queryStudentsToUpdate(String studentNo)throws Exception;
+
+    List<Map<String, Object>> queryStudentFamily(String studentNo) throws Exception;
+
+    List<Map<String,String>> queryStudentsProfessionList() throws Exception;
+
+    List<Map<String, String>> queryStudentsDirection() throws Exception;
+
+    List<Map<String, Object>> queryStudentsClassList() throws Exception;
+
+    List<Map<String, Object>> queryStudentExperienceList() throws Exception;
 }

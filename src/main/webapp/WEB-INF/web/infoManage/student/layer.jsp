@@ -249,7 +249,7 @@
 
                 <div class="larry-separate"></div>
                 <div id="update1">
-                    <div class="container" id="container1" style=" background: #fff">
+                    <div id="container1" style=" background: #fff">
                         <h1 style="text-align: center;margin-left: 30% ;color:#00ab9f ">西安欧亚学院高职学院学生档案修改页面</h1>
                         <div style="margin-top: 40px;">
                             <div style="width: 25%; height: 100%; float: left;border-right: 1px solid #00ab9f">
@@ -300,7 +300,7 @@
                                             <div class="layui-inline" pane="" id="updateStudentSex">
                                                   <label class="layui-form-label" style="width: auto"></label>
                                                 <div class="layui-inline">
-                                                    <input name="sex" value="男" title="男" checked=""
+                                                    <input name="sex" value="男" title="男"
                                                            type="radio">
                                                     <input name="sex" value="女" title="女" type="radio">
                                                 </div>
@@ -346,9 +346,10 @@
                                             <div class="layui-inline" pane="" id="isMarry">
                                                 <label class="layui-form-label" style="width: auto"></label>
                                                 <div class="layui-inline">
-                                                    <input name="isMarry" value="是" title="是" checked=""
+                                                    <input class="marry" name="isMarry" value="是" title="是"
                                                            type="radio">
-                                                    <input name="isMarry" value="否" title="否" type="radio">
+                                                    <input class="marry" name="isMarry" value="否" title="否"
+                                                           type="radio">
                                                 </div>
                                             </div>
                                         </th>
@@ -378,7 +379,7 @@
                                                 <div class="layui-inline" pane="" id="health">
                                                     <label class="layui-form-label" style="width: auto"></label>
                                                     <div class="layui-inline">
-                                                       <input name="health" value="良好" title="良好" checked=""
+                                                       <input name="health" value="良好" title="良好"
                                                               type="radio">
                                                        <input name="health" value="其他" title="其他" type="radio">
                                                     </div>
@@ -392,7 +393,7 @@
                                         <div class="layui-inline" pane="" id="updateStudentType">
                                             <label class="layui-form-label" style="width: auto"></label>
                                             <div class="layui-inline">
-                                               <input name="student_type" value="高考录取" title="高考录取" checked=""
+                                               <input name="student_type" value="高考录取" title="高考录取"
                                                       type="radio">
                                                <input name="student_type" value="自助招生" title="自助招生" type="radio">
                                             </div>
@@ -400,8 +401,9 @@
                                     </span></th>
                                         <th colspan="4">血型：<span>
                                         <div class="layui-input-inline"
-                                             >
-                                          <select name="quiz1" lay-filter="updateStudentBloodType" id="updateStudentBloodType">
+                                        >
+                                          <select name="quiz1" lay-filter="updateStudentBloodType"
+                                                  id="updateStudentBloodType">
                                             <option value="">请选择血型</option>
                                             <option value="1">O型</option>
                                             <option value="2">A型</option>
@@ -495,50 +497,91 @@
                                     </tr>
 
                                     <tr>
-                                        <th colspan="6"><span style="font-weight: bold">家庭实际住址:</span>
-                                            <form class="form-inline">
-                                                <div id="distpicker3">
-                                                    <div class="form-group">
-                                                        <label class="sr-only" for="province3">Province</label>
-                                                        <select class="form-control" id="province3" lay-ignore></select>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="sr-only" for="city3">City</label>
-                                                        <select class="form-control" id="city3" lay-ignore></select>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="sr-only" for="district3">District</label>
-                                                        <select class="form-control" id="district3" lay-ignore></select>
-                                                    </div>
+                                        <th colspan="6"><span style="font-weight: bold"></span>
+                                            <div class="layui-input-inline" style="width: 100%">
+                                                <label class="layui-form-label" style="width: auto">家庭实际住址: </label>
+                                                <div class="layui-input-inline" style="width: 60%">
+                                                    <input type="text" name="idcard_address" required
+                                                           lay-verify="required" placeholder="请输入家庭实际住址"
+                                                           autocomplete="off" class="layui-input" id="detailedAddresses"
+                                                           readonly>
                                                 </div>
-                                                <br><br>
-                                                <div class="layui-form-item">
-                                                    <label class="layui-form-label" style="width: auto">详细地址</label>
-                                                    <div class="layui-input-block">
-                                                        <input type="text" name="detailedAddress" required
-                                                               lay-verify="required" placeholder="请输入详细地址"
-                                                               autocomplete="off" class="layui-input" id="detailedAddress">
+                                                <span>
+                                                     <button class="layui-btn"
+                                                             onclick="student.updateDetailedAddress()">编辑地址信息</button>
+                                                </span>
+                                            </div>
+                                            <br>
+                                            <br>
+                                            <div style="display: none" id="updateDetailedAddress">
+                                                <form class="form-inline">
+                                                    <div id="distpicker3">
+                                                        <div class="form-group">
+                                                            <label class="sr-only" for="province3">Province</label>
+                                                            <select class="form-control" id="province3"
+                                                                    lay-ignore></select>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="sr-only" for="city3">City</label>
+                                                            <select class="form-control" id="city3" lay-ignore></select>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="sr-only" for="district3">District</label>
+                                                            <select class="form-control" id="district3"
+                                                                    lay-ignore></select>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </form>
+                                                    <br><br>
+                                                    <div class="layui-form-item">
+                                                        <label class="layui-form-label" style="width: auto">详细地址</label>
+                                                        <div class="layui-input-block">
+                                                            <input type="text" name="detailedAddress" required
+                                                                   lay-verify="required" placeholder="请输入详细地址"
+                                                                   autocomplete="off" class="layui-input"
+                                                                   id="detailedAddress">
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+
                                         </th>
                                     </tr>
 
                                     <tr>
-                                        <th colspan="6"><span style="font-weight: bold">生源所在地名称：</span>
-                                            <form class="form-inline">
-                                                <div id="distpicker">
-                                                    <div class="form-group">
-                                                        <select class="form-control" id="province1" lay-ignore></select>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <select class="form-control" id="city1" lay-ignore></select>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <select class="form-control" id="district1" lay-ignore></select>
-                                                    </div>
+                                        <th colspan="6"><span style="font-weight: bold"></span>
+                                            <div class="layui-input-inline" style="width: 100%">
+                                                <label class="layui-form-label" style="width: auto">生源所在地名称： </label>
+                                                <div class="layui-input-inline" style="width: 60%">
+                                                    <input type="text" name="idcard_address" required
+                                                           lay-verify="required" placeholder="请输入生源所在地名称"
+                                                           autocomplete="off" class="layui-input"
+                                                           id="update_name_of_the_source" readonly>
                                                 </div>
-                                            </form>
+                                                <span>
+                                                     <button class="layui-btn"
+                                                             onclick="student.showUpdate_name_of_the_source()">编辑地址信息</button>
+                                                </span>
+                                            </div>
+                                            <br>
+                                            <br>
+                                            <div id="showUpdate_name_of_the_source" style="display: none">
+                                                <form class="form-inline">
+                                                    <div id="distpicker">
+                                                        <div class="form-group">
+                                                            <select class="form-control" id="province1"
+                                                                    lay-ignore></select>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <select class="form-control" id="city1" lay-ignore></select>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <select class="form-control" id="district1"
+                                                                    lay-ignore></select>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+
                                         </th>
                                     </tr>
 
@@ -547,7 +590,7 @@
                                         <th colspan="6">邮编编码：<span class="layui-input-inline">
                                             <input type="text" name="text" required lay-verify="required"
                                                    placeholder="请输入内容" autocomplete="off" class="layui-input"
-                                                   id="updateStudentZip_code" >
+                                                   id="updateStudentZip_code">
                                         </span></th>
                                     </tr>
                                     <tr>
@@ -558,125 +601,11 @@
                                                    id="updateStudentHome_phone">
                                         </span></th>
                                     </tr>
-                                    <tr>
-                                        <th colspan="2">父亲：<span>
-                                            <div class="layui-input-inline" style="width: 60%">
-                                                <input type="text" name="text" required lay-verify="required"
-                                                       placeholder="请输入内容" autocomplete="off" class="layui-input"
-                                                       id="updateStudentFather">
-                                             </div>
-                                        </span></th>
-                                        <th colspan="4">政治面貌：<span>
-                                            <div class="layui-input-inline" style="width: 30%">
-                                              <select name="politicalOutlook1" lay-filter="politicalOutlook1"
-                                                      id="updateStudentFather_political_status">
-                                                <option value="">请选择</option>
-                                                <option value="1" selected="">中共党员</option>
-                                                <option value="2">预备党员</option>
-                                                <option value="3">共青团员</option>
-                                                <option value="4">积极分子</option>
-                                                <option value="5">群众</option>
-                                                <option value="6">其他党派</option>
-                                              </select>
-                                            </div>
-                                            <span id="otherParty1" style="display: none">
-                                                  <div class="layui-input-inline">
-                                                    <label class="layui-form-label" style="width: auto">其他党派: </label>
-                                                    <div class="layui-input-inline">
-                                                      <input type="text" name="otherPartyName" required
-                                                             lay-verify="required" placeholder="请输入党派名称"
-                                                             autocomplete="off" class="layui-input"
-                                                             id="other_updateStudentFather_political_status">
-                                                    </div>
-                                                  </div>
-                                            </span>
-                                        </span></th>
+                                    <div id="family_information">
 
-                                    </tr>
+                                    </div>
 
-                                    <tr>
-                                        <th colspan="2">工作单位：<span>
-                                            <div class="layui-input-inline" style="width: 60%">
-                                                <input type="text" name="text" required lay-verify="required"
-                                                       placeholder="请输入内容" autocomplete="off" class="layui-input"
-                                                       id="updateStudentFather_employer">
-                                             </div>
-                                        </span></th>
-                                        <th colspan="2">职务：<span>
-                                            <div class="layui-input-inline" style="width: 60%">
-                                                <input type="text" name="text" required lay-verify="required"
-                                                       placeholder="请输入内容" autocomplete="off" class="layui-input"
-                                                       id="updateStudentFather_duties">
-                                             </div>
-                                        </span></th>
-                                        <th colspan="2">联系电话：<span>
-                                            <div class="layui-input-inline" style="width: 60%">
-                                                <input type="text" name="text" required lay-verify="required"
-                                                       placeholder="请输入内容" autocomplete="off" class="layui-input"
-                                                       id="updateStudentFather_phone">
-                                             </div>
-                                        </span></th>
-                                    </tr>
-                                    <tr>
-                                        <th colspan="2">母亲：<span>
-                                            <div class="layui-input-inline" style="width: 60%">
-                                                <input type="text" name="text" required lay-verify="required"
-                                                       placeholder="请输入内容" autocomplete="off" class="layui-input"
-                                                       id="updateStudentMather">
-                                             </div>
-                                        </span></th>
-                                        <th colspan="4">政治面貌：<span>
-                                            <div class="layui-input-inline" style="width: 30%">
-                                              <select name="politicalOutlook2" lay-filter="politicalOutlook2"
-                                                      id="updateStudentMather_political_status">
-                                                <option value="">请选择</option>
-                                                <option value="1" selected="">中共党员</option>
-                                                <option value="2">预备党员</option>
-                                                <option value="3">共青团员</option>
-                                                <option value="4">积极分子</option>
-                                                <option value="5">群众</option>
-                                                <option value="6">其他党派</option>
-                                              </select>
-                                            </div>
-                                            <span id="otherParty2" style="display: none">
-                                                  <div class="layui-input-inline">
-                                                    <label class="layui-form-label" style="width: auto">其他党派: </label>
-                                                    <div class="layui-input-inline">
-                                                      <input type="text" name="otherPartyName" required
-                                                             lay-verify="required" placeholder="请输入党派名称"
-                                                             autocomplete="off" class="layui-input"
-                                                             id="other_updateStudentMather_political_status">
-                                                    </div>
-                                                  </div>
-                                            </span>
-                                        </span></th>
 
-                                    </tr>
-                                    <tr>
-                                        <th colspan="2">工作单位：
-                                            <span>
-                                             <div class="layui-input-inline" style="width: 60%">
-                                                <input type="text" name="text" required lay-verify="required"
-                                                       placeholder="请输入内容" autocomplete="off" class="layui-input"
-                                                       id="updateStudentMather_employee">
-                                             </div>
-                                        </span>
-                                        </th>
-                                        <th colspan="2">职务：<span>
-                                            <div class="layui-input-inline" style="width: 60%">
-                                                <input type="text" name="text" required lay-verify="required"
-                                                       placeholder="请输入内容" autocomplete="off" class="layui-input"
-                                                       id="updateStudentMather_duties">
-                                             </div>
-                                        </span></th>
-                                        <th colspan="2">联系电话：<span>
-                                            <div class="layui-input-inline" style="width: 60%">
-                                                <input type="text" name="text" required lay-verify="required"
-                                                       placeholder="请输入内容" autocomplete="off" class="layui-input"
-                                                       id="updateStudentMather_phone">
-                                             </div>
-                                        </span></th>
-                                    </tr>
                                     <tr>
                                         <th colspan="3">紧急联系人：<span>
                                             <div class="layui-input-inline" style="width: 60%">
@@ -701,7 +630,7 @@
                                         <div class="layui-inline" pane="" id="whetherToTransfer">
                                             <label class="layui-form-label" style="width: auto"></label>
                                             <div class="layui-inline">
-                                               <input name="whetherToTransfer" value="是" title="是" checked=""
+                                               <input name="whetherToTransfer" value="是" title="是"
                                                       type="radio">
                                                <input name="whetherToTransfer" value="否" title="否" type="radio">
                                             </div>
@@ -713,7 +642,7 @@
                                         <div class="layui-inline" pane="" id="birthplaceName">
                                             <label class="layui-form-label" style="width: auto"></label>
                                             <div class="layui-inline">
-                                               <input name="birthplaceName" value="城镇" title="城镇" checked=""
+                                               <input name="birthplaceName" value="城镇" title="城镇"
                                                       type="radio">
                                                <input name="birthplaceName" value="农村" title="农村" type="radio">
                                             </div>
@@ -722,33 +651,52 @@
                                     </tr>
 
                                     <tr>
-                                        <th colspan="6"><span style="font-weight: bold">入学前档案所在单位：</span>
-                                            <form class="form-inline">
-                                                <div id="distpicker1">
-                                                    <div class="form-group">
-                                                        <label class="sr-only" for="province2">Province</label>
-                                                        <select class="form-control" id="province2" lay-ignore></select>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="sr-only" for="city2">City</label>
-                                                        <select class="form-control" id="city2" lay-ignore></select>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="sr-only" for="district2">District</label>
-                                                        <select class="form-control" id="district2" lay-ignore></select>
-                                                    </div>
+                                        <th colspan="6"><span style="font-weight: bold"></span>
+                                            <div class="layui-input-inline" style="width: 100%">
+                                                <label class="layui-form-label" style="width: auto">入学前档案所在单位： </label>
+                                                <div class="layui-input-inline" style="width: 60%">
+                                                    <input type="text" name="idcard_address" required
+                                                           lay-verify="required" placeholder="请输入入学前档案所在单位"
+                                                           autocomplete="off" class="layui-input"
+                                                           id="Pre_enrollment_file_unit"
+                                                           readonly>
                                                 </div>
-                                                <br><br>
-                                                <div class="layui-form-item">
-                                                    <label class="layui-form-label" style="width: auto">详细地址</label>
-                                                    <div class="layui-input-block">
-                                                        <input type="text" name="detailedAddress" required
-                                                               lay-verify="required" placeholder="请输入详细地址"
-                                                               autocomplete="off" class="layui-input"
-                                                               id="updateStudent_Pre-enrollment_file_unit_detailed">
+                                                <span>
+                                                     <button class="layui-btn"
+                                                             onclick="student.update_Pre_enrollment_file_unit()">编辑地址信息</button>
+                                                </span>
+                                            </div>
+                                            <div id="update_Pre_enrollment_file_unit" style="display: none">
+                                                <form class="form-inline">
+                                                    <div id="distpicker1">
+                                                        <div class="form-group">
+                                                            <label class="sr-only" for="province2">Province</label>
+                                                            <select class="form-control" id="province2"
+                                                                    lay-ignore></select>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="sr-only" for="city2">City</label>
+                                                            <select class="form-control" id="city2" lay-ignore></select>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="sr-only" for="district2">District</label>
+                                                            <select class="form-control" id="district2"
+                                                                    lay-ignore></select>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </form>
+                                                    <br><br>
+                                                    <div class="layui-form-item">
+                                                        <label class="layui-form-label" style="width: auto">详细地址</label>
+                                                        <div class="layui-input-block">
+                                                            <input type="text" name="detailedAddress" required
+                                                                   lay-verify="required" placeholder="请输入详细地址"
+                                                                   autocomplete="off" class="layui-input"
+                                                                   id="updateStudent_Pre-enrollment_file_unit_detailed">
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+
                                         </th>
                                     </tr>
 
@@ -758,9 +706,9 @@
                                         <div class="layui-inline" pane="" id="is-the-file-transferred">
                                             <label class="layui-form-label" style="width: auto"></label>
                                             <div class="layui-inline">
-                                               <input name="is-the-file-transferred" value="是" title="是" checked=""
+                                               <input name="is_the_file_transferred" value="是" title="是"
                                                       type="radio">
-                                               <input name="is-the-file-transferred" value="否" title="否" type="radio">
+                                               <input name="is_the_file_transferred" value="否" title="否" type="radio">
                                             </div>
                                         </div>
                                     </span>
@@ -774,7 +722,7 @@
                                                     <input type="text" name="detailedAddress" required
                                                            lay-verify="required" placeholder="请输入详细地址"
                                                            autocomplete="off" class="layui-input"
-                                                           style="width: 80%;margin-bottom: 1%" id="Pre-school_name">
+                                                           style="width: 80%;margin-bottom: 1%" id="Pre_school_name">
                                                 </div>
                                             </div>
                                         </span>
@@ -783,147 +731,135 @@
                                     </tr>
 
                                     <tr>
-                                        <th colspan="6"><span style="font-weight: bold">入学前户口所在派出所：</span>
-                                            <form class="form-inline">
-                                                <div id="distpicker5">
-                                                    <div class="form-group">
-                                                        <label class="sr-only" for="province5">Province</label>
-                                                        <select class="form-control" id="province5" lay-ignore></select>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="sr-only" for="city5">City</label>
-                                                        <select class="form-control" id="city5" lay-ignore></select>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="sr-only" for="district5">District</label>
-                                                        <select class="form-control" id="district5" lay-ignore></select>
-                                                    </div>
+                                        <th colspan="6"><span style="font-weight: bold"></span>
+                                            <div class="layui-input-inline" style="width: 100%">
+                                                <label class="layui-form-label" style="width: auto">入学前户口所在派出所： </label>
+                                                <div class="layui-input-inline" style="width: 60%">
+                                                    <input type="text" name="idcard_address" required
+                                                           lay-verify="required" placeholder="请输入入学前户口所在派出所"
+                                                           autocomplete="off" class="layui-input"
+                                                           id="school_account_where_the_police_station_detailed"
+                                                           readonly>
                                                 </div>
-                                                <br><br>
-                                                <div class="layui-form-item">
-                                                    <label class="layui-form-label" style="width: auto">详细地址</label>
-                                                    <div class="layui-input-block">
-                                                        <input type="text" name="detailedAddress" required
-                                                               lay-verify="required" placeholder="请输入详细地址"
-                                                               autocomplete="off" class="layui-input"
-                                                               id="Pre-school_account_where_the_police_station_detailed">
+                                                <span>
+                                                     <button class="layui-btn"
+                                                             onclick="student.school_account_where_the_police_station_detailed()">编辑地址信息</button>
+                                                </span>
+                                            </div>
+                                            <div id="show_Pre_school_account_where_the_police_station_detailed"
+                                                 style="display: none">
+                                                <form class="form-inline">
+                                                    <div id="distpicker5">
+                                                        <div class="form-group">
+                                                            <label class="sr-only" for="province5">Province</label>
+                                                            <select class="form-control" id="province5"
+                                                                    lay-ignore></select>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="sr-only" for="city5">City</label>
+                                                            <select class="form-control" id="city5" lay-ignore></select>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="sr-only" for="district5">District</label>
+                                                            <select class="form-control" id="district5"
+                                                                    lay-ignore></select>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </form>
+                                                    <br><br>
+                                                    <div class="layui-form-item">
+                                                        <label class="layui-form-label" style="width: auto">详细地址</label>
+                                                        <div class="layui-input-block">
+                                                            <input type="text" name="detailedAddress" required
+                                                                   lay-verify="required" placeholder="请输入详细地址"
+                                                                   autocomplete="off" class="layui-input"
+                                                                   id="Pre_school_account_where_the_police_station_detailed">
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+
                                         </th>
                                     </tr>
 
                                     </tbody>
                                 </table>
+
+
+                                <h4 style="color: #00ab9f;font-weight: bold ;padding-top: 15px;">家庭成员信息</h4>
+                                <table class="layui-table lay-even " data-name="articleCatData"
+                                       style="border: 0px solid red" id="family_member_information_list">
+                                    <tbody id="family_member_information">
+
+
+                                    </tbody>
+                                </table>
+
+
                                 <h4 style="color: #00ab9f;font-weight: bold ;padding-top: 15px;">教育经历</h4>
                                 <table class="layui-table lay-even " data-name="articleCatData"
                                        style="border: 0px solid red" id="updateStudent_Educational_experience">
-                                    <tbody>
-                                    <tr>
-                                        <th><span>
-                                            <div class="layui-input-inline" style="width: 90%">
-                                                <input type="text" name="text" required lay-verify="required"
-                                                       placeholder="请输入内容" autocomplete="off" class="layui-input">
-                                             </div>
-                                        </span></th>
-                                        <th><span>
-                                            <div class="layui-input-inline" style="width: 90%">
-                                                <input type="text" name="text" required lay-verify="required"
-                                                       placeholder="请输入内容" autocomplete="off" class="layui-input">
-                                             </div>
-                                        </span></th>
-                                        <th><span>
-                                            <div class="layui-input-inline" style="width: 90%">
-                                                <input type="text" name="text" required lay-verify="required"
-                                                       placeholder="请输入内容" autocomplete="off" class="layui-input">
-                                             </div>
-                                        </span></th>
-                                    </tr>
-                                    <tr>
-                                        <th><span>
-                                            <div class="layui-input-inline" style="width: 90%">
-                                                <input type="text" name="text" required lay-verify="required"
-                                                       placeholder="请输入内容" autocomplete="off" class="layui-input">
-                                             </div>
-                                        </span></th>
-                                        <th><span>
-                                            <div class="layui-input-inline" style="width: 90%">
-                                                <input type="text" name="text" required lay-verify="required"
-                                                       placeholder="请输入内容" autocomplete="off" class="layui-input">
-                                             </div>
-                                        </span></th>
-                                        <th><span>
-                                            <div class="layui-input-inline" style="width: 90%">
-                                                <input type="text" name="text" required lay-verify="required"
-                                                       placeholder="请输入内容" autocomplete="off" class="layui-input">
-                                             </div>
-                                        </span></th>
-                                    </tr>
-                                    <tr>
-                                        <th><span>
-                                            <div class="layui-input-inline" style="width: 90%">
-                                                <input type="text" name="text" required lay-verify="required"
-                                                       placeholder="请输入内容" autocomplete="off" class="layui-input">
-                                             </div>
-                                        </span></th>
-                                        <th><span>
-                                            <div class="layui-input-inline" style="width: 90%">
-                                                <input type="text" name="text" required lay-verify="required"
-                                                       placeholder="请输入内容" autocomplete="off" class="layui-input">
-                                             </div>
-                                        </span></th>
-                                        <th><span>
-                                            <div class="layui-input-inline" style="width: 90%">
-                                                <input type="text" name="text" required lay-verify="required"
-                                                       placeholder="请输入内容" autocomplete="off" class="layui-input">
-                                             </div>
-                                        </span></th>
-                                    </tr>
+                                    <tbody id="educational_experience">
+
                                     </tbody>
                                 </table>
+
+                                <br>
+                                <br>
                                 <h4 style="color: #00ab9f;font-weight: bold ;padding-top: 15px;">学业信息</h4>
                                 <table class="layui-table lay-even " data-name="articleCatData"
                                        style="border: 0px solid red" id="updateStudent_Academic information">
                                     <tbody>
                                     <tr>
-                                        <th colspan="2">学生类别：<span>
+                                        <th colspan="2">学生类型：<span>
                                             <div class="layui-input-inline" style="width: 60%">
-                                                <input type="text" name="text" required lay-verify="required"
-                                                       placeholder="请输入内容" autocomplete="off" class="layui-input">
+                                                <div class="layui-inline" pane="" id="updateStudentType1">
+                                            <label class="layui-form-label" style="width: auto"></label>
+                                            <div class="layui-inline">
+                                               <input name="student_type1" value="高考录取" title="高考录取"
+                                                      type="radio">
+                                               <input name="student_type1" value="自助招生" title="自助招生" type="radio">
+                                            </div>
+                                        </div>
                                              </div>
                                         </span></th>
                                         <th colspan="2">高考成绩：<span>
                                             <div class="layui-input-inline" style="width: 60%">
                                                 <input type="text" name="text" required lay-verify="required"
-                                                       placeholder="请输入内容" autocomplete="off" class="layui-input">
+                                                       placeholder="请输入内容" autocomplete="off" class="layui-input"
+                                                       id="upadte_SAT_score">
                                              </div>
                                         </span></th>
 
                                     </tr>
                                     <tr>
                                         <th>录取专业：<span>
-                                            <div class="layui-input-inline" style="width: 55%">
-                                                <input type="text" name="text" required lay-verify="required"
-                                                       placeholder="请输入内容" autocomplete="off" class="layui-input">
-                                             </div>
+                                            <div class="layui-input-inline" style="width: 60%">
+                                                <select id="studentsProfessionList" lay-filter="studentsProfessionList">
+                                                    <option value=""></option>
+                                                </select>
+                                            </div>
                                         </span></th>
                                         <th>现专业：<span>
-                                            <div class="layui-input-inline" style="width: 55%">
-                                                <input type="text" name="text" required lay-verify="required"
-                                                       placeholder="请输入内容" autocomplete="off" class="layui-input">
-                                             </div>
+                                            <div class="layui-input-inline" style="width: 60%">
+                                                <select id="studentsNowProfessional"
+                                                        lay-filter="studentsNowProfessional">
+                                                    <option value=""></option>
+                                                </select>
+                                            </div>
                                         </span></th>
                                         <th>就业方向：<span>
-                                            <div class="layui-input-inline" style="width: 55%">
-                                                <input type="text" name="text" required lay-verify="required"
-                                                       placeholder="请输入内容" autocomplete="off" class="layui-input">
-                                             </div>
+                                            <div class="layui-input-inline" style="width: 60%">
+                                                <select id="employment_direction" lay-filter="employment_direction">
+                                                    <option value=""></option>
+                                                </select>
+                                            </div>
                                         </span></th>
                                         <th>班级：<span>
-                                            <div class="layui-input-inline" style="width: 60%">
-                                                <input type="text" name="text" required lay-verify="required"
-                                                       placeholder="请输入内容" autocomplete="off" class="layui-input">
-                                             </div>
+                                             <div class="layui-input-inline" style="width: 60%">
+                                                <select id="student_class" lay-filter="student_class">
+                                                    <option value=""></option>
+                                                </select>
+                                            </div>
                                         </span></th>
                                     </tr>
                                     <tr>
@@ -943,38 +879,132 @@
                                     <tr>
                                         <th colspan="2">学籍状态：<span>
                                             <div class="layui-input-inline" style="width: 60%">
-                                                <input type="text" name="text" required lay-verify="required"
-                                                       placeholder="请输入内容" autocomplete="off" class="layui-input">
-                                             </div>
+                                                <select lay-filter="update_student_status" id="update_student_status">
+                                                    <option value=""></option>
+                                                    <option value="1">在读</option>
+                                                    <option value="2">休学</option>
+                                                    <option value="3">入伍</option>
+                                                    <option value="4">退学</option>
+                                                    <option value="5">复学</option>
+                                                    <option value="6">留级</option>
+                                                </select>
+                                            </div>
                                         </span></th>
-                                        <th colspan="2">缴费状态：<span>
+                                        <th colspan="4">困难类别：<span>
                                             <div class="layui-input-inline" style="width: 60%">
-                                                <input type="text" name="text" required lay-verify="required"
-                                                       placeholder="请输入内容" autocomplete="off" class="layui-input">
+                                                <div class="layui-inline" pane="" id="update_hard_type">
+                                            <label class="layui-form-label" style="width: auto"></label>
+                                            <div class="layui-inline">
+                                               <input name="update_hard_type" value="不是" title="不是" type="radio">
+                                               <input name="update_hard_type" value="一般" title="一般" type="radio">
+                                               <input name="update_hard_type" value="特困" title="特困" type="radio">
+                                            </div>
+                                        </div>
                                              </div>
                                         </span></th>
                                     </tr>
 
                                     <tr>
-                                        <th colspan="2">实践类型：<span>
-                                            <div class="layui-input-inline" style="width: 60%">
-                                                <input type="text" name="text" required lay-verify="required"
-                                                       placeholder="请输入内容" autocomplete="off" class="layui-input">
-                                             </div>
+                                        <th colspan="5">第一年缴费状态：<span>
+                                             <div class="layui-input-inline" style="width: 30%">
+                                                <select lay-filter="update_payment_status" id="update_payment_status">
+                                                    <option value=""></option>
+                                                    <option value="1">全额</option>
+                                                    <option value="2">缓交</option>
+                                                    <option value="3">分期</option>
+                                                    <option value="4">贷款</option>
+                                                    <option value="5">欠费</option>
+                                                </select>
+                                            </div>
+                                             <span id="showAmount_of_arrears" style="display: none">欠费金额:
+                                                    <div class="layui-input-inline">
+                                                      <input type="text" name="otherPartyName" required
+                                                             lay-verify="required" placeholder="请输入欠费金额"
+                                                             autocomplete="off" class="layui-input"
+                                                             id="Amount_of_arrears" style="width: 65%">
+                                                    </div>
+                                                 <span style="float: none;margin-left: -5%">单位:元</span>
+                                            </span>
                                         </span></th>
-                                        <th colspan="2">宿舍位置：<span>
-                                            <div class="layui-input-inline" style="width: 60%">
-                                                <input type="text" name="text" required lay-verify="required"
-                                                       placeholder="请输入内容" autocomplete="off" class="layui-input">
-                                             </div>
+
+                                    </tr>
+
+                                    <tr>
+                                        <th colspan="5">第二年缴费状态：<span>
+                                             <div class="layui-input-inline" style="width: 30%">
+                                                <select lay-filter="update_payment_status2" id="update_payment_status2">
+                                                    <option value=""></option>
+                                                    <option value="1">全额</option>
+                                                    <option value="2">缓交</option>
+                                                    <option value="3">分期</option>
+                                                    <option value="4">贷款</option>
+                                                    <option value="5">欠费</option>
+                                                </select>
+                                            </div>
+                                             <span id="showAmount_of_arrears2" style="display: none">欠费金额:
+                                                    <div class="layui-input-inline">
+                                                      <input type="text" name="otherPartyName" required
+                                                             lay-verify="required" placeholder="请输入欠费金额"
+                                                             autocomplete="off" class="layui-input"
+                                                             id="Amount_of_arrears2" style="width: 65%">
+                                                    </div>
+                                                 <span style="float: none;margin-left: -5%">单位:元</span>
+                                            </span>
+                                        </span></th>
+                                    </tr>
+
+                                    <tr>
+                                        <th colspan="5">第三年缴费状态：<span>
+                                             <div class="layui-input-inline" style="width: 30%">
+                                                <select lay-filter="update_payment_status3" id="update_payment_status3">
+                                                    <option value=""></option>
+                                                    <option value="1">全额</option>
+                                                    <option value="2">缓交</option>
+                                                    <option value="3">分期</option>
+                                                    <option value="4">贷款</option>
+                                                    <option value="5">欠费</option>
+                                                </select>
+                                            </div>
+                                             <span id="showAmount_of_arrears3" style="display: none">欠费金额:
+                                                    <div class="layui-input-inline">
+                                                      <input type="text" name="otherPartyName" required
+                                                             lay-verify="required" placeholder="请输入欠费金额"
+                                                             autocomplete="off" class="layui-input"
+                                                             id="Amount_of_arrears3" style="width: 65%">
+                                                    </div>
+                                                 <span style="float: none;margin-left: -5%">单位:元</span>
+                                            </span>
+                                        </span></th>
+                                    </tr>
+
+                                    <tr>
+                                        <th colspan="6">实践类型：<span>
+                                            <div class="layui-input-inline" style="width: 30%">
+                                                <select lay-filter="update_practical_type" id="update_practical_type">
+                                                    <option value=""></option>
+                                                    <option value="1">合作企业</option>
+                                                    <option value="2">自主实习</option>
+                                                    <option value="3">创新创业</option>
+                                                    <option value="4">专升本</option>
+                                                    <option value="5">其他</option>
+                                                </select>
+                                            </div>
+                                             <span id="show_other_practical_type" style="display: none">实践类型:
+                                                    <div class="layui-input-inline">
+                                                      <input type="text" name="otherPartyName" required
+                                                             lay-verify="required" placeholder="请输入事件类型名称"
+                                                             autocomplete="off" class="layui-input"
+                                                             id="other_practical_type" style="width: 100%">
+                                                    </div>
+                                            </span>
                                         </span></th>
                                     </tr>
                                     <tr>
-                                        <th colspan="4">困难类别：<span>
+                                        <th colspan="6">宿舍位置：<span>
                                             <div class="layui-input-inline" style="width: 60%">
                                                 <input type="text" name="text" required lay-verify="required"
                                                        placeholder="请输入内容" autocomplete="off" class="layui-input">
-                                             </div>
+                                            </div>
                                         </span></th>
                                     </tr>
                                     </tbody>

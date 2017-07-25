@@ -255,8 +255,33 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public List<Map<String, Object>> queryStudentsToUpdate(String studentNo) throws Exception {
+    public Map<String, Object> queryStudentsToUpdate(String studentNo) throws Exception {
         return personDao.queryStudentsToUpdate(studentNo);
+    }
+
+    @Override
+    public List<Map<String, Object>> queryStudentFamily(String studentNo) throws Exception {
+        return personDao.queryStudentFamily(studentNo);
+    }
+
+    @Override
+    public List<Map<String, String>> queryStudentsProfessionList() throws Exception {
+        return personDao.queryStudentsProfessionList();
+    }
+
+    @Override
+    public List<Map<String, String>> queryStudentsDirection() throws Exception {
+        return personDao.queryStudentsDirection();
+    }
+
+    @Override
+    public List<Map<String, Object>> queryStudentsClassList() throws Exception {
+        return personDao.queryStudentsClassList();
+    }
+
+    @Override
+    public List<Map<String, Object>> queryStudentExperienceList() throws Exception {
+        return personDao.queryStudentExperienceList();
     }
 
 
