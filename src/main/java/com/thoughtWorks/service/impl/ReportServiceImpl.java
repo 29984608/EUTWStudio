@@ -132,7 +132,10 @@ public class ReportServiceImpl implements ReportService {
 
     @Override
     public List<Map<String, Object>> queryDormPeopleNumber() {
+        List<Map<String, Object>> statisticCount = new ArrayList<>();
+        List<Map<String, Object>> dormPeoples =reportDao.queryDormPeopleNumber(DateUtil.getSearchLevels());
+        if (dormPeoples.size() == 0) return statisticCount;
 
-        return reportDao.queryDormPeopleNumber(DateUtil.getSearchLevels());
+        return dormPeoples;
     }
 }
