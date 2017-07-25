@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class StudentInfoReportStatistic implements Serializable {
-    private String[] types = {"班级人数", "合作企业", "自主实习", "创新创业", "专升本", "其它", "在读", "休学", "入伍", "退学", "流失", "复学", "欠费"};
+    private String[] types = {"班级人数", "合作企业", "自主实习", "创新创业", "专升本", "其它", "在读", "休学", "入伍","留级", "退学", "流失", "复学", "欠费"};
     private Map<String, Integer> statisticCount;
 
     public StudentInfoReportStatistic() {
