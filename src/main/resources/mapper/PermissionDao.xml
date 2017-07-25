@@ -41,7 +41,7 @@
         FROM t_permission permission
             LEFT JOIN (SELECT *
                        FROM t_role_permission) role ON role.sys_role_id = #{roleId}
-        WHERE type = "menu" AND role.sys_permission_id = permission.id ORDER BY parentid ASC
+        WHERE type = "menu" AND role.sys_permission_id = permission.id ORDER BY parentid ASC,menu_sort ASC
     </select>
     <select id="getTopMenus" resultType="Map" parameterType="int">
         SELECT

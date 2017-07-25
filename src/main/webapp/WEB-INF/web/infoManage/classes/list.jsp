@@ -33,7 +33,7 @@
                         <thead>
                         <tr>
                             <th>序号</th>
-                            <th>班级代码</th>
+                            <th>年级</th>
                             <th>名称</th>
                             <th>操作</th>
                         </tr>

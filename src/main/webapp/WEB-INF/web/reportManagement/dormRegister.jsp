@@ -21,13 +21,13 @@
 <section class=" layui-form">
     <div class="larry-personal">
         <div class="layui-tab">
-            <button class="layui-btn layui-btn-mini" style="float: left" onclick="studentInfo.exportExcel()"><i class="layui-icon">&#xe61e;</i>导出
+            <button class="layui-btn layui-btn-mini" style="float: left" onclick="communication.exportExcel()"><i class="layui-icon">&#xe61e;</i>导出
                 EXCEl
             </button>
             <div id="container" class="layui-tab-content larry-personal-body clearfix mylog-info-box"
                  style="background: #fff;width: 100%;height: 100%;margin: 5px 0px">
 
-                <div style="text-align: center;font-size: 20px;font-weight: bold">高职学院职业导师沟通次数报表
+                <div style="text-align: center;font-size: 20px;font-weight: bold">高职学院宿舍人数统计表
                     <span style="font-size: 13px;margin-left: 40px">统计日期:<spqn id="time">2017-6-3 12:12:21</spqn></span>
                 </div>
                 <table class="layui-table">
@@ -48,42 +48,42 @@
 <script type="text/javascript" src="${baseurl}/public/common/layui/layui.js"></script>
 <script type="text/javascript" src="${baseurl}/js/searchJs.js"></script>
 <script type="text/javascript">
-    let studentInfo;
+    let communication;
     layui.use(['jquery', 'layer'], function () {
         window.jQuery = window.$ = layui.jquery;
         window.layer = layui.layer;
 
-
-        studentInfo = {
+        communication = {
             list: function () {
-                $.post(baseUrl + "/studentInfoReport/list", function (data) {
+                $.post(baseUrl + "/communicationReport/list", function (data) {
                     if (data.result) {
+                        console.log(data);
                         let date = new Date();
                         $("#time").text(date.getFullYear() + " 年 " + (date.getMonth() + 1) + " 月 " + date.getDate() + " 日");
-                        studentInfo.loadTableHead();
-                        studentInfo.showPage(data.data);
+                        communication.loadTableHead();
+                        communication.showPage(data.data);
                     } else {
                         layer.msg(data.msg);
                     }
                 })
             },
-            exportExcel: function () {
-                location.href = baseUrl + "/studentInfoReport/exportExcel";
-            },
+//            exportExcel: function () {
+//                location.href = baseUrl + "/communicationReport/exportExcel";
+//            },
             showPage: function (data) {
                 let index = 0;
                 let _html = "";
                 let totalCount = 0;
                 data.forEach(teacher => {
                     let littleCount = 0;
-                    let studentInfos = department.studentInfos;
-                    let levels = studentInfos[0].levels;
+                    let types = teacher.type;
+                    let levels = types[0].levels;
 
                     _html += `
                      <tr>
                         <th>` + (++index) + `</th>
-                        <th rowspan="` + studentInfos.length + `">` + department.departmentName + `</th>
-                        <th>` + studentInfos[0].studentInfoName + `</th>
+                        <th rowspan="` + types.length + `">` + teacher.teacher + `</th>
+                        <th>` + types[0].type + `</th>
                         `;
                     for (let j = 0; j < levels.length; ++j) {
                         _html += `<th>` + levels[j].count + `</th>`;
@@ -91,13 +91,13 @@
                     }
                     _html += ` </tr>`;
 
-                    for (let i = 1; i < studentInfos.length; ++i) {
-                        let studentInfo = studentInfos[i];
-                        levels = studentInfo.levels;
+                    for (let i = 1; i < types.length; ++i) {
+                        let type = types[i];
+                        levels = type.levels;
                         _html += `
                              <tr>
                                 <th>` + (++index) + `</th>
-                                <th>` + studentInfo.studentInfoName + `</th>
+                                <th>` + type.type + `</th>
                           `;
                         for (let j = 0; j < levels.length; ++j) {
                             _html += `<th>` + levels[j].count + `</th>`;
@@ -129,14 +129,14 @@
                 $("#head").html("");
                 $("#head").append(`
                         <td>序号</td>
-                        <td>职业导师</td>
-                        <td>沟通类型</td>
+                        <td>系</td>
+                        <td>住宿类型</td>
                 `);
                 getSearchLevels().forEach(level => $("#head").append(`<td>` + level + `</td>`));
             }
         }
         $(function () {
-            studentInfo.list();
+            communication.list();
         })
     })
 
