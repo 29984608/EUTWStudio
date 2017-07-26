@@ -3,6 +3,6 @@
 target/
 out/
 
-
+jdbc.properties
 rebel.xml
 rebble-remote.xml

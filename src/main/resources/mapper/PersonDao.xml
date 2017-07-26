@@ -614,4 +614,10 @@ WHERE direction_id = direction.id
             (#{no},#{areaId},#{item})
         </foreach>
     </insert>
+
+    <select id="queryTeacherCommunity" resultType="map" >
+        select * from t_teacher_community
+
+         where no=#{no}
+    </select>
 </mapper>

@@ -297,5 +297,11 @@ public class PersonServiceImpl implements PersonService {
         return personDao.queryStudentExperienceList();
     }
 
+    @Override
+    public List<Map<String,Object>> queryTeacherCommunity(String no) throws Exception {
+
+        return personDao.queryTeacherCommunity(no);
+    }
+
 
 }

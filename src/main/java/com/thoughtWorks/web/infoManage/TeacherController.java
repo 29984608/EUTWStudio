@@ -82,6 +82,7 @@ public class TeacherController {
             result.put("directions", departmentDao.queryDirectionsByDepartmentId(departmentId));
             result.put("classess", trainModuleDao.queryClassessByDepartmentId(departmentId, Calendar.getInstance().get(Calendar.YEAR) - 4, new Date().getYear()));
             result.put("depts", departmentDao.queryDeptList());
+//            result.put("area",)
 
             return Result.success(result, Constant.OPERATION_SUCCESS);
         } catch (Exception e) {
