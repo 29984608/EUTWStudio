@@ -4,15 +4,13 @@ import com.thoughtWorks.dao.StudentInfoReportDao;
 import com.thoughtWorks.entity.StudentInfoReportStatistic;
 import com.thoughtWorks.service.StudentInfoReportService;
 import com.thoughtWorks.util.reportUtil.NewStudentRegisterReportUtil;
+import com.thoughtWorks.util.reportUtil.StudentInfoReportUtil;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static com.thoughtWorks.util.DateUtil.getSearchLevels;
 
@@ -24,22 +22,20 @@ public class StudentInfoReportServiceImpl implements StudentInfoReportService {
 
     @Override
     public File exportReport(HttpServletRequest request) throws Exception {
-        Map<String, Object> studentInfo = null;
-        Map<String, Object> basicStudent = (Map<String, Object>) studentInfo.get("basicStudentInfo");
-        basicStudent.put("head_image", request.getServletContext().getRealPath("images/user") + "/" + basicStudent.get("head_image") + "");
-        Map<String, String> headers = new HashMap<>();
-        headers.put("fenyuan", "高职学院");
-        headers.put("professionName", basicStudent.get("professionName") + "");
-        headers.put("classesName", basicStudent.get("classesName") + "");
-        headers.put("no", basicStudent.get("no") + "");
-        headers.put("in_school", basicStudent.get("in_school") + "");
-        String fileName = "高职学院学生入学登记表(" + headers.get("no") + ").xls";
+        String[] types = {"班级人数", "合作企业", "自主实习", "创新创业", "专升本", "其它", "在读", "休学", "入伍","留级", "退学", "流失", "复学", "欠费"};
 
-        List<Map<String, Object>> dataSet = new ArrayList<>();
-        dataSet.add(studentInfo);
+        Map<String, String> headers = new LinkedHashMap<>();
+        headers.put("departmentName", "系别");
+        headers.put("level", "年级");
+        headers.put("directionName", "就业方向");
+        headers.put("classesName", "班级名称");
+        for(String type : types)
+            headers.put(type, type);
+        String fileName = "高职学院学籍管理班级人数统计报表.xls";
+
         String path = request.getServletContext().getRealPath("images/temp") + "/" + fileName;
         File file = new File(path);
-        new NewStudentRegisterReportUtil().exportExcel(headers, dataSet, file, fileName.substring(0, fileName.lastIndexOf(".")));
+        new StudentInfoReportUtil().exportExcel(headers, this.studentInfoList(), file, fileName.substring(0, fileName.lastIndexOf(".")));
 
         return file;
     }
