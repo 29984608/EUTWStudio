@@ -259,8 +259,6 @@
                                 let _no = data.data.area[0].area_id;
                                 teacher.queryFloorAndArea(_no, floorsId);
                             });
-
-
                         }
                         else {
                             $("#show_community_update").hide();
@@ -351,10 +349,12 @@
                     let data = $("#update-form").serialize();
                     let floorIds = "";
                     let floorId = $(".floorId_update");
+
                     for (let i = 0; i < floorId.length; ++i) {
                         if ($(floorId[i]).prop("checked")) floorIds += $(floorId[i]).val() + ",";
                     }
-                    data += "&classIds=" + floorIds;
+                    data += "&floorIds=" + floorIds;
+                    console.log(data)
                     layer.confirm('确定修改?', {icon: 3, title: '提示'}, function (index) {
                         layer.close(index);
                         $.post(baseUrl + "/teacher/update", data, function (data) {

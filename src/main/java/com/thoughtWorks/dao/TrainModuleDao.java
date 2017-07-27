@@ -78,4 +78,7 @@ public interface TrainModuleDao {
     void updateTestMethod(Map<String, Object> data);
 
     void deleteTestMethod(String id);
+
+    void deleteTeacherCommunityAllClassesId(String no);
+
 }

@@ -14,7 +14,7 @@ public interface PersonService {
 
     void addTeacher(Teacher teacher, String classIds,String floorIds,int areaId) throws Exception;
 
-    void updateTeacher(Teacher teacher, String classIds) throws Exception;
+    void updateTeacher(Teacher teacher, String classIds,String floorIds,int areaId) throws Exception;
 
     void deleteTeacherById(String id) throws Exception;
 

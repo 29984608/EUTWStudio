@@ -230,4 +230,10 @@
         DELETE FROM stuInfo.t_test_method
         WHERE id = #{id}
     </delete>
+
+    <delete id="deleteTeacherCommunityAllClassesId" parameterType="string">
+        UPDATE t_teacher_community
+        SET no = ""
+        WHERE no = #{no}
+    </delete>
 </mapper>

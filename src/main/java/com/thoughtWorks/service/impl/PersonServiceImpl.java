@@ -63,15 +63,22 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public void updateTeacher(Teacher teacher, String classIds) throws Exception {
+    public void updateTeacher(Teacher teacher, String classIds,String floorIds,int areaId) throws Exception {
         List<String> ids;
+        List<String> floorId;
         if (teacher.getClassify().equals("职业导师")) {
             ids = Arrays.asList(classIds.split(","));
             trainModuleDao.deleteTeacherAllClassesId(teacher.getNo());
             if (ids.size() != 0) trainModuleDao.updateClassTeacher(teacher.getNo(), ids);
-        } else {
+        } else if (teacher.getClassify().equals("行政")) {
             teacher.setDepartmentId("0");
             teacher.setDirectionId("0");
+        }else{
+            teacher.setDepartmentId("0");
+            teacher.setDirectionId("0");
+            floorId = Arrays.asList(floorIds.split(","));
+            trainModuleDao.deleteTeacherCommunityAllClassesId(teacher.getNo());
+            if (floorId.size() != 0) personDao.insertCommunityTeacher(teacher.getNo(),areaId, floorId);
         }
         personDao.updateTeacher(teacher);
     }
