@@ -607,4 +607,17 @@ WHERE direction_id = direction.id
     <select id="queryStudentExperienceList" resultType="map">
         select * from t_student_experience
     </select>
+
+    <insert id="insertCommunityTeacher">
+        INSERT t_teacher_community (no,area_id,floor_id) VALUES
+        <foreach collection="floorId"  item="item" index="index" separator="," >
+            (#{no},#{areaId},#{item})
+        </foreach>
+    </insert>
+
+    <select id="queryTeacherCommunity" resultType="map" >
+        select * from t_teacher_community
+
+         where no=#{no}
+    </select>
 </mapper>

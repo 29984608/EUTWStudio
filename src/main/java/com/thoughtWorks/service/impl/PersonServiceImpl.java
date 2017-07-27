@@ -33,19 +33,32 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public void addTeacher(Teacher teacher, String classIds) throws Exception {
+    public void addTeacher(Teacher teacher, String classIds,String floorIds,int areaId) throws Exception {
         List<String> ids;
-        if (teacher.getClassify().equals("1")) {
-            teacher.setClassify("职业导师");
-            ids = Arrays.asList(classIds.split(","));
-            teacher.setDeptId(0);
-            if (ids.size() != 0) trainModuleDao.updateClassTeacher(teacher.getNo(), ids);
-        } else if (teacher.getClassify().equals("2")) {
-            teacher.setClassify("系辅导员、行政");
+        List<String> floorId;
+        if (teacher.getClassify().equals("3")) {
+            teacher.setClassify("社区导员");
             teacher.setDepartmentId("0");
             teacher.setDirectionId("0");
+            teacher.setDeptId(0);
+            floorId = Arrays.asList(floorIds.split(","));
+            if (floorId.size() != 0) personDao.insertCommunityTeacher(teacher.getNo(),areaId, floorId);
+            personDao.addTeacher(teacher);
+        }else {
+            if (teacher.getClassify().equals("1")) {
+                teacher.setClassify("职业导师");
+                ids = Arrays.asList(classIds.split(","));
+                teacher.setDeptId(0);
+                if (ids.size() != 0) trainModuleDao.updateClassTeacher(teacher.getNo(), ids);
+            } else if (teacher.getClassify().equals("2")) {
+                teacher.setClassify("行政");
+                teacher.setDepartmentId("0");
+                teacher.setDirectionId("0");
+            }
+            personDao.addTeacher(teacher);
         }
-        personDao.addTeacher(teacher);
+
+
 
     }
 
@@ -282,6 +295,12 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public List<Map<String, Object>> queryStudentExperienceList() throws Exception {
         return personDao.queryStudentExperienceList();
+    }
+
+    @Override
+    public List<Map<String,Object>> queryTeacherCommunity(String no) throws Exception {
+
+        return personDao.queryTeacherCommunity(no);
     }
 
 

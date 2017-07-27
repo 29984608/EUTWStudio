@@ -105,10 +105,16 @@
 
                 if (id == 1) {//职业导师
                     $("#show_dept").hide();
+                    $("#show_community").hide();
                     $("#show_career").show();
                 } else if (id == 2) {//辅导员或行政
                     $("#show_dept").show();
                     $("#show_career").hide();
+                    $("#show_community").hide();
+                } else if (id == 3) {//辅导员或行政
+                    $("#show_community").show();
+                    $("#show_career").hide();
+                    $("#show_dept").hide();
                 }
             }
             ,
@@ -154,6 +160,23 @@
                 }
                 return totalHtml;
             },
+            loadFloor: function (floor, no) {
+                console.log(floor)
+                let totalHtml = "";
+                let _html = "";
+                for (let i = 0; i < floor.length; ++i) {
+                    let isChecked = floor[i].teacherId == no ? "checked" : "";
+                    _html += ` <input class="floorId" type="checkbox" ` + isChecked + ` value="` + floor[i].id + `" title="` + floor[i].name + `" >`
+                    if (i === floor.length - 1) {
+                        totalHtml += ` <div class="layui-form-item">
+                                             <div class="layui-input-block" >`
+                            + _html + `
+                                             </div>
+                                       </div>`;
+                    }
+                }
+                return totalHtml;
+            },
             add: function () {
                 $.post(baseUrl + "/teacher/loadDepartmentsAndDirectionsAndClasses", function (data) {
                     if (data.result) {
@@ -164,6 +187,7 @@
                         $("#department").html(teacher.loadDepartmentOrDirection(departments, "-"));
                         $("#direction").html(teacher.loadDepartmentOrDirection(directions, "-"));
                         $("#classes").html(teacher.loadClasses(classess, "-"));
+
 
                         form.render();
                         layer.open({
@@ -223,11 +247,18 @@
             addAjax: function () {
                 let data = $("#add-form").serialize();
                 let classedIds = "";
+                let floorIds = "";
                 let classes = $(".classId");
+                let floors = $(".floorId");
                 for (let i = 0; i < classes.length; ++i) {
                     if ($(classes[i]).prop("checked")) classedIds += $(classes[i]).val() + ",";
                 }
                 data += "&classIds=" + classedIds;
+                for (let i = 0; i < floors.length; ++i) {
+                    if ($(floors[i]).prop("checked")) floorIds += $(floors[i]).val() + ",";
+                }
+                data += "&floorIds=" + floorIds;
+
                 $.post(baseUrl + "/teacher/add", data, function (data) {
                     layer.msg(data.msg);
                     if (data.result) {
@@ -266,9 +297,35 @@
                     });
                 }
             }
+            ,
+            loadDepartmentOrDirection: function (data, selectId) {
+                let _html = ""
+                for (let i = 0; i < data.length; ++i) {
+                    if (selectId == data[i].id) {
+                        _html += `<option selected value="` + data[i].id + `">` + data[i].name + `</option>`;
+                    } else {
+                        _html += `<option value="` + data[i].id + `">` + data[i].name + `</option>`;
+                    }
+                }
+
+                return _html;
+            }
+            ,
+            queryFloorAndAreaOfRoom: function () {
+                $.post(baseUrl + "/dorm/room/showAreaAndFloorsToQuery", function (data) {
+                    if (data.result) {
+                        $("#queryAreaOfRoom").html(`<option value="0">区号</option>`).append(teacher.loadDepartmentOrDirection(data.data.queryAreaOfRoom, "-"))
+                        $("#floor").html(teacher.loadFloor(data.data.queryFloorOfRoom, "-"));
+//                        $("#queryFloor").html(`<!--<option value="">层号</option>-->`).append(teacher.loadDepartmentOrDirection(data.data.queryFloorOfRoom, "-"))
+                        form.render();
+                    }
+                })
+            }
+
         };
         $(function () {
             teacher.list();
+            teacher.queryFloorAndAreaOfRoom();
 
             form.on('select(department)', function (data) {
                 $.post(baseUrl + "/teacher/loadDirectionsAndClassesByDepartmentId", {departmentId: data.value}, function (data) {
@@ -292,11 +349,26 @@
                             let depts = data.data;
                             $("#dept").html(teacher.loadDepartmentOrDirection(depts, "-"));
                             form.render();
-                        }else{
+                        } else {
                             layer.msg(data.msg);
                         }
                     })
             });
+
+            form.on('select(queryAreaOfRoom)', function (data) {
+                var id = data.value;
+                $.post(baseUrl + "dorm/room/showAreaAndFloors", {areaId: data.value}, function (data) {
+                    if (data.result) {
+                        var queryAreaOfRoom = data.data.queryAreaOfRoom
+                        var queryFloorOfRoom = data.data.queryFloorOfRoom
+                        $("#queryAreaOfRoom").html(teacher.loadDepartmentOrDirection(queryAreaOfRoom, id))
+                        $("#floor").html(teacher.loadFloor(queryFloorOfRoom, "-"));
+//                        $("#queryFloor").html(`<option value="">层号</option>`).append(communication.loadDepartmentOrDirection(queryFloorOfRoom, "-"))
+
+                        form.render();
+                    }
+                })
+            })
 
         });
     });

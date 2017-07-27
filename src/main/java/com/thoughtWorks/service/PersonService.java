@@ -12,7 +12,7 @@ public interface PersonService {
 
     List<Map<String, String>> queryTeachersList(PageUtil page) throws Exception;
 
-    void addTeacher(Teacher teacher, String classIds) throws Exception;
+    void addTeacher(Teacher teacher, String classIds,String floorIds,int areaId) throws Exception;
 
     void updateTeacher(Teacher teacher, String classIds) throws Exception;
 
@@ -71,4 +71,6 @@ public interface PersonService {
     List<Map<String, Object>> queryStudentsClassList() throws Exception;
 
     List<Map<String, Object>> queryStudentExperienceList() throws Exception;
+
+    List <Map<String,Object>> queryTeacherCommunity(String no)throws Exception;
 }
