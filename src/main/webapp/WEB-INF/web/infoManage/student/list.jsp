@@ -73,10 +73,10 @@
                         <div class="layui-form-item">
                             <div class="layui-form-inline">
                                 <label class="layui-form-label">性别</label>
-                                <div class="layui-input-inline" id="sex" style="width: 30%">
-                                    <input type="radio" name="sex" value="" title="全部" checked="">
-                                    <input type="radio" name="sex" value="男" title="男">
-                                    <input type="radio" name="sex" value="女" title="女">
+                                <div class="layui-input-inline" id="sexQuery" style="width: 30%">
+                                    <input type="radio" name="sexQuery" value="" title="全部" checked="">
+                                    <input type="radio" name="sexQuery" value="男" title="男">
+                                    <input type="radio" name="sexQuery" value="女" title="女">
                                 </div>
 
                                 <label class="layui-form-label">住宿类型</label>
@@ -196,6 +196,7 @@
     let totalSize = 10;
     let currentIndex = 1;
     let pageSize = 10;
+    var studentInfo;
     layui.use(['jquery', 'layer', 'element', 'laypage', 'form', 'laytpl', 'tree'], function () {
         window.jQuery = window.$ = layui.jquery;
         window.layer = layui.layer;
@@ -230,7 +231,7 @@
                 let roomNo_search = $("#roomNo_search").val();
                 let studentNo_search = $("#studentNo_search").val();
                 let name = $("#studentName_search").val();
-                let sex = $("input[name='sex']:checked").val();
+                let sex = $("input[name='sexQuery']:checked").val();
                 let TypeOfAccommodation = $("input[name='TypeOfAccommodation']:checked").val();
 
                 $.ajax({
@@ -381,6 +382,7 @@
                     success: function (data) {
                         if (data.result) {
 
+                            studentInfo = data.students;
                             let studentList = data.students;
                             let familyList = data.students_family;
                             let professionList = data.professionList;
@@ -390,7 +392,7 @@
 
                             $("#updateStudentNo").val(studentList.no)
                             $("#updateStudentName").val(studentList.name);
-                            $("input:radio[value='" + studentList.gender + "']").prop('checked', 'true');
+                            $("input:radio[value='" + studentList.gender + "'][name='sex']").prop('checked', 'true');
                             $("#updateStudentNationalities").val(studentList.famous_family);
                             $("#updateStudentIdCard").val(studentList.idcard);
                             $("#updateStudentNativePlace").val(studentList.native_place);
@@ -478,19 +480,7 @@
                                </span></th>
                                     </tr>
                                `)
-                                /*let count = 0;
-                                count = this($(".updateStudentParent_political_status option")).length;
-                                alert(count)
-                                for (var i = 0; i < count; i++) {
-                                    if ($("#updateStudentParent_political_status").get(0).options[i].text == familyList[j].political_status) {
-                                        $("#updateStudentParent_political_status").get(0).options[i].selected = true;
-                                    }
-                                    if (familyList[j].political_status!= "共青团员" && familyList[j].political_status!= "预备党员"&& familyList[j].political_status!= "中共党员"&& familyList[j].political_status!= "积极分子"&& familyList[j].political_status!= "群众" && familyList[j].political_status!= "") {
-                                        $("#updateStudentParent_political_status").get(0).options[count - 1].selected = true;
-                                        $("#otherParty1").show();
-                                        $("#other_updateStudentParent_political_status").val(familyList[j].political_status);
-                                    }
-                                }*/
+
                                 $("#family_member_information").append(`
                            <tr id="family_information2">
                                         <th colspan="2">工作单位：<span>
@@ -521,6 +511,19 @@
                             let family_relationship = $(".family_relationship");//称谓
                             let updateStudentParentsName = $(".updateStudentParentsName");//家庭成员姓名
 
+                            /*let count = 0;
+                                count = this($(".updateStudentParent_political_status option")).length;
+                                alert(count)
+                                for (var i = 0; i < count; i++) {
+                                    if ($("#updateStudentParent_political_status").get(0).options[i].text == familyList[j].political_status) {
+                                        $("#updateStudentParent_political_status").get(0).options[i].selected = true;
+                                    }
+                                    if (familyList[j].political_status!= "共青团员" && familyList[j].political_status!= "预备党员"&& familyList[j].political_status!= "中共党员"&& familyList[j].political_status!= "积极分子"&& familyList[j].political_status!= "群众" && familyList[j].political_status!= "") {
+                                        $("#updateStudentParent_political_status").get(0).options[count - 1].selected = true;
+                                        $("#otherParty1").show();
+                                        $("#other_updateStudentParent_political_status").val(familyList[j].political_status);
+                                    }
+                                }*/
                             let updateStudentParent_employer = $(".updateStudentParent_employer");//工作单位
                             let updateStudentParent_duties = $(".updateStudentParent_duties");//职务
                             let updateStudentParent_phone = $(".updateStudentParent_phone");//联系电话
@@ -718,11 +721,223 @@
 
                 return _html;
             },
-            updateStudentList:function () {
-                alert($("#updateStudentNo").val());
-                alert($("input[name='sex'][checked]").val());
-                alert($("#updateStudentSex")).val()
+            updateStudentList: function () {
+                let no = $("#updateStudentNo").val()
+                let is_marry = $('#isMarry input[name="isMarry"]:checked ').val()
+                let height = $("#updateStudentHeight").val()
+                let wight = $("#updateStudentWight").val()
+                let health_status = $('#health input[name="health"]:checked ').val()
+                let student_type = $('#updateStudentType input[name="student_type"]:checked ').val()
+                let blood = $("#updateStudentBloodType").find("option:selected").text()
+                if ($("#updateStudentPoliticalOutlook").find("option:selected").text() == "其他党派") {
+                    let political_status = $("#otherUpdateStudentPoliticalOutlook").val()
+                } else {
+                    let political_status = $("#updateStudentPoliticalOutlook").find("option:selected").text()
+                }
 
+                if ($("#updateStudent_pre_school_education").find("option:selected").text() == "其他") {
+                    let pre_school_education = $("#other_updateStudent_pre_school_education").val()
+                } else {
+                    let pre_school_education = $("#updateStudent_pre_school_education").find("option:selected").text()
+                }
+
+                let student_classify = $("#student_classify input[name='student_classify']:checked").val()
+                let idcard_address = $("#Identity_card_address").val()
+                //家庭实际住址
+                $("#province3").find("option:selected").text()
+                $("#city3").find("option:selected").text()
+                $("#district3").find("option:selected").text()
+                if ($("#province3").find("option:selected").text() == "—— 省 ——" || $("#city3").find("option:selected").text() == "—— 市 ——" || $("#district3").find("option:selected").text() == "—— 区 ——" || $("#detailedAddress").val() == "") {
+                    let actual_address = $("#detailedAddresses").val()
+                } else {
+                    let detailedAddresses = "";
+                    detailedAddresses += $("#province3").find("option:selected").text() + "-";
+                    detailedAddresses += $("#city3").find("option:selected").text() + "-";
+                    detailedAddresses += $("#district3").find("option:selected").text() + "-";
+                    detailedAddresses += $("#detailedAddress").val();
+                    let actual_address = detailedAddresses;
+                }
+
+                if ($("#province1").find("option:selected").text() == "—— 省 ——" || $("#city1").find("option:selected").text() == "—— 市 ——" || $("#district1").find("option:selected").text() == "—— 区 ——") {
+                    let origin_address = $("#update_name_of_the_source").val()
+                } else {
+                    let detailedAddresses = "";
+                    detailedAddresses += $("#province1").find("option:selected").text() + "-";
+                    detailedAddresses += $("#city1").find("option:selected").text() + "-";
+                    detailedAddresses += $("#district1").find("option:selected").text();
+                    let origin_address = detailedAddresses;
+                }
+
+                let family_zip_code = $("#updateStudentZip_code").val();
+                let family_phone = $("#updateStudentHome_phone").val();
+                let emergency_contact_name = $("#updateStudent_emergency_contact").val();
+                let emergency_contact_method = $("#updateStudent_emergency_contact_phone").val();
+                let account_in = $("#whetherToTransfer input[name='whetherToTransfer']:checked").val()
+                let area_origin_name = $("#birthplaceName input[name='birthplaceName']:checked").val()
+
+                //入学前档案所在单位
+                if ($("#province2").find("option:selected").text() == "—— 省 ——" || $("#city2").find("option:selected").text() == "—— 市 ——" || $("#district2").find("option:selected").text() == "—— 区 ——" || $("#updateStudent_Pre_enrollment_file_unit_detailed").val() == "") {
+                    let pre_school_file_where_location = $("#Pre_enrollment_file_unit").val()
+                } else {
+                    let detailedAddresses = "";
+                    detailedAddresses += $("#province2").find("option:selected").text() + "-";
+                    detailedAddresses += $("#city2").find("option:selected").text() + "-";
+                    detailedAddresses += $("#district2").find("option:selected").text() + "-";
+                    detailedAddresses += $("#updateStudent_Pre_enrollment_file_unit_detailed").val();
+                    let pre_school_file_where_location = detailedAddresses;
+                }
+
+                let file_in = $("#is_the_file_transferred input[name='is_the_file_transferred']:checked").val();
+                let pre_school_name = $("#Pre_school_name").val();
+
+                //入学前户口所在派出所
+                if ($("#province5").find("option:selected").text() == "—— 省 ——" || $("#city5").find("option:selected").text() == "—— 市 ——" || $("#district5").find("option:selected").text() == "—— 区 ——" || $("#Pre_school_account_where_the_police_station_detailed").val() == "") {
+                    let pre_school_account_where_station = $("#Pre_enrollment_file_unit").val()
+                } else {
+                    let detailedAddresses = "";
+                    detailedAddresses += $("#province5").find("option:selected").text() + "-";
+                    detailedAddresses += $("#city5").find("option:selected").text() + "-";
+                    detailedAddresses += $("#district5").find("option:selected").text() + "-";
+                    detailedAddresses += $("#Pre_school_account_where_the_police_station_detailed").val();
+                    let pre_school_account_where_station = detailedAddresses;
+                }
+
+                //家庭成员信息
+
+
+                //教育经历
+                $("#educational_experience").val();
+
+                //学业信息
+                $("#updateStudentType1 input[name='student_type1']:checked").val();
+                //录取专业
+                "录取专业"
+                let origin_profession_id = $("#studentsProfessionList").val();
+                //现专业
+                let profession_id = $("#studentsNowProfessional").val();
+                //就业方向
+                let direction_id = $("#employment_direction").val();
+                //班级
+                let classes_id = $("#student_class").val();
+                //职业导师
+                $("#update_career_mentor").val()
+                $("#update_community_counselor").val()
+
+                let student_status = $("#update_student_status").find('option:selected').text()
+
+                let hard_type = $("#update_hard_type input[name='update_hard_type']:checked").val();
+
+                //缴费状态
+                if ($("#update_payment_status").find('option:selected').text() == "欠费") {
+                    let payment_status_first_year = $("#update_payment_status").find('option:selected').text()
+                    let arrears_first_year = $("#Amount_of_arrears").val()
+                } else {
+                    let payment_status_first_year = $("#update_payment_status").find('option:selected').text()
+                }
+
+                if ($("#update_payment_status2").find('option:selected').text() == "欠费") {
+                    let payment_status_second_year = $("#update_payment_status2").find('option:selected').text()
+                    let arrears_second_year = $("#Amount_of_arrears2").val()
+                } else {
+                    let payment_status_second_year = $("#update_payment_status2").find('option:selected').text()
+                }
+
+                if ($("#update_payment_status3").find('option:selected').text() == "欠费") {
+                    let payment_status_third_year = $("#update_payment_status3").find('option:selected').text()
+                    let arrears_third_year = $("#Amount_of_arrears3").val()
+                } else {
+                    let payment_status_third_year = $("#update_payment_status3").find('option:selected').text()
+                }
+
+                //实践类型
+                if ($("#update_practical_type").find('option:selected').text() == "其他") {
+                    let practice_learning_type$ = $("#other_practical_type").val()
+                } else {
+                    let practice_learning_type = $("#update_practical_type").find('option:selected').text()
+                }
+
+                //宿舍信息
+                if ($("#queryAreas").val() != "" || $("#queryFloors").val() != "" || $("#queryRooms").val() != "") {
+                    let aera_id = $("#queryAreas").val()
+                    let floor_id = $("#queryFloors").val()
+                    let room_id = $("#queryRooms").val()
+                }else {
+                    let aera_id = studentInfo.area_id;
+                    let floor_id = studentInfo.floor_id;
+                    let room_id = studentInfo.room_id;
+                }
+
+                //获奖或荣誉
+                $("#update_award_or_honor").val();
+
+//                $.post(baseUrl + "student/updateStudentAjax",
+//                    {
+                        /*no:no,
+                        name:name,
+                        gender:gender,
+                        department_id:department_id,
+                        direction_id:direction_id,
+                        level:level,
+                        classes_id:classes_id,
+                        profession_id:profession_id,
+                        origin_profession_id:origin_profession_id,
+                        parent_name:parent_name,
+                        famous_family:famous_family,
+                        idcard:idcard,
+                        born:born,
+                        head_image:head_image,
+                        health_status:health_status,
+                        student_type:student_type,
+                        in_school:in_school,
+                        graduate_school:graduate_school,
+                        blood:blood,
+                        height:height,
+                        is_marry:is_marry,
+                        weight:weight,
+                        political_status:political_status,
+                        pre_school_education:pre_school_education,
+                        student_classify:student_classify,
+                        idcard_address:idcard_address,
+                        actual_address:actual_address,
+                        origin_address:origin_address,
+                        family_phone:family_phone,
+                        family_zip_code:family_zip_code,
+                        student_contact_method:student_contact_method,
+                        emergency_contact_name:emergency_contact_name,
+                        emergency_contact_method:emergency_contact_method,
+                        account_in:account_in,
+                        email:email,
+                        qq:qq,
+                        area_origin_name:area_origin_name,
+                        sat_score:sat_score,
+                        pre_school_file_where_location:pre_school_file_where_location,
+                        file_in:file_in,
+                        pre_school_name:pre_school_name,
+                        pre_school_account_where_station:pre_school_account_where_station,
+                        pre_school_work:pre_school_work,
+                        pre_school_staff:pre_school_staff,
+                        own_experience:own_experience,
+                        own_punishment:own_punishment,
+                        student_status:student_status,
+                        payment_status_first_year:payment_status_first_year,
+                        payment_status_second_year:payment_status_second_year,
+                        payment_status_third_year:payment_status_third_year,
+                        practice_learning_type:practice_learning_type,
+                        stay_type:stay_type,
+                        off_school_stay_address:off_school_stay_address,
+                        aera_id:aera_id,
+                        floor_id:floor_id,
+                        room_id:room_id,
+                        counselor_id:counselor_id,
+                        is_out:is_out,
+                        religion:religion,
+                        hard_type:hard_type*/
+//                    },
+//
+//                    function (data) {
+//
+//                    }
+//                )
             },
 
             showUpdateDorms: function () {

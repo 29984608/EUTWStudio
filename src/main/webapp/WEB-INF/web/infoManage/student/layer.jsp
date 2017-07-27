@@ -526,7 +526,7 @@
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="sr-only" for="city3">City</label>
-                                                            <select class="form-control" id="city3" lay-ignore></select>
+                                                                <select class="form-control" id="city3" lay-ignore></select>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="sr-only" for="district3">District</label>
@@ -541,7 +541,7 @@
                                                             <input type="text" name="detailedAddress" required
                                                                    lay-verify="required" placeholder="请输入详细地址"
                                                                    autocomplete="off" class="layui-input"
-                                                                   id="detailedAddress">
+                                                                       id="detailedAddress">
                                                         </div>
                                                     </div>
                                                 </form>
@@ -694,7 +694,7 @@
                                                             <input type="text" name="detailedAddress" required
                                                                    lay-verify="required" placeholder="请输入详细地址"
                                                                    autocomplete="off" class="layui-input"
-                                                                   id="updateStudent_Pre-enrollment_file_unit_detailed">
+                                                                   id="updateStudent_Pre_enrollment_file_unit_detailed">
                                                         </div>
                                                     </div>
                                                 </form>
@@ -706,7 +706,7 @@
                                     <tr>
                                         <th colspan="3">档案是否转入：
                                             <span>
-                                        <div class="layui-inline" pane="" id="is-the-file-transferred">
+                                        <div class="layui-inline" pane="" id="is_the_file_transferred">
                                             <label class="layui-form-label" style="width: auto"></label>
                                             <div class="layui-inline">
                                                <input name="is_the_file_transferred" value="是" title="是"
@@ -829,7 +829,7 @@
                                             <div class="layui-input-inline" style="width: 60%">
                                                 <input type="text" name="text" required lay-verify="required"
                                                        placeholder="请输入内容" autocomplete="off" class="layui-input"
-                                                       id="upadte_SAT_score">
+                                                       id="upadte_SAT_score" readonly>
                                              </div>
                                         </span></th>
 
@@ -869,13 +869,13 @@
                                         <th colspan="2">职业导师：<span>
                                             <div class="layui-input-inline" style="width: 60%">
                                                 <input type="text" name="text" required lay-verify="required"
-                                                       placeholder="请输入内容" autocomplete="off" class="layui-input">
+                                                       placeholder="请输入内容" autocomplete="off" class="layui-input" id="update_career_mentor">
                                              </div>
                                         </span></th>
                                         <th colspan="2">社区辅导员：<span>
                                             <div class="layui-input-inline" style="width: 60%">
                                                 <input type="text" name="text" required lay-verify="required"
-                                                       placeholder="请输入内容" autocomplete="off" class="layui-input">
+                                                       placeholder="请输入内容" autocomplete="off" class="layui-input" id="update_community_counselor">
                                              </div>
                                         </span></th>
                                     </tr>

@@ -73,7 +73,6 @@ public class StudentController {
             List<Map<String, String>> directionList = personService.queryStudentsDirection();
             List<Map<String, Object>> classesList = personService.queryStudentsClassList();
             List<Map<String, Object>> experienceList = personService.queryStudentExperienceList();
-            System.out.println("111111111111"+students);
             data.put("students", students);
             data.put("students_family", students_family);
             data.put("professionList",professionList);
