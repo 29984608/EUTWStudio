@@ -379,6 +379,12 @@
             #{item}
         </foreach>
     </update>
+    <select id="updateStudentTeacherId">
+        UPDATE t_student SET teacher_id=#{teacherId} WHERE no IN
+        <foreach collection="ids" open="(" separator="," close=")" item="item">
+            #{item}
+        </foreach>
+    </select>
     <insert id="addCommunication" parameterType="CommunicationContent">
         INSERT INTO t_communication (teacher_id, student_id, talk_name, direction, content) VALUES
             (#{teacherId}, #{studentId}, #{talkName}, #{direction}, #{content})

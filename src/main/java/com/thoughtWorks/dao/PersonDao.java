@@ -4,6 +4,7 @@ import com.thoughtWorks.dto.SearchDto;
 import com.thoughtWorks.entity.*;
 import org.apache.ibatis.annotations.Param;
 import org.apache.poi.hssf.record.ObjRecord;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 import java.util.Map;
@@ -86,5 +87,7 @@ public interface PersonDao {
     void insertCommunityTeacher(@Param("no") String no,@Param("areaId") int areaId,@Param("floorId") List<String> floorId)throws Exception;
 
     List <Map<String,Object>> queryTeacherCommunity(@Param("no") String no)throws Exception;
+
+    void updateStudentTeacherId(@Param("teacherId") String teacherId, @Param("ids") List<String> ids);
 }
 

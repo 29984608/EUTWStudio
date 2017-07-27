@@ -76,8 +76,9 @@ public class StudentClassController {
     @ResponseBody
     public Result distributedClass(String classesId, String studentIds) {
         try {
+            ActiveUser teacher = (ActiveUser) SecurityUtils.getSubject().getPrincipal();
             personService.distributedClass(classesId, studentIds);
-
+            personService.updateStudentTeacherId(teacher.getUserName(),studentIds);
             return Result.success(null, Constant.ADD_SUCCESS);
         } catch (Exception e) {
             e.printStackTrace();
