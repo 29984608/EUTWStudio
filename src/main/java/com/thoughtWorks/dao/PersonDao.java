@@ -4,13 +4,14 @@ import com.thoughtWorks.dto.SearchDto;
 import com.thoughtWorks.entity.*;
 import org.apache.ibatis.annotations.Param;
 import org.apache.poi.hssf.record.ObjRecord;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 import java.util.Map;
 
 public interface PersonDao {
 
-    List<Map<String,String>> queryPersonList(Map<String, Object> data);
+    List<Map<String, String>> queryPersonList(Map<String, Object> data);
 
     Long queryPersonTotalCount();
 
@@ -20,14 +21,15 @@ public interface PersonDao {
 
     void deleteTeacherById(String id);
 
-    List<Map<String,String>> queryStudentsByLikes(Map<String, String> data);
+    List<Map<String, String>> queryStudentsByLikes(Map<String, String> data);
 
-    Map<String,String> queryTeacherByNo(String userName);
+    Map<String, String> queryTeacherByNo(String userName);
 
     void distributedClass(@Param("classesId") String classesId, @Param("ids") List<String> ids);
 
-    List<Map<String,String>> queryStudentsByClassesIdsAndLikeName( Map<String, Object> data);
-    long queryStudentsCount(@Param("searchDto")SearchDto searchDto);
+    List<Map<String, String>> queryStudentsByClassesIdsAndLikeName(Map<String, Object> data);
+
+    long queryStudentsCount(@Param("searchDto") SearchDto searchDto);
 
     Student queryStudentByNo(String stuNo);
 
@@ -39,7 +41,7 @@ public interface PersonDao {
 
     void distributeDirection(@Param("directionId") String directionId, @Param("ids") List<String> ids);
 
-    List<Map<String,Object>> queryAllDept(Map<String, Object> data);
+    List<Map<String, Object>> queryAllDept(Map<String, Object> data);
 
     Long queryDeptTotalCount();
 
@@ -59,32 +61,38 @@ public interface PersonDao {
 
     List<Classes> queryClassByDepartmentId(int departmentId);
 
-    List<Map<String ,Object>> queryStudentInfoById(String studentNo )throws Exception ;
+    List<Map<String, Object>> queryStudentInfoById(String studentNo) throws Exception;
 
-    Long queryStudentsListCount( @Param("searchDto") SearchDto searchDto);
+    Long queryStudentsListCount(@Param("searchDto") SearchDto searchDto);
 
-    List<Map<String,Object>> queryStudentList(Map<String, Object> data);
+    List<Map<String, Object>> queryStudentList(Map<String, Object> data);
 
-    List<Map<String,Object>> updateByStudentNo(String studentNo)throws Exception;
+    List<Map<String, Object>> updateByStudentNo(String studentNo) throws Exception;
 
-    List<Map<String,Object>> updateExperienceByStudentNo(String studentNo)throws Exception;
+    List<Map<String, Object>> updateExperienceByStudentNo(String studentNo) throws Exception;
 
-    List<Map<String,Object>> updateFamilyByStudentNo(String studentNo)throws Exception;
+    List<Map<String, Object>> updateFamilyByStudentNo(String studentNo) throws Exception;
 
-    Map<String,Object> queryStudentsToUpdate(String studentNo)throws Exception;
+    Map<String, Object> queryStudentsToUpdate(String studentNo) throws Exception;
 
-    List<Map<String,Object>> queryStudentFamily(String studentNo)throws Exception;
+    List<Map<String, Object>> queryStudentFamily(String studentNo) throws Exception;
 
-    List<Map<String,String>> queryStudentsProfessionList()throws Exception;
+    List<Map<String, String>> queryStudentsProfessionList() throws Exception;
 
     List<Map<String, String>> queryStudentsDirection() throws Exception;
 
     List<Map<String, Object>> queryStudentsClassList() throws Exception;
 
-    List<Map<String,Object>> queryStudentExperienceList() throws Exception;
+    List<Map<String, Object>> queryStudentExperienceList() throws Exception;
 
-    void insertCommunityTeacher(@Param("no") String no,@Param("areaId") int areaId,@Param("floorId") List<String> floorId)throws Exception;
+    void insertCommunityTeacher(@Param("no") String no, @Param("areaId") int areaId, @Param("floorId") List<String> floorId) throws Exception;
 
-    List <Map<String,Object>> queryTeacherCommunity(@Param("no") String no)throws Exception;
+    List<Map<String, Object>> queryTeacherCommunity(@Param("no") String no) throws Exception;
+
+    void updateStudentTeacherId(@Param("teacherId") String teacherId, @Param("ids") List<String> ids);
+
+    List<Map<String, Object>> teacherCommunity(String no);
+
+    List<Map<String, Object>> teacherCommunity_floors(String no);
 }
 

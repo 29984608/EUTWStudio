@@ -303,5 +303,20 @@ public class PersonServiceImpl implements PersonService {
         return personDao.queryTeacherCommunity(no);
     }
 
+    @Override
+    public void updateStudentTeacherId(String teacherId, String studentIds) throws Exception {
+        List<String> ids = Arrays.asList(studentIds.split(","));
+        if (ids.size() != 0) personDao.updateStudentTeacherId(teacherId, ids);
+    }
+    public List<Map<String, Object>> teacherCommunity(String no) {
+
+        return personDao.teacherCommunity(no);
+    }
+    @Override
+    public List<Map<String, Object>> teacherCommunity_floors(String no) {
+
+        return personDao.teacherCommunity_floors(no);
+    }
+
 
 }

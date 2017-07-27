@@ -379,6 +379,12 @@
             #{item}
         </foreach>
     </update>
+    <select id="updateStudentTeacherId">
+        UPDATE t_student SET teacher_id=#{teacherId} WHERE no IN
+        <foreach collection="ids" open="(" separator="," close=")" item="item">
+            #{item}
+        </foreach>
+    </select>
     <insert id="addCommunication" parameterType="CommunicationContent">
         INSERT INTO t_communication (teacher_id, student_id, talk_name, direction, content) VALUES
             (#{teacherId}, #{studentId}, #{talkName}, #{direction}, #{content})
@@ -619,5 +625,15 @@ WHERE direction_id = direction.id
         select * from t_teacher_community
 
          where no=#{no}
+    </select>
+    <select id="teacherCommunity" resultType="map" >
+        select area_id from t_teacher_community
+
+        where no=#{no}
+    </select>
+    <select id="teacherCommunity_floors" resultType="map" >
+        select floor_id from t_teacher_community
+
+        where no=#{no}
     </select>
 </mapper>

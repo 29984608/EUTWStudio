@@ -161,12 +161,18 @@
                 return totalHtml;
             },
             loadFloor: function (floor, no) {
-                console.log(floor)
                 let totalHtml = "";
                 let _html = "";
+
                 for (let i = 0; i < floor.length; ++i) {
-                    let isChecked = floor[i].teacherId == no ? "checked" : "";
-                    _html += ` <input class="floorId" type="checkbox" ` + isChecked + ` value="` + floor[i].id + `" title="` + floor[i].name + `" >`
+                    let a =0;
+                    let isChecked;
+                    for (let j = 0; j < no.length; j++) {
+                        if (floor[i].id == no[j].floor_id)a++;
+                    }
+                    if (a != 0) isChecked = "checked";
+                    else isChecked = "";
+                    _html += ` <input class="floorId_update" type="checkbox" ` + isChecked + ` value="` + floor[i].id + `" title="` + floor[i].name + `" >`
                     if (i === floor.length - 1) {
                         totalHtml += ` <div class="layui-form-item">
                                              <div class="layui-input-block" >`
@@ -188,7 +194,6 @@
                         $("#direction").html(teacher.loadDepartmentOrDirection(directions, "-"));
                         $("#classes").html(teacher.loadClasses(classess, "-"));
 
-
                         form.render();
                         layer.open({
                             type: 1,
@@ -201,6 +206,7 @@
 
             },
             update: function (no, departmentId, directionId, name, gender, classify, deptId) {
+
                 $.post(baseUrl + "/teacher/loadDirectionsAndClassesByDepartmentId", {departmentId: departmentId}, function (data) {
                     if (data.result) {
                         let departments = data.data.departments;
@@ -216,11 +222,25 @@
                         else $("#gender-woman").prop({checked: true});
                         if (classify === "职业导师") {
                             $("#show_dept_update").hide();
+                            $("#show_community_update").hide();
                             $("#show_career_update").show();
                             $("#department-update").html(teacher.loadDepartmentOrDirection(departments, departmentId));
                             $("#direction-update").html(teacher.loadDepartmentOrDirection(directions, directionId));
                             $("#classes-update").html(teacher.loadClasses(classess, no));
-                        } else {
+                        } else if (classify === "社区导员") {
+                            $("#show_dept_update").hide();
+                            $("#show_career_update").hide();
+                            $("#show_community_update").show();
+                            $.post(baseUrl + "/teacher/teacherCommunity", {no: no}, function (data) {
+                                let floorsId = data.data.floors;
+                                let _no = data.data.area[0].area_id;
+                                teacher.queryFloorAndArea(_no, floorsId);
+                            });
+
+
+                        }
+                        else {
+                            $("#show_community_update").hide();
                             $("#show_career_update").hide();
                             $("#show_dept_update").show();
                             $("#dept_update").html(teacher.loadDepartmentOrDirection(depts, deptId))
@@ -268,7 +288,9 @@
             },
             updateAjax: function () {
                 if ($("#classify_text").val() === "职业导师") {
-                    $("#dept_update").val("0");
+                    $("#dept_update").val(0);
+                    $("#queryAreaOfRoom_update").val(0);
+                    $("#floor_update").val("");
                     let data = $("#update-form").serialize();
                     let classedIds = "";
                     let classes = $(".classId");
@@ -283,11 +305,32 @@
                             setTimeout("location.reload()", 500);
                         })
                     });
-                } else {
+                } else if ($("#classify_text").val() === "行政") {
+                    $("#department-update").val(0);
+                    $("#direction-update").val(0);
+                    $("#classes-update").val("");
+                    $("#queryAreaOfRoom_update").val(0);
+                    $("#floor_update").val("");
+                    let data = $("#update-form").serialize();
+                    layer.confirm('确定修改?', {icon: 3, title: '提示'}, function (index) {
+                        layer.close(index);
+                        $.post(baseUrl + "/teacher/update", data, function (data) {
+                            layer.msg(data.msg);
+                            setTimeout("location.reload()", 500);
+                        })
+                    });
+                }else if ($("#classify_text").val() === "社区导员") {
+                    $("#dept_update").val(0);
                     $("#department-update").val(0);
                     $("#direction-update").val(0);
                     $("#classes-update").val("");
                     let data = $("#update-form").serialize();
+                    let floorIds = "";
+                    let floorId = $(".floorId_update");
+                    for (let i = 0; i < floorId.length; ++i) {
+                        if ($(floorId[i]).prop("checked")) floorIds += $(floorId[i]).val() + ",";
+                    }
+                    data += "&classIds=" + floorIds;
                     layer.confirm('确定修改?', {icon: 3, title: '提示'}, function (index) {
                         layer.close(index);
                         $.post(baseUrl + "/teacher/update", data, function (data) {
@@ -314,9 +357,18 @@
             queryFloorAndAreaOfRoom: function () {
                 $.post(baseUrl + "/dorm/room/showAreaAndFloorsToQuery", function (data) {
                     if (data.result) {
+
                         $("#queryAreaOfRoom").html(`<option value="0">区号</option>`).append(teacher.loadDepartmentOrDirection(data.data.queryAreaOfRoom, "-"))
                         $("#floor").html(teacher.loadFloor(data.data.queryFloorOfRoom, "-"));
-//                        $("#queryFloor").html(`<!--<option value="">层号</option>-->`).append(teacher.loadDepartmentOrDirection(data.data.queryFloorOfRoom, "-"))
+                        form.render();
+                    }
+                })
+            },
+            queryFloorAndArea: function (no, floorsId) {
+                $.post(baseUrl + "/dorm/room/showAreaAndFloors", {areaId: no}, function (data) {
+                    if (data.result) {
+                        $("#queryAreaOfRoom_update").html(`<option value="0">区号</option>`).append(teacher.loadDepartmentOrDirection(data.data.queryAreaOfRoom, no))
+                        $("#floor_update").html(teacher.loadFloor(data.data.queryFloorOfRoom, floorsId));
                         form.render();
                     }
                 })
@@ -359,11 +411,25 @@
                 var id = data.value;
                 $.post(baseUrl + "dorm/room/showAreaAndFloors", {areaId: data.value}, function (data) {
                     if (data.result) {
+
                         var queryAreaOfRoom = data.data.queryAreaOfRoom
                         var queryFloorOfRoom = data.data.queryFloorOfRoom
                         $("#queryAreaOfRoom").html(teacher.loadDepartmentOrDirection(queryAreaOfRoom, id))
                         $("#floor").html(teacher.loadFloor(queryFloorOfRoom, "-"));
-//                        $("#queryFloor").html(`<option value="">层号</option>`).append(communication.loadDepartmentOrDirection(queryFloorOfRoom, "-"))
+
+                        form.render();
+                    }
+                })
+            });
+            form.on('select(queryAreaOfRoom_update)', function (data) {
+                var id = data.value;
+                $.post(baseUrl + "dorm/room/showAreaAndFloors", {areaId: data.value}, function (data) {
+                    if (data.result) {
+
+                        var queryAreaOfRoom = data.data.queryAreaOfRoom
+                        var queryFloorOfRoom = data.data.queryFloorOfRoom
+                        $("#queryAreaOfRoom_update").html(teacher.loadDepartmentOrDirection(queryAreaOfRoom, id))
+                        $("#floor_update").html(teacher.loadFloor(queryFloorOfRoom, "-"));
 
                         form.render();
                     }
