@@ -66,6 +66,7 @@ public class PersonServiceImpl implements PersonService {
     public void updateTeacher(Teacher teacher, String classIds,String floorIds,int areaId) throws Exception {
         List<String> ids;
         List<String> floorId;
+        int _areaId =areaId;
         if (teacher.getClassify().equals("职业导师")) {
             ids = Arrays.asList(classIds.split(","));
             trainModuleDao.deleteTeacherAllClassesId(teacher.getNo());
@@ -78,7 +79,7 @@ public class PersonServiceImpl implements PersonService {
             teacher.setDirectionId("0");
             floorId = Arrays.asList(floorIds.split(","));
             trainModuleDao.deleteTeacherCommunityAllClassesId(teacher.getNo());
-            if (floorId.size() != 0) personDao.insertCommunityTeacher(teacher.getNo(),areaId, floorId);
+            if (floorId.size() != 0) personDao.insertCommunityTeacher(teacher.getNo(),_areaId, floorId);
         }
         personDao.updateTeacher(teacher);
     }

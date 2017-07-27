@@ -320,9 +320,11 @@
                         if ($(classes[i]).prop("checked")) classedIds += $(classes[i]).val() + ",";
                     }
                     data += "&classIds=" + classedIds;
+
                     layer.confirm('确定修改?如果您修改了系,那么原来的班级就会被删除', {icon: 3, title: '提示'}, function (index) {
                         layer.close(index);
                         $.post(baseUrl + "/teacher/update", data, function (data) {
+
                             layer.msg(data.msg);
                             setTimeout("location.reload()", 500);
                         })

@@ -181,7 +181,7 @@
                 <label class="layui-form-label">区号</label>
                 <div class="layui-input-inline" >
                     <select lay-filter="queryAreaOfRoom_update" name="areaId" id="queryAreaOfRoom_update">
-                        <option value="">选择区号</option>
+                        <option value="0">选择区号</option>
                     </select>
                 </div>
             </div>
