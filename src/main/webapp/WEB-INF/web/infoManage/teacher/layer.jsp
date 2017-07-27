@@ -176,6 +176,22 @@
             </div>
         </div>
 
+        <div id="show_community_update" style="display: none">
+            <div class="layui-form-item">
+                <label class="layui-form-label">区号</label>
+                <div class="layui-input-inline" >
+                    <select lay-filter="queryAreaOfRoom_update" name="areaId" id="queryAreaOfRoom_update">
+                        <option value="">选择区号</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">层号</label>
+                <div id="floor_update" >
+
+                </div>
+            </div>
+        </div>
         <div class="layui-form-item" style="margin-top: 30px">
             <div class="layui-input-block">
                 <a class="layui-btn" lay-submit lay-filter="submit_a" onclick="teacher.updateAjax()">确定修改</a>
