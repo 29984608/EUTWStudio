@@ -244,6 +244,9 @@
 
 <div id="updateStudent" style="display: none; background:#F8F8F8">
     <section class="larry-grid layui-form" style="height: auto">
+        <div style="float:right;position:fixed;">
+            <button class="layui-btn" onclick="student.updateStudentList()"><i class="layui-icon">&#xe61f;</i> 更新</button>
+        </div>
         <div class="larry-personal">
             <div class="layui-tab layui-form" style="height: auto">
 
@@ -282,14 +285,14 @@
                                             <div class="layui-input-inline" style="width: 70%">
                                                 <input type="text" name="text" required lay-verify="required"
                                                        placeholder="请输入内容" autocomplete="off" class="layui-input"
-                                                       id="updateStudentNo">
+                                                       id="updateStudentNo" disabled>
                                              </div>
                                         </span></th>
                                         <th colspan="3">姓名：<span>
                                             <div class="layui-input-inline" style="width: 60%">
                                                 <input type="text" name="text" required lay-verify="required"
                                                        placeholder="请输入内容" autocomplete="off" class="layui-input"
-                                                       id="updateStudentName">
+                                                       id="updateStudentName" readonly>
                                              </div>
                                         </span></th>
 
@@ -301,8 +304,8 @@
                                                   <label class="layui-form-label" style="width: auto"></label>
                                                 <div class="layui-inline">
                                                     <input name="sex" value="男" title="男"
-                                                           type="radio">
-                                                    <input name="sex" value="女" title="女" type="radio">
+                                                           type="radio" disabled>
+                                                    <input name="sex" value="女" title="女" type="radio" disabled>
                                                 </div>
                                              </div>
                                         </span></th>
@@ -310,7 +313,7 @@
                                             <div class="layui-input-inline" style="width: 60%">
                                                 <input type="text" name="text" required lay-verify="required"
                                                        placeholder="请输入内容" autocomplete="off" class="layui-input"
-                                                       id="updateStudentNationalities">
+                                                       id="updateStudentNationalities" readonly>
                                              </div>
                                         </span></th>
                                     </tr>
@@ -320,14 +323,14 @@
                                             <div class="layui-input-inline" style="width: 60%">
                                                 <input type="text" name="text" required lay-verify="required"
                                                        placeholder="请输入内容" autocomplete="off" class="layui-input"
-                                                       id="updateStudentIdCard">
+                                                       id="updateStudentIdCard" readonly>
                                              </div>
                                         </span></th>
                                         <th colspan="3">籍贯：<span>
                                             <div class="layui-input-inline" style="width: 60%">
                                                 <input type="text" name="text" required lay-verify="required"
                                                        placeholder="请输入内容" autocomplete="off" class="layui-input"
-                                                       id="updateStudentNativePlace">
+                                                       id="updateStudentNativePlace" readonly>
                                              </div>
                                         </span></th>
 
@@ -338,8 +341,8 @@
                                             <div class="layui-input-inline" style="width: 60%">
                                                 <input name="date" lay-verify="date" placeholder="yyyy-mm-dd"
                                                        autocomplete="off" class="layui-input"
-                                                       onclick="layui.laydate({elem: this})" type="text"
-                                                       id="updateStudentBirthday">
+                                                       type="text"
+                                                       id="updateStudentBirthday" readonly>
                                             </div>
                                         </th>
                                         <th colspan="3">婚否：
@@ -895,7 +898,7 @@
                                                 <div class="layui-inline" pane="" id="update_hard_type">
                                             <label class="layui-form-label" style="width: auto"></label>
                                             <div class="layui-inline">
-                                               <input name="update_hard_type" value="不是" title="不是" type="radio">
+                                               <input name="update_hard_type" value="" title="不是" type="radio" checked>
                                                <input name="update_hard_type" value="一般" title="一般" type="radio">
                                                <input name="update_hard_type" value="特困" title="特困" type="radio">
                                             </div>
@@ -1000,12 +1003,67 @@
                                         </span></th>
                                     </tr>
                                     <tr>
-                                        <th colspan="6">宿舍位置：<span>
-                                            <div class="layui-input-inline" style="width: 60%">
-                                                <input type="text" name="text" required lay-verify="required"
-                                                       placeholder="请输入内容" autocomplete="off" class="layui-input">
+                                        <th colspan="6"><span>
+
+                                                <div class="layui-input-inline" style="width: 100%">
+                                                <label class="layui-form-label" style="width: auto">宿舍信息: </label>
+                                                <div class="layui-input-inline" style="width: 60%">
+                                                    <input type="text" name="idcard_address" required
+                                                           lay-verify="required" placeholder="请输入宿舍信息"
+                                                           autocomplete="off" class="layui-input" id="updateDorms"
+                                                           readonly>
+                                                </div>
+                                                <span>
+                                                     <button class="layui-btn"
+                                                             onclick="student.showUpdateDorms()">编辑地址信息</button>
+                                                </span>
                                             </div>
-                                        </span></th>
+                                            </span>
+                                            <br>
+                                            <br>
+                                            <div id="showUpdateDorms" style="display: none">
+                                                <div class="layui-input-inline">
+                                                    <label class="layui-form-label">区</label>
+                                                    <div class="layui-inline">
+                                                        <div class="layui-input-inline">
+                                                            <select name="modules" lay-filter="modules_3"
+                                                                    lay-verify="required" lay-search=""
+                                                                    id="queryAreas">
+                                                                <option value="">直接选择或搜索选择</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="layui-input-inline">
+                                                    <label class="layui-form-label">楼层</label>
+                                                    <div class="layui-inline">
+                                                        <div class="layui-input-inline">
+                                                            <select name="modules1" lay-filter="modules_2"
+                                                                    lay-verify="required" lay-search=""
+                                                                    id="queryFloors">
+                                                                <option value="">直接选择或搜索选择</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="layui-input-inline">
+                                                    <label class="layui-form-label">宿舍</label>
+                                                    <div class="layui-inline">
+                                                        <div class="layui-input-inline">
+                                                            <select name="modules1" lay-filter="modules_1"
+                                                                    lay-verify="required" lay-search=""
+                                                                    id="queryRooms">
+                                                                <option value="">直接选择或搜索选择</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        </th>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -1018,14 +1076,8 @@
                                             <div>
                                                 <div class="layui-input-inline" style="width: 98%">
                                                     <input type="text" name="text" required lay-verify="required"
-                                                           placeholder="请输入内容" autocomplete="off" class="layui-input">
-                                                </div>
-                                            </div>
-                                            <br>
-                                            <div>
-                                                <div class="layui-input-inline" style="width: 98%">
-                                                    <input type="text" name="text" required lay-verify="required"
-                                                           placeholder="请输入内容" autocomplete="off" class="layui-input">
+                                                           placeholder="请输入内容" autocomplete="off" class="layui-input"
+                                                           id="update_award_or_honor">
                                                 </div>
                                             </div>
                                         </th>

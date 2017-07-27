@@ -35,4 +35,9 @@ public interface DormService {
 
     Map<String,Object> showAreaAndFloorInfos(String areaId)throws Exception;
 
+    Map<String,Object> showFloorsAndRooms(String floorId)throws Exception;
+
+    Map<String,Object> showDorms(String areaId, String floorId)throws Exception;
+
+    Map<String, Object> queryAreaAndFloorAndRoomByRoomId(String roomId) throws Exception;
 }

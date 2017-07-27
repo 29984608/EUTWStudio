@@ -21,7 +21,7 @@ public class DormController {
     private DormService dormService;
 
     @RequestMapping()
-    public String index(){
+    public String index() {
         return "infoManage/dorms/dorm";
     }
 
@@ -43,10 +43,10 @@ public class DormController {
 
     @RequestMapping("/area/list")
     @ResponseBody
-    public Result listArea(PageUtil pageUtil,String areaId,String areaName) {
+    public Result listArea(PageUtil pageUtil, String areaId, String areaName) {
         try {
             Map<String, Object> data = new HashMap<>();
-            List<Map<String, Object>> pageInfos = dormService.queryAreas(pageUtil,areaId,areaName);
+            List<Map<String, Object>> pageInfos = dormService.queryAreas(pageUtil, areaId, areaName);
             data.put("pageInfos", pageInfos);
             data.put("pageUtil", pageUtil);
 
@@ -102,15 +102,15 @@ public class DormController {
 
     @RequestMapping("/floor/list")
     @ResponseBody
-    public Result listFloor(PageUtil pageUtil,String areaId,String areaName,String floorId,String floorName) {
+    public Result listFloor(PageUtil pageUtil, String areaId, String areaName, String floorId, String floorName) {
         try {
             Map<String, Object> data = new HashMap<>();
             data.put("areaId", areaId);
             data.put("floorId", floorId);
             data.put("areaName", areaName);
             data.put("floorName", floorName);
-            List<Map<String, Object>> pageInfos = dormService.queryFloors(pageUtil,data);
-            data.put("showAreaAndFloorInfos",dormService.showAreaAndFloorInfos("1"));
+            List<Map<String, Object>> pageInfos = dormService.queryFloors(pageUtil, data);
+            data.put("showAreaAndFloorInfos", dormService.showAreaAndFloorInfos("1"));
             data.put("pageInfos", pageInfos);
             data.put("pageUtil", pageUtil);
 
@@ -181,16 +181,16 @@ public class DormController {
 
     @RequestMapping("/room/list")
     @ResponseBody
-    public Result listRoom(PageUtil pageUtil,String roomNo,String areaId,String floorId,String areaName,String floorName) {
+    public Result listRoom(PageUtil pageUtil, String roomNo, String areaId, String floorId, String areaName, String floorName) {
         try {
 
             Map<String, Object> data = new HashMap<>();
-            data.put("roomNo",roomNo);
-            data.put("areaId",areaId);
-            data.put("floorId",floorId);
-            data.put("areaName",areaName);
-            data.put("floorName",floorName);
-            List<Map<String, Object>> pageInfos = dormService.queryRooms(pageUtil,data);
+            data.put("roomNo", roomNo);
+            data.put("areaId", areaId);
+            data.put("floorId", floorId);
+            data.put("areaName", areaName);
+            data.put("floorName", floorName);
+            List<Map<String, Object>> pageInfos = dormService.queryRooms(pageUtil, data);
             data.put("pageInfos", pageInfos);
             data.put("pageUtil", pageUtil);
 
@@ -290,6 +290,44 @@ public class DormController {
         return Result.failure("null", Constant.SEARCH_FAILURE);
     }
 
+    @RequestMapping("/room/showFloorsAndRooms")
+    @ResponseBody
+    public Result showFloorsAndRooms(String floorId) {
+        try {
+            Map<String, Object> data = dormService.showFloorsAndRooms(floorId);
 
+            return Result.success(data, Constant.SEARCH_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
+        return Result.failure("null", Constant.SEARCH_FAILURE);
+    }
+
+    @RequestMapping("/room/showDorms")
+    @ResponseBody
+    public Result showUDorms(String areaId,String floorId) {
+        try {
+            Map<String, Object> data = new HashMap<>();
+            data.put("showDorms", dormService.showDorms(areaId,floorId));
+            return Result.success(data, Constant.SEARCH_SUCCESS);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return Result.failure("null", Constant.SEARCH_FAILURE);
+    }
+
+    @RequestMapping("/room/queryAreaAndFloorAndRoomByRoomId")
+    @ResponseBody
+    public Result queryAreaAndFloorAndRoomByRoomId(String roomId) {
+        try {
+            Map<String, Object> data = new HashMap<>();
+            data.put("dorms", dormService.queryAreaAndFloorAndRoomByRoomId(roomId));
+
+            return Result.success(data, Constant.SEARCH_SUCCESS);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return Result.failure("null", Constant.SEARCH_FAILURE);
+    }
 }

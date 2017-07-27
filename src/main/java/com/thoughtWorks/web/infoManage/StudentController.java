@@ -73,7 +73,7 @@ public class StudentController {
             List<Map<String, String>> directionList = personService.queryStudentsDirection();
             List<Map<String, Object>> classesList = personService.queryStudentsClassList();
             List<Map<String, Object>> experienceList = personService.queryStudentExperienceList();
-            System.out.println(directionList);
+            System.out.println("111111111111"+students);
             data.put("students", students);
             data.put("students_family", students_family);
             data.put("professionList",professionList);
@@ -82,8 +82,6 @@ public class StudentController {
             data.put("experienceList", experienceList);
             data.put("msg", Constant.SEARCH_SUCCESS);
             data.put("result", true);
-            System.out.println("-++-"+professionList);
-//            System.out.println(123);
         } catch (Exception e) {
             data.put("msg", Constant.SEARCH_FAILURE);
             data.put("result", false);

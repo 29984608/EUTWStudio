@@ -379,74 +379,85 @@
                     url: "${baseurl}/student/studentUpdate",
                     data: {studentNo: studentNo},
                     success: function (data) {
-                        let student = data.students;
-                        let family = data.students_family;
-                        let professionList = data.professionList;
-                        let directionList = data.directionList;
-                        let classesList = data.classesList;
-                        let experienceList = data.experienceList;
                         if (data.result) {
-                            $("#updateStudentNo").val(student.no)
-                            $("#updateStudentName").val(student.name);
-                            $("input:radio[value='" + student.gender + "']").prop('checked', 'true');
-                            $("#updateStudentNationalities").val(student.famous_family);
-                            $("#updateStudentIdCard").val(student.idcard);
-                            $("#updateStudentNativePlace").val(student.native_place);
-                            $("#updateStudentBirthday").val(student.born);
-                            $("input[type='radio'][name='isMarry'][value='" + student.is_marry + "']").attr("checked", "checked");
-                            $("#updateStudentHeight").val(student.height);
-                            $("#updateStudentWight").val(student.weight);
-                            $("input:radio[value='" + student.health_status + "']").prop('checked', 'true');
-                            $("input:radio[value=" + student.student_type + "]").prop('checked', 'true');
+
+                            let studentList = data.students;
+                            let familyList = data.students_family;
+                            let professionList = data.professionList;
+                            let directionList = data.directionList;
+                            let classesList = data.classesList;
+                            let experienceList = data.experienceList;
+
+                            $("#updateStudentNo").val(studentList.no)
+                            $("#updateStudentName").val(studentList.name);
+                            $("input:radio[value='" + studentList.gender + "']").prop('checked', 'true');
+                            $("#updateStudentNationalities").val(studentList.famous_family);
+                            $("#updateStudentIdCard").val(studentList.idcard);
+                            $("#updateStudentNativePlace").val(studentList.native_place);
+                            $("#updateStudentBirthday").val(studentList.born);
+                            $("input[type='radio'][name='isMarry'][value='" + studentList.is_marry + "']").attr("checked", "checked");
+                            $("#updateStudentHeight").val(studentList.height);
+                            $("#updateStudentWight").val(studentList.weight);
+                            $("input:radio[value='" + studentList.health_status + "']").prop('checked', 'true');
+                            $("input:radio[value=" + studentList.student_type + "]").prop('checked', 'true');
 
                             var count = $("#updateStudentBloodType option").length;
                             for (var i = 0; i < count; i++) {
-                                if ($("#updateStudentBloodType").get(0).options[i].text == student.blood) {
+                                if ($("#updateStudentBloodType").get(0).options[i].text == studentList.blood) {
                                     $("#updateStudentBloodType").get(0).options[i].selected = true;
                                 }
                             }
 
                             var count1 = $("#updateStudentPoliticalOutlook option").length;
                             for (var i = 0; i < count1; i++) {
-                                if ($("#updateStudentPoliticalOutlook").get(0).options[i].text === student.political_status) {
+                                if ($("#updateStudentPoliticalOutlook").get(0).options[i].text === studentList.political_status) {
                                     $("#updateStudentPoliticalOutlook").get(0).options[i].selected = true;
+                                }
+                                if (studentList.political_status != "中共党员" && studentList.political_status != "预备党员" && studentList.political_status != "共青团员" && studentList.political_status != "积极分子" && studentList.political_status != "群众" && studentList.political_status != "") {
+                                    $("#updateStudentPoliticalOutlook").get(0).options[count1 - 1].selected = true;
+                                    $("#otherParty").show();
+                                    $("#otherUpdateStudentPoliticalOutlook").val(studentList.political_status);
                                 }
                             }
 
                             var count2 = $("#updateStudent_pre_school_education option").length;
                             for (var i = 0; i < count2; i++) {
-                                if ($("#updateStudent_pre_school_education").get(0).options[i].text === student.pre_school_education) {
+                                if ($("#updateStudent_pre_school_education").get(0).options[i].text === studentList.pre_school_education) {
                                     $("#updateStudent_pre_school_education").get(0).options[i].selected = true;
+                                }
+                                if (studentList.pre_school_education != "高中" && studentList.pre_school_education != "三校生" && studentList.political_status != "") {
+                                    $("#updateStudent_pre_school_education").get(0).options[count2 - 1].selected = true;
+                                    $("#pre_school_education").show();
+                                    $("#other_updateStudent_pre_school_education").val(studentList.pre_school_education);
                                 }
                             }
 
-                            $("input:radio[value='" + student.student_classify + "']").prop('checked', 'true');
-                            $("#Identity_card_address").val(student.idcard_address);
+                            $("input:radio[value='" + studentList.student_classify + "']").prop('checked', 'true');
+                            $("#Identity_card_address").val(studentList.idcard_address);
 
-                            $("#detailedAddresses").val(student.actual_address)
-                            $("#update_name_of_the_source").val(student.origin_address)
+                            $("#detailedAddresses").val(studentList.actual_address)
+                            $("#update_name_of_the_source").val(studentList.origin_address)
 
-                            $("#updateStudentZip_code").val(student.family_zip_code)
-                            $("#updateStudentHome_phone").val(student.family_phone)
+                            $("#updateStudentZip_code").val(studentList.family_zip_code)
+                            $("#updateStudentHome_phone").val(studentList.family_phone)
 
                             $("#family_information").append(``)
 
-                            for (let i = 0; i < data.students_family.length; i++) {
+                            for (var j = 0; j < familyList.length; j++) {
                                 $("#family_member_information").append(
-                                    `<tr id="family_information1">
-                                        <th colspan="2"><span>
+                                    `<tr id="family_information1" class="family_information1">
+                                        <th colspan="2" ><span class = "family_relationship"></span><span>
                                <div class="layui-input-inline" style="width: 60%">
                                    <input type="text" name="text" required lay-verify="required"
-                                          placeholder="请输入内容" autocomplete="off" class="layui-input"
-                                          id="updateStudentFather">
+                                          placeholder="请输入内容" autocomplete="off" class="layui-input updateStudentParentsName"
+                                          id="updateStudentParentsName">
                                 </div>
                            </span></th>
                                         <th colspan="4">政治面貌：<span>
                                <div class="layui-input-inline" style="width: 30%">
-                                 <select name="politicalOutlook1" lay-filter="politicalOutlook1"
-                                         id="updateStudentFather_political_status">
+                                 <select name="politicalOutlook1" lay-filter="politicalOutlook" id="updateStudentParent_political_status" class="updateStudentParent_political_status">
                                    <option value="">请选择</option>
-                                   <option value="1">中共党员</option>
+                                   <option value="1" >中共党员</option>
                                    <option value="2">预备党员</option>
                                    <option value="3">共青团员</option>
                                    <option value="4">积极分子</option>
@@ -454,62 +465,93 @@
                                    <option value="6">其他党派</option>
                                  </select>
                                </div>
-                               <span id="otherParty1" style="display: none">其他党派:
+                                <span id="otherParty1" class="otherParty1" style="display: none">其他党派:
                                      <div class="layui-input-inline">
                                        <div class="layui-input-inline">
                                          <input type="text" name="otherPartyName" required
                                                 lay-verify="required" placeholder="请输入党派名称"
-                                                autocomplete="off" class="layui-input"
-                                                id="other_updateStudentFather_political_status">
+                                                autocomplete="off" class="layui-input other_updateStudentParent_political_status"
+                                                id="other_updateStudentParent_political_status">
                                        </div>
                                      </div>
                                </span>
-                           </span></th>
-                                    </tr>`
-                                ).append(`<tr id="family_information2">
+                               </span></th>
+                                    </tr>
+                               `)
+                                /*let count = 0;
+                                count = this($(".updateStudentParent_political_status option")).length;
+                                alert(count)
+                                for (var i = 0; i < count; i++) {
+                                    if ($("#updateStudentParent_political_status").get(0).options[i].text == familyList[j].political_status) {
+                                        $("#updateStudentParent_political_status").get(0).options[i].selected = true;
+                                    }
+                                    if (familyList[j].political_status!= "共青团员" && familyList[j].political_status!= "预备党员"&& familyList[j].political_status!= "中共党员"&& familyList[j].political_status!= "积极分子"&& familyList[j].political_status!= "群众" && familyList[j].political_status!= "") {
+                                        $("#updateStudentParent_political_status").get(0).options[count - 1].selected = true;
+                                        $("#otherParty1").show();
+                                        $("#other_updateStudentParent_political_status").val(familyList[j].political_status);
+                                    }
+                                }*/
+                                $("#family_member_information").append(`
+                           <tr id="family_information2">
                                         <th colspan="2">工作单位：<span>
                                <div class="layui-input-inline" style="width: 60%">
                                    <input type="text" name="text" required lay-verify="required"
-                                          placeholder="请输入内容" autocomplete="off" class="layui-input"
-                                          id="updateStudentFather_employer">
+                                          placeholder="请输入内容" autocomplete="off" class="layui-input updateStudentParent_employer"
+                                          id="updateStudentParent_employer">
                                 </div>
                            </span></th>
                                         <th colspan="2">职务：<span>
                                <div class="layui-input-inline" style="width: 60%">
                                    <input type="text" name="text" required lay-verify="required"
-                                          placeholder="请输入内容" autocomplete="off" class="layui-input"
-                                          id="updateStudentFather_duties">
+                                          placeholder="请输入内容" autocomplete="off" class="layui-input updateStudentParent_duties"
+                                          id="updateStudentParent_duties">
                                 </div>
                            </span></th>
                                         <th colspan="2">联系电话：<span>
                                <div class="layui-input-inline" style="width: 60%">
                                    <input type="text" name="text" required lay-verify="required"
-                                          placeholder="请输入内容" autocomplete="off" class="layui-input"
-                                          id="updateStudentFather_phone">
+                                          placeholder="请输入内容" autocomplete="off" class="layui-input updateStudentParent_phone"
+                                          id="updateStudentParent_phone">
                                 </div>
                            </span></th>
                                     </tr>`)
 
                             }
-                            $("#updateStudentFather").val(student.parentName)
 
-                            $("input[type='radio'][name='whetherToTransfer'][value='" + student.account_in + "']").attr("checked", "checked");
-                            $("input[type='radio'][name='is_the_file_transferred'][value='" + student.file_in + "']").attr("checked", "checked");
-                            $("input[type='radio'][name='birthplaceName'][value='" + student.area_origin_name + "']").attr("checked", "checked");
-                            $("#Pre_school_name").val(student.pre_school_name);
+                            let family_relationship = $(".family_relationship");//称谓
+                            let updateStudentParentsName = $(".updateStudentParentsName");//家庭成员姓名
 
-                            $("#updateStudent_emergency_contact").val(student.emergency_contact_name);
-                            $("#updateStudent_emergency_contact_phone").val(student.emergency_contact_method);
+                            let updateStudentParent_employer = $(".updateStudentParent_employer");//工作单位
+                            let updateStudentParent_duties = $(".updateStudentParent_duties");//职务
+                            let updateStudentParent_phone = $(".updateStudentParent_phone");//联系电话
+                            for (var i = 0; i < familyList.length; i++) {
+                                $(family_relationship[i].append(familyList[i].relationship))
+                                $(updateStudentParentsName[i]).val(familyList[i].name)
 
-                            $("#Pre_enrollment_file_unit").val(student.pre_school_file_where_location);
+                                $(updateStudentParent_employer[i]).val(familyList[i].work_place);
+                                $(updateStudentParent_duties[i]).val(familyList[i].work_place);
+                                $(updateStudentParent_phone[i]).val(familyList[i].phone);
 
-                            let school_account_where_the_police_station_detailed = student.pre_school_account_where_station.replace("-", "");
+                            }
+
+
+                            $("input[type='radio'][name='whetherToTransfer'][value='" + studentList.account_in + "']").attr("checked", "checked");
+                            $("input[type='radio'][name='is_the_file_transferred'][value='" + studentList.file_in + "']").attr("checked", "checked");
+                            $("input[type='radio'][name='birthplaceName'][value='" + studentList.area_origin_name + "']").attr("checked", "checked");
+                            $("#Pre_school_name").val(studentList.pre_school_name);
+
+                            $("#updateStudent_emergency_contact").val(studentList.emergency_contact_name);
+                            $("#updateStudent_emergency_contact_phone").val(studentList.emergency_contact_method);
+
+                            $("#Pre_enrollment_file_unit").val(studentList.pre_school_file_where_location);
+
+                            let school_account_where_the_police_station_detailed = studentList.pre_school_account_where_station.replace("-", "");
                             $("#school_account_where_the_police_station_detailed").val(school_account_where_the_police_station_detailed);
 
-                            $("#studentsProfessionList").html("").append(`<option value=""></option>` + loadOptionsHtml(professionList, student.origin_profession_id));
-                            $("#studentsNowProfessional").html("").append(`<option value=""></option>` + loadOptionsHtml(professionList, student.profession_id));
-                            $("#employment_direction").html("").append(`<option value=""></option>` + loadOptionsHtml(directionList, student.direction_id));
-                            $("#student_class").html("").append(`<option value=""></option>` + loadOptionsHtml(classesList, student.classes_id));
+                            $("#studentsProfessionList").html("").append(`<option value=""></option>` + loadOptionsHtml(professionList, studentList.origin_profession_id));
+                            $("#studentsNowProfessional").html("").append(`<option value=""></option>` + loadOptionsHtml(professionList, studentList.profession_id));
+                            $("#employment_direction").html("").append(`<option value=""></option>` + loadOptionsHtml(directionList, studentList.direction_id));
+                            $("#student_class").html("").append(`<option value=""></option>` + loadOptionsHtml(classesList, studentList.classes_id));
 
                             for (let i = 0; i < experienceList.length; i++) {
                                 $("#educational_experience").append(`<tr>
@@ -556,66 +598,75 @@
                             }
 
 
-                            $("input[type='radio'][name='student_type1'][value='" + student.student_type + "']").attr("checked", "checked");
-                            $("#upadte_SAT_score").val(student.sat_score);
+                            $("input[type='radio'][name='student_type1'][value='" + studentList.student_type + "']").attr("checked", "checked");
+                            $("#upadte_SAT_score").val(studentList.sat_score);
 
 
                             var count3 = $("#update_student_status option").length;
                             for (var i = 0; i < count3; i++) {
-                                if ($("#update_student_status").get(0).options[i].text == student.student_status) {
+                                if ($("#update_student_status").get(0).options[i].text == studentList.student_status) {
                                     $("#update_student_status").get(0).options[i].selected = true;
                                 }
                             }
                             var count4 = $("#update_payment_status option").length;
                             for (var i = 0; i < count4; i++) {
-                                if ($("#update_payment_status").get(0).options[i].text == student.payment_status_first_year) {
+                                if ($("#update_payment_status").get(0).options[i].text == studentList.payment_status_first_year) {
                                     $("#update_payment_status").get(0).options[i].selected = true;
                                 }
                             }
                             var count5 = $("#update_payment_status2 option").length;
                             for (var i = 0; i < count5; i++) {
-                                if ($("#update_payment_status2").get(0).options[i].text == student.payment_status_second_year) {
+                                if ($("#update_payment_status2").get(0).options[i].text == studentList.payment_status_second_year) {
                                     $("#update_payment_status2").get(0).options[i].selected = true;
                                 }
                             }
                             var count6 = $("#update_payment_status3 option").length;
                             for (var i = 0; i < count6; i++) {
-                                if ($("#update_payment_status3").get(0).options[i].text == student.payment_status_third_year) {
+                                if ($("#update_payment_status3").get(0).options[i].text == studentList.payment_status_third_year) {
                                     $("#update_payment_status3").get(0).options[i].selected = true;
                                 }
                             }
                             var count7 = $("#update_practical_type option").length;
                             for (var i = 0; i < count7; i++) {
-                                if ($("#update_practical_type").get(0).options[i].text == student.practice_learning_type) {
+                                if ($("#update_practical_type").get(0).options[i].text == studentList.practice_learning_type) {
                                     $("#update_practical_type").get(0).options[i].selected = true;
                                 }
+                                if (studentList.practice_learning_type != "合作企业" && studentList.practice_learning_type != "自主实习" && studentList.practice_learning_type != "创新创业" && studentList.practice_learning_type != "专升本" && studentList.practice_learning_type != "") {
+                                    $("#update_practical_type").get(0).options[count7 - 1].selected = true;
+                                    $("#show_other_practical_type").show();
+                                    $("#other_practical_type").val(studentList.practice_learning_type);
+                                }
+
                             }
 
-                            $("#Amount_of_arrears").val(student.arrears_first_year);
-                            $("#Amount_of_arrears2").val(student.arrears_second_year);
-                            $("#Amount_of_arrears3").val(student.arrears_third_year);
+                            $("#Amount_of_arrears").val(studentList.arrears_first_year);
+                            $("#Amount_of_arrears2").val(studentList.arrears_second_year);
+                            $("#Amount_of_arrears3").val(studentList.arrears_third_year);
 
-                            if (student.arrears_first_year != null) {
+                            if (studentList.arrears_first_year != null) {
                                 $("#showAmount_of_arrears").show();
                             } else {
                                 $("#showAmount_of_arrears").hide();
                             }
 
-                            if (student.arrears_second_year != null) {
+                            if (studentList.arrears_second_year != null) {
                                 $("#showAmount_of_arrears2").show();
                             } else {
                                 $("#showAmount_of_arrears2").hide();
                             }
 
-                            if (student.arrears_third_year != null) {
+                            if (studentList.arrears_third_year != null) {
                                 $("#showAmount_of_arrears3").show();
                             } else {
                                 $("#showAmount_of_arrears3").hide();
                             }
 
-                            $("input[type='radio'][name='update_hard_type'][value='" + student.hard_type + "']").attr("checked", "checked");
-
+                            $("input[type='radio'][name='update_hard_type'][value='" + studentList.hard_type + "']").attr("checked", "checked");
                             form.render();
+
+                            $("#update_award_or_honor").val(studentList.own_punishment);
+                            student.queryAreaAndFloorAndRoomByRoomIdOfUpdate(studentList.room_id)
+                            let dormsHtml = "";
                         }
                     }
                 })
@@ -625,6 +676,57 @@
                     area: ["100%", "100%"],
                     content: $("#updateStudent")
                 })
+            },
+
+            queryAreaAndFloorAndRoomByRoomIdOfUpdate: function (roomId) {
+                $.post(baseUrl + "dorm/room/queryAreaAndFloorAndRoomByRoomId",
+                    {
+                        roomId: roomId
+                    },
+                    function (data) {
+                        if (data.result) {
+                            let dormsHtml = "";
+                            dormsHtml += data.data.dorms.areaName + " # ";
+                            dormsHtml += data.data.dorms.floorName + " # ";
+                            dormsHtml += data.data.dorms.roomName + "宿舍";
+
+                            $("#updateDorms").val(dormsHtml);
+                        }
+                    })
+            },
+
+
+            queryAreaAndFloorOfUpdate: function () {
+                $.post(baseUrl + "dorm/room/showAreaAndFloorsToQuery", function (data) {
+                    if (data.result) {
+                        $("#queryAreas").html(student.loadDepartmentOrDirection(data.data.queryAreaOfRoom, "-"))
+                        $("#queryFloors").html(student.loadDepartmentOrDirection(data.data.queryFloorOfRoom, "-"))
+                    }
+                    form.render();
+                })
+            },
+
+            loadDepartmentOrDirection: function (data, selectId) {
+                let _html = "<option value=\"\">直接选择或搜索选择</option>";
+                for (let i = 0; i < data.length; ++i) {
+                    if (selectId == data[i].id) {
+                        _html += `<option  selected value="` + data[i].id + `">` + data[i].name + `</option>`;
+                    } else {
+                        _html += `<option value="` + data[i].id + `">` + data[i].name + `</option>`;
+                    }
+                }
+
+                return _html;
+            },
+            updateStudentList:function () {
+                alert($("#updateStudentNo").val());
+                alert($("input[name='sex'][checked]").val());
+                alert($("#updateStudentSex")).val()
+
+            },
+
+            showUpdateDorms: function () {
+                $("#showUpdateDorms").show();
             },
 
             updateDetailedAddress: function () {
@@ -660,6 +762,7 @@
                 }
             }
         }
+
 
         function loadAllDirections() {
             $.post(baseUrl + "/communication/queryDirectionByDepartment", function (data) {
@@ -701,13 +804,14 @@
         }
 
         $(function () {
+            student.list();
             student.showDormAndHideDorm();
-            queryAreaAndFloor();
             loadALlDepartments();
             loadAllDirections();
             loadAllLevels();
             loadAllClassess();
-            student.list();
+            student.queryAreaAndFloorOfUpdate()
+            queryAreaAndFloor();
             form.render();
 
             form.on('select(department)', function (data) {
@@ -749,40 +853,7 @@
 
 
             //监听select选择
-            form.on('select(politicalOutlook)', function (data) {
-                console.log(data.elem); //得到select原始DOM对象
-                console.log(data.value); //得到被选中的值
-                console.log(data.othis); //得到美化后的DOM对象
-
-                if (data.value === '6') {
-                    $("#otherParty").show();
-                } else {
-                    $("#otherParty").hide();
-                }
-            });
-
-            form.on('select(politicalOutlook1)', function (data) {
-                if (data.value === '6') {
-                    $("#otherParty1").show();
-                } else {
-                    $("#otherParty1").hide();
-                }
-            })
-
-            form.on('select(politicalOutlook2)', function (data) {
-                if (data.value === '6') {
-                    $("#otherParty1").show();
-                } else {
-                    $("#otherParty1").hide();
-                }
-            })
-
-            //监听select选择
             form.on('select(pre_school_education)', function (data) {
-                console.log(data.elem); //得到select原始DOM对象
-                console.log(data.value); //得到被选中的值
-                console.log(data.othis); //得到美化后的DOM对象
-
                 if (data.value === '3') {
                     $("#pre_school_education").show();
                 } else {
@@ -794,7 +865,6 @@
             form.on('select(update_payment_status)', function (data) {
                 if (data.value == 5) {
                     $("#showAmount_of_arrears").show();
-                    alert(12);
                 } else {
                     $("#showAmount_of_arrears").hide();
                 }
@@ -820,6 +890,45 @@
                     $("#show_other_practical_type").show();
                 } else {
                     $("#show_other_practical_type").hide();
+                }
+            });
+
+            //监听根据区id显示楼层
+            form.on('select(modules_3)', function (data) {
+                var id = data.value;
+
+                $.post(baseUrl + "dorm/room/showAreaAndFloors", {areaId: data.value}, function (data) {
+                    if (data.result) {
+                        var queryAreaOfRoom = data.data.queryAreaOfRoom
+                        var queryFloorOfRoom = data.data.queryFloorOfRoom
+
+                        $("#queryAreas").html(student.loadDepartmentOrDirection(queryAreaOfRoom, id))
+                        $("#queryFloors").html(student.loadDepartmentOrDirection(queryFloorOfRoom, "-"))
+                        form.render();
+                    }
+                })
+            })
+
+            //监听根据楼层id显示宿舍
+            form.on('select(modules_2)', function (data) {
+                var id = data.value;
+
+                $.post(baseUrl + "dorm/room/showFloorsAndRooms", {floorId: data.value}, function (data) {
+                    if (data.result) {
+                        var queryRoomList = data.data.queryRoomList
+
+                        $("#queryRooms").html(student.loadDepartmentOrDirection(queryRoomList, "-"))
+                        form.render();
+                    }
+                })
+            })
+
+            //监听学生政治面貌
+            form.on('select(politicalOutlook)', function (data) {
+                if (data.value === '6') {
+                    $("#otherParty").show();
+                } else {
+                    $("#otherParty").hide();
                 }
             });
         });
