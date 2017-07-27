@@ -40,7 +40,11 @@ public interface DormDao {
 
     List<Map<String,Object>> selectAreaOfFloor();
 
-    List<Map<String,Object>> queryAreaOfRoom(@Param("areaId") String areaId);
+    List<Map<String,Object>> queryAreaOfRoom();
 
     List<Map<String,Object>> queryFloorOfRoom(@Param("areaId") String areaId);
+
+    List<Map<String,Object>> showFloorsAndRooms(String floorId)throws Exception;
+
+    Map<String, Object> queryAreaAndFloorAndRoomByRoomId(String roomId) throws Exception;
 }

@@ -8,24 +8,24 @@
     <select id="queryAreas" resultType="map" parameterType="map">
         select * from t_area
         WHERE TRUE
-            <if test="areaId != ''">
-                AND id LIKE  #{areaId}
-            </if>
-            <if test="areaName != ''">
-                AND name LIKE  #{areaName}
-            </if>
-            ORDER BY id
-            limit #{start},#{pageSize}
+        <if test="areaId != ''">
+            AND id LIKE #{areaId}
+        </if>
+        <if test="areaName != ''">
+            AND name LIKE #{areaName}
+        </if>
+        ORDER BY id
+        limit #{start},#{pageSize}
     </select>
 
     <select id="queryAreasTotalCount" resultType="long" parameterType="map">
         select count(*) from t_area
         WHERE TRUE
         <if test="areaId != ''">
-            AND id LIKE  #{areaId}
+            AND id LIKE #{areaId}
         </if>
         <if test="areaName != ''">
-            AND name LIKE  #{areaName}
+            AND name LIKE #{areaName}
         </if>
     </select>
 
@@ -51,11 +51,11 @@
         (select id,name from t_area ) a on f.area_id = a.id
         WHERE TRUE
         <if test="areaName != ''">
-            AND a.name LIKE  #{areaName}
+            AND a.name LIKE #{areaName}
         </if>
 
         <if test="floorName != ''">
-            AND f.name LIKE  #{floorName}
+            AND f.name LIKE #{floorName}
         </if>
         ORDER BY a.id
         limit #{start},#{pageSize}
@@ -67,10 +67,10 @@
         (select id,name from t_area ) a on f.area_id = a.id
         WHERE TRUE
         <if test="areaName != ''">
-            AND a.name LIKE  #{areaName}
+            AND a.name LIKE #{areaName}
         </if>
         <if test="floorName != ''">
-            AND f.name LIKE  #{floorName}
+            AND f.name LIKE #{floorName}
         </if>
     </select>
 
@@ -110,10 +110,10 @@
         (select id,name from t_area) a ON f.area_id = a.id
         <where>
             <if test="areaName != ''">
-                AND a.name LIKE  #{areaName}
+                AND a.name LIKE #{areaName}
             </if>
             <if test="floorName != ''">
-                AND f.name LIKE  #{floorName}
+                AND f.name LIKE #{floorName}
             </if>
             AND r.name LIKE #{roomNo}
             ORDER BY a.id
@@ -129,10 +129,10 @@
         (select id,name from t_area) a ON f.area_id = a.id
         <where>
             <if test="areaName != ''">
-                AND a.name LIKE  #{areaName}
+                AND a.name LIKE #{areaName}
             </if>
             <if test="floorName != ''">
-                AND f.name LIKE  #{floorName}
+                AND f.name LIKE #{floorName}
             </if>
             AND r.name LIKE #{roomNo}
         </where>
@@ -161,6 +161,26 @@
     <select id="queryFloorOfRoom" resultType="map">
         SELECT * FROM t_floor
         WHERE area_id = #{areaId}
+    </select>
+
+    <select id="showFloorsAndRooms" parameterType="string" resultType="map">
+        select * from t_room
+        WHERE floor_id = #{floorId}
+    </select>
+
+    <select id="queryAreaAndFloorAndRoomByRoomId" parameterType="string" resultType="map">
+        select
+          area.name areaName,
+          floor.id floorId,
+          floor.name floorName,
+          room.id roomId,
+          room.name roomName
+        from t_area area
+          LEFT JOIN (
+                      select * from t_floor )floor ON floor.area_id = area.id
+          LEFT JOIN (
+                      select * from t_room )room on room.floor_id = floor.id
+        WHERE room.id = #{roomId}
     </select>
 
 </mapper>

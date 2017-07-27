@@ -150,9 +150,30 @@ public class DormServiceImpl implements DormService {
     @Override
     public Map<String, Object> showAreaAndFloorInfos(String areaId) throws Exception {
         Map<String, Object> data = new HashMap<>();
-        data.put("queryAreaOfRoom", dormDao.queryAreaOfRoom(areaId));
+        data.put("queryAreaOfRoom", dormDao.queryAreaOfRoom());
         data.put("queryFloorOfRoom", dormDao.queryFloorOfRoom(areaId));
 
         return data;
+    }
+
+    @Override
+    public Map<String, Object> showFloorsAndRooms(String floorId) throws Exception {
+        Map<String, Object> data = new HashMap<>();
+        data.put("queryRoomList",dormDao.showFloorsAndRooms(floorId));
+        return data;
+    }
+
+    @Override
+    public Map<String, Object> showDorms(String areaId, String floorId) throws Exception {
+        Map<String, Object> data = new HashMap<>();
+        data.put("areaList", dormDao.queryAreaOfRoom());
+        data.put("floorList", dormDao.queryFloorOfRoom(areaId));
+        data.put("roomList", dormDao.showFloorsAndRooms(floorId));
+        return data;
+    }
+
+    @Override
+    public Map<String, Object> queryAreaAndFloorAndRoomByRoomId(String roomId) throws Exception {
+        return dormDao.queryAreaAndFloorAndRoomByRoomId(roomId);
     }
 }
