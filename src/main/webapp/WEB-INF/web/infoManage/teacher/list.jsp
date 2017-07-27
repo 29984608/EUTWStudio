@@ -183,6 +183,29 @@
                 }
                 return totalHtml;
             },
+            loadFloorId: function (floor, no) {
+            let totalHtml = "";
+            let _html = "";
+
+            for (let i = 0; i < floor.length; ++i) {
+                let a =0;
+                let isChecked;
+                for (let j = 0; j < no.length; j++) {
+                    if (floor[i].id == no[j].floor_id)a++;
+                }
+                if (a != 0) isChecked = "checked";
+                else isChecked = "";
+                _html += ` <input class="floorId" type="checkbox" ` + isChecked + ` value="` + floor[i].id + `" title="` + floor[i].name + `" >`
+                if (i === floor.length - 1) {
+                    totalHtml += ` <div class="layui-form-item">
+                                             <div class="layui-input-block" >`
+                        + _html + `
+                                             </div>
+                                       </div>`;
+                }
+            }
+            return totalHtml;
+        },
             add: function () {
                 $.post(baseUrl + "/teacher/loadDepartmentsAndDirectionsAndClasses", function (data) {
                     if (data.result) {
@@ -274,9 +297,12 @@
                     if ($(classes[i]).prop("checked")) classedIds += $(classes[i]).val() + ",";
                 }
                 data += "&classIds=" + classedIds;
+                console.log(floors)
                 for (let i = 0; i < floors.length; ++i) {
+//                    console.log(floors[i])
                     if ($(floors[i]).prop("checked")) floorIds += $(floors[i]).val() + ",";
                 }
+
                 data += "&floorIds=" + floorIds;
 
                 $.post(baseUrl + "/teacher/add", data, function (data) {
@@ -359,7 +385,7 @@
                     if (data.result) {
 
                         $("#queryAreaOfRoom").html(`<option value="0">区号</option>`).append(teacher.loadDepartmentOrDirection(data.data.queryAreaOfRoom, "-"))
-                        $("#floor").html(teacher.loadFloor(data.data.queryFloorOfRoom, "-"));
+                        $("#floor").html(teacher.loadFloorId(data.data.queryFloorOfRoom, "-"));
                         form.render();
                     }
                 })
@@ -415,7 +441,7 @@
                         var queryAreaOfRoom = data.data.queryAreaOfRoom
                         var queryFloorOfRoom = data.data.queryFloorOfRoom
                         $("#queryAreaOfRoom").html(teacher.loadDepartmentOrDirection(queryAreaOfRoom, id))
-                        $("#floor").html(teacher.loadFloor(queryFloorOfRoom, "-"));
+                        $("#floor").html(teacher.loadFloorId(queryFloorOfRoom, "-"));
 
                         form.render();
                     }
