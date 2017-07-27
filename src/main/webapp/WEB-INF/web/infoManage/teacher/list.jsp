@@ -250,7 +250,7 @@
                             $("#department-update").html(teacher.loadDepartmentOrDirection(departments, departmentId));
                             $("#direction-update").html(teacher.loadDepartmentOrDirection(directions, directionId));
                             $("#classes-update").html(teacher.loadClasses(classess, no));
-                        } else if (classify === "社区导员") {
+                        } else if (classify === "社区辅导员") {
                             $("#show_dept_update").hide();
                             $("#show_career_update").hide();
                             $("#show_community_update").show();
@@ -343,7 +343,7 @@
                             setTimeout("location.reload()", 500);
                         })
                     });
-                }else if ($("#classify_text").val() === "社区导员") {
+                }else if ($("#classify_text").val() === "社区辅导员") {
                     $("#dept_update").val(0);
                     $("#department-update").val(0);
                     $("#direction-update").val(0);
@@ -356,7 +356,6 @@
                         if ($(floorId[i]).prop("checked")) floorIds += $(floorId[i]).val() + ",";
                     }
                     data += "&floorIds=" + floorIds;
-                    console.log(data)
                     layer.confirm('确定修改?', {icon: 3, title: '提示'}, function (index) {
                         layer.close(index);
                         $.post(baseUrl + "/teacher/update", data, function (data) {

@@ -37,7 +37,7 @@ public class PersonServiceImpl implements PersonService {
         List<String> ids;
         List<String> floorId;
         if (teacher.getClassify().equals("3")) {
-            teacher.setClassify("社区导员");
+            teacher.setClassify("社区辅导员");
             teacher.setDepartmentId("0");
             teacher.setDirectionId("0");
             teacher.setDeptId(0);
