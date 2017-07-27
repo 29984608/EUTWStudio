@@ -82,7 +82,6 @@ public class TeacherController {
             result.put("directions", departmentDao.queryDirectionsByDepartmentId(departmentId));
             result.put("classess", trainModuleDao.queryClassessByDepartmentId(departmentId, Calendar.getInstance().get(Calendar.YEAR) - 4, new Date().getYear()));
             result.put("depts", departmentDao.queryDeptList());
-//            result.put("area",)
 
             return Result.success(result, Constant.OPERATION_SUCCESS);
         } catch (Exception e) {
@@ -163,6 +162,24 @@ public class TeacherController {
         }
 
         return Result.failure(null ,Constant.SEARCH_FAILURE);
+    }
+ @RequestMapping("teacherCommunity")
+    @ResponseBody
+    public Result teacherCommunity(String no) {
+        List<Map<String,Object>> teachers;
+        List<Map<String,Object>> floors;
+        try{
+            Map<String, Object> result = new HashMap<>();
+            teachers= personService.teacherCommunity(no);
+            floors = personService.teacherCommunity_floors(no);
+            result.put("area", teachers);
+            result.put("floors", floors);
+            return Result.success(result, Constant.SEARCH_SUCCESS);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+     return Result.failure(null, Constant.SEARCH_FAILURE);
     }
 
 }
