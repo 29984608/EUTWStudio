@@ -297,9 +297,7 @@
                     if ($(classes[i]).prop("checked")) classedIds += $(classes[i]).val() + ",";
                 }
                 data += "&classIds=" + classedIds;
-                console.log(floors)
                 for (let i = 0; i < floors.length; ++i) {
-//                    console.log(floors[i])
                     if ($(floors[i]).prop("checked")) floorIds += $(floors[i]).val() + ",";
                 }
 
