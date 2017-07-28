@@ -75,9 +75,9 @@
             showPage: function (data) {
                 let index = 0;
                 let _html = "";
-                let totalCount = [0, 0, 0, 0, 0];
+                let totalCount = [0, 0, 0,  0];
                 data.forEach(teacher => {
-                    let littleCount = [0, 0, 0, 0, 0];
+                    let littleCount = [0, 0, 0,  0];
                     let types = teacher.type;
                     let levels = types[0].levels;
                     let rowSumCount = 0;
@@ -97,7 +97,7 @@
                     _html += ` <th>` + rowSumCount + `</th>`;
                     _html += ` </tr>`;
 
-                    littleCount[4] += rowSumCount;
+                    littleCount[3] += rowSumCount;
                     rowSumCount = 0;
 
                     for (let i = 1; i < types.length; ++i) {
@@ -115,18 +115,18 @@
                         }
                         _html += ` <th>` + rowSumCount + `</th>`;
                         _html += ` </tr>`;
-                        littleCount[4] += rowSumCount;
+                        littleCount[3] += rowSumCount;
                         rowSumCount = 0;
                     }
 
                     _html += `<tr style="background: #e8e8e8">
                          <th>` + (++index) + `</th>
                           <th style='font-weight: bold'>小计</th>
-                          <th>`+littleCount[4]+`</th>
+                          <th>`+littleCount[3]+`</th>
                           <th>`+littleCount[0]+`</th>
                           <th>`+littleCount[1]+`</th>
                           <th>`+littleCount[2]+`</th>
-                          <th>`+littleCount[4]+`</th>
+                          <th>`+littleCount[3]+`</th>
                     </tr>`;
                     for(let i in totalCount)
                         totalCount[i] += littleCount[i];
@@ -138,7 +138,7 @@
                           <th>` + totalCount[0] + `</th>
                           <th>` + totalCount[1] + `</th>
                           <th>` + totalCount[2] + `</th>
-                          <th>` + totalCount[4] + `</th>
+                          <th>` + totalCount[3] + `</th>
                     </tr>`;
                 $("#report").html(_html);
             },

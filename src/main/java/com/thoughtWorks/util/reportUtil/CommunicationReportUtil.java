@@ -28,9 +28,9 @@ public class CommunicationReportUtil extends ExcelReportUtil {
             sheet.setColumnWidth((short) 2, (short) 4500);
 
             int rowIndex = 2;
-            int[] totalCount = {0,0,0,0,0};
+            int[] totalCount = {0,0,0,0};
             for (int i = 0; i < dataset.size(); ++i) {
-                int[] littleCount = {0,0,0,0,0};
+                int[] littleCount = {0,0,0,0};
 
                 int rowSumCount = 0;
                 Map<String, Object> teacher = dataset.get(i);
@@ -63,7 +63,7 @@ public class CommunicationReportUtil extends ExcelReportUtil {
                     }
                     cell = row.createCell(levelIndex++);
                     cell.setCellValue(new HSSFRichTextString(Integer.toString(rowSumCount)));
-                    littleCount[4] += rowSumCount;
+                    littleCount[3] += rowSumCount;
                     rowSumCount = 0;
                 }
                 //小计
@@ -95,7 +95,7 @@ public class CommunicationReportUtil extends ExcelReportUtil {
     private void fillNumCount(int[] littleCount, HSSFRow row) {
         HSSFCell cell;
         cell = row.createCell(2);
-        cell.setCellValue(new HSSFRichTextString(String.valueOf(littleCount[4])));
+        cell.setCellValue(new HSSFRichTextString(String.valueOf(littleCount[3])));
         cell = row.createCell(3);
         cell.setCellValue(new HSSFRichTextString(String.valueOf(littleCount[0])));
         cell = row.createCell(4);
@@ -103,7 +103,7 @@ public class CommunicationReportUtil extends ExcelReportUtil {
         cell = row.createCell(5);
         cell.setCellValue(new HSSFRichTextString(String.valueOf(littleCount[2])));
         cell = row.createCell(6);
-        cell.setCellValue(new HSSFRichTextString(String.valueOf(littleCount[4])));
+        cell.setCellValue(new HSSFRichTextString(String.valueOf(littleCount[3])));
     }
 
     private void addToTotalCount(int[] littleCount, int[] totalCount) {
