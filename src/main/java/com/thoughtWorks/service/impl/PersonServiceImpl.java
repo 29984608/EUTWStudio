@@ -318,5 +318,15 @@ public class PersonServiceImpl implements PersonService {
         return personDao.teacherCommunity_floors(no);
     }
 
+    @Override
+    public List<Map<String, Object>> queryTeacherList() throws Exception {
+        return personDao.queryTeacherList();
+    }
+
+    @Override
+    public void updateStudentList(StudentUpdate studentUpdate) throws Exception {
+        personDao.updateStudentList(studentUpdate);
+    }
+
 
 }

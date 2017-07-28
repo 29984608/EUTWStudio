@@ -616,24 +616,199 @@ WHERE direction_id = direction.id
 
     <insert id="insertCommunityTeacher">
         INSERT t_teacher_community (no,area_id,floor_id) VALUES
-        <foreach collection="floorId"  item="item" index="index" separator="," >
+        <foreach collection="floorId" item="item" index="index" separator=",">
             (#{no},#{areaId},#{item})
         </foreach>
     </insert>
 
-    <select id="queryTeacherCommunity" resultType="map" >
+    <select id="queryTeacherCommunity" resultType="map">
         select * from t_teacher_community
 
          where no=#{no}
     </select>
-    <select id="teacherCommunity" resultType="map" >
+    <select id="teacherCommunity" resultType="map">
         select area_id from t_teacher_community
 
         where no=#{no}
     </select>
-    <select id="teacherCommunity_floors" resultType="map" >
+    <select id="teacherCommunity_floors" resultType="map">
         select floor_id from t_teacher_community
 
         where no=#{no}
     </select>
+    <select id="queryTeacherList" resultType="map">
+        select * from t_teacher
+    </select>
+    <update id="updateStudentList" parameterType="com.thoughtWorks.entity.StudentUpdate">
+        UPDATE t_student
+        <set>
+            <if test="classes_id != null and classes_id !=''">
+                t_student.classes_id = #{classes_id},
+            </if>
+            <if test="profession_id != null and profession_id !=''">
+                t_student.profession_id = #{profession_id},
+            </if>
+            <if test="origin_profession_id != null and origin_profession_id !=''">
+                t_student.origin_profession_id = #{origin_profession_id},
+            </if>
+            <if test="direction_id != null and direction_id !=''">
+                t_student.direction_id = #{direction_id},
+            </if>
+
+            <if test="health_status != null and health_status !=''">
+                t_student.health_status = #{health_status},
+            </if>
+            <if test="student_type != null and student_type !=''">
+                t_student.student_type = #{student_type},
+            </if>
+            <if test="stay_type != null and stay_type !=''">
+                t_student.stay_type = #{stay_type},
+            </if>
+            <if test="in_school != null and in_school !=''">
+                t_student.in_school = #{in_school},
+            </if>
+            <if test="graduate_school != null and graduate_school !=''">
+                t_student.graduate_school = #{graduate_school},
+            </if>
+            <if test="blood != null and blood !=''">
+                t_student.blood = #{blood},
+            </if>
+            <if test="height != null and height !=''">
+                t_student.height = #{height},
+            </if>
+            <if test="is_marry != null and is_marry !=''">
+                t_student.is_marry = #{is_marry},
+            </if>
+            <if test="weight != null and weight !=''">
+                t_student.weight = #{weight},
+            </if>
+            <if test="political_status != null and political_status !=''">
+                t_student.political_status = #{political_status},
+            </if>
+            <if test="pre_school_education != null and pre_school_education !=''">
+                t_student.pre_school_education = #{pre_school_education},
+            </if>
+            <if test="student_classify != null and student_classify !=''">
+                t_student.student_classify = #{student_classify},
+            </if>
+            <if test="idcard_address != null and idcard_address !=''">
+                t_student.idcard_address = #{idcard_address},
+            </if>
+            <if test="actual_address != null and actual_address !=''">
+                t_student.actual_address = #{actual_address},
+            </if>
+            <if test="origin_address != null and origin_address !=''">
+                t_student.origin_address = #{origin_address},
+            </if>
+            <if test="family_phone != null and family_phone !=''">
+                t_student.family_phone = #{family_phone},
+            </if>
+            <if test="family_zip_code != null and family_zip_code !=''">
+                t_student.family_zip_code = #{family_zip_code},
+            </if>
+            <if test="student_contact_method != null and student_contact_method !=''">
+                t_student.student_contact_method = #{student_contact_method},
+            </if>
+            <if test="emergency_contact_name != null and emergency_contact_name !=''">
+                t_student.emergency_contact_name = #{emergency_contact_name},
+            </if>
+            <if test="emergency_contact_method != null and emergency_contact_method !=''">
+                t_student.emergency_contact_method = #{emergency_contact_method},
+            </if>
+            <if test="account_in != null and account_in !=''">
+                t_student.account_in = #{account_in},
+            </if>
+            <if test="email != null and email !=''">
+                t_student.email = #{email},
+            </if>
+            <if test="qq != null and qq !=''">
+                t_student.qq = #{qq},
+            </if>
+            <if test="area_origin_name != null and area_origin_name !=''">
+                t_student.area_origin_name = #{area_origin_name},
+            </if>
+            <if test="sat_score != null and sat_score !=''">
+                t_student.sat_score = #{sat_score},
+            </if>
+            <if test="pre_school_file_where_location != null and pre_school_file_where_location !=''">
+                t_student.pre_school_file_where_location = #{pre_school_file_where_location},
+            </if>
+            <if test="file_in != null and file_in !=''">
+                t_student.file_in = #{file_in},
+            </if>
+            <if test="pre_school_name != null and pre_school_name !=''">
+                t_student.pre_school_name = #{pre_school_name},
+            </if>
+            <if test="pre_school_account_where_station != null and pre_school_account_where_station !=''">
+                t_student.pre_school_account_where_station = #{pre_school_account_where_station},
+            </if>
+            <if test="pre_school_work != null and pre_school_work !=''">
+                t_student.pre_school_work = #{pre_school_work},
+            </if>
+            <if test="pre_school_staff != null and pre_school_staff !=''">
+                t_student.pre_school_staff = #{pre_school_staff},
+            </if>
+            <if test="own_experience != null and own_experience !=''">
+                t_student.own_experience = #{own_experience},
+            </if>
+            <if test="own_punishment != null and own_punishment !=''">
+                t_student.own_punishment = #{own_punishment},
+            </if>
+            <if test="student_status != null and student_status !=''">
+                t_student.student_status = #{student_status},
+            </if>
+            <if test="payment_status_first_year != null and payment_status_first_year !=''">
+                t_student.payment_status_first_year = #{payment_status_first_year},
+            </if>
+            <if test="arrears_first_year != null and arrears_first_year !=''">
+                t_student.arrears_first_year = #{arrears_first_year},
+            </if>
+            <if test="payment_status_second_year != null and payment_status_second_year !=''">
+                t_student.payment_status_second_year = #{payment_status_second_year},
+            </if>
+            <if test="arrears_second_year != null and arrears_second_year !=''">
+                t_student.arrears_second_year = #{arrears_second_year},
+            </if>
+            <if test="payment_status_third_year != null and payment_status_third_year !=''">
+                t_student.payment_status_third_year = #{payment_status_third_year},
+            </if>
+            <if test="arrears_third_year != null and arrears_third_year !=''">
+                t_student.arrears_third_year = #{arrears_third_year},
+            </if>
+            <if test="practice_learning_type != null and practice_learning_type !=''">
+                t_student.practice_learning_type = #{practice_learning_type},
+            </if>
+            <if test="off_school_stay_address != null and off_school_stay_address !=''">
+                t_student.off_school_stay_address = #{off_school_stay_address},
+            </if>
+            <if test="area_id != null and area_id !=''">
+                t_student.area_id = #{area_id},
+            </if>
+            <if test="floor_id != null and floor_id !=''">
+                t_student.floor_id = #{floor_id},
+            </if>
+            <if test="room_id != null and room_id !=''">
+                t_student.room_id = #{room_id},
+            </if>
+            <if test="counselor_id != null and counselor_id !=''">
+                t_student.counselor_id = #{counselor_id},
+            </if>
+            <if test="is_out != null and is_out !=''">
+                t_student.is_out = #{is_out},
+            </if>
+            <if test="religion != null and religion !=''">
+                t_student.religion = #{religion},
+            </if>
+            <if test="hard_type != null and hard_type !=''">
+                t_student.hard_type = #{hard_type},
+            </if>
+            <if test="teacher_id != null and teacher_id !=''">
+                t_student.teacher_id = #{teacher_id},
+            </if>
+            <if test="community_teacher_id != null and community_teacher_id !=''">
+                t_student.community_teacher_id = #{community_teacher_id}
+            </if>
+        </set>
+        WHERE t_student.no = #{no}
+    </update>
 </mapper>

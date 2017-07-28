@@ -392,13 +392,23 @@
                                     </tr>
 
                                     <tr>
-                                        <th colspan="2">学生类型:<span>
+                                        <th colspan="1">学生类型:<span>
                                         <div class="layui-inline" pane="" id="updateStudentType">
                                             <label class="layui-form-label" style="width: auto"></label>
                                             <div class="layui-inline">
                                                <input name="student_type" value="高考录取" title="高考录取"
                                                       type="radio">
                                                <input name="student_type" value="自助招生" title="自助招生" type="radio">
+                                            </div>
+                                        </div>
+                                    </span></th>
+                                        <th colspan="1">住宿类型:<span>
+                                        <div class="layui-inline" pane="" id="update_accommodation_type">
+                                            <label class="layui-form-label" style="width: auto"></label>
+                                            <div class="layui-inline">
+                                               <input name="accommodation_type" value="2" title="校外"
+                                                      type="radio">
+                                               <input name="accommodation_type" value="1" title="校内" type="radio">
                                             </div>
                                         </div>
                                     </span></th>
@@ -868,15 +878,17 @@
                                     <tr>
                                         <th colspan="2">职业导师：<span>
                                             <div class="layui-input-inline" style="width: 60%">
-                                                <input type="text" name="text" required lay-verify="required"
-                                                       placeholder="请输入内容" autocomplete="off" class="layui-input" id="update_career_mentor">
-                                             </div>
+                                                <select lay-filter="update_community_counselor" id="update_career_mentor" readonly>
+                                                    <option value=""></option>
+                                                </select>
+                                            </div>
                                         </span></th>
                                         <th colspan="2">社区辅导员：<span>
                                             <div class="layui-input-inline" style="width: 60%">
-                                                <input type="text" name="text" required lay-verify="required"
-                                                       placeholder="请输入内容" autocomplete="off" class="layui-input" id="update_community_counselor">
-                                             </div>
+                                                <select lay-filter="update_community_counselor" id="update_community_counselor">
+                                                    <option value=""></option>
+                                                </select>
+                                            </div>
                                         </span></th>
                                     </tr>
                                     <tr>
@@ -1002,7 +1014,7 @@
                                             </span>
                                         </span></th>
                                     </tr>
-                                    <tr>
+                                    <tr id="dorms">
                                         <th colspan="6"><span>
 
                                                 <div class="layui-input-inline" style="width: 100%">

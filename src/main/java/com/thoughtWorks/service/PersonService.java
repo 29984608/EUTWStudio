@@ -80,4 +80,8 @@ public interface PersonService {
     List<Map<String,Object>> teacherCommunity(String no);
 
     List<Map<String,Object>> teacherCommunity_floors(String no);
+
+    List<Map<String, Object>> queryTeacherList() throws Exception;
+
+    void updateStudentList(StudentUpdate studentUpdate) throws Exception;
 }
