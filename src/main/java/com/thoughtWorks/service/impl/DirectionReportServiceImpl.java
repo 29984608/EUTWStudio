@@ -28,6 +28,7 @@ public class DirectionReportServiceImpl implements DirectionReportService {
         headers.put("level1",  Integer.toString(searchLevels.get(0)));
         headers.put("level2",  Integer.toString(searchLevels.get(1)));
         headers.put("level3",  Integer.toString(searchLevels.get(2)));
+        headers.put("littleCount",  "小计");
         String fileName = "高职学院就业方向人数统计表.xls";
 
         String path = request.getServletContext().getRealPath("images/temp") + "/" + fileName;

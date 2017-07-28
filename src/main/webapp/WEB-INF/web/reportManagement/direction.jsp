@@ -73,9 +73,10 @@
             showPage: function (data) {
                 let index = 0;
                 let _html = "";
-                let totalCount = 0;
+                let totalCount = [0, 0, 0,  0];
                 data.forEach(department => {
-                    let littleCount = 0;
+                    let littleCount = [0, 0, 0, 0];
+                    let rowSumCount = 0;
                     let directions = department.directions;
                     let levels = directions[0].levels;
 
@@ -87,9 +88,15 @@
                         `;
                     for (let j = 0; j < levels.length; ++j) {
                         _html += `<th>` + levels[j].count + `</th>`;
-                        littleCount += levels[j].count;
+
+                        littleCount[j] += levels[j].count;
+                        rowSumCount += levels[j].count;
                     }
+                    _html += ` <th>` + rowSumCount + `</th>`;
                     _html += ` </tr>`;
+
+                    littleCount[3] += rowSumCount;
+                    rowSumCount = 0;
 
                     for (let i = 1; i < directions.length; ++i) {
                         let direction = directions[i];
@@ -101,27 +108,34 @@
                           `;
                         for (let j = 0; j < levels.length; ++j) {
                             _html += `<th>` + levels[j].count + `</th>`;
-                            littleCount += levels[j].count;
+                            littleCount[j] += levels[j].count;
+                            rowSumCount += levels[j].count
                         }
+                        _html += ` <th>` + rowSumCount + `</th>`;
                         _html += ` </tr>`;
+                        littleCount[3] += rowSumCount;
+                        rowSumCount = 0;
                     }
-                    _html += `<tr>
+                    _html += `<tr style="background: #e8e8e8">
                          <th>` + (++index) + `</th>
                           <th style='font-weight: bold'>小计</th>
-                          <th>` + littleCount + `</th>
-                          <th></th>
-                          <th></th>
-                          <th></th>
+                          <th>`+littleCount[3]+`</th>
+                          <th>`+littleCount[0]+`</th>
+                          <th>`+littleCount[1]+`</th>
+                          <th>`+littleCount[2]+`</th>
+                          <th>`+littleCount[3]+`</th>
                     </tr>`;
-                    totalCount += littleCount;
+                    for(let i in totalCount)
+                        totalCount[i] += littleCount[i];
                 });
                 _html += `<tr>
                          <th>` + (++index) + `</th>
                           <th style='font-weight: bold'>总计</th>
-                          <th>` + totalCount + `</th>
-                          <th></th>
-                          <th></th>
-                          <th></th>
+                          <th>` + totalCount[3] + `</th>
+                          <th>` + totalCount[0] + `</th>
+                          <th>` + totalCount[1] + `</th>
+                          <th>` + totalCount[2] + `</th>
+                          <th>` + totalCount[3] + `</th>
                     </tr>`;
                 $("#report").html(_html);
             },
@@ -133,6 +147,7 @@
                         <td>就业方向</td>
                 `);
                 getSearchLevels().forEach(level => $("#head").append(`<td>` + level + `</td>`));
+                $("#head").append(`<td>小计</td>`);
             }
         }
         $(function () {
