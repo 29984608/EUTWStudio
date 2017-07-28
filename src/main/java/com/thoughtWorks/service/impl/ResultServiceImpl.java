@@ -104,7 +104,7 @@ public class ResultServiceImpl implements ResultService {
 
     @Override
     public List<Map<String, Object>> queryRankList(SearchDto searchDto, PageUtil pageUtil) throws Exception {
-        List<Map<String, String>> studentsTotalScores = new ArrayList<>(), studentsAverageScores;
+            List<Map<String, String>> studentsTotalScores = new ArrayList<>(), studentsAverageScores;
         Map<String, Object> data = new HashMap<>();
         data.put("departmentId", searchDto.getDepartmentId());
         data.put("level", searchDto.getLevel());
