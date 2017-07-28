@@ -51,8 +51,8 @@
             </blockquote>
             <div class="larry-separate"></div>
             <div class="layui-tab-content larry-personal-body clearfix mylog-info-box">
-                <a class="layui-btn" onclick="studentClass.add()"><i class="layui-icon">&#xe630;</i>班级选择</a>
                 <a class="layui-btn" onclick="studentClass.distributeDirection()"><i class="layui-icon">&#xe630;</i>就业方向</a>
+                <a class="layui-btn" onclick="studentClass.add()"><i class="layui-icon">&#xe630;</i>班级选择</a>
                 <a class="layui-form-mid layui-word-aux">请先勾选学生</a>
                 <div class="layui-form">
                     <table class="layui-table">

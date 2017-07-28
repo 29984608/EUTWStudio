@@ -183,6 +183,29 @@
                 }
                 return totalHtml;
             },
+            loadFloorId: function (floor, no) {
+            let totalHtml = "";
+            let _html = "";
+
+            for (let i = 0; i < floor.length; ++i) {
+                let a =0;
+                let isChecked;
+                for (let j = 0; j < no.length; j++) {
+                    if (floor[i].id == no[j].floor_id)a++;
+                }
+                if (a != 0) isChecked = "checked";
+                else isChecked = "";
+                _html += ` <input class="floorId" type="checkbox" ` + isChecked + ` value="` + floor[i].id + `" title="` + floor[i].name + `" >`
+                if (i === floor.length - 1) {
+                    totalHtml += ` <div class="layui-form-item">
+                                             <div class="layui-input-block" >`
+                        + _html + `
+                                             </div>
+                                       </div>`;
+                }
+            }
+            return totalHtml;
+        },
             add: function () {
                 $.post(baseUrl + "/teacher/loadDepartmentsAndDirectionsAndClasses", function (data) {
                     if (data.result) {
@@ -227,7 +250,7 @@
                             $("#department-update").html(teacher.loadDepartmentOrDirection(departments, departmentId));
                             $("#direction-update").html(teacher.loadDepartmentOrDirection(directions, directionId));
                             $("#classes-update").html(teacher.loadClasses(classess, no));
-                        } else if (classify === "社区导员") {
+                        } else if (classify === "社区辅导员") {
                             $("#show_dept_update").hide();
                             $("#show_career_update").hide();
                             $("#show_community_update").show();
@@ -236,8 +259,6 @@
                                 let _no = data.data.area[0].area_id;
                                 teacher.queryFloorAndArea(_no, floorsId);
                             });
-
-
                         }
                         else {
                             $("#show_community_update").hide();
@@ -277,6 +298,7 @@
                 for (let i = 0; i < floors.length; ++i) {
                     if ($(floors[i]).prop("checked")) floorIds += $(floors[i]).val() + ",";
                 }
+
                 data += "&floorIds=" + floorIds;
 
                 $.post(baseUrl + "/teacher/add", data, function (data) {
@@ -298,9 +320,11 @@
                         if ($(classes[i]).prop("checked")) classedIds += $(classes[i]).val() + ",";
                     }
                     data += "&classIds=" + classedIds;
+
                     layer.confirm('确定修改?如果您修改了系,那么原来的班级就会被删除', {icon: 3, title: '提示'}, function (index) {
                         layer.close(index);
                         $.post(baseUrl + "/teacher/update", data, function (data) {
+
                             layer.msg(data.msg);
                             setTimeout("location.reload()", 500);
                         })
@@ -319,7 +343,7 @@
                             setTimeout("location.reload()", 500);
                         })
                     });
-                }else if ($("#classify_text").val() === "社区导员") {
+                }else if ($("#classify_text").val() === "社区辅导员") {
                     $("#dept_update").val(0);
                     $("#department-update").val(0);
                     $("#direction-update").val(0);
@@ -327,10 +351,11 @@
                     let data = $("#update-form").serialize();
                     let floorIds = "";
                     let floorId = $(".floorId_update");
+
                     for (let i = 0; i < floorId.length; ++i) {
                         if ($(floorId[i]).prop("checked")) floorIds += $(floorId[i]).val() + ",";
                     }
-                    data += "&classIds=" + floorIds;
+                    data += "&floorIds=" + floorIds;
                     layer.confirm('确定修改?', {icon: 3, title: '提示'}, function (index) {
                         layer.close(index);
                         $.post(baseUrl + "/teacher/update", data, function (data) {
@@ -359,7 +384,7 @@
                     if (data.result) {
 
                         $("#queryAreaOfRoom").html(`<option value="0">区号</option>`).append(teacher.loadDepartmentOrDirection(data.data.queryAreaOfRoom, "-"))
-                        $("#floor").html(teacher.loadFloor(data.data.queryFloorOfRoom, "-"));
+                        $("#floor").html(teacher.loadFloorId(data.data.queryFloorOfRoom, "-"));
                         form.render();
                     }
                 })
@@ -415,7 +440,7 @@
                         var queryAreaOfRoom = data.data.queryAreaOfRoom
                         var queryFloorOfRoom = data.data.queryFloorOfRoom
                         $("#queryAreaOfRoom").html(teacher.loadDepartmentOrDirection(queryAreaOfRoom, id))
-                        $("#floor").html(teacher.loadFloor(queryFloorOfRoom, "-"));
+                        $("#floor").html(teacher.loadFloorId(queryFloorOfRoom, "-"));
 
                         form.render();
                     }

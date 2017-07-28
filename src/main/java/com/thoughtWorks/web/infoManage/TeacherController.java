@@ -108,9 +108,10 @@ public class TeacherController {
 
     @RequestMapping("update")
     @ResponseBody
-    public Result update(Teacher teacher, String classIds) {
+    public Result update(Teacher teacher, String classIds,String floorIds,int areaId) {
         try {
-            personService.updateTeacher(teacher, classIds);
+
+            personService.updateTeacher(teacher, classIds,floorIds,areaId);
 
             return Result.success(null, Constant.UPDATE_SUCCESS);
         } catch (Exception e) {

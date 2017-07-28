@@ -50,7 +50,7 @@
             <div class="larry-separate"></div>
             <div class="layui-tab-content larry-personal-body clearfix mylog-info-box">
                 <a class="layui-btn" onclick="course.add()"><i class="layui-icon">&#xe61f;</i>添加</a>
-                <a class="layui-btn" onclick="course.importExcel()"><i class="layui-icon">&#xe630;</i>导入 excel</a>
+                <%--<a class="layui-btn" onclick="course.importExcel()"><i class="layui-icon">&#xe630;</i>导入 excel</a>--%>
                 <div class="layui-form">
                     <table class="layui-table">
                         <thead>
@@ -85,10 +85,7 @@
     let pageSize = 10;
     let course;
     let modules;
-    let methods = [{id: "笔试", name: "笔试"}, {id: "机考", name: "机考"}, {id: "大作业", name: "大作业"}, {
-        id: "课堂作业",
-        name: "课堂作业"
-    }];
+    let methods;
     let semesters = [{id: "1", name: "1"}, {id: "2", name: "2"}, {id: "3", name: "3"}, {id: "4", name: "4"}, {
         id: "5",
         name: "5"
@@ -145,6 +142,7 @@
                     success: function (data) {
                         if (data.result) {
                             modules = data.modules;
+                            methods = data.testMethods;
                             $("#module_search").html("<option value=''>模块</option>" + course.loadSelectElementHtml(modules, 0));
                             currentIndex = data.page.currentIndex;
                             totalSize = data.page.totalSize;

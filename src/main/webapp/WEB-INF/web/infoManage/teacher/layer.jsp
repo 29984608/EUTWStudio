@@ -49,7 +49,7 @@
                 <select id="classify" name="classify"  lay-filter="classify">
                     <option value="1">职业导师</option>
                     <option value="2">行政</option>
-                    <option value="3">社区导员</option>
+                    <option value="3">社区辅导员</option>
                 </select>
             </div>
         </div>
@@ -181,7 +181,7 @@
                 <label class="layui-form-label">区号</label>
                 <div class="layui-input-inline" >
                     <select lay-filter="queryAreaOfRoom_update" name="areaId" id="queryAreaOfRoom_update">
-                        <option value="">选择区号</option>
+                        <option value="0">选择区号</option>
                     </select>
                 </div>
             </div>

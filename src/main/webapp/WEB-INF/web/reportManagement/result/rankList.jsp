@@ -11,10 +11,6 @@
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/common/css/global.css" media="all">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/common.css" media="all">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/personal.css" media="all">
-    <%--时间轴--%>
-    <link rel="stylesheet" href="${baseurl}/public/css/timeAsix/css/screen.css" type="text/css" media="screen">
-    <link rel="stylesheet" href="${baseurl}/public/css/timeAsix/css/responsive.css" type="text/css" media="screen">
-    <link rel="stylesheet" href="${baseurl}/public/css/timeAsix/inc/colorbox.css" type="text/css" media="screen">
 
 </head>
 <body>
@@ -79,6 +75,8 @@
     </div>
 </section>
 </body>
+<script src="${baseurl}/js/searchJs.js"></script>
+
 <script id="list-tpl" type="text/html">
     {{# layui.each(d.results, function(index, item){ }}
     <tr>
@@ -136,6 +134,7 @@
                     data: data,
                     type: "post",
                     success: function (data) {
+                        console.log(data);
                         if (data.result) {
                             currentIndex = data.page.currentIndex;
                             totalSize = data.page.totalSize;
@@ -143,6 +142,7 @@
                             laytpl($("#list-tpl").text()).render(data, function (html) {
                                 $("#list").html(html);
                             });
+
                             form.render();
                         } else {
                             layer.msg(data.msg);
@@ -159,16 +159,11 @@
                 })
             },
             loadAllLevels: function () {
-                let date = new Date();
-                let year = date.getFullYear();
-                let month = date.getMonth() + 1;
-                year = month > 8 ? year : year - 1;
-                let differ = year - 2016;
-                if (differ >= 0) {
-                    for (let i = differ; i >= 0; i--) {
-                        $("#level_search").html(`<option value="` + year + `">` + (year + i) + `</option>`)
-                    }
-                }
+                $("#level_search").html();
+                let levels = getSearchLevels().reverse();
+                levels.forEach(level => {
+                    $("#level_search").append(`<option value="` + level + `" selected>` + level + `</option>`);
+                });
             },
             exportExcel: function () {
                 let departmentName = $("#department_search").val() == "" ? "" : $("#department_search").find("option:selected").text();

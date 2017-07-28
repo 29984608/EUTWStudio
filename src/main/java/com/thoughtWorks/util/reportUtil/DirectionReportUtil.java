@@ -13,7 +13,7 @@ public class DirectionReportUtil extends ExcelReportUtil {
     protected void writeHeaders(HSSFSheet sheet, Map<String, String> headers) {
         HSSFRow row = sheet.createRow(1);
 
-        String[] keys = {"index", "departmentName", "directionName", "level1", "level2", "level3"};
+        String[] keys = {"index", "departmentName", "directionName", "level1", "level2", "level3","littleCount"};
         int columnIndex = 0;
         for (String key : keys) {
             HSSFCell cell = row.createCell(columnIndex++);
@@ -28,9 +28,11 @@ public class DirectionReportUtil extends ExcelReportUtil {
             sheet.setColumnWidth((short) 2, (short) 4500);
 
             int rowIndex = 2;
-            int totalCount = 0;
+            int[] totalCount = {0,0,0,0};
             for (int i = 0; i < dataset.size(); ++i) {
-                int littleCount = 0;
+                int[] littleCount = {0,0,0,0};
+                int rowSumCount = 0;
+
                 Map<String, Object> department = dataset.get(i);
                 List<Map<String, Object>> directions = (List<Map<String, Object>>) department.get("directions");
                 if (directions.size() >= 2)
@@ -51,11 +53,18 @@ public class DirectionReportUtil extends ExcelReportUtil {
                     //levels
                     int levelIndex = 3;
                     List<Map<String, Integer>> levels = (List<Map<String, Integer>>) directions.get(j).get("levels");
-                    for (Map<String, Integer> level : levels) {
+                    for (int index = 0; index < levels.size();++index) {
+                        Map<String, Integer> level = levels.get(index);
                         cell = row.createCell(levelIndex++);
                         cell.setCellValue(new HSSFRichTextString(Integer.toString(level.get("count"))));
-                        littleCount += level.get("count");
+                        int count = level.get("count");
+                        rowSumCount += count;
+                        littleCount[index] += count;
                     }
+                    cell = row.createCell(levelIndex++);
+                    cell.setCellValue(new HSSFRichTextString(Integer.toString(rowSumCount)));
+                    littleCount[3] += rowSumCount;
+                    rowSumCount = 0;
                 }
                 //小计
                 HSSFRow row = sheet.createRow(rowIndex++);
@@ -63,9 +72,10 @@ public class DirectionReportUtil extends ExcelReportUtil {
                 HSSFCell cell = setSerialNumber(rowIndex, row);
                 cell = row.createCell(1);
                 cell.setCellValue(new HSSFRichTextString("小计"));
-                cell = row.createCell(2);
-                cell.setCellValue(new HSSFRichTextString(String.valueOf(littleCount)));
-                totalCount+=littleCount;
+
+                fillNumCount(littleCount, row);
+
+                addToTotalCount(littleCount, totalCount);
             }
             //总计
             HSSFRow row = sheet.createRow(rowIndex++);
@@ -73,15 +83,32 @@ public class DirectionReportUtil extends ExcelReportUtil {
             HSSFCell cell = setSerialNumber(rowIndex, row);
             cell = row.createCell(1);
             cell.setCellValue(new HSSFRichTextString("总计"));
-            cell = row.createCell(2);
-            cell.setCellValue(new HSSFRichTextString(String.valueOf(totalCount)));
+            fillNumCount(totalCount, row);
+
 
             setDefaultRowHeight(sheet, 20);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+    private void fillNumCount(int[] littleCount, HSSFRow row) {
+        HSSFCell cell;
+        cell = row.createCell(2);
+        cell.setCellValue(new HSSFRichTextString(String.valueOf(littleCount[3])));
+        cell = row.createCell(3);
+        cell.setCellValue(new HSSFRichTextString(String.valueOf(littleCount[0])));
+        cell = row.createCell(4);
+        cell.setCellValue(new HSSFRichTextString(String.valueOf(littleCount[1])));
+        cell = row.createCell(5);
+        cell.setCellValue(new HSSFRichTextString(String.valueOf(littleCount[2])));
+        cell = row.createCell(6);
+        cell.setCellValue(new HSSFRichTextString(String.valueOf(littleCount[3])));
+    }
 
+    private void addToTotalCount(int[] littleCount, int[] totalCount) {
+        for(int i = 0; i<totalCount.length;++i)
+            totalCount[i] += littleCount[i];
+    }
     private HSSFCell setSerialNumber(int rowIndex, HSSFRow row) {
         //序号
         HSSFCell cell = row.createCell(0);
