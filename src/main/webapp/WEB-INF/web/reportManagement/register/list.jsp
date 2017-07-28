@@ -11,16 +11,13 @@
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/common/css/global.css" media="all">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/common.css" media="all">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/personal.css" media="all">
-    <%--时间轴--%>
-    <link rel="stylesheet" href="${baseurl}/public/css/timeAsix/css/screen.css" type="text/css" media="screen">
-    <link rel="stylesheet" href="${baseurl}/public/css/timeAsix/css/responsive.css" type="text/css" media="screen">
-    <link rel="stylesheet" href="${baseurl}/public/css/timeAsix/inc/colorbox.css" type="text/css" media="screen">
 </head>
 <style>
     #preview li {
         float: left;
         font-size: 14px;
         margin: 3% 0 1% 3%;
+        font-weight: 400;
     }
 </style>
 <body>

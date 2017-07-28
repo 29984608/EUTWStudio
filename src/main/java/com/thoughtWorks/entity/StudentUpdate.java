@@ -55,13 +55,66 @@ public class StudentUpdate {
     private String practice_learning_type;
     private String stay_type;
     private String off_school_stay_address;
-    private String aera_id;
+    private String area_id;
     private String floor_id;
     private String room_id;
     private String counselor_id;
     private String is_out;
     private String religion;
     private String hard_type;
+    private String arrears_first_year;
+    private String arrears_third_year;
+    private String arrears_second_year;
+    private String teacher_id;
+    private String community_teacher_id;
+
+    public String getArea_id() {
+        return area_id;
+    }
+
+    public void setArea_id(String area_id) {
+        this.area_id = area_id;
+    }
+
+    public String getArrears_first_year() {
+        return arrears_first_year;
+    }
+
+    public void setArrears_first_year(String arrears_first_year) {
+        this.arrears_first_year = arrears_first_year;
+    }
+
+    public String getArrears_third_year() {
+        return arrears_third_year;
+    }
+
+    public void setArrears_third_year(String arrears_third_year) {
+        this.arrears_third_year = arrears_third_year;
+    }
+
+    public String getArrears_second_year() {
+        return arrears_second_year;
+    }
+
+    public void setArrears_second_year(String arrears_second_year) {
+        this.arrears_second_year = arrears_second_year;
+    }
+
+    public String getTeacher_id() {
+        return teacher_id;
+    }
+
+    public void setTeacher_id(String teacher_id) {
+        this.teacher_id = teacher_id;
+    }
+
+    public String getCommunity_teacher_id() {
+        return community_teacher_id;
+    }
+
+    public void setCommunity_teacher_id(String community_teacher_id) {
+        this.community_teacher_id = community_teacher_id;
+    }
 
     public String getNo() {
         return no;
@@ -487,13 +540,6 @@ public class StudentUpdate {
         this.off_school_stay_address = off_school_stay_address;
     }
 
-    public String getAera_id() {
-        return aera_id;
-    }
-
-    public void setAera_id(String aera_id) {
-        this.aera_id = aera_id;
-    }
 
     public String getFloor_id() {
         return floor_id;
@@ -541,5 +587,76 @@ public class StudentUpdate {
 
     public void setHard_type(String hard_type) {
         this.hard_type = hard_type;
+    }
+
+    @Override
+    public String toString() {
+        return "StudentUpdate{" +
+                "no='" + no + '\'' +
+                ", name='" + name + '\'' +
+                ", gender='" + gender + '\'' +
+                ", department_id='" + department_id + '\'' +
+                ", direction_id='" + direction_id + '\'' +
+                ", level='" + level + '\'' +
+                ", classes_id='" + classes_id + '\'' +
+                ", profession_id='" + profession_id + '\'' +
+                ", origin_profession_id='" + origin_profession_id + '\'' +
+                ", parent_name='" + parent_name + '\'' +
+                ", famous_family='" + famous_family + '\'' +
+                ", idcard='" + idcard + '\'' +
+                ", born='" + born + '\'' +
+                ", head_image='" + head_image + '\'' +
+                ", health_status='" + health_status + '\'' +
+                ", student_type='" + student_type + '\'' +
+                ", in_school='" + in_school + '\'' +
+                ", graduate_school='" + graduate_school + '\'' +
+                ", blood='" + blood + '\'' +
+                ", height='" + height + '\'' +
+                ", is_marry='" + is_marry + '\'' +
+                ", weight='" + weight + '\'' +
+                ", political_status='" + political_status + '\'' +
+                ", pre_school_education='" + pre_school_education + '\'' +
+                ", student_classify='" + student_classify + '\'' +
+                ", idcard_address='" + idcard_address + '\'' +
+                ", actual_address='" + actual_address + '\'' +
+                ", origin_address='" + origin_address + '\'' +
+                ", family_phone='" + family_phone + '\'' +
+                ", family_zip_code='" + family_zip_code + '\'' +
+                ", student_contact_method='" + student_contact_method + '\'' +
+                ", emergency_contact_name='" + emergency_contact_name + '\'' +
+                ", emergency_contact_method='" + emergency_contact_method + '\'' +
+                ", account_in='" + account_in + '\'' +
+                ", email='" + email + '\'' +
+                ", qq='" + qq + '\'' +
+                ", area_origin_name='" + area_origin_name + '\'' +
+                ", sat_score='" + sat_score + '\'' +
+                ", pre_school_file_where_location='" + pre_school_file_where_location + '\'' +
+                ", file_in='" + file_in + '\'' +
+                ", pre_school_name='" + pre_school_name + '\'' +
+                ", pre_school_account_where_station='" + pre_school_account_where_station + '\'' +
+                ", pre_school_work='" + pre_school_work + '\'' +
+                ", pre_school_staff='" + pre_school_staff + '\'' +
+                ", own_experience='" + own_experience + '\'' +
+                ", own_punishment='" + own_punishment + '\'' +
+                ", student_status='" + student_status + '\'' +
+                ", payment_status_first_year='" + payment_status_first_year + '\'' +
+                ", payment_status_second_year='" + payment_status_second_year + '\'' +
+                ", payment_status_third_year='" + payment_status_third_year + '\'' +
+                ", practice_learning_type='" + practice_learning_type + '\'' +
+                ", stay_type='" + stay_type + '\'' +
+                ", off_school_stay_address='" + off_school_stay_address + '\'' +
+                ", area_id='" + area_id + '\'' +
+                ", floor_id='" + floor_id + '\'' +
+                ", room_id='" + room_id + '\'' +
+                ", counselor_id='" + counselor_id + '\'' +
+                ", is_out='" + is_out + '\'' +
+                ", religion='" + religion + '\'' +
+                ", hard_type='" + hard_type + '\'' +
+                ", arrears_first_year='" + arrears_first_year + '\'' +
+                ", arrears_third_year='" + arrears_third_year + '\'' +
+                ", arrears_second_year='" + arrears_second_year + '\'' +
+                ", teacher_id='" + teacher_id + '\'' +
+                ", community_teacher_id='" + community_teacher_id + '\'' +
+                '}';
     }
 }
