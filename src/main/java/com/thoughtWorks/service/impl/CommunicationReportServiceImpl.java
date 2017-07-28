@@ -31,6 +31,7 @@ public class CommunicationReportServiceImpl implements CommunicationReportServic
         headers.put("level1", Integer.toString(searchLevels.get(0)));
         headers.put("level2", Integer.toString(searchLevels.get(1)));
         headers.put("level3", Integer.toString(searchLevels.get(2)));
+        headers.put("littleCount", "小计");
         String fileName = "高职学院沟通次数统计表.xls";
 
         String path = request.getServletContext().getRealPath("images/temp") + "/" + fileName;
@@ -48,8 +49,10 @@ public class CommunicationReportServiceImpl implements CommunicationReportServic
         if (communications.size() == 0) return statisticCount;
 
         for (Map<String, Object> communication : communications) {
-            if (!hasTeacher(communication, statisticCount))
+            if (!hasTeacher(communication, statisticCount)) {
                 statisticCount.add(createTeacher(communication));
+                if (null == communication.get("teacher")) continue;
+            }
             statisticTypeCount(statisticCount, communication);
         }
 
