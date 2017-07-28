@@ -133,7 +133,8 @@
         school_hours schoolHours,
         school_score schoolScore,
         semester,
-        method,
+        method methodId,
+        m.name method,
         module.name moduleName,
         module_id moduleId
         FROM t_course
@@ -141,6 +142,7 @@
         id,
         name
         FROM t_train_module) module ON module.id = t_course.module_id
+        LEFT JOIN (SELECT id,name FROM t_test_method) m on m.id = t_course.method
         <where>
             <if test="moduleId != ''">
                 and module_id = #{moduleId}

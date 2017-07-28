@@ -15,10 +15,15 @@
         <td>{{ item.schoolHours}}</td>
         <td>{{ item.semester}}</td>
         <td>{{ item.nature}}</td>
-        <td>{{ item.method}}</td>
+
+        <td> {{# if(item.method === undefined){ }}
+            未分配
+            {{# }else{ }}
+            {{ item.method}}
+            {{#}}}</td>
         <td>
             <button class="layui-btn layui-btn-mini layui-btn-normal"
-                    onclick="course.update('{{item.id}}','{{item.code}}','{{item.name}}','{{item.method}}',
+                    onclick="course.update('{{item.id}}','{{item.code}}','{{item.name}}','{{item.methodId}}',
                                         '{{item.moduleId}}','{{item.schoolScore}}','{{item.schoolHours}}','{{item.semester}}','{{item.nature}}')">
                 <i class="layui-icon">&#xe642;</i> 修改
             </button>
