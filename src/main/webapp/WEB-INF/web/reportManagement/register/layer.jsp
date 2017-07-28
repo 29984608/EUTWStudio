@@ -23,32 +23,31 @@
     <button class="layui-btn layui-btn-mini" style="float:left;" onclick="resultReport.exportRegisterReport()">
         <i class="layui-icon">&#xe61e;</i>导出 Excel
     </button>
-    <h1>西安欧亚学院入学登记表</h1>
+    <h1>西安欧亚学院学生入学登记表</h1>
     <div id="head">
         <ul>
             <li>
-                <label>姓名：</label>
-                <label class="studentName"></label>
+                <label>分院：</label>
+                <label style="text-decoration: underline">高职学院</label>
             </li>
             <li>
                 <label>专业：</label>
-                <label id="professionName"></label>
+                <label id="professionName" style="text-decoration: underline"></label>
             </li>
             <li>
                 <label>班级：</label>
-                <label id="classesName"></label>
+                <label id="classesName" style="text-decoration: underline"></label>
             </li>
             <li>
                 <label>学号：</label>
-                <label id="no"></label>
+                <label id="no" style="text-decoration: underline"></label>
             </li>
             <li>
                 <label>入学时间：</label>
-                <label id="in_school"></label>
+                <label id="in_school" style="text-decoration: underline"></label>
             </li>
 
         </ul>
-
     </div>
     <table class="layui-table">
         <tbody>
