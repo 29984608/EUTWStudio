@@ -77,9 +77,9 @@ public interface PersonService {
 
     void updateStudentTeacherId(String teacherId, String studentIds)throws Exception;
 
-    List<Map<String,Object>> teacherCommunity(String no);
+    List<Map<String,Object>> teacherCommunity(String no)throws Exception;
 
-    List<Map<String,Object>> teacherCommunity_floors(String no);
+    List<Map<String,Object>> teacherCommunity_floors(String no)throws Exception;
 
     List<Map<String, Object>> queryTeacherList() throws Exception;
 

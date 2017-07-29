@@ -316,12 +316,12 @@ public class PersonServiceImpl implements PersonService {
         List<String> ids = Arrays.asList(studentIds.split(","));
         if (ids.size() != 0) personDao.updateStudentTeacherId(teacherId, ids);
     }
-    public List<Map<String, Object>> teacherCommunity(String no) {
+    public List<Map<String, Object>> teacherCommunity(String no) throws Exception {
 
         return personDao.teacherCommunity(no);
     }
     @Override
-    public List<Map<String, Object>> teacherCommunity_floors(String no) {
+    public List<Map<String, Object>> teacherCommunity_floors(String no) throws Exception {
 
         return personDao.teacherCommunity_floors(no);
     }

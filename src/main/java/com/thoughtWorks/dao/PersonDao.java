@@ -89,14 +89,14 @@ public interface PersonDao {
 
     List<Map<String, Object>> queryTeacherCommunity(@Param("no") String no) throws Exception;
 
-    void updateStudentTeacherId(@Param("teacherId") String teacherId, @Param("ids") List<String> ids);
+    void updateStudentTeacherId(@Param("teacherId") String teacherId, @Param("ids") List<String> ids)throws Exception;
 
-    List<Map<String, Object>> teacherCommunity(String no);
+    List<Map<String, Object>> teacherCommunity(String no)throws Exception;
 
-    List<Map<String, Object>> teacherCommunity_floors(String no);
+    List<Map<String, Object>> teacherCommunity_floors(String no)throws Exception;
 
     List<Map<String, Object>> queryTeacherList() throws Exception;
 
-    void updateStudentList(StudentUpdate studentUpdate);
+    void updateStudentList(StudentUpdate studentUpdate)throws Exception;
 }
 
