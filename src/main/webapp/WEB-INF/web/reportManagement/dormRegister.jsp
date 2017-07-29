@@ -55,7 +55,7 @@
 
         communication = {
             list: function () {
-                $.post(baseUrl + "/communicationReport/list", function (data) {
+                $.post(baseUrl + "/dormRegister/dormList", function (data) {
                     if (data.result) {
                         console.log(data);
                         let date = new Date();
@@ -74,16 +74,16 @@
                 let index = 0;
                 let _html = "";
                 let totalCount = 0;
-                data.forEach(teacher => {
+                data.forEach(department => {
                     let littleCount = 0;
-                    let types = teacher.type;
+                    let types = department.stay_type;
                     let levels = types[0].levels;
 
                     _html += `
                      <tr>
                         <th>` + (++index) + `</th>
-                        <th rowspan="` + types.length + `">` + teacher.teacher + `</th>
-                        <th>` + types[0].type + `</th>
+                        <th rowspan="` + types.length + `">` + department.department + `</th>
+                        <th>` + types[0].stay_type + `</th>
                         `;
                     for (let j = 0; j < levels.length; ++j) {
                         _html += `<th>` + levels[j].count + `</th>`;
@@ -92,12 +92,12 @@
                     _html += ` </tr>`;
 
                     for (let i = 1; i < types.length; ++i) {
-                        let type = types[i];
-                        levels = type.levels;
+                        let stay_type = types[i];
+                        levels = stay_type.levels;
                         _html += `
                              <tr>
                                 <th>` + (++index) + `</th>
-                                <th>` + type.type + `</th>
+                                <th>` + stay_type.stay_type + `</th>
                           `;
                         for (let j = 0; j < levels.length; ++j) {
                             _html += `<th>` + levels[j].count + `</th>`;

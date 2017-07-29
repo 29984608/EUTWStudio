@@ -130,12 +130,126 @@ public class ReportServiceImpl implements ReportService {
         }
     }
 
-    @Override
+
+
+    public List<Map<String, Object>> queryDormPeopleNumber1() {
+        List<Map<String, Object>> dormPeoples =reportDao.queryDormPeopleNumber(DateUtil.getSearchLevels());
+
+
+        return dormPeoples;
+    }
+
+
     public List<Map<String, Object>> queryDormPeopleNumber() {
         List<Map<String, Object>> statisticCount = new ArrayList<>();
         List<Map<String, Object>> dormPeoples =reportDao.queryDormPeopleNumber(DateUtil.getSearchLevels());
         if (dormPeoples.size() == 0) return statisticCount;
 
-        return dormPeoples;
+        for (Map<String, Object> dormPeople : dormPeoples) {
+            if (!hasDepartment(dormPeople, statisticCount)) {
+                statisticCount.add(createDepartment(dormPeople));
+                if (null == dormPeople.get("department")) continue;
+            }
+            statisticTypeCount(statisticCount, dormPeople);
+        }
+
+        return statisticCount;
     }
+
+
+
+    private void statisticTypeCount(List<Map<String, Object>> statisticCount, Map<String, Object> communication) {
+        for (Map<String, Object> tempCommunication : statisticCount) {
+            if (tempCommunication.get("department").equals(communication.get("department")))
+                if (!hasCommunicationType(tempCommunication.get("stay_type"), communication))
+                    createDepartmentCommunicationType(tempCommunication, communication);
+
+            addDepartmentCommunicationTypeCount(tempCommunication.get("stay_type"), communication);
+        }
+    }
+
+    private void createDepartmentCommunicationType(Map<String, Object> tempCommunication, Map<String, Object> communication) {
+        List<Integer> levels = DateUtil.getSearchLevels();
+        List<Map<String, Object>> types = (List<Map<String, Object>>) tempCommunication.get("stay_type");
+        if (types == null || types.size() == 0) {
+            types = new ArrayList<>();
+            Map<String, Object> type = createType(communication, levels);
+            types.add(type);
+        } else {
+            boolean flag = true;
+            for (Map<String, Object> tempType : types) {
+                if (tempType.get("stay_type").equals(communication.get("stay_type"))) flag = false;
+            }
+            if (flag) {
+                Map<String, Object> type = createType(communication, levels);
+                types.add(type);
+            }
+        }
+
+        tempCommunication.put("stay_type", types);
+    }
+
+    private Map<String, Object> createType(Map<String, Object> communication, List<Integer> levels) {
+        Map<String, Object> type = new HashMap<>();
+        type.put("stay_type", communication.get("stay_type"));
+        List<Map<String, Integer>> level = new ArrayList<>();
+        for (int i = 0; i < 3; ++i) {
+            Map<String, Integer> temp = new HashMap<>();
+            temp.put("level", levels.get(i));
+            temp.put("count", 0);
+            level.add(temp);
+        }
+        type.put("levels", level);
+
+        return type;
+    }
+
+    private void addDepartmentCommunicationTypeCount(Object communicationType, Map<String, Object> communication) {
+        List<Map<String, Object>> types = (List<Map<String, Object>>) communicationType;
+
+        for (Map<String, Object> type : types) {
+            if (type.get("stay_type").equals(communication.get("stay_type")))
+                addTypeLevelCount(type, (int) communication.get("level"));
+        }
+    }
+
+    private void addTypeLevelCount(Map<String, Object> type, int level) {
+        List<Map<String, Integer>> levels = (List<Map<String, Integer>>) type.get("levels");
+        for (Map<String, Integer> tempLevel : levels) {
+            if (tempLevel.get("level").toString().equals(String.valueOf(level))) {
+                int count = tempLevel.get("count");
+                tempLevel.put("count", ++count);
+            }
+        }
+    }
+
+    private boolean hasCommunicationType(Object communicationType, Map<String, Object> communication) {
+        List<Map<String, Object>> types = (List<Map<String, Object>>) communicationType;
+
+        if (types == null || types.size() == 0) return false;
+
+        for (Map<String, Object> type : types) {
+            if (type.get("stay_type").equals(communication.get("stay_type"))) return true;
+        }
+
+        return false;
+    }
+
+    private Map<String, Object> createDepartment(Map<String, Object> communication) {
+        Map<String, Object> department = new HashMap<>();
+        department.put("department", communication.get("department"));
+        department.put("stay_type", new ArrayList<Map<String, Object>>());
+
+        return department;
+    }
+
+    private boolean hasDepartment(Map<String, Object> communication, List<Map<String, Object>> statisticCount) {
+        for (Map<String, Object> statistic : statisticCount) {
+            if (communication.get("department").toString().equals(statistic.get("department") + ""))
+                return true;
+        }
+
+        return false;
+    }
+
 }
