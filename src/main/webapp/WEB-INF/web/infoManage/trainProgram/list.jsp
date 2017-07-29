@@ -163,7 +163,6 @@
 
                 $.post(baseUrl + "/trainProgram/loadModuleCoursesByProgram", {id: id}, function (data) {
                     if (data.result) {
-                        console.log(data);
                         $("#modelCourses-preview").html(trainProgram.loadHasModuleCourse(data.data));
                         form.render();
                         layer.open({
@@ -198,7 +197,6 @@
                     id: id,
                     moduleCoursesStr: moduleCoursesStr
                 }
-                console.log(data);
                 $.post(baseUrl + "/trainProgram/update", data, function (data) {
                     layer.msg(data.msg);
                     if (data.result) {
