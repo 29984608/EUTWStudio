@@ -7,9 +7,18 @@ public class ActiveUser implements Serializable {
     private boolean available;
     private String userName;
     private String password;
+    private String name;
     private int roleId;
     private List<Permission> menus;// 菜单
     private List<Permission> permissions;// 权限
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public boolean isAvailable() {
         return available;

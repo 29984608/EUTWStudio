@@ -9,6 +9,7 @@
             username,
             password,
             roleId,
+            name,
             available
         FROM t_user
         WHERE username = #{userName}
