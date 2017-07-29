@@ -363,7 +363,7 @@
             queryFloorAndAreaOfRoom :function () {
                 $.post(baseUrl +"/dorm/room/showAreaAndFloorsToQuery",function (data) {
                     if (data.result) {
-                        $("#queryFloor").html(`<option value="">层号</option>`).append(`<option value="">请先选择区号git</option>`)
+                        $("#queryFloor").html(`<option value="">层号</option>`).append(`<option value="">请先选择区号</option>`)
                         $("#queryAreaOfRoom").html(`<option value="">区号</option>`).append(communication.loadDepartmentOrDirection(data.data.queryAreaOfRoom, "-"))
                         form.render();
                     }
