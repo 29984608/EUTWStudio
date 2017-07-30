@@ -81,4 +81,5 @@ public interface TrainModuleDao {
 
     void deleteTeacherCommunityAllClassesId(String no);
 
+    Map<String,Object> queryTrainProgramByNo(String studentNo);
 }

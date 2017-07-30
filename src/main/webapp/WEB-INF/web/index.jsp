@@ -56,7 +56,7 @@
                 <div class="photo">
                     <img src="${baseurl}/public/images/user.jpg" alt="">
                 </div>
-                <p>hello <shiro:principal property="userName"/></p>
+                <p>hello <shiro:principal property="name"/></p>
             </div>
             <!-- 系统菜单 -->
             <div class="sys-menu-box">

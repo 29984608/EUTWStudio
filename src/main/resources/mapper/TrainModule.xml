@@ -238,4 +238,12 @@
         SET no = ""
         WHERE no = #{no}
     </delete>
+
+    <select id="queryTrainProgramByNo" parameterType="string" resultType="map">
+        SELECT program.id,program.level,department.name departmentName,direction.name directionName FROM t_train_program program
+            LEFT JOIN (SELECT no,department_id,level,direction_id FROM t_student) student on student.no = #{studentNo}
+            LEFT JOIN (SELECT id,name FROM t_department) department on department.id = student.department_id
+            LEFT JOIN (SELECT id,name FROM t_direction) direction on direction.id  = student.direction_id
+        WHERE student.level = program.level and student.direction_id = program.direction_id and student.department_id = program.department_id
+    </select>
 </mapper>
