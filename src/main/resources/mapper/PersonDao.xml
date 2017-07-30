@@ -12,8 +12,8 @@
         WHERE no = #{id}
     </delete>
     <insert id="addTeacher" parameterType="Teacher">
-        INSERT INTO t_teacher (no, name, department_id, direction_id, gender,dept_id,classify)
-        VALUES (#{no}, #{name}, #{departmentId}, #{directionId}, #{gender},#{deptId},#{classify})
+        INSERT INTO t_teacher (no, name, department_id, direction_id, gender,dept_id,classify,identityCard)
+        VALUES (#{no}, #{name}, #{departmentId}, #{directionId}, #{gender},#{deptId},#{classify},#{identityCard})
     </insert>
 
     <update id="updateTeacher" parameterType="Teacher">
@@ -339,6 +339,7 @@
             teacher.name,
             teacher.gender,
             teacher.classify,
+            teacher.identityCard,
             department.id   departmentId,
             department.name departmentName,
             direction.id    directionId,
@@ -811,4 +812,14 @@ WHERE direction_id = direction.id
         </set>
         WHERE t_student.no = #{no}
     </update>
+
+    <select id="addTeacherToUser">
+        INSERT INTO  t_user (username,password,roleId,available,name,staff)
+        VALUES (#{teacher.no},#{teacher.identityCard},#{roleId},1,#{teacher.name},#{teacher.classify})
+    </select>
+
+    <delete id="deleteUserByTeacherId" parameterType="string">
+        DELETE FROM t_user
+        WHERE username = #{id}
+    </delete>
 </mapper>

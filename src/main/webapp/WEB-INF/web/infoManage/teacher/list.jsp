@@ -165,10 +165,10 @@
                 let _html = "";
 
                 for (let i = 0; i < floor.length; ++i) {
-                    let a =0;
+                    let a = 0;
                     let isChecked;
                     for (let j = 0; j < no.length; j++) {
-                        if (floor[i].id == no[j].floor_id)a++;
+                        if (floor[i].id == no[j].floor_id) a++;
                     }
                     if (a != 0) isChecked = "checked";
                     else isChecked = "";
@@ -184,28 +184,28 @@
                 return totalHtml;
             },
             loadFloorId: function (floor, no) {
-            let totalHtml = "";
-            let _html = "";
+                let totalHtml = "";
+                let _html = "";
 
-            for (let i = 0; i < floor.length; ++i) {
-                let a =0;
-                let isChecked;
-                for (let j = 0; j < no.length; j++) {
-                    if (floor[i].id == no[j].floor_id)a++;
-                }
-                if (a != 0) isChecked = "checked";
-                else isChecked = "";
-                _html += ` <input class="floorId" type="checkbox" ` + isChecked + ` value="` + floor[i].id + `" title="` + floor[i].name + `" >`
-                if (i === floor.length - 1) {
-                    totalHtml += ` <div class="layui-form-item">
+                for (let i = 0; i < floor.length; ++i) {
+                    let a = 0;
+                    let isChecked;
+                    for (let j = 0; j < no.length; j++) {
+                        if (floor[i].id == no[j].floor_id) a++;
+                    }
+                    if (a != 0) isChecked = "checked";
+                    else isChecked = "";
+                    _html += ` <input class="floorId" type="checkbox" ` + isChecked + ` value="` + floor[i].id + `" title="` + floor[i].name + `" >`
+                    if (i === floor.length - 1) {
+                        totalHtml += ` <div class="layui-form-item">
                                              <div class="layui-input-block" >`
-                        + _html + `
+                            + _html + `
                                              </div>
                                        </div>`;
+                    }
                 }
-            }
-            return totalHtml;
-        },
+                return totalHtml;
+            },
             add: function () {
                 $.post(baseUrl + "/teacher/loadDepartmentsAndDirectionsAndClasses", function (data) {
                     if (data.result) {
@@ -228,7 +228,7 @@
                 });
 
             },
-            update: function (no, departmentId, directionId, name, gender, classify, deptId) {
+            update: function (no, identityCard, departmentId, directionId, name, gender, classify, deptId) {
 
                 $.post(baseUrl + "/teacher/loadDirectionsAndClassesByDepartmentId", {departmentId: departmentId}, function (data) {
                     if (data.result) {
@@ -238,6 +238,7 @@
                         let depts = data.data.depts;
                         $("#id").val(no)
                         $("#no-update").val(no);
+                        $("#identityCard-update").val(identityCard);
                         $("#name-update").val(name);
                         $("#classify_text").val(classify);
                         $("#classify_hidden").val(classify);
@@ -343,7 +344,7 @@
                             setTimeout("location.reload()", 500);
                         })
                     });
-                }else if ($("#classify_text").val() === "社区辅导员") {
+                } else if ($("#classify_text").val() === "社区辅导员") {
                     $("#dept_update").val(0);
                     $("#department-update").val(0);
                     $("#direction-update").val(0);
@@ -464,7 +465,7 @@
         });
     });
     $(function () {
-        $('#no-add').blur(function (data) {
+        $('#no-add').blur(function () {
             let no = $('#no-add').val()
             $.post(baseUrl + "/teacher/queryUserById", {no: no}, function (data) {
                 if (data.result) {
@@ -472,6 +473,12 @@
                     layer.msg(data.msg);
                 }
             })
+        })
+        $('#identityCard-add').blur(function () {
+            if ($("#identityCard-add").val().length !== 18) {
+                $("#identityCard-add").focus();
+                layer.msg("你的身份证不合格,请重新输入");
+            }
         })
     })
 

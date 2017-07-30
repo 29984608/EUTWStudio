@@ -36,27 +36,37 @@ public class PersonServiceImpl implements PersonService {
     public void addTeacher(Teacher teacher, String classIds,String floorIds,int areaId) throws Exception {
         List<String> ids;
         List<String> floorId;
+        int roleId =0;
         if (teacher.getClassify().equals("3")) {
             teacher.setClassify("社区辅导员");
             teacher.setDepartmentId("0");
             teacher.setDirectionId("0");
             teacher.setDeptId(0);
+            roleId = 4;
             floorId = Arrays.asList(floorIds.split(","));
             if (floorId.size() != 0) personDao.insertCommunityTeacher(teacher.getNo(),areaId, floorId);
             personDao.addTeacher(teacher);
+
         }else {
             if (teacher.getClassify().equals("1")) {
                 teacher.setClassify("职业导师");
                 ids = Arrays.asList(classIds.split(","));
                 teacher.setDeptId(0);
+                roleId = 2;
                 if (ids.size() != 0) trainModuleDao.updateClassTeacher(teacher.getNo(), ids);
             } else if (teacher.getClassify().equals("2")) {
                 teacher.setClassify("行政");
                 teacher.setDepartmentId("0");
                 teacher.setDirectionId("0");
+                roleId = 6;
             }
             personDao.addTeacher(teacher);
         }
+        String str= teacher.getIdentityCard();
+        if(str.length()>=6){// 判断是否长度大于等于4
+            teacher.setIdentityCard(str.substring(str.length()- 6));
+        }
+        personDao.addTeacherToUser(teacher,roleId);
 
 
 
@@ -88,6 +98,7 @@ public class PersonServiceImpl implements PersonService {
     public void deleteTeacherById(String id) throws Exception {
         personDao.deleteTeacherById(id);
         trainModuleDao.deleteTeacherAllClassesId(id);
+        personDao.deleteUserByTeacherId(id);
     }
 
     @Override

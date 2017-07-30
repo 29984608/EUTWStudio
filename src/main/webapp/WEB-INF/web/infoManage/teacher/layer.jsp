@@ -11,7 +11,7 @@
         <td>
             <shiro:hasPermission name="teacher:update">
             <button class="layui-btn layui-btn-mini layui-btn-normal"
-                    onclick="teacher.update('{{item.no}}','{{item.departmentId}}','{{item.directionId}}','{{item.name}}','{{item.gender}}','{{ item.classify}}','{{item.deptId}}')">
+                    onclick="teacher.update('{{item.no}}',`{{item.identityCard}}`,'{{item.departmentId}}','{{item.directionId}}','{{item.name}}','{{item.gender}}','{{ item.classify}}','{{item.deptId}}')">
                 <i class="layui-icon">&#xe642;</i>修改
             </button>
             </shiro:hasPermission>
@@ -33,11 +33,17 @@
                 <input type="text" name="no"  lay-verify="required"
                        placeholder="请输入工号" id="no-add" autocomplete="off" class="layui-input ">
             </div>
+            <label class="layui-form-label">身份证</label>
+            <div class="layui-input-inline">
+                <input type="text" name="identityCard"
+                       placeholder="请输入身份证信息" id="identityCard-add" autocomplete="off" class="layui-input ">
+            </div>
             <label class="layui-form-label">名字</label>
             <div class="layui-input-inline">
                 <input type="text" name="name"
                        placeholder="请输入名称" id="name-add" autocomplete="off" class="layui-input ">
             </div>
+
             <label class="layui-form-label">性别</label>
             <div class="layui-input-inline">
                 <input type="radio" name="gender" value="男" title="男">
@@ -122,6 +128,11 @@
             <div class="layui-input-inline">
                 <input type="text"
                        placeholder="请输入工号" disabled id="no-update" autocomplete="off" class="layui-input ">
+            </div>
+            <label class="layui-form-label">身份证</label>
+            <div class="layui-input-inline">
+                <input type="text"
+                       placeholder="请输入工号" disabled id="identityCard-update" autocomplete="off" class="layui-input ">
             </div>
             <label class="layui-form-label">名字</label>
             <div class="layui-input-inline">
