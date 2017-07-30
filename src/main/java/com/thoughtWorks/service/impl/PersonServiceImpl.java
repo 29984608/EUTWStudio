@@ -63,7 +63,8 @@ public class PersonServiceImpl implements PersonService {
             personDao.addTeacher(teacher);
         }
         String str= teacher.getIdentityCard();
-        if(str.length()>=6){// 判断是否长度大于等于4
+        teacher.setClassify("教师");
+        if(str.length()>=6){
             teacher.setIdentityCard(str.substring(str.length()- 6));
         }
         personDao.addTeacherToUser(teacher,roleId);
