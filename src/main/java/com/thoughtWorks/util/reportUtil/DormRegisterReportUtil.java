@@ -46,9 +46,15 @@ public class DormRegisterReportUtil extends ExcelReportUtil {
                     cell.setCellValue(new HSSFRichTextString(department.get("departmentName").toString()));
                     CellStyle cellStyle = createCellStyle();
                     setAlignmentCenter(cellStyle, cell);
-                    //专业
+                    //住宿类型
                     cell = row.createCell(2);
-                    cell.setCellValue(new HSSFRichTextString(stay_type.get(j).get("stay_typeName").toString()));
+                    String name ="";
+                    if(stay_type.get(j).get("stay_typeName").toString() .equals("1")){
+                        name ="校内";
+                    }else{
+                        name="校外";
+                    }
+                    cell.setCellValue(new HSSFRichTextString(name));
 
                     //levels
                     int levelIndex = 3;
