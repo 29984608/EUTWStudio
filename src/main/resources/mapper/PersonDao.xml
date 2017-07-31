@@ -654,6 +654,9 @@ WHERE direction_id = direction.id
             <if test="direction_id != null and direction_id !=''">
                 t_student.direction_id = #{direction_id},
             </if>
+            <if test="head_image != null and head_image !=''">
+                t_student.head_image = #{head_image},
+            </if>
 
             <if test="health_status != null and health_status !=''">
                 t_student.health_status = #{health_status},
@@ -811,4 +814,63 @@ WHERE direction_id = direction.id
         </set>
         WHERE t_student.no = #{no}
     </update>
+
+    <!--<update id="updateExperienceList" parameterType="map">
+        &lt;!&ndash; update t_student_experience experience
+         <foreach collection="educational_experience_start_list" item="item" index="index" open="" close="" separator=",">
+             <set>
+                 experience.start_time = ${item.educational_experience_start_list}
+             </set>
+             where no = ${item.studentNo}
+         </foreach>
+         <foreach collection="educational_experience_end_list" item="item" index="index" open="" close="" separator=",">
+             <set>
+                 experience.end_time = ${item.educational_experience_end_list}
+             </set>
+             where no = ${item.studentNo}
+         </foreach>
+         <foreach collection="update_schoolName_list" item="item" index="index" open="" close="" separator=",">
+             <set>
+                 experience.work_place = ${item.update_schoolName_list}
+             </set>
+             where no = ${item.studentNo}
+         </foreach>
+         <foreach collection="update_duties_start_list" item="item" index="index" open="" close="" separator=",">
+             <set>
+                 experience.staff = ${item.update_duties_start_list}
+             </set>
+             where no = ${item.studentNo}
+         </foreach>&ndash;&gt;
+
+
+        &lt;!&ndash;  <foreach collection="experience.keys" index="index"  item="item" separator="union">
+              update t_student_experience experience
+              where  no = #{item}
+              and OWNER_ID in
+              <foreach collection="item"  item="id" separator="," open="(" close=")">
+                  #{id}
+              </foreach>
+          </foreach>&ndash;&gt;
+
+&lt;!&ndash;        UPDATE t_student_experience experience
+        WHERE id IN
+        <set>
+            <foreach collection="experiences" item="item" index="index" open="" close="" separator=",">
+                #{item.experienceIds}
+                start_time = #{item.educational_experience_start_list},
+                end_time = #{item.educational_experience_end_list},
+                work_place = #{item.update_schoolName_list},
+                staff = #{item.update_duties_start_list}
+                &lt;!&ndash; <where>
+                     id = #{item.experienceIds}
+                     AND no = #{no}
+                 </where>&ndash;&gt;
+            </foreach>
+        </set>
+        AND NO = #{no}&ndash;&gt;
+
+        <foreach collection="experiences" item="item" index="index" open="" close="" separator=",">
+
+        </foreach>
+    </update>-->
 </mapper>

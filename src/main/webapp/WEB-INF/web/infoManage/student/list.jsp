@@ -28,7 +28,7 @@
                         <div class="layui-input-inline">
                             <div class="layui-inline">
                                 <div class="layui-input-inline">
-                                    <select name="modules" lay-filter="department" lay-verify="required" lay-search=""
+                                    <select name="modules" lay-filter="department" lay-search=""
                                             id="department_search">
                                         <option value="">系</option>
                                     </select>
@@ -39,7 +39,7 @@
                         <div class="layui-input-inline">
                             <div class="layui-inline">
                                 <div class="layui-input-inline">
-                                    <select name="modules1" lay-filter="modules_2" lay-verify="required" lay-search=""
+                                    <select name="modules1" lay-filter="modules_2" lay-search=""
                                             id="level_search">
                                         <option value="">年级</option>
                                     </select>
@@ -50,7 +50,7 @@
                         <div class="layui-input-inline">
                             <div class="layui-inline">
                                 <div class="layui-input-inline">
-                                    <select name="modules" lay-filter="modules_3" lay-verify="required" lay-search=""
+                                    <select name="modules" lay-filter="modules_3" lay-search=""
                                             id="direction_search">
                                         <option value="">方向</option>
                                     </select>
@@ -61,7 +61,7 @@
                         <div class="layui-input-inline">
                             <div class="layui-inline">
                                 <div class="layui-input-inline">
-                                    <select name="modules1" lay-filter="modules_2" lay-verify="required" lay-search=""
+                                    <select name="modules1" lay-filter="modules_2" lay-search=""
                                             id="classes_search">
                                         <option value="">班级</option>
                                     </select>
@@ -99,7 +99,7 @@
                             <div class="layui-input-inline">
                                 <div class="layui-inline">
                                     <div class="layui-input-inline">
-                                        <select name="modules" lay-filter="dorm" lay-verify="required" lay-search=""
+                                        <select name="modules" lay-filter="dorm" lay-search=""
                                                 id="area_search">
                                             <option value="">区</option>
                                         </select>
@@ -110,7 +110,7 @@
                             <div class="layui-input-inline">
                                 <div class="layui-inline">
                                     <div class="layui-input-inline">
-                                        <select name="modules1" lay-filter="modules_2" lay-verify="required"
+                                        <select name="modules1" lay-filter="modules_2"
                                                 lay-search=""
                                                 id="floor_search">
                                             <option value="">楼层</option>
@@ -122,7 +122,7 @@
                             <div class="layui-inline" style="margin-right: -15px">
                                 <div class="layui-inline">
                                     <div class="layui-input-inline">
-                                        <input type="text" name="title" id="roomNo_search" lay-verify="title"
+                                        <input type="text" name="title" id="roomNo_search"
                                                autocomplete="off"
                                                placeholder="宿舍" class="layui-input">
                                     </div>
@@ -198,6 +198,9 @@
     let pageSize = 10;
     var studentInfo;
     var teacherInfo;
+    var experienceInfo;
+    var familyInfo;
+    let imgName;
     layui.use(['jquery', 'layer', 'element', 'laypage', 'form', 'laytpl', 'tree'], function () {
         window.jQuery = window.$ = layui.jquery;
         window.layer = layui.layer;
@@ -347,9 +350,9 @@
                     $("#emergency_contact_method").text("").append(data.student[0].emergency_contact_method);
                     $("#experience_div").html("")
                     for (var i = 0; i < data.experience.length; i++) {
-                        $("#experience_div").append("<tr> <th>" + data.experience[i].start_time + "-" + data.experience[i].end_time + "：</th>" +
+                        $("#experience_div").append("<tr class='experience_divToEveryOne'> <th>" + data.experience[i].start_time + "-" + data.experience[i].end_time + "：</th>" +
                             "<th  >" + data.experience[i].work_place + "</th>" +
-                            "<th >" + data.experience[i].staff + "</th>");
+                            "<th >" + data.experience[i].staff + "</th></tr>");
                     }
                     $("#student_type").text("").append(data.student[0].student_type);
                     $("#sat_score").text("").append(data.student[0].sat_score);
@@ -385,6 +388,8 @@
 
                             studentInfo = data.students;
                             teacherInfo = data.teacherList;
+                            experienceInfo = data.experienceList;
+                            familyInfo = data.students_family;
                             let studentList = data.students;
                             let familyList = data.students_family;
                             let professionList = data.professionList;
@@ -393,6 +398,11 @@
                             let experienceList = data.experienceList;
                             let teacherList = data.teacherList;
 
+                            $("#studentPhone").val(studentList.student_contact_method);
+                            $("#studentQQ").val(studentList.qq);
+                            $("#studentEmail").val(studentList.email);
+
+                            $("#imagesToUpdate").text("").attr("src", HEAD_IMAGE_PREFIX + studentList.head_image);
                             $("#updateStudentNo").val(studentList.no)
                             $("#updateStudentName").val(studentList.name);
                             $("input:radio[value='" + studentList.gender + "'][name='sex']").prop('checked', 'true');
@@ -449,23 +459,23 @@
 
                             $("#family_information").append(``)
 
+                            $("#family_member_information").html("");
                             for (var j = 0; j < familyList.length; j++) {
                                 let politicalStatus = familyList[j].political_status;
                                 let isOther = student.isOther(politicalStatus);
                                 let isShow = isOther ? "display" : "none";
-
                                 $("#family_member_information").append(
                                     `<tr id="family_information1" class="family_information1">
                                         <th colspan="2" ><span class = "family_relationship"></span><span>
                                <div class="layui-input-inline" style="width: 60%">
-                                   <input type="text" name="text" required lay-verify="required"
+                                   <input type="text" name="text"
                                           placeholder="请输入内容" autocomplete="off" class="layui-input updateStudentParentsName"
                                           id="updateStudentParentsName">
                                 </div>
                            </span></th>
-                                        <th colspan="4">政治面貌：<span>
+                                        <th colspan="4"><span>
                             <div class="political">
-                               <div class="layui-input-inline" style="width: 30%">
+                               政治面貌： <div class="layui-input-inline" style="width: 30%">
                                  <select name="politicalOutlook1" lay-filter="politicalOutlookParent"  class="updateStudentParent_political_status">
                                    <option value="">请选择</option>
                                    <option value="1" ` + (politicalStatus === "中共党员" ? "selected" : "") + `>中共党员</option>
@@ -479,8 +489,8 @@
                                 <span  class="otherParty1" style="display: ` + isShow + `">其他党派:
                                      <div class="layui-input-inline">
                                        <div class="layui-input-inline">
-                                         <input type="text" name="otherPartyName" required value="` + politicalStatus + `"
-                                                lay-verify="required" placeholder="请输入党派名称"
+                                         <input type="text" name="otherPartyName"  value="` + politicalStatus + `"
+                                                 placeholder="请输入党派名称"
                                                 autocomplete="off" class="layui-input other_updateStudentParent_political_status"
                                                 id="other_updateStudentParent_political_status">
                                        </div>
@@ -495,21 +505,21 @@
                            <tr id="family_information2">
                                         <th colspan="2">工作单位：<span>
                                <div class="layui-input-inline" style="width: 60%">
-                                   <input type="text" name="text" required lay-verify="required"
+                                   <input type="text" name="text"
                                           placeholder="请输入内容" autocomplete="off" class="layui-input updateStudentParent_employer"
                                           id="updateStudentParent_employer">
                                 </div>
                            </span></th>
                                         <th colspan="2">职务：<span>
                                <div class="layui-input-inline" style="width: 60%">
-                                   <input type="text" name="text" required lay-verify="required"
+                                   <input type="text" name="text"
                                           placeholder="请输入内容" autocomplete="off" class="layui-input updateStudentParent_duties"
                                           id="updateStudentParent_duties">
                                 </div>
                            </span></th>
                                         <th colspan="2">联系电话：<span>
                                <div class="layui-input-inline" style="width: 60%">
-                                   <input type="text" name="text" required lay-verify="required"
+                                   <input type="text" name="text"
                                           placeholder="请输入内容" autocomplete="off" class="layui-input updateStudentParent_phone"
                                           id="updateStudentParent_phone">
                                 </div>
@@ -554,6 +564,7 @@
                             $("#employment_direction").html("").append(`<option value=""></option>` + loadOptionsHtml(directionList, studentList.direction_id));
                             $("#student_class").html("").append(`<option value=""></option>` + loadOptionsHtml(classesList, studentList.classes_id));
 
+                            $("#educational_experience").html("")
                             for (let i = 0; i < experienceList.length; i++) {
                                 $("#educational_experience").append(`<tr>
                                         <th colspan="2"><span>
@@ -573,13 +584,13 @@
                                         </span></th>
                                         <th colspan="2"><span>
                                             <div class="layui-input-inline" style="width: 90%">
-                                                <input type="text" name="text" required lay-verify="required"
+                                                <input type="text" name="text"
                                                        placeholder="请输入学校名称" autocomplete="off" class="layui-input update_schoolName" id="update_schoolName">
                                              </div>
                                         </span></th>
                                         <th colspan="2"><span>
                                             <div class="layui-input-inline" style="width: 90%">
-                                                <input type="text" name="text" required lay-verify="required"
+                                                <input type="text" name="text"
                                                        placeholder="担任什么职务" autocomplete="off" class="layui-input update_duties" id="update_duties">
                                              </div>
                                         </span></th>
@@ -674,9 +685,9 @@
                             student.queryAreaAndFloorAndRoomByRoomIdOfUpdate(studentList.room_id)
                             //如果住宿类型为校外,则隐藏宿舍信息,否则显示
                             //1表示校内,2表示校外
-                            if (studentList.stay_type=="2"){
+                            if (studentList.stay_type == "2") {
                                 $("#dorms").hide();
-                            }else {
+                            } else {
                                 $("#dorms").show();
                             }
                         }
@@ -736,7 +747,13 @@
 
                 return _html;
             },
+
             updateStudentList: function () {
+
+                let phone = $("#studentPhone").val();
+                let qq = $("#studentQQ").val();
+                let email = $("#studentEmail").val();
+
                 var no = $("#updateStudentNo").val()
                 var is_marry = $('#isMarry input[name="isMarry"]:checked ').val()
                 var height = $("#updateStudentHeight").val()
@@ -819,10 +836,52 @@
                 }
 
                 //家庭成员信息
-                form.on('select(politicalOutlookParent)')
+                var updateStudentParentsName = $(".updateStudentParentsName");
+                var updateStudentParent_political_status = $(".updateStudentParent_political_status");
+                var other_updateStudentParent_political_status = $(".other_updateStudentParent_political_status");
+                var updateStudentParent_employer = $(".updateStudentParent_employer");
+                var updateStudentParent_duties = $(".updateStudentParent_duties");
+                var updateStudentParent_phone = $(".updateStudentParent_phone");
 
+                var updateStudentParentsNameList = [];
+                var updateStudentParent_political_statusList = [];
+                var other_updateStudentParent_political_statusList = [];
+                var updateStudentParent_employerList = [];
+                var updateStudentParent_dutiesList = [];
+                var updateStudentParent_phoneList = [];
+                var updateStudentParentIds = [];
+
+                for (let i = 0; i < familyInfo.length; i++) {
+                    updateStudentParentsNameList.push($(updateStudentParentsName [i]).val())
+                    updateStudentParent_political_statusList.push($(updateStudentParent_political_status [i]).val())
+                    other_updateStudentParent_political_statusList.push($(other_updateStudentParent_political_status [i]).val())
+                    updateStudentParent_employerList.push($(updateStudentParent_employer [i]).val())
+                    updateStudentParent_dutiesList.push($(updateStudentParent_duties [i]).val())
+                    updateStudentParent_phoneList.push($(updateStudentParent_phone [i]).val())
+                    updateStudentParentIds.push(familyInfo[i].id);
+                }
 
                 //教育经历
+                //开始时间
+                var educational_experience_start = $(".educational_experience_start");
+                //结束时间
+                var educational_experience_end = $(".educational_experience_end");
+                //学校名称
+                var update_schoolName = $(".update_schoolName");
+                //职务
+                var update_duties = $(".update_duties");
+                var educational_experience_start_list = [];
+                var educational_experience_end_list = [];
+                var update_schoolName_list = [];
+                var update_duties_start_list = [];
+                var experienceIds = [];
+                for (let i = 0; i < experienceInfo.length; i++) {
+                    educational_experience_start_list.push($(educational_experience_start[i]).val())
+                    educational_experience_end_list.push($(educational_experience_end[i]).val())
+                    update_schoolName_list.push($(update_schoolName[i]).val())
+                    update_duties_start_list.push($(update_duties[i]).val())
+                    experienceIds.push(experienceInfo[i].id)
+                }
                 $("#educational_experience").val();
 
                 //学业信息
@@ -833,7 +892,6 @@
                 var profession_id = $("#studentsNowProfessional").val();
                 //就业方向
                 var direction_id = $("#employment_direction").val();
-                alert(direction_id)
                 //班级
                 var classes_id = $("#student_class").val();
                 //职业导师
@@ -890,68 +948,94 @@
                 //获奖或荣誉
                 var own_punishment = $("#update_award_or_honor").val();
 
-                $.post(baseUrl + "/student/updateStudentAjax",
-                    {
-                        no: no,
-                        is_marry: is_marry,
-                        height: height,
-                        weight: weight,
-                        health_status: health_status,
-                        student_type: student_type,
-                        blood: blood,
-                        stay_type:stay_type,
-                        political_status: political_status,
-                        pre_school_education: pre_school_education,
-                        student_classify: student_classify,
-                        idcard_address: idcard_address,
-                        actual_address: actual_address,
-                        origin_address: origin_address,
-                        family_zip_code: family_zip_code,
-                        family_phone: family_phone,
-                        emergency_contact_name: emergency_contact_name,
-                        emergency_contact_method: emergency_contact_method,
-                        account_in: account_in,
-                        area_origin_name: area_origin_name,
-                        pre_school_file_where_location: pre_school_file_where_location,
-                        file_in: file_in,
-                        pre_school_name: pre_school_name,
-                        pre_school_account_where_station: pre_school_account_where_station,
-                        student_status: student_status,//学籍状态
-                        hard_type: hard_type,//困难生类别
-                        //缴费状态
-                        payment_status_first_year: payment_status_first_year,
-                        arrears_first_year: arrears_first_year,
-                        payment_status_second_year: payment_status_second_year,
-                        arrears_second_year: arrears_second_year,
-                        payment_status_third_year: payment_status_third_year,
-                        arrears_third_year: arrears_third_year,
+                layer.confirm('确定修改？', {icon: 3, title: '提示'}, function (index) {
+                    layer.close(index);
+                    $.post(baseUrl + "/student/updateStudentAjax",
+                        {
+                            qq: qq,
+                            student_contact_method: phone,
+                            email: email,
+                            no: no,
+                            is_marry: is_marry,
+                            height: height,
+                            weight: weight,
+                            head_image: imgName,
+                            health_status: health_status,
+                            student_type: student_type,
+                            blood: blood,
+                            stay_type: stay_type,
+                            political_status: political_status,
+                            pre_school_education: pre_school_education,
+                            student_classify: student_classify,
+                            idcard_address: idcard_address,
+                            actual_address: actual_address,
+                            origin_address: origin_address,
+                            family_zip_code: family_zip_code,
+                            family_phone: family_phone,
+                            emergency_contact_name: emergency_contact_name,
+                            emergency_contact_method: emergency_contact_method,
+                            account_in: account_in,
+                            area_origin_name: area_origin_name,
+                            pre_school_file_where_location: pre_school_file_where_location,
+                            file_in: file_in,
+                            pre_school_name: pre_school_name,
+                            pre_school_account_where_station: pre_school_account_where_station,
+                            student_status: student_status,//学籍状态
+                            hard_type: hard_type,//困难生类别
+                            //缴费状态
+                            payment_status_first_year: payment_status_first_year,
+                            arrears_first_year: arrears_first_year,
+                            payment_status_second_year: payment_status_second_year,
+                            arrears_second_year: arrears_second_year,
+                            payment_status_third_year: payment_status_third_year,
+                            arrears_third_year: arrears_third_year,
 
-                        practice_learning_type:practice_learning_type,
-                        area_id:area_id,
-                        floor_id:floor_id,
-                        room_id:room_id,
+                            practice_learning_type: practice_learning_type,
+                            area_id: area_id,
+                            floor_id: floor_id,
+                            room_id: room_id,
 
-                        //获奖或荣誉
-                        own_punishment:own_punishment,
-                        //教育经历未填充
+                            //获奖或荣誉
+                            own_punishment: own_punishment,
+                            //家庭信息
+                            updateStudentParentsNameList: updateStudentParentsNameList,
+                            updateStudentParent_political_statusList: updateStudentParent_political_statusList,
+                            other_updateStudentParent_political_statusList: other_updateStudentParent_political_statusList,
+                            updateStudentParent_employerList: updateStudentParent_employerList,
+                            updateStudentParent_dutiesList: updateStudentParent_dutiesList,
+                            updateStudentParent_phoneList: updateStudentParent_phoneList,
+                            updateStudentParentIds: updateStudentParentIds,
+                            //教育经历
+                            educational_experience_start_list: educational_experience_start_list,
+                            educational_experience_end_list: educational_experience_end_list,
+                            update_schoolName_list: update_schoolName_list,
+                            update_duties_start_list: update_duties_start_list,
+                            experienceIds: experienceIds,
 
-                        // 录取专业  现专业  就业方向  班级
-                        origin_profession_id: origin_profession_id,
-                        profession_id: profession_id,
-                        direction_id: direction_id,
-                        classes_id: classes_id,
+                            // 录取专业  现专业  就业方向  班级
+                            origin_profession_id: origin_profession_id,
+                            profession_id: profession_id,
+                            direction_id: direction_id,
+                            classes_id: classes_id,
 
-                        //教师信息
-                        teacher_id: teacher_id,
-                        community_teacher_id: community_teacher_id,
+                            //教师信息
+                            teacher_id: teacher_id,
+                            community_teacher_id: community_teacher_id,
 
-                    },
 
-                    function (data) {
-                        alert(123)
-                    }
-                )
+                        },
+
+                        function (data) {
+                                console.log(data)
+                            if (data.result) {
+                                layer.msg(data.msg);
+                            }
+                        }
+                    )
+                })
             },
+
+
 
             showUpdateDorms: function () {
                 $("#showUpdateDorms").show();
@@ -1183,6 +1267,18 @@
                 }
 
                 form.render();
+            });
+            //图片上传
+            layui.use('upload', function () {
+                layui.upload({
+                    url: '${baseurl}/student/updateImage' //上传接口
+                    , success: function (res) { //上传成功后的回调
+                        if (res.result) {
+                            $("#imagesToUpdate").text("").attr("src", HEAD_IMAGE_PREFIX + res.data);
+                            imgName = res.data;
+                        }
+                    }
+                });
             });
         });
     });
