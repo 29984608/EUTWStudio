@@ -10,7 +10,4 @@ public interface ReportService {
     List<Map<String,Object>> professionList(String level)throws Exception;
 
     File exportProfessionReport(String level,HttpServletRequest request)throws Exception;
-
-    List<Map<String,Object>> queryDormPeopleNumber() throws  Exception;
-
 }
