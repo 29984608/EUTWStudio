@@ -115,7 +115,8 @@
 
 <div id="update" style="display: none; background:#F8F8F8">
     <div class="container" id="container" style=" background: #fff">
-        <h1 style="text-align: center;margin-left: -30px;margin-top: 40px; ;color:#00ab9f ">西安欧亚学院<span id="studentName1"></span>学生档案</h1>
+        <h1 style="text-align: center;margin-left: -30px;margin-top: 40px; ;color:#00ab9f ">西安欧亚学院<span
+                id="studentName1"></span>学生档案</h1>
         <div style="margin-top: 40px;">
             <div style="width: 25%; height: 100%; float: left;border-right: 1px solid #00ab9f">
                 <div style="width:140px; height: 200px; margin:10px 50px;border: 2px solid #00ab9f">
@@ -249,7 +250,8 @@
 
             <div class="layui-tab layui-form" style="height: auto">
                 <div style="float:left;position:fixed;">
-                    <button class="layui-btn" onclick="student.updateStudentList()"><i class="layui-icon">&#xe61f;</i> 更新
+                    <button class="layui-btn" onclick="student.updateStudentList()"><i class="layui-icon">&#xe61f;</i>
+                        更新
                     </button>
                 </div>
                 <div class="larry-separate"></div>
@@ -257,13 +259,15 @@
                     <div id="container1" style=" background: #fff">
                         <h1 style="text-align: center;color:#00ab9f ">西安欧亚学院高职学院学生档案修改页面</h1>
                         <div style="margin-top: 40px;">
-                            <div style="float: right;width: 30%">
-                                <div style="margin: 30px 10px;border: 1px solid #e2e2e2">
-                                    <div style="width:140px; height: 200px; margin:10px 50px;border: 2px solid #e2e2e2">
-                                        <img id="imagesToUpdate" style="width: 100%" height="100%"/>
-                                    </div>
-                                    <div style="margin-left:10%">
-                                        <input type="file" name="file" class="layui-upload-file">
+                            <div style="float: left;width: 25%">
+                                <div style="margin: 30px 10px;border: 1px ;">
+                                    <div style="float: left;margin: 10px 37%">
+                                        <div style="width:140px; height: 200px;border: 2px solid #e2e2e2;margin-bottom: 10px">
+                                            <img id="imagesToUpdate" style="width: 100%" height="100%"/>
+                                        </div>
+                                        <div>
+                                            <input type="file" name="file" class="layui-upload-file" style="width: auto" lay-title="图片上传">
+                                        </div>
                                     </div>
                                     <div style="margin:10px 30px;">
                                         <table class="layui-table lay-even " data-name="articleCatData">
@@ -273,7 +277,9 @@
                                                     <div class="layui-inline">
                                                         <label class="layui-form-label">TEL</label>
                                                         <div class="layui-input-inline">
-                                                            <input type="tel" name="phone" lay-verify="phone" autocomplete="off" class="layui-input" id="studentPhone">
+                                                            <input type="tel" name="phone" lay-verify="phone"
+                                                                   autocomplete="off" class="layui-input"
+                                                                   id="studentPhone">
                                                         </div>
                                                     </div>
                                                 </th>
@@ -283,7 +289,9 @@
                                                     <div class="layui-inline">
                                                         <label class="layui-form-label">QQ</label>
                                                         <div class="layui-input-inline">
-                                                            <input type="number" name="QQ" lay-verify="number" autocomplete="off" class="layui-input" id="studentQQ">
+                                                            <input type="number" name="QQ" lay-verify="number"
+                                                                   autocomplete="off" class="layui-input"
+                                                                   id="studentQQ">
                                                         </div>
                                                     </div>
                                                 </th>
@@ -291,9 +299,12 @@
                                             <tr>
                                                 <th>
                                                     <div class="layui-inline">
-                                                        <label class="layui-form-label" style="width: auto">E-mail</label>
+                                                        <label class="layui-form-label"
+                                                               style="width: auto">E-mail</label>
                                                         <div class="layui-input-inline">
-                                                            <input type="email" name="email" lay-verify="email" autocomplete="off" class="layui-input" id="studentEmail">
+                                                            <input type="email" name="email" lay-verify="email"
+                                                                   autocomplete="off" class="layui-input"
+                                                                   id="studentEmail">
                                                         </div>
                                                     </div>
                                                 </th>
@@ -303,7 +314,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div style="width: 70%; height: 100%; float: right;padding-left: 25px">
+                            <div style="width: 75%; height: 100%; float: left;padding-left: 25px">
                                 <h4 style="color: #00ab9f;font-weight: bold">基本信息</h4>
                                 <table class="layui-table lay-even " data-name="articleCatData"
                                        style="border: 0px solid red">
@@ -313,14 +324,14 @@
                                             <div class="layui-input-inline" style="width: 70%">
                                                 <input type="text" name="text"
                                                        placeholder="请输入内容" autocomplete="off" class="layui-input"
-                                                       id="updateStudentNo" disabled>
+                                                       id="updateStudentNo" disabled style="border: none">
                                              </div>
                                         </span></th>
                                         <th colspan="3">姓名：<span>
                                             <div class="layui-input-inline" style="width: 60%">
                                                 <input type="text" name="text"
                                                        placeholder="请输入内容" autocomplete="off" class="layui-input"
-                                                       id="updateStudentName" readonly>
+                                                       id="updateStudentName" readonly style="border: none">
                                              </div>
                                         </span></th>
 
@@ -329,19 +340,18 @@
                                     <tr>
                                         <th colspan="3">性别：<span>
                                             <div class="layui-inline" pane="" id="updateStudentSex">
-                                                  <label class="layui-form-label" style="width: auto"></label>
-                                                <div class="layui-inline">
-                                                    <input name="sex" value="男" title="男"
-                                                           type="radio" disabled>
-                                                    <input name="sex" value="女" title="女" type="radio" disabled>
-                                                </div>
+                                                <div class="layui-input-inline" style="width: 60%">
+                                                <input type="text" name="text"
+                                                       placeholder="请输入内容" autocomplete="off" class="layui-input"
+                                                       id="updateStudentSex1" readonly style="border: none">
+                                             </div>
                                              </div>
                                         </span></th>
                                         <th colspan="3">民族：<span>
                                             <div class="layui-input-inline" style="width: 60%">
                                                 <input type="text" name="text"
                                                        placeholder="请输入内容" autocomplete="off" class="layui-input"
-                                                       id="updateStudentNationalities" readonly>
+                                                       id="updateStudentNationalities" readonly style="border: none">
                                              </div>
                                         </span></th>
                                     </tr>
@@ -351,14 +361,14 @@
                                             <div class="layui-input-inline" style="width: 60%">
                                                 <input type="text" name="text"
                                                        placeholder="请输入内容" autocomplete="off" class="layui-input"
-                                                       id="updateStudentIdCard" readonly>
+                                                       id="updateStudentIdCard" readonly style="border: none">
                                              </div>
                                         </span></th>
                                         <th colspan="3">籍贯：<span>
                                             <div class="layui-input-inline" style="width: 60%">
                                                 <input type="text" name="text"
                                                        placeholder="请输入内容" autocomplete="off" class="layui-input"
-                                                       id="updateStudentNativePlace" readonly>
+                                                       id="updateStudentNativePlace" readonly style="border: none">
                                              </div>
                                         </span></th>
 
@@ -370,7 +380,7 @@
                                                 <input name="date" lay-verify="date" placeholder="yyyy-mm-dd"
                                                        autocomplete="off" class="layui-input"
                                                        type="text"
-                                                       id="updateStudentBirthday" readonly>
+                                                       id="updateStudentBirthday" readonly style="border: none">
                                             </div>
                                         </th>
                                         <th colspan="3">婚否：
@@ -543,7 +553,7 @@
                                                 <div class="layui-input-inline" style="width: 60%">
                                                     <input type="text" name="idcard_address" placeholder="请输入家庭实际住址"
                                                            autocomplete="off" class="layui-input" id="detailedAddresses"
-                                                           readonly>
+                                                           readonly style="border: none">
                                                 </div>
                                                 <span>
                                                      <button class="layui-btn"
@@ -593,7 +603,7 @@
                                                 <div class="layui-input-inline" style="width: 60%">
                                                     <input type="text" name="idcard_address" placeholder="请输入生源所在地名称"
                                                            autocomplete="off" class="layui-input"
-                                                           id="update_name_of_the_source" readonly>
+                                                           id="update_name_of_the_source" readonly style="border:none">
                                                 </div>
                                                 <span>
                                                      <button class="layui-btn"
@@ -696,7 +706,7 @@
                                                     <input type="text" name="idcard_address" placeholder="请输入入学前档案所在单位"
                                                            autocomplete="off" class="layui-input"
                                                            id="Pre_enrollment_file_unit"
-                                                           readonly>
+                                                           readonly style="border: none">
                                                 </div>
                                                 <span>
                                                      <button class="layui-btn"
@@ -774,7 +784,7 @@
                                                     <input type="text" name="idcard_address" placeholder="请输入入学前户口所在派出所"
                                                            autocomplete="off" class="layui-input"
                                                            id="school_account_where_the_police_station_detailed"
-                                                           readonly>
+                                                           readonly style="border: none">
                                                 </div>
                                                 <span>
                                                      <button class="layui-btn"
@@ -1042,7 +1052,7 @@
                                                 <div class="layui-input-inline" style="width: 60%">
                                                     <input type="text" name="idcard_address" placeholder="请输入宿舍信息"
                                                            autocomplete="off" class="layui-input" id="updateDorms"
-                                                           readonly>
+                                                           readonly style="border: none">
                                                 </div>
                                                 <span>
                                                      <button class="layui-btn"

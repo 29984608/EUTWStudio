@@ -127,7 +127,7 @@ public class StudentController {
             }
 
             personService.updateStudentList(studentUpdate);
-//            personService.updateExperienceList(experiences, studentUpdate.getNo());
+            personService.updateExperienceList(experiences, studentUpdate.getNo());
 
             Map<String, Object> family = new HashMap<>();
             List<Map<String, Object>> familyList = new ArrayList<>();
@@ -140,7 +140,7 @@ public class StudentController {
                 family.put("updateStudentParent_phoneList", updateStudentParent_phoneList.get(i));
                 familyList.add(family);
             }
-//            personService.updateFamilyInfo(family,studentUpdate.getNo());
+            personService.updateFamilyInfo(family,studentUpdate.getNo());
 
             return Result.success(null, Constant.UPDATE_SUCCESS);
         } catch (Exception e) {

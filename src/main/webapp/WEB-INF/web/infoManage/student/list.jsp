@@ -406,7 +406,8 @@
                             $("#imagesToUpdate").text("").attr("src", HEAD_IMAGE_PREFIX + studentList.head_image);
                             $("#updateStudentNo").val(studentList.no)
                             $("#updateStudentName").val(studentList.name);
-                            $("input:radio[value='" + studentList.gender + "'][name='sex']").prop('checked', 'true');
+//                            $("input:radio[value='" + studentList.gender + "'][name='sex']").prop('checked', 'true');
+                            $("#updateStudentSex1").val(studentList.gender);
                             $("#updateStudentNationalities").val(studentList.famous_family);
                             $("#updateStudentIdCard").val(studentList.idcard);
                             $("#updateStudentNativePlace").val(studentList.native_place);
