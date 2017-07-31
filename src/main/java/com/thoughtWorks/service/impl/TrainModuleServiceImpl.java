@@ -190,4 +190,8 @@ public class TrainModuleServiceImpl implements TrainModuleService {
         trainModuleDao.deleteCourseModule(id);
     }
 
+    @Override
+    public Map<String, Object> queryTrainProgramByNo(String studentNo) throws Exception {
+        return trainModuleDao.queryTrainProgramByNo(studentNo);
+    }
 }

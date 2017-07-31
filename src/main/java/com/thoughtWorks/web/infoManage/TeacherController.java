@@ -98,6 +98,8 @@ public class TeacherController {
         try {
             personService.addTeacher(teacher, classIds,floorIds,areaId);
 
+
+
             return Result.success(null, Constant.ADD_SUCCESS);
         } catch (Exception e) {
             e.printStackTrace();

@@ -24,9 +24,9 @@
     </select>
     <select id="queryDormPeopleNumber" parameterType="List" resultType="map">
         SELECT
-        department.name department,
+        department.name departmentName,
         student.level,
-        student.stay_type,
+        student.stay_type stayTypeName,
         student.no,
         student.name
         FROM t_student student

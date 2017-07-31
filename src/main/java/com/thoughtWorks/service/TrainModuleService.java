@@ -51,4 +51,6 @@ public interface TrainModuleService {
     void updateTestMethod(String name,String id);
 
     void deleteTestMethod(String id);
+
+    Map<String,Object> queryTrainProgramByNo(String studentNo) throws Exception;
 }

@@ -8,6 +8,7 @@ public class Teacher {
     private String directionId;
     private int deptId;
     private String classify;
+    private String identityCard;
 
     public int getDeptId() {
         return deptId;
@@ -63,5 +64,14 @@ public class Teacher {
 
     public void setDirectionId(String directionId) {
         this.directionId = directionId;
+
+    }
+
+    public String getIdentityCard() {
+        return identityCard;
+    }
+
+    public void setIdentityCard(String identityCard) {
+        this.identityCard = identityCard;
     }
 }

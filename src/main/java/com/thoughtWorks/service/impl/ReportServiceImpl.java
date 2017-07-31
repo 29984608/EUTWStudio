@@ -11,10 +11,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class ReportServiceImpl implements ReportService {
@@ -128,14 +125,5 @@ public class ReportServiceImpl implements ReportService {
             int oldNumber = Integer.parseInt(data.get(param)) - 1;
             data.put(param, String.valueOf(oldNumber));
         }
-    }
-
-    @Override
-    public List<Map<String, Object>> queryDormPeopleNumber() {
-        List<Map<String, Object>> statisticCount = new ArrayList<>();
-        List<Map<String, Object>> dormPeoples =reportDao.queryDormPeopleNumber(DateUtil.getSearchLevels());
-        if (dormPeoples.size() == 0) return statisticCount;
-
-        return dormPeoples;
     }
 }

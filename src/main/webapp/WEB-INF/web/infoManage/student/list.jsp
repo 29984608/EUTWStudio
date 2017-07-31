@@ -325,6 +325,7 @@
                     $("#images").text("").attr("src", HEAD_IMAGE_PREFIX + data.student[0].head_image);
                     $("#studentNo").text("").append(data.student[0].no);
                     $("#studentName").text("").append(data.student[0].name);
+                    $("#studentName1").text("").append(data.student[0].name);
                     $("#studentSex").text("").append(data.student[0].gender);
                     $("#famous_family").text("").append(data.student[0].famous_family);
                     $("#idcard").text("").append(data.student[0].idcard);

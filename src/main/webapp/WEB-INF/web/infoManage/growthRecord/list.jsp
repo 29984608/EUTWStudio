@@ -27,7 +27,7 @@
 
             <div id="update" style="background: #fff">
                 <div class="container" id="container" style="padding:50px 30px">
-                    <h1 style="text-align: center;margin-left: -30px;font-size: 30px; ;">西安欧亚学院高职学院<span id="department"></span><span id="level"></span>级<span id="direction"></span>方向课程学习计划</h1>
+                    <h1 style="text-align: center;margin-left: -30px;font-size: 30px; ;">西安欧亚学院高职学院<span id="studentName1"></span>学生成长经历报告</h1>
                     <div style="margin:40px 0">
 
                         <table  class="layui-table lay-even " data-name="articleCatData">
@@ -136,6 +136,7 @@
                         $("#direction").text(data.data[(data.data.length-1)].direction);
                         showCommunicationContents(data.data);
                         $("#name").text(data.data[(data.data.length-1)].name);
+                        $("#studentName1").text("").append(data.data[(data.data.length-1)].name);
                         $("#gender").text(data.data[(data.data.length-1)].gender);
                         $("#native_place").text(data.data[(data.data.length-1)].native_place);
                         $("#idcard").text(data.data[(data.data.length-1)].idcard);

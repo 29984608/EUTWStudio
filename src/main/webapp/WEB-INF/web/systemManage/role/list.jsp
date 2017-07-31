@@ -83,6 +83,7 @@
             list: function () {
                 $.ajax({
                     url: baseUrl + "userRole/list",
+                    type:"post",
                     data: {currentIndex: currentIndex, pageSize: pageSize},
                     success: function (data) {
                         if (data.result) {
@@ -110,6 +111,7 @@
             viewRole: function (id) {
                 $.ajax({
                     url: baseUrl + "userRole/query",
+                    type:"post",
                     data: {roleId: id},
                     success: function (data) {
                         if (data.result) {
@@ -140,6 +142,7 @@
             viewPermission: function (roleId) {
                 $.ajax({
                     url: baseUrl + "/userRole/viewPermission",
+                    type:"post",
                     data: {roleId: roleId},
                     success: function (data) {
                         if (data.result) {
@@ -264,6 +267,7 @@
             form.on('submit(role-add)', function (data) {
                 $.ajax({
                     url: baseUrl + "userRole/add",
+                    type:"post",
                     data: $("#role-add").serialize(),
                     success: function (data) {
                         if (data.result) {
