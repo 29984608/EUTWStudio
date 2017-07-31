@@ -11,10 +11,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class ReportServiceImpl implements ReportService {
@@ -140,116 +137,81 @@ public class ReportServiceImpl implements ReportService {
     }
 
 
-    public List<Map<String, Object>> queryDormPeopleNumber() {
-        List<Map<String, Object>> statisticCount = new ArrayList<>();
-        List<Map<String, Object>> dormPeoples =reportDao.queryDormPeopleNumber(DateUtil.getSearchLevels());
-        if (dormPeoples.size() == 0) return statisticCount;
+    public List<Map<String, Object>> queryDormPeopleNumber() throws Exception {
+        List<Map<String, Object>> statisticStudents = null;
+        List<Integer> searchLevels = DateUtil.getSearchLevels();
 
-        for (Map<String, Object> dormPeople : dormPeoples) {
-            if (!hasDepartment(dormPeople, statisticCount)) {
-                statisticCount.add(createDepartment(dormPeople));
-                if (null == dormPeople.get("department")) continue;
-            }
-            statisticTypeCount(statisticCount, dormPeople);
-        }
+        List<Map<String, Object>> students = reportDao.queryDormPeopleNumber(searchLevels);
+        if (students.size() != 0) statisticStudents = statisticStudentsCount(students);
 
-        return statisticCount;
+        return statisticStudents;
     }
 
+    private List<Map<String, Object>> statisticStudentsCount(List<Map<String, Object>> students) {
+        String departmentName = null;
+        Map<String, Object> temp = null;
+        List<Map<String, Object>> statisticStudents = new ArrayList<>();
 
-
-    private void statisticTypeCount(List<Map<String, Object>> statisticCount, Map<String, Object> communication) {
-        for (Map<String, Object> tempCommunication : statisticCount) {
-            if (tempCommunication.get("department").equals(communication.get("department")))
-                if (!hasCommunicationType(tempCommunication.get("stay_type"), communication))
-                    createDepartmentCommunicationType(tempCommunication, communication);
-
-            addDepartmentCommunicationTypeCount(tempCommunication.get("stay_type"), communication);
+        for (Map<String, Object> student : students) {
+            if (departmentName == null || !departmentName.equals(student.get("departmentName"))) {
+                departmentName = (String) student.get("departmentName");
+                temp = new LinkedHashMap<>();
+                temp.put("departmentName", departmentName);
+                temp.put("stay_type", new ArrayList<>());
+                statisticStudents.add(temp);
+            }
+            setDepartmentProfessionStudentCount(temp, student);
         }
+
+        return statisticStudents;
     }
 
-    private void createDepartmentCommunicationType(Map<String, Object> tempCommunication, Map<String, Object> communication) {
-        List<Integer> levels = DateUtil.getSearchLevels();
-        List<Map<String, Object>> types = (List<Map<String, Object>>) tempCommunication.get("stay_type");
-        if (types == null || types.size() == 0) {
-            types = new ArrayList<>();
-            Map<String, Object> type = createType(communication, levels);
-            types.add(type);
-        } else {
-            boolean flag = true;
-            for (Map<String, Object> tempType : types) {
-                if (tempType.get("stay_type").equals(communication.get("stay_type"))) flag = false;
-            }
-            if (flag) {
-                Map<String, Object> type = createType(communication, levels);
-                types.add(type);
+    private void setDepartmentProfessionStudentCount(Map<String, Object> tempDepartment, Map<String, Object> student) {
+        String stay_typeName = (String) student.get("stay_typeName");
+        List<Map<String, Object>> stay_type = (List<Map<String, Object>>) tempDepartment.get("stay_type");
+
+        if (stay_type.size() == 0)
+            stay_type.add(createProfession(stay_typeName));
+
+        boolean flag = false;
+        for (Map<String, Object> profession : stay_type) {
+            if (profession.get("stay_typeName").toString().equals(stay_typeName)) {
+                flag = true;
+                setLevelCount(profession, student);
             }
         }
-
-        tempCommunication.put("stay_type", types);
-    }
-
-    private Map<String, Object> createType(Map<String, Object> communication, List<Integer> levels) {
-        Map<String, Object> type = new HashMap<>();
-        type.put("stay_type", communication.get("stay_type"));
-        List<Map<String, Integer>> level = new ArrayList<>();
-        for (int i = 0; i < 3; ++i) {
-            Map<String, Integer> temp = new HashMap<>();
-            temp.put("level", levels.get(i));
-            temp.put("count", 0);
-            level.add(temp);
-        }
-        type.put("levels", level);
-
-        return type;
-    }
-
-    private void addDepartmentCommunicationTypeCount(Object communicationType, Map<String, Object> communication) {
-        List<Map<String, Object>> types = (List<Map<String, Object>>) communicationType;
-
-        for (Map<String, Object> type : types) {
-            if (type.get("stay_type").equals(communication.get("stay_type")))
-                addTypeLevelCount(type, (int) communication.get("level"));
+        if (!flag) {
+            stay_type.add(createProfession(stay_typeName));
+            setLevelCount(stay_type.get(stay_type.size() - 1), student);
         }
     }
 
-    private void addTypeLevelCount(Map<String, Object> type, int level) {
-        List<Map<String, Integer>> levels = (List<Map<String, Integer>>) type.get("levels");
-        for (Map<String, Integer> tempLevel : levels) {
-            if (tempLevel.get("level").toString().equals(String.valueOf(level))) {
-                int count = tempLevel.get("count");
-                tempLevel.put("count", ++count);
+    private void setLevelCount(Map<String, Object> profession, Map<String, Object> student) {
+        List<Integer> searchLevels = DateUtil.getSearchLevels();
+        List<Map<String, Integer>> levels = (List<Map<String, Integer>>) profession.get("levels");
+        if (levels.size() == 0) {
+            for (int i = 0; i < searchLevels.size(); ++i) {
+                Map<String, Integer> temp = new HashMap<>();
+                temp.put("level", searchLevels.get(i));
+                temp.put("count", 0);
+                levels.add(temp);
+            }
+        }
+        for (Map<String, Integer> level : levels) {
+            if (level.get("level").intValue() == (int) student.get("level")) {
+                int count = level.get("count");
+                level.put("count", count + 1);
             }
         }
     }
 
-    private boolean hasCommunicationType(Object communicationType, Map<String, Object> communication) {
-        List<Map<String, Object>> types = (List<Map<String, Object>>) communicationType;
+    private Map<String, Object> createProfession(String stay_typeName) {
+        Map<String, Object> tempProfession = new HashMap<>();
+        tempProfession.put("stay_typeName", stay_typeName);
+        tempProfession.put("levels", new ArrayList<>());
 
-        if (types == null || types.size() == 0) return false;
-
-        for (Map<String, Object> type : types) {
-            if (type.get("stay_type").equals(communication.get("stay_type"))) return true;
-        }
-
-        return false;
+        return tempProfession;
     }
 
-    private Map<String, Object> createDepartment(Map<String, Object> communication) {
-        Map<String, Object> department = new HashMap<>();
-        department.put("department", communication.get("department"));
-        department.put("stay_type", new ArrayList<Map<String, Object>>());
-
-        return department;
-    }
-
-    private boolean hasDepartment(Map<String, Object> communication, List<Map<String, Object>> statisticCount) {
-        for (Map<String, Object> statistic : statisticCount) {
-            if (communication.get("department").toString().equals(statistic.get("department") + ""))
-                return true;
-        }
-
-        return false;
-    }
 
 }
