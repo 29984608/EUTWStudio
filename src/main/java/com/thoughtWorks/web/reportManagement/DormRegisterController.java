@@ -45,5 +45,19 @@ public class DormRegisterController {
 
         return Result.failure(null, Constant.SEARCH_FAILURE);
     }
-   
+    @RequestMapping("exportExcel")
+    public ResponseEntity<byte[]> exportProfessionReport(HttpServletRequest request) throws IOException {
+        ResponseEntity<byte[]> responseEntity = null;
+
+        try {
+            File file = dormRegisterService.exportDormRegisterReport(request);
+            responseEntity = getResponseEntity(file);
+            file.delete();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return responseEntity;
+    }
+
 }

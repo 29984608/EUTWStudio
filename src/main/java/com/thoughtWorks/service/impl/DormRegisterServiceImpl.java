@@ -4,6 +4,7 @@ import com.thoughtWorks.dao.ReportDao;
 import com.thoughtWorks.service.DormRegisterService;
 import com.thoughtWorks.service.ReportService;
 import com.thoughtWorks.util.DateUtil;
+import com.thoughtWorks.util.reportUtil.DormRegisterReportUtil;
 import com.thoughtWorks.util.reportUtil.ProfessionReportUtil;
 import org.springframework.stereotype.Service;
 
@@ -20,8 +21,35 @@ public class DormRegisterServiceImpl implements DormRegisterService {
 
 
     @Override
-    public File exportProfessionReport(HttpServletRequest request) throws Exception {
-        return null;
+    public File exportDormRegisterReport(HttpServletRequest request) throws Exception {
+        List<Map<String, Object>> dormRegisterList = dormRegisterList();
+        List<Integer> searchLevels = DateUtil.getSearchLevels();
+        Map<String, String> headers = new HashMap<>();
+        headers.put("index", "序号");
+        headers.put("departmentName", "系");
+        headers.put("stay_typeName",  "住宿类型");
+        headers.put("level1",  Integer.toString(searchLevels.get(0)));
+        headers.put("level2",  Integer.toString(searchLevels.get(1)));
+        headers.put("level3",  Integer.toString(searchLevels.get(2)));
+        headers.put("littleCount",  "小计");
+        String fileName = "高职学院宿舍人数统计表.xls";
+
+        String path = request.getServletContext().getRealPath("images/temp") + "/" + fileName;
+        File file = new File(path);
+        new DormRegisterReportUtil().exportExcel(headers, dormRegisterList, file, fileName.substring(0, fileName.lastIndexOf(".")));
+
+        return file;
+    }
+
+
+    public List<Map<String, Object>> dormRegisterList() throws Exception {
+        List<Map<String, Object>> statisticStudents = null;
+        List<Integer> searchLevels = DateUtil.getSearchLevels();
+
+        List<Map<String, Object>> students = reportDao.queryDormPeopleNumber(searchLevels);
+        if (students.size() != 0) statisticStudents = statisticStudentsCount(students);
+
+        return statisticStudents;
     }
 
     public List<Map<String, Object>> queryDormPeopleNumber() throws Exception {

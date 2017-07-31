@@ -13,7 +13,7 @@ public class DormRegisterReportUtil extends ExcelReportUtil {
     protected void writeHeaders(HSSFSheet sheet, Map<String, String> headers) {
         HSSFRow row = sheet.createRow(1);
 
-        String[] keys = {"index", "departmentName", "professionName", "level1", "level2", "level3","littleCount"};
+        String[] keys = {"index", "departmentName", "stay_typeName", "level1", "level2", "level3","littleCount"};
         int columnIndex = 0;
         for (String key : keys) {
             HSSFCell cell = row.createCell(columnIndex++);
@@ -34,11 +34,11 @@ public class DormRegisterReportUtil extends ExcelReportUtil {
                 int rowSumCount = 0;
 
                 Map<String, Object> department = dataset.get(i);
-                List<Map<String, Object>> professions = (List<Map<String, Object>>) department.get("professions");
-                if (professions.size() >= 2)
-                    sheet.addMergedRegion(new CellRangeAddress(rowIndex, rowIndex + professions.size() - 1, 1, 1));
+                List<Map<String, Object>> stay_type = (List<Map<String, Object>>) department.get("stay_type");
+                if (stay_type.size() >= 2)
+                    sheet.addMergedRegion(new CellRangeAddress(rowIndex, rowIndex + stay_type.size() - 1, 1, 1));
 
-                for (int j = 0; j < professions.size(); ++j) {
+                for (int j = 0; j < stay_type.size(); ++j) {
                     HSSFRow row = sheet.createRow(rowIndex++);
                     HSSFCell cell =  setSerialNumber(rowIndex, row);
                     //系
@@ -48,11 +48,11 @@ public class DormRegisterReportUtil extends ExcelReportUtil {
                     setAlignmentCenter(cellStyle, cell);
                     //专业
                     cell = row.createCell(2);
-                    cell.setCellValue(new HSSFRichTextString(professions.get(j).get("professionName").toString()));
+                    cell.setCellValue(new HSSFRichTextString(stay_type.get(j).get("stay_typeName").toString()));
 
                     //levels
                     int levelIndex = 3;
-                    List<Map<String, Integer>> levels = (List<Map<String, Integer>>) professions.get(j).get("levels");
+                    List<Map<String, Integer>> levels = (List<Map<String, Integer>>) stay_type.get(j).get("levels");
                     for (int index = 0; index < levels.size();++index) {
                         Map<String, Integer> level = levels.get(index);
                         cell = row.createCell(levelIndex++);

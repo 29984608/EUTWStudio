@@ -70,7 +70,7 @@
                 })
             },
             exportExcel: function () {
-                location.href = baseUrl + "/professionReport/exportExcel";
+                location.href = baseUrl + "/dormRegister/exportExcel";
             },
             showPage: function (data) {
                 let index = 0;

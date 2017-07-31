@@ -7,8 +7,7 @@ import java.util.Map;
 
 public interface DormRegisterService {
 
-
-    File exportProfessionReport(HttpServletRequest request)throws Exception;
+    File exportDormRegisterReport(HttpServletRequest request)throws Exception;
 
     List<Map<String,Object>> queryDormPeopleNumber() throws  Exception;
 
