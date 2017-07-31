@@ -357,6 +357,9 @@
                     $("#profession").text("").append(data.student[0].profession);
                     $("#direction").text("").append(data.student[0].direction);
                     $("#classes").text("").append(data.student[0].classes);
+                    $("#teacherName").text("").append(data.student[0].teacherName);
+                    $("#teacherName").text("").append(data.student[0].teacherName);
+                    $("#teacherCommunity").text("").append(data.student[0].teacherCommunity);
                     $("#student_status").text("").append(data.student[0].student_status);
                     $("#practice_learning_type").text("").append(data.student[0].practice_learning_type);
                     $("#payment_status_first_year").text("").append(data.student[0].payment_status_first_year);

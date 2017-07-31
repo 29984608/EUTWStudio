@@ -202,8 +202,8 @@
                         <th>班级：<span id="classes"></span></th>
                     </tr>
                     <tr>
-                        <th colspan="2">职业导师：<span></span></th>
-                        <th colspan="2">社区辅导员：<span></span></th>
+                        <th colspan="2">职业导师：<span id="teacherName"></span></th>
+                        <th colspan="2">社区辅导员：<span id="teacherCommunity"></span></th>
                     </tr>
                     <tr>
                         <th colspan="2">学籍状态：<span id="student_status"></span></th>

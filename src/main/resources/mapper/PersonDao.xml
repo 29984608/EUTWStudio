@@ -531,52 +531,66 @@ WHERE direction_id = direction.id
 
     <select id="updateByStudentNo" parameterType="String" resultType="map">
         SELECT
-          student.*,
-          direction.name direction,
-          profession.name profession,
-          class.name classes,
-          department.name department,
-          area.name area,
-          floor.name floor,
-          room.name room
+              student.*,
+              direction.name direction,
+              profession.name profession,
+              class.name classes,
+              department.name department,
+              area.name area,
+              floor.name floor,
+              room.name room,
+              teacher.name teacherName,
+              teacherCommunity.name teacherCommunity
 
-        FROM t_student student
+            FROM t_student student
 
-          LEFT JOIN (SELECT
-                       id,
-                       name
-                     FROM t_department) department ON department.id = student.department_id
-          LEFT JOIN (SELECT
-                       id,
-                       name
-                     FROM t_direction) direction ON direction.id = student.direction_id
 
-          LEFT JOIN (SELECT
-                       id,
-                       name
-                     FROM t_profession) profession ON profession.id = student.profession_id
+              LEFT JOIN (SELECT
+                           t_teacher.no,
+                           name,
+                           gender
+                         FROM t_teacher) teacher ON teacher.no = student.teacher_id
+              LEFT JOIN (SELECT
+                           t_teacher.no,
+                           name,
+                           gender
+                         FROM t_teacher) teacherCommunity ON teacherCommunity.no = student.community_teacher_id
 
-          LEFT JOIN (SELECT
-                       id,
-                       name
-                     FROM t_classes) class ON class.id = student.classes_id
+              LEFT JOIN (SELECT
+                           id,
+                           name
+                         FROM t_department) department ON department.id = student.department_id
+              LEFT JOIN (SELECT
+                           id,
+                           name
+                         FROM t_direction) direction ON direction.id = student.direction_id
 
-          LEFT JOIN (SELECT
-                       id,
-                       name
-                     FROM t_area) area ON area.id = student.area_id
-          LEFT JOIN (SELECT
-                       id,
-                       name
-                     FROM t_floor) floor ON floor.id = student.floor_id
-          LEFT JOIN (SELECT
-                       id,
-                       name
-                     FROM t_room) room ON room.id = student.room_id
+              LEFT JOIN (SELECT
+                           id,
+                           name
+                         FROM t_profession) profession ON profession.id = student.profession_id
 
-        WHERE student.department_id = department.id
-              AND direction_id = direction.id
-              AND profession.id = profession_id
+              LEFT JOIN (SELECT
+                           id,
+                           name
+                         FROM t_classes) class ON class.id = student.classes_id
+
+              LEFT JOIN (SELECT
+                           id,
+                           name
+                         FROM t_area) area ON area.id = student.area_id
+              LEFT JOIN (SELECT
+                           id,
+                           name
+                         FROM t_floor) floor ON floor.id = student.floor_id
+              LEFT JOIN (SELECT
+                           id,
+                           name
+                         FROM t_room) room ON room.id = student.room_id
+
+            WHERE student.department_id = department.id
+                  AND direction_id = direction.id
+                  AND profession.id = profession_id
               and student.no =#{studentNo}
 
     </select>
