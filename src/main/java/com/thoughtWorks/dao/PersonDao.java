@@ -97,6 +97,9 @@ public interface PersonDao {
 
     List<Map<String, Object>> queryTeacherList() throws Exception;
 
+    void updateExperienceList(@Param("experiences") List<Map<String, Object>> experiences, @Param("no") String no);
+
+    void updateFamilyInfo(@Param("family")Map<String, Object> family, @Param("no") String no);
     void updateStudentList(StudentUpdate studentUpdate)throws Exception;
 
     void addTeacherToUser(@Param("teacher") Teacher teacher, @Param("roleId") int roleId);

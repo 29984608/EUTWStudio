@@ -27,7 +27,7 @@ public class DormRegisterServiceImpl implements DormRegisterService {
         Map<String, String> headers = new HashMap<>();
         headers.put("index", "序号");
         headers.put("departmentName", "系");
-        headers.put("stay_typeName",  "住宿类型");
+        headers.put("stayTypeName",  "住宿类型");
         headers.put("level1",  Integer.toString(searchLevels.get(0)));
         headers.put("level2",  Integer.toString(searchLevels.get(1)));
         headers.put("level3",  Integer.toString(searchLevels.get(2)));
@@ -72,7 +72,7 @@ public class DormRegisterServiceImpl implements DormRegisterService {
                 departmentName = (String) student.get("departmentName");
                 temp = new LinkedHashMap<>();
                 temp.put("departmentName", departmentName);
-                temp.put("stay_type", new ArrayList<>());
+                temp.put("stayType", new ArrayList<>());
                 statisticStudents.add(temp);
             }
             setDepartmentProfessionStudentCount(temp, student);
@@ -82,22 +82,22 @@ public class DormRegisterServiceImpl implements DormRegisterService {
     }
 
     private void setDepartmentProfessionStudentCount(Map<String, Object> tempDepartment, Map<String, Object> student) {
-        String stay_typeName = (String) student.get("stay_typeName");
-        List<Map<String, Object>> stay_type = (List<Map<String, Object>>) tempDepartment.get("stay_type");
+        String stayTypeName = (String) student.get("stayTypeName");
+        List<Map<String, Object>> stayType = (List<Map<String, Object>>) tempDepartment.get("stayType");
 
-        if (stay_type.size() == 0)
-            stay_type.add(createProfession(stay_typeName));
+        if (stayType.size() == 0)
+            stayType.add(createStayType(stayTypeName));
 
         boolean flag = false;
-        for (Map<String, Object> profession : stay_type) {
-            if (profession.get("stay_typeName").toString().equals(stay_typeName)) {
+        for (Map<String, Object> stayTypeAll : stayType) {
+            if (stayTypeAll.get("stayTypeName").toString().equals(stayTypeName)) {
                 flag = true;
-                setLevelCount(profession, student);
+                setLevelCount(stayTypeAll, student);
             }
         }
         if (!flag) {
-            stay_type.add(createProfession(stay_typeName));
-            setLevelCount(stay_type.get(stay_type.size() - 1), student);
+            stayType.add(createStayType(stayTypeName));
+            setLevelCount(stayType.get(stayType.size() - 1), student);
         }
     }
 
@@ -120,9 +120,9 @@ public class DormRegisterServiceImpl implements DormRegisterService {
         }
     }
 
-    private Map<String, Object> createProfession(String stay_typeName) {
+    private Map<String, Object> createStayType(String stayTypeName) {
         Map<String, Object> tempProfession = new HashMap<>();
-        tempProfession.put("stay_typeName", stay_typeName);
+        tempProfession.put("stayTypeName", stayTypeName);
         tempProfession.put("levels", new ArrayList<>());
 
         return tempProfession;

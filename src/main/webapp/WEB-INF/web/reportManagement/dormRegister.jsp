@@ -79,13 +79,12 @@
                 data.forEach(department => {
                     let littleCount = [0, 0, 0, 0];
                     let rowSumCount = 0;
-                    let stay_type = department.stay_type;
-                    let levels = stay_type[0].levels;
-
+                    let stayType = department.stayType;
+                    let levels = stayType[0].levels;
                     _html += `
                      <tr>
                         <th>` + (++index) + `</th>
-                        <th rowspan="` + stay_type.length + `">` + department.departmentName + `</th>
+                        <th rowspan="` + stayType.length + `">` + department.departmentName + `</th>
                         <th>校内</th>
                         `;
                     for (let j = 0; j < levels.length; ++j) {
@@ -100,8 +99,8 @@
                     littleCount[3] += rowSumCount;
                     rowSumCount = 0;
 
-                    for (let i = 1; i < stay_type.length; ++i) {
-                        let profession = stay_type[i];
+                    for (let i = 1; i < stayType.length; ++i) {
+                        let profession = stayType[i];
                         levels = profession.levels;
                         _html += `
                              <tr>

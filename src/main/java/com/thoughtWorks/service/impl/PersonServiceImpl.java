@@ -348,5 +348,14 @@ public class PersonServiceImpl implements PersonService {
         personDao.updateStudentList(studentUpdate);
     }
 
+    @Override
+    public void updateExperienceList(List<Map<String, Object>> experiences, String no) {
+        personDao.updateExperienceList(experiences, no);
+    }
+
+    @Override
+    public void updateFamilyInfo(Map<String, Object> family, String no) throws Exception {
+        personDao.updateFamilyInfo(family, no);
+    }
 
 }

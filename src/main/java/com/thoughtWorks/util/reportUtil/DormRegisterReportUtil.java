@@ -13,7 +13,7 @@ public class DormRegisterReportUtil extends ExcelReportUtil {
     protected void writeHeaders(HSSFSheet sheet, Map<String, String> headers) {
         HSSFRow row = sheet.createRow(1);
 
-        String[] keys = {"index", "departmentName", "stay_typeName", "level1", "level2", "level3","littleCount"};
+        String[] keys = {"index", "departmentName", "stayTypeName", "level1", "level2", "level3","littleCount"};
         int columnIndex = 0;
         for (String key : keys) {
             HSSFCell cell = row.createCell(columnIndex++);
@@ -34,7 +34,7 @@ public class DormRegisterReportUtil extends ExcelReportUtil {
                 int rowSumCount = 0;
 
                 Map<String, Object> department = dataset.get(i);
-                List<Map<String, Object>> stay_type = (List<Map<String, Object>>) department.get("stay_type");
+                List<Map<String, Object>> stay_type = (List<Map<String, Object>>) department.get("stayType");
                 if (stay_type.size() >= 2)
                     sheet.addMergedRegion(new CellRangeAddress(rowIndex, rowIndex + stay_type.size() - 1, 1, 1));
 
@@ -46,9 +46,15 @@ public class DormRegisterReportUtil extends ExcelReportUtil {
                     cell.setCellValue(new HSSFRichTextString(department.get("departmentName").toString()));
                     CellStyle cellStyle = createCellStyle();
                     setAlignmentCenter(cellStyle, cell);
-                    //专业
+                    //住宿类型
                     cell = row.createCell(2);
-                    cell.setCellValue(new HSSFRichTextString(stay_type.get(j).get("stay_typeName").toString()));
+                    String name ="";
+                    if(stay_type.get(j).get("stayTypeName").toString() .equals("1")){
+                        name ="校内";
+                    }else{
+                        name="校外";
+                    }
+                    cell.setCellValue(new HSSFRichTextString(name));
 
                     //levels
                     int levelIndex = 3;

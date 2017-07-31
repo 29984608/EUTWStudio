@@ -13,8 +13,8 @@ public class ImgUtil {
     }
 
     public static String saveImg(MultipartFile file, String dir) {
-        String fileSuffix = getSuffixName(file.getOriginalFilename());
-        String filePath = dir + UUID.randomUUID().toString() + fileSuffix;
+//        String fileSuffix = getSuffixName(file.getOriginalFilename());
+        String filePath = dir + UUID.randomUUID().toString() + ".jpg";
 
         try {
             file.transferTo(new File(filePath));
