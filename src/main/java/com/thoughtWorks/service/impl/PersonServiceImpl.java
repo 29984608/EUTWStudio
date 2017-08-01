@@ -358,4 +358,9 @@ public class PersonServiceImpl implements PersonService {
         personDao.updateFamilyInfo(family, no);
     }
 
+    @Override
+    public void addFamilyByUpdate(StudentFamily studentFamily) throws Exception {
+        personDao.addFamilyByUpdate(studentFamily);
+    }
+
 }

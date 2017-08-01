@@ -654,6 +654,13 @@ WHERE direction_id = direction.id
     <select id="queryTeacherList" resultType="map">
         select * from t_teacher
     </select>
+    <select id="showClassesByEmployment_direction_id" parameterType="string" resultType="map">
+        select * from t_classes
+        WHERE
+    </select>
+    <insert id="addFamilyByUpdate" parameterType="com.thoughtWorks.entity.StudentFamily">
+        insert into t_student_family (no,relationship,name,political_status,staff,work_place,phone) values (#{no},#{relationship},#{name},#{political_status},#{staff},#{work_place},#{phone});
+    </insert>
     <update id="updateStudentList" parameterType="com.thoughtWorks.entity.StudentUpdate">
         UPDATE t_student
         <set>

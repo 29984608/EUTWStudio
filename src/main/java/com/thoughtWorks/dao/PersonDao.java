@@ -105,5 +105,7 @@ public interface PersonDao {
     void addTeacherToUser(@Param("teacher") Teacher teacher, @Param("roleId") int roleId);
 
     void deleteUserByTeacherId(String id);
+
+    void addFamilyByUpdate(StudentFamily studentFamily);
 }
 

@@ -705,6 +705,44 @@
                     content: $("#updateStudent")
                 })
             },
+            addStudentFamilyInfo: function () {
+                layer.open({
+                    type: 1,
+                    title: "添加学生家庭信息",
+                    area: ["60%", "60%"],
+                    content: $("#addStudentFamily")
+                })
+            },
+            addFamilyByUpdate: function () {
+                let studentNo = studentInfo.no;
+                let family_relationship = $("#family_relationship").val();
+                let family_name = $("#family_name").val();
+                let family_work_place = $("#family_work_place").val();
+                let family_staff = $("#family_staff").val();
+                let family_phone_add = $("#family_phone_add").val();
+                if ($("#family_political_status").find("option:selected").text() == "其他党派") {
+                    var family_political_status = $("#other_family_political_status").val();
+                } else {
+                    var family_political_status = $("#family_political_status").find("option:selected").text();
+                }
+                layer.confirm('确定修改？', {icon: 3, title: '提示'}, function (index) {
+                    layer.close(index);
+                    $.post(baseUrl + "/student/addFamilyByUpdate",
+                        {
+                            no: studentNo,
+                            relationship: family_relationship,
+                            name: family_name,
+                            work_place: family_work_place,
+                            staff: family_staff,
+                            phone: family_phone_add,
+                            political_status: family_political_status
+                        },
+                        function (data) {
+                            layer.msg(data.msg);
+                        }
+                    )
+                })
+            },
             isOther: function (political) {
                 if (political != "中共党员" && political != "预备党员" && political != "共青团员" && political != "积极分子" && political != "群众")
                     return true;
@@ -1031,7 +1069,6 @@
                         },
 
                         function (data) {
-                                console.log(data)
                             if (data.result) {
                                 layer.msg(data.msg);
                             }
@@ -1039,7 +1076,6 @@
                     )
                 })
             },
-
 
 
             showUpdateDorms: function () {
@@ -1273,6 +1309,15 @@
 
                 form.render();
             });
+            //监听学生家人政治面貌在进行添加时
+            form.on('select(family_political_status)', function (data) {
+                if (data.value === '6') {
+                    $("#show_other_family_political_status").show();
+                } else {
+                    $("#show_other_family_political_status").hide();
+                }
+            })
+
             //图片上传
             layui.use('upload', function () {
                 layui.upload({

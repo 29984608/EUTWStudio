@@ -88,4 +88,6 @@ public interface PersonService {
     void updateExperienceList(List<Map<String, Object>> experiences, String no);
 
     void updateFamilyInfo(Map<String, Object> family, String no) throws Exception;
+
+    void addFamilyByUpdate(StudentFamily studentFamily)throws Exception;
 }

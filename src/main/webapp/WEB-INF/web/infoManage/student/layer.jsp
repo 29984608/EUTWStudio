@@ -266,7 +266,8 @@
                                             <img id="imagesToUpdate" style="width: 100%" height="100%"/>
                                         </div>
                                         <div>
-                                            <input type="file" name="file" class="layui-upload-file" style="width: auto" lay-title="图片上传">
+                                            <input type="file" name="file" class="layui-upload-file" style="width: auto"
+                                                   lay-title="图片上传">
                                         </div>
                                     </div>
                                     <div style="margin:10px 30px;">
@@ -835,9 +836,11 @@
                                        style="border: 0px solid red" id="family_member_information_list">
                                     <tbody id="family_member_information">
 
-
                                     </tbody>
                                 </table>
+                                <button class="layui-btn" onclick="student.addStudentFamilyInfo()"><i
+                                        class="layui-icon">&#xe61f;</i> 添加成员信息
+                                </button>
 
 
                                 <h4 style="color: #00ab9f;font-weight: bold ;padding-top: 15px;">教育经历</h4>
@@ -847,6 +850,7 @@
 
                                     </tbody>
                                 </table>
+
 
                                 <br>
                                 <br>
@@ -1132,6 +1136,99 @@
             </div>
         </div>
     </section>
+</div>
+
+<div id="addStudentFamily" style="display: none">
+    <table class="layui-table lay-even " data-name="articleCatData"
+           style="border: 0px solid red" id="add_family_member_information_list">
+        <tbody id="add_family_member_information">
+        <tr>
+            <td>
+                <div class="layui-inline">
+                    <label class="layui-form-label">称谓</label>
+                    <div class="layui-input-inline">
+                        <input type="tel" name="phone"
+                               autocomplete="off" class="layui-input"
+                               placeholder="请输入相关内容" id="family_relationship">
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="layui-inline">
+                    <label class="layui-form-label">姓名</label>
+                    <div class="layui-input-inline">
+                        <input type="tel" name="phone"
+                               autocomplete="off" class="layui-input"
+                               placeholder="请输入相关内容" id="family_name">
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="layui-inline">
+                    <label class="layui-form-label" style="width: auto">工作单位</label>
+                    <div class="layui-input-inline">
+                        <input type="tel" name="phone"
+                               autocomplete="off" class="layui-input"
+                               placeholder="请输入相关内容" id="family_work_place">
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="layui-inline">
+                    <label class="layui-form-label">职务</label>
+                    <div class="layui-input-inline">
+                        <input type="tel" name="phone"
+                               autocomplete="off" class="layui-input"
+                               placeholder="请输入相关内容" id="family_staff">
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="layui-inline">
+                    <label class="layui-form-label">手机</label>
+                    <div class="layui-input-inline">
+                        <input type="tel" name="phone" lay-verify="phone"
+                               autocomplete="off" class="layui-input"
+                               placeholder="请输入相关内容" id="family_phone_add">
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="layui-inline layui-form">
+                    <label class="layui-form-label" style="width: auto">政治面貌</label>
+                    <div class="layui-input-inline">
+                        <select id="family_political_status"lay-filter="family_political_status">
+                            <option value="">请选择</option>
+                            <option value="1">中共党员</option>
+                            <option value="2">预备党员</option>
+                            <option value="3">共青团员</option>
+                            <option value="4">积极分子</option>
+                            <option value="5">群众</option>
+                            <option value="6">其他党派</option>
+                        </select>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="layui-inline" placeholder="请输入相关内容" id="show_other_family_political_status" style="display: none">
+                    <label class="layui-form-label" style="width: auto">其他党派</label>
+                    <div class="layui-input-inline">
+                        <input type="tel" name="phone"
+                               autocomplete="off" class="layui-input"
+                               placeholder="请输入相关内容" id="other_family_political_status">
+                    </div>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <button class="layui-btn" style="float: right;margin-bottom: 10px;margin-right: 30px" onclick="student.addFamilyByUpdate()"><i class="layui-icon">&#xe61f;</i> 添加</button>
 </div>
 <%--省市区联动--%>
 <script src="${baseurl}/js/city/distpicker.js"></script>

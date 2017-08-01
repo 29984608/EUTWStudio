@@ -2,6 +2,7 @@ package com.thoughtWorks.web.infoManage;
 
 import com.thoughtWorks.dto.Result;
 import com.thoughtWorks.dto.SearchDto;
+import com.thoughtWorks.entity.StudentFamily;
 import com.thoughtWorks.entity.StudentUpdate;
 import com.thoughtWorks.service.PersonService;
 import com.thoughtWorks.util.Constant;
@@ -162,5 +163,18 @@ public class StudentController {
         }
 
         return Result.failure(null, Constant.UPDATE_FAILURE);
+    }
+
+    @RequestMapping("/addFamilyByUpdate")
+    @ResponseBody
+    public Result addFamilyByUpdate(StudentFamily studentFamily){
+        try {
+            personService.addFamilyByUpdate(studentFamily);
+            return Result.success(null, Constant.ADD_SUCCESS);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return Result.failure(null, Constant.ADD_FAILURE);
     }
 }
