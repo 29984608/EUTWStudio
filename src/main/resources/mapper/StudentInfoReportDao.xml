@@ -18,4 +18,30 @@
         </foreach>
         ORDER BY department_id DESC ,direction_id DESC ,level ASC
     </select>
+    <select id="queryTurnProfessional" parameterType="int" resultType="map">
+        SELECT
+          student.no,
+          student.name,
+          originProfession.code originProfessionId,
+          originProfession.name originProfession,
+          profession.code professionId,
+          profession.name profession
+
+
+        FROM t_student student
+
+          LEFT JOIN (SELECT
+                       id,
+                       code,
+                       name
+                     FROM t_profession) originProfession ON originProfession.id = student.origin_profession_id
+          LEFT JOIN (SELECT
+                       id,
+                       code,
+                       name
+                     FROM t_profession) profession ON profession.id = student.profession_id
+
+        where student.profession_id != student.origin_profession_id
+       AND student.level = #{level}
+    </select>
 </mapper>
