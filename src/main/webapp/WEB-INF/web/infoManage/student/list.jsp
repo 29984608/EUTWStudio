@@ -545,7 +545,7 @@
                                 $(updateStudentParentsName[i]).val(familyList[i].name)
 
                                 $(updateStudentParent_employer[i]).val(familyList[i].work_place);
-                                $(updateStudentParent_duties[i]).val(familyList[i].work_place);
+                                $(updateStudentParent_duties[i]).val(familyList[i].staff);
                                 $(updateStudentParent_phone[i]).val(familyList[i].phone);
 
                             }
@@ -888,7 +888,6 @@
 
                 var updateStudentParentsNameList = [];
                 var updateStudentParent_political_statusList = [];
-                var other_updateStudentParent_political_statusList = [];
                 var updateStudentParent_employerList = [];
                 var updateStudentParent_dutiesList = [];
                 var updateStudentParent_phoneList = [];
@@ -896,13 +895,18 @@
 
                 for (let i = 0; i < familyInfo.length; i++) {
                     updateStudentParentsNameList.push($(updateStudentParentsName [i]).val())
-                    updateStudentParent_political_statusList.push($(updateStudentParent_political_status [i]).val())
-                    other_updateStudentParent_political_statusList.push($(other_updateStudentParent_political_status [i]).val())
+                    if ($(updateStudentParent_political_status [i]).find("option:selected").text() == "其他党派") {
+                        updateStudentParent_political_statusList.push($(other_updateStudentParent_political_status [i]).val())
+                    } else {
+                        updateStudentParent_political_statusList.push($(updateStudentParent_political_status [i]).find("option:selected").text())
+                    }
                     updateStudentParent_employerList.push($(updateStudentParent_employer [i]).val())
                     updateStudentParent_dutiesList.push($(updateStudentParent_duties [i]).val())
                     updateStudentParent_phoneList.push($(updateStudentParent_phone [i]).val())
                     updateStudentParentIds.push(familyInfo[i].id);
                 }
+
+                var familyInfoCount = familyInfo.length;
 
                 //教育经历
                 //开始时间
@@ -1041,9 +1045,9 @@
                             //获奖或荣誉
                             own_punishment: own_punishment,
                             //家庭信息
+                            familyInfoCount: familyInfoCount,
                             updateStudentParentsNameList: updateStudentParentsNameList,
                             updateStudentParent_political_statusList: updateStudentParent_political_statusList,
-                            other_updateStudentParent_political_statusList: other_updateStudentParent_political_statusList,
                             updateStudentParent_employerList: updateStudentParent_employerList,
                             updateStudentParent_dutiesList: updateStudentParent_dutiesList,
                             updateStudentParent_phoneList: updateStudentParent_phoneList,

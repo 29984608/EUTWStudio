@@ -837,65 +837,30 @@ WHERE direction_id = direction.id
         WHERE t_student.no = #{no}
     </update>
 
+    <update id="updateFamilyInfo" parameterType="map">
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+            UPDATE t_student_family family
+            <set>
+                <if test="item.updateStudentParentsNameList != null">
+                    family.name = #{item.updateStudentParentsNameList},
+                </if>
 
-    <!--<update id="updateExperienceList" parameterType="map">
-        &lt;!&ndash; update t_student_experience experience
-         <foreach collection="educational_experience_start_list" item="item" index="index" open="" close="" separator=",">
-             <set>
-                 experience.start_time = ${item.educational_experience_start_list}
-             </set>
-             where no = ${item.studentNo}
-         </foreach>
-         <foreach collection="educational_experience_end_list" item="item" index="index" open="" close="" separator=",">
-             <set>
-                 experience.end_time = ${item.educational_experience_end_list}
-             </set>
-             where no = ${item.studentNo}
-         </foreach>
-         <foreach collection="update_schoolName_list" item="item" index="index" open="" close="" separator=",">
-             <set>
-                 experience.work_place = ${item.update_schoolName_list}
-             </set>
-             where no = ${item.studentNo}
-         </foreach>
-         <foreach collection="update_duties_start_list" item="item" index="index" open="" close="" separator=",">
-             <set>
-                 experience.staff = ${item.update_duties_start_list}
-             </set>
-             where no = ${item.studentNo}
-         </foreach>&ndash;&gt;
-
-
-        &lt;!&ndash;  <foreach collection="experience.keys" index="index"  item="item" separator="union">
-              update t_student_experience experience
-              where  no = #{item}
-              and OWNER_ID in
-              <foreach collection="item"  item="id" separator="," open="(" close=")">
-                  #{id}
-              </foreach>
-          </foreach>&ndash;&gt;
-
-&lt;!&ndash;        UPDATE t_student_experience experience
-        WHERE id IN
-        <set>
-            <foreach collection="experiences" item="item" index="index" open="" close="" separator=",">
-                #{item.experienceIds}
-                start_time = #{item.educational_experience_start_list},
-                end_time = #{item.educational_experience_end_list},
-                work_place = #{item.update_schoolName_list},
-                staff = #{item.update_duties_start_list}
-                &lt;!&ndash; <where>
-                     id = #{item.experienceIds}
-                     AND no = #{no}
-                 </where>&ndash;&gt;
-            </foreach>
-        </set>
-        AND NO = #{no}&ndash;&gt;
-
-        <foreach collection="experiences" item="item" index="index" open="" close="" separator=",">
-
+                <if test="item.updateStudentParent_political_statusList != null">
+                    family.political_status = #{item.updateStudentParent_political_statusList},
+                </if>
+                <if test="item.updateStudentParent_dutiesList != null">
+                    family.staff = #{item.updateStudentParent_dutiesList},
+                </if>
+                <if test="item.updateStudentParent_employerList != null">
+                    family.work_place = #{item.updateStudentParent_employerList},
+                </if>
+                <if test="item.updateStudentParent_phoneList != null">
+                    family.phone = #{item.updateStudentParent_phoneList}
+                </if>
+            </set>
+            WHERE family.id =  #{item.updateStudentParentIds}
         </foreach>
-    </update>-->
+    </update>
 
     <select id="addTeacherToUser">
         INSERT INTO  t_user (username,password,roleId,available,name,staff)

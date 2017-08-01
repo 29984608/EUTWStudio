@@ -1,5 +1,6 @@
 package com.thoughtWorks.web.infoManage;
 
+import com.sun.org.apache.xerces.internal.xs.datatypes.ObjectList;
 import com.thoughtWorks.dto.Result;
 import com.thoughtWorks.dto.SearchDto;
 import com.thoughtWorks.entity.StudentFamily;
@@ -103,6 +104,7 @@ public class StudentController {
     @RequestMapping("/updateStudentAjax")
     @ResponseBody()
     public Result updateStudentAjax(StudentUpdate studentUpdate,
+                                    int familyInfoCount,
                                     @RequestParam(value = "educational_experience_start_list[]", required = false, defaultValue = "") List educational_experience_start_list,
                                     @RequestParam(value = "educational_experience_end_list[]", required = false, defaultValue = "") List educational_experience_end_list,
                                     @RequestParam(value = "update_schoolName_list[]", required = false, defaultValue = "") List update_schoolName_list,
@@ -110,15 +112,15 @@ public class StudentController {
                                     @RequestParam(value = "experienceIds[]", required = false, defaultValue = "") List experienceIds,
                                     @RequestParam(value = "updateStudentParentsNameList[]", required = false, defaultValue = "") List updateStudentParentsNameList,
                                     @RequestParam(value = "updateStudentParent_political_statusList[]", required = false, defaultValue = "") List updateStudentParent_political_statusList,
-                                    @RequestParam(value = "other_updateStudentParent_political_statusList[]", required = false, defaultValue = "") List other_updateStudentParent_political_statusList,
                                     @RequestParam(value = "updateStudentParent_employerList[]", required = false, defaultValue = "") List updateStudentParent_employerList,
                                     @RequestParam(value = "updateStudentParent_dutiesList[]", required = false, defaultValue = "") List updateStudentParent_dutiesList,
+                                    @RequestParam(value = "updateStudentParentIds[]", required = false, defaultValue = "") List updateStudentParentIds,
                                     @RequestParam(value = "updateStudentParent_phoneList[]", required = false, defaultValue = "") List updateStudentParent_phoneList) {
 
         try {
-            Map<String, Object> experience = new HashMap<>();
             List<Map<String, Object>> experiences = new ArrayList<>();
             for (int i = 0; i < educational_experience_start_list.size(); i++) {
+                Map<String, Object> experience = new HashMap<>();
                 experience.put("educational_experience_start_list", educational_experience_start_list.get(i));
                 experience.put("educational_experience_end_list", educational_experience_end_list.get(i));
                 experience.put("update_schoolName_list", update_schoolName_list.get(i));
@@ -128,20 +130,20 @@ public class StudentController {
             }
 
             personService.updateStudentList(studentUpdate);
-            personService.updateExperienceList(experiences, studentUpdate.getNo());
+//            personService.updateExperienceList(experiences, studentUpdate.getNo());
 
-            Map<String, Object> family = new HashMap<>();
             List<Map<String, Object>> familyList = new ArrayList<>();
-            for (int i = 0; i < educational_experience_start_list.size(); i++) {
+            for (int i = 0; i < familyInfoCount; i++) {
+                Map<String, Object> family = new HashMap<>();
                 family.put("updateStudentParentsNameList", updateStudentParentsNameList.get(i));
                 family.put("updateStudentParent_political_statusList", updateStudentParent_political_statusList.get(i));
-                family.put("other_updateStudentParent_political_statusList", other_updateStudentParent_political_statusList.get(i));
                 family.put("updateStudentParent_employerList", updateStudentParent_employerList.get(i));
                 family.put("updateStudentParent_dutiesList", updateStudentParent_dutiesList.get(i));
                 family.put("updateStudentParent_phoneList", updateStudentParent_phoneList.get(i));
+                family.put("updateStudentParentIds", updateStudentParentIds.get(i));
                 familyList.add(family);
             }
-            personService.updateFamilyInfo(family,studentUpdate.getNo());
+            personService.updateFamilyInfo(familyList);
 
             return Result.success(null, Constant.UPDATE_SUCCESS);
         } catch (Exception e) {
@@ -152,13 +154,13 @@ public class StudentController {
 
     @RequestMapping("/updateImage")
     @ResponseBody
-    public Result updateImage(MultipartFile file, HttpServletRequest request){
+    public Result updateImage(MultipartFile file, HttpServletRequest request) {
         try {
             String imgPath = ImgUtil.saveImg(file, request.getServletContext().getRealPath("/images") + Constant.USER_IMAGE_PATH);
             String imgName = imgPath.substring(imgPath.lastIndexOf("/"));
 
             return Result.success(imgName, Constant.UPLOAD_SUCCESS);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -167,11 +169,11 @@ public class StudentController {
 
     @RequestMapping("/addFamilyByUpdate")
     @ResponseBody
-    public Result addFamilyByUpdate(StudentFamily studentFamily){
+    public Result addFamilyByUpdate(StudentFamily studentFamily) {
         try {
             personService.addFamilyByUpdate(studentFamily);
             return Result.success(null, Constant.ADD_SUCCESS);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

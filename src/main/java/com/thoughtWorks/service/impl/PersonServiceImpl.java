@@ -8,6 +8,7 @@ import com.thoughtWorks.entity.*;
 import com.thoughtWorks.service.PersonService;
 import com.thoughtWorks.util.Constant;
 import com.thoughtWorks.util.PageUtil;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -353,14 +354,15 @@ public class PersonServiceImpl implements PersonService {
         personDao.updateExperienceList(experiences, no);
     }
 
-    @Override
-    public void updateFamilyInfo(Map<String, Object> family, String no) throws Exception {
-        personDao.updateFamilyInfo(family, no);
-    }
 
     @Override
     public void addFamilyByUpdate(StudentFamily studentFamily) throws Exception {
         personDao.addFamilyByUpdate(studentFamily);
+    }
+
+    @Override
+    public void updateFamilyInfo(List<Map<String, Object>> familyList) {
+        personDao.updateFamilyInfo(familyList);
     }
 
 }
