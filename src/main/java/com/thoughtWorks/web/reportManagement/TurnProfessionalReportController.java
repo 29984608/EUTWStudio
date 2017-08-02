@@ -31,7 +31,7 @@ public class TurnProfessionalReportController {
 
     @RequestMapping("list")
     @ResponseBody
-    public Result list(int level) {
+    public Result list(String level) {
         try {
             List<Map<String, Object>> data = turnProfessionalReportService.queryTurnProfessional(level);
 
@@ -45,10 +45,11 @@ public class TurnProfessionalReportController {
 
     @RequestMapping("exportExcel")
     public ResponseEntity<byte[]> exportProfessionReport(HttpServletRequest request) throws IOException {
+        String level = request.getParameter("level");
         ResponseEntity<byte[]> responseEntity = null;
 
         try {
-            File file = turnProfessionalReportService.exportTurnProfessionalRegisterReport(request);
+            File file = turnProfessionalReportService.exportTurnProfessionalRegisterReport(request,level);
             responseEntity = getResponseEntity(file);
             file.delete();
         } catch (Exception e) {

@@ -10,7 +10,7 @@ import java.util.Map;
  */
 public interface TurnProfessionalReportService  {
 
-    List<Map<String,Object>> queryTurnProfessional(int level)throws Exception;
+    List<Map<String,Object>> queryTurnProfessional(String level)throws Exception;
 
-    File exportTurnProfessionalRegisterReport(HttpServletRequest request)throws Exception;
+    File exportTurnProfessionalRegisterReport(HttpServletRequest request ,String level)throws Exception;
 }

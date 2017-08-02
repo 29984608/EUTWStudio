@@ -6,7 +6,7 @@ import java.util.Map;
 public interface StudentInfoReportDao {
     List<Map<String,Object>> studentInfoList(List<Integer> searchLevels);
 
-    List<Map<String,Object>> queryTurnProfessional(int level) throws Exception;
+    List<Map<String,Object>> queryTurnProfessional(String level) throws Exception;
 
 
 }

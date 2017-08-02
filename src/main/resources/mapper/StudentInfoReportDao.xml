@@ -18,7 +18,7 @@
         </foreach>
         ORDER BY department_id DESC ,direction_id DESC ,level ASC
     </select>
-    <select id="queryTurnProfessional" parameterType="int" resultType="map">
+    <select id="queryTurnProfessional" parameterType="string" resultType="map">
         SELECT
           student.no,
           student.name,

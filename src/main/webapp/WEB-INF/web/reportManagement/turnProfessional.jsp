@@ -89,7 +89,7 @@
             },
             exportExcel: function (level) {
                 let _level = $("#_level").val();
-                location.href = baseUrl + "/turnProfessional/exportExcel?level='"+_level+"'";
+                location.href = baseUrl + "/turnProfessional/exportExcel?level="+_level+"";
             },
             showPage: function (data) {
                 let _html = "";
