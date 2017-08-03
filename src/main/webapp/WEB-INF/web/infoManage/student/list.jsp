@@ -531,6 +531,8 @@
                            </span></th>
                                     </tr>`)
 
+                                $("#family_member_information").append(` <button  class="layui-btn layui-btn-danger delStudentFamily" onclick="student.delStudentFamily(` + familyList[j].id + `)"　 style="margin-bottom: 10px" value="` + familyList[j].id + `"><i class="layui-icon">&#xe640;</i>删除</button>`)
+
                             }
 
                             let family_relationship = $(".family_relationship");//称谓
@@ -600,6 +602,7 @@
                                              </div>
                                         </span></th>
                                     </tr>`)
+                                $("#educational_experience").append(` <button class="layui-btn  layui-btn-danger" onclick="student.delExperience(` + experienceList[i].id + `)" style="margin-bottom: 10px"><i class="layui-icon">&#xe640;</i> 删除</button>`)
 
                             }
 
@@ -705,6 +708,19 @@
                     content: $("#updateStudent")
                 })
             },
+
+            delStudentFamily: function (familyId) {
+                layer.confirm('确定删除？', {icon: 3, title: '提示'}, function (index) {
+                    layer.close(index);
+                    $.post(baseUrl + "/student/delStudentFamily",
+                        {familyId: familyId},
+                        function (data) {
+                            if(data.result){
+                                layer.msg("删除成功,请刷新页面!");
+                            }
+                        })
+                })
+            },
             addStudentFamilyInfo: function () {
                 layer.open({
                     type: 1,
@@ -743,6 +759,51 @@
                     )
                 })
             },
+            addExperienceInfo:function () {
+                layer.open({
+                    type: 1,
+                    title: "添加学生教育经历",
+                    area: ["40%", "60%"],
+                    content: $("#addExperienceInfo")
+                })
+            },
+            delExperience: function (experienceId) {
+                layer.confirm('确定删除？', {icon: 3, title: '提示'}, function (index) {
+                    layer.close(index);
+                    $.post(baseUrl + "/student/delExperience",
+                        {experienceId: experienceId},
+                        function (data) {
+                            if(data.result){
+                                layer.msg("删除成功,请刷新页面!");
+                            }
+                        })
+                })
+            },
+            addExperienceByUpdate:function () {
+                let startDateExperience = $("#startDateExperience").val();
+                let endDateExperience = $("#endDateExperience").val();
+                let placeExperience = $("#placeExperience").val();
+                let staffExperience = $("#staffExperience").val();
+                let studentNo = studentInfo.no;
+
+
+                layer.confirm('确定添加？', {icon: 3, title: '提示'}, function (index) {
+                    layer.close(index);
+                    $.post(baseUrl + "/student/addExperienceByUpdate",
+                        {
+                            start_time:startDateExperience,
+                            end_time:endDateExperience,
+                            work_place:placeExperience,
+                            staff:staffExperience,
+                            no:studentNo
+                        },
+                        function (data) {
+                            layer.msg(data.msg);
+                        }
+                    )
+                })
+            },
+
             isOther: function (political) {
                 if (political != "中共党员" && political != "预备党员" && political != "共青团员" && political != "积极分子" && political != "群众")
                     return true;

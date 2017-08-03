@@ -3,8 +3,6 @@ package com.thoughtWorks.dao;
 import com.thoughtWorks.dto.SearchDto;
 import com.thoughtWorks.entity.*;
 import org.apache.ibatis.annotations.Param;
-import org.apache.poi.hssf.record.ObjRecord;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 import java.util.Map;
@@ -97,7 +95,7 @@ public interface PersonDao {
 
     List<Map<String, Object>> queryTeacherList() throws Exception;
 
-    void updateExperienceList(@Param("experiences") List<Map<String, Object>> experiences, @Param("no") String no);
+    void updateExperienceList(@Param("experiences") List<Map<String, Object>> experiences);
 
     void updateStudentList(StudentUpdate studentUpdate)throws Exception;
 
@@ -108,5 +106,11 @@ public interface PersonDao {
     void addFamilyByUpdate(StudentFamily studentFamily);
 
     void updateFamilyInfo(@Param("list")List<Map<String, Object>> familyList);
+
+    void delStudentFamily(String familyId);
+
+    void delExperience(String experienceId);
+
+    void addExperienceByUpdate(Experience experience);
 }
 

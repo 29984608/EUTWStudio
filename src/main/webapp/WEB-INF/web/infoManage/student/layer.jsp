@@ -850,6 +850,9 @@
 
                                     </tbody>
                                 </table>
+                                <button class="layui-btn" onclick="student.addExperienceInfo()"><i
+                                        class="layui-icon">&#xe61f;</i> 添加教育经历
+                                </button>
 
 
                                 <br>
@@ -1229,6 +1232,56 @@
         </tbody>
     </table>
     <button class="layui-btn" style="float: right;margin-bottom: 10px;margin-right: 30px" onclick="student.addFamilyByUpdate()"><i class="layui-icon">&#xe61f;</i> 添加</button>
+</div>
+
+<div id="addExperienceInfo" style="display: none">
+    <table class="layui-table lay-even " data-name="articleCatData"
+           style="border: 0px solid red" id="add_addExperienceInfo_list">
+        <tbody id="add_addExperienceInfo">
+        <tr>
+
+            <td>
+                <div class="layui-inline">
+                    <label class="layui-form-label" style="width: auto">起始时间</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="date" id="startDateExperience" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input" onclick="layui.laydate({elem: this})">
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="layui-inline">
+                    <label class="layui-form-label" style="width: auto">结束时间</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="date" id="endDateExperience" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input" onclick="layui.laydate({elem: this})">
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="layui-form-item">
+                    <label class="layui-form-label" style="width: auto">地点</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="placeExperience" id="placeExperience" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="layui-form-item">
+                    <label class="layui-form-label" style="width: auto">担任职务</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="staffExperience" id="staffExperience" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <button class="layui-btn" style="float: right;margin-bottom: 10px;margin-right: 30px" onclick="student.addExperienceByUpdate()"><i class="layui-icon">&#xe61f;</i> 添加</button>
 </div>
 <%--省市区联动--%>
 <script src="${baseurl}/js/city/distpicker.js"></script>

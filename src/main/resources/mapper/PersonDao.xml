@@ -858,7 +858,28 @@ WHERE direction_id = direction.id
                     family.phone = #{item.updateStudentParent_phoneList}
                 </if>
             </set>
-            WHERE family.id =  #{item.updateStudentParentIds}
+            WHERE family.id = #{item.updateStudentParentIds}
+        </foreach>
+    </update>
+
+    <update id="updateExperienceList" parameterType="map">
+        <foreach collection="experiences" item="item" index="index" open="" close="" separator=";">
+            UPDATE t_student_experience
+            <set>
+                <if test="item.update_duties_start_list != null">
+                    t_student_experience.staff = #{item.update_duties_start_list},
+                </if>
+                <if test="item.educational_experience_start_list != null">
+                    t_student_experience.start_time = #{item.educational_experience_start_list},
+                </if>
+                <if test="item.educational_experience_end_list != null">
+                    t_student_experience.end_time = #{item.educational_experience_end_list},
+                </if>
+                <if test="item.update_schoolName_list != null">
+                    t_student_experience.work_place = #{item.update_schoolName_list}
+                </if>
+            </set>
+            WHERE t_student_experience.id = #{item.experienceIds}
         </foreach>
     </update>
 
@@ -871,5 +892,20 @@ WHERE direction_id = direction.id
         DELETE FROM t_user
         WHERE username = #{id}
     </delete>
+
+    <delete id="delStudentFamily" parameterType="string">
+        DELETE FROM t_student_family
+        WHERE id = #{familyId}
+    </delete>
+
+    <delete id="delExperience" parameterType="string">
+        DELETE FROM t_student_experience
+        WHERE id = #{experienceId}
+    </delete>
+
+    <insert id="addExperienceByUpdate" parameterType="com.thoughtWorks.entity.Experience">
+        insert into t_student_experience (start_time,end_time,work_place,staff,no)
+        values (#{start_time},#{end_time},#{work_place},#{staff},#{no});
+    </insert>
 
 </mapper>

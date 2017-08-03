@@ -85,9 +85,15 @@ public interface PersonService {
 
     void updateStudentList(StudentUpdate studentUpdate) throws Exception;
 
-    void updateExperienceList(List<Map<String, Object>> experiences, String no);
+    void updateExperienceList(List<Map<String, Object>> experiences) throws Exception;
 
     void addFamilyByUpdate(StudentFamily studentFamily)throws Exception;
 
     void updateFamilyInfo(List<Map<String, Object>> familyList);
+
+    void delStudentFamily(String familyId)throws Exception;
+
+    void delExperience(String experienceId) throws Exception;
+
+    void addExperienceByUpdate(Experience experience) throws Exception;
 }

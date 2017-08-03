@@ -1,8 +1,8 @@
 package com.thoughtWorks.web.infoManage;
 
-import com.sun.org.apache.xerces.internal.xs.datatypes.ObjectList;
 import com.thoughtWorks.dto.Result;
 import com.thoughtWorks.dto.SearchDto;
+import com.thoughtWorks.entity.Experience;
 import com.thoughtWorks.entity.StudentFamily;
 import com.thoughtWorks.entity.StudentUpdate;
 import com.thoughtWorks.service.PersonService;
@@ -17,10 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Component
 @RequestMapping("/student")
@@ -130,7 +127,7 @@ public class StudentController {
             }
 
             personService.updateStudentList(studentUpdate);
-//            personService.updateExperienceList(experiences, studentUpdate.getNo());
+            personService.updateExperienceList(experiences);
 
             List<Map<String, Object>> familyList = new ArrayList<>();
             for (int i = 0; i < familyInfoCount; i++) {
@@ -177,6 +174,45 @@ public class StudentController {
             e.printStackTrace();
         }
 
+        return Result.failure(null, Constant.ADD_FAILURE);
+    }
+
+    @RequestMapping("/delStudentFamily")
+    @ResponseBody
+    public Result delStudentFamily(String familyId) {
+        try {
+            personService.delStudentFamily(familyId);
+
+            return Result.success(null, Constant.DELETE_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return Result.failure(null, Constant.DELETE_FAILURE);
+    }
+
+    @RequestMapping("/delExperience")
+    @ResponseBody
+    public Result delExperience(String experienceId) {
+        try {
+            personService.delExperience(experienceId);
+
+            return Result.success(null, Constant.DELETE_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return Result.failure(null, Constant.DELETE_FAILURE);
+    }
+
+    @RequestMapping("/addExperienceByUpdate")
+    @ResponseBody
+    public Result addExperienceByUpdate(Experience experience) {
+        try {
+            personService.addExperienceByUpdate(experience);
+
+            return Result.success(null, Constant.ADD_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return Result.failure(null, Constant.ADD_FAILURE);
     }
 }
