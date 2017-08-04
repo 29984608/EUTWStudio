@@ -80,6 +80,8 @@ public class StudentController {
             List<Map<String, Object>> classesList = personService.queryStudentsClassList();
             List<Map<String, Object>> experienceList = personService.queryStudentExperienceList();
             List<Map<String, Object>> teacherList = personService.queryTeacherList();
+            String famousFamily = (String) students.get("famous_family");
+            Map<String,String> famousFamilyFoUpdate = personService.queryFamousFamily(famousFamily);
             data.put("students", students);
             data.put("students_family", students_family);
             data.put("professionList", professionList);
@@ -87,6 +89,7 @@ public class StudentController {
             data.put("classesList", classesList);
             data.put("experienceList", experienceList);
             data.put("teacherList", teacherList);
+            data.put("famousFamily", famousFamilyFoUpdate);
             data.put("msg", Constant.SEARCH_SUCCESS);
             data.put("result", true);
         } catch (Exception e) {
@@ -100,7 +103,8 @@ public class StudentController {
 
     @RequestMapping("/updateStudentAjax")
     @ResponseBody()
-    public Result updateStudentAjax(StudentUpdate studentUpdate, int familyInfoCount,
+    public Result updateStudentAjax(StudentUpdate studentUpdate,
+                                    int familyInfoCount,
                                     @RequestParam(value = "educational_experience_start_list[]", required = false, defaultValue = "") List educational_experience_start_list,
                                     @RequestParam(value = "educational_experience_end_list[]", required = false, defaultValue = "") List educational_experience_end_list,
                                     @RequestParam(value = "update_schoolName_list[]", required = false, defaultValue = "") List update_schoolName_list,
@@ -125,6 +129,7 @@ public class StudentController {
                 experiences.add(experience);
             }
 
+            System.out.println("111111"+studentUpdate.getBorn());
             personService.updateStudentList(studentUpdate);
             personService.updateExperienceList(experiences);
 

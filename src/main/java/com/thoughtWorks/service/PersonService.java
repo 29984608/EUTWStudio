@@ -96,4 +96,6 @@ public interface PersonService {
     void delExperience(String experienceId) throws Exception;
 
     void addExperienceByUpdate(Experience experience) throws Exception;
+
+    Map<String, String> queryFamousFamily(String famousFamily) throws Exception;
 }

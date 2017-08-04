@@ -15,6 +15,7 @@ public class StudentUpdate {
     private String famous_family;
     private String idcard;
     private String born;
+    private String native_place;
     private String head_image;
     private String health_status;
     private String student_type;
@@ -67,6 +68,14 @@ public class StudentUpdate {
     private String arrears_second_year;
     private String teacher_id;
     private String community_teacher_id;
+
+    public String getNative_place() {
+        return native_place;
+    }
+
+    public void setNative_place(String native_place) {
+        this.native_place = native_place;
+    }
 
     public String getArea_id() {
         return area_id;
@@ -605,6 +614,7 @@ public class StudentUpdate {
                 ", famous_family='" + famous_family + '\'' +
                 ", idcard='" + idcard + '\'' +
                 ", born='" + born + '\'' +
+                ", native_place='" + native_place + '\'' +
                 ", head_image='" + head_image + '\'' +
                 ", health_status='" + health_status + '\'' +
                 ", student_type='" + student_type + '\'' +

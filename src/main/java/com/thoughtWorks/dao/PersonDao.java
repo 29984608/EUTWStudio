@@ -112,5 +112,7 @@ public interface PersonDao {
     void delExperience(String experienceId);
 
     void addExperienceByUpdate(Experience experience);
+
+    Map<String,String> queryFamousFamily(@Param("famousFamily") String famousFamily);
 }
 
