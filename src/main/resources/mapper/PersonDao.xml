@@ -588,12 +588,9 @@ WHERE direction_id = direction.id
               LEFT JOIN (SELECT
                            id,
                            name
-                         FROM t_room) room ON room.id = student.room_id
+                             FROM t_room) room ON room.id = student.room_id
 
-            WHERE student.department_id = department.id
-                  AND direction_id = direction.id
-                  AND profession.id = profession_id
-              and student.no =#{studentNo}
+            WHERE student.no =#{studentNo}
 
     </select>
     <select id="updateFamilyByStudentNo" parameterType="String" resultType="map">
