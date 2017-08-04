@@ -341,10 +341,12 @@
                                     <tr>
                                         <th colspan="3">性别：<span>
                                             <div class="layui-inline" pane="" id="updateStudentSex">
-                                                <div class="layui-input-inline" style="width: 60%">
-                                                <input type="text" name="text"
-                                                       placeholder="请输入内容" autocomplete="off" class="layui-input"
-                                                       id="updateStudentSex1" readonly style="border: none">
+                                                <div class="layui-inline">
+                                                    <input  name="sexOfUpdate" value="M" title="男"
+                                                           type="radio">
+                                                    <input  name="sexOfUpdate" value="F" title="女"
+                                                           type="radio">
+                                                </div>
                                              </div>
                                              </div>
                                         </span></th>
@@ -369,7 +371,7 @@
                                             <div class="layui-input-inline" style="width: 60%">
                                                 <input type="text" name="text"
                                                        placeholder="请输入内容" autocomplete="off" class="layui-input"
-                                                       id="updateStudentNativePlace" readonly style="border: none">
+                                                       id="updateStudentNativePlace" style="border: none">
                                              </div>
                                         </span></th>
 
@@ -381,7 +383,7 @@
                                                 <input name="date"  placeholder="yyyy-mm-dd"
                                                        autocomplete="off" class="layui-input"
                                                        type="text"
-                                                       id="updateStudentBirthday" readonly style="border: none">
+                                                       id="updateStudentBirthday" onclick="layui.laydate({elem: this})" style="border: none">
                                             </div>
                                         </th>
                                         <th colspan="3">婚否：
@@ -878,7 +880,7 @@
                                             <div class="layui-input-inline" style="width: 60%">
                                                 <input type="text" name="text"
                                                        placeholder="请输入内容" autocomplete="off" class="layui-input"
-                                                       id="upadte_SAT_score" readonly>
+                                                       id="upadte_SAT_score">
                                              </div>
                                         </span></th>
 

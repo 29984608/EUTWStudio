@@ -1,7 +1,5 @@
 package com.thoughtWorks.dao;
 
-import com.thoughtWorks.dto.SearchDto;
-
 import java.util.List;
 import java.util.Map;
 

@@ -41,7 +41,7 @@
                         </select>
                     </div>
 
-                    <a class="layui-btn" style="width: auto ;margin-bottom: 10px;" onclick="rank.list()"><i
+                    <a class="layui-btn" style="width: auto ;margin-bottom: 10px;" onclick="currentIndex = 1;rank.list()"><i
                             class="layui-icon">&#xe615;</i>搜索</a>
                     <a class="layui-btn" style="width: auto ;margin-bottom: 10px;" onclick="rank.exportExcel()"><i
                             class="layui-icon">&#xe61e;</i>导出 Excel</a>
@@ -80,9 +80,20 @@
 <script id="list-tpl" type="text/html">
     {{# layui.each(d.results, function(index, item){ }}
     <tr>
-        <td>{{ item.departmentName}}</td>
+        <td>  {{# if(item.departmentName === undefined){ }}
+            未分配
+            {{# }else{ }}
+            {{ item.departmentName}}{{#}}}
+        </td>
         <td>{{ item.level}}</td>
-        <td>{{ item.directionName}}</td>
+        <td>
+            {{# if(item.directionName === undefined){ }}
+            未分配
+            {{# }else{ }}
+            {{ item.directionName}}{{#}}}
+
+        </td>
+
         <td>{{ item.no}}</td>
         <td>{{ item.studentName}}</td>
         <td>{{ item.score}}</td>

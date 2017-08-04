@@ -2,10 +2,25 @@
 <script id="list-tpl" type="text/html">
     {{# layui.each(d.students, function(index, item){ }}
     <tr>
-        <td>{{ item.departmentName}}</td>
+
+        <td>  {{# if(item.departmentName === undefined){ }}
+            未分配
+            {{# }else{ }}
+            {{ item.departmentName}}{{#}}}
+        </td>
         <td>{{ item.level}}</td>
-        <td>{{ item.directionName}}</td>
-        <td>{{ item.classesName}}</td>
+        <td>
+            {{# if(item.directionName === undefined){ }}
+            未分配
+            {{# }else{ }}
+            {{ item.directionName}}{{#}}}
+
+        </td>
+        <td>{{# if(item.classesName === undefined){ }}
+            未分配
+            {{# }else{ }}
+            {{ item.classesName}}{{#}}}
+        </td>
         <td>{{ item.no}}</td>
         <td>{{ item.studentName}}</td>
         <td>

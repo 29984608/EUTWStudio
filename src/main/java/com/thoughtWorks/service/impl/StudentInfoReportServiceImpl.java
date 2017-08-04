@@ -22,14 +22,14 @@ public class StudentInfoReportServiceImpl implements StudentInfoReportService {
 
     @Override
     public File exportReport(HttpServletRequest request) throws Exception {
-        String[] types = {"班级人数", "合作企业", "自主实习", "创新创业", "专升本", "其它", "在读", "休学", "入伍","留级", "退学", "流失", "复学", "欠费"};
+        String[] types = {"班级人数", "合作企业", "自主实习", "创新创业", "专升本", "其它", "在读", "休学", "入伍", "留级", "退学", "流失", "复学", "欠费"};
 
         Map<String, String> headers = new LinkedHashMap<>();
         headers.put("departmentName", "系别");
         headers.put("level", "年级");
         headers.put("directionName", "就业方向");
         headers.put("classesName", "班级名称");
-        for(String type : types)
+        for (String type : types)
             headers.put(type, type);
         String fileName = "高职学院学籍管理班级人数统计报表.xls";
 
@@ -53,6 +53,7 @@ public class StudentInfoReportServiceImpl implements StudentInfoReportService {
         List<Map<String, Object>> studentInfoReport = new ArrayList<>();
 
         for (Map<String, Object> student : students) {
+            if (student.get("departmentName") == null) continue;
             if (!isExistDepartment(studentInfoReport, student))
                 createDepartmentName(studentInfoReport, student);
 
@@ -67,7 +68,6 @@ public class StudentInfoReportServiceImpl implements StudentInfoReportService {
             if ((department.get("departmentName")).equals(student.get("departmentName")))
                 return (Map<String, Object>) department;
         }
-
 
         return null;
     }
@@ -117,6 +117,9 @@ public class StudentInfoReportServiceImpl implements StudentInfoReportService {
     }
 
     private void statisticDirections(List<Map<String, Object>> directions, Map<String, Object> student) {
+        if (student.get("directionName") == null) {
+            student.put("directionName", "未分配");
+        }
         if (!isExistDirection(directions, student))
             createDirection(directions, student);
 
@@ -149,6 +152,9 @@ public class StudentInfoReportServiceImpl implements StudentInfoReportService {
     }
 
     private void statisticClassess(List<Map<String, Object>> classess, Map<String, Object> student) {
+        if (student.get("classesName") == null) {
+            student.put("classesName", "未分配");
+        }
         if (!isExistClasses(classess, student))
             createClassess(classess, student);
 
@@ -157,17 +163,16 @@ public class StudentInfoReportServiceImpl implements StudentInfoReportService {
 
 
     private boolean isExistClasses(List<Map<String, Object>> classess, Map<String, Object> student) {
-        for (Map<String, Object> classes : classess)
+        for (int i = 0; i < classess.size(); ++i) {
+            Map<String, Object> classes = classess.get(i);
             if ((classes.get("classesName") + "").equals(student.get("classesName")))
                 return true;
-
+        }
         return false;
     }
 
 
     private void createClassess(List<Map<String, Object>> classess, Map<String, Object> student) {
-        if (student.get("classesName") == null) return;
-
         Map<String, Object> classes = new HashMap<>();
         classes.put("classesName", student.get("classesName"));
         classes.put("reportCount", new StudentInfoReportStatistic());

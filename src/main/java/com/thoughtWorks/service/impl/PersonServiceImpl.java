@@ -381,4 +381,9 @@ public class PersonServiceImpl implements PersonService {
         personDao.addExperienceByUpdate(experience);
     }
 
+    @Override
+    public Map<String, String> queryFamousFamily(String famousFamily) throws Exception {
+        return personDao.queryFamousFamily(famousFamily);
+    }
+
 }
