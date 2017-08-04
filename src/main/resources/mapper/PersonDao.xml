@@ -99,11 +99,13 @@
         name
         FROM t_room) room ON room.id = student.room_id
 
-        WHERE department_id = department.id
-        AND direction_id = direction.id
-        AND profession_id = profession.id
+        WHERE
+#         department_id = department.id
+#         AND direction_id = direction.id
+#         AND profession_id = profession.id
 
-        and student.name LIKE #{searchDto.name}
+#         and
+        student.name LIKE #{searchDto.name}
         and student.no LIKE #{searchDto.studentNo}
         and student.gender LIKE #{searchDto.sex}
 

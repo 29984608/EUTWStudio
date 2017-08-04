@@ -278,7 +278,7 @@
                                                     <div class="layui-inline">
                                                         <label class="layui-form-label">TEL</label>
                                                         <div class="layui-input-inline">
-                                                            <input type="tel" name="phone" lay-verify="phone"
+                                                            <input type="tel" name="phone"
                                                                    autocomplete="off" class="layui-input"
                                                                    id="studentPhone">
                                                         </div>
@@ -290,7 +290,7 @@
                                                     <div class="layui-inline">
                                                         <label class="layui-form-label">QQ</label>
                                                         <div class="layui-input-inline">
-                                                            <input type="number" name="QQ" lay-verify="number"
+                                                            <input type="number" name="QQ"
                                                                    autocomplete="off" class="layui-input"
                                                                    id="studentQQ">
                                                         </div>
@@ -303,7 +303,7 @@
                                                         <label class="layui-form-label"
                                                                style="width: auto">E-mail</label>
                                                         <div class="layui-input-inline">
-                                                            <input type="email" name="email" lay-verify="email"
+                                                            <input type="email" name="email"
                                                                    autocomplete="off" class="layui-input"
                                                                    id="studentEmail">
                                                         </div>
@@ -378,7 +378,7 @@
                                     <tr>
                                         <th colspan="3">出生日期：
                                             <div class="layui-input-inline" style="width: 60%">
-                                                <input name="date" lay-verify="date" placeholder="yyyy-mm-dd"
+                                                <input name="date"  placeholder="yyyy-mm-dd"
                                                        autocomplete="off" class="layui-input"
                                                        type="text"
                                                        id="updateStudentBirthday" readonly style="border: none">
@@ -1194,7 +1194,7 @@
                 <div class="layui-inline">
                     <label class="layui-form-label">手机</label>
                     <div class="layui-input-inline">
-                        <input type="tel" name="phone" lay-verify="phone"
+                        <input type="tel" name="phone"
                                autocomplete="off" class="layui-input"
                                placeholder="请输入相关内容" id="family_phone_add">
                     </div>
