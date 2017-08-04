@@ -55,6 +55,8 @@ public class ProfessionReportServiceImpl implements ProfessionReportService {
         List<Map<String, Object>> statisticStudents = new ArrayList<>();
 
         for (Map<String, Object> student : students) {
+            if (student.get("departmentName") == null) continue;
+
             if (departmentName == null || !departmentName.equals(student.get("departmentName"))) {
                 departmentName = (String) student.get("departmentName");
                 temp = new LinkedHashMap<>();
@@ -70,6 +72,10 @@ public class ProfessionReportServiceImpl implements ProfessionReportService {
 
     private void setDepartmentProfessionStudentCount(Map<String, Object> tempDepartment, Map<String, Object> student) {
         String professionName = (String) student.get("professionName");
+        if (professionName == null) {
+            student.put("professionName", "未分配");
+            professionName = "未分配";
+        }
         List<Map<String, Object>> professions = (List<Map<String, Object>>) tempDepartment.get("professions");
 
         if (professions.size() == 0)
