@@ -100,8 +100,7 @@ public class StudentController {
 
     @RequestMapping("/updateStudentAjax")
     @ResponseBody()
-    public Result updateStudentAjax(StudentUpdate studentUpdate,
-                                    int familyInfoCount,
+    public Result updateStudentAjax(StudentUpdate studentUpdate, int familyInfoCount,
                                     @RequestParam(value = "educational_experience_start_list[]", required = false, defaultValue = "") List educational_experience_start_list,
                                     @RequestParam(value = "educational_experience_end_list[]", required = false, defaultValue = "") List educational_experience_end_list,
                                     @RequestParam(value = "update_schoolName_list[]", required = false, defaultValue = "") List update_schoolName_list,
