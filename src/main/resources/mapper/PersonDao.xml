@@ -545,7 +545,8 @@ WHERE direction_id = direction.id
               floor.name floor,
               room.name room,
               teacher.name teacherName,
-              teacherCommunity.name teacherCommunity
+              teacherCommunity.name teacherCommunity,
+              famousFamily.para_dispname famousFamily
 
             FROM t_student student
 
@@ -592,7 +593,10 @@ WHERE direction_id = direction.id
                            id,
                            name
                              FROM t_room) room ON room.id = student.room_id
-
+              LEFT JOIN (SELECT
+                           para_phsiname,
+                           para_dispname
+                             FROM t_famous_family) famousFamily ON famousFamily.para_phsiname = student.famous_family
             WHERE student.no =#{studentNo}
 
     </select>
