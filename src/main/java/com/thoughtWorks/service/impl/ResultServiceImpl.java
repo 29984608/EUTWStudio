@@ -127,10 +127,11 @@ public class ResultServiceImpl implements ResultService {
         return toValueObjectMap(studentsAverageScores);
     }
 
-    private List<Map<String, Object>> toValueObjectMap(List<Map<String, String>> studentsAverageScores) {
+    private List<Map<String, Object>> toValueObjectMap(List<Map<String, String>> studentsScores) {
         Map<String, Object> temp;
         List<Map<String, Object>> scoreRankObject = new ArrayList<>();
-        for (Map<String, String> data : studentsAverageScores) {
+        for (Map<String, String> data : studentsScores) {
+            data.put("score", String.valueOf(getCourseScore(data)));
             temp = new HashMap<>();
             Set<String> keys = data.keySet();
             for (String key : keys)
@@ -146,7 +147,6 @@ public class ResultServiceImpl implements ResultService {
             for (int j = i + 1; j < studentsAverageScores.size(); ++j) {
                 double preScore = Double.valueOf(studentsAverageScores.get(i).get("score"));
                 double currScore = Double.valueOf(studentsAverageScores.get(j).get("score"));
-//                currScore = currScore == "NaN" ? 0 : currScore;
                 if (currScore > preScore) {
                     Map<String, String> temp = studentsAverageScores.get(i);
                     studentsAverageScores.set(i, studentsAverageScores.get(j));
@@ -182,9 +182,7 @@ public class ResultServiceImpl implements ResultService {
 
         if (student.get("no").equals(studentScore.get("no"))) {
             if (student.get("score") == null) {
-                if (courseScore != 0)
-                    student.put("courseNumber", "1");
-                else student.put("courseNumber", "1");
+                student.put("courseNumber", "1");
                 student.put("score", String.valueOf(courseScore));
             } else {
                 student.put("score", String.valueOf(Double.valueOf(student.get("score")) + courseScore));
