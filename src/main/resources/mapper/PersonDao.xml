@@ -706,6 +706,9 @@ WHERE direction_id = direction.id
             <if test="height != null and height !=''">
                 t_student.height = #{height},
             </if>
+            <if test="born != null and born !=''">
+                t_student.born = #{born},
+            </if>
             <if test="is_marry != null and is_marry !=''">
                 t_student.is_marry = #{is_marry},
             </if>
@@ -753,6 +756,9 @@ WHERE direction_id = direction.id
             </if>
             <if test="qq != null and qq !=''">
                 t_student.qq = #{qq},
+            </if>
+            <if test="native_place != null and native_place !=''">
+                t_student.native_place = #{native_place},
             </if>
             <if test="area_origin_name != null and area_origin_name !=''">
                 t_student.area_origin_name = #{area_origin_name},
@@ -912,5 +918,10 @@ WHERE direction_id = direction.id
         insert into t_student_experience (start_time,end_time,work_place,staff,no)
         values (#{start_time},#{end_time},#{work_place},#{staff},#{no});
     </insert>
+
+    <select id="queryFamousFamily" resultType="map">
+        select * from t_famous_family
+        WHERE para_phsiname = #{famousFamily}
+    </select>
 
 </mapper>

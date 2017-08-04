@@ -201,6 +201,7 @@
     var experienceInfo;
     var familyInfo;
     let imgName;
+    let famousFamily;
     layui.use(['jquery', 'layer', 'element', 'laypage', 'form', 'laytpl', 'tree'], function () {
         window.jQuery = window.$ = layui.jquery;
         window.layer = layui.layer;
@@ -394,6 +395,7 @@
                             teacherInfo = data.teacherList;
                             experienceInfo = data.experienceList;
                             familyInfo = data.students_family;
+                            famousFamily = data.famousFamily;
                             let studentList = data.students;
                             let familyList = data.students_family;
                             let professionList = data.professionList;
@@ -409,9 +411,9 @@
                             $("#imagesToUpdate").text("").attr("src", HEAD_IMAGE_PREFIX + studentList.head_image);
                             $("#updateStudentNo").val(studentList.no)
                             $("#updateStudentName").val(studentList.name);
-//                            $("input:radio[value='" + studentList.gender + "'][name='sex']").prop('checked', 'true');
-                            $("#updateStudentSex1").val(studentList.gender);
-                            $("#updateStudentNationalities").val(studentList.famous_family);
+                            $("input:radio[value='" + studentList.gender + "'][name='sexOfUpdate']").prop('checked', 'true');
+//                            $("#updateStudentSex1").val(studentList.gender);
+                            $("#updateStudentNationalities").val(famousFamily.para_dispname);
                             $("#updateStudentIdCard").val(studentList.idcard);
                             $("#updateStudentNativePlace").val(studentList.native_place);
                             $("#updateStudentBirthday").val(studentList.born);
@@ -562,9 +564,11 @@
                             $("#updateStudent_emergency_contact_phone").val(studentList.emergency_contact_method);
 
                             $("#Pre_enrollment_file_unit").val(studentList.pre_school_file_where_location);
-
-                            let school_account_where_the_police_station_detailed = studentList.pre_school_account_where_station.replace("-", "");
-                            $("#school_account_where_the_police_station_detailed").val(school_account_where_the_police_station_detailed);
+                            let school_account_where_the_police_station_detailed = []
+                            if (studentList.pre_school_account_where_station != null) {
+                                school_account_where_the_police_station_detailed = studentList.pre_school_account_where_station.replace("-", "");
+                            }
+                            $("#school_account_where_the_police_station_detailed").val(studentList.pre_school_account_where_station);
 
                             $("#studentsProfessionList").html("").append(`<option value=""></option>` + loadOptionsHtml(professionList, studentList.origin_profession_id));
                             $("#studentsNowProfessional").html("").append(`<option value=""></option>` + loadOptionsHtml(professionList, studentList.profession_id));
@@ -715,7 +719,7 @@
                     $.post(baseUrl + "/student/delStudentFamily",
                         {familyId: familyId},
                         function (data) {
-                            if(data.result){
+                            if (data.result) {
                                 layer.msg("删除成功,请刷新页面!");
                             }
                         })
@@ -759,7 +763,7 @@
                     )
                 })
             },
-            addExperienceInfo:function () {
+            addExperienceInfo: function () {
                 layer.open({
                     type: 1,
                     title: "添加学生教育经历",
@@ -773,13 +777,13 @@
                     $.post(baseUrl + "/student/delExperience",
                         {experienceId: experienceId},
                         function (data) {
-                            if(data.result){
+                            if (data.result) {
                                 layer.msg("删除成功,请刷新页面!");
                             }
                         })
                 })
             },
-            addExperienceByUpdate:function () {
+            addExperienceByUpdate: function () {
                 let startDateExperience = $("#startDateExperience").val();
                 let endDateExperience = $("#endDateExperience").val();
                 let placeExperience = $("#placeExperience").val();
@@ -791,11 +795,11 @@
                     layer.close(index);
                     $.post(baseUrl + "/student/addExperienceByUpdate",
                         {
-                            start_time:startDateExperience,
-                            end_time:endDateExperience,
-                            work_place:placeExperience,
-                            staff:staffExperience,
-                            no:studentNo
+                            start_time: startDateExperience,
+                            end_time: endDateExperience,
+                            work_place: placeExperience,
+                            staff: staffExperience,
+                            no: studentNo
                         },
                         function (data) {
                             layer.msg(data.msg);
@@ -861,6 +865,7 @@
                 var no = $("#updateStudentNo").val()
                 var is_marry = $('#isMarry input[name="isMarry"]:checked ').val()
                 var height = $("#updateStudentHeight").val()
+                var born = $("#updateStudentBirthday").val();
                 var weight = $("#updateStudentWight").val()
                 var health_status = $('#health input[name="health"]:checked ').val()
                 var student_type = $('#updateStudentType input[name="student_type"]:checked ').val()
@@ -1052,6 +1057,8 @@
                     var floor_id = studentInfo.floor_id;
                     var room_id = studentInfo.room_id;
                 }
+                var sat_score = $("#upadte_SAT_score").val();
+                var native_place = $("#updateStudentNativePlace").val();
 
                 //获奖或荣誉
                 var own_punishment = $("#update_award_or_honor").val();
@@ -1070,8 +1077,10 @@
                             head_image: imgName,
                             health_status: health_status,
                             student_type: student_type,
+                            born:born,
                             blood: blood,
                             stay_type: stay_type,
+                            native_place:native_place,
                             political_status: political_status,
                             pre_school_education: pre_school_education,
                             student_classify: student_classify,
@@ -1080,6 +1089,7 @@
                             origin_address: origin_address,
                             family_zip_code: family_zip_code,
                             family_phone: family_phone,
+                            sat_score:sat_score,
                             emergency_contact_name: emergency_contact_name,
                             emergency_contact_method: emergency_contact_method,
                             account_in: account_in,
