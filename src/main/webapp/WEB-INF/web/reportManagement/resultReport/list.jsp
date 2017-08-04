@@ -212,7 +212,7 @@
                     $("#address").text(originAddress[0] ==  undefined ? "":originAddress[0]  + originAddress[1] ===  undefined ? "":originAddress[1]);
                 } else  $("#address").text("");
                 $("#name").text(student.studentName);
-                $("#gender").text(student.gender);
+                $("#gender").text(student.gender === "F" ? "女":"男");
                 $("#famous_family").text(student.famous_family);
 
                 $("#headImg").attr({src: HEAD_IMAGE_PREFIX + student.head_image});
@@ -259,12 +259,19 @@
                 }
                 $("#elective_score").text(elective_score);
                 $("#compulsory_score").text(compulsory_score);
-            }
+            },
+            loadAllLevels: function () {
+                $("#level_search").html();
+                let levels = getSearchLevels().reverse();
+                levels.forEach(level => {
+                    $("#level_search").append(`<option value="` + level + `" selected>` + level + `</option>`);
+                });
+            },
         };
         $(function () {
             loadALlDepartments();
             loadAllDirections();
-            loadAllLevels();
+            resultReport.loadAllLevels();
             loadAllClassess();
             resultReport.list();
             form.render();
