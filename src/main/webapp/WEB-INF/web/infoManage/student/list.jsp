@@ -202,6 +202,7 @@
     var familyInfo;
     let imgName;
     let famousFamily;
+    let departmentList;
     layui.use(['jquery', 'layer', 'element', 'laypage', 'form', 'laytpl', 'tree'], function () {
         window.jQuery = window.$ = layui.jquery;
         window.layer = layui.layer;
@@ -396,6 +397,7 @@
                             experienceInfo = data.experienceList;
                             familyInfo = data.students_family;
                             famousFamily = data.famousFamily;
+                            departmentList = data.departmentList;
                             let studentList = data.students;
                             let familyList = data.students_family;
                             let professionList = data.professionList;
@@ -574,6 +576,7 @@
                             $("#studentsNowProfessional").html("").append(`<option value=""></option>` + loadOptionsHtml(professionList, studentList.profession_id));
                             $("#employment_direction").html("").append(`<option value=""></option>` + loadOptionsHtml(directionList, studentList.direction_id));
                             $("#student_class").html("").append(`<option value=""></option>` + loadOptionsHtml(classesList, studentList.classes_id));
+                            $("#student_department").html("").append(`<option value=""></option>` + loadOptionsHtml(departmentList, studentList.department_id));
 
                             $("#educational_experience").html("")
                             for (let i = 0; i < experienceList.length; i++) {
@@ -1220,6 +1223,14 @@
 
             return _html;
         }
+        function loadOptionsHtmlOfClass(data) {
+            let _html = "";
+            for (let i = 0; i < data.length; ++i) {
+                    _html += `<option value="` + data[i].id + `">` + data[i].name + `</option>`;
+            }
+
+            return _html;
+        }
 
         function loadOptionsHtmlToTeacher(data, selectId) {
             let _html = "";
@@ -1391,6 +1402,14 @@
                 } else {
                     $("#show_other_family_political_status").hide();
                 }
+            });
+            //监听系,从而动态获取相应的班级
+            form.on('select(student_departments)',function (data) {
+                let department_id = data.value;
+                $.post(baseUrl+"/student/showAutoClassByDepartment",{departmentId:department_id},function (resultData) {
+                    alert($(".student_class").val());
+                    $(".student_class").html(loadOptionsHtmlOfClass(resultData.data));
+                })
             })
 
             //图片上传

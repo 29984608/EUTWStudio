@@ -114,5 +114,9 @@ public interface PersonDao {
     void addExperienceByUpdate(Experience experience);
 
     Map<String,String> queryFamousFamily(@Param("famousFamily") String famousFamily);
+
+    List<Map<String,Object>> queryDepartmentList();
+
+    List<Map<String,Object>> showAutoClassByDepartment(@Param("departmentId") String departmentId);
 }
 

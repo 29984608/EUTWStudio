@@ -924,4 +924,13 @@ WHERE direction_id = direction.id
         WHERE para_phsiname = #{famousFamily}
     </select>
 
+    <select id="queryDepartmentList" resultType="map">
+        select * from t_department
+    </select>
+
+    <select id="showAutoClassByDepartment" parameterType="string" resultType="map">
+        select * from t_classes
+        WHERE department_id = #{departmentId}
+    </select>
+
 </mapper>

@@ -386,4 +386,13 @@ public class PersonServiceImpl implements PersonService {
         return personDao.queryFamousFamily(famousFamily);
     }
 
+    @Override
+    public List<Map<String, Object>> queryDepartmentList() throws Exception {
+        return personDao.queryDepartmentList();
+    }
+
+    @Override
+    public List<Map<String, Object>> showAutoClassByDepartment(String departmentId) throws Exception {
+        return personDao.showAutoClassByDepartment(departmentId);
+    }
 }

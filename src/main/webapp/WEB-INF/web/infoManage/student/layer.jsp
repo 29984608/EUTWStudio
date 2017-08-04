@@ -886,14 +886,14 @@
 
                                     </tr>
                                     <tr>
-                                        <th>录取专业：<span>
+                                        <th colspan="1">录取专业：<span>
                                             <div class="layui-input-inline" style="width: 60%">
                                                 <select id="studentsProfessionList" lay-filter="studentsProfessionList">
                                                     <option value=""></option>
                                                 </select>
                                             </div>
                                         </span></th>
-                                        <th>现专业：<span>
+                                        <th colspan="1">现专业：<span>
                                             <div class="layui-input-inline" style="width: 60%">
                                                 <select id="studentsNowProfessional"
                                                         lay-filter="studentsNowProfessional">
@@ -901,21 +901,32 @@
                                                 </select>
                                             </div>
                                         </span></th>
-                                        <th>就业方向：<span>
+                                        <th colspan="4">就业方向：<span>
                                             <div class="layui-input-inline" style="width: 60%">
                                                 <select id="employment_direction" lay-filter="employment_direction">
                                                     <option value=""></option>
                                                 </select>
                                             </div>
                                         </span></th>
-                                        <th>班级：<span>
-                                             <div class="layui-input-inline" style="width: 60%">
-                                                <select id="student_class" lay-filter="student_class">
+                                    </tr>
+
+                                    <tr>
+                                        <th colspan="1">系：<span>
+                                             <div class="layui-input-inline">
+                                                <select id="student_department" lay-filter="student_departments" class="student_class">
+                                                    <option value=""></option>
+                                                </select>
+                                            </div>
+                                        </span></th>
+                                        <th colspan="5">班级：<span>
+                                             <div class="layui-input-inline">
+                                                <select id="student_class" lay-filter="student_classe">
                                                     <option value=""></option>
                                                 </select>
                                             </div>
                                         </span></th>
                                     </tr>
+
                                     <tr>
                                         <th colspan="2">职业导师：<span>
                                             <div class="layui-input-inline" style="width: 60%">
@@ -935,7 +946,7 @@
                                         </span></th>
                                     </tr>
                                     <tr>
-                                        <th colspan="2">学籍状态：<span>
+                                        <th colspan="1">学籍状态：<span>
                                             <div class="layui-input-inline" style="width: 60%">
                                                 <select lay-filter="update_student_status" id="update_student_status">
                                                     <option value=""></option>
@@ -948,7 +959,7 @@
                                                 </select>
                                             </div>
                                         </span></th>
-                                        <th colspan="4">困难类别：<span>
+                                        <th colspan="5">困难类别：<span>
                                             <div class="layui-input-inline" style="width: 60%">
                                                 <div class="layui-inline" pane="" id="update_hard_type">
                                             <label class="layui-form-label" style="width: auto"></label>

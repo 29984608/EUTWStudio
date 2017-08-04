@@ -80,6 +80,7 @@ public class StudentController {
             List<Map<String, Object>> classesList = personService.queryStudentsClassList();
             List<Map<String, Object>> experienceList = personService.queryStudentExperienceList();
             List<Map<String, Object>> teacherList = personService.queryTeacherList();
+            List<Map<String, Object>> departmentList = personService.queryDepartmentList();
             String famousFamily = (String) students.get("famous_family");
             Map<String,String> famousFamilyFoUpdate = personService.queryFamousFamily(famousFamily);
             data.put("students", students);
@@ -90,6 +91,7 @@ public class StudentController {
             data.put("experienceList", experienceList);
             data.put("teacherList", teacherList);
             data.put("famousFamily", famousFamilyFoUpdate);
+            data.put("departmentList", departmentList);
             data.put("msg", Constant.SEARCH_SUCCESS);
             data.put("result", true);
         } catch (Exception e) {
@@ -218,5 +220,19 @@ public class StudentController {
             e.printStackTrace();
         }
         return Result.failure(null, Constant.ADD_FAILURE);
+    }
+
+    @RequestMapping("/showAutoClassByDepartment")
+    @ResponseBody
+    public Result showAutoClassByDepartment(String departmentId) {
+        try {
+            List<Map<String,Object>> classesList = personService.showAutoClassByDepartment(departmentId);
+            System.out.println("************************"+classesList);
+
+            return Result.success(classesList, Constant.SEARCH_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return Result.failure(null, Constant.SEARCH_FAILURE);
     }
 }
