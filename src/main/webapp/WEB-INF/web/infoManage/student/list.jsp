@@ -328,8 +328,12 @@
                     $("#studentNo").text("").append(data.student[0].no);
                     $("#studentName").text("").append(data.student[0].name);
                     $("#studentName1").text("").append(data.student[0].name);
-                    $("#studentSex").text("").append(data.student[0].gender);
-                    $("#famous_family").text("").append(data.student[0].famous_family);
+                    if (data.student[0].gender == 'F'){
+                        $("#studentSex").text("").append("女");
+                    }else if(data.student[0].gender == 'M'){
+                        $("#studentSex").text("").append("男");
+                    }
+                    $("#famous_family").text("").append(data.student[0].famousFamily);
                     $("#idcard").text("").append(data.student[0].idcard);
                     $("#native_place").text("").append(data.student[0].native_place);
                     $("#born").text("").append(data.student[0].born);

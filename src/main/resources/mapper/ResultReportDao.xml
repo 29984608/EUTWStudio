@@ -78,7 +78,7 @@
             head_image,
             student.name    studentName,
             gender,
-            famous_family,
+            famous.para_dispname famous_family,
             origin_address,
             political_status,
             idcard,
@@ -86,6 +86,7 @@
             direction.name  directionName,
             in_school
         FROM t_student student
+            LEFT JOIN (SELECT  para_dispname,para_phsiname FROM t_famous_family) famous on famous.para_phsiname = student.famous_family
             LEFT JOIN (SELECT
                            id,
                            name

@@ -92,8 +92,8 @@ public class ResultServiceImpl implements ResultService {
         Map<String, Object> data = new HashMap<>();
         data.put("courseCode", searchDto.getCourseCode());
         data.put("courseName", "%" + searchDto.getCourseName() + "%");
-        data.put("lessThanScore", Integer.parseInt("".equals(searchDto.getLessThanScore())?"0":searchDto.getLessThanScore()));
-        data.put("moreThanScore", Integer.parseInt("".equals(searchDto.getMoreThanScore())?"100":searchDto.getMoreThanScore()));
+        data.put("lessThanScore", Integer.parseInt("".equals(searchDto.getLessThanScore()) ? "0" : searchDto.getLessThanScore()));
+        data.put("moreThanScore", Integer.parseInt("".equals(searchDto.getMoreThanScore()) ? "100" : searchDto.getMoreThanScore()));
         data.put("start", (pageUtil.getCurrentIndex() - 1) * pageUtil.getPageSize());
         data.put("pageSize", pageUtil.getPageSize());
         pageUtil.setTotalSize(resultDao.querySearchStudentsTotalCountLikes(data));
@@ -104,7 +104,7 @@ public class ResultServiceImpl implements ResultService {
 
     @Override
     public List<Map<String, Object>> queryRankList(SearchDto searchDto, PageUtil pageUtil) throws Exception {
-            List<Map<String, String>> studentsTotalScores = new ArrayList<>(), studentsAverageScores;
+        List<Map<String, String>> studentsTotalScores = new ArrayList<>(), studentsAverageScores;
         Map<String, Object> data = new HashMap<>();
         data.put("departmentId", searchDto.getDepartmentId());
         data.put("level", searchDto.getLevel());
@@ -127,10 +127,11 @@ public class ResultServiceImpl implements ResultService {
         return toValueObjectMap(studentsAverageScores);
     }
 
-    private List<Map<String, Object>> toValueObjectMap(List<Map<String, String>> studentsAverageScores) {
+    private List<Map<String, Object>> toValueObjectMap(List<Map<String, String>> studentsScores) {
         Map<String, Object> temp;
         List<Map<String, Object>> scoreRankObject = new ArrayList<>();
-        for (Map<String, String> data : studentsAverageScores) {
+        for (Map<String, String> data : studentsScores) {
+            data.put("score", String.valueOf(getCourseScore(data)));
             temp = new HashMap<>();
             Set<String> keys = data.keySet();
             for (String key : keys)
@@ -181,9 +182,7 @@ public class ResultServiceImpl implements ResultService {
 
         if (student.get("no").equals(studentScore.get("no"))) {
             if (student.get("score") == null) {
-                if (courseScore != 0)
-                    student.put("courseNumber", "1");
-                else student.put("courseNumber", "0");
+                student.put("courseNumber", "1");
                 student.put("score", String.valueOf(courseScore));
             } else {
                 student.put("score", String.valueOf(Double.valueOf(student.get("score")) + courseScore));

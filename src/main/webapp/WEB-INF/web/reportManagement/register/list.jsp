@@ -274,12 +274,19 @@
             },
             exportRegisterReport: function () {
                 location.href = baseUrl + "/newStudentRegister/exportRegisterReport?no="+$("#no").text()+"";
+            },
+            loadAllLevels: function () {
+                $("#level_search").html();
+                let levels = getSearchLevels().reverse();
+                levels.forEach(level => {
+                    $("#level_search").append(`<option value="` + level + `" selected>` + level + `</option>`);
+                });
             }
         };
         $(function () {
             loadALlDepartments();
             loadAllDirections();
-            loadAllLevels();
+            resultReport.loadAllLevels();
             loadAllClassess();
             resultReport.list();
             form.render();

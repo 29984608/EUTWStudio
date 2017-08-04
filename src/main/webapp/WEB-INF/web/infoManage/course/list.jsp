@@ -42,7 +42,7 @@
                             <input type="text" name="title" id="name-search" lay-verify="title" autocomplete="off"
                                    placeholder="课程名称" value="" class="layui-input">
                         </div>
-                        <a class="layui-btn" onclick="course.list()"><i class="layui-icon">&#xe615;</i>搜索</a>
+                        <a class="layui-btn" onclick="currentIndex = 1;course.list()"><i class="layui-icon">&#xe615;</i>搜索</a>
 
                     </div>
                 </div>
