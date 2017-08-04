@@ -68,6 +68,7 @@
         id,
         name
         FROM t_department) department ON department.id = student.department_id
+
         LEFT JOIN (SELECT
         id,
         name
@@ -87,10 +88,12 @@
         id,
         name
         FROM t_area) area ON area.id = student.area_id
+
         LEFT JOIN (SELECT
         id,
         name
         FROM t_floor) floor ON floor.id = student.floor_id
+
         LEFT JOIN (SELECT
         id,
         name

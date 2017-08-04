@@ -17,6 +17,7 @@ public class DirectionReportServiceImpl implements DirectionReportService {
 
     @Resource
     private DirectionReportDao directionReportDao;
+
     @Override
     public File exportReport(HttpServletRequest request) throws Exception {
         List<Map<String, Object>> directionList = this.directionList();
@@ -24,11 +25,11 @@ public class DirectionReportServiceImpl implements DirectionReportService {
         Map<String, String> headers = new HashMap<>();
         headers.put("index", "序号系");
         headers.put("departmentName", "系");
-        headers.put("directionName",  "就业方向");
-        headers.put("level1",  Integer.toString(searchLevels.get(0)));
-        headers.put("level2",  Integer.toString(searchLevels.get(1)));
-        headers.put("level3",  Integer.toString(searchLevels.get(2)));
-        headers.put("littleCount",  "小计");
+        headers.put("directionName", "就业方向");
+        headers.put("level1", Integer.toString(searchLevels.get(0)));
+        headers.put("level2", Integer.toString(searchLevels.get(1)));
+        headers.put("level3", Integer.toString(searchLevels.get(2)));
+        headers.put("littleCount", "小计");
         String fileName = "高职学院就业方向人数统计表.xls";
 
         String path = request.getServletContext().getRealPath("images/temp") + "/" + fileName;
@@ -55,6 +56,8 @@ public class DirectionReportServiceImpl implements DirectionReportService {
         List<Map<String, Object>> statisticStudents = new ArrayList<>();
 
         for (Map<String, Object> student : students) {
+            if (student.get("departmentName") == null) continue;
+
             if (departmentName == null || !departmentName.equals(student.get("departmentName"))) {
                 departmentName = (String) student.get("departmentName");
                 temp = new LinkedHashMap<>();
@@ -70,6 +73,10 @@ public class DirectionReportServiceImpl implements DirectionReportService {
 
     private void setDepartmentProfessionStudentCount(Map<String, Object> tempDepartment, Map<String, Object> student) {
         String directionName = (String) student.get("directionName");
+        if (directionName == null) {
+            student.put("directionName", "未分配");
+            directionName = "未分配";
+        }
         List<Map<String, Object>> directions = (List<Map<String, Object>>) tempDepartment.get("directions");
 
         if (directions.size() == 0)

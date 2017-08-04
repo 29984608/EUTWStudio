@@ -56,6 +56,7 @@
 
         direction = {
             list: function () {
+                layer.msg("查询中......");
                 $.post(baseUrl + "/directionReport/list", function (data) {
                     if (data.result) {
                         let date = new Date();

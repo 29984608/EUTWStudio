@@ -163,7 +163,6 @@
                     type:"post",
                     success: function (data) {
                         if (data.result) {
-                            console.log(data);
                             $("#profession_search").html("<option value=''>专业</option>"+studentClass.loadSelectElementHtml(data.data.professions));
                             $("#direction_search").html("<option value=''>方向</option>"+studentClass.loadSelectElementHtml(data.data.directions));
                             $("#classes_search").html("<option value=''>年级</option>"+studentClass.loadSelectElementHtml(data.data.classess));

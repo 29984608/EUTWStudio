@@ -272,7 +272,9 @@ public class PersonServiceImpl implements PersonService {
         data.put("searchDto", searchDto);
 
         page.setTotalSize(personDao.queryStudentsListCount(searchDto));
-
+        System.out.println("*********************************"+page);
+        System.out.println("*********************************"+searchDto);
+        System.out.println("*********************************"+personDao.queryStudentList(data));
         return personDao.queryStudentList(data);
 
     }
