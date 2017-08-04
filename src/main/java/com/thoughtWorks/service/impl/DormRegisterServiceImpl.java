@@ -68,6 +68,7 @@ public class DormRegisterServiceImpl implements DormRegisterService {
         List<Map<String, Object>> statisticStudents = new ArrayList<>();
 
         for (Map<String, Object> student : students) {
+            if(student.get("departmentName") == null) continue;
             if (departmentName == null || !departmentName.equals(student.get("departmentName"))) {
                 departmentName = (String) student.get("departmentName");
                 temp = new LinkedHashMap<>();
@@ -83,6 +84,9 @@ public class DormRegisterServiceImpl implements DormRegisterService {
 
     private void setDepartmentProfessionStudentCount(Map<String, Object> tempDepartment, Map<String, Object> student) {
         String stayTypeName = (String) student.get("stayTypeName");
+        if (stayTypeName == null) {
+            stayTypeName = "未分配";
+        }
         List<Map<String, Object>> stayType = (List<Map<String, Object>>) tempDepartment.get("stayType");
 
         if (stayType.size() == 0)
