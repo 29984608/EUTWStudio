@@ -758,6 +758,9 @@ WHERE direction_id = direction.id
             <if test="qq != null and qq !=''">
                 t_student.qq = #{qq},
             </if>
+            <if test="department_id != null and department_id !=''">
+                t_student.department_id = #{department_id},
+            </if>
             <if test="native_place != null and native_place !=''">
                 t_student.native_place = #{native_place},
             </if>

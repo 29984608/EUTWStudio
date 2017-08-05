@@ -328,9 +328,9 @@
                     $("#studentNo").text("").append(data.student[0].no);
                     $("#studentName").text("").append(data.student[0].name);
                     $("#studentName1").text("").append(data.student[0].name);
-                    if (data.student[0].gender == 'F'){
+                    if (data.student[0].gender == 'F') {
                         $("#studentSex").text("").append("女");
-                    }else if(data.student[0].gender == 'M'){
+                    } else if (data.student[0].gender == 'M') {
                         $("#studentSex").text("").append("男");
                     }
                     $("#famous_family").text("").append(data.student[0].famousFamily);
@@ -579,8 +579,24 @@
                             $("#studentsProfessionList").html("").append(`<option value=""></option>` + loadOptionsHtml(professionList, studentList.origin_profession_id));
                             $("#studentsNowProfessional").html("").append(`<option value=""></option>` + loadOptionsHtml(professionList, studentList.profession_id));
                             $("#employment_direction").html("").append(`<option value=""></option>` + loadOptionsHtml(directionList, studentList.direction_id));
-                            $("#student_class").html("").append(`<option value=""></option>` + loadOptionsHtml(classesList, studentList.classes_id));
                             $("#student_department").html("").append(`<option value=""></option>` + loadOptionsHtml(departmentList, studentList.department_id));
+                            let oneDepartmentId = studentList.department_id;
+                            var oneShowClasses = [];
+                            classesList.forEach(item => {
+                                if (oneDepartmentId == item.department_id) {
+                                    oneShowClasses.push(item);
+                                }
+                            })
+                            $("#student_class").html("").append(`<option value=""></option>` + loadOptionsHtml(oneShowClasses, studentList.classes_id));
+                            form.render();
+                            //监听系,从而动态获取相应的班级
+                            form.on('select(student_departments)', function (data) {
+                                let department_id = data.value;
+                                $.post(baseUrl + "/student/showAutoClassByDepartment", {departmentId: department_id}, function (resultData) {
+                                    $("#student_class").html(loadOptionsHtmlOfClass(resultData.data));
+                                    form.render();
+                                })
+                            })
 
                             $("#educational_experience").html("")
                             for (let i = 0; i < experienceList.length; i++) {
@@ -592,7 +608,7 @@
                                                        onclick="layui.laydate({elem: this})" type="text"
                                                        id="educational_experience_start">
                                             </div>
-                                            <span style="float: left;margin-top: 0px"><p class="layui-input-inline" style="align-content:center">--至--</p></span>
+                                            <span style="float: left;margin-top: 8px"><p class="layui-input-inline" style="align-content:center;">--至--</p></span>
                                              <div class="layui-input-inline" style="width: 30%;float: left">
                                                 <input name="date" lay-verify="date" placeholder="yyyy-mm-dd"
                                                        autocomplete="off" class="layui-input educational_experience_end"
@@ -1012,6 +1028,8 @@
                 var profession_id = $("#studentsNowProfessional").val();
                 //就业方向
                 var direction_id = $("#employment_direction").val();
+                //系
+                var department_id = $("#student_department").val();
                 //班级
                 var classes_id = $("#student_class").val();
                 //职业导师
@@ -1070,6 +1088,7 @@
                 //获奖或荣誉
                 var own_punishment = $("#update_award_or_honor").val();
 
+
                 layer.confirm('确定修改？', {icon: 3, title: '提示'}, function (index) {
                     layer.close(index);
                     $.post(baseUrl + "/student/updateStudentAjax",
@@ -1084,10 +1103,11 @@
                             head_image: imgName,
                             health_status: health_status,
                             student_type: student_type,
-                            born:born,
+                            born: born,
                             blood: blood,
                             stay_type: stay_type,
-                            native_place:native_place,
+                            department_id:department_id,
+                            native_place: native_place,
                             political_status: political_status,
                             pre_school_education: pre_school_education,
                             student_classify: student_classify,
@@ -1096,7 +1116,7 @@
                             origin_address: origin_address,
                             family_zip_code: family_zip_code,
                             family_phone: family_phone,
-                            sat_score:sat_score,
+                            sat_score: sat_score,
                             emergency_contact_name: emergency_contact_name,
                             emergency_contact_method: emergency_contact_method,
                             account_in: account_in,
@@ -1227,10 +1247,11 @@
 
             return _html;
         }
+
         function loadOptionsHtmlOfClass(data) {
             let _html = "";
             for (let i = 0; i < data.length; ++i) {
-                    _html += `<option value="` + data[i].id + `">` + data[i].name + `</option>`;
+                _html += `<option value="` + data[i].id + `">` + data[i].name + `</option>`;
             }
 
             return _html;
@@ -1408,10 +1429,9 @@
                 }
             });
             //监听系,从而动态获取相应的班级
-            form.on('select(student_departments)',function (data) {
+            form.on('select(student_departments)', function (data) {
                 let department_id = data.value;
-                $.post(baseUrl+"/student/showAutoClassByDepartment",{departmentId:department_id},function (resultData) {
-                    alert($(".student_class").val());
+                $.post(baseUrl + "/student/showAutoClassByDepartment", {departmentId: department_id}, function (resultData) {
                     $(".student_class").html(loadOptionsHtmlOfClass(resultData.data));
                 })
             })

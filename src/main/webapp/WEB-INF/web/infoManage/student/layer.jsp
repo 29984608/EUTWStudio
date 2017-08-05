@@ -371,7 +371,7 @@
                                             <div class="layui-input-inline" style="width: 60%">
                                                 <input type="text" name="text"
                                                        placeholder="请输入内容" autocomplete="off" class="layui-input"
-                                                       id="updateStudentNativePlace" style="border: none">
+                                                       id="updateStudentNativePlace">
                                              </div>
                                         </span></th>
 
@@ -383,7 +383,7 @@
                                                 <input name="date"  placeholder="yyyy-mm-dd"
                                                        autocomplete="off" class="layui-input"
                                                        type="text"
-                                                       id="updateStudentBirthday" onclick="layui.laydate({elem: this})" style="border: none">
+                                                       id="updateStudentBirthday" onclick="layui.laydate({elem: this})">
                                             </div>
                                         </th>
                                         <th colspan="3">婚否：
@@ -543,7 +543,7 @@
                                             <div class="layui-input-inline">
                                               <input type="text" name="idcard_address"
                                                      placeholder="请输入身份证住址"
-                                                     autocomplete="off" class="layui-input" id="Identity_card_address">
+                                                     autocomplete="off" class="layui-input" id="Identity_card_address" style="width: 140%">
                                             </div>
                                           </div>
                                     </span></th>
