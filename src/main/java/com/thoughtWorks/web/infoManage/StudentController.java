@@ -78,7 +78,7 @@ public class StudentController {
             List<Map<String, String>> professionList = personService.queryStudentsProfessionList();
             List<Map<String, String>> directionList = personService.queryStudentsDirection();
             List<Map<String, Object>> classesList = personService.queryStudentsClassList();
-            List<Map<String, Object>> experienceList = personService.queryStudentExperienceList();
+            List<Map<String, Object>> experienceList = personService.queryStudentExperienceList(studentNo);
             List<Map<String, Object>> teacherList = personService.queryTeacherList();
             List<Map<String, Object>> departmentList = personService.queryDepartmentList();
             String famousFamily = (String) students.get("famous_family");
@@ -131,7 +131,6 @@ public class StudentController {
                 experiences.add(experience);
             }
 
-            System.out.println("111111"+studentUpdate.getBorn());
             personService.updateStudentList(studentUpdate);
             personService.updateExperienceList(experiences);
 
@@ -227,7 +226,6 @@ public class StudentController {
     public Result showAutoClassByDepartment(String departmentId) {
         try {
             List<Map<String,Object>> classesList = personService.showAutoClassByDepartment(departmentId);
-            System.out.println("************************"+classesList);
 
             return Result.success(classesList, Constant.SEARCH_SUCCESS);
         } catch (Exception e) {

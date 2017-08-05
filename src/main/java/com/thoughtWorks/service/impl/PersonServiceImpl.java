@@ -272,9 +272,6 @@ public class PersonServiceImpl implements PersonService {
         data.put("searchDto", searchDto);
 
         page.setTotalSize(personDao.queryStudentsListCount(searchDto));
-        System.out.println("*********************************"+page);
-        System.out.println("*********************************"+searchDto);
-        System.out.println("*********************************"+personDao.queryStudentList(data));
         return personDao.queryStudentList(data);
 
     }
@@ -315,8 +312,8 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public List<Map<String, Object>> queryStudentExperienceList() throws Exception {
-        return personDao.queryStudentExperienceList();
+    public List<Map<String, Object>> queryStudentExperienceList(String studentNo) throws Exception {
+        return personDao.queryStudentExperienceList(studentNo);
     }
 
     @Override

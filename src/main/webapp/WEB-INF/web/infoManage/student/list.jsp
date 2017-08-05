@@ -75,8 +75,8 @@
                                 <label class="layui-form-label">性别</label>
                                 <div class="layui-input-inline" id="sexQuery" style="width: 30%">
                                     <input type="radio" name="sexQuery" value="" title="全部" checked="">
-                                    <input type="radio" name="sexQuery" value="男" title="男">
-                                    <input type="radio" name="sexQuery" value="女" title="女">
+                                    <input type="radio" name="sexQuery" value="M" title="男">
+                                    <input type="radio" name="sexQuery" value="F" title="女">
                                 </div>
 
                                 <label class="layui-form-label">住宿类型</label>

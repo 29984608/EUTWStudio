@@ -22,7 +22,7 @@
             {{# if(item.gender === undefined){ }}
             未分配
             {{# }else{ }}
-            {{ item.gender}}
+            {{ item.gender === "F" ? "女" : "男"}}
             {{#}}}
         </td>
         <td>
@@ -347,7 +347,6 @@
                                                     <input  name="sexOfUpdate" value="F" title="女"
                                                            type="radio">
                                                 </div>
-                                             </div>
                                              </div>
                                         </span></th>
                                         <th colspan="3">民族：<span>
