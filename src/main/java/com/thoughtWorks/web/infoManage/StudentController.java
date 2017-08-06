@@ -82,7 +82,7 @@ public class StudentController {
             List<Map<String, Object>> teacherList = personService.queryTeacherList();
             List<Map<String, Object>> departmentList = personService.queryDepartmentList();
             String famousFamily = (String) students.get("famous_family");
-            Map<String,String> famousFamilyFoUpdate = personService.queryFamousFamily(famousFamily);
+            Map<String, String> famousFamilyFoUpdate = personService.queryFamousFamily(famousFamily);
             data.put("students", students);
             data.put("students_family", students_family);
             data.put("professionList", professionList);
@@ -131,8 +131,11 @@ public class StudentController {
                 experiences.add(experience);
             }
 
+            System.out.println("---------------------"+experiences);
             personService.updateStudentList(studentUpdate);
-            personService.updateExperienceList(experiences);
+            if (null != experiences && experiences.size() != 0) {
+                personService.updateExperienceList(experiences);
+            }
 
             List<Map<String, Object>> familyList = new ArrayList<>();
             for (int i = 0; i < familyInfoCount; i++) {
@@ -145,7 +148,9 @@ public class StudentController {
                 family.put("updateStudentParentIds", updateStudentParentIds.get(i));
                 familyList.add(family);
             }
-            personService.updateFamilyInfo(familyList);
+            if (null != familyList && familyList.size() != 0) {
+                personService.updateFamilyInfo(familyList);
+            }
 
             return Result.success(null, Constant.UPDATE_SUCCESS);
         } catch (Exception e) {
@@ -225,7 +230,7 @@ public class StudentController {
     @ResponseBody
     public Result showAutoClassByDepartment(String departmentId) {
         try {
-            List<Map<String,Object>> classesList = personService.showAutoClassByDepartment(departmentId);
+            List<Map<String, Object>> classesList = personService.showAutoClassByDepartment(departmentId);
 
             return Result.success(classesList, Constant.SEARCH_SUCCESS);
         } catch (Exception e) {

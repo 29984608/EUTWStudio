@@ -43,7 +43,7 @@
             {{# if(item.stay_type === "1"){ }}
             校内
             {{# }else{ }}
-            校外
+            {{item.stay_type === "2" ? "校外" : ""}}
             {{#}}}
         </td>
         <td>
