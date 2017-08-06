@@ -734,6 +734,7 @@
                     area: ["100%", "100%"],
                     content: $("#updateStudent")
                 })
+                form.render();
             },
 
             delStudentFamily: function (familyId) {
@@ -1106,7 +1107,7 @@
                             born: born,
                             blood: blood,
                             stay_type: stay_type,
-                            department_id:department_id,
+                            department_id: department_id,
                             native_place: native_place,
                             political_status: political_status,
                             pre_school_education: pre_school_education,
