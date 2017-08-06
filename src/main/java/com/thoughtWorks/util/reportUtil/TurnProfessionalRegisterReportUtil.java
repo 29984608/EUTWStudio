@@ -67,7 +67,7 @@ public class TurnProfessionalRegisterReportUtil extends ExcelReportUtil {
     private HSSFCell setSerialNumber(int rowIndex, HSSFRow row) {
         //序号
         HSSFCell cell = row.createCell(0);
-        cell.setCellValue(new HSSFRichTextString(String.valueOf(rowIndex - 2)));
+        cell.setCellValue(new HSSFRichTextString(String.valueOf(rowIndex - 3)));
 
         return cell;
     }
