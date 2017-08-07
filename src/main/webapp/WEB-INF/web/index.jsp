@@ -16,7 +16,9 @@
 <div class="layui-layout layui-layout-admin" id="layui_layout">
     <!-- 顶部区域 -->
     <div class="layui-header header-menu">
-        <div class="logo posb" id="log"><img src="${baseurl}/public/common/images/logo.png"></div>
+        <div class="logo posb" id="log" style="background: lightgoldenrodyellow">
+            <img src="${baseurl}/images/public/logo_.png">
+        </div>
 
         <div class="layui-main posb">
             <!-- 左侧导航收缩开关 -->
@@ -52,11 +54,11 @@
     <div class="layui-side larrycms-left" id="larry-side">
         <div class="layui-side-scroll">
             <!-- 管理员信息      -->
-            <div class="user-info">
-                <div class="photo">
-                    <img src="${baseurl}/public/images/user.jpg" alt="">
-                </div>
-                <p>hello <shiro:principal property="name"/></p>
+            <div class="user-info" style="height: 5px">
+                <%--<div class="photo">--%>
+                    <%--<img src="${baseurl}/public/images/user/<shiro:principal property="headImage" />">--%>
+                <%--</div>--%>
+                <%--<p>hello <shiro:principal property="name"/></p>--%>
             </div>
             <!-- 系统菜单 -->
             <div class="sys-menu-box">
