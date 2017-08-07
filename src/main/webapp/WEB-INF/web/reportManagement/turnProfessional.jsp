@@ -18,9 +18,10 @@
 
 </head>
 <body>
+
 <blockquote class="layui-elem-quote mylog-info-tit">
     <form class="layui-form layui-form-pane">
-        <label class="layui-form-label ">请选择年级</label>
+        <label class="layui-form-label ">学级</label>
         <div class="layui-input-inline">
             <select name ="_level" lay-filter="_level" id="_level">
                 <option value="2016">2016</option>
@@ -31,13 +32,16 @@
     </form>
 
 </blockquote>
+
 <section class=" layui-form">
     <div class="larry-personal">
         <div class="layui-tab">
+<shiro:hasPermission name="turnProfessional:exportExcel">
             <button class="layui-btn layui-btn-mini" style="float: left" onclick="profession.exportExcel()"><i
                     class="layui-icon">&#xe61e;</i>导出
                 EXCEl
             </button>
+</shiro:hasPermission>
             <div id="container" class="layui-tab-content larry-personal-body clearfix mylog-info-box"
                  style="background: #fff;width: 100%;height: 100%;margin: 5px 0px">
                 <div style="text-align: center;font-size: 20px;font-weight: bold">
