@@ -21,9 +21,11 @@
 <section class=" layui-form">
     <div class="larry-personal">
         <div class="layui-tab">
+<shiro:hasPermission name="dormRegister:exportExcel">
             <button class="layui-btn layui-btn-mini" style="float: left" onclick="profession.exportExcel()"><i class="layui-icon">&#xe61e;</i>导出
                 EXCEl
             </button>
+</shiro:hasPermission>
             <div id="container" class="layui-tab-content larry-personal-body clearfix mylog-info-box"
                  style="background: #fff;width: 100%;height: 100%;margin: 5px 0px">
 
