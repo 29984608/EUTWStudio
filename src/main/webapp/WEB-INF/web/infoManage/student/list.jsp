@@ -419,7 +419,9 @@
                             $("#updateStudentName").val(studentList.name);
                             $("input:radio[value='" + studentList.gender + "'][name='sexOfUpdate']").prop('checked', 'true');
 //                            $("#updateStudentSex1").val(studentList.gender);
-                            $("#updateStudentNationalities").val(famousFamily.para_dispname);
+                            if (famousFamily != null) {
+                                $("#updateStudentNationalities").val(famousFamily.para_dispname);
+                            }
                             $("#updateStudentIdCard").val(studentList.idcard);
                             $("#updateStudentNativePlace").val(studentList.native_place);
                             $("#updateStudentBirthday").val(studentList.born);
@@ -846,12 +848,15 @@
                     },
                     function (data) {
                         if (data.result) {
-                            let dormsHtml = "";
-                            dormsHtml += data.data.dorms.areaName + " # ";
-                            dormsHtml += data.data.dorms.floorName + " # ";
-                            dormsHtml += data.data.dorms.roomName + "宿舍";
+                            if (data.data.dorms != null){
+                                let dormsHtml = "";
+                                dormsHtml += data.data.dorms.areaName + " # ";
+                                dormsHtml += data.data.dorms.floorName + " # ";
+                                dormsHtml += data.data.dorms.roomName + "宿舍";
 
-                            $("#updateDorms").val(dormsHtml);
+                                $("#updateDorms").val(dormsHtml);
+                            }
+
                         }
                     })
             },
