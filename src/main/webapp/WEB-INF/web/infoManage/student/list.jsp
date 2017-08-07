@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/common/css/global.css" media="all">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/common.css" media="all">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/personal.css" media="all">
+    <script type="text/javascript" src="${baseurl}/js/searchJs.js"></script>
     <%--省市区联动--%>
     <script src="${baseurl}/js/city/distpicker.js"></script>
     <script src="${baseurl}/js/city/main.js"></script>
@@ -1214,14 +1215,11 @@
         }
 
         function loadAllLevels() {
-            let date = new Date();
-            let year = date.getFullYear();
-            let differ = year - 2017;
-            if (differ >= 0) {
-                for (let i = differ; i >= 0; i--) {
-                    $("#level_search").append(`<option value="` + year + `">` + (year + i) + `</option>`)
-                }
-            }
+            $("#level_search").html(`<option value="" selected>年级</option>`);
+            let levels = getSearchLevels().reverse();
+            levels.forEach(level => {
+                $("#level_search").append(`<option value="` + level + `" >` + level + `</option>`);
+            });
         }
 
 
