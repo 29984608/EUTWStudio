@@ -29,10 +29,10 @@
                 AND direction_id = #{directionId}
             </if>
             <if test="classesId!=''">
-                student.classes_id = #{classesId}
+                AND  student.classes_id = #{classesId}
             </if>
 
-            AND no LIKE #{no}
+            AND student.no LIKE #{no}
             and student.name like #{name}
         </where>
     </select>
@@ -65,9 +65,9 @@
                 AND direction_id = #{directionId}
             </if>
             <if test="classesId!=''">
-                student.classes_id = #{classesId}
+                AND  student.classes_id = #{classesId}
             </if>
-            AND no LIKE #{no}
+            AND student.no LIKE #{no}
             and student.name like #{name}
         </where>
         limit #{start},#{pageSize}
