@@ -270,7 +270,11 @@
                     if (data.result) {
                         showCommunicationContents(data.data, type);
                         $("#name").text(data.data[(data.data.length-1)].name);
-                        $("#gender").text(data.data[(data.data.length-1)].gender);
+                        if(data.data[(data.data.length-1)].gender = "M"){
+                            $("#gender").text("男");
+                        }else {
+                            $("#gender").text("女");
+                        }
                         $("#native_place").text(data.data[(data.data.length-1)].native_place);
                         $("#idcard").text(data.data[(data.data.length-1)].idcard);
                         $("#profession").text(data.data[(data.data.length-1)].profession);
