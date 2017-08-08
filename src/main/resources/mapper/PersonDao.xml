@@ -526,9 +526,7 @@ FROM t_student student
              FROM t_profession) profession ON profession.id = student.profession_id
 
 
-WHERE direction_id = direction.id
-      AND profession.id = profession_id
-      AND student.no=#{studentNo}
+WHERE  student.no=#{studentNo}
     </select>
 
     <select id="updateByStudentNo" parameterType="String" resultType="map">

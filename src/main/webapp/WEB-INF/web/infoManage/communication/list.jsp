@@ -268,6 +268,7 @@
 
                 $.post(baseUrl + "/communication/communication", {studentNo: studentNo}, function (data) {
                     if (data.result) {
+                        console.log(data)
                         showCommunicationContents(data.data, type);
                         $("#name").text(data.data[(data.data.length-1)].name);
                         $("#gender").text(data.data[(data.data.length-1)].gender);
