@@ -26,26 +26,36 @@
         SELECT student.no,student.name,student.gender,direction.name direction,profession.name profession,class.name
         classes,teacher.department_id departmentId
         FROM t_student student
-        LEFT JOIN (SELECT no, department_id FROM t_teacher) teacher ON teacher.no = #{no}
+        LEFT JOIN (SELECT no, department_id FROM t_teacher) teacher ON teacher.no = #{data.no}
         LEFT JOIN (SELECT id FROM t_department) department ON department.id = teacher.department_id
         LEFT JOIN (SELECT id, name FROM t_direction) direction ON direction.id = student.direction_id
-        <if test="directionId!=''">
-            AND direction.id = #{directionId}
+        <if test="data.directionId!=''">
+            AND direction.id = #{data.directionId}
         </if>
         LEFT JOIN (SELECT id,name FROM t_profession) profession ON profession.id = student.profession_id
-        <if test="professionId!=''">
-            AND profession.id=#{professionId}
+        <if test="data.professionId!=''">
+            AND profession.id=#{data.professionId}
         </if>
         LEFT JOIN (SELECT id, name FROM t_classes) class ON class.id = student.classes_id
-        WHERE student.department_id = teacher.department_id
-        and direction_id =direction.id
-        AND profession.id = profession_id
-        <if test="classesId!=''">
-            AND student.classes_id=#{classesId}
+        WHERE
+        student.level in
+        <foreach collection="levels" open="(" close=")" separator="," item="item">
+            #{item}
+        </foreach>
+        and student.no LIKE #{data.studentNo}
+        and student.department_id = teacher.department_id
+        <if test="data.directionId!=''">
+            and direction_id =direction.id
         </if>
-        AND student.no LIKE #{studentNo}
+        <if test="data.professionId!=''">
+            AND profession.id = profession_id
+        </if>
+        <if test="data.classesId!=''">
+            AND student.classes_id=#{data.classesId}
+        </if>
         and student.name
-        LIKE #{name}
+
+        LIKE #{data.name}
     </select>
 
     <select id="queryStudentList" resultType="map" parameterType="map">

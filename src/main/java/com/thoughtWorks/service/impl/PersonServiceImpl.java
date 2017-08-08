@@ -7,6 +7,7 @@ import com.thoughtWorks.dto.SearchDto;
 import com.thoughtWorks.entity.*;
 import com.thoughtWorks.service.PersonService;
 import com.thoughtWorks.util.Constant;
+import com.thoughtWorks.util.DateUtil;
 import com.thoughtWorks.util.PageUtil;
 import org.springframework.stereotype.Service;
 
@@ -105,14 +106,14 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public Map<String, Object> queryStudentsByLikes(String userName, SearchDto searchDto) throws Exception {
         Map<String, Object> result = new HashMap<>();
-        Map<String, String> data = new HashMap<>();
+        Map<String, Object> data = new HashMap<>();
         data.put("no", userName);
         data.put("professionId", searchDto.getProfessionId());
         data.put("directionId", searchDto.getDirectionId());
         data.put("classesId", searchDto.getClassesId());
         data.put("studentNo", searchDto.getStudentNo() + "%");
         data.put("name", "%" + searchDto.getName() + "%");
-        List<Map<String, String>> students = personDao.queryStudentsByLikes(data);
+        List<Map<String, String>> students = personDao.queryStudentsByLikes(data,DateUtil.getSearchLevels());
 
         Map<String, String> teacher = personDao.queryTeacherByNo(userName);
 

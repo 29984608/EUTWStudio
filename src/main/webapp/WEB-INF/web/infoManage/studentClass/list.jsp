@@ -85,9 +85,25 @@
         ></th>
         <td>{{ item.no}}</td>
         <td>{{ item.name}}</td>
-        <td>{{ item.gender}}</td>
-        <td>{{ item.direction}}</td>
-        <td>{{ item.profession}}</td>
+        <td>{{# if(item.gender === 'F'){ }}
+            女
+            {{# }else{ }}
+            男
+            {{#}}}
+            </td>
+        <td> {{# if(item.direction === undefined){ }}
+            未分配
+            {{# }else{ }}
+            {{ item.direction}}
+            {{#}}}
+            </td>
+        <td>
+            {{# if(item.profession === undefined){ }}
+            未分配
+            {{# }else{ }}
+            {{ item.profession}}
+            {{#}}}
+            </td>
         <td>
             {{# if(item.classes === undefined){ }}
             未分配
