@@ -8,9 +8,18 @@ public class ActiveUser implements Serializable {
     private String userName;
     private String password;
     private String name;
+    private String headImage;
     private int roleId;
     private List<Permission> menus;// 菜单
     private List<Permission> permissions;// 权限
+
+    public String getHeadImage() {
+        return headImage;
+    }
+
+    public void setHeadImage(String headImage) {
+        this.headImage = headImage;
+    }
 
     public String getName() {
         return name;

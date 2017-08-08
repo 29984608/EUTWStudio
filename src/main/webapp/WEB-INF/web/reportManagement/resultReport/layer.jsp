@@ -44,7 +44,7 @@
                 <div>
                     <h2 style="color: #20a1a1;text-align: center;font-weight: bold;padding: 15px">
                     <span>
-                        <img src="${baseurl}/images/public/logo.png" style="width: 16%;height: 5%">
+                        <img src="${baseurl}/images/public/logo_.png" style="width: 16%;height: 5%">
                     </span>西安欧亚学院学生成绩单</h2>
                     <fieldset class="layui-elem-field layui-field-title" style="margin:5px 1px">
                     </fieldset>
@@ -131,7 +131,7 @@
                             选修/实修&nbsp;&nbsp;&nbsp;&nbsp8/<span id="elective_score">3</span></p>
                         <fieldset class="layui-elem-field layui-field-title" style="margin-top: 5px;">
                         </fieldset>
-                        <img src="${baseurl}/images/public/logo.png" style="width: 16%;height: 5%;float: right">
+                        <img src="${baseurl}/images/public/logo_.png" style="width: 16%;height: 5%;float: right">
                     </div>
                 </div>
             </div>
