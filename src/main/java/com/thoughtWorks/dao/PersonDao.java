@@ -19,7 +19,7 @@ public interface PersonDao {
 
     void deleteTeacherById(String id);
 
-    List<Map<String, String>> queryStudentsByLikes(Map<String, String> data);
+    List<Map<String, String>> queryStudentsByLikes(@Param("data") Map<String, Object> data,@Param("levels") List<Integer> levels);
 
     Map<String, String> queryTeacherByNo(String userName);
 
