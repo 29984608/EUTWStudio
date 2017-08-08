@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="${baseurl}/public/css/timeAsix/css/screen.css" type="text/css" media="screen">
     <link rel="stylesheet" href="${baseurl}/public/css/timeAsix/css/responsive.css" type="text/css" media="screen">
     <link rel="stylesheet" href="${baseurl}/public/css/timeAsix/inc/colorbox.css" type="text/css" media="screen">
+    <script type="text/javascript" src="${baseurl}/js/searchJs.js"></script>
 
 </head>
 <body>
@@ -31,7 +32,7 @@
                     </div>
 
                     <div class="layui-input-inline" style="width: auto;margin-bottom: 10px;">
-                        <select lay-filter="profession" id="semester-search">
+                        <select lay-filter="profession" id="semester_search">
                             <option value="">年级</option>
                         </select>
                     </div>
@@ -171,9 +172,10 @@
                 });
             },
             list: function () {
+                alert($("#roomId").val())
                 let data = {
                     departmentId: $("#module_search").val(),
-                    professionId: $("#semester-search").val(),
+                    professionId: $("#semester_search").val(),
                     directionId: $("#findDirection").val(),
                     classesId: $("#queryClass").val(),
                     studentNo: $("#no-search").val(),
@@ -318,15 +320,11 @@
                 });
             },
             nowDate:function () {
-                let date = new Date();
-                let year=date.getFullYear();
-                let differ =year-2017;
-                if(differ>=0){
-                    for(let i =differ;i>=0;i--){
-                        $("#semester-search").append(`<option value="`+year+`">`+(year+i)+`</option>`)
-                    }
-                    form.render();
-                }
+                $("#semester_search").html(`<option value="" selected>年级</option>`);
+                let levels = getSearchLevels().reverse();
+                levels.forEach(level => {
+                    $("#semester_search").append(`<option value="` + level + `" >` + level + `</option>`);
+                });
             },
             direction:function (data) {
                 $.post(baseUrl +"/communication/queryDirectionByDepartmentId",{departmentId:data},function (data) {

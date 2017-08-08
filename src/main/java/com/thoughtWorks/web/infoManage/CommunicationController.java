@@ -38,12 +38,11 @@ public class CommunicationController {
         Map<String, Object> data = new HashMap<>();
 
         try {
-//            ActiveUser user = (ActiveUser) SecurityUtils.getSubject().getPrincipal();
             List<Map<String, String>> students = personService.queryStudentsByTeacherHasClasses(searchDto, page);
 
             data.put("students", students);
-            data.put("page", page);
             data.put("result", true);
+            data.put("page", page);
             data.put("msg", Constant.SEARCH_SUCCESS);
         } catch (Exception e) {
             e.printStackTrace();

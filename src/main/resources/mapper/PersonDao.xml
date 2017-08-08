@@ -100,11 +100,11 @@
         FROM t_room) room ON room.id = student.room_id
 
         WHERE
-#         department_id = department.id
-#         AND direction_id = direction.id
-#         AND profession_id = profession.id
+        # department_id = department.id
+        # AND direction_id = direction.id
+        # AND profession_id = profession.id
 
-#         and
+        # and
         student.name LIKE #{searchDto.name}
         and student.no LIKE #{searchDto.studentNo}
         and student.gender LIKE #{searchDto.sex}
@@ -184,11 +184,11 @@
         name
         FROM t_room) room ON room.id = student.room_id
         WHERE
-#        department_id = department.id
-#        AND direction_id = direction.id
-#        AND profession_id = profession.id
+        # department_id = department.id
+        # AND direction_id = direction.id
+        # AND profession_id = profession.id
 
-#        and
+        # and
         student.name LIKE #{searchDto.name}
         and student.no LIKE #{searchDto.studentNo}
         and student.gender LIKE #{searchDto.sex}
@@ -226,7 +226,7 @@
         </if>
 
     </select>
-    <select id="queryStudentsByClassesIdsAndLikeName" resultType="map">
+    <select id="queryStudentsByClassesIdsAndLikeName" resultType="map" parameterType="map">
         SELECT
         student.no,
         student.name,
@@ -245,6 +245,7 @@
         id,
         name
         FROM t_department) department ON department.id = student.department_id
+
         LEFT JOIN (SELECT
         id,
         name
@@ -264,43 +265,39 @@
         id,
         name
         FROM t_area) area ON area.id = student.area_id
+
         LEFT JOIN (SELECT
         id,
         name
         FROM t_floor) floor ON floor.id = student.floor_id
+
         LEFT JOIN (SELECT
-        id,
-        name
+        *
         FROM t_room) room ON room.id = student.room_id
 
-        WHERE student.department_id = department.id
-        AND direction_id = direction.id
-        AND profession.id = profession_id
+        <where>
+            student.name LIKE #{searchDto.name}
+            and student.no LIKE #{searchDto.studentNo}
+            <if test="searchDto.classesId !='' and searchDto.classesId != null">
+                and student.classes_id LIKE #{searchDto.classesId}
+            </if>
+            <if test="searchDto.departmentId !='' and searchDto.departmentId != null">
+                and student.department_id = #{searchDto.departmentId}
+            </if>
+            <if test="searchDto.professionId !='' and searchDto.professionId != null">
+                and student.level = #{searchDto.professionId}
+            </if>
 
-        and student.name LIKE #{searchDto.name}
-        and student.no LIKE #{searchDto.studentNo}
-        <if test=" searchDto.classesId !=''">
-            and student.classes_id LIKE #{searchDto.classesId}
-        </if>
-        <if test=" searchDto.departmentId !=''">
-            and student.department_id = #{searchDto.departmentId}
-        </if>
-        <if test=" searchDto.professionId !=''">
-            and student.level = #{searchDto.professionId}
-        </if>
-        <if test=" searchDto.directionId !=''">
-            and student.direction_id = #{searchDto.directionId}
-        </if>
-        <if test=" searchDto.areaId !=''">
-            and student.area_id = #{searchDto.areaId}
-        </if>
-        <if test=" searchDto.floorId !=''">
-            and student.floor_id = #{searchDto.floorId}
-        </if>
-        <if test=" searchDto.roomId !=''">
-            and room.name LIKE #{searchDto.roomId}
-        </if>
+            <if test="searchDto.areaId !='' and searchDto.areaId !=null">
+                and student.area_id = #{searchDto.areaId}
+            </if>
+            <if test="searchDto.floorId !='' and searchDto.floorId != null">
+                and student.floor_id = #{searchDto.floorId}
+            </if>
+
+        </where>
         LIMIT #{start}, #{pageSize}
+
     </select>
     <select id="queryStudentsCount" resultType="long">
         SELECT count(*)
@@ -331,9 +328,7 @@
         <if test=" searchDto.floorId !=''">
             and student.floor_id = #{searchDto.floorId}
         </if>
-        <if test=" searchDto.roomId !=''">
-            and room.name LIKE #{searchDto.roomId}
-        </if>
+
     </select>
     <select id="queryStudentByNo" parameterType="string" resultType="Student">
         SELECT *
