@@ -24,61 +24,68 @@
         <div class="layui-tab">
             <blockquote class="layui-elem-quote mylog-info-tit">
                 <from id="searchInfo">
-                <div class="layui-inline">
-                    <div class="layui-input-inline " style="width: auto ;margin-bottom: 10px;">
-                        <select lay-filter="course" id="module_search">
-                            <option value="">系</option>
-                        </select>
-                    </div>
-
-                    <div class="layui-input-inline" style="width: auto;margin-bottom: 10px;">
-                        <select lay-filter="profession" id="semester_search">
-                            <option value="">年级</option>
-                        </select>
-                    </div>
-
-                    <div class="layui-input-inline" style="width: auto;margin-bottom: 10px;">
-                        <select lay-filter="t_direction" id="findDirection">
-                            <option value="">方向</option>
-                        </select>
-                    </div>
-
-                    <div class="layui-input-inline" style="width: auto;margin-bottom: 10px;">
-                        <select lay-filter="profession" id="queryClass">
-                            <option value="">班级</option>
-                        </select>
-                    </div>
-                    <div class="layui-input-inline" style="width: auto ;margin-bottom: 10px;">
-                        <input type="text" name="no" id="no-search" lay-verify="title" autocomplete="off"
-                               placeholder="学号" value="" class="layui-input">
-                    </div>
                     <div class="layui-inline">
+                        <div class="layui-input-inline " style="width: auto ;margin-bottom: 10px;">
+                            <select lay-filter="course" id="module_search">
+                                <option value="">系</option>
+                            </select>
+                        </div>
+
+                        <div class="layui-input-inline" style="width: auto;margin-bottom: 10px;">
+                            <select lay-filter="profession" id="semester_search">
+                                <option value="">年级</option>
+                            </select>
+                        </div>
+
+                        <div class="layui-input-inline" style="width: auto;margin-bottom: 10px;">
+                            <select lay-filter="t_direction" id="findDirection">
+                                <option value="">方向</option>
+                            </select>
+                        </div>
+
+                        <div class="layui-input-inline" style="width: auto;margin-bottom: 10px;">
+                            <select lay-filter="profession" id="queryClass">
+                                <option value="">班级</option>
+                            </select>
+                        </div>
                         <div class="layui-input-inline" style="width: auto ;margin-bottom: 10px;">
-                            <input type="text" name="name" id="name_search" lay-verify="title" autocomplete="off"
-                                   placeholder="姓名" class="layui-input">
+                            <input type="text" name="no" id="no-search" lay-verify="title" autocomplete="off"
+                                   placeholder="学号" value="" class="layui-input">
+                        </div>
+                        <div class="layui-inline">
+                            <div class="layui-input-inline" style="width: auto ;margin-bottom: 10px;">
+                                <input type="text" name="name" id="name_search" lay-verify="title" autocomplete="off"
+                                       placeholder="姓名" class="layui-input">
+                            </div>
                         </div>
                     </div>
-                </div>
-                <br>
-                <div class="layui-input-inline" style="width: auto ;margin-bottom: 10px;">
-                    <select lay-filter="queryAreaOfRoom" name="" id="queryAreaOfRoom">
-                        <option value="">区号</option>
-                    </select>
-                </div>
-                <div class="layui-input-inline" style="width: auto ;margin-bottom: 10px;">
-                    <select lay-filter="queryFloor" id="queryFloor">
-                        <option value="">层号</option>
-                    </select>
-                </div>
-
-                <div class="layui-inline">
+                    <br>
                     <div class="layui-input-inline" style="width: auto ;margin-bottom: 10px;">
-                        <input type="text" name="roomId" lay-verify="title" autocomplete="off"
-                               placeholder="房间号码" id="roomId" class="layui-input">
+                        <select lay-filter="queryAreaOfRoom" name="" id="queryAreaOfRoom">
+                            <option value="">区号</option>
+                        </select>
                     </div>
-                </div>
-                <a class="layui-btn" style="width: auto ;margin-bottom: 10px;" onclick="currentIndex=1;communication.list()"><i
-                        class="layui-icon">&#xe615;</i>搜索</a>
+                    <div class="layui-input-inline" style="width: auto ;margin-bottom: 10px;">
+                        <select lay-filter="queryFloor" id="queryFloor">
+                            <option value="">层号</option>
+                        </select>
+                    </div>
+
+                    <div class="layui-input-inline" style="width: auto ;margin-bottom: 10px;">
+                        <select lay-filter="queryRoom" id="queryRoom">
+                            <option value="">宿舍</option>
+                        </select>
+                    </div>
+                    <%--
+                                        <div class="layui-inline">
+                                            <div class="layui-input-inline" style="width: auto ;margin-bottom: 10px;">
+                                                <input type="text" name="roomId" lay-verify="title" autocomplete="off"
+                                                       placeholder="房间号码" id="roomId" class="layui-input">
+                                            </div>
+                                        </div>--%>
+                    <a class="layui-btn" style="width: auto ;margin-bottom: 10px;"
+                       onclick="currentIndex=1;communication.list()"><i
+                            class="layui-icon">&#xe615;</i>搜索</a>
 
                 </from>
             </blockquote>
@@ -148,7 +155,7 @@
     let communication;
     let student;
     let no;
-    layui.use(['jquery', 'layer', 'element','laypage', 'form', 'laytpl'], function () {
+    layui.use(['jquery', 'layer', 'element', 'laypage', 'form', 'laytpl'], function () {
         window.jQuery = window.$ = layui.jquery;
         window.layer = layui.layer;
         var element = layui.element(),
@@ -172,7 +179,6 @@
                 });
             },
             list: function () {
-                alert($("#roomId").val())
                 let data = {
                     departmentId: $("#module_search").val(),
                     professionId: $("#semester_search").val(),
@@ -182,7 +188,7 @@
                     name: $("#name_search").val(),
                     areaId: $("#queryAreaOfRoom").val(),
                     floorId: $("#queryFloor").val(),
-                    roomId: $("#roomId").val(),
+                    roomId: $("#queryRoom").val(),
                     currentIndex: currentIndex,
                     pageSize: pageSize
                 }
@@ -269,17 +275,17 @@
                 $.post(baseUrl + "/communication/communication", {studentNo: studentNo}, function (data) {
                     if (data.result) {
                         showCommunicationContents(data.data, type);
-                        $("#name").text(data.data[(data.data.length-1)].name);
-                        if(data.data[(data.data.length-1)].gender = "M"){
+                        $("#name").text(data.data[(data.data.length - 1)].name);
+                        if (data.data[(data.data.length - 1)].gender = "M") {
                             $("#gender").text("男");
-                        }else {
+                        } else {
                             $("#gender").text("女");
                         }
-                        $("#native_place").text(data.data[(data.data.length-1)].native_place);
-                        $("#idcard").text(data.data[(data.data.length-1)].idcard);
-                        $("#profession").text(data.data[(data.data.length-1)].profession);
-                        $("#direction2").text(data.data[(data.data.length-1)].direction);
-                        $("#political_status").text(data.data[(data.data.length-1)].political_status);
+                        $("#native_place").text(data.data[(data.data.length - 1)].native_place);
+                        $("#idcard").text(data.data[(data.data.length - 1)].idcard);
+                        $("#profession").text(data.data[(data.data.length - 1)].profession);
+                        $("#direction2").text(data.data[(data.data.length - 1)].direction);
+                        $("#political_status").text(data.data[(data.data.length - 1)].political_status);
                         let title = null;
                         if (type === "preview") {
                             $("#printPDF").show();
@@ -293,9 +299,9 @@
                             title: title,
                             area: ["100%", "100%"]
                             , content: $("#update"),
-                            cancel: function(){
-                            location.reload();
-                        }
+                            cancel: function () {
+                                location.reload();
+                            }
                         });
                     } else {
                         layer.msg(data.msg);
@@ -312,66 +318,66 @@
                     }
                 }
 
+
                 return _html;
             },
 
             select: function () {
                 $.post(baseUrl + "/department/allDepartments", function (data) {
                     if (data.result) {
-                        $("#module_search").html( `<option value="" selected>系</option>`).append(communication.loadDepartmentOrDirection(data.data  ,"-"));
+                        $("#module_search").html(`<option value="" selected>系</option>`).append(communication.loadDepartmentOrDirection(data.data, "-"));
                         form.render();
                     }
                 });
             },
-            nowDate:function () {
+            nowDate: function () {
                 $("#semester_search").html(`<option value="" selected>年级</option>`);
                 let levels = getSearchLevels().reverse();
                 levels.forEach(level => {
                     $("#semester_search").append(`<option value="` + level + `" >` + level + `</option>`);
                 });
             },
-            direction:function (data) {
-                $.post(baseUrl +"/communication/queryDirectionByDepartmentId",{departmentId:data},function (data) {
+            direction: function (data) {
+                $.post(baseUrl + "/communication/queryDirectionByDepartmentId", {departmentId: data}, function (data) {
                     if (data.result) {
                         $("#findDirection").html(`<option value="">方向</option>`).append(communication.loadDepartmentOrDirection(data.data, "-"))
                         form.render();
                     }
                 })
             },
-            directionOne:function () {
-                $.post(baseUrl +"/communication/queryDirectionByDepartment",function (data) {
+            directionOne: function () {
+                $.post(baseUrl + "/communication/queryDirectionByDepartment", function (data) {
                     if (data.result) {
                         $("#findDirection").html(`<option value="">方向</option>`).append(communication.loadDepartmentOrDirection(data.data, "-"))
                         form.render();
                     }
                 })
             },
-            queryClass:function () {
-                $.post(baseUrl +"/communication/queryClass",function (data) {
+            queryClass: function () {
+                $.post(baseUrl + "/communication/queryClass", function (data) {
                     if (data.result) {
                         $("#queryClass").html(`<option value="">班级</option>`).append(communication.loadDepartmentOrDirection(data.data, "-"))
                         form.render();
                     }
                 })
             },
-            queryClassByDepartmentId:function (data) {
-                $.post(baseUrl +"/communication/queryClassByDepartmentId",{departmentId:data},function (data) {
+            queryClassByDepartmentId: function (data) {
+                $.post(baseUrl + "/communication/queryClassByDepartmentId", {departmentId: data}, function (data) {
                     if (data.result) {
                         $("#queryClass").html(`<option value="">班级</option>`).append(communication.loadDepartmentOrDirection(data.data, "-"))
                         form.render();
                     }
                 })
             },
-            queryFloorAndAreaOfRoom :function () {
-                $.post(baseUrl +"/dorm/room/showAreaAndFloorsToQuery",function (data) {
+            queryFloorAndAreaOfRoom: function () {
+                $.post(baseUrl + "/dorm/room/showAreaAndFloorsToQuery", function (data) {
                     if (data.result) {
                         $("#queryFloor").html(`<option value="">层号</option>`).append(`<option value="">请先选择区号</option>`)
                         $("#queryAreaOfRoom").html(`<option value="">区号</option>`).append(communication.loadDepartmentOrDirection(data.data.queryAreaOfRoom, "-"))
                         form.render();
                     }
                 })
-            }
-
+            },
 
 
         };
@@ -400,6 +406,16 @@
                         $("#queryAreaOfRoom").html(communication.loadDepartmentOrDirection(queryAreaOfRoom, id))
                         $("#queryFloor").html(`<option value="">层号</option>`).append(communication.loadDepartmentOrDirection(queryFloorOfRoom, "-"))
 
+                        form.render();
+                    }
+                })
+            })
+            //监听根据楼层id显示宿舍
+            form.on('select(queryFloor)', function (data) {
+                $.post(baseUrl + "dorm/room/showFloorsAndRooms", {floorId: data.value}, function (data) {
+                    if (data.result) {
+                        var queryRoomList = data.data.queryRoomList
+                        $("#queryRoom").html(communication.loadDepartmentOrDirection(queryRoomList, "-"))
                         form.render();
                     }
                 })
