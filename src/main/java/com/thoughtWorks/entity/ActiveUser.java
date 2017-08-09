@@ -76,4 +76,18 @@ public class ActiveUser implements Serializable {
     public void setRoleId(int roleId) {
         this.roleId = roleId;
     }
+
+    @Override
+    public String toString() {
+        return "ActiveUser{" +
+                "available=" + available +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                ", headImage='" + headImage + '\'' +
+                ", roleId=" + roleId +
+                ", menus=" + menus +
+                ", permissions=" + permissions +
+                '}';
+    }
 }

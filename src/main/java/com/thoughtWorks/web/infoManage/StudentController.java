@@ -2,6 +2,7 @@ package com.thoughtWorks.web.infoManage;
 
 import com.thoughtWorks.dto.Result;
 import com.thoughtWorks.dto.SearchDto;
+import com.thoughtWorks.entity.CommunicationContent;
 import com.thoughtWorks.entity.Experience;
 import com.thoughtWorks.entity.StudentFamily;
 import com.thoughtWorks.entity.StudentUpdate;
@@ -9,6 +10,7 @@ import com.thoughtWorks.service.PersonService;
 import com.thoughtWorks.util.Constant;
 import com.thoughtWorks.util.ImgUtil;
 import com.thoughtWorks.util.PageUtil;
+import com.thoughtWorks.util.UpdateStudentUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +27,8 @@ public class StudentController {
 
     @Autowired
     private PersonService personService;
+
+    private UpdateStudentUtil updateStudentUtil = new UpdateStudentUtil();
 
     @RequestMapping()
     public String index() {
@@ -95,6 +99,7 @@ public class StudentController {
             data.put("msg", Constant.SEARCH_SUCCESS);
             data.put("result", true);
 
+            updateStudentUtil.setStudentNo(studentNo);
         } catch (Exception e) {
             data.put("msg", Constant.SEARCH_FAILURE);
             data.put("result", false);
@@ -151,6 +156,9 @@ public class StudentController {
             if (null != familyList && familyList.size() != 0) {
                 personService.updateFamilyInfo(familyList);
             }
+            //添加修改日志到沟通反馈页面
+            CommunicationContent communicationContent = updateStudentUtil.updateStudentToCommunication();
+            personService.addCommunication( updateStudentUtil.updateStudentToCommunication());
 
             return Result.success(null, Constant.UPDATE_SUCCESS);
         } catch (Exception e) {
@@ -197,6 +205,7 @@ public class StudentController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         return Result.failure(null, Constant.DELETE_FAILURE);
     }
 
@@ -210,6 +219,7 @@ public class StudentController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         return Result.failure(null, Constant.DELETE_FAILURE);
     }
 
@@ -223,6 +233,7 @@ public class StudentController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         return Result.failure(null, Constant.ADD_FAILURE);
     }
 

@@ -931,7 +931,7 @@ WHERE  student.no=#{studentNo}
 
     <select id="queryFamousFamily" resultType="map">
         select * from t_famous_family
-        WHERE para_phsiname = #{famousFamily}
+        WHERE para_no = #{famousFamily}
     </select>
 
     <select id="queryDepartmentList" resultType="map">

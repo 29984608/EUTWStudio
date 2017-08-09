@@ -8,6 +8,7 @@ import com.thoughtWorks.entity.Classes;
 import com.thoughtWorks.entity.Student;
 import com.thoughtWorks.service.PersonService;
 import com.thoughtWorks.util.Constant;
+import com.thoughtWorks.util.UpdateStudentUtil;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +23,8 @@ import java.util.Map;
 public class StudentClassController {
     @Resource
     private PersonService personService;
+
+    private UpdateStudentUtil updateStudentUtil = new UpdateStudentUtil();
 
     @RequestMapping()
     public String index() {
@@ -48,6 +51,8 @@ public class StudentClassController {
     public Result student(String studentNo) {
         try {
             Student student = personService.queryStudentByNo(studentNo);
+            updateStudentUtil.setStudentName(student.getName());
+            updateStudentUtil.setStudentNo(studentNo);
 
             return Result.success(student, Constant.SEARCH_SUCCESS);
         } catch (Exception e) {
@@ -79,6 +84,8 @@ public class StudentClassController {
             ActiveUser teacher = (ActiveUser) SecurityUtils.getSubject().getPrincipal();
             personService.distributedClass(classesId, studentIds);
             personService.updateStudentTeacherId(teacher.getUserName(),studentIds);
+            personService.addCommunication(updateStudentUtil.updateStudentToCommunication());
+
             return Result.success(null, Constant.ADD_SUCCESS);
         } catch (Exception e) {
             e.printStackTrace();

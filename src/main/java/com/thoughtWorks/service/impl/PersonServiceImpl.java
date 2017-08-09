@@ -181,8 +181,6 @@ public class PersonServiceImpl implements PersonService {
         data.put("start", (page.getCurrentIndex() - 1) * page.getPageSize());
         data.put("pageSize", page.getPageSize());
         data.put("searchDto", searchDto);
-        System.out.println("//////////////////////////"+searchDto.getRoomId());
-        System.out.println("//////////////////////////"+personDao.queryStudentsByClassesIdsAndLikeName(data));
         page.setTotalSize(personDao.queryStudentsCount(searchDto));
         return personDao.queryStudentsByClassesIdsAndLikeName(data);
     }
@@ -394,4 +392,5 @@ public class PersonServiceImpl implements PersonService {
     public List<Map<String, Object>> showAutoClassByDepartment(String departmentId) throws Exception {
         return personDao.showAutoClassByDepartment(departmentId);
     }
+
 }

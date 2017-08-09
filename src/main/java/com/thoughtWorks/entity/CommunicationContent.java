@@ -66,4 +66,17 @@ public class CommunicationContent {
     public void setTime(Date time) {
         this.time = time;
     }
+
+    @Override
+    public String toString() {
+        return "CommunicationContent{" +
+                "id=" + id +
+                ", teacherId='" + teacherId + '\'' +
+                ", studentId='" + studentId + '\'' +
+                ", talkName='" + talkName + '\'' +
+                ", direction='" + direction + '\'' +
+                ", content='" + content + '\'' +
+                ", time=" + time +
+                '}';
+    }
 }

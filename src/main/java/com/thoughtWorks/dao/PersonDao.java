@@ -118,5 +118,6 @@ public interface PersonDao {
     List<Map<String,Object>> queryDepartmentList();
 
     List<Map<String,Object>> showAutoClassByDepartment(@Param("departmentId") String departmentId);
+
 }
 
