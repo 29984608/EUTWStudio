@@ -393,4 +393,8 @@ public class PersonServiceImpl implements PersonService {
         return personDao.showAutoClassByDepartment(departmentId);
     }
 
+    @Override
+    public String queryStudentNameByStudentNo(String studentNo) throws Exception {
+        return personDao.queryStudentNameByStudentNo(studentNo);
+    }
 }

@@ -5,10 +5,11 @@ import com.thoughtWorks.dto.Result;
 import com.thoughtWorks.dto.SearchDto;
 import com.thoughtWorks.entity.ActiveUser;
 import com.thoughtWorks.entity.Classes;
+import com.thoughtWorks.entity.CommunicationContent;
 import com.thoughtWorks.entity.Student;
 import com.thoughtWorks.service.PersonService;
 import com.thoughtWorks.util.Constant;
-import com.thoughtWorks.util.UpdateStudentUtil;
+import com.thoughtWorks.web.UpdateStudentUtil;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -51,8 +52,6 @@ public class StudentClassController {
     public Result student(String studentNo) {
         try {
             Student student = personService.queryStudentByNo(studentNo);
-            updateStudentUtil.setStudentName(student.getName());
-            updateStudentUtil.setStudentNo(studentNo);
 
             return Result.success(student, Constant.SEARCH_SUCCESS);
         } catch (Exception e) {
@@ -84,7 +83,6 @@ public class StudentClassController {
             ActiveUser teacher = (ActiveUser) SecurityUtils.getSubject().getPrincipal();
             personService.distributedClass(classesId, studentIds);
             personService.updateStudentTeacherId(teacher.getUserName(),studentIds);
-            personService.addCommunication(updateStudentUtil.updateStudentToCommunication());
 
             return Result.success(null, Constant.ADD_SUCCESS);
         } catch (Exception e) {

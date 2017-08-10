@@ -11,6 +11,15 @@ public class CommunicationContent {
     private String content;
     private Date time;
 
+    public CommunicationContent() {
+    }
+
+    public CommunicationContent(String studentId, String talkName, String content) {
+        this.studentId = studentId;
+        this.talkName = talkName;
+        this.content = content;
+    }
+
     public long getId() {
         return id;
     }

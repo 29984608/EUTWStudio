@@ -10,7 +10,7 @@ import com.thoughtWorks.service.PersonService;
 import com.thoughtWorks.util.Constant;
 import com.thoughtWorks.util.ImgUtil;
 import com.thoughtWorks.util.PageUtil;
-import com.thoughtWorks.util.UpdateStudentUtil;
+import com.thoughtWorks.web.UpdateStudentUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +19,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Component
 @RequestMapping("/student")
@@ -27,8 +30,8 @@ public class StudentController {
 
     @Autowired
     private PersonService personService;
-
-    private UpdateStudentUtil updateStudentUtil = new UpdateStudentUtil();
+    @Autowired
+    private UpdateStudentUtil updateStudentUtil;
 
     @RequestMapping()
     public String index() {
@@ -99,7 +102,8 @@ public class StudentController {
             data.put("msg", Constant.SEARCH_SUCCESS);
             data.put("result", true);
 
-            updateStudentUtil.setStudentNo(studentNo);
+
+
         } catch (Exception e) {
             data.put("msg", Constant.SEARCH_FAILURE);
             data.put("result", false);
@@ -157,9 +161,8 @@ public class StudentController {
                 personService.updateFamilyInfo(familyList);
             }
             //添加修改日志到沟通反馈页面
-            CommunicationContent communicationContent = updateStudentUtil.updateStudentToCommunication();
-            personService.addCommunication( updateStudentUtil.updateStudentToCommunication());
-
+            CommunicationContent content = new CommunicationContent(studentUpdate.getNo(),personService.queryStudentNameByStudentNo(studentUpdate.getNo()),"基本信息");
+            updateStudentUtil.updateStudentToCommunication(content);
             return Result.success(null, Constant.UPDATE_SUCCESS);
         } catch (Exception e) {
             e.printStackTrace();

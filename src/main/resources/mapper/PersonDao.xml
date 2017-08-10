@@ -943,4 +943,9 @@ WHERE  student.no=#{studentNo}
         WHERE department_id = #{departmentId}
     </select>
 
+    <select id="queryStudentNameByStudentNo" resultType="string" parameterType="string">
+        select student.name from t_student student
+        WHERE no = #{studentNo}
+    </select>
+
 </mapper>
