@@ -8,33 +8,27 @@ import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.Statement;
-import java.util.Date;
 
 public class StatementDemo {
-    Connection conn = null;
-    Statement state = null;
-
     @Test
     public void test() throws Exception {
+        Connection conn = null;
+        Statement state = null;
         try {
             conn = Dao.getDao();
             state = conn.createStatement();
             try {
-                String encoding = "GBK";
                 File file = new File("/home/ubuntu/IDEA/demo/ssm/demo/sql/s_tudent.sql");
-                if (file.isFile() && file.exists()) { // 判断文件是否存在
+                if (file.isFile() && file.exists()) {
                     InputStreamReader read = new InputStreamReader(
-                            new FileInputStream(file), encoding);// 考虑到编码格式
+                            new FileInputStream(file), "GBK");
                     BufferedReader bufferedReader = new BufferedReader(read);
-                    String lineTxt = null;
-                    System.out.println(new Date());
+                    String lineTxt;
                     while ((lineTxt = bufferedReader.readLine()) != null) {
                         state.executeUpdate(lineTxt);
                     }
                     bufferedReader.close();
                     read.close();
-                } else {
-                    System.out.println("找不到指定的文件");
                 }
             } catch (Exception e) {
 
@@ -43,8 +37,7 @@ public class StatementDemo {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            System.out.println(new Date());
-            Dao.close(state,conn);
+            Dao.close(state, conn);
         }
     }
 }
