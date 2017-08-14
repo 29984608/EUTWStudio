@@ -17,4 +17,5 @@ public interface ResultDao {
 
     List<Map<String,String>> queryStudentScores(List<Map<String, String>> students);
 
+    List<Map<String,String>> queryRankList(Map<String, Object> data);
 }

@@ -115,23 +115,23 @@ public class ResultServiceImpl implements ResultService {
 
         List<Map<String, String>> students = resultDao.queryStudentLimit(data);
         if (students.size() == 0) return null;
+        List<Map<String, String>> studentsScores = resultDao.queryRankList(data);
+//        List<Map<String, String>> studentsScores = resultDao.queryStudentScores(students);
+//        if (studentsScores.size() != 0) studentsTotalScores = getStudentsTotalScore(studentsScores, students);
+//        studentsAverageScores = getStudentsAverageScore(studentsTotalScores);
+//        sortStudentScoreDesc(studentsAverageScores);
+//        int endIndex = (Integer) data.get("pageSize") + (Integer) data.get("start");
+//        if (endIndex > studentsAverageScores.size()) endIndex = studentsAverageScores.size();
+//        studentsAverageScores = studentsAverageScores.subList((Integer) data.get("start"), endIndex);
 
-        List<Map<String, String>> studentsScores = resultDao.queryStudentScores(students);
-        if (studentsScores.size() != 0) studentsTotalScores = getStudentsTotalScore(studentsScores, students);
-        studentsAverageScores = getStudentsAverageScore(studentsTotalScores);
-        sortStudentScoreDesc(studentsAverageScores);
-        int endIndex = (Integer) data.get("pageSize") + (Integer) data.get("start");
-        if (endIndex > studentsAverageScores.size()) endIndex = studentsAverageScores.size();
-        studentsAverageScores = studentsAverageScores.subList((Integer) data.get("start"), endIndex);
-
-        return toValueObjectMap(studentsAverageScores);
+        return toValueObjectMap(studentsScores);
     }
 
     private List<Map<String, Object>> toValueObjectMap(List<Map<String, String>> studentsScores) {
         Map<String, Object> temp;
         List<Map<String, Object>> scoreRankObject = new ArrayList<>();
         for (Map<String, String> data : studentsScores) {
-            data.put("score", String.valueOf(getCourseScore(data)));
+            data.put("score", String.format("%.2f", data.get("score")));
             temp = new HashMap<>();
             Set<String> keys = data.keySet();
             for (String key : keys)
@@ -161,7 +161,9 @@ public class ResultServiceImpl implements ResultService {
                 student.put("score", "0");
             } else {
                 double averageScore = Double.valueOf(student.get("score")) / Integer.parseInt(student.get("courseNumber"));
-                student.put("score", String.valueOf(averageScore));
+                student.put("score", String.format("%.2f", averageScore));
+                System.out.print(student.get("score"));
+                System.out.println(student.get("studentName"));
             }
         }
 

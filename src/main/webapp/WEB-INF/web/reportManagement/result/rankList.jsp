@@ -11,7 +11,6 @@
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/common/css/global.css" media="all">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/common.css" media="all">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/personal.css" media="all">
-
 </head>
 <body>
 <section class="larry-grid layui-form">
@@ -22,7 +21,6 @@
                     <div class="layui-input-inline" style="width: auto;margin-bottom: 10px;">
                         <select lay-filter="department" id="department_search">
                             <option value="">系</option>
-
 
                         </select>
                     </div>
@@ -41,12 +39,12 @@
                         </select>
                     </div>
 
-                    <a class="layui-btn" style="width: auto ;margin-bottom: 10px;" onclick="currentIndex = 1;rank.list()"><i
+                    <a class="layui-btn" style="width: auto ;margin-bottom: 10px;"
+                       onclick="currentIndex = 1;rank.list()"><i
                             class="layui-icon">&#xe615;</i>搜索</a>
                     <a class="layui-btn" style="width: auto ;margin-bottom: 10px;" onclick="rank.exportExcel()"><i
                             class="layui-icon">&#xe61e;</i>导出 Excel</a>
                 </div>
-
 
             </blockquote>
         </div>
@@ -80,7 +78,7 @@
 <script id="list-tpl" type="text/html">
     {{# layui.each(d.results, function(index, item){ }}
     <tr>
-        <td>  {{# if(item.departmentName === undefined){ }}
+        <td> {{# if(item.departmentName === undefined){ }}
             未分配
             {{# }else{ }}
             {{ item.departmentName}}{{#}}}
@@ -120,9 +118,9 @@
             page: function () {
                 layui.laypage({
                     cont: 'demo1',
-                    pages: totalSize, //总页数
+                    pages: totalSize,
                     curr: currentIndex,
-                    groups: 5,//连续显示分页数
+                    groups: 5,
                     skin: '#1E9FFF',
                     jump: function (obj, first) {
                         currentIndex = obj.curr;
@@ -133,6 +131,7 @@
                 });
             },
             list: function () {
+                layer.msg("查询中......");
                 let data = {
                     departmentId: $("#department_search").val(),
                     directionId: $("#direction_search").val(),
@@ -145,11 +144,11 @@
                     data: data,
                     type: "post",
                     success: function (data) {
-                        console.log(data);
                         if (data.result) {
                             currentIndex = data.page.currentIndex;
                             totalSize = data.page.totalSize;
                             rank.page();
+                            console.log(data)
                             laytpl($("#list-tpl").text()).render(data, function (html) {
                                 $("#list").html(html);
                             });
@@ -185,13 +184,29 @@
                     "&departmentId=" + $("#department_search").val() +
                     "&directionId=" + $("#direction_search").val() +
                     "&level=" + $("#level_search").val()
+            },
+            loadALlDepartments: function () {
+                $.post(baseUrl + "/department/allDepartments", function (data) {
+                    if (data.result) {
+                        $("#department_search").html(`<option value="" selected>系</option>`).append(loadOptionsHtml(data.data, "-"));
+                        form.render();
+                    }
+                })
+            },
+            loadAllDirections: function () {
+                $.post(baseUrl + "/communication/queryDirectionByDepartment", function (data) {
+                    if (data.result) {
+                        $("#direction_search").html(`<option value="">方向</option>`).append(loadOptionsHtml(data.data, "-"))
+                        form.render();
+                    }
+                })
             }
         };
         $(function () {
-            loadALlDepartments();
-            loadAllDirections();
+            rank.loadALlDepartments();
+            rank.loadAllDirections();
             rank.loadAllLevels();
-            rank.list();
+//            rank.list();
             form.render();
             form.on('select(department)', function (data) {
                 $("#direction_search").html(rank.loadDirectionsByDepartmentId(data.value));
