@@ -49,9 +49,9 @@ public class CommunicationReportServiceImpl implements CommunicationReportServic
         if (communications.size() == 0) return statisticCount;
 
         for (Map<String, Object> communication : communications) {
+            if (null == communication.get("teacher")) continue;
             if (!hasTeacher(communication, statisticCount)) {
                 statisticCount.add(createTeacher(communication));
-                if (null == communication.get("teacher")) continue;
             }
             statisticTypeCount(statisticCount, communication);
         }
