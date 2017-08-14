@@ -99,7 +99,22 @@ public class ResultServiceImpl implements ResultService {
         pageUtil.setTotalSize(resultDao.querySearchStudentsTotalCountLikes(data));
         List<Map<String, String>> searchStudents = resultDao.querySearchStudentsLikes(data);
 
-        return toValueObjectMap(searchStudents);
+        return toSearchValueObjectMap(searchStudents);
+    }
+
+    private List<Map<String,Object>> toSearchValueObjectMap(List<Map<String, String>> searchStudents) {
+        Map<String, Object> temp;
+        List<Map<String, Object>> scoreObject = new ArrayList<>();
+        for (Map<String, String> data : searchStudents) {
+            data.put("score", String.format("%.2f", Double.valueOf(data.get("score"))));
+            temp = new HashMap<>();
+            Set<String> keys = data.keySet();
+            for (String key : keys)
+                temp.put(key, data.get(key));
+            scoreObject.add(temp);
+        }
+
+        return scoreObject;
     }
 
     @Override
@@ -131,7 +146,7 @@ public class ResultServiceImpl implements ResultService {
         Map<String, Object> temp;
         List<Map<String, Object>> scoreRankObject = new ArrayList<>();
         for (Map<String, String> data : studentsScores) {
-            data.put("score", String.format("%.2f", data.get("score")));
+            data.put("score", String.valueOf(getCourseScore(data)));
             temp = new HashMap<>();
             Set<String> keys = data.keySet();
             for (String key : keys)
@@ -162,8 +177,6 @@ public class ResultServiceImpl implements ResultService {
             } else {
                 double averageScore = Double.valueOf(student.get("score")) / Integer.parseInt(student.get("courseNumber"));
                 student.put("score", String.format("%.2f", averageScore));
-                System.out.print(student.get("score"));
-                System.out.println(student.get("studentName"));
             }
         }
 
@@ -198,8 +211,9 @@ public class ResultServiceImpl implements ResultService {
 
     private double getCourseScore(Map<String, String> studentsScore) {
         try {
-            return Double.valueOf(studentsScore.get("score"));
+            return Double.valueOf(String.format("%.2f",studentsScore.get("score")));
         } catch (Exception e) {//当分数为 A、B..  时 抛出异常直接返回0
+            e.printStackTrace();
             return 0;
         }
     }

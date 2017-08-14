@@ -11,10 +11,6 @@
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/common/css/global.css" media="all">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/common.css" media="all">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/personal.css" media="all">
-    <%--时间轴--%>
-    <link rel="stylesheet" href="${baseurl}/public/css/timeAsix/css/screen.css" type="text/css" media="screen">
-    <link rel="stylesheet" href="${baseurl}/public/css/timeAsix/css/responsive.css" type="text/css" media="screen">
-    <link rel="stylesheet" href="${baseurl}/public/css/timeAsix/inc/colorbox.css" type="text/css" media="screen">
 
 </head>
 <body>
@@ -149,6 +145,7 @@
                 });
             },
             list: function () {
+                layer.msg("查询中......");
                 let data = {
                     courseCode: $("#course_code_search").val(),
                     courseName: $("#course_name_search").val(),
@@ -165,6 +162,7 @@
                         if (data.result) {
                             currentIndex = data.page.currentIndex;
                             totalSize = data.page.totalSize;
+                            console.log(data)
                             search_.page();
                             laytpl($("#list-tpl").text()).render(data, function (html) {
                                 $("#list").html(html);

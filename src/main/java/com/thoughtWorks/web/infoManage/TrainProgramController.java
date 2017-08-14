@@ -1,6 +1,5 @@
 package com.thoughtWorks.web.infoManage;
 
-import com.sun.org.apache.regexp.internal.RE;
 import com.thoughtWorks.dto.Result;
 import com.thoughtWorks.entity.Classes;
 import com.thoughtWorks.entity.TrainModule;
