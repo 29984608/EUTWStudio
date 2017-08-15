@@ -257,7 +257,7 @@
                 <div class="larry-separate"></div>
                 <div id="update1">
                     <div id="container1" style=" background: #fff">
-                        <h1 style="text-align: center;color:#00ab9f ">西安欧亚学院高职学院学生档案修改页面</h1>
+                        <h1 style="text-align: center;color:#00ab9f;margin-top: 20px">西安欧亚学院高职学院学生档案修改页面</h1>
                         <div style="margin-top: 40px;">
                             <div style="float: left;width: 25%">
                                 <div style="margin: 30px 10px;border: 1px ;">
@@ -341,7 +341,7 @@
                                     <tr>
                                         <th colspan="3">性别：<span>
                                             <div class="layui-inline" pane="" id="updateStudentSex">
-                                                <div class="layui-inline">
+                                                <div class="layui-inline" id="updateStudentSexToJs">
                                                     <input  name="sexOfUpdate" value="M" title="男"
                                                            type="radio">
                                                     <input  name="sexOfUpdate" value="F" title="女"

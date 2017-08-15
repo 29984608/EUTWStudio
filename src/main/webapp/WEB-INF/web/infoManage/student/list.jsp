@@ -419,6 +419,7 @@
                             $("#updateStudentNo").val(studentList.no)
                             $("#updateStudentName").val(studentList.name);
                             $("input:radio[value='" + studentList.gender + "'][name='sexOfUpdate']").prop('checked', 'true');
+
 //                            $("#updateStudentSex1").val(studentList.gender);
                             if (famousFamily != null) {
                                 $("#updateStudentNationalities").val(famousFamily.para_dispname);
@@ -426,8 +427,8 @@
                             $("#updateStudentIdCard").val(studentList.idcard);
                             $("#updateStudentNativePlace").val(studentList.native_place);
                             $("#updateStudentBirthday").val(studentList.born);
-                            $("input[type='radio'][name='isMarry'][value='" + studentList.is_marry + "']").attr("checked", "checked");
-                            $("input[type='radio'][name='accommodation_type'][value='" + studentList.stay_type + "']").attr("checked", "checked");
+                            $("input[type='radio'][name='isMarry'][value='" + studentList.is_marry + "']").attr("checked", 'true');
+                            $("input[type='radio'][name='accommodation_type'][value='" + studentList.stay_type + "']").attr("checked", 'true');
                             $("#updateStudentHeight").val(studentList.height);
                             $("#updateStudentWight").val(studentList.weight);
                             $("input:radio[value='" + studentList.health_status + "']").prop('checked', 'true');
@@ -735,7 +736,11 @@
                     type: 1,
                     title: "学生信息修改",
                     area: ["100%", "100%"],
-                    content: $("#updateStudent")
+                    closeBtn:1,
+                    content: $("#updateStudent"),
+                    cancel: function(){
+                        location.reload();
+                    }
                 })
                 form.render();
             },
