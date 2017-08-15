@@ -5,10 +5,13 @@ import com.thoughtWorks.dto.Result;
 import com.thoughtWorks.dto.SearchDto;
 import com.thoughtWorks.entity.ActiveUser;
 import com.thoughtWorks.entity.Classes;
+import com.thoughtWorks.entity.CommunicationContent;
 import com.thoughtWorks.entity.Student;
 import com.thoughtWorks.service.PersonService;
 import com.thoughtWorks.util.Constant;
+import com.thoughtWorks.web.UpdateStudentUtil;
 import org.apache.shiro.SecurityUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -20,8 +23,11 @@ import java.util.Map;
 @Component
 @RequestMapping("/studentClass")
 public class StudentClassController {
-    @Resource
+    @Autowired
     private PersonService personService;
+
+    @Autowired
+    private UpdateStudentUtil updateStudentUtil;
 
     @RequestMapping()
     public String index() {
@@ -79,6 +85,12 @@ public class StudentClassController {
             ActiveUser teacher = (ActiveUser) SecurityUtils.getSubject().getPrincipal();
             personService.distributedClass(classesId, studentIds);
             personService.updateStudentTeacherId(teacher.getUserName(),studentIds);
+            String[] studentList = studentIds.split(",");
+            for (int i = 0; i< studentList.length;i++) {
+                CommunicationContent content = new CommunicationContent(studentList[i],personService.queryStudentNameByStudentNo(studentList[i]),"班级信息");
+                updateStudentUtil.updateStudentToCommunication(content);
+            }
+
             return Result.success(null, Constant.ADD_SUCCESS);
         } catch (Exception e) {
             e.printStackTrace();
@@ -92,6 +104,11 @@ public class StudentClassController {
     public Result distributedDirection(String directionId, String studentIds) {
         try {
             personService.distributedDirection(directionId, studentIds);
+            String[] studentList = studentIds.split(",");
+            for (int i = 0; i< studentList.length;i++) {
+                CommunicationContent content = new CommunicationContent(studentList[i],personService.queryStudentNameByStudentNo(studentList[i]),"方向信息");
+                updateStudentUtil.updateStudentToCommunication(content);
+            }
 
             return Result.success(null, Constant.UPDATE_SUCCESS);
         } catch (Exception e) {

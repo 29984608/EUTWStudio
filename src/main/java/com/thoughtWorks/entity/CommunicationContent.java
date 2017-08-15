@@ -11,6 +11,15 @@ public class CommunicationContent {
     private String content;
     private Date time;
 
+    public CommunicationContent() {
+    }
+
+    public CommunicationContent(String studentId, String talkName, String content) {
+        this.studentId = studentId;
+        this.talkName = talkName;
+        this.content = content;
+    }
+
     public long getId() {
         return id;
     }
@@ -65,5 +74,18 @@ public class CommunicationContent {
 
     public void setTime(Date time) {
         this.time = time;
+    }
+
+    @Override
+    public String toString() {
+        return "CommunicationContent{" +
+                "id=" + id +
+                ", teacherId='" + teacherId + '\'' +
+                ", studentId='" + studentId + '\'' +
+                ", talkName='" + talkName + '\'' +
+                ", direction='" + direction + '\'' +
+                ", content='" + content + '\'' +
+                ", time=" + time +
+                '}';
     }
 }

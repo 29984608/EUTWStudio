@@ -895,6 +895,7 @@
                 let email = $("#studentEmail").val();
 
                 var no = $("#updateStudentNo").val()
+                var name = $("#updateStudentName").val();
                 var is_marry = $('#isMarry input[name="isMarry"]:checked ').val()
                 var height = $("#updateStudentHeight").val()
                 var born = $("#updateStudentBirthday").val();
@@ -1113,6 +1114,7 @@
                             health_status: health_status,
                             student_type: student_type,
                             born: born,
+                            name:name,
                             blood: blood,
                             stay_type: stay_type,
                             department_id: department_id,

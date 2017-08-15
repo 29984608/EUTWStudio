@@ -99,7 +99,22 @@ public class ResultServiceImpl implements ResultService {
         pageUtil.setTotalSize(resultDao.querySearchStudentsTotalCountLikes(data));
         List<Map<String, String>> searchStudents = resultDao.querySearchStudentsLikes(data);
 
-        return toValueObjectMap(searchStudents);
+        return toSearchValueObjectMap(searchStudents);
+    }
+
+    private List<Map<String,Object>> toSearchValueObjectMap(List<Map<String, String>> searchStudents) {
+        Map<String, Object> temp;
+        List<Map<String, Object>> scoreObject = new ArrayList<>();
+        for (Map<String, String> data : searchStudents) {
+            data.put("score", String.format("%.2f", Double.valueOf(data.get("score"))));
+            temp = new HashMap<>();
+            Set<String> keys = data.keySet();
+            for (String key : keys)
+                temp.put(key, data.get(key));
+            scoreObject.add(temp);
+        }
+
+        return scoreObject;
     }
 
     @Override
@@ -115,16 +130,16 @@ public class ResultServiceImpl implements ResultService {
 
         List<Map<String, String>> students = resultDao.queryStudentLimit(data);
         if (students.size() == 0) return null;
+        List<Map<String, String>> studentsScores = resultDao.queryRankList(data);
+//        List<Map<String, String>> studentsScores = resultDao.queryStudentScores(students);
+//        if (studentsScores.size() != 0) studentsTotalScores = getStudentsTotalScore(studentsScores, students);
+//        studentsAverageScores = getStudentsAverageScore(studentsTotalScores);
+//        sortStudentScoreDesc(studentsAverageScores);
+//        int endIndex = (Integer) data.get("pageSize") + (Integer) data.get("start");
+//        if (endIndex > studentsAverageScores.size()) endIndex = studentsAverageScores.size();
+//        studentsAverageScores = studentsAverageScores.subList((Integer) data.get("start"), endIndex);
 
-        List<Map<String, String>> studentsScores = resultDao.queryStudentScores(students);
-        if (studentsScores.size() != 0) studentsTotalScores = getStudentsTotalScore(studentsScores, students);
-        studentsAverageScores = getStudentsAverageScore(studentsTotalScores);
-        sortStudentScoreDesc(studentsAverageScores);
-        int endIndex = (Integer) data.get("pageSize") + (Integer) data.get("start");
-        if (endIndex > studentsAverageScores.size()) endIndex = studentsAverageScores.size();
-        studentsAverageScores = studentsAverageScores.subList((Integer) data.get("start"), endIndex);
-
-        return toValueObjectMap(studentsAverageScores);
+        return toValueObjectMap(studentsScores);
     }
 
     private List<Map<String, Object>> toValueObjectMap(List<Map<String, String>> studentsScores) {
@@ -161,7 +176,7 @@ public class ResultServiceImpl implements ResultService {
                 student.put("score", "0");
             } else {
                 double averageScore = Double.valueOf(student.get("score")) / Integer.parseInt(student.get("courseNumber"));
-                student.put("score", String.valueOf(averageScore));
+                student.put("score", String.format("%.2f", averageScore));
             }
         }
 
@@ -196,8 +211,9 @@ public class ResultServiceImpl implements ResultService {
 
     private double getCourseScore(Map<String, String> studentsScore) {
         try {
-            return Double.valueOf(studentsScore.get("score"));
+            return Double.valueOf(String.format("%.2f",studentsScore.get("score")));
         } catch (Exception e) {//当分数为 A、B..  时 抛出异常直接返回0
+            e.printStackTrace();
             return 0;
         }
     }

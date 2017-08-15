@@ -178,12 +178,9 @@ public class PersonServiceImpl implements PersonService {
         Map<String, Object> data = new HashMap<>();
         searchDto.setStudentNo("%" + searchDto.getStudentNo() + "%");
         searchDto.setName("%" + searchDto.getName() + "%");
-        searchDto.setRoomId("%" + searchDto.getRoomId() + "%");
         data.put("start", (page.getCurrentIndex() - 1) * page.getPageSize());
         data.put("pageSize", page.getPageSize());
         data.put("searchDto", searchDto);
-        System.out.println("//////////////////////////"+searchDto.getRoomId());
-        System.out.println("//////////////////////////"+personDao.queryStudentsByClassesIdsAndLikeName(data));
         page.setTotalSize(personDao.queryStudentsCount(searchDto));
         return personDao.queryStudentsByClassesIdsAndLikeName(data);
     }
@@ -394,5 +391,10 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public List<Map<String, Object>> showAutoClassByDepartment(String departmentId) throws Exception {
         return personDao.showAutoClassByDepartment(departmentId);
+    }
+
+    @Override
+    public String queryStudentNameByStudentNo(String studentNo) throws Exception {
+        return personDao.queryStudentNameByStudentNo(studentNo);
     }
 }

@@ -4,11 +4,29 @@
     <tr>
         <td>{{ item.no}}</td>
         <td>{{ item.name}}</td>
-        <td>{{ item.gender}}</td>
-        <td>{{ item.department}}</td>
+        <td>{{ item.gender === "M" ? "男" : "女"}}</td>
+        <td>
+            {{# if(item.department === undefined){ }}
+            未分配
+            {{# }else{ }}
+            {{ item.department}}
+            {{#}}}
+        </td>
         <td>{{ item.level}}</td>
-        <td>{{ item.direction}}</td>
-        <td>{{ item.profession}}</td>
+        <td>
+            {{# if(item.direction === undefined){ }}
+            未分配
+            {{# }else{ }}
+            {{ item.direction}}
+            {{#}}}
+        </td>
+        <td>
+            {{# if(item.profession === undefined){ }}
+            未分配
+            {{# }else{ }}
+            {{ item.profession}}
+            {{#}}}
+        </td>
         <td>
             {{# if(item.classes === undefined){ }}
             未分配
@@ -16,9 +34,27 @@
             {{ item.classes}}
             {{#}}}
         </td>
-        <td>{{ item.area}}</td>
-        <td>{{ item.floor}}</td>
-        <td>{{ item.room}}</td>
+        <td>
+            {{# if(item.area === undefined){ }}
+            未分配
+            {{# }else{ }}
+            {{ item.area}}
+            {{#}}}
+        </td>
+        <td>
+            {{# if(item.floor === undefined){ }}
+            未分配
+            {{# }else{ }}
+            {{ item.floor}}
+            {{#}}}
+        </td>
+        <td>
+            {{# if(item.room === undefined){ }}
+            未分配
+            {{# }else{ }}
+            {{ item.room}}
+            {{#}}}
+        </td>
         <td>
             <button class="layui-btn layui-btn-mini "
                     onclick="communication.add('{{item.no}}')">

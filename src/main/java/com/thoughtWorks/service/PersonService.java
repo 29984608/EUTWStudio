@@ -102,4 +102,7 @@ public interface PersonService {
     List<Map<String, Object>> queryDepartmentList() throws Exception;
 
     List<Map<String, Object>> showAutoClassByDepartment(String departmentId) throws Exception;
+
+    String queryStudentNameByStudentNo(String studentNo) throws Exception;
+
 }

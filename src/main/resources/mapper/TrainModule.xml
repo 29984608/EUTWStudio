@@ -67,6 +67,7 @@
         FROM t_train_module module
             LEFT JOIN (SELECT *
                        FROM t_course) course ON module.id = course.module_id
+        ORDER BY  moduleName
     </select>
     <select id="queryTrainModuleTotalCount" resultType="long">
         SELECT count(1)

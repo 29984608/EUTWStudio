@@ -237,7 +237,7 @@
                     } else test_time = "";
                     result_style = results[i].is_pass == 1 ? "" : `style="color:red"`;
 
-                    nature = results[i].nature == 0 ? "选修" : "必修";
+                    nature = results[i].nature == 1 ? "选修" : "必修";
                     course_name = results[i].courseName;
                     credit = results[i].credit;
                     score = results[i].score;

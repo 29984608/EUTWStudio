@@ -37,4 +37,14 @@ public class Direction {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return "Direction{" +
+                "id=" + id +
+                ", code='" + code + '\'' +
+                ", name='" + name + '\'' +
+                ", departmentId='" + departmentId + '\'' +
+                '}';
+    }
 }
