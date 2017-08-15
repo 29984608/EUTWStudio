@@ -21,7 +21,7 @@
             <form id="preview-form" class="layui-form layui-form-pane" method="post">
                 <fieldset class="layui-elem-field">
                     <legend id="title-preview" style="font-size: 24px;font-weight: 700;padding: 10px 10%">
-                        西安欧亚学院高职学院2017级物业方向人才培养方案
+                        西安欧亚学院高职学院培养方案
                     </legend>
                     <div class="layui-field-box">
                         <div id="modelCourses-preview" style="margin: 3% 0 0 20%">
