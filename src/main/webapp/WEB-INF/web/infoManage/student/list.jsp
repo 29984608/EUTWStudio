@@ -348,7 +348,7 @@
                     $("#family_phone").text("").append(data.student[0].family_phone);
                     $("#family").html("")
                     for (var i = 0; i < data.family.length; i++) {
-                        $("#family").append("<tr> <th>" + data.family[i].relationship + "：</th>" +
+                        $("#family").append("<tr> <th>" + data.family[i].relationship + "："+data.family[i].name+"</th>" +
                             "<th  >政治面貌：" + data.family[i].political_status + "</th>" +
                             "<th colspan='2'>工作单位：" + data.family[i].work_place + "</th>" +
                             "<th >职务：" + data.family[i].staff + "</th>" +
@@ -364,6 +364,7 @@
                     }
                     $("#student_type").text("").append(data.student[0].student_type);
                     $("#sat_score").text("").append(data.student[0].sat_score);
+                    $("#originProfession").text("").append(data.student[0].originProfession);
                     $("#profession").text("").append(data.student[0].profession);
                     $("#direction").text("").append(data.student[0].direction);
                     $("#classes").text("").append(data.student[0].classes);
