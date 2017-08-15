@@ -322,7 +322,6 @@
             },
             preview: function (studentNo) {
                 $.post(baseUrl + "/student/update", {studentNo: studentNo}, function (data) {
-                    console.log(data);
                     $("#phone").text("").append(data.student[0].student_contact_method);
                     $("#qq").text("").append(data.student[0].qq);
                     $("#email").text("").append(data.student[0].email);
