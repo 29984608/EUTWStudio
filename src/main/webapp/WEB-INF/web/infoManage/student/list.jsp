@@ -322,6 +322,7 @@
             },
             preview: function (studentNo) {
                 $.post(baseUrl + "/student/update", {studentNo: studentNo}, function (data) {
+                    console.log(data);
                     $("#phone").text("").append(data.student[0].student_contact_method);
                     $("#qq").text("").append(data.student[0].qq);
                     $("#email").text("").append(data.student[0].email);
@@ -348,7 +349,7 @@
                     $("#family_phone").text("").append(data.student[0].family_phone);
                     $("#family").html("")
                     for (var i = 0; i < data.family.length; i++) {
-                        $("#family").append("<tr> <th>" + data.family[i].relationship + "：</th>" +
+                        $("#family").append("<tr> <th>" + data.family[i].relationship + "："+data.family[i].name+"</th>" +
                             "<th  >政治面貌：" + data.family[i].political_status + "</th>" +
                             "<th colspan='2'>工作单位：" + data.family[i].work_place + "</th>" +
                             "<th >职务：" + data.family[i].staff + "</th>" +
@@ -378,6 +379,7 @@
                     $("#area").text("").append(data.student[0].area);
                     $("#floor").text("").append(data.student[0].floor);
                     $("#room").text("").append(data.student[0].room);
+                    alert(data.student[0].hard_type)
                     $("#hard_type").text("").append(data.student[0].hard_type);
                     $("#own_punishment").text("").append(data.student[0].own_punishment);
 
