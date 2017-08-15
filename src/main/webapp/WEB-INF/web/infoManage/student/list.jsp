@@ -365,6 +365,7 @@
                     }
                     $("#student_type").text("").append(data.student[0].student_type);
                     $("#sat_score").text("").append(data.student[0].sat_score);
+                    $("#originProfession").text("").append(data.student[0].originProfession);
                     $("#profession").text("").append(data.student[0].profession);
                     $("#direction").text("").append(data.student[0].direction);
                     $("#classes").text("").append(data.student[0].classes);
@@ -379,7 +380,6 @@
                     $("#area").text("").append(data.student[0].area);
                     $("#floor").text("").append(data.student[0].floor);
                     $("#room").text("").append(data.student[0].room);
-                    alert(data.student[0].hard_type)
                     $("#hard_type").text("").append(data.student[0].hard_type);
                     $("#own_punishment").text("").append(data.student[0].own_punishment);
 

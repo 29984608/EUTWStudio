@@ -197,7 +197,7 @@
 
                     </tr>
                     <tr>
-                        <th>录取专业：<span id=""></span></th>
+                        <th>录取专业：<span id="originProfession"></span></th>
                         <th>现专业：<span id="profession"></span></th>
                         <th>就业方向：<span id="direction"></span></th>
                         <th>班级：<span id="classes"></span></th>
