@@ -102,11 +102,15 @@ public class ResultServiceImpl implements ResultService {
         return toSearchValueObjectMap(searchStudents);
     }
 
-    private List<Map<String,Object>> toSearchValueObjectMap(List<Map<String, String>> searchStudents) {
+    private List<Map<String, Object>> toSearchValueObjectMap(List<Map<String, String>> searchStudents) {
         Map<String, Object> temp;
         List<Map<String, Object>> scoreObject = new ArrayList<>();
         for (Map<String, String> data : searchStudents) {
-            data.put("score", String.valueOf(getCourseScore(data)));
+            try {
+                data.put("score", String.valueOf(Double.valueOf(data.get("score"))));
+            } catch (Exception e) {
+                data.put("score", "0");
+            }
             temp = new HashMap<>();
             Set<String> keys = data.keySet();
             for (String key : keys)
@@ -155,6 +159,17 @@ public class ResultServiceImpl implements ResultService {
         }
 
         return scoreRankObject;
+    }
+
+    private String getSearchCourseScore(Map<String, String> studentsScore) {
+        try {
+            Double score = Double.valueOf(studentsScore.get("score"));
+            double i = (int) (score * 100) / 100;
+            return i + "";
+        } catch (Exception e) {//当分数为 A、B..  时 抛出异常直接返回0
+            e.printStackTrace();
+            return "0";
+        }
     }
 
     private void sortStudentScoreDesc(List<Map<String, String>> studentsAverageScores) {
@@ -211,9 +226,8 @@ public class ResultServiceImpl implements ResultService {
 
     private double getCourseScore(Map<String, String> studentsScore) {
         try {
-            return Double.valueOf(String.format("%.2f",studentsScore.get("score")));
+            return Double.valueOf(String.format("%.2f", studentsScore.get("score")));
         } catch (Exception e) {//当分数为 A、B..  时 抛出异常直接返回0
-            e.printStackTrace();
             return 0;
         }
     }
