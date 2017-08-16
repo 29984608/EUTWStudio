@@ -13,9 +13,9 @@
             in_school,
             gender,
             born,
-            famous_family,
+            f.para_dispname famous_family,
             is_marry,
-            origin_address,
+            native_place origin_address,
             political_status,
             student_classify,
             actual_address,
@@ -28,6 +28,7 @@
             own_experience,
             own_punishment
         FROM t_student student
+            LEFT JOIN (SELECT para_dispname,para_no FROM stuinfo.t_famous_family) f on f.para_no = student.famous_family
             LEFT JOIN (SELECT
                            id,
                            name
