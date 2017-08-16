@@ -106,7 +106,7 @@ public class ResultServiceImpl implements ResultService {
         Map<String, Object> temp;
         List<Map<String, Object>> scoreObject = new ArrayList<>();
         for (Map<String, String> data : searchStudents) {
-            data.put("score", String.format("%.2f", Double.valueOf(data.get("score"))));
+            data.put("score", String.valueOf(getCourseScore(data)));
             temp = new HashMap<>();
             Set<String> keys = data.keySet();
             for (String key : keys)
