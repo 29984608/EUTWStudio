@@ -3,8 +3,6 @@
 <html lang="en">
 <head>
     <title>高职学生信息管理系统</title>
-    <meta http-equiv="pragma" content="no-cache">
-    <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/common/layui/css/layui.css" media="all">
@@ -139,19 +137,13 @@
                 <label class="layui-form-label">主题选择</label>
                 <div class="layui-input-block">
                     <select lay-filter="larryTheme" lay-verify="" id="themeName">
-                        <option value="larry">LarryCMS默认主题</option>
-                        <option value="A">LarryCMS深蓝主题</option>
-                        <option value="B">LarryCMS墨绿主题</option>
-                        <option value="larry_">更多主题以后添加</option>
+                        <option value="larry">默认主题</option>
+                        <option value="A">深蓝主题</option>
+                        <option value="B">墨绿主题</option>
                     </select>
                 </div>
             </div>
-            <div class="layui-form-item fullscreen">
-                <label class="layui-form-label">是否全屏</label>
-                <div class="layui-input-block">
-                    <input type="checkbox" lay-filter="fullscreen" lay-skin="switch" value="1">
-                </div>
-            </div>
+
             <div class="layui-form-item submit-form">
                 <button class="layui-btn larry-button" lay-submit="" lay-filter="submitlocal">立即设置主题</button>
                 <button type="reset" class="layui-btn layui-btn-primary">重置当前设置</button>

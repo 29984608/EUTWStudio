@@ -1,9 +1,10 @@
 package com.thoughtWorks.util;
 
 public class PageUtil {
-    private Long totalSize;
+    private Long totalSize;//总页数
     private Integer currentIndex;
     private Integer pageSize; //每页数量
+    private Long totalCount;//总记录数
     private Object data;
 
     public Long getTotalSize() {
@@ -11,11 +12,20 @@ public class PageUtil {
     }
 
     public void setTotalSize(Long totalSize) {
+        this.totalCount = totalSize;
         if (totalSize % pageSize != 0) {
             this.totalSize = totalSize / pageSize + 1;
         } else {
             this.totalSize = totalSize / pageSize;
         }
+    }
+
+    public Long getTotalCount() {
+        return totalCount;
+    }
+
+    public void setTotalCount(Long totalCount) {
+        this.totalCount = totalCount;
     }
 
     public Integer getCurrentIndex() {
