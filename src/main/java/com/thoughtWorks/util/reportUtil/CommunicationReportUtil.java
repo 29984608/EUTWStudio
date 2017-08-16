@@ -95,7 +95,7 @@ public class CommunicationReportUtil extends ExcelReportUtil {
     private void fillNumCount(int[] littleCount, HSSFRow row) {
         HSSFCell cell;
         cell = row.createCell(2);
-        cell.setCellValue(new HSSFRichTextString(String.valueOf(littleCount[3])));
+        cell.setCellValue(new HSSFRichTextString(""));
         cell = row.createCell(3);
         cell.setCellValue(new HSSFRichTextString(String.valueOf(littleCount[0])));
         cell = row.createCell(4);
