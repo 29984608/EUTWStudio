@@ -351,9 +351,13 @@
                                         </span></th>
                                         <th colspan="3">民族：<span>
                                             <div class="layui-input-inline" style="width: 60%">
-                                                <input type="text" name="text"
-                                                       placeholder="请输入内容" autocomplete="off" class="layui-input"
-                                                       id="updateStudentNationalities" readonly style="border: none">
+                                                <select>
+                                                    <option>汉族</option>
+                                                    <option>汉族</option>
+                                                </select>
+                                                <%--<input type="text" name="text"--%>
+                                                       <%--placeholder="请输入内容" autocomplete="off" class="layui-input"--%>
+                                                       <%--id="updateStudentNationalities" readonly style="border: none">--%>
                                              </div>
                                         </span></th>
                                     </tr>
@@ -549,9 +553,9 @@
                                     </tr>
 
                                     <tr>
-                                        <th colspan="6"><span style="font-weight: bold"></span>
+                                        <th colspan="6"><span style="font-weight: bold">家庭实际住址: </span>
                                             <div class="layui-input-inline" style="width: 100%">
-                                                <label class="layui-form-label" style="width: auto">家庭实际住址: </label>
+                                                <label class="layui-form-label" style="width: auto"></label>
                                                 <div class="layui-input-inline" style="width: 60%">
                                                     <input type="text" name="idcard_address" placeholder="请输入家庭实际住址"
                                                            autocomplete="off" class="layui-input" id="detailedAddresses"
@@ -599,9 +603,9 @@
                                     </tr>
 
                                     <tr>
-                                        <th colspan="6"><span style="font-weight: bold"></span>
+                                        <th colspan="6"><span style="font-weight: bold">生源所在地名称： </span>
                                             <div class="layui-input-inline" style="width: 100%">
-                                                <label class="layui-form-label" style="width: auto">生源所在地名称： </label>
+                                                <label class="layui-form-label" style="width: auto"></label>
                                                 <div class="layui-input-inline" style="width: 60%">
                                                     <input type="text" name="idcard_address" placeholder="请输入生源所在地名称"
                                                            autocomplete="off" class="layui-input"
@@ -701,9 +705,9 @@
                                     </tr>
 
                                     <tr>
-                                        <th colspan="6"><span style="font-weight: bold"></span>
+                                        <th colspan="6"><span style="font-weight: bold">入学前档案所在单位： </span>
                                             <div class="layui-input-inline" style="width: 100%">
-                                                <label class="layui-form-label" style="width: auto">入学前档案所在单位： </label>
+                                                <label class="layui-form-label" style="width: auto"></label>
                                                 <div class="layui-input-inline" style="width: 60%">
                                                     <input type="text" name="idcard_address" placeholder="请输入入学前档案所在单位"
                                                            autocomplete="off" class="layui-input"
@@ -779,9 +783,9 @@
                                     </tr>
 
                                     <tr>
-                                        <th colspan="6"><span style="font-weight: bold"></span>
+                                        <th colspan="6"><span style="font-weight: bold">入学前户口所在派出所： </span>
                                             <div class="layui-input-inline" style="width: 100%">
-                                                <label class="layui-form-label" style="width: auto">入学前户口所在派出所： </label>
+                                                <label class="layui-form-label" style="width: auto"></label>
                                                 <div class="layui-input-inline" style="width: 60%">
                                                     <input type="text" name="idcard_address" placeholder="请输入入学前户口所在派出所"
                                                            autocomplete="off" class="layui-input"
@@ -1064,10 +1068,10 @@
                                         </span></th>
                                     </tr>
                                     <tr id="dorms">
-                                        <th colspan="6"><span>
+                                        <th colspan="6"><span><span style="font-weight: bold">宿舍信息: </span>
 
                                                 <div class="layui-input-inline" style="width: 100%">
-                                                <label class="layui-form-label" style="width: auto">宿舍信息: </label>
+                                                <label class="layui-form-label" style="width: auto"></label>
                                                 <div class="layui-input-inline" style="width: 60%">
                                                     <input type="text" name="idcard_address" placeholder="请输入宿舍信息"
                                                            autocomplete="off" class="layui-input" id="updateDorms"

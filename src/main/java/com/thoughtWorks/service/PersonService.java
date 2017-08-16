@@ -105,4 +105,5 @@ public interface PersonService {
 
     String queryStudentNameByStudentNo(String studentNo) throws Exception;
 
+    List<Map<String, Object>> queryFamousFamilyList() throws Exception;
 }

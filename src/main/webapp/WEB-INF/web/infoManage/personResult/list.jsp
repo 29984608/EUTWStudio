@@ -76,8 +76,7 @@
                             </table>
                         </div>
                         <div style="float: left;width: 50%">
-                            <table class="layui-table" lay-even="" lay-skin="nob"
-                            >
+                            <table class="layui-table" lay-even="" lay-skin="nob">
                                 <colgroup>
                                     <col width="20%">
                                     <col width="15%">

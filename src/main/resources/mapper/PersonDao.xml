@@ -752,6 +752,9 @@ WHERE student.no =#{studentNo}
             <if test="family_zip_code != null and family_zip_code !=''">
                 t_student.family_zip_code = #{family_zip_code},
             </if>
+            <if test="famous_family != null and famous_family !=''">
+                t_student.famous_family = #{famous_family},
+            </if>
             <if test="student_contact_method != null and student_contact_method !=''">
                 t_student.student_contact_method = #{student_contact_method},
             </if>
@@ -952,6 +955,10 @@ WHERE student.no =#{studentNo}
     <select id="queryStudentNameByStudentNo" resultType="string" parameterType="string">
         select student.name from t_student student
         WHERE no = #{studentNo}
+    </select>
+
+    <select id="queryFamousFamilyList" resultType="map">
+        select * from t_famous_family
     </select>
 
 </mapper>

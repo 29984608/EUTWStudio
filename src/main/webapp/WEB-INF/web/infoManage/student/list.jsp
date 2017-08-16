@@ -348,7 +348,7 @@
                     $("#family_phone").text("").append(data.student[0].family_phone);
                     $("#family").html("")
                     for (var i = 0; i < data.family.length; i++) {
-                        $("#family").append("<tr> <th>" + data.family[i].relationship + "："+data.family[i].name+"</th>" +
+                        $("#family").append("<tr> <th>" + data.family[i].relationship + "：" + data.family[i].name + "</th>" +
                             "<th  >政治面貌：" + data.family[i].political_status + "</th>" +
                             "<th colspan='2'>工作单位：" + data.family[i].work_place + "</th>" +
                             "<th >职务：" + data.family[i].staff + "</th>" +
@@ -411,6 +411,7 @@
                             let classesList = data.classesList;
                             let experienceList = data.experienceList;
                             let teacherList = data.teacherList;
+                            let famousFamilyList = data.famousFamilyList;
 
                             $("#studentPhone").val(studentList.student_contact_method);
                             $("#studentQQ").val(studentList.qq);
@@ -420,10 +421,9 @@
                             $("#updateStudentNo").val(studentList.no)
                             $("#updateStudentName").val(studentList.name);
                             $("input:radio[value='" + studentList.gender + "'][name='sexOfUpdate']").prop('checked', 'true');
-
-//                            $("#updateStudentSex1").val(studentList.gender);
                             if (famousFamily != null) {
-                                $("#updateStudentNationalities").val(famousFamily.para_dispname);
+                                $("#updateStudentNationalities").html("").append(loadOptionsHtmlOfFamousFamilyList(famousFamilyList, studentList.famous_family));
+
                             }
                             $("#updateStudentIdCard").val(studentList.idcard);
                             $("#updateStudentNativePlace").val(studentList.native_place);
@@ -483,17 +483,17 @@
                                 let isOther = student.isOther(politicalStatus);
                                 let isShow = isOther ? "display" : "none";
                                 $("#family_member_information").append(
-                                    `<tr id="family_information1" class="family_information1">
-                                        <th colspan="2" ><span class = "family_relationship"></span><span>
+                                    `<tr id="family_information1" class="family_information1" style="float: left;">
+                                        <th><span class = "family_relationship"></span><span>
                                <div class="layui-input-inline" style="width: 60%">
                                    <input type="text" name="text"
                                           placeholder="请输入内容" autocomplete="off" class="layui-input updateStudentParentsName"
                                           id="updateStudentParentsName">
                                 </div>
                            </span></th>
-                                        <th colspan="4"><span>
+                                        <th width="695px"><span>
                             <div class="political">
-                               政治面貌： <div class="layui-input-inline" style="width: 30%">
+                               政治面貌： <div class="layui-input-inline" >
                                  <select name="politicalOutlook1" lay-filter="politicalOutlookParent"  class="updateStudentParent_political_status">
                                    <option value="">请选择</option>
                                    <option value="1" ` + (politicalStatus === "中共党员" ? "selected" : "") + `>中共党员</option>
@@ -520,22 +520,22 @@
                                `)
 
                                 $("#family_member_information").append(`
-                           <tr id="family_information2">
-                                        <th colspan="2">工作单位：<span>
+                           <tr id="family_information2" style="float: left;margin-bottom: 20px">
+                                        <th width="324px">工作单位：<span>
                                <div class="layui-input-inline" style="width: 60%">
                                    <input type="text" name="text"
                                           placeholder="请输入内容" autocomplete="off" class="layui-input updateStudentParent_employer"
                                           id="updateStudentParent_employer">
                                 </div>
                            </span></th>
-                                        <th colspan="2">职务：<span>
+                                        <th width="324px">职务：<span>
                                <div class="layui-input-inline" style="width: 60%">
                                    <input type="text" name="text"
                                           placeholder="请输入内容" autocomplete="off" class="layui-input updateStudentParent_duties"
                                           id="updateStudentParent_duties">
                                 </div>
                            </span></th>
-                                        <th colspan="2">联系电话：<span>
+                                        <th width="324px">联系电话：<span>
                                <div class="layui-input-inline" style="width: 60%">
                                    <input type="text" name="text"
                                           placeholder="请输入内容" autocomplete="off" class="layui-input updateStudentParent_phone"
@@ -544,7 +544,7 @@
                            </span></th>
                                     </tr>`)
 
-                                $("#family_member_information").append(` <button  class="layui-btn layui-btn-danger delStudentFamily" onclick="student.delStudentFamily(` + familyList[j].id + `)"　 style="margin-bottom: 10px" value="` + familyList[j].id + `"><i class="layui-icon">&#xe640;</i>删除</button>`)
+                                $("#family_member_information").append(` <button  class="layui-btn layui-btn-danger delStudentFamily" onclick="student.delStudentFamily(` + familyList[j].id + `)"　 style="margin-bottom: 10px;float: left;margin-left: 60px" value="` + familyList[j].id + `"><i class="layui-icon">&#xe640;</i>删除</button>`)
 
                             }
 
@@ -605,7 +605,7 @@
 
                             $("#educational_experience").html("")
                             for (let i = 0; i < experienceList.length; i++) {
-                                $("#educational_experience").append(`<tr>
+                                $("#educational_experience").append(`<tr style="float: left;margin-bottom: 20px">
                                         <th colspan="2"><span>
                                             <div class="layui-input-inline" style="width: 30%;float: left">
                                                 <input name="date" lay-verify="date" placeholder="yyyy-mm-dd"
@@ -634,7 +634,7 @@
                                              </div>
                                         </span></th>
                                     </tr>`)
-                                $("#educational_experience").append(` <button class="layui-btn  layui-btn-danger" onclick="student.delExperience(` + experienceList[i].id + `)" style="margin-bottom: 10px"><i class="layui-icon">&#xe640;</i> 删除</button>`)
+                                $("#educational_experience").append(` <button class="layui-btn  layui-btn-danger" onclick="student.delExperience(` + experienceList[i].id + `)" style="margin-bottom: 10px;float: left;margin-left: 60px"><i class="layui-icon">&#xe640;</i> 删除</button>`)
 
                             }
 
@@ -737,9 +737,9 @@
                     type: 1,
                     title: "学生信息修改",
                     area: ["100%", "100%"],
-                    closeBtn:1,
+                    closeBtn: 1,
                     content: $("#updateStudent"),
-                    cancel: function(){
+                    cancel: function () {
                         location.reload();
                     }
                 })
@@ -747,7 +747,7 @@
             },
 
             delStudentFamily: function (familyId) {
-                layer.confirm('确定删除？', {icon: 3, title: '提示'}, function (index) {
+                layer.confirm('该操作将直接删除，无需更新！是否删除？', {icon: 3, title: '提示'}, function (index) {
                     layer.close(index);
                     $.post(baseUrl + "/student/delStudentFamily",
                         {familyId: familyId},
@@ -763,7 +763,7 @@
                     type: 1,
                     title: "添加学生家庭信息",
                     area: ["60%", "60%"],
-                    content: $("#addStudentFamily")
+                    content: $("#addStudentFamily"),
                 })
             },
             addFamilyByUpdate: function () {
@@ -778,8 +778,7 @@
                 } else {
                     var family_political_status = $("#family_political_status").find("option:selected").text();
                 }
-                layer.confirm('确定修改？', {icon: 3, title: '提示'}, function (index) {
-                    layer.close(index);
+                layer.confirm('该操作将直接修改，无需更新！是否修改？', {icon: 3, title: '提示'}, function (index) {
                     $.post(baseUrl + "/student/addFamilyByUpdate",
                         {
                             no: studentNo,
@@ -815,6 +814,8 @@
                             }
                         })
                 })
+                alert(23)
+                student.studentUpdate();
             },
             addExperienceByUpdate: function () {
                 let startDateExperience = $("#startDateExperience").val();
@@ -839,6 +840,8 @@
                         }
                     )
                 })
+
+                Closepage();
             },
 
             isOther: function (political) {
@@ -855,7 +858,7 @@
                     },
                     function (data) {
                         if (data.result) {
-                            if (data.data.dorms != null){
+                            if (data.data.dorms != null) {
                                 let dormsHtml = "";
                                 dormsHtml += data.data.dorms.areaName + " # ";
                                 dormsHtml += data.data.dorms.floorName + " # ";
@@ -901,12 +904,13 @@
                 var no = $("#updateStudentNo").val()
                 var name = $("#updateStudentName").val();
                 var is_marry = $('#isMarry input[name="isMarry"]:checked ').val()
-                var height = $("#updateStudentHeight").val()
+                var height = $("#updateStudentHeight").val();
                 var born = $("#updateStudentBirthday").val();
-                var weight = $("#updateStudentWight").val()
-                var health_status = $('#health input[name="health"]:checked ').val()
-                var student_type = $('#updateStudentType input[name="student_type"]:checked ').val()
-                var stay_type = $('#update_accommodation_type input[name="accommodation_type"]:checked ').val()
+                var weight = $("#updateStudentWight").val();
+                var famous_family = $("#updateStudentNationalities").val();
+                var health_status = $('#health input[name="health"]:checked ').val();
+                var student_type = $('#updateStudentType input[name="student_type"]:checked').val();
+                var stay_type = $('#update_accommodation_type input[name="accommodation_type"]:checked ').val();
                 var blood = $("#updateStudentBloodType").find("option:selected").text()
                 if ($("#updateStudentPoliticalOutlook").find("option:selected").text() == "其他党派") {
                     var political_status = $("#otherUpdateStudentPoliticalOutlook").val()
@@ -1118,9 +1122,10 @@
                             health_status: health_status,
                             student_type: student_type,
                             born: born,
-                            name:name,
+                            name: name,
                             blood: blood,
                             stay_type: stay_type,
+                            famous_family: famous_family,
                             department_id: department_id,
                             native_place: native_place,
                             political_status: political_status,
@@ -1230,6 +1235,13 @@
             });
         }
 
+        function Closepage() {
+            if (window.opener && !window.opener.closed) {
+                window.parent.opener.location.reload();
+            }
+            window.close();
+            return false;
+        }
 
         function loadAllDirections() {
             $.post(baseUrl + "/communication/queryDirectionByDepartment", function (data) {
@@ -1254,6 +1266,19 @@
                     _html += `<option  selected value="` + data[i].id + `">` + data[i].name + `</option>`;
                 } else {
                     _html += `<option value="` + data[i].id + `">` + data[i].name + `</option>`;
+                }
+            }
+
+            return _html;
+        }
+
+        function loadOptionsHtmlOfFamousFamilyList(data, selectId) {
+            let _html = "";
+            for (let i = 0; i < data.length; ++i) {
+                if (selectId == data[i].para_no) {
+                    _html += `<option  selected value="` + data[i].para_no + `">` + data[i].para_dispname + `</option>`;
+                } else {
+                    _html += `<option value="` + data[i].para_no + `">` + data[i].para_dispname + `</option>`;
                 }
             }
 

@@ -397,4 +397,9 @@ public class PersonServiceImpl implements PersonService {
     public String queryStudentNameByStudentNo(String studentNo) throws Exception {
         return personDao.queryStudentNameByStudentNo(studentNo);
     }
+
+    @Override
+    public List<Map<String, Object>> queryFamousFamilyList() throws Exception {
+        return personDao.queryFamousFamilyList();
+    }
 }
