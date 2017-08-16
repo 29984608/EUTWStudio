@@ -22,7 +22,7 @@
 
         <div class="layui-main posb">
             <!-- 左侧导航收缩开关 -->
-            <div class="side-menu-switch posb" id="toggle"><span class="switch" ara-hidden="true"></span></div>
+            <%--<div class="side-menu-switch posb" id="toggle"><span class="switch" ara-hidden="true"></span></div>--%>
             <!-- 顶级菜单 -->
             <div class="larry-top-menu posb">
                 <ul class="layui-nav clearfix" id="menu">
