@@ -105,7 +105,7 @@
     let resultReport;
     let totalSize = 10;
     let currentIndex = 1;
-    let pageSize = 10;
+    let pageSize = 25;
     let department;
     layui.use(['jquery', 'layer', 'element', 'laypage', 'form', 'laytpl'], function () {
         window.jQuery = window.$ = layui.jquery;
