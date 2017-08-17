@@ -480,14 +480,14 @@
                 $("#identityCard-add").focus();
                 layer.msg("你的身份证输入有误,请重新输入");
             }
-        })
+        });
         $('#no-add').blur(function () {
             var reg = new RegExp("^[0-9]*$");
-            if ((!reg.test($("#no-add").val())) || $("#no-add").val() ==='') {
+            if ((!reg.test($("#no-add").val())) || $("#no-add").val() === '') {
                 $("#no-add").focus();
                 layer.msg("您的工号输入有误");
             }
-        })
+        });
     })
 
 </script>
