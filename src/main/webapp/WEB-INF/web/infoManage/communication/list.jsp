@@ -217,7 +217,7 @@
                         $("#student_radio").prop({checked: true});
                         $(".no").val(student.no);
                         $("#studentName").val(student.name);
-                        $("#talkName").text(student.name);
+                        $(".textarea").val('');
                         form.render();
                         layer.open({
                             type: 1,
