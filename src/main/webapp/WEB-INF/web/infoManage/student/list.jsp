@@ -482,6 +482,7 @@
                             }
 
                             $("input:radio[value='" + studentList.student_classify + "']").prop('checked', 'true');
+                            $("input:radio[value='" + studentList.is_out + "']").prop('checked', 'true');
                             $("#Identity_card_address").val(studentList.idcard_address);
 
                             $("#detailedAddresses").val(studentList.actual_address)
@@ -714,6 +715,13 @@
                     $(updateStudentParent_duties[i]).val(familyList[i].staff);
                     $(updateStudentParent_phone[i]).val(familyList[i].phone);
 
+
+                }
+                for (var i = 0; i === familyList.length + 1; i++) {
+                    $(updateStudentParent_phone[i]).formatInput({
+                        formatArr: [3, 4, 4],
+                        delimiter: '-'
+                    });
                 }
             },
             educationalExperience: function (experienceList) {
@@ -958,6 +966,7 @@
                 var health_status = $('#health input[name="health"]:checked ').val();
                 var student_type = $('#updateStudentType input[name="student_type"]:checked').val();
                 var stay_type = $('#update_accommodation_type input[name="accommodation_type"]:checked ').val();
+                var is_out = $('#update_isOut input[name="isOut"]:checked ').val();
                 var blood = $("#updateStudentBloodType").find("option:selected").text()
                 if ($("#updateStudentPoliticalOutlook").find("option:selected").text() == "其他党派") {
                     var political_status = $("#otherUpdateStudentPoliticalOutlook").val()
@@ -1189,6 +1198,7 @@
                             pre_school_education: pre_school_education,
                             student_classify: student_classify,
                             idcard_address: idcard_address,
+                            is_out:is_out,
                             actual_address: actual_address,
                             origin_address: origin_address,
                             family_zip_code: family_zip_code,
@@ -1384,6 +1394,8 @@
             })
         }
 
+
+
         $(function () {
             student.list();
             student.showDormAndHideDorm();
@@ -1404,11 +1416,7 @@
                 formatArr: [3, 4, 4],
                 delimiter: '-'
             });
-            let updateStudentParent_phone = $(".updateStudentParent_phone");
-            $(updateStudentParent_phone[1]).formatInput({
-                formatArr: [3, 4, 4],
-                delimiter: '-'
-            });
+
 
             form.on('select(department)', function (data) {
 
