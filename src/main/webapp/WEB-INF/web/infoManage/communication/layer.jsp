@@ -266,9 +266,9 @@
                 </div>
 
                 <dd class="timelineEvent" id="` + index + `EX" style="display:none;">
-                     <textarea style="min-height: 50px;height: 70px;font-size: 12px;"
+                     <textarea style="min-height: 50px;height: 70px;font-size: 12px;width: 500px"
                                class="layui-textarea update-contents">` + contents[index] + `</textarea>
-                    <textarea style="min-height: 50px;height: 70px;font-size: 12px;"
+                    <textarea style="min-height: 50px;height: 70px;font-size: 12px;width: 500px"
                               class="layui-textarea update-contents">` + contents[index + 1] + `</textarea>
                     <br class="clear">
                 </dd>
