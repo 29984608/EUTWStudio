@@ -49,9 +49,15 @@ function getSearchLevels() {
     let currentMonth = new Date().getMonth() + 1;
     let currentYear = new Date().getFullYear();
     if (currentMonth > 8) levels.push(currentYear);
-    levels.push(currentYear-1);
-    levels.push(currentYear-2);
+    levels.push(currentYear - 1);
+    levels.push(currentYear - 2);
     if (currentMonth <= 8) levels.push(currentYear - 3);
 
     return levels;
+}
+
+function showTotalCount(totalCount) {
+    $("#totalCount").remove();
+    $("#demo1").css({display: "inline-block"});
+    $("#demo1").after(`<a class=" layui-word-aux" id="totalCount">总记录数${totalCount}</a>`);
 }

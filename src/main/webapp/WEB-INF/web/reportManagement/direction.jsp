@@ -120,7 +120,7 @@
                     _html += `<tr style="background: #e8e8e8">
                          <th>` + (++index) + `</th>
                           <th style='font-weight: bold'>小计</th>
-                          <th>`+littleCount[3]+`</th>
+                          <th></th>
                           <th>`+littleCount[0]+`</th>
                           <th>`+littleCount[1]+`</th>
                           <th>`+littleCount[2]+`</th>
@@ -132,7 +132,7 @@
                 _html += `<tr>
                          <th>` + (++index) + `</th>
                           <th style='font-weight: bold'>总计</th>
-                          <th>` + totalCount[3] + `</th>
+                          <th></th>
                           <th>` + totalCount[0] + `</th>
                           <th>` + totalCount[1] + `</th>
                           <th>` + totalCount[2] + `</th>

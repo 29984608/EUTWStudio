@@ -11,10 +11,7 @@
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/common/css/global.css" media="all">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/common.css" media="all">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/personal.css" media="all">
-    <%--时间轴--%>
-    <link rel="stylesheet" href="${baseurl}/public/css/timeAsix/css/screen.css" type="text/css" media="screen">
-    <link rel="stylesheet" href="${baseurl}/public/css/timeAsix/css/responsive.css" type="text/css" media="screen">
-    <link rel="stylesheet" href="${baseurl}/public/css/timeAsix/inc/colorbox.css" type="text/css" media="screen">
+
 
 </head>
 <body>
@@ -98,7 +95,7 @@
 </body>
 
 <%@include file="layer.jsp" %>
-
+<script src="${baseurl}/js/searchJs.js" />
 <script type="text/javascript" src="${baseurl}/public/js/pdf/html2canvas.js"></script>
 <script type="text/javascript" src="${baseurl}/public/js/pdf/jspdf.debug.js"></script>
 <script type="text/javascript" src="${baseurl}/public/js/pdf/renderPDF.js"></script>
@@ -123,6 +120,7 @@
                     cont: 'demo1',
                     pages: totalSize, //总页数
                     curr: currentIndex,
+                    last:totalSize,
                     groups: 5,//连续显示分页数
                     skin: '#1E9FFF',
                     jump: function (obj, first) {
@@ -153,6 +151,7 @@
                             currentIndex = data.page.currentIndex;
                             totalSize = data.page.totalSize;
                             resultReport.page();
+                            showTotalCount(data.page.totalCount);
                             laytpl($("#list-tpl").text()).render(data, function (html) {
                                 $("#list").html(html);
                             });

@@ -115,6 +115,7 @@
     {{# }); }}
 
 </script>
+<script src="${baseurl}/js/searchJs.js" />
 <script type="text/javascript" src="${baseurl}/public/common/layui/layui.js"></script>
 <script type="text/javascript">
     let search_;
@@ -134,6 +135,7 @@
                     cont: 'demo1',
                     pages: totalSize, //总页数
                     curr: currentIndex,
+                    last:totalSize,
                     groups: 5,//连续显示分页数
                     skin: '#1E9FFF',
                     jump: function (obj, first) {
@@ -162,8 +164,8 @@
                         if (data.result) {
                             currentIndex = data.page.currentIndex;
                             totalSize = data.page.totalSize;
-                            console.log(data)
                             search_.page();
+                            showTotalCount(data.page.totalCount);
                             laytpl($("#list-tpl").text()).render(data, function (html) {
                                 $("#list").html(html);
                             });

@@ -103,7 +103,7 @@
 </body>
 
 <%@include file="layer.jsp" %>
-
+<script src="${baseurl}/js/searchJs.js" />
 <script type="text/javascript" src="${baseurl}/public/js/pdf/html2canvas.js"></script>
 <script type="text/javascript" src="${baseurl}/public/js/pdf/jspdf.debug.js"></script>
 <script type="text/javascript" src="${baseurl}/public/js/pdf/renderPDF.js"></script>
@@ -128,6 +128,7 @@
                     cont: 'demo1',
                     pages: totalSize, //总页数
                     curr: currentIndex,
+                    last:totalSize,
                     groups: 5,//连续显示分页数
                     skin: '#1E9FFF',
                     jump: function (obj, first) {
@@ -158,6 +159,7 @@
                             currentIndex = data.page.currentIndex;
                             totalSize = data.page.totalSize;
                             resultReport.page();
+                            showTotalCount(data.page.totalCount);
                             laytpl($("#list-tpl").text()).render(data, function (html) {
                                 $("#list").html(html);
                             });
@@ -226,7 +228,7 @@
                 $("#classesName").text(student.classesName == undefined ? "" : student.classesName);
                 $("#no").text(student.no == undefined ? "" : student.no);
                 $("#in_school").text(student.in_school == undefined ? "" : student.in_school);
-                $("#gender").text(student.gender == undefined ? "" : student.gender);
+                $("#gender").text(student.gender == undefined ? "" : (student.gender === "M" ? "女" : "男"));
                 $("#born").text(student.born == undefined ? "" : student.born);
                 $("#famous_family").text(student.famous_family == undefined ? "" : student.famous_family);
                 $("#is_marry").text(student.is_marry == undefined ? "" : student.is_marry);
@@ -273,7 +275,7 @@
                 })
             },
             exportRegisterReport: function () {
-                location.href = baseUrl + "/newStudentRegister/exportRegisterReport?no="+$("#no").text()+"";
+                location.href = baseUrl + "/newStudentRegister/exportRegisterReport?no=" + $("#no").text() + "";
             },
             loadAllLevels: function () {
                 $("#level_search").html();

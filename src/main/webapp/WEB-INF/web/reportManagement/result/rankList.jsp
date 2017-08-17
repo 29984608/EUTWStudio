@@ -121,6 +121,7 @@
                     pages: totalSize,
                     curr: currentIndex,
                     groups: 5,
+                    last:totalSize,
                     skin: '#1E9FFF',
                     jump: function (obj, first) {
                         currentIndex = obj.curr;
@@ -148,7 +149,7 @@
                             currentIndex = data.page.currentIndex;
                             totalSize = data.page.totalSize;
                             rank.page();
-                            console.log(data)
+                            showTotalCount(data.page.totalCount);
                             laytpl($("#list-tpl").text()).render(data, function (html) {
                                 $("#list").html(html);
                             });
