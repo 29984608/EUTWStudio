@@ -435,21 +435,10 @@
                                         </span></th>
                                     </tr>
 
-                                    <tr>
-                                        <th colspan="1">学生类型:<span>
-                                        <div class="layui-inline" pane="" id="updateStudentType">
-                                            <label class="layui-form-label" style="width: auto"></label>
-                                            <div class="layui-inline">
-                                               <input name="student_type" value="高考录取" title="高考录取"
-                                                      type="radio">
-                                               <input name="student_type" value="自助招生" title="自助招生" type="radio">
-                                            </div>
-                                        </div>
-                                    </span></th>
                                         <th colspan="1">住宿类型:<span>
                                         <div class="layui-inline" pane="" id="update_accommodation_type">
                                             <label class="layui-form-label" style="width: auto"></label>
-                                            <div class="layui-inline">
+                                            <div class="layui-inline" onclick="student.showAreaInfo()">
                                                <input name="accommodation_type" value="2" title="校外"
                                                       type="radio">
                                                <input name="accommodation_type" value="1" title="校内" type="radio">
@@ -540,22 +529,56 @@
                                             </div>
                                         </div>
                                     </span></th>
-                                        <th colspan="4"><span>
-                                        <div class="layui-input-inline">
-                                            <label class="layui-form-label" style="width: auto">身份证住址: </label>
-                                            <div class="layui-input-inline">
-                                              <input type="text" name="idcard_address"
-                                                     placeholder="请输入身份证住址"
-                                                     autocomplete="off" class="layui-input" id="Identity_card_address" style="width: 140%">
+
+                                    </tr>
+
+
+                                    <tr>
+                                        <th colspan="6"><span style="font-weight: bold"></span>
+                                            <div class="layui-input-inline" style="width: 100%">
+                                                <label class="layui-form-label" style="width: auto;margin-left: -15px">身份证住址: </label>
+                                                <div class="layui-input-inline" style="width: 60%">
+                                                    <input type="text" name="idcard_address" placeholder="请输入身份证住址"
+                                                           autocomplete="off" class="layui-input" id="Identity_card_address"
+                                                           readonly style="border: none">
+                                                </div>
+                                                <span>
+                                                     <button class="layui-btn"
+                                                             onclick="student.updateCardAddress()">编辑地址信息</button>
+                                                </span>
                                             </div>
-                                          </div>
-                                    </span></th>
+
+                                            <div style="display: none" id="updateCardAddress">
+                                                <br>
+                                                <form class="form-inline">
+                                                    <div id="distpicker0">
+                                                        <div class="form-group">
+                                                            <label class="sr-only" for="province0">Province</label>
+                                                            <select class="form-control" id="province0"
+                                                                    lay-ignore></select>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="sr-only" for="city0">City</label>
+                                                            <select class="form-control" id="city0" lay-ignore></select>
+                                                        </div>
+                                                        <div class="form-group" style="margin-right: -5px">
+                                                            <label class="sr-only" for="district0">District</label>
+                                                            <select class="form-control" id="district0"
+                                                                    lay-ignore></select>
+                                                        </div>
+                                                    </div>
+
+
+                                                </form>
+                                            </div>
+
+                                        </th>
                                     </tr>
 
                                     <tr>
-                                        <th colspan="6"><span style="font-weight: bold">家庭实际住址: </span>
+                                        <th colspan="6"><span style="font-weight: bold"></span>
                                             <div class="layui-input-inline" style="width: 100%">
-                                                <label class="layui-form-label" style="width: auto"></label>
+                                                <label class="layui-form-label" style="width: auto;margin-left: -15px">家庭实际住址: </label>
                                                 <div class="layui-input-inline" style="width: 60%">
                                                     <input type="text" name="idcard_address" placeholder="请输入家庭实际住址"
                                                            autocomplete="off" class="layui-input" id="detailedAddresses"
@@ -566,9 +589,9 @@
                                                              onclick="student.updateDetailedAddress()">编辑地址信息</button>
                                                 </span>
                                             </div>
-                                            <br>
-                                            <br>
+
                                             <div style="display: none" id="updateDetailedAddress">
+                                                <br>
                                                 <form class="form-inline">
                                                     <div id="distpicker3">
                                                         <div class="form-group">
@@ -580,22 +603,21 @@
                                                             <label class="sr-only" for="city3">City</label>
                                                             <select class="form-control" id="city3" lay-ignore></select>
                                                         </div>
-                                                        <div class="form-group">
+                                                        <div class="form-group" style="margin-right: -5px">
                                                             <label class="sr-only" for="district3">District</label>
                                                             <select class="form-control" id="district3"
                                                                     lay-ignore></select>
                                                         </div>
-                                                    </div>
-                                                    <br><br>
-                                                    <div class="layui-form-item">
-                                                        <label class="layui-form-label" style="width: auto">详细地址</label>
-                                                        <div class="layui-input-block">
+                                                        <%--<label class="layui-form-label " style="width: auto">详细地址</label>--%>
+                                                        <div class="layui-input-block form-group" style="margin-left: 5px">
                                                             <input type="text" name="detailedAddress"
                                                                    placeholder="请输入详细地址"
                                                                    autocomplete="off" class="layui-input"
                                                                    id="detailedAddress">
                                                         </div>
                                                     </div>
+
+
                                                 </form>
                                             </div>
 
@@ -603,9 +625,9 @@
                                     </tr>
 
                                     <tr>
-                                        <th colspan="6"><span style="font-weight: bold">生源所在地名称： </span>
+                                        <th colspan="6"><span style="font-weight: bold"></span>
                                             <div class="layui-input-inline" style="width: 100%">
-                                                <label class="layui-form-label" style="width: auto"></label>
+                                                <label class="layui-form-label" style="width: auto;margin-left: -15px">生源所在地名称： </label>
                                                 <div class="layui-input-inline" style="width: 60%">
                                                     <input type="text" name="idcard_address" placeholder="请输入生源所在地名称"
                                                            autocomplete="off" class="layui-input"
@@ -616,9 +638,9 @@
                                                              onclick="student.showUpdate_name_of_the_source()">编辑地址信息</button>
                                                 </span>
                                             </div>
-                                            <br>
-                                            <br>
+
                                             <div id="showUpdate_name_of_the_source" style="display: none">
+                                                <br>
                                                 <form class="form-inline">
                                                     <div id="distpicker">
                                                         <div class="form-group">
@@ -705,9 +727,9 @@
                                     </tr>
 
                                     <tr>
-                                        <th colspan="6"><span style="font-weight: bold">入学前档案所在单位： </span>
+                                        <th colspan="6"><span style="font-weight: bold"> </span>
                                             <div class="layui-input-inline" style="width: 100%">
-                                                <label class="layui-form-label" style="width: auto"></label>
+                                                <label class="layui-form-label" style="width: auto;margin-left: -15px">入学前档案所在单位：</label>
                                                 <div class="layui-input-inline" style="width: 60%">
                                                     <input type="text" name="idcard_address" placeholder="请输入入学前档案所在单位"
                                                            autocomplete="off" class="layui-input"
@@ -719,7 +741,9 @@
                                                              onclick="student.update_Pre_enrollment_file_unit()">编辑地址信息</button>
                                                 </span>
                                             </div>
+
                                             <div id="update_Pre_enrollment_file_unit" style="display: none">
+                                                <br>
                                                 <form class="form-inline">
                                                     <div id="distpicker1">
                                                         <div class="form-group">
@@ -736,17 +760,14 @@
                                                             <select class="form-control" id="district2"
                                                                     lay-ignore></select>
                                                         </div>
-                                                    </div>
-                                                    <br><br>
-                                                    <div class="layui-form-item">
-                                                        <label class="layui-form-label" style="width: auto">详细地址</label>
-                                                        <div class="layui-input-block">
+                                                        <div class="layui-input-block form-group" style="margin-left: 5px">
                                                             <input type="text" name="detailedAddress"
                                                                    placeholder="请输入详细地址"
                                                                    autocomplete="off" class="layui-input"
                                                                    id="updateStudent_Pre_enrollment_file_unit_detailed">
                                                         </div>
                                                     </div>
+
                                                 </form>
                                             </div>
 
@@ -783,9 +804,9 @@
                                     </tr>
 
                                     <tr>
-                                        <th colspan="6"><span style="font-weight: bold">入学前户口所在派出所： </span>
+                                        <th colspan="6"><span style="font-weight: bold"></span>
                                             <div class="layui-input-inline" style="width: 100%">
-                                                <label class="layui-form-label" style="width: auto"></label>
+                                                <label class="layui-form-label" style="width: auto;margin-left: -15px">入学前户口所在派出所： </label>
                                                 <div class="layui-input-inline" style="width: 60%">
                                                     <input type="text" name="idcard_address" placeholder="请输入入学前户口所在派出所"
                                                            autocomplete="off" class="layui-input"
@@ -798,7 +819,8 @@
                                                 </span>
                                             </div>
                                             <div id="show_Pre_school_account_where_the_police_station_detailed"
-                                                 style="display: none">
+                                                 style="display: none;">
+                                                <br>
                                                 <form class="form-inline">
                                                     <div id="distpicker5">
                                                         <div class="form-group">
@@ -815,17 +837,14 @@
                                                             <select class="form-control" id="district5"
                                                                     lay-ignore></select>
                                                         </div>
-                                                    </div>
-                                                    <br><br>
-                                                    <div class="layui-form-item">
-                                                        <label class="layui-form-label" style="width: auto">详细地址</label>
-                                                        <div class="layui-input-block">
+                                                        <div class="layui-input-block form-group" style="margin-left: 5px">
                                                             <input type="text" name="detailedAddress"
                                                                    placeholder="请输入详细地址"
                                                                    autocomplete="off" class="layui-input"
                                                                    id="Pre_school_account_where_the_police_station_detailed">
                                                         </div>
                                                     </div>
+
                                                 </form>
                                             </div>
 
@@ -836,7 +855,7 @@
                                 </table>
 
 
-                                <h4 style="color: #00ab9f;font-weight: bold ;padding-top: 15px;">家庭成员信息</h4>
+                                <h4 style="color: #00ab9f;font-weight: bold ;padding-top: 15px;">家庭成员</h4>
                                 <table class="layui-table lay-even " data-name="articleCatData"
                                        style="border: 0px solid red" id="family_member_information_list">
                                     <tbody id="family_member_information">
@@ -869,18 +888,18 @@
                                     <tr>
                                         <th colspan="2">学生类型：<span>
                                             <div class="layui-input-inline" style="width: 60%">
-                                                <div class="layui-inline" pane="" id="updateStudentType1">
+                                                <div class="layui-inline" pane="" id="updateStudentType">
                                             <label class="layui-form-label" style="width: auto"></label>
-                                            <div class="layui-inline">
-                                               <input name="student_type1" value="高考录取" title="高考录取"
+                                            <div class="layui-inline" onclick="student.showSAT_score()">
+                                               <input name="student_type" value="高考录取" title="高考录取"
                                                       type="radio">
-                                               <input name="student_type1" value="自助招生" title="自助招生" type="radio">
+                                               <input name="student_type" value="自助招生" title="自助招生" type="radio">
                                             </div>
                                         </div>
                                              </div>
                                         </span></th>
                                         <th colspan="2">高考成绩：<span>
-                                            <div class="layui-input-inline" style="width: 60%">
+                                            <div class="layui-input-inline" style="width: 60%" id="show_SAT_score">
                                                 <input type="text" name="text"
                                                        placeholder="请输入内容" autocomplete="off" class="layui-input"
                                                        id="upadte_SAT_score">
@@ -1068,10 +1087,10 @@
                                         </span></th>
                                     </tr>
                                     <tr id="dorms">
-                                        <th colspan="6"><span><span style="font-weight: bold">宿舍信息: </span>
+                                        <th colspan="6"><span><span style="font-weight: bold"></span>
 
                                                 <div class="layui-input-inline" style="width: 100%">
-                                                <label class="layui-form-label" style="width: auto"></label>
+                                                <label class="layui-form-label" style="width: auto;margin-left: -15px">宿舍信息: </label>
                                                 <div class="layui-input-inline" style="width: 60%">
                                                     <input type="text" name="idcard_address" placeholder="请输入宿舍信息"
                                                            autocomplete="off" class="layui-input" id="updateDorms"
@@ -1158,17 +1177,32 @@
 </div>
 
 <div id="addStudentFamily" style="display: none">
-    <table class="layui-table lay-even " data-name="articleCatData"
+    <table class="layui-table lay-even layui-form" data-name="articleCatData"
            style="border: 0px solid red" id="add_family_member_information_list">
         <tbody id="add_family_member_information">
         <tr>
             <td>
                 <div class="layui-inline">
                     <label class="layui-form-label">称谓</label>
-                    <div class="layui-input-inline">
+                    <%--<div class="layui-input-inline">
                         <input type="tel" name="phone"
                                autocomplete="off" class="layui-input"
                                placeholder="请输入相关内容" id="family_relationship">
+                    </div>--%>
+                    <div class="layui-input-inline">
+                        <div class="layui-inline">
+                            <div class="layui-input-inline">
+                                <select name="modules1" lay-filter="modules_2" lay-search=""
+                                        id="family_relationship">
+                                    <option value="父亲" selected>父亲</option>
+                                    <option value="母亲">母亲</option>
+                                    <option value="哥哥">哥哥</option>
+                                    <option value="姐姐">姐姐</option>
+                                    <option value="弟弟">弟弟</option>
+                                    <option value="妹妹">妹妹</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </td>
@@ -1311,6 +1345,9 @@
         autoSelect: false
     });
     $("#distpicker3").distpicker({
+        autoSelect: false
+    });
+    $("#distpicker0").distpicker({
         autoSelect: false
     });
 
