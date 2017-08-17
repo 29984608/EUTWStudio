@@ -121,8 +121,8 @@
             <div class="layui-form-item content_node">
 
                 <label class="layui-form-label " style="font-size: 13px">Q</label>
-                <textarea  placeholder="请输入问题" class="layui-textarea add-contents textarea"
-                           style="width: 80%;min-height: 50px;height: 70px;font-size: 12px;"></textarea>
+                <textarea placeholder="请输入问题" class="layui-textarea add-contents textarea"
+                          style="width: 80%;min-height: 50px;height: 70px;font-size: 12px;"></textarea>
                 <label class="layui-form-label " style="font-size: 13px">A</label>
                 <textarea placeholder="请输入回答" class="layui-textarea add-contents textarea"
                           style="width: 80%;min-height: 50px;height: 70px;font-size: 12px;margin-left: .9%"></textarea>
@@ -142,34 +142,34 @@
     </form>
 </div>
 
-<div id="update" style="display: none;background: #fff">
-    <a class="layui-btn" onclick="printPdf()" id="printPDF"><i class="layui-icon">&#xe630;</i>导出 PDF</a>
-    <div class="container" id="container" style="padding:50px 30px">
+<div id="update" style="display: none;background: #fff;">
+    <a class="layui-btn" onclick="printPdf()" id="printPDF" style="float: right"><i class="layui-icon">&#xe630;</i>导出 PDF</a>
+    <div class="container" id="container" style="padding: 35px 15px 35px 60px;width: 750px">
 
-        <h1 style="text-align: center;margin-left: -30px">西安欧亚学院高职学院<span id="who"></span>学生沟通反馈记录</h1>
+        <h2 style="text-align: center;margin-left: -30px">西安欧亚学院高职学院<span id="who"></span>学生沟通反馈记录</h2>
         <div style="margin:40px 0">
 
-            <table class="layui-table lay-even " data-name="articleCatData">
+            <table  class="layui-table lay-even " data-name="articleCatData">
                 <thead>
-                <tr>
-                    <th>姓名</th>
-                    <th>性别</th>
-                    <th>籍贯</th>
-                    <th>身份证号码</th>
-                    <th>专业</th>
-                    <th>就业方向</th>
-                    <th>政治面貌</th>
+                <tr >
+                    <th style="font-size: 12px">姓名</th>
+                    <th style="font-size: 12px">性别</th>
+                    <th style="font-size: 12px">籍贯</th>
+                    <th style="font-size: 12px">身份证号码</th>
+                    <th style="font-size: 12px">专业</th>
+                    <th style="font-size: 12px">就业方向</th>
+                    <th style="font-size: 12px">政治面貌</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
-                    <th id="name"></th>
-                    <th id="gender"></th>
-                    <th id="native_place"></th>
-                    <th id="idcard"></th>
-                    <th id="profession"></th>
-                    <th id="direction2"></th>
-                    <th id="political_status"></th>
+                    <th  style="font-size: 12px" id="name"></th>
+                    <th  style="font-size: 12px" id="gender"></th>
+                    <th  style="font-size: 12px" id="native_place"></th>
+                    <th  style="font-size: 12px" id="idcard"></th>
+                    <th  style="font-size: 12px" id="profession"></th>
+                    <th  style="font-size: 12px" id="direction2"></th>
+                    <th  style="font-size: 12px" id="political_status"></th>
                 </tr>
                 </tbody>
             </table>

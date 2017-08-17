@@ -38,8 +38,13 @@ public class StudentClassController {
     @ResponseBody
     public Result list(SearchDto searchDto) {
         try {
+            Map<String, Object> students = null;
             ActiveUser user = (ActiveUser) SecurityUtils.getSubject().getPrincipal();
-            Map<String, Object> students = personService.queryStudentsByLikes(user.getUserName(), searchDto);
+            if (user.getRoleId() == Constant.ADMIN_ROLE_ID) {
+                students = personService.queryStudentsByLikesAdmin(searchDto);
+            } else {
+                students = personService.queryStudentsByLikes(user, searchDto);
+            }
 
             return Result.success(students, Constant.SEARCH_SUCCESS);
         } catch (Exception e) {
@@ -84,10 +89,10 @@ public class StudentClassController {
         try {
             ActiveUser teacher = (ActiveUser) SecurityUtils.getSubject().getPrincipal();
             personService.distributedClass(classesId, studentIds);
-            personService.updateStudentTeacherId(teacher.getUserName(),studentIds);
+            personService.updateStudentTeacherId(teacher.getUserName(), studentIds);
             String[] studentList = studentIds.split(",");
-            for (int i = 0; i< studentList.length;i++) {
-                CommunicationContent content = new CommunicationContent(studentList[i],personService.queryStudentNameByStudentNo(studentList[i]),"班级信息");
+            for (int i = 0; i < studentList.length; i++) {
+                CommunicationContent content = new CommunicationContent(studentList[i], personService.queryStudentNameByStudentNo(studentList[i]), "班级信息");
                 updateStudentUtil.updateStudentToCommunication(content);
             }
 
@@ -105,8 +110,8 @@ public class StudentClassController {
         try {
             personService.distributedDirection(directionId, studentIds);
             String[] studentList = studentIds.split(",");
-            for (int i = 0; i< studentList.length;i++) {
-                CommunicationContent content = new CommunicationContent(studentList[i],personService.queryStudentNameByStudentNo(studentList[i]),"方向信息");
+            for (int i = 0; i < studentList.length; i++) {
+                CommunicationContent content = new CommunicationContent(studentList[i], personService.queryStudentNameByStudentNo(studentList[i]), "方向信息");
                 updateStudentUtil.updateStudentToCommunication(content);
             }
 

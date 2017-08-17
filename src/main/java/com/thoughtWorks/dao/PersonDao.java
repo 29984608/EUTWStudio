@@ -122,5 +122,7 @@ public interface PersonDao {
     String queryStudentNameByStudentNo(String studentNo);
 
     List<Map<String,Object>> queryFamousFamilyList();
+
+    List<Map<String,String>> queryStudentsByLikesAdmin(Map<String, Object> data);
 }
 

@@ -50,6 +50,9 @@
         WHERE department_id = #{id};
     </select>
     <!--专业方向-->
+    <select id="queryAllDirections" resultType="map">
+        SELECT id,name FROM t_direction
+    </select>
     <select id="queryDirectionIdsByDepartmentId" parameterType="string" resultType="string">
         SELECT id
         FROM t_direction
@@ -108,6 +111,9 @@
     </delete>
 
     <!--专业-->
+    <select id="queryAllProfession" resultType="map">
+        SELECT  id,name FROM t_profession
+    </select>
     <update id="deleteProfessionDepartmentIdByDepartmentId" parameterType="string">
         UPDATE t_profession
         SET department_id = ""
