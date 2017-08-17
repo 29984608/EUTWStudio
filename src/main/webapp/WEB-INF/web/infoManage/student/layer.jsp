@@ -118,12 +118,12 @@
         <h1 style="text-align: center;margin-left: -30px;margin-top: 40px; ;color:#00ab9f ">西安欧亚学院<span
                 id="studentName1"></span>学生档案</h1>
         <div style="margin-top: 40px;">
-            <div style="width: 25%; height: 100%; float: left;border-right: 1px solid #00ab9f">
-                <div style="width:140px; height: 200px; margin:10px 50px;border: 2px solid #00ab9f">
+            <div style="width: 25%; height: 100%; float: left;border-right: 0px solid #00ab9f">
+                <div style="width:140px; height: 200px; margin:10px 50px;border: 0px solid #00ab9f">
                     <img id="images" style="width: 100%" height="100%"/>
                 </div>
                 <div style="width:220px; height: 240px; margin:10px 30px;">
-                    <table class="layui-table lay-even " data-name="articleCatData">
+                    <table class="layui-table lay-even " data-name="articleCatData" style="border: 1px solid #FFFFFF">
                         <tbody>
                         <tr>
                             <th>TEL：<span id="phone"></span></th>

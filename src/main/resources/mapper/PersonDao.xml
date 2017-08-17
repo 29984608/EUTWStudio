@@ -608,9 +608,9 @@ FROM t_student student
                name
              FROM t_room) room ON room.id = student.room_id
   LEFT JOIN (SELECT
-               para_phsiname,
+               para_no,
                para_dispname
-             FROM t_famous_family) famousFamily ON famousFamily.para_phsiname = student.famous_family
+             FROM t_famous_family) famousFamily ON famousFamily.para_no = student.famous_family
 WHERE student.no =#{studentNo}
 
     </select>

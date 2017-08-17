@@ -322,6 +322,7 @@
             },
             preview: function (studentNo) {
                 $.post(baseUrl + "/student/update", {studentNo: studentNo}, function (data) {
+                    console.log(data)
                     $("#phone").text("").append(data.student[0].student_contact_method);
                     $("#qq").text("").append(data.student[0].qq);
                     $("#email").text("").append(data.student[0].email);
@@ -358,7 +359,7 @@
                     $("#emergency_contact_method").text("").append(data.student[0].emergency_contact_method);
                     $("#experience_div").html("")
                     for (var i = 0; i < data.experience.length; i++) {
-                        $("#experience_div").append("<tr class='experience_divToEveryOne'> <th>" + data.experience[i].start_time + "-" + data.experience[i].end_time + "：</th>" +
+                        $("#experience_div").append("<tr class='experience_divToEveryOne'> <th>" + data.experience[i].start_time + "——" + data.experience[i].end_time + "</th>" +
                             "<th  >" + data.experience[i].work_place + "</th>" +
                             "<th >" + data.experience[i].staff + "</th></tr>");
                     }
