@@ -24,13 +24,6 @@
     <div class="layui-pwd-icon larry-login">
         <input type="password" placeholder="密码" id="password" required class="login_txtbx"/>
     </div>
-    <div class="layui-val-icon larry-login">
-        <div class="layui-code-box">
-            <input type="text" id="code" name="code" placeholder="验证码" maxlength="4" class="login_txtbx">
-            <img src="${baseurl}/public/images/verifyimg.png" alt="" class="verifyImg" id="verifyImg"
-                 onclick="javascript:this.src='xxx'+Math.random();">
-        </div>
-    </div>
     <div class="layui-submit larry-login">
         <button  onclick="login()"  class="submit_btn">立即登录</button>
     </div>
