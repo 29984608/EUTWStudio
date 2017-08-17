@@ -351,7 +351,7 @@
                                         </span></th>
                                         <th colspan="3">民族：<span>
                                             <div class="layui-input-inline" style="width: 60%">
-                                                <select>
+                                                <select id="updateStudentNationalities">
                                                     <option>汉族</option>
                                                     <option>汉族</option>
                                                 </select>

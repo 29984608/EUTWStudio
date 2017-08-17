@@ -349,7 +349,7 @@
                     $("#family").html("")
                     for (var i = 0; i < data.family.length; i++) {
                         $("#family").append("<tr> <th>" + data.family[i].relationship + "：" + data.family[i].name + "</th>" +
-                            "<th  >政治面貌：" + data.family[i].political_status + "</th>" +
+                            "<th >政治面貌：" + data.family[i].political_status + "</th>" +
                             "<th colspan='2'>工作单位：" + data.family[i].work_place + "</th>" +
                             "<th >职务：" + data.family[i].staff + "</th>" +
                             "<th>联系电话：" + data.family[i].phone + "</th> </tr>");
@@ -484,14 +484,14 @@
                                 let isShow = isOther ? "display" : "none";
                                 $("#family_member_information").append(
                                     `<tr id="family_information1" class="family_information1" style="float: left;">
-                                        <th><span class = "family_relationship"></span><span>
+                                        <th colspan="2"><span class = "family_relationship"></span><span>
                                <div class="layui-input-inline" style="width: 60%">
                                    <input type="text" name="text"
                                           placeholder="请输入内容" autocomplete="off" class="layui-input updateStudentParentsName"
                                           id="updateStudentParentsName">
                                 </div>
                            </span></th>
-                                        <th width="695px"><span>
+                                        <th colspan="4"><span>
                             <div class="political">
                                政治面貌： <div class="layui-input-inline" >
                                  <select name="politicalOutlook1" lay-filter="politicalOutlookParent"  class="updateStudentParent_political_status">
@@ -505,14 +505,12 @@
                                  </select>
                                </div>
                                 <span  class="otherParty1" style="display: ` + isShow + `">其他党派:
-                                     <div class="layui-input-inline">
                                        <div class="layui-input-inline">
                                          <input type="text" name="otherPartyName"  value="` + politicalStatus + `"
-                                                 placeholder="请输入党派名称"
+                                                placeholder="请输入党派名称"
                                                 autocomplete="off" class="layui-input other_updateStudentParent_political_status"
                                                 id="other_updateStudentParent_political_status">
                                        </div>
-                                     </div>
                                </span>
                            </div>
                                </span></th>
@@ -521,21 +519,21 @@
 
                                 $("#family_member_information").append(`
                            <tr id="family_information2" style="float: left;margin-bottom: 20px">
-                                        <th width="324px">工作单位：<span>
+                                        <th colspan="2">工作单位：<span>
                                <div class="layui-input-inline" style="width: 60%">
                                    <input type="text" name="text"
                                           placeholder="请输入内容" autocomplete="off" class="layui-input updateStudentParent_employer"
                                           id="updateStudentParent_employer">
                                 </div>
                            </span></th>
-                                        <th width="324px">职务：<span>
+                                        <th colspan="2">职务：<span>
                                <div class="layui-input-inline" style="width: 60%">
                                    <input type="text" name="text"
                                           placeholder="请输入内容" autocomplete="off" class="layui-input updateStudentParent_duties"
                                           id="updateStudentParent_duties">
                                 </div>
                            </span></th>
-                                        <th width="324px">联系电话：<span>
+                                        <th colspan="2">联系电话：<span>
                                <div class="layui-input-inline" style="width: 60%">
                                    <input type="text" name="text"
                                           placeholder="请输入内容" autocomplete="off" class="layui-input updateStudentParent_phone"
@@ -791,6 +789,7 @@
                         },
                         function (data) {
                             layer.msg(data.msg);
+                            setTimeout("location.reload()", 500);
                         }
                     )
                 })
@@ -811,6 +810,7 @@
                         function (data) {
                             if (data.result) {
                                 layer.msg("删除成功,请刷新页面!");
+
                             }
                         })
                 })
