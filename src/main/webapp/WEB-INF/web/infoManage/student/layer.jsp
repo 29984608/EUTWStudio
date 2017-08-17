@@ -537,7 +537,7 @@
                                                     <label class="layui-form-label"
                                                            style="margin-left: -40px;">宗教信仰</label>
                                                     <div class="layui-input-block">
-                                                        <input type="text" name="title" lay-verify="title"
+                                                        <input type="text" name="title"
                                                                autocomplete="off" placeholder="何时经何人介绍参加何种党派、团体、任何职?"
                                                                class="layui-input" style="margin-left: -60px">
                                                     </div>
