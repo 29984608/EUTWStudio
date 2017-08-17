@@ -123,16 +123,16 @@
                     <img id="images" style="width: 100%" height="100%"/>
                 </div>
                 <div style="width:220px; height: 240px; margin:10px 30px;">
-                    <table class="layui-table lay-even " data-name="articleCatData" style="border: 1px solid #FFFFFF">
-                        <tbody>
+                    <table class="layui-table lay-even " data-name="articleCatData" >
+                        <tbody >
                         <tr>
-                            <th>TEL：<span id="phone"></span></th>
+                            <th style="border:0px">TEL：<span id="phone"></span></th>
                         </tr>
                         <tr>
-                            <th>QQ：<span id="qq"></span></th>
+                            <th style="border:0px">QQ：<span id="qq"></span></th>
                         </tr>
                         <tr>
-                            <th>E-mail：<span id="email"></span></th>
+                            <th style="border:0px">E-mail：<span id="email"></span></th>
                         </tr>
                         </tbody>
                     </table>
@@ -144,39 +144,35 @@
                        style="border: 0px solid red">
                     <tbody>
                     <tr>
-                        <th colspan="2">学号：<span id="studentNo"></span></th>
-                        <th>姓名：<span id="studentName"></span></th>
-                        <th>性别：<span id="studentSex"></span></th>
-                        <th>民族：<span id="famous_family"></span></th>
-                        <th>身份证号：<span id="idcard"></span></th>
+                        <th style="border:0px" colspan="1">学号：<span id="studentNo"></span></th>
+                        <th style="border:0px">姓名：<span id="studentName"></span></th>
+                        <th style="border:0px">性别：<span id="studentSex"></span></th>
+                        <th style="border:0px">民族：<span id="famous_family"></span></th>
+                        <th style="border:0px" colspan="2">身份证号：<span id="idcard"></span></th>
                     </tr>
                     <tr>
-                        <th colspan="3">籍贯：<span id="native_place"></span></th>
-                        <th colspan="3">出生日期：<span id="born"></span></th>
+                        <th style="border:0px" colspan="1">出生日期：<span id="born"></span></th>
+                        <th style="border:0px" colspan="2">籍贯：<span id="native_place"></span></th>
+                        <th style="border:0px" colspan="2">政治面貌：<span id="political_status"></span></th>
+                        <th style="border:0px" colspan="1">婚否：<span id="is_marry"></span></th>
                     </tr>
                     <tr>
-                        <th colspan="3">政治面貌：<span id="political_status"></span></th>
-                        <th colspan="3">血型：<span id="blood"></span></th>
+                        <th style="border:0px" colspan="1">血型：<span id="blood"></span></th>
+                        <th style="border:0px" colspan="2">身高：<span id="height"></span>cm</th>
+                        <th style="border:0px" colspan="2">体重：<span id="weight"></span>kg</th>
+                        <th style="border:0px" colspan="1">健康状况：<span id="health_status"></span></th>
                     </tr>
                     <tr>
-                        <th colspan="2">身高：<span id="height"></span>cm</th>
-                        <th>体重：<span id="weight"></span>kg</th>
-                        <th colspan="2">健康状况：<span id="health_status"></span></th>
-                        <th>婚否：<span id="is_marry"></span></th>
-                    </tr>
-                    <tr>
-                        <th colspan="6">邮编编码：<span id="family_zip_code"></span></th>
-                    </tr>
-                    <tr>
-                        <th colspan="6">家庭电话：<span id="family_phone"></span></th>
+                        <th style="border:0px" colspan="2">家庭住址：<span id="actual_address"></span></th>
+                        <th style="border:0px" colspan="2">邮编编码：<span id="family_zip_code"></span></th>
+                        <th style="border:0px" colspan="2">联系电话：<span id="student_contact_method"></span></th>
                     </tr>
                     <tbody id="family">
-
                     </tbody>
                     <tr>
-                        <th colspan="3">紧急联系人：<span id="emergency_contact_name"></span></th>
+                        <th style="border:0px" colspan="3">紧急联系人：<span id="emergency_contact_name"></span></th>
 
-                        <th colspan="3">联系方式：<span id="emergency_contact_method"></span></th>
+                        <th style="border:0px" colspan="3">联系方式：<span id="emergency_contact_method"></span></th>
                     </tr>
                     </tbody>
                 </table>
@@ -192,27 +188,27 @@
                        style="border: 0px solid red">
                     <tbody>
                     <tr>
-                        <th colspan="2">学生类别：<span id="student_type"></span></th>
-                        <th colspan="2">高考成绩：<span id="sat_score"></span></th>
+                        <th style="border:0px" colspan="2">学生类别：<span id="student_type"></span></th>
+                        <th style="border:0px" colspan="2">高考成绩：<span id="sat_score"></span></th>
 
                     </tr>
                     <tr>
-                        <th>录取专业：<span id="originProfession"></span></th>
-                        <th>现专业：<span id="profession"></span></th>
-                        <th>就业方向：<span id="direction"></span></th>
-                        <th>班级：<span id="classes"></span></th>
+                        <th style="border:0px">录取专业：<span id="originProfession"></span></th>
+                        <th style="border:0px">现专业：<span id="profession"></span></th>
+                        <th style="border:0px">就业方向：<span id="direction"></span></th>
+                        <th style="border:0px">班级：<span id="classes"></span></th>
                     </tr>
                     <tr>
-                        <th colspan="2">职业导师：<span id="teacherName"></span></th>
-                        <th colspan="2">社区辅导员：<span id="teacherCommunity"></span></th>
+                        <th style="border:0px" colspan="2">职业导师：<span id="teacherName"></span></th>
+                        <th style="border:0px" colspan="2">社区辅导员：<span id="teacherCommunity"></span></th>
                     </tr>
                     <tr>
-                        <th colspan="2">学籍状态：<span id="student_status"></span></th>
-                        <th colspan="2">实践类型：<span id="practice_learning_type"></span></th>
+                        <th style="border:0px" colspan="2">学籍状态：<span id="student_status"></span></th>
+                        <th style="border:0px" colspan="2">实践类型：<span id="practice_learning_type"></span></th>
                     </tr>
 
                     <tr>
-                        <th colspan="4">缴费状态：
+                        <th style="border:0px" colspan="4">缴费状态：
                             第一年：(<span id="payment_status_first_year"></span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             第二年：(<span id="payment_status_second_year"></span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             第三年：(<span id="payment_status_third_year"></span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -221,10 +217,10 @@
 
                     </tr>
                     <tr>
-                        <th colspan="2">宿舍位置：<span id="area"></span>&nbsp;-&nbsp;<span
+                        <th style="border:0px" colspan="2">宿舍位置：<span id="area"></span>&nbsp;-&nbsp;<span
                                 id="floor"></span>&nbsp;-&nbsp;<span id="room"></span>房间
                         </th>
-                        <th colspan="2">困难类别：<span id="hard_type"></span></th>
+                        <th style="border:0px" colspan="2">困难类别：<span id="hard_type"></span></th>
                     </tr>
                     </tbody>
                 </table>
@@ -233,7 +229,7 @@
                        style="border: 0px solid red">
                     <tbody>
                     <tr>
-                        <th id="own_punishment">
+                        <th style="border:0px" id="own_punishment">
                         </th>
                     </tr>
                     </tbody>
