@@ -8,13 +8,17 @@ function loadALlDepartments() {
 function loadAllLevels() {
     let date = new Date();
     let year = date.getFullYear();
-    let differ = year - 2017;
+    let currentMonth = new Date().getMonth() + 1;
+    year = currentMonth > 7 ? year : year - 1;
+    let differ = year - 2015;
+    $("#level_search").html();
     if (differ >= 0) {
         for (let i = differ; i >= 0; i--) {
-            $("#level_search").append(`<option value="` + year + `">` + (year + i) + `</option>`)
+            $("#level_search").append(`<option selected value="` + (year - i) + `">` + (year - i) + `</option>`)
         }
     }
 }
+
 function loadAllDirections() {
     $.post(baseUrl + "/communication/queryDirectionByDepartment", function (data) {
         if (data.result) {
@@ -48,10 +52,10 @@ function getSearchLevels() {
     let levels = [];
     let currentMonth = new Date().getMonth() + 1;
     let currentYear = new Date().getFullYear();
-    if (currentMonth > 8) levels.push(currentYear);
+    if (currentMonth >= 8) levels.push(currentYear);
     levels.push(currentYear - 1);
     levels.push(currentYear - 2);
-    if (currentMonth <= 8) levels.push(currentYear - 3);
+    if (currentMonth < 8) levels.push(currentYear - 3);
 
     return levels;
 }

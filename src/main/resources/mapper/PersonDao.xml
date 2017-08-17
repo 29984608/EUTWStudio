@@ -12,50 +12,47 @@
         WHERE no = #{id}
     </delete>
     <insert id="addTeacher" parameterType="Teacher">
-        INSERT INTO t_teacher (no, name, department_id, direction_id, gender,dept_id,classify,identityCard)
-        VALUES (#{no}, #{name}, #{departmentId}, #{directionId}, #{gender},#{deptId},#{classify},#{identityCard})
+        INSERT INTO t_teacher (no, name, department_id, direction_id, gender, dept_id, classify, identityCard)
+        VALUES (#{no}, #{name}, #{departmentId}, #{directionId}, #{gender}, #{deptId}, #{classify}, #{identityCard})
     </insert>
 
     <update id="updateTeacher" parameterType="Teacher">
         UPDATE t_teacher
-        SET name = #{name}, department_id = #{departmentId}, direction_id = #{directionId}, gender = #{gender}
-        ,dept_id=#{deptId},classify=#{classify}
+        SET name      = #{name}, department_id = #{departmentId}, direction_id = #{directionId}, gender = #{gender}
+            , dept_id = #{deptId}, classify = #{classify}
         WHERE no = #{no}
     </update>
     <select id="queryStudentsByLikes" parameterType="map" resultType="map">
         SELECT student.no,student.name,student.gender,direction.name direction,profession.name profession,class.name
         classes,teacher.department_id departmentId
         FROM t_student student
-        LEFT JOIN (SELECT no, department_id FROM t_teacher) teacher ON teacher.no = #{data.no}
+        LEFT JOIN (SELECT no, department_id FROM t_teacher) teacher ON teacher.no = #{no}
         LEFT JOIN (SELECT id FROM t_department) department ON department.id = teacher.department_id
         LEFT JOIN (SELECT id, name FROM t_direction) direction ON direction.id = student.direction_id
-        <if test="data.directionId!=''">
-            AND direction.id = #{data.directionId}
+        <if test="directionId!=''">
+            AND direction.id = #{directionId}
         </if>
         LEFT JOIN (SELECT id,name FROM t_profession) profession ON profession.id = student.profession_id
-        <if test="data.professionId!=''">
-            AND profession.id=#{data.professionId}
+        <if test="professionId!=''">
+            AND profession.id=#{professionId}
         </if>
         LEFT JOIN (SELECT id, name FROM t_classes) class ON class.id = student.classes_id
-        WHERE
-        student.level in
-        <foreach collection="levels" open="(" close=")" separator="," item="item">
-            #{item}
-        </foreach>
-        and student.no LIKE #{data.studentNo}
-        and student.department_id = teacher.department_id
-        <if test="data.directionId!=''">
-            and direction_id =direction.id
-        </if>
-        <if test="data.professionId!=''">
-            AND profession.id = profession_id
-        </if>
-        <if test="data.classesId!=''">
-            AND student.classes_id=#{data.classesId}
-        </if>
-        and student.name
+        <where>
+            <if test="level!=''">
+                student.level = ${level}
+            </if>
+            and student.no LIKE #{studentNo}
+            and student.department_id = teacher.department_id
+            <if test="directionId!=''">
+                and direction_id =direction.id
+            </if>
+            <if test="professionId!=''">
+                AND profession.id = profession_id
+            </if>
+            and student.name
 
-        LIKE #{data.name}
+            LIKE #{name}
+        </where>
     </select>
 
     <select id="queryStudentList" resultType="map" parameterType="map">
@@ -350,31 +347,31 @@
     </select>
     <select id="queryPersonList" resultType="Map">
         SELECT
-            teacher.no,
-            teacher.name,
-            teacher.gender,
-            teacher.classify,
-            teacher.identityCard,
-            department.id   departmentId,
-            department.name departmentName,
-            direction.id    directionId,
-            direction.name  directionName,
-            dept.id deptId,
-            dept.name deptName
+        teacher.no,
+        teacher.name,
+        teacher.gender,
+        teacher.classify,
+        teacher.identityCard,
+        department.id departmentId,
+        department.name departmentName,
+        direction.id directionId,
+        direction.name directionName,
+        dept.id deptId,
+        dept.name deptName
 
         FROM t_teacher teacher
-            LEFT JOIN (SELECT
-                           id,
-                           name
-                       FROM t_department) department ON department.id = teacher.department_id
-            LEFT JOIN (SELECT
-                           id,
-                           name
-                       FROM t_direction) direction ON direction.id = teacher.direction_id
-            LEFT JOIN (SELECT
-                           id,
-                           name
-                       FROM t_dept) dept ON dept.id = teacher.dept_id
+        LEFT JOIN (SELECT
+        id,
+        name
+        FROM t_department) department ON department.id = teacher.department_id
+        LEFT JOIN (SELECT
+        id,
+        name
+        FROM t_direction) direction ON direction.id = teacher.direction_id
+        LEFT JOIN (SELECT
+        id,
+        name
+        FROM t_dept) dept ON dept.id = teacher.dept_id
         LIMIT #{start}, #{end}
     </select>
 
@@ -403,7 +400,7 @@
     </select>
     <insert id="addCommunication" parameterType="CommunicationContent">
         INSERT INTO t_communication (teacher_id, student_id, talk_name, direction, content) VALUES
-            (#{teacherId}, #{studentId}, #{talkName}, #{direction}, #{content})
+        (#{teacherId}, #{studentId}, #{talkName}, #{direction}, #{content})
     </insert>
     <select id="queryCommunicationByStudentId" parameterType="string" resultType="map">
 
@@ -492,12 +489,13 @@
     </delete>
 
     <select id="queryUserById" resultType="Teacher" parameterType="string">
-        SELECT * from t_teacher
-        WHERE no=#{no}
+        SELECT *
+        FROM t_teacher
+        WHERE no = #{no}
     </select>
     <select id="queryDirectionByDepartmentId" resultType="Direction" parameterType="int">
         select * from t_direction
-        WHERE  department_id = #{departmentId}
+        WHERE department_id = #{departmentId}
     </select>
     <select id="queryDirectionByDepartment" resultType="Direction">
         select * from t_direction
@@ -507,130 +505,130 @@
     </select>
     <select id="queryClassByDepartmentId" resultType="Classes" parameterType="int">
         select * from t_classes
-        WHERE  department_id = #{departmentId}
+        WHERE department_id = #{departmentId}
     </select>
 
     <select id="queryStudentInfoById" resultType="map" parameterType="String">
         SELECT
-  student.no,
-  student.name,
-  student.gender,
-  student.native_place,
-  student.idcard,
-  student.level,
-  student.political_status,
-  department.name department,
-  direction.name direction,
-  profession.name profession
-FROM t_student student
- LEFT JOIN (SELECT
-        id,
-        name
-        FROM t_department) department ON department.id = student.department_id
+            student.no,
+            student.name,
+            student.gender,
+            student.native_place,
+            student.idcard,
+            student.level,
+            student.political_status,
+            department.name department,
+            direction.name  direction,
+            profession.name profession
+        FROM t_student student
+            LEFT JOIN (SELECT
+                           id,
+                           name
+                       FROM t_department) department ON department.id = student.department_id
 
-  LEFT JOIN (SELECT
-               id,
-               name
-             FROM t_direction) direction ON direction.id = student.direction_id
+            LEFT JOIN (SELECT
+                           id,
+                           name
+                       FROM t_direction) direction ON direction.id = student.direction_id
 
-  LEFT JOIN (SELECT
-               id,
-               name
-             FROM t_profession) profession ON profession.id = student.profession_id
+            LEFT JOIN (SELECT
+                           id,
+                           name
+                       FROM t_profession) profession ON profession.id = student.profession_id
 
 
-WHERE  student.no=#{studentNo}
+        WHERE student.no = #{studentNo}
     </select>
 
     <select id="updateByStudentNo" parameterType="String" resultType="map">
 
         SELECT
-  student.*,
-  direction.name direction,
-  profession.name profession,
-  class.name classes,
-  department.name department,
-  area.name area,
-  floor.name floor,
-  room.name room,
-  teacher.name teacherName,
-  teacherCommunity.name teacherCommunity,
-  famousFamily.para_dispname famousFamily,
-  origin_profession.name originProfession
+        student.*,
+        direction.name direction,
+        profession.name profession,
+        class.name classes,
+        department.name department,
+        area.name area,
+        floor.name floor,
+        room.name room,
+        teacher.name teacherName,
+        teacherCommunity.name teacherCommunity,
+        famousFamily.para_dispname famousFamily,
+        origin_profession.name originProfession
 
-FROM t_student student
+        FROM t_student student
 
 
-  LEFT JOIN (SELECT
-               t_teacher.no,
-               name,
-               gender
-             FROM t_teacher) teacher ON teacher.no = student.teacher_id
-  LEFT JOIN (SELECT
-               t_teacher.no,
-               name,
-               gender
-             FROM t_teacher) teacherCommunity ON teacherCommunity.no = student.community_teacher_id
+        LEFT JOIN (SELECT
+        t_teacher.no,
+        name,
+        gender
+        FROM t_teacher) teacher ON teacher.no = student.teacher_id
+        LEFT JOIN (SELECT
+        t_teacher.no,
+        name,
+        gender
+        FROM t_teacher) teacherCommunity ON teacherCommunity.no = student.community_teacher_id
 
-  LEFT JOIN (SELECT
-               id,
-               name
-             FROM t_department) department ON department.id = student.department_id
-  LEFT JOIN (SELECT
-               id,
-               name
-             FROM t_direction) direction ON direction.id = student.direction_id
+        LEFT JOIN (SELECT
+        id,
+        name
+        FROM t_department) department ON department.id = student.department_id
+        LEFT JOIN (SELECT
+        id,
+        name
+        FROM t_direction) direction ON direction.id = student.direction_id
 
-  LEFT JOIN (SELECT
-               id,
-               name
-             FROM t_profession) profession ON profession.id = student.profession_id
-  LEFT JOIN (SELECT
-               id,
-               name
-             FROM t_profession) origin_profession ON origin_profession.id = student.origin_profession_id
+        LEFT JOIN (SELECT
+        id,
+        name
+        FROM t_profession) profession ON profession.id = student.profession_id
+        LEFT JOIN (SELECT
+        id,
+        name
+        FROM t_profession) origin_profession ON origin_profession.id = student.origin_profession_id
 
-  LEFT JOIN (SELECT
-               id,
-               name
-             FROM t_classes) class ON class.id = student.classes_id
+        LEFT JOIN (SELECT
+        id,
+        name
+        FROM t_classes) class ON class.id = student.classes_id
 
-  LEFT JOIN (SELECT
-               id,
-               name
-             FROM t_area) area ON area.id = student.area_id
-  LEFT JOIN (SELECT
-               id,
-               name
-             FROM t_floor) floor ON floor.id = student.floor_id
-  LEFT JOIN (SELECT
-               id,
-               name
-             FROM t_room) room ON room.id = student.room_id
-  LEFT JOIN (SELECT
-               para_phsiname,
-               para_dispname
-             FROM t_famous_family) famousFamily ON famousFamily.para_phsiname = student.famous_family
-WHERE student.no =#{studentNo}
+        LEFT JOIN (SELECT
+        id,
+        name
+        FROM t_area) area ON area.id = student.area_id
+        LEFT JOIN (SELECT
+        id,
+        name
+        FROM t_floor) floor ON floor.id = student.floor_id
+        LEFT JOIN (SELECT
+        id,
+        name
+        FROM t_room) room ON room.id = student.room_id
+        LEFT JOIN (SELECT
+        para_phsiname,
+        para_dispname
+        FROM t_famous_family) famousFamily ON famousFamily.para_phsiname = student.famous_family
+        WHERE student.no =#{studentNo}
 
     </select>
     <select id="updateFamilyByStudentNo" parameterType="String" resultType="map">
-        SELECT
-          family.*
+        SELECT family.*
         FROM t_student_family family
-        WHERE  family.no =#{studentNo}
+        WHERE family.no = #{studentNo}
     </select>
     <select id="updateExperienceByStudentNo" parameterType="String" resultType="map">
         SELECT
-          experience.*
+        experience.*
         FROM t_student_experience experience
-        WHERE  experience.no =#{studentNo}
+        WHERE experience.no =#{studentNo}
 
     </select>
 
     <select id="queryStudentsToUpdate" parameterType="string" resultType="map">
-        select * from t_student
-            WHERE t_student.no = #{studentNo}
+        SELECT *
+        FROM t_student
+        WHERE t_student.no = #{studentNo}
     </select>
     <select id="queryStudentFamily" parameterType="string" resultType="map">
         select * from t_student_family
@@ -640,7 +638,8 @@ WHERE student.no =#{studentNo}
         select * from t_profession
     </select>
     <select id="queryStudentsDirection" resultType="map">
-        select * from t_direction
+        SELECT *
+        FROM t_direction
     </select>
     <select id="queryStudentsClassList" resultType="map">
         select * from t_classes
@@ -660,12 +659,13 @@ WHERE student.no =#{studentNo}
     <select id="queryTeacherCommunity" resultType="map">
         select * from t_teacher_community
 
-         where no=#{no}
+        where no=#{no}
     </select>
     <select id="teacherCommunity" resultType="map">
-        select area_id from t_teacher_community
+        SELECT area_id
+        FROM t_teacher_community
 
-        where no=#{no}
+        WHERE no = #{no}
     </select>
     <select id="teacherCommunity_floors" resultType="map">
         select floor_id from t_teacher_community
@@ -677,7 +677,8 @@ WHERE student.no =#{studentNo}
     </select>
 
     <insert id="addFamilyByUpdate" parameterType="com.thoughtWorks.entity.StudentFamily">
-        insert into t_student_family (no,relationship,name,political_status,staff,work_place,phone) values (#{no},#{relationship},#{name},#{political_status},#{staff},#{work_place},#{phone});
+        insert into t_student_family (no,relationship,name,political_status,staff,work_place,phone) values
+        (#{no},#{relationship},#{name},#{political_status},#{staff},#{work_place},#{phone});
     </insert>
     <update id="updateStudentList" parameterType="com.thoughtWorks.entity.StudentUpdate">
         UPDATE t_student
@@ -914,7 +915,7 @@ WHERE student.no =#{studentNo}
     </update>
 
     <select id="addTeacherToUser">
-        INSERT INTO  t_user (username,password,roleId,available,name,staff)
+        INSERT INTO t_user (username,password,roleId,available,name,staff)
         VALUES (#{teacher.no},#{teacher.identityCard},#{roleId},1,#{teacher.name},#{teacher.classify})
     </select>
 
@@ -939,7 +940,8 @@ WHERE student.no =#{studentNo}
     </insert>
 
     <select id="queryFamousFamily" resultType="map">
-        select * from t_famous_family
+        SELECT *
+        FROM t_famous_family
         WHERE para_no = #{famousFamily}
     </select>
 
@@ -953,7 +955,8 @@ WHERE student.no =#{studentNo}
     </select>
 
     <select id="queryStudentNameByStudentNo" resultType="string" parameterType="string">
-        select student.name from t_student student
+        SELECT student.name
+        FROM t_student student
         WHERE no = #{studentNo}
     </select>
 

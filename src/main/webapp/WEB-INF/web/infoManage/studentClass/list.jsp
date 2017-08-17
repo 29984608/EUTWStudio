@@ -32,8 +32,8 @@
                             </select>
                         </div>
                         <div class="layui-input-inline">
-                            <select  id="classes_search">
-                                <option value="">班级</option>
+                            <select  id="level_search">
+                                <option value="">年级</option>
                             </select>
                         </div>
                         <div class="layui-input-inline">
@@ -152,6 +152,7 @@
         </div>
     </form>
 </div>
+<script src="${baseurl}/js/searchJs.js"></script>
 <script type="text/javascript" src="${baseurl}/public/common/layui/layui.js"></script>
 <script type="text/javascript">
     let studentClass;
@@ -171,7 +172,7 @@
                     studentNo: $("#no_search").val(),
                     directionId: $("#direction_search").val(),
                     professionId: $("#profession_search").val(),
-                    classesId: $("#classes_search").val()
+                    level: $("#level_search").val()
                 };
                 $.ajax({
                     url: baseUrl + "/studentClass/list",
@@ -181,7 +182,7 @@
                         if (data.result) {
                             $("#profession_search").html("<option value=''>专业</option>"+studentClass.loadSelectElementHtml(data.data.professions));
                             $("#direction_search").html("<option value=''>方向</option>"+studentClass.loadSelectElementHtml(data.data.directions));
-                            $("#classes_search").html("<option value=''>年级</option>"+studentClass.loadSelectElementHtml(data.data.classess));
+
 
                             laytpl($("#list-tpl").text()).render(data, function (html) {
                                 $("#list").html(html);
@@ -195,7 +196,7 @@
             loadSelectElementHtml: function (data) {
                 let _html = "";
                 for (let i = 0; i < data.length; ++i) {
-                    _html += ` <option value="` + data[i].id + `">` + data[i].name + `</option>`;
+                    _html += ` <option  value="` + data[i].id + `">` + data[i].name + `</option>`;
                 }
 
                 return _html;
@@ -298,6 +299,8 @@
             },
         };
         $(function () {
+            loadAllLevels();
+            form.render();
             studentClass.list();
 
             form.on('checkbox(checkedAll)', function (data) {

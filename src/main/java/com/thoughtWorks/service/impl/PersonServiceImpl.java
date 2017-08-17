@@ -110,21 +110,18 @@ public class PersonServiceImpl implements PersonService {
         data.put("no", userName);
         data.put("professionId", searchDto.getProfessionId());
         data.put("directionId", searchDto.getDirectionId());
-        data.put("classesId", searchDto.getClassesId());
+        data.put("level", searchDto.getLevel());
         data.put("studentNo", searchDto.getStudentNo() + "%");
         data.put("name", "%" + searchDto.getName() + "%");
-        List<Map<String, String>> students = personDao.queryStudentsByLikes(data,DateUtil.getSearchLevels());
 
+        List<Map<String, String>> students = personDao.queryStudentsByLikes(data);
         Map<String, String> teacher = personDao.queryTeacherByNo(userName);
-
         List<Direction> directions = departmentDao.queryDirectionsByDepartmentId(String.valueOf(teacher.get("department_id")));
         List<Profession> professions = departmentDao.queryProfessionsByDepartmentId(String.valueOf(teacher.get("department_id")));
-        List<Classes> classes = trainModuleDao.queryClassesByTeacherHas(userName);
 
         result.put("studentClass", students);
         result.put("professions", professions);
         result.put("directions", directions);
-        result.put("classess", classes);
 
         return result;
     }
