@@ -107,7 +107,6 @@
                 trainProgram.clearHtml();
                 $.post(baseUrl + "/trainProgram/loadDepartmentsAndDirectionsAndModuleCourses", function (data) {
                     if (data.result) {
-                        console.log(data)
                         $("#level").html(trainProgram.loadLevel());
                         $("#department").html(trainProgram.loadDepartmentOrDirection(data.data.departments));
                         $("#direction").html(trainProgram.loadDepartmentOrDirection(data.data.directions));
@@ -182,7 +181,6 @@
 
                 let moduleCoursesStr = trainProgram.getModuleCoursesStr();
                 data += "&moduleCoursesStr=" + moduleCoursesStr;
-                console.log(data);
                 $.post(baseUrl + "/trainProgram/add", data, function (data) {
                     layer.msg(data.msg);
                     if (data.result) {
@@ -234,7 +232,7 @@
                     }
                     if (i === moduleCourses.length - 1 && moduleCourses[i].id === moduleId) {
                         totalHtml += ` <div class="modules"  data='` + moduleId + `'> <div class="layui-form-item">
-                                          <label class="layui-form-label "  style="margin-left: 5%">` + moduleCourses[i - 1].moduleName + `</label>
+                                          <label class="layui-form-label "  style="margin-left: 5%">` + moduleCourses[i].moduleName + `</label>
                                              <div class="layui-input-block" >`
                             + _html + `
                                              </div>
@@ -283,7 +281,7 @@
                     }
                     if (i === moduleCourses.length - 1 && moduleCourses[i].id === moduleId) {
                         totalHtml += ` <div class="modules"  data='` + moduleId + `'> <div class="layui-form-item">
-                                          <label class=""  style="margin-left: 5%">` + moduleCourses[i - 1].moduleName + `</label>
+                                          <label class=""  style="margin-left: 5%">` + moduleCourses[i].moduleName + `</label>
                                             `
                             + _html + `
                                        </div></div>`;
