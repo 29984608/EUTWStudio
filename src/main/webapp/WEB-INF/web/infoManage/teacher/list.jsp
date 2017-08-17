@@ -20,7 +20,7 @@
             <blockquote class="layui-elem-quote mylog-info-tit">
                 <shiro:hasPermission name="teacher:add">
                     <ul class="layui-tab-title">
-                        <li class="layui-btn " onclick="teacher.add()"><i class="layui-icon">&#xe61f;</i>添加老师
+                        <li class="layui-btn " onclick="teacher.add()"><i class="layui-icon">&#xe61f;</i>添加教师
                         </li>
                     </ul>
                 </shiro:hasPermission>
@@ -475,9 +475,17 @@
             })
         })
         $('#identityCard-add').blur(function () {
-            if ($("#identityCard-add").val().length !== 18) {
+            var reg = new RegExp("^[1-9]\\d{5}[1-9]\\d{3}((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])\\d{3}([0-9]|X)$");
+            if (!reg.test($("#identityCard-add").val())) {
                 $("#identityCard-add").focus();
-                layer.msg("你的身份证不合格,请重新输入");
+                layer.msg("你的身份证输入有误,请重新输入");
+            }
+        })
+        $('#no-add').blur(function () {
+            var reg = new RegExp("^[0-9]*$");
+            if ((!reg.test($("#no-add").val())) || $("#no-add").val() ==='') {
+                $("#no-add").focus();
+                layer.msg("您的工号输入有误");
             }
         })
     })
