@@ -21,7 +21,7 @@
             <form id="preview-form" class="layui-form layui-form-pane" method="post">
                 <fieldset class="layui-elem-field">
                     <legend id="title-preview" style="font-size: 24px;font-weight: 700;padding: 10px 10%">
-                        西安欧亚学院高职学院培养方案
+                        西安欧亚学院高职学院课程学习计划
                     </legend>
                     <div class="layui-field-box">
                         <div id="modelCourses-preview" style="margin: 3% 0 0 20%">
@@ -46,7 +46,7 @@
         $.post(baseUrl + "/learnPlan/show", {studentNo: "<shiro:principal property="userName"/>"}, function (data) {
             if (data.result) {
                 let program = data.data.program;
-                let title = `西安欧亚学院高职学院` + program.departmentName + program.level + `级` + program.directionName + `方向人才培养方案`;
+                let title = `西安欧亚学院高职学院` + program.departmentName + program.level + `级` + program.directionName + `方向课程学习计划`;
                 $("#title-preview").text(title);
 
                 $("#modelCourses-preview").html(loadHasModuleCourse(data.data.moduleCourses));

@@ -67,7 +67,8 @@
             </button>
             <%--</shiro:hasPermission>--%>
             <%--<shiro:hasPermission name="communication:delete">--%>
-            <button class="layui-btn layui-btn-mini  " onclick="communication.previewOrUpdate('{{ item.name}}','{{item.no}}','preview')">
+            <button class="layui-btn layui-btn-mini  "
+                    onclick="communication.previewOrUpdate('{{ item.name}}','{{item.no}}','preview')">
                 <i class="layui-icon">&#xe60a;</i>预览
             </button>
             <%--</shiro:hasPermission>--%>
@@ -110,26 +111,25 @@
                 <input type="radio" name="name" id="student_radio" lay-filter="talk" value="student" title="学生" checked>
                 <input type="radio" name="name" lay-filter="talk" value="parent" title="家长">
             </div>
-            <div class="layui-form-mid layui-word-aux" id="talkName"></div>
         </div>
 
         <div class="layui-form-item layui-form-pane">
             <label class="layui-form-label " style="font-size: 13px">沟通内容：</label>
         </div>
 
-        <div id="content" style="margin-left: 5%">
+        <div id="content">
             <div class="layui-form-item content_node">
-                <label class="layui-form-label " style="font-size: 13px">Q&A</label>
-                <div class="layui-input-block">
-                    <textarea placeholder="请输入问题" class="layui-textarea add-contents"
-                              style="width: 80%;min-height: 50px;height: 70px;font-size: 12px;"></textarea>
-                    <textarea placeholder="请输入回答" class="layui-textarea add-contents"
-                              style="width: 80%;min-height: 50px;height: 70px;font-size: 12px;margin-left: .9%"></textarea>
-                    <div class="layui-btn-group" style="margin-left: .9%">
-                        <a onclick="addTalkContent()" class="layui-btn layui-btn-small"><i
-                                class="layui-icon">&#xe608;</i>添加一条 Q&A</a>
 
-                    </div>
+                <label class="layui-form-label " style="font-size: 13px">Q</label>
+                <textarea  placeholder="请输入问题" class="layui-textarea add-contents textarea"
+                           style="width: 80%;min-height: 50px;height: 70px;font-size: 12px;"></textarea>
+                <label class="layui-form-label " style="font-size: 13px">A</label>
+                <textarea placeholder="请输入回答" class="layui-textarea add-contents textarea"
+                          style="width: 80%;min-height: 50px;height: 70px;font-size: 12px;margin-left: .9%"></textarea>
+                <div class="layui-btn-group" style="margin-left: .9%">
+                    <a onclick="addTalkContent()" class="layui-btn layui-btn-small"><i
+                            class="layui-icon">&#xe608;</i>添加一条 Q&A</a>
+
                 </div>
             </div>
         </div>
@@ -149,7 +149,7 @@
         <h1 style="text-align: center;margin-left: -30px">西安欧亚学院高职学院<span id="who"></span>学生沟通反馈记录</h1>
         <div style="margin:40px 0">
 
-            <table  class="layui-table lay-even " data-name="articleCatData">
+            <table class="layui-table lay-even " data-name="articleCatData">
                 <thead>
                 <tr>
                     <th>姓名</th>
@@ -164,7 +164,7 @@
                 <tbody>
                 <tr>
                     <th id="name"></th>
-                    <th id ="gender"></th>
+                    <th id="gender"></th>
                     <th id="native_place"></th>
                     <th id="idcard"></th>
                     <th id="profession"></th>
@@ -200,12 +200,13 @@
 
     const content_html = `
     <div class="layui-form-item content_node">
-                <label class="layui-form-label " style="font-size: 13px">Q&A</label>
-                <div class="layui-input-block">
+    <label class="layui-form-label " style="font-size: 13px">Q</label>
                     <textarea placeholder="请输入问题" class="layui-textarea add-contents"
                               style="width: 80%;min-height: 50px;height: 70px;font-size: 12px;"></textarea>
+                    <label class="layui-form-label " style="font-size: 13px">A</label>
                     <textarea placeholder="请输入回答" class="layui-textarea add-contents"
                               style="width: 80%;min-height: 50px;height: 70px;font-size: 12px;margin-left: .9%"></textarea>
+
                     <div class="layui-btn-group" style="margin-left: .9%">
                         <a onclick="addTalkContent()" class="layui-btn layui-btn-small"><i class="layui-icon">&#xe608;</i>添加一条 Q&A</a>
                           <a onclick="deleteContent(this)" class="layui-btn layui-btn-small layui-btn-danger"><i
@@ -214,7 +215,6 @@
                         </a>
                     </div>
 
-                </div>
             </div>`;
 
 
@@ -233,7 +233,7 @@
 
     function showCommunicationContents(data, type) {
         let communication = ""
-        for (let i = 0; i < data.length-1; ++i) {
+        for (let i = 0; i < data.length - 1; ++i) {
             let com = data[i];
             communication += `
             <div class="timelineMajor">
