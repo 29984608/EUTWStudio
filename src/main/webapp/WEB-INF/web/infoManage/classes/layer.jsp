@@ -7,7 +7,7 @@
         <td>{{ item.name}}</td>
         <td>
             <shiro:hasPermission name="classes:update">
-            <button class="layui-btn layui-btn-mini layui-btn-normal"
+            <button class="layui-btn layui-btn-mini " style="background: #21a1a1"
                     onclick="classes.update('{{item.id}}','{{item.level}}','{{item.name}}','{{item.departmentId}}')">
                 <i class="layui-icon">&#xe642;</i>修改
             </button>

@@ -71,7 +71,7 @@
         </td>
         <td>
             <shiro:hasPermission name="rolePermission:update">
-                <button class="layui-btn layui-btn-mini layui-btn-normal" onclick="role.viewRole({{item.id}})">
+                <button class="layui-btn layui-btn-mini " style="background: #21a1a1" onclick="role.viewRole({{item.id}})">
                     <i class="layui-icon">&#xe642;</i>角色修改
                 </button>
             </shiro:hasPermission>
