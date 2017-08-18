@@ -16,9 +16,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by admin on 2017/6/24.
- */
 @Component
 @RequestMapping("/department")
 public class DepartmentController {

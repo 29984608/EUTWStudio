@@ -2,6 +2,7 @@ package com.thoughtWorks.web.infoManage;
 
 import com.thoughtWorks.dao.TrainModuleDao;
 import com.thoughtWorks.dto.Result;
+import com.thoughtWorks.dto.SearchDto;
 import com.thoughtWorks.entity.Classes;
 import com.thoughtWorks.service.TrainModuleService;
 import com.thoughtWorks.util.Constant;
@@ -33,7 +34,7 @@ public class ClassesController {
     public Map<String, Object> list(PageUtil page) {
         Map<String, Object> data = new HashMap<>();
         try {
-            List<Classes> classess = trainModuleService.queryClassesList(page);
+            List<Map<String,String>> classess = trainModuleService.queryClassesList(page);
             data.put("classess", classess);
             data.put("page", page);
             data.put("result", true);
@@ -76,9 +77,9 @@ public class ClassesController {
 
     @RequestMapping("addManual")
     @ResponseBody
-    public Result addManual(Classes classes) {
+    public Result addManual(SearchDto searchDto) {
         try {
-            trainModuleDao.addClassesManual(classes);
+            trainModuleDao.addClassesManual(searchDto);
 
             return Result.success(null, Constant.ADD_SUCCESS);
         } catch (Exception e) {

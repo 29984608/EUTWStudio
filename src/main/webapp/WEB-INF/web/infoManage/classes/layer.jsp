@@ -3,12 +3,14 @@
     {{# layui.each(d.classess, function(index, item){ }}
     <tr>
         <td>{{ index+1}}</td>
+        <td>{{ item.departmentName}}</td>
+        <td>{{ item.directionName}}</td>
         <td>{{ item.level}}</td>
         <td>{{ item.name}}</td>
         <td>
             <shiro:hasPermission name="classes:update">
             <button class="layui-btn layui-btn-mini " style="background: #21a1a1"
-                    onclick="classes.update('{{item.id}}','{{item.level}}','{{item.name}}','{{item.departmentId}}')">
+                    onclick="classes.update('{{item.id}}','{{item.level}}','{{item.name}}','{{item.departmentId}}','{{item.directionId}}')">
                 <i class="layui-icon">&#xe642;</i>修改
             </button>
             </shiro:hasPermission>
@@ -23,12 +25,20 @@
 
 </script>
 <div id="add" style="margin: 10px;display: none">
-    <form id="add-form" lay-filter="role-add" class="layui-form layui-form-pane" method="post">
+    <form id="add-form" lay-filter="role-add" class="layui-form layui-form-pane" method="post" style="width: 400px">
         <div class="layui-form-item">
             <label class="layui-form-label">年级所属系</label>
             <div class="layui-input-inline">
-                <select name="departmentId" id="department-add">
+                <select name="departmentId" lay-filter="department-add" id="department-add">
                     <option value="">请选择一个系</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">年级所属方向</label>
+            <div class="layui-input-inline">
+                <select name="directionId" id="direction-add">
+                    <option value="">请选择一个方向</option>
                 </select>
             </div>
         </div>
@@ -55,13 +65,21 @@
     </form>
 </div>
 <div id="update" style="margin: 10px;display: none">
-    <form id="update-form" lay-filter="role-add" class="layui-form layui-form-pane" method="post">
+    <form id="update-form" lay-filter="role-add" class="layui-form layui-form-pane" method="post"  style="width: 400px">
         <input type="hidden" id="id" name="id"/>
         <div class="layui-form-item">
             <label class="layui-form-label">年级所属系</label>
             <div class="layui-input-inline">
-                <select name="departmentId" id="department-update">
+                <select name="departmentId" lay-filter="department-update" id="department-update">
                     <option value="">请选择一个系</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">年级所属方向</label>
+            <div class="layui-input-inline">
+                <select name="directionId" id="direction-update">
+                    <option value="">请选择一个方向</option>
                 </select>
             </div>
         </div>

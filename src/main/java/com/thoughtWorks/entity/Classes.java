@@ -6,6 +6,15 @@ public class Classes {
     private String name;
     private String teacherId;
     private int departmentId;
+    private int directionId;
+
+    public int getDirectionId() {
+        return directionId;
+    }
+
+    public void setDirectionId(int directionId) {
+        this.directionId = directionId;
+    }
 
     public String getTeacherId() {
         return teacherId;

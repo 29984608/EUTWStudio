@@ -165,7 +165,7 @@ public class TrainModuleServiceImpl implements TrainModuleService {
     }
 
     @Override
-    public List<Classes> queryClassesList(PageUtil page) throws Exception {
+    public List<Map<String,String>> queryClassesList(PageUtil page) throws Exception {
         Map<String, Object> data = new HashMap<>();
         data.put("start", (page.getCurrentIndex() - 1) * page.getPageSize());
         data.put("end", page.getPageSize());
