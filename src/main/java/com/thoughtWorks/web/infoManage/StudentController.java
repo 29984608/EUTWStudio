@@ -202,11 +202,11 @@ public class StudentController {
 
     @RequestMapping("/delStudentFamily")
     @ResponseBody
-    public Result delStudentFamily(String familyId) {
+    public Result delStudentFamily(String familyId,String studentNo) {
         try {
             personService.delStudentFamily(familyId);
-
-            return Result.success(null, Constant.DELETE_SUCCESS);
+            List<Map<String, Object>> students_family = personService.queryStudentFamily(studentNo);
+            return Result.success(students_family, Constant.DELETE_SUCCESS);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -216,11 +216,12 @@ public class StudentController {
 
     @RequestMapping("/delExperience")
     @ResponseBody
-    public Result delExperience(String experienceId) {
+    public Result delExperience(String experienceId,String studentNo) {
         try {
             personService.delExperience(experienceId);
+            List<Map<String, Object>> experienceList = personService.queryStudentExperienceList(studentNo);
 
-            return Result.success(null, Constant.DELETE_SUCCESS);
+            return Result.success(experienceList, Constant.DELETE_SUCCESS);
         } catch (Exception e) {
             e.printStackTrace();
         }

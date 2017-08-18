@@ -5,6 +5,7 @@
     <title></title>
     <script type="text/javascript" src="${baseurl}/public/common/js/jquery-3.2.0.min.js"></script>
     <script src="${baseurl}/public/common/layui/layui.js" charset="utf-8"></script>
+    <script src="${baseurl}/js/separator.js" charset="utf-8"></script>
     <link rel="stylesheet" href="${baseurl}/public/common/layui/css/layui.css" media="all">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/common/layui/css/layui.css" media="all">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/common/bootstrap/css/bootstrap.min.css" media="all">
@@ -51,6 +52,17 @@
                         <div class="layui-input-inline">
                             <div class="layui-inline">
                                 <div class="layui-input-inline">
+                                    <select name="modules1" lay-filter="modules_2" lay-search=""
+                                            id="profession_search">
+                                        <option value="">专业</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-input-inline">
+                            <div class="layui-inline">
+                                <div class="layui-input-inline">
                                     <select name="modules" lay-filter="modules_3" lay-search=""
                                             id="direction_search">
                                         <option value="">方向</option>
@@ -73,23 +85,26 @@
                     <div>
                         <div class="layui-form-item">
                             <div class="layui-form-inline">
-                                <label class="layui-form-label">性别</label>
-                                <div class="layui-input-inline" id="sexQuery" style="width: 30%">
-                                    <input type="radio" name="sexQuery" value="" title="全部" checked="">
-                                    <input type="radio" name="sexQuery" value="M" title="男">
-                                    <input type="radio" name="sexQuery" value="F" title="女">
+                                <div >
+                                    <label class="layui-form-label" style="font-size: 13px">性别</label>
+                                    <div class="layui-input-inline" id="sexQuery" style="width: 20%;">
+                                        <input type="radio" name="sexQuery" value="" title="全部" checked="">
+                                        <input type="radio" name="sexQuery" value="M" title="男">
+                                        <input type="radio" name="sexQuery" value="F" title="女">
+                                    </div>
                                 </div>
+                                <div>
+                                    <label class="layui-form-label" style="font-size: 13px">住宿类型</label>
+                                    <div class="layui-input-inline" id="TypeOfAccommodation"
+                                         onclick="student.showDormAndHideDorm()" style="width: 30%">
 
-                                <label class="layui-form-label">住宿类型</label>
-                                <div class="layui-input-inline" id="TypeOfAccommodation"
-                                     onclick="student.showDormAndHideDorm()" style="width: 40%">
-
-                                    <input type="radio" name="TypeOfAccommodation" value="" title="全部" checked=""
-                                    >
-                                    <input type="radio" name="TypeOfAccommodation" value="1" title="校内"
-                                    >
-                                    <input type="radio" name="TypeOfAccommodation" value="2" title="校外"
-                                    >
+                                        <input type="radio" name="TypeOfAccommodation" value="" title="全部" checked=""
+                                        >
+                                        <input type="radio" name="TypeOfAccommodation" value="1" title="校内"
+                                        >
+                                        <input type="radio" name="TypeOfAccommodation" value="2" title="校外"
+                                        >
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -468,6 +483,7 @@
                             }
 
                             $("input:radio[value='" + studentList.student_classify + "']").prop('checked', 'true');
+                            $("input:radio[value='" + studentList.is_out + "']").prop('checked', 'true');
                             $("#Identity_card_address").val(studentList.idcard_address);
 
                             $("#detailedAddresses").val(studentList.actual_address)
@@ -478,91 +494,7 @@
 
                             $("#family_information").append(``)
 
-                            $("#family_member_information").html("");
-                            for (var j = 0; j < familyList.length; j++) {
-                                let politicalStatus = familyList[j].political_status;
-                                let isOther = student.isOther(politicalStatus);
-                                let isShow = isOther ? "display" : "none";
-                                $("#family_member_information").append(
-                                    `<tr id="family_information1" class="family_information1" style="float: left;">
-                                        <th colspan="2"><span class = "family_relationship"></span><span>
-                               <div class="layui-input-inline" style="width: 60%">
-                                   <input type="text" name="text"
-                                          placeholder="请输入内容" autocomplete="off" class="layui-input updateStudentParentsName"
-                                          id="updateStudentParentsName">
-                                </div>
-                           </span></th>
-                                        <th colspan="4"><span>
-                            <div class="political">
-                               政治面貌： <div class="layui-input-inline" >
-                                 <select name="politicalOutlook1" lay-filter="politicalOutlookParent"  class="updateStudentParent_political_status">
-                                   <option value="">请选择</option>
-                                   <option value="1" ` + (politicalStatus === "中共党员" ? "selected" : "") + `>中共党员</option>
-                                   <option value="2" ` + (politicalStatus === "预备党员" ? "selected" : "") + `>预备党员</option>
-                                   <option value="3" ` + (politicalStatus === "共青团员" ? "selected" : "") + `>共青团员</option>
-                                   <option value="4" ` + (politicalStatus === "积极分子" ? "selected" : "") + `>积极分子</option>
-                                   <option value="5" ` + (politicalStatus === "群众" ? "selected" : "") + `>群众</option>
-                                   <option value="6" ` + (isOther ? "selected" : "") + `>其他党派</option>
-                                 </select>
-                               </div>
-                                <span  class="otherParty1" style="display: ` + isShow + `">其他党派:
-                                       <div class="layui-input-inline">
-                                         <input type="text" name="otherPartyName"  value="` + politicalStatus + `"
-                                                placeholder="请输入党派名称"
-                                                autocomplete="off" class="layui-input other_updateStudentParent_political_status"
-                                                id="other_updateStudentParent_political_status">
-                                       </div>
-                               </span>
-                           </div>
-                               </span></th>
-                                    </tr>
-                               `)
-
-                                $("#family_member_information").append(`
-                           <tr id="family_information2" style="float: left;margin-bottom: 20px">
-                                        <th colspan="2">工作单位：<span>
-                               <div class="layui-input-inline" style="width: 60%">
-                                   <input type="text" name="text"
-                                          placeholder="请输入内容" autocomplete="off" class="layui-input updateStudentParent_employer"
-                                          id="updateStudentParent_employer">
-                                </div>
-                           </span></th>
-                                        <th colspan="2">职务：<span>
-                               <div class="layui-input-inline" style="width: 60%">
-                                   <input type="text" name="text"
-                                          placeholder="请输入内容" autocomplete="off" class="layui-input updateStudentParent_duties"
-                                          id="updateStudentParent_duties">
-                                </div>
-                           </span></th>
-                                        <th colspan="2">联系电话：<span>
-                               <div class="layui-input-inline" style="width: 60%">
-                                   <input type="text" name="text"
-                                          placeholder="请输入内容" autocomplete="off" class="layui-input updateStudentParent_phone"
-                                          id="updateStudentParent_phone">
-                                </div>
-                           </span></th>
-                                    </tr>`)
-
-                                $("#family_member_information").append(` <button  class="layui-btn layui-btn-danger delStudentFamily" onclick="student.delStudentFamily(` + familyList[j].id + `)"　 style="margin-bottom: 10px;float: left;margin-left: 60px" value="` + familyList[j].id + `"><i class="layui-icon">&#xe640;</i>删除</button>`)
-
-                            }
-
-                            let family_relationship = $(".family_relationship");//称谓
-                            let updateStudentParentsName = $(".updateStudentParentsName");//家庭成员姓名
-
-
-                            let updateStudentParent_employer = $(".updateStudentParent_employer");//工作单位
-                            let updateStudentParent_duties = $(".updateStudentParent_duties");//职务
-                            let updateStudentParent_phone = $(".updateStudentParent_phone");//联系电话
-                            for (var i = 0; i < familyList.length; i++) {
-                                $(family_relationship[i].append(familyList[i].relationship))
-                                $(updateStudentParentsName[i]).val(familyList[i].name)
-
-                                $(updateStudentParent_employer[i]).val(familyList[i].work_place);
-                                $(updateStudentParent_duties[i]).val(familyList[i].staff);
-                                $(updateStudentParent_phone[i]).val(familyList[i].phone);
-
-                            }
+                            student.familyFnformation(familyList);
 
 
                             $("input[type='radio'][name='whetherToTransfer'][value='" + studentList.account_in + "']").attr("checked", "checked");
@@ -602,52 +534,7 @@
                                 })
                             })
 
-                            $("#educational_experience").html("")
-                            for (let i = 0; i < experienceList.length; i++) {
-                                $("#educational_experience").append(`<tr style="float: left;margin-bottom: 20px">
-                                        <th colspan="2"><span>
-                                            <div class="layui-input-inline" style="width: 30%;float: left">
-                                                <input name="date" lay-verify="date" placeholder="yyyy-mm-dd"
-                                                       autocomplete="off" class="layui-input educational_experience_start"
-                                                       onclick="layui.laydate({elem: this})" type="text"
-                                                       id="educational_experience_start">
-                                            </div>
-                                            <span style="float: left;margin-top: 8px"><p class="layui-input-inline" style="align-content:center;">--至--</p></span>
-                                             <div class="layui-input-inline" style="width: 30%;float: left">
-                                                <input name="date" lay-verify="date" placeholder="yyyy-mm-dd"
-                                                       autocomplete="off" class="layui-input educational_experience_end"
-                                                       onclick="layui.laydate({elem: this})" type="text"
-                                                       id="educational_experience_end">
-                                            </div>
-                                        </span></th>
-                                        <th colspan="2"><span>
-                                            <div class="layui-input-inline" style="width: 90%">
-                                                <input type="text" name="text"
-                                                       placeholder="请输入学校名称" autocomplete="off" class="layui-input update_schoolName" id="update_schoolName">
-                                             </div>
-                                        </span></th>
-                                        <th colspan="2"><span>
-                                            <div class="layui-input-inline" style="width: 90%">
-                                                <input type="text" name="text"
-                                                       placeholder="担任什么职务" autocomplete="off" class="layui-input update_duties" id="update_duties">
-                                             </div>
-                                        </span></th>
-                                    </tr>`)
-                                $("#educational_experience").append(` <button class="layui-btn  layui-btn-danger" onclick="student.delExperience(` + experienceList[i].id + `)" style="margin-bottom: 10px;float: left;margin-left: 60px"><i class="layui-icon">&#xe640;</i> 删除</button>`)
-
-                            }
-
-                            let updateSchoolName = $(".update_schoolName");
-                            let educational_experience_start = $(".educational_experience_start");
-                            let educational_experience_end = $(".educational_experience_end");
-                            let update_duties = $(".update_duties");
-                            for (let i = 0; i < experienceList.length; i++) {
-                                $(updateSchoolName[i]).val(experienceList[i].work_place);
-                                $(educational_experience_start[i]).val(experienceList[i].start_time);
-                                $(educational_experience_end[i]).val(experienceList[i].end_time);
-                                $(update_duties[i]).val(experienceList[i].staff);
-                            }
-
+                            student.educationalExperience(experienceList);
 
                             $("input[type='radio'][name='student_type1'][value='" + studentList.student_type + "']").attr("checked", "checked");
                             $("#upadte_SAT_score").val(studentList.sat_score);
@@ -744,15 +631,160 @@
                 })
                 form.render();
             },
+            familyFnformation: function (familyList) {
+                $("#family_member_information").html("");
+                for (var j = 0; j < familyList.length; j++) {
+                    let politicalStatus = familyList[j].political_status;
+                    let isOther = student.isOther(politicalStatus);
+                    let isShow = isOther ? "display" : "none";
+                    $("#family_member_information").append(
+                        `<tr id="family_information1" class="family_information1" style="float: left;">
+                                        <th colspan="2"><span class = "family_relationship"></span><span>
+                               ：<div class="layui-input-inline" style="width: 60%">
+                                   <input type="text" name="text"
+                                          placeholder="请输入成员姓名" autocomplete="off" class="layui-input updateStudentParentsName"
+                                          id="updateStudentParentsName">
+                                </div>
+                           </span></th>
+                                        <th colspan="4"><span>
+                            <div class="political">
+                               政治面貌： <div class="layui-input-inline" >
+                                 <select name="politicalOutlook1" lay-filter="politicalOutlookParent"  class="updateStudentParent_political_status">
+                                   <option value="">请选择</option>
+                                   <option value="1" ` + (politicalStatus === "中共党员" ? "selected" : "") + `>中共党员</option>
+                                   <option value="2" ` + (politicalStatus === "预备党员" ? "selected" : "") + `>预备党员</option>
+                                   <option value="3" ` + (politicalStatus === "共青团员" ? "selected" : "") + `>共青团员</option>
+                                   <option value="4" ` + (politicalStatus === "积极分子" ? "selected" : "") + `>积极分子</option>
+                                   <option value="5" ` + (politicalStatus === "群众" ? "selected" : "") + `>群众</option>
+                                   <option value="6" ` + (isOther ? "selected" : "") + `>其他党派</option>
+                                 </select>
+                               </div>
+                                <span  class="otherParty1" style="display: ` + isShow + `">其他党派:
+                                       <div class="layui-input-inline">
+                                         <input type="text" name="otherPartyName"  value="` + politicalStatus + `"
+                                                placeholder="请输入党派名称"
+                                                autocomplete="off" class="layui-input other_updateStudentParent_political_status"
+                                                id="other_updateStudentParent_political_status">
+                                       </div>
+                               </span>
+                           </div>
+                               </span></th>
+                                    </tr>
+                               `)
+
+                    $("#family_member_information").append(`
+                           <tr id="family_information2" style="float: left;margin-bottom: 20px">
+                                        <th colspan="2">工作单位：<span>
+                               <div class="layui-input-inline" style="width: 60%">
+                                   <input type="text" name="text"
+                                          placeholder="请输入内容" autocomplete="off" class="layui-input updateStudentParent_employer"
+                                          id="updateStudentParent_employer">
+                                </div>
+                           </span></th>
+                                        <th colspan="2">职务：<span>
+                               <div class="layui-input-inline" style="width: 60%">
+                                   <input type="text" name="text"
+                                          placeholder="请输入内容" autocomplete="off" class="layui-input updateStudentParent_duties"
+                                          id="updateStudentParent_duties">
+                                </div>
+                           </span></th>
+                                        <th colspan="2">联系方式：<span>
+                               <div class="layui-input-inline" style="width: 60%">
+                                   <input type="text" name="text"
+                                          placeholder="请输入内容" autocomplete="off" class="layui-input updateStudentParent_phone"
+                                          id="updateStudentParent_phone">
+                                </div>
+                           </span></th>
+                                    </tr>`)
+
+                    $("#family_member_information").append(` <button  class="layui-btn layui-btn-danger delStudentFamily" onclick="student.delStudentFamily(` + (familyList[j].id) + `)"　 style="margin-bottom: 10px;float: left;margin-left: 60px" value="` + familyList[j].id + `"><i class="layui-icon">&#xe640;</i>删除</button>`)
+
+                }
+
+                let family_relationship = $(".family_relationship");//称谓
+                let updateStudentParentsName = $(".updateStudentParentsName");//家庭成员姓名
+
+
+                let updateStudentParent_employer = $(".updateStudentParent_employer");//工作单位
+                let updateStudentParent_duties = $(".updateStudentParent_duties");//职务
+                let updateStudentParent_phone = $(".updateStudentParent_phone");//联系电话
+                for (var i = 0; i < familyList.length; i++) {
+                    $(family_relationship[i].append(familyList[i].relationship))
+                    $(updateStudentParentsName[i]).val(familyList[i].name)
+
+                    $(updateStudentParent_employer[i]).val(familyList[i].work_place);
+                    $(updateStudentParent_duties[i]).val(familyList[i].staff);
+                    $(updateStudentParent_phone[i]).val(familyList[i].phone);
+
+
+                }
+                for (var i = 0; i === familyList.length + 1; i++) {
+                    $(updateStudentParent_phone[i]).formatInput({
+                        formatArr: [3, 4, 4],
+                        delimiter: '-'
+                    });
+                }
+            },
+            educationalExperience: function (experienceList) {
+                $("#educational_experience").html("")
+                for (let i = 0; i < experienceList.length; i++) {
+                    $("#educational_experience").append(`<tr style="float: left;margin-bottom: 20px">
+                                        <th colspan="2"><span>
+                                            <div class="layui-input-inline" style="width: 30%;float: left">
+                                                <input name="date" lay-verify="date" placeholder="yyyy-mm-dd"
+                                                       autocomplete="off" class="layui-input educational_experience_start"
+                                                       onclick="layui.laydate({elem: this})" type="text"
+                                                       id="educational_experience_start">
+                                            </div>
+                                            <span style="float: left;margin-top: 8px"><p class="layui-input-inline" style="align-content:center;">--至--</p></span>
+                                             <div class="layui-input-inline" style="width: 30%;float: left">
+                                                <input name="date" lay-verify="date" placeholder="yyyy-mm-dd"
+                                                       autocomplete="off" class="layui-input educational_experience_end"
+                                                       onclick="layui.laydate({elem: this})" type="text"
+                                                       id="educational_experience_end">
+                                            </div>
+                                        </span></th>
+                                        <th colspan="2"><span>
+                                            <div class="layui-input-inline" style="width: 90%">
+                                                <input type="text" name="text"
+                                                       placeholder="请输入学校名称" autocomplete="off" class="layui-input update_schoolName" id="update_schoolName">
+                                             </div>
+                                        </span></th>
+                                        <th colspan="2"><span>
+                                            <div class="layui-input-inline" style="width: 90%">
+                                                <input type="text" name="text"
+                                                       placeholder="担任什么职务" autocomplete="off" class="layui-input update_duties" id="update_duties">
+                                             </div>
+                                        </span></th>
+                                    </tr>`)
+                    $("#educational_experience").append(` <button class="layui-btn  layui-btn-danger" onclick="student.delExperience(` + experienceList[i].id + `)" style="margin-bottom: 10px;float: left;margin-left: 60px"><i class="layui-icon">&#xe640;</i> 删除</button>`)
+
+                }
+
+                let updateSchoolName = $(".update_schoolName");
+                let educational_experience_start = $(".educational_experience_start");
+                let educational_experience_end = $(".educational_experience_end");
+                let update_duties = $(".update_duties");
+                for (let i = 0; i < experienceList.length; i++) {
+                    $(updateSchoolName[i]).val(experienceList[i].work_place);
+                    $(educational_experience_start[i]).val(experienceList[i].start_time);
+                    $(educational_experience_end[i]).val(experienceList[i].end_time);
+                    $(update_duties[i]).val(experienceList[i].staff);
+                }
+
+            },
 
             delStudentFamily: function (familyId) {
                 layer.confirm('该操作将直接删除，无需更新！是否删除？', {icon: 3, title: '提示'}, function (index) {
                     layer.close(index);
+                    let studentNo = studentInfo.no;
                     $.post(baseUrl + "/student/delStudentFamily",
-                        {familyId: familyId},
+                        {familyId: familyId, studentNo: studentNo},
                         function (data) {
+                            console.log(data.data);
                             if (data.result) {
-                                layer.msg("删除成功,请刷新页面!");
+                                layer.msg("删除成功!");
+                                student.familyFnformation(data.data);
                             }
                         })
                 })
@@ -763,7 +795,11 @@
                     title: "添加学生家庭信息",
                     area: ["60%", "60%"],
                     content: $("#addStudentFamily"),
+                    success: function (layero, index) {
+
+                    }
                 })
+
             },
             addFamilyByUpdate: function () {
                 let studentNo = studentInfo.no;
@@ -777,7 +813,7 @@
                 } else {
                     var family_political_status = $("#family_political_status").find("option:selected").text();
                 }
-                layer.confirm('该操作将直接修改，无需更新！是否修改？', {icon: 3, title: '提示'}, function (index) {
+                layer.confirm('该操作将直接添加，无需更新！是否添加？', {icon: 3, title: '提示'}, function (index) {
                     $.post(baseUrl + "/student/addFamilyByUpdate",
                         {
                             no: studentNo,
@@ -789,8 +825,12 @@
                             political_status: family_political_status
                         },
                         function (data) {
-                            layer.msg(data.msg);
-                            setTimeout("location.reload()", 500);
+                            layer.msg(data.msg, {icon: 1});
+                            var index = parent.layer.getFrameIndex(window.name);
+                            if (data.result) {
+                                let index = parent.layer.open(index);
+                                parent.layer.close();
+                            }
                         }
                     )
                 })
@@ -804,19 +844,18 @@
                 })
             },
             delExperience: function (experienceId) {
-                layer.confirm('确定删除？', {icon: 3, title: '提示'}, function (index) {
+                layer.confirm('该操作直接删除，无需更新。确定删除？', {icon: 3, title: '提示'}, function (index) {
                     layer.close(index);
+                    let studentNo = studentInfo.no;
                     $.post(baseUrl + "/student/delExperience",
-                        {experienceId: experienceId},
+                        {experienceId: experienceId, studentNo: studentNo},
                         function (data) {
                             if (data.result) {
-                                layer.msg("删除成功,请刷新页面!");
-
+                                layer.msg("删除成功!");
+                                student.educationalExperience(data.data);
                             }
                         })
                 })
-                alert(23)
-                student.studentUpdate();
             },
             addExperienceByUpdate: function () {
                 let startDateExperience = $("#startDateExperience").val();
@@ -851,6 +890,23 @@
 
                 return false;
             },
+            showAreaInfo(){
+                let stay_type = $('#update_accommodation_type input[name="accommodation_type"]:checked ').val();
+                if (stay_type === '2'){
+                    $("#dorms").hide();
+                }else {
+                    $("#dorms").show();
+                }
+            },
+
+            showSAT_score(){
+                let student_type = $("#updateStudentType input[name='student_type']:checked").val();
+                if (student_type === "高考录取"){
+                    $("#show_SAT_score").show();
+                }else {
+                    $("#show_SAT_score").hide();
+                }
+            },
 
             queryAreaAndFloorAndRoomByRoomIdOfUpdate: function (roomId) {
                 $.post(baseUrl + "dorm/room/queryAreaAndFloorAndRoomByRoomId",
@@ -871,7 +927,6 @@
                         }
                     })
             },
-
 
             queryAreaAndFloorOfUpdate: function () {
                 $.post(baseUrl + "dorm/room/showAreaAndFloorsToQuery", function (data) {
@@ -912,6 +967,7 @@
                 var health_status = $('#health input[name="health"]:checked ').val();
                 var student_type = $('#updateStudentType input[name="student_type"]:checked').val();
                 var stay_type = $('#update_accommodation_type input[name="accommodation_type"]:checked ').val();
+                var is_out = $('#update_isOut input[name="isOut"]:checked ').val();
                 var blood = $("#updateStudentBloodType").find("option:selected").text()
                 if ($("#updateStudentPoliticalOutlook").find("option:selected").text() == "其他党派") {
                     var political_status = $("#otherUpdateStudentPoliticalOutlook").val()
@@ -926,7 +982,17 @@
                 }
 
                 var student_classify = $("#student_classify input[name='student_classify']:checked").val()
-                var idcard_address = $("#Identity_card_address").val()
+//                var idcard_address = $("#Identity_card_address").val()
+                //身份证住址
+                if ($("#province0").find("option:selected").text() == "—— 省 ——" || $("#city0").find("option:selected").text() == "—— 市 ——" || $("#district0").find("option:selected").text() == "—— 区 ——"){
+                    var idcard_address = $("#Identity_card_address").val();
+                }else {
+                    let detailedAddresses = "";
+                    detailedAddresses += $("#province0").find("option:selected").text() + "-";
+                    detailedAddresses += $("#city0").find("option:selected").text() + "-";
+                    detailedAddresses += $("#district0").find("option:selected").text();
+                    var idcard_address = detailedAddresses;
+                }
                 //家庭实际住址
                 $("#province3").find("option:selected").text()
                 $("#city3").find("option:selected").text()
@@ -1133,6 +1199,7 @@
                             pre_school_education: pre_school_education,
                             student_classify: student_classify,
                             idcard_address: idcard_address,
+                            is_out:is_out,
                             actual_address: actual_address,
                             origin_address: origin_address,
                             family_zip_code: family_zip_code,
@@ -1216,9 +1283,12 @@
             },
             school_account_where_the_police_station_detailed: function () {
                 $("#show_Pre_school_account_where_the_police_station_detailed").show();
+            },
+
+            updateCardAddress: function () {
+                $("#updateCardAddress").show();
             }
         };
-
 
         function loadALlDepartments() {
             $.post(baseUrl + "/department/allDepartments", function (data) {
@@ -1318,6 +1388,15 @@
             })
         }
 
+        //实时监听qq输入动态生成qq邮箱
+        function monitorQQOfEmail() {
+            $("#studentQQ").bind('input propertychange', function(){
+                $("#studentEmail").val($(this).val()+"@qq.com");
+            })
+        }
+
+
+
         $(function () {
             student.list();
             student.showDormAndHideDorm();
@@ -1325,9 +1404,20 @@
             loadAllDirections();
             loadAllLevels();
             loadAllClassess();
+            monitorQQOfEmail();
             student.queryAreaAndFloorOfUpdate()
             queryAreaAndFloor();
             form.render();
+
+            $("#studentPhone").formatInput({
+                formatArr: [3, 4, 4],
+                delimiter: '-'
+            });
+            $("#updateStudentHome_phone").formatInput({
+                formatArr: [3, 4, 4],
+                delimiter: '-'
+            });
+
 
             form.on('select(department)', function (data) {
 

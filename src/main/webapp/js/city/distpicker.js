@@ -19,7 +19,7 @@
     // Browser globals.
     factory(jQuery, ChineseDistricts);
   }
-})(function ($, ChineseDistricts) {
+})(function ($,ChineseDistricts) {
 
   'use strict';
 
@@ -198,7 +198,7 @@
     placeholder: true,
     province: '—— 省 ——',
     city: '—— 市 ——',
-    district: '—— 区 ——'
+    district: '—— 区/县 ——'
   };
 
   Distpicker.setDefaults = function (options) {
