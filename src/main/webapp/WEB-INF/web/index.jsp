@@ -14,8 +14,8 @@
 <div class="layui-layout layui-layout-admin" id="layui_layout">
     <!-- 顶部区域 -->
     <div class="layui-header header-menu">
-        <div class="logo posb" id="log" style="background: lightgoldenrodyellow">
-            <img src="${baseurl}/images/public/logo_.png">
+        <div class="logo posb" id="log" >
+            <img src="${baseurl}/images/public/logo_.png" height="200px">
         </div>
 
         <div class="layui-main posb">

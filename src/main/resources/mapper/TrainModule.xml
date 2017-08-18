@@ -219,18 +219,18 @@
     </select>
 
     <insert id="addTestMethod" parameterType="map">
-        INSERT INTO stuinfo.t_test_method(name)
+        INSERT INTO t_test_method(name)
         VALUES (#{name})
     </insert>
 
     <update id="updateTestMethod" parameterType="map">
-        UPDATE stuInfo.t_test_method
+        UPDATE t_test_method
         SET t_test_method.name = #{name}
-        WHERE stuInfo.t_test_method.id = #{id}
+        WHERE t_test_method.id = #{id}
     </update>
 
     <delete id="deleteTestMethod" parameterType="string">
-        DELETE FROM stuInfo.t_test_method
+        DELETE FROM t_test_method
         WHERE id = #{id}
     </delete>
 

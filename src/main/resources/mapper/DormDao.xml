@@ -41,7 +41,7 @@
     </update>
 
     <delete id="deleteArea" parameterType="string">
-        DELETE FROM stuinfo.t_area
+        DELETE FROM t_area
         WHERE id = #{id}
     </delete>
 
@@ -91,7 +91,7 @@
     </delete>
 
     <select id="selectAreaOfFloor" resultType="map">
-        select * from stuinfo.t_area
+        select * from t_area
     </select>
 
 
