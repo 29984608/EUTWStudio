@@ -11,10 +11,6 @@
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/common/css/global.css" media="all">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/common.css" media="all">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/personal.css" media="all">
-    <%--时间轴--%>
-    <link rel="stylesheet" href="${baseurl}/public/css/timeAsix/css/screen.css" type="text/css" media="screen">
-    <link rel="stylesheet" href="${baseurl}/public/css/timeAsix/css/responsive.css" type="text/css" media="screen">
-    <link rel="stylesheet" href="${baseurl}/public/css/timeAsix/inc/colorbox.css" type="text/css" media="screen">
 
 </head>
 <body>
@@ -37,7 +33,7 @@
     <div class="larry-personal">
         <div class="layui-tab">
 <shiro:hasPermission name="turnProfessional:exportExcel">
-            <button class="layui-btn layui-btn-mini" style="float: left" onclick="profession.exportExcel()"><i
+            <button class="layui-btn layui-btn-mini" style="float: right" onclick="profession.exportExcel()"><i
                     class="layui-icon">&#xe61e;</i>导出
                 EXCEl
             </button>
@@ -45,9 +41,8 @@
             <div id="container" class="layui-tab-content larry-personal-body clearfix mylog-info-box"
                  style="background: #fff;width: 100%;height: 100%;margin: 5px 0px">
                 <div style="text-align: center;font-size: 20px;font-weight: bold">
-                    <span id="level_time"></span>级学生转专业信息汇总表
-                    <span style="font-size: 13px;margin-left: 40px">统计日期:<spqn
-                            id="time">0000-00-00 00:00:00</spqn></span><br>
+                    <span id="level_time"></span>级学生转专业信息汇总表(<span style="font-size: 13px;" id="time">2017-6-3 12:12:21</span>)
+
                 </div>
                 <span style="font-size: 18px;font-weight: bold ;margin-left: 10px">分院：高职学院</span>
 
@@ -128,7 +123,7 @@
         $(function () {
 
             $("#_level").html("")
-            getSearchLevels().forEach(level => $("#_level").append( `<option value="`+level+`">`+level+`</option>`))
+            getSearchLevels().forEach(level => $("#_level").append( `<option value="`+level+`">`+level+`</option>`));
             profession.list(getSearchLevels()[0]);
             $("#level_time").text("").append(getSearchLevels()[0])
 

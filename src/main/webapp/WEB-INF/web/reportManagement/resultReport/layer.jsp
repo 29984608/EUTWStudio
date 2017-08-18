@@ -35,7 +35,7 @@
 
 </script>
 <div id="preview" style="display: none;width: auto;margin-top: 20px">
-    <button class="layui-btn layui-btn-mini  " onclick="exportPDF()">
+    <button class="layui-btn layui-btn-mini" style="float: right" onclick="exportPDF()">
         <i class="layui-icon">&#xe60a;</i>导出 PDF
     </button>
     <section class="larry-grid">

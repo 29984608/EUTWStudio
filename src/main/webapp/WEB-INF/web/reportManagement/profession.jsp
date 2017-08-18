@@ -22,15 +22,14 @@
     <div class="larry-personal">
         <div class="layui-tab">
 <shiro:hasPermission name="professionReport:exportExcel">
-            <button class="layui-btn layui-btn-mini" style="float: left" onclick="profession.exportExcel()"><i class="layui-icon">&#xe61e;</i>导出
+            <button class="layui-btn layui-btn-mini" style="float: right" onclick="profession.exportExcel()"><i class="layui-icon">&#xe61e;</i>导出
                 EXCEl
             </button>
 </shiro:hasPermission>
             <div id="container" class="layui-tab-content larry-personal-body clearfix mylog-info-box"
                  style="background: #fff;width: 100%;height: 100%;margin: 5px 0px">
 
-                <div style="text-align: center;font-size: 20px;font-weight: bold">高职学院专业人数统计表
-                    <span style="font-size: 13px;margin-left: 40px">统计日期:<spqn id="time">2017-6-3 12:12:21</spqn></span>
+                <div style="text-align: center;font-size: 20px;font-weight: bold">西安欧亚学院高职学院专业人数统计表(<span style="font-size: 13px;" id="time">2017-6-3 12:12:21</span>)
                 </div>
                 <table class="layui-table">
                     <thead>
@@ -146,8 +145,8 @@
                 $("#head").html("");
                 $("#head").append(`
                         <td>序号</td>
-                        <td>系</td>
-                        <td>专业</td>
+                        <td>系名称</td>
+                        <td>专业名称</td>
                 `);
                 getSearchLevels().forEach(level => $("#head").append(`<td>` + level + `</td>`));
                 $("#head").append(`<td>小计</td>`);
