@@ -189,10 +189,11 @@ public class StudentController {
 
     @RequestMapping("/addFamilyByUpdate")
     @ResponseBody
-    public Result addFamilyByUpdate(StudentFamily studentFamily) {
+    public Result addFamilyByUpdate(StudentFamily studentFamily,String studentNo) {
         try {
             personService.addFamilyByUpdate(studentFamily);
-            return Result.success(null, Constant.ADD_SUCCESS);
+            List<Map<String, Object>> students_family = personService.queryStudentFamily(studentNo);
+            return Result.success(students_family, Constant.ADD_SUCCESS);
         } catch (Exception e) {
             e.printStackTrace();
         }

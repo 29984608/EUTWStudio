@@ -40,13 +40,6 @@
             {{#}}}
         </td>
         <td>
-            {{# if(item.stay_type === "1"){ }}
-            校内
-            {{# }else{ }}
-            {{item.stay_type === "2" ? "校外" : ""}}
-            {{#}}}
-        </td>
-        <td>
             {{# if(item.profession === undefined){ }}
             未分配
             {{# }else{ }}
@@ -69,6 +62,13 @@
             {{#}}}
         </td>
 
+        <td>
+            {{# if(item.stay_type === "1"){ }}
+            校内
+            {{# }else{ }}
+            {{item.stay_type === "2" ? "校外" : ""}}
+            {{#}}}
+        </td>
         <td>
             {{# if(item.area === undefined){ }}
             未分配
@@ -370,13 +370,13 @@
                                                        id="updateStudentIdCard" readonly style="border: none">
                                              </div>
                                         </span></th>
-                                        <th colspan="3">籍贯：<span>
-                                            <div class="layui-input-inline" style="width: 60%">
-                                                <input type="text" name="text"
-                                                       placeholder="请输入内容" autocomplete="off" class="layui-input"
-                                                       id="updateStudentNativePlace">
-                                             </div>
-                                        </span></th>
+                                        <%--<th colspan="3">籍贯：<span>--%>
+                                            <%--<div class="layui-input-inline" style="width: 60%">--%>
+                                                <%--<input type="text" name="text"--%>
+                                                       <%--placeholder="请输入内容" autocomplete="off" class="layui-input"--%>
+                                                       <%--id="updateStudentNativePlace">--%>
+                                             <%--</div>--%>
+                                        <%--</span></th>--%>
 
                                     </tr>
 
@@ -535,7 +535,7 @@
                                         <th colspan="6">
                                                 <div class="layui-form-item" style="margin-bottom: 0px">
                                                     <label class="layui-form-label"
-                                                           style="margin-left: -40px;">宗教信仰</label>
+                                                           style="margin-left: -50px;">宗教信仰</label>
                                                     <div class="layui-input-block">
                                                         <input type="text" name="title"
                                                                autocomplete="off" placeholder="何时经何人介绍参加何种党派、团体、任何职?"
@@ -556,7 +556,46 @@
                                             </div>
                                         </div>
                                     </span></th>
+                                    </tr>
 
+                                    <tr>
+                                        <th colspan="6"><span style="font-weight: bold"></span>
+                                            <div class="layui-input-inline" style="width: 100%">
+                                                <label class="layui-form-label" style="width: auto;margin-left: -15px">籍贯: </label>
+                                                <div class="layui-input-inline" style="width: 60%">
+                                                    <input type="text" name="idcard_address" placeholder="请输入籍贯地址"
+                                                           autocomplete="off" class="layui-input"
+                                                           id="updateStudentNativePlace"
+                                                           readonly style="border: none">
+                                                </div>
+                                                <span style="float: right">
+                                                     <button class="layui-btn"
+                                                             onclick="student.updateNativeAddress()">编辑地址信息</button>
+                                                </span>
+                                            </div>
+
+                                            <div style="display: none" id="updateNativeAddress">
+                                                <br>
+                                                <form class="form-inline">
+                                                    <div id="distpicker9">
+                                                        <div class="form-group">
+                                                            <label class="sr-only" for="province9">Province</label>
+                                                            <select class="form-control" id="province9"
+                                                                    lay-ignore></select>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="sr-only" for="city9">City</label>
+                                                            <select class="form-control" id="city9" lay-ignore></select>
+                                                        </div>
+                                                        <div class="form-group" style="margin-right: -5px">
+                                                            <label class="sr-only" for="district9">District</label>
+                                                            <select class="form-control" id="district9"
+                                                                    lay-ignore></select>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </th>
                                     </tr>
 
 
@@ -570,7 +609,7 @@
                                                            id="Identity_card_address"
                                                            readonly style="border: none">
                                                 </div>
-                                                <span>
+                                                <span style="float: right">
                                                      <button class="layui-btn"
                                                              onclick="student.updateCardAddress()">编辑地址信息</button>
                                                 </span>
@@ -595,8 +634,6 @@
                                                                     lay-ignore></select>
                                                         </div>
                                                     </div>
-
-
                                                 </form>
                                             </div>
 
@@ -612,7 +649,7 @@
                                                            autocomplete="off" class="layui-input" id="detailedAddresses"
                                                            readonly style="border: none">
                                                 </div>
-                                                <span>
+                                                <span style="float: right">
                                                      <button class="layui-btn"
                                                              onclick="student.updateDetailedAddress()">编辑地址信息</button>
                                                 </span>
@@ -662,7 +699,7 @@
                                                            autocomplete="off" class="layui-input"
                                                            id="update_name_of_the_source" readonly style="border:none">
                                                 </div>
-                                                <span>
+                                                <span style="float: right">
                                                      <button class="layui-btn"
                                                              onclick="student.showUpdate_name_of_the_source()">编辑地址信息</button>
                                                 </span>
@@ -764,7 +801,7 @@
                                                            id="Pre_enrollment_file_unit"
                                                            readonly style="border: none">
                                                 </div>
-                                                <span>
+                                                <span style="float: right">
                                                      <button class="layui-btn"
                                                              onclick="student.update_Pre_enrollment_file_unit()">编辑地址信息</button>
                                                 </span>
@@ -842,7 +879,7 @@
                                                            id="school_account_where_the_police_station_detailed"
                                                            readonly style="border: none">
                                                 </div>
-                                                <span>
+                                                <span style="float: right">
                                                      <button class="layui-btn"
                                                              onclick="student.school_account_where_the_police_station_detailed()">编辑地址信息</button>
                                                 </span>
@@ -1127,7 +1164,7 @@
                                                            autocomplete="off" class="layui-input" id="updateDorms"
                                                            readonly style="border: none">
                                                 </div>
-                                                <span>
+                                                <span style="float: right">
                                                      <button class="layui-btn"
                                                              onclick="student.showUpdateDorms()">编辑地址信息</button>
                                                 </span>
@@ -1181,7 +1218,7 @@
                                     </tr>
                                     </tbody>
                                 </table>
-                                <h4 style="color: #00ab9f;font-weight: bold ;padding-top: 15px;">获奖或荣誉</h4>
+                                <h4 style="color: #00ab9f;font-weight: bold ;padding-top: 15px;">获奖或处分</h4>
                                 <table class="layui-table lay-even " data-name="articleCatData"
                                        style="border: 0px solid red" id="updateStudent_Award_or_honor">
                                     <tbody>
@@ -1247,18 +1284,6 @@
                     </div>
                 </div>
             </td>
-        </tr>
-        <tr>
-            <td>
-                <div class="layui-inline">
-                    <label class="layui-form-label" style="width: auto">工作单位</label>
-                    <div class="layui-input-inline">
-                        <input type="tel" name="phone"
-                               autocomplete="off" class="layui-input"
-                               placeholder="请输入相关内容" id="family_work_place">
-                    </div>
-                </div>
-            </td>
             <td>
                 <div class="layui-inline">
                     <label class="layui-form-label">职务</label>
@@ -1269,6 +1294,7 @@
                     </div>
                 </div>
             </td>
+
         </tr>
         <tr>
             <td>
@@ -1281,7 +1307,19 @@
                     </div>
                 </div>
             </td>
+            <td>
+                <div class="layui-inline">
+                    <label class="layui-form-label" style="width: auto">工作单位</label>
+                    <div class="layui-input-inline">
+                        <input type="tel" name="phone"
+                               autocomplete="off" class="layui-input"
+                               placeholder="请输入相关内容" id="family_work_place" style="width: 160%">
+                    </div>
+                </div>
+            </td>
+
         </tr>
+
         <tr>
             <td>
                 <div class="layui-inline layui-form">
@@ -1306,7 +1344,7 @@
                     <div class="layui-input-inline">
                         <input type="tel" name="phone"
                                autocomplete="off" class="layui-input"
-                               placeholder="请输入相关内容" id="other_family_political_status">
+                               placeholder="请输入相关内容" id="other_family_political_status" style="width: 160%">
                     </div>
                 </div>
             </td>
@@ -1378,6 +1416,7 @@
 <script src="${baseurl}/js/city/distpicker.js"></script>
 <script src="${baseurl}/js/city/main.js"></script>
 <script src="${baseurl}/js/city/distpicker.data.js"></script>
+<script src="${baseurl}/js/separator.js" charset="utf-8"></script>
 <script type="text/javascript">
     $("#distpicker").distpicker({
         autoSelect: false
@@ -1391,5 +1430,12 @@
     $("#distpicker0").distpicker({
         autoSelect: false
     });
+    $("#distpicker9").distpicker({
+        autoSelect: false
+    });
+    $("#family_phone_add").formatInput({
+        formatArr: [3, 4, 4],
+        delimiter: '-'
+    })
 
 </script>

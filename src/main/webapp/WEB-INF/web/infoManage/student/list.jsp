@@ -85,7 +85,7 @@
                     <div>
                         <div class="layui-form-item">
                             <div class="layui-form-inline">
-                                <div >
+                                <div>
                                     <label class="layui-form-label" style="font-size: 13px">性别</label>
                                     <div class="layui-input-inline" id="sexQuery" style="width: 20%;">
                                         <input type="radio" name="sexQuery" value="" title="全部" checked="">
@@ -182,10 +182,10 @@
                             <th>性别</th>
                             <th>系</th>
                             <th>年级</th>
-                            <th>住宿类型</th>
                             <th>专业</th>
                             <th>方向</th>
                             <th>班级</th>
+                            <th>住宿类型</th>
                             <th>区</th>
                             <th>楼层</th>
                             <th>宿舍</th>
@@ -219,6 +219,7 @@
     let imgName;
     let famousFamily;
     let departmentList;
+    let addStudentFamilyInfoIndex;
     layui.use(['jquery', 'layer', 'element', 'laypage', 'form', 'laytpl', 'tree'], function () {
         window.jQuery = window.$ = layui.jquery;
         window.layer = layui.layer;
@@ -638,14 +639,14 @@
                     let isShow = isOther ? "display" : "none";
                     $("#family_member_information").append(
                         `<tr id="family_information1" class="family_information1" style="float: left;">
-                                        <th colspan="2"><span class = "family_relationship"></span><span>
+                                        <th colspan="1"><span class = "family_relationship"></span><span>
                                ：<div class="layui-input-inline" style="width: 60%">
                                    <input type="text" name="text"
                                           placeholder="请输入成员姓名" autocomplete="off" class="layui-input updateStudentParentsName"
                                           id="updateStudentParentsName">
                                 </div>
                            </span></th>
-                                        <th colspan="4"><span>
+                                        <th colspan="5"><span>
                             <div class="political">
                                政治面貌： <div class="layui-input-inline" >
                                  <select name="politicalOutlook1" lay-filter="politicalOutlookParent"  class="updateStudentParent_political_status">
@@ -717,7 +718,7 @@
 
 
                 }
-                for (var i = 0; i === familyList.length + 1; i++) {
+                for (var i = 0; i <= familyList.length; i++) {
                     $(updateStudentParent_phone[i]).formatInput({
                         formatArr: [3, 4, 4],
                         delimiter: '-'
@@ -789,15 +790,13 @@
                 })
             },
             addStudentFamilyInfo: function () {
-                layer.open({
+                addStudentFamilyInfoIndex = layer.open({
                     type: 1,
                     title: "添加学生家庭信息",
-                    area: ["60%", "60%"],
-                    content: $("#addStudentFamily"),
-                    success: function (layero, index) {
+                    area: ["100%", "100%"],
+                    content: $("#addStudentFamily")
 
-                    }
-                })
+                });
 
             },
             addFamilyByUpdate: function () {
@@ -813,6 +812,7 @@
                     var family_political_status = $("#family_political_status").find("option:selected").text();
                 }
                 layer.confirm('该操作将直接添加，无需更新！是否添加？', {icon: 3, title: '提示'}, function (index) {
+                    let studentNo = studentInfo.no;
                     $.post(baseUrl + "/student/addFamilyByUpdate",
                         {
                             no: studentNo,
@@ -821,14 +821,14 @@
                             work_place: family_work_place,
                             staff: family_staff,
                             phone: family_phone_add,
-                            political_status: family_political_status
+                            political_status: family_political_status,
+                            studentNo: studentNo
                         },
                         function (data) {
-                            layer.msg(data.msg, {icon: 1});
-                            var index = parent.layer.getFrameIndex(window.name);
                             if (data.result) {
-                                let index = parent.layer.open(index);
-                                parent.layer.close();
+                                layer.msg(data.msg, {icon: 1});
+                                layer.close(addStudentFamilyInfoIndex);
+                                student.familyFnformation(data.data);
                             }
                         }
                     )
@@ -889,20 +889,20 @@
 
                 return false;
             },
-            showAreaInfo(){
+            showAreaInfo() {
                 let stay_type = $('#update_accommodation_type input[name="accommodation_type"]:checked ').val();
-                if (stay_type === '2'){
+                if (stay_type === '2') {
                     $("#dorms").hide();
-                }else {
+                } else {
                     $("#dorms").show();
                 }
             },
 
-            showSAT_score(){
+            showSAT_score() {
                 let student_type = $("#updateStudentType input[name='student_type']:checked").val();
-                if (student_type === "高考录取"){
+                if (student_type === "高考录取") {
                     $("#show_SAT_score").show();
-                }else {
+                } else {
                     $("#show_SAT_score").hide();
                 }
             },
@@ -981,11 +981,20 @@
                 }
 
                 var student_classify = $("#student_classify input[name='student_classify']:checked").val()
-//                var idcard_address = $("#Identity_card_address").val()
+                //籍贯
+                if ($("#province9").find("option:selected").text() == "—— 省 ——" || $("#city9").find("option:selected").text() == "—— 市 ——" || $("#district9").find("option:selected").text() == "—— 区/县 ——") {
+                    var idcard_address = $("#updateStudentNativePlace").val();
+                } else {
+                    let detailedAddresses = "";
+                    detailedAddresses += $("#province9").find("option:selected").text() + "-";
+                    detailedAddresses += $("#city9").find("option:selected").text() + "-";
+                    detailedAddresses += $("#district9").find("option:selected").text();
+                    var native_place = detailedAddresses;
+                }
                 //身份证住址
-                if ($("#province0").find("option:selected").text() == "—— 省 ——" || $("#city0").find("option:selected").text() == "—— 市 ——" || $("#district0").find("option:selected").text() == "—— 区 ——"){
+                if ($("#province0").find("option:selected").text() == "—— 省 ——" || $("#city0").find("option:selected").text() == "—— 市 ——" || $("#district0").find("option:selected").text() == "—— 区/县 ——") {
                     var idcard_address = $("#Identity_card_address").val();
-                }else {
+                } else {
                     let detailedAddresses = "";
                     detailedAddresses += $("#province0").find("option:selected").text() + "-";
                     detailedAddresses += $("#city0").find("option:selected").text() + "-";
@@ -996,7 +1005,7 @@
                 $("#province3").find("option:selected").text()
                 $("#city3").find("option:selected").text()
                 $("#district3").find("option:selected").text()
-                if ($("#province3").find("option:selected").text() == "—— 省 ——" || $("#city3").find("option:selected").text() == "—— 市 ——" || $("#district3").find("option:selected").text() == "—— 区 ——" || $("#detailedAddress").val() == "") {
+                if ($("#province3").find("option:selected").text() == "—— 省 ——" || $("#city3").find("option:selected").text() == "—— 市 ——" || $("#district3").find("option:selected").text() == "—— 区/县 ——" || $("#detailedAddress").val() == "") {
                     var actual_address = $("#detailedAddresses").val()
                 } else {
                     var detailedAddresses = "";
@@ -1007,7 +1016,7 @@
                     var actual_address = detailedAddresses;
                 }
 
-                if ($("#province1").find("option:selected").text() == "—— 省 ——" || $("#city1").find("option:selected").text() == "—— 市 ——" || $("#district1").find("option:selected").text() == "—— 区 ——") {
+                if ($("#province1").find("option:selected").text() == "—— 省 ——" || $("#city1").find("option:selected").text() == "—— 市 ——" || $("#district1").find("option:selected").text() == "—— 区/县 ——") {
                     var origin_address = $("#update_name_of_the_source").val()
                 } else {
                     var detailedAddresses = "";
@@ -1025,7 +1034,7 @@
                 var area_origin_name = $("#birthplaceName input[name='birthplaceName']:checked").val()
 
                 //入学前档案所在单位
-                if ($("#province2").find("option:selected").text() == "—— 省 ——" || $("#city2").find("option:selected").text() == "—— 市 ——" || $("#district2").find("option:selected").text() == "—— 区 ——" || $("#updateStudent_Pre_enrollment_file_unit_detailed").val() == "") {
+                if ($("#province2").find("option:selected").text() == "—— 省 ——" || $("#city2").find("option:selected").text() == "—— 市 ——" || $("#district2").find("option:selected").text() == "—— 区/县 ——" || $("#updateStudent_Pre_enrollment_file_unit_detailed").val() == "") {
                     var pre_school_file_where_location = $("#Pre_enrollment_file_unit").val()
                 } else {
                     var detailedAddresses = "";
@@ -1040,7 +1049,7 @@
                 var pre_school_name = $("#Pre_school_name").val();
 
                 //入学前户口所在派出所
-                if ($("#province5").find("option:selected").text() == "—— 省 ——" || $("#city5").find("option:selected").text() == "—— 市 ——" || $("#district5").find("option:selected").text() == "—— 区 ——" || $("#Pre_school_account_where_the_police_station_detailed").val() == "") {
+                if ($("#province5").find("option:selected").text() == "—— 省 ——" || $("#city5").find("option:selected").text() == "—— 市 ——" || $("#district5").find("option:selected").text() == "—— 区/县 ——" || $("#Pre_school_account_where_the_police_station_detailed").val() == "") {
                     var pre_school_account_where_station = $("#Pre_enrollment_file_unit").val()
                 } else {
                     var detailedAddresses = "";
@@ -1167,7 +1176,7 @@
                     var room_id = studentInfo.room_id;
                 }
                 var sat_score = $("#upadte_SAT_score").val();
-                var native_place = $("#updateStudentNativePlace").val();
+//                var native_place = $("#updateStudentNativePlace").val();
 
                 //获奖或荣誉
                 var own_punishment = $("#update_award_or_honor").val();
@@ -1198,7 +1207,7 @@
                             pre_school_education: pre_school_education,
                             student_classify: student_classify,
                             idcard_address: idcard_address,
-                            is_out:is_out,
+                            is_out: is_out,
                             actual_address: actual_address,
                             origin_address: origin_address,
                             family_zip_code: family_zip_code,
@@ -1286,6 +1295,10 @@
 
             updateCardAddress: function () {
                 $("#updateCardAddress").show();
+            },
+
+            updateNativeAddress:function () {
+                $("#updateNativeAddress").show();
             }
         };
 
@@ -1389,11 +1402,10 @@
 
         //实时监听qq输入动态生成qq邮箱
         function monitorQQOfEmail() {
-            $("#studentQQ").bind('input propertychange', function(){
-                $("#studentEmail").val($(this).val()+"@qq.com");
+            $("#studentQQ").bind('input propertychange', function () {
+                $("#studentEmail").val($(this).val() + "@qq.com");
             })
         }
-
 
 
         $(function () {
@@ -1413,6 +1425,10 @@
                 delimiter: '-'
             });
             $("#updateStudentHome_phone").formatInput({
+                formatArr: [3, 4, 4],
+                delimiter: '-'
+            });
+            $("#updateStudent_emergency_contact_phone").formatInput({
                 formatArr: [3, 4, 4],
                 delimiter: '-'
             });
