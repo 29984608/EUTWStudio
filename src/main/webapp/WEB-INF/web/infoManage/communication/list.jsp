@@ -425,7 +425,7 @@
     ;
 
     function printPdf() {
-        pdf(document.getElementById("container"), $("#exportPDFName").text(), "a3");
+        pdf(document.getElementById("container"), $("#name").text(), "a4");
     }
 </script>
 

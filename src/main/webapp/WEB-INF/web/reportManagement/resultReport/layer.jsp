@@ -35,45 +35,44 @@
 
 </script>
 <div id="preview" style="display: none;width: auto;margin-top: 20px">
-    <button class="layui-btn layui-btn-mini  " onclick="exportPDF()">
+    <button class="layui-btn layui-btn-mini" style="float: right" onclick="exportPDF()">
         <i class="layui-icon">&#xe60a;</i>导出 PDF
     </button>
-    <section class="larry-grid" >
+    <section class="larry-grid">
         <div class="larry-personal" id="container" style="height: 1600px;width: 83%">
             <div style="margin:20px 5%;height: auto">
                 <div>
                     <h2 style="color: #20a1a1;text-align: center;font-weight: bold;padding: 15px">
                     <span>
-                        <img src="${baseurl}/images/public/logo_.png" style="width: 16%;height: 5%">
-                    </span>西安欧亚学院学生成绩单</h2>
+                        <%--<img src="${baseurl}/images/public/logo_.png" style="width: 16%;height: 5%">--%>
+                    </span>西安欧亚学院高职学院学生成绩单</h2>
                     <fieldset class="layui-elem-field layui-field-title" style="margin:5px 1px">
                     </fieldset>
-                    <table style="width: 90%">
-                        <tr>
+                    <table style="width: 90%;font-size: 13px">
+                        <tr style="padding: 0px;">
                             <td>姓名: <span id="name"></span></td>
                             <td>性别: <span id="gender"></span></td>
                             <td>名族: <span id="famous_family"></span></td>
-                            <td>籍贯: <span id="address"></span></td>
-                            <td>学历: 专科</td>
+                            <td>政治面貌: <span id="political"></span></td>
+                            <td>学号: <span id="no"></span></td>
                             <td rowspan="3">
-                                <img id="headImg" src="${baseurl}/images/public/as.png" width="100px" height="150px">
+                                <img style="margin-left: 50%" id="headImg" src="${baseurl}/images/public/as.png" width="100px" height="150px">
                             </td>
                         </tr>
                         <tr>
-                            <td>学号: <span id="no"></span></td>
-                            <td>政治面貌: <span id="political"></span></td>
+                            <td>学历: 专科</td>
+                            <td>籍贯: <span id="address"></span></td>
                             <td colspan="3">身份证号: <span id="idcard"></span></td>
                         </tr>
                         <tr>
-                            <td>专业: <span id="profession"></span></td>
-                            <td>方向: <span id="direction"></span></td>
+                            <td>专业名称: <span id="profession"></span></td>
+                            <td>就业方向: <span id="direction"></span></td>
                             <td colspan="3">入学时间: <span id="in_school"></span></td>
                         </tr>
                     </table>
 
                     <div style="float: left;width: 50%;">
-                        <table class="layui-table" lay-even="" lay-skin="nob"
-                              >
+                        <table class="layui-table"  lay-skin="nob" style="border-right: 2px dashed #e8e8e8">
                             <colgroup>
                                 <col width="20%">
                                 <col width="15%">
@@ -98,7 +97,7 @@
                     </div>
                     <div style="float: left;width: 50%">
                         <table class="layui-table" lay-even="" lay-skin="nob"
-                               >
+                        >
                             <colgroup>
                                 <col width="20%">
                                 <col width="15%">
@@ -131,7 +130,6 @@
                             选修/实修&nbsp;&nbsp;&nbsp;&nbsp8/<span id="elective_score">3</span></p>
                         <fieldset class="layui-elem-field layui-field-title" style="margin-top: 5px;">
                         </fieldset>
-                        <img src="${baseurl}/images/public/logo_.png" style="width: 16%;height: 5%;float: right">
                     </div>
                 </div>
             </div>

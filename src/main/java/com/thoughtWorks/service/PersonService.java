@@ -18,7 +18,7 @@ public interface PersonService {
 
     void deleteTeacherById(String id) throws Exception;
 
-    Map<String, Object> queryStudentsByLikes(String userName, SearchDto searchDto) throws Exception;
+    Map<String, Object> queryStudentsByLikes(ActiveUser user, SearchDto searchDto) throws Exception;
 
     List<Classes> loadTeacherHasClassess(String no) throws Exception;
 
@@ -106,4 +106,6 @@ public interface PersonService {
     String queryStudentNameByStudentNo(String studentNo) throws Exception;
 
     List<Map<String, Object>> queryFamousFamilyList() throws Exception;
+
+    Map<String, Object> queryStudentsByLikesAdmin(SearchDto searchDto) throws Exception;
 }

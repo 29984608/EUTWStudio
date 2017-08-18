@@ -104,27 +104,44 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public Map<String, Object> queryStudentsByLikes(String userName, SearchDto searchDto) throws Exception {
+    public Map<String, Object> queryStudentsByLikesAdmin(SearchDto searchDto) throws Exception {
         Map<String, Object> result = new HashMap<>();
         Map<String, Object> data = new HashMap<>();
-        data.put("no", userName);
         data.put("professionId", searchDto.getProfessionId());
         data.put("directionId", searchDto.getDirectionId());
-        data.put("classesId", searchDto.getClassesId());
+        data.put("level", searchDto.getLevel());
         data.put("studentNo", searchDto.getStudentNo() + "%");
         data.put("name", "%" + searchDto.getName() + "%");
-        List<Map<String, String>> students = personDao.queryStudentsByLikes(data,DateUtil.getSearchLevels());
-
-        Map<String, String> teacher = personDao.queryTeacherByNo(userName);
-
-        List<Direction> directions = departmentDao.queryDirectionsByDepartmentId(String.valueOf(teacher.get("department_id")));
-        List<Profession> professions = departmentDao.queryProfessionsByDepartmentId(String.valueOf(teacher.get("department_id")));
-        List<Classes> classes = trainModuleDao.queryClassesByTeacherHas(userName);
+        List<Map<String, String>> students = personDao.queryStudentsByLikesAdmin(data);
+        List<Direction> directions = departmentDao.queryAllDirections();
+        List<Profession> professions = departmentDao.queryAllProfession();
 
         result.put("studentClass", students);
         result.put("professions", professions);
         result.put("directions", directions);
-        result.put("classess", classes);
+
+        return result;
+    }
+
+    @Override
+    public Map<String, Object> queryStudentsByLikes(ActiveUser user, SearchDto searchDto) throws Exception {
+        Map<String, Object> result = new HashMap<>();
+        Map<String, Object> data = new HashMap<>();
+        data.put("no", user.getUserName());
+        data.put("professionId", searchDto.getProfessionId());
+        data.put("directionId", searchDto.getDirectionId());
+        data.put("level", searchDto.getLevel());
+        data.put("studentNo", searchDto.getStudentNo() + "%");
+        data.put("name", "%" + searchDto.getName() + "%");
+
+        List<Map<String, String>> students = personDao.queryStudentsByLikes(data);
+        Map<String, String> teacher = personDao.queryTeacherByNo(user.getUserName());
+        List<Direction> directions = departmentDao.queryDirectionsByDepartmentId(String.valueOf(teacher.get("department_id")));
+        List<Profession> professions = departmentDao.queryProfessionsByDepartmentId(String.valueOf(teacher.get("department_id")));
+
+        result.put("studentClass", students);
+        result.put("professions", professions);
+        result.put("directions", directions);
 
         return result;
     }

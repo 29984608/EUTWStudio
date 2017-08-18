@@ -35,7 +35,7 @@
 
 </script>
 <div id="preview" style="display: none;width: auto;margin-top: 20px;text-align: center;padding: 2%">
-    <button class="layui-btn layui-btn-mini" style="float:left;" onclick="resultReport.exportRegisterReport()">
+    <button class="layui-btn layui-btn-mini" style="float:right;" onclick="resultReport.exportRegisterReport()">
         <i class="layui-icon">&#xe61e;</i>导出 Excel
     </button>
     <h1>西安欧亚学院学生入学登记表</h1>
