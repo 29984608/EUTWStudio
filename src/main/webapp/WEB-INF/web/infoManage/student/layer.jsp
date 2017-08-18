@@ -1,5 +1,10 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 
+<style>
+    .layui-table th{
+        font-size: 12px;
+    }
+</style>
 <script id="list-tpl" type="text/html">
     {{# layui.each(d.student, function(index,item){ }}
     <tr>
@@ -113,8 +118,8 @@
 </script>
 
 
-<div id="update" style="display: none; background:#F8F8F8">
-    <div class="container" id="container" style=" background: #fff">
+<div id="update" style="display: none; background-color: #F8F8F8">
+    <div class="container" id="container" style=" background: #fff;width: 800px; ">
         <h1 style="text-align: center;margin-left: -30px;margin-top: 40px; ;color:#00ab9f ">西安欧亚学院<span
                 id="studentName1"></span>学生档案</h1>
         <div style="margin-top: 40px;">
@@ -122,8 +127,8 @@
                 <div style="width:140px; height: 200px; margin:10px 50px;border: 0px solid #00ab9f">
                     <img id="images" style="width: 100%" height="100%"/>
                 </div>
-                <div style="width:220px; height: 240px; margin:10px 30px;">
-                    <table class="layui-table lay-even " data-name="articleCatData" >
+                <div style="width:220px; height: 240px; margin:10px 30px; ">
+                    <table class="layui-table lay-even " data-name="articleCatData" style="width: 174px;" >
                         <tbody >
                         <tr>
                             <th>TEL：<span id="phone"></span></th>
@@ -144,35 +149,35 @@
                        style="border: 0px solid red">
                     <tbody>
                     <tr>
-                        <th colspan="1">学号：<span id="studentNo"></span></th>
-                        <th>姓名：<span id="studentName"></span></th>
-                        <th>性别：<span id="studentSex"></span></th>
-                        <th>民族：<span id="famous_family"></span></th>
-                        <th colspan="2">身份证号：<span id="idcard"></span></th>
+                        <th colspan="1" style="width:93px;">学号：<br><span id="studentNo"></span></th>
+                        <th colspan="3" style="width:192px;">姓名：<br><span id="studentName"></span></th>
+                        <th colspan="1" style="width:107px;">性别：<span id="studentSex"></span></th>
+                        <th colspan="2">民族：<br><span id="famous_family"></span></th>
+                        <th >身份证号：<br><span id="idcard"></span></th>
                     </tr>
                     <tr>
-                        <th colspan="1">出生日期：<span id="born"></span></th>
-                        <th colspan="2">籍贯：<span id="native_place"></span></th>
-                        <th colspan="2">政治面貌：<span id="political_status"></span></th>
+                        <th colspan="1">出生日期：<br><span id="born"></span></th>
+                        <th colspan="3">籍贯：<br><span id="native_place"></span></th>
+                        <th colspan="3">政治面貌：<span id="political_status"></span></th>
                         <th colspan="1">婚否：<span id="is_marry"></span></th>
                     </tr>
                     <tr>
                         <th colspan="1">血型：<span id="blood"></span></th>
-                        <th colspan="2">身高：<span id="height"></span>cm</th>
-                        <th colspan="2">体重：<span id="weight"></span>kg</th>
-                        <th colspan="1">健康状况：<span id="health_status"></span></th>
+                        <th colspan="3">身高：<span id="height"></span>cm</th>
+                        <th colspan="2" style="width:170px;">体重：<span id="weight"></span>kg</th>
+                        <th colspan="2">健康状况：<span id="health_status"></span></th>
                     </tr>
                     <tr>
-                        <th colspan="2">家庭住址：<span id="actual_address"></span></th>
+                        <th colspan="4">家庭住址：<br><span id="actual_address"></span></th>
                         <th colspan="2">邮编编码：<span id="family_zip_code"></span></th>
                         <th colspan="2">联系电话：<span id="student_contact_method"></span></th>
                     </tr>
                     <tbody id="family">
                     </tbody>
                     <tr>
-                        <th colspan="3">紧急联系人：<span id="emergency_contact_name"></span></th>
+                        <th colspan="4">紧急联系人：<span id="emergency_contact_name"></span></th>
 
-                        <th colspan="3">联系方式：<span id="emergency_contact_method"></span></th>
+                        <th colspan="4">联系方式：<span id="emergency_contact_method"></span></th>
                     </tr>
                     </tbody>
                 </table>

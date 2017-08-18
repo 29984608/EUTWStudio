@@ -364,19 +364,19 @@
                     $("#actual_address").text("").append(data.student[0].actual_address );
                     $("#family").html("")
                     for (var i = 0; i < data.family.length; i++) {
-                        $("#family").append("<tr> <th>" + data.family[i].relationship + "：" + data.family[i].name + "</th>" +
-                            "<th >政治面貌：" + data.family[i].political_status + "</th>" +
-                            "<th colspan='2'>工作单位：" + data.family[i].work_place + "</th>" +
-                            "<th >职务：" + data.family[i].staff + "</th>" +
-                            "<th>联系电话：" + data.family[i].phone + "</th> </tr>");
+                        $("#family").append("<tr> <th colspan='1'>" + data.family[i].relationship + "：" + data.family[i].name + "</th>" +
+                            "<th colspan='2'>政治面貌：<br>" + data.family[i].political_status + "</th>" +
+                            "<th colspan='3'>工作单位：<br>" + data.family[i].work_place + "</th>" +
+                            "<th colspan='1' style='width: 70px'>职务：<br>" + data.family[i].staff + "</th>" +
+                            "<th colspan='1'>联系电话：<br>" + data.family[i].phone + "</th> </tr>");
                     }
                     $("#emergency_contact_name").text("").append(data.student[0].emergency_contact_name);
                     $("#emergency_contact_method").text("").append(data.student[0].emergency_contact_method);
                     $("#experience_div").html("")
                     for (var i = 0; i < data.experience.length; i++) {
-                        $("#experience_div").append("<tr class='experience_divToEveryOne'> <th>" + data.experience[i].start_time + "——" + data.experience[i].end_time + "</th>" +
-                            "<th  >" + data.experience[i].work_place + "</th>" +
-                            "<th >" + data.experience[i].staff + "</th></tr>");
+                        $("#experience_div").append("<tr class='experience_divToEveryOne'> <th>时间：" + data.experience[i].start_time + "——" + data.experience[i].end_time + "</th>" +
+                            "<th> 学校名称：" + data.experience[i].work_place + "</th>" +
+                            "<th >担任职位：" + data.experience[i].staff + "</th></tr>");
                     }
                     $("#student_type").text("").append(data.student[0].student_type);
                     $("#sat_score").text("").append(data.student[0].sat_score);
