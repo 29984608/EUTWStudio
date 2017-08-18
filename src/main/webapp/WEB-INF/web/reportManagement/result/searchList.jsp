@@ -17,15 +17,15 @@
 <section class="larry-grid layui-form">
     <div class="larry-personal">
         <div class="layui-tab">
-            <blockquote class="layui-elem-quote mylog-info-tit">
+            <blockquote class="layui-elem-quote mylog-info-tit" style="height: 70px">
                 <div class="layui-inline">
-                    <div class="layui-input-inline" style="width: auto ;margin-bottom: 10px;">
+                    <div class="layui-input-inline" style="width: 200px;margin-bottom: 10px;">
                         <input type="text" name="courseCode" id="course_code_search" lay-verify="title"
                                autocomplete="off"
                                placeholder="课程代码" value="" class="layui-input">
                     </div>
                     <div class="layui-inline">
-                        <div class="layui-input-inline" style="width: auto ;margin-bottom: 10px;">
+                        <div class="layui-input-inline" style="width: 200px ;margin-bottom: 10px;">
                             <input type="text" name="courseName" id="course_name_search" lay-verify="title"
                                    autocomplete="off"
                                    placeholder="课程名称" class="layui-input">
@@ -189,7 +189,7 @@
             }
         };
         $(function () {
-            search_.list();
+//            search_.list();
 
         });
     })

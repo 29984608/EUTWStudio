@@ -17,13 +17,14 @@
 
 <blockquote class="layui-elem-quote mylog-info-tit">
     <form class="layui-form layui-form-pane">
-        <label class="layui-form-label ">学级</label>
-        <div class="layui-input-inline">
-            <select name ="_level" lay-filter="_level" id="_level">
-                <option value="2016">2016</option>
-                <option value="2015">2015</option>
-                <option value="2014">2014</option>
-            </select>
+        <div class="layui-form-item">
+            <label class="layui-form-label ">学级</label>
+            <div class="layui-input-inline">
+                <select name="_level" lay-filter="_level" id="level_search">
+                    <option value=""></option>
+                </select>
+
+            </div>
         </div>
     </form>
 
@@ -32,19 +33,18 @@
 <section class=" layui-form">
     <div class="larry-personal">
         <div class="layui-tab">
-<shiro:hasPermission name="turnProfessional:exportExcel">
-            <button class="layui-btn layui-btn-mini" style="float: right" onclick="profession.exportExcel()"><i
-                    class="layui-icon">&#xe61e;</i>导出
-                EXCEl
-            </button>
-</shiro:hasPermission>
+            <shiro:hasPermission name="turnProfessional:exportExcel">
+                <button class="layui-btn " style="float: right" onclick="profession.exportExcel()"><i
+                        class="layui-icon">&#xe61e;</i>导出
+                    EXCEl
+                </button>
+            </shiro:hasPermission>
             <div id="container" class="layui-tab-content larry-personal-body clearfix mylog-info-box"
                  style="background: #fff;width: 100%;height: 100%;margin: 5px 0px">
-                <div style="text-align: center;font-size: 20px;font-weight: bold">
-                    <span id="level_time"></span>级学生转专业信息汇总表(<span style="font-size: 13px;" id="time">2017-6-3 12:12:21</span>)
-
+                <div style="text-align: center;font-size: 20px;font-weight: bold;color: #21a1a1">
+                    西安欧亚学院高职学院 <span id="level_time"></span>级学生转专业信息汇总表
+                    <%--(<span style="font-size: 13px;" id="time">2017-6-3 12:12:21</span>)--%>
                 </div>
-                <span style="font-size: 18px;font-weight: bold ;margin-left: 10px">分院：高职学院</span>
 
                 <table class="layui-table">
                     <thead>
@@ -61,6 +61,7 @@
     </div>
 </section>
 </body>
+<script src="${baseurl}/js/searchJs.js"></script>
 <script type="text/javascript" src="${baseurl}/public/common/layui/layui.js"></script>
 <script type="text/javascript" src="${baseurl}/js/searchJs.js"></script>
 
@@ -74,7 +75,7 @@
 
         profession = {
             list: function (level) {
-                $.post(baseUrl + "/turnProfessional/list",{level:level}, function (data) {
+                $.post(baseUrl + "/turnProfessional/list", {level: level}, function (data) {
                     if (data.result) {
 
                         let date = new Date();
@@ -88,13 +89,13 @@
             },
             exportExcel: function (level) {
                 let _level = $("#_level").val();
-                location.href = baseUrl + "/turnProfessional/exportExcel?level="+_level+"";
+                location.href = baseUrl + "/turnProfessional/exportExcel?level=" + _level + "";
             },
             showPage: function (data) {
                 let _html = "";
                 data.forEach((item, index) => {
                     _html += `<tr>
-                         <th>` + (index+1) + `</th>
+                         <th>` + (index + 1) + `</th>
                           <th>` + item.no + `</th>
                           <th>` + item.name + `</th>
                           <th>专科</th>
@@ -119,14 +120,10 @@
                         <td>专业代码</td>
                 `);
             }
-        }
+        };
         $(function () {
-
-            $("#_level").html("")
-            getSearchLevels().forEach(level => $("#_level").append( `<option value="`+level+`">`+level+`</option>`));
-            profession.list(getSearchLevels()[0]);
-            $("#level_time").text("").append(getSearchLevels()[0])
-
+            loadAllLevels();
+            form.render();
             form.on('select(_level)', function (data) {
                 profession.list(data.value);
                 $("#level_time").text("").append(data.value)

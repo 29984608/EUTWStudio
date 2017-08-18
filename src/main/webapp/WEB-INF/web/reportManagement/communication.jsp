@@ -152,7 +152,7 @@
             }
         }
         $(function () {
-            communication.list();
+//            communication.list();
         })
     })
 

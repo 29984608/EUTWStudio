@@ -14,7 +14,7 @@ function loadAllLevels() {
     $("#level_search").html();
     if (differ >= 0) {
         for (let i = differ; i >= 0; i--) {
-            $("#level_search").append(`<option selected value="` + (year - i) + `">` + (year - i) + `</option>`)
+            $("#level_search").append(`<option  value="` + (year - i) + `">` + (year - i) + `</option>`)
         }
     }
 }
