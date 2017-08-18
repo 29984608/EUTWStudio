@@ -17,7 +17,7 @@
 <section class="larry-grid">
     <div class="larry-personal">
         <div class="layui-tab">
-            <blockquote class="layui-elem-quote mylog-info-tit">
+            <blockquote class="layui-elem-quote mylog-info-tit" style="height: 70px";>
                 <shiro:hasPermission name="direction:add">
                     <ul class="layui-tab-title">
                         <li class="layui-btn " onclick="direction.add()"><i class="layui-icon">&#xe61f;</i>添加专业方向

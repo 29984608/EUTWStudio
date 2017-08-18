@@ -21,10 +21,10 @@
         <div class="layui-tab">
             <form id="update-form" lay-filter="role-add" class="layui-form layui-form-pane" method="post">
 
-                <blockquote class="layui-elem-quote mylog-info-tit">
+                <blockquote class="layui-elem-quote mylog-info-tit" style="height: 70px;">
 
                     <div class="layui-input-inline">
-                        <label class="layui-form-label">区</label>
+                        <label class="layui-form-label" style="width: 65px;font-size: 14px">区</label>
                         <div class="layui-inline">
                             <div class="layui-input-inline">
                                 <select name="modules" lay-filter="modules_1" lay-verify="required" lay-search=""
@@ -36,7 +36,7 @@
                     </div>
 
                     <div class="layui-input-inline">
-                        <label class="layui-form-label">楼层</label>
+                        <label class="layui-form-label" style="width: 65px;font-size: 14px">楼层</label>
                         <div class="layui-inline">
                             <div class="layui-input-inline">
                                 <select name="modules1" lay-filter="modules_2" lay-verify="required" lay-search=""
@@ -45,6 +45,8 @@
                                 </select>
                             </div>
                             <a class="layui-btn" onclick="currentIndex = 1;floor.list()"><i class="layui-icon">&#xe615;</i>搜索</a>
+                            <a class="layui-btn " onclick="floor.add()"><i class="layui-icon">&#xe61f;</i>添加楼层
+                            </a>
                         </div>
                     </div>
 
@@ -54,10 +56,6 @@
             <div class="larry-separate"></div>
 
             <div class="layui-tab-content larry-personal-body clearfix mylog-info-box">
-                <ul class="layui-tab-title">
-                    <li class="layui-btn " onclick="floor.add()"><i class="layui-icon">&#xe61f;</i>添加楼层
-                    </li>
-                </ul>
                 <div class="layui-form ">
                     <table id="example" class="layui-table lay-even " data-name="articleCatData">
                         <thead>

@@ -3,9 +3,7 @@
 
 <html lang="en">
 <head>
-    <title>高职学生信息管理系统</title>
-    <meta http-equiv="pragma" content="no-cache">
-    <meta http-equiv="cache-control" content="no-cache">
+    <title>高职学院信息管理系统</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/common/layui/css/layui.css" media="all">
@@ -14,9 +12,9 @@
 <body>
 <div class="larry-canvas" id="canvas"></div>
 <div class="layui-layout layui-layout-login">
-    <h1>
-        <strong>高职学生信息</strong>
-        <em>Management System</em>
+    <h1 style="margin-left: -10px">
+        <strong>高职学院信息管理系统</strong>
+        <%--<em>Management System</em>--%>
     </h1>
     <div class="layui-user-icon larry-login">
         <input type="text" placeholder="账号" id="userName" required class="login_txtbx"/>

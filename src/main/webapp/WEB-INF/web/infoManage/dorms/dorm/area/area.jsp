@@ -20,34 +20,29 @@
         <div class="layui-tab">
 
             <form id="update-form1" lay-filter="role-add" class="layui-form layui-form-pane" method="post">
-
-                <blockquote class="layui-elem-quote mylog-info-tit">
-
-                    <div class="layui-input-inline">
-                        <label class="layui-form-label">区</label>
-                        <div class="layui-inline">
-                            <div class="layui-input-inline">
-                                <select name="modules" lay-filter="modules_1" lay-verify="required" lay-search=""
-                                        id="queryAreas">
-                                    <option value="">直接选择或搜索选择</option>
-                                </select>
+                <blockquote class="layui-elem-quote mylog-info-tit" style="height: 70px">
+                    <div class="layui-form-item">
+                        <div class="layui-input-inline">
+                            <div class="layui-inline">
+                                <div class="layui-input-inline">
+                                    <select name="modules" lay-filter="modules_1" lay-verify="required" lay-search=""
+                                            id="queryAreas">
+                                        <option value="">直接选择或搜索选择</option>
+                                    </select>
+                                </div>
                             </div>
-                            <a class="layui-btn" onclick="currentIndex = 1;area.list()"><i class="layui-icon">&#xe615;</i>搜索</a>
                         </div>
+                        <a class="layui-btn" onclick="currentIndex = 1;area.list()"><i class="layui-icon">&#xe615;</i>搜索</a>
+                        <a class="layui-btn " onclick="area.add()"><i class="layui-icon">&#xe61f;</i>添加区
+                        </a>
                     </div>
-
                 </blockquote>
             </form>
-
 
 
             <div class="larry-separate"></div>
 
             <div class="layui-tab-content larry-personal-body clearfix mylog-info-box">
-                <ul class="layui-tab-title">
-                    <li class="layui-btn " onclick="area.add()"><i class="layui-icon">&#xe61f;</i>添加区
-                    </li>
-                </ul>
                 <div class="layui-form ">
                     <table id="example" class="layui-table lay-even " data-name="articleCatData">
                         <thead>
@@ -160,8 +155,8 @@
                     data: {
                         currentIndex: currentIndex,
                         pageSize: pageSize,
-                        areaId:areaId,
-                        areaName:areaName
+                        areaId: areaId,
+                        areaName: areaName
                     },
                     success: function (data) {
                         if (data.result) {
@@ -169,7 +164,7 @@
                             totalSize = data.data.pageUtil.totalSize;
                             area.page();
                             laytpl($("#list-tpl").text()).render(data, function (html) {
-                                $( "#list").html(html);
+                                $("#list").html(html);
                             });
                             form.render();
                         }
@@ -202,7 +197,7 @@
                 });
 
             },
-            addAjax:function () {
+            addAjax: function () {
                 let name = $("#addAreaName").val();
                 layer.confirm('确定添加？', {icon: 3, title: '提示'}, function (index) {
                     layer.close(index);
@@ -211,7 +206,7 @@
                     }, function (data) {
                         layer.msg(data.msg);
                         if (data.result) {
-                            setTimeout("location.reload()",500);
+                            setTimeout("location.reload()", 500);
                         }
                     })
                 })

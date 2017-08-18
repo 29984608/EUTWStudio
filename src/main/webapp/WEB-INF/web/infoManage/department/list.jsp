@@ -17,7 +17,7 @@
 <section class="larry-grid">
     <div class="larry-personal">
         <div class="layui-tab">
-            <blockquote class="layui-elem-quote mylog-info-tit">
+            <blockquote class="layui-elem-quote mylog-info-tit" style="height: 70px";>
                 <shiro:hasPermission name="department:add">
                     <ul class="layui-tab-title">
                         <li class="layui-btn " onclick="department.add()"><i class="layui-icon">&#xe61f;</i>添加系
@@ -34,7 +34,7 @@
                         <tr>
                             <th>序号</th>
                             <th>系代码</th>
-                            <th>名称</th>
+                            <th>名名称</th>
                             <th>操作</th>
                         </tr>
                         </thead>

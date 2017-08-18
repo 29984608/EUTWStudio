@@ -16,65 +16,76 @@
 <section class="larry-grid layui-form">
     <div class="larry-personal">
         <div class="layui-tab">
-            <blockquote class="layui-elem-quote mylog-info-tit">
+            <blockquote class="layui-elem-quote mylog-info-tit" style="height: 70px";>
+                <div class="layui-form-item">
+                    <div class="layui-input-inline">
+                        <div class="layui-inline">
+                            <div class="layui-input-inline">
+                                <select lay-filter="profession" id="profession_search">
+                                    <option value="">专业</option>
 
-                <div class="layui-inline">
-                    <div class="layui-inline">
-                        <div class="layui-input-inline" style="width: auto">
-                            <select lay-filter="profession" id="profession_search">
-                                <option value="">专业</option>
-
-                            </select>
+                                </select>
+                            </div>
                         </div>
-                        <div class="layui-input-inline">
-                            <select lay-filter="studentClass" id="direction_search">
-                                <option value="">方向</option>
-                            </select>
-                        </div>
-                        <div class="layui-input-inline">
-                            <select  id="level_search">
-                                <option value="">年级</option>
-                            </select>
-                        </div>
-                        <div class="layui-input-inline">
-                                <input type="text" name="title" id="no_search" lay-verify="title" autocomplete="off"
-                                       placeholder="学号" class="layui-input">
-                        </div>
-                        <div class="layui-input-inline">
-                            <input type="text" name="title" id="name_search" lay-verify="title" autocomplete="off"
-                                   placeholder="姓名" class="layui-input">
-                        </div>
-                        <a class="layui-btn" onclick="studentClass.list()"><i class="layui-icon">&#xe615;</i>搜索</a>
-
                     </div>
-                </div>
-            </blockquote>
-            <div class="larry-separate"></div>
-            <div class="layui-tab-content larry-personal-body clearfix mylog-info-box">
-                <a class="layui-btn" onclick="studentClass.distributeDirection()"><i class="layui-icon">&#xe630;</i>就业方向</a>
-                <a class="layui-btn" onclick="studentClass.add()"><i class="layui-icon">&#xe630;</i>班级选择</a>
-                <a class="layui-form-mid layui-word-aux">请先勾选学生</a>
-                <div class="layui-form">
-                    <table class="layui-table">
-                        <thead>
-                        <tr>
-                            <th><input type="checkbox" lay-filter="checkedAll" name="" lay-skin="primary"
-                                       lay-filter="allChoose"></th>
-                            <th>学号</th>
-                            <th>姓名</th>
-                            <th>性别</th>
-                            <th>方向</th>
-                            <th>专业</th>
-                            <th>班级</th>
-                        </tr>
-                        </thead>
-                        <tbody id="list">
+                    <div class="layui-input-inline">
+                        <div class="layui-inline">
+                            <div class="layui-input-inline">
+                                <select lay-filter="studentClass" id="direction_search">
+                                    <option value="">方向</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-input-inline">
+                        <div class="layui-inline">
+                            <div class="layui-input-inline">
+                                <select id="level_search">
+                                    <option value="">年级</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
 
-                        </tbody>
-                    </table>
+                    <div class="layui-input-inline">
+                        <input type="text" name="title" id="no_search" lay-verify="title" autocomplete="off"
+                               placeholder="学号" class="layui-input">
+                    </div>
+                    <div class="layui-input-inline">
+                        <input type="text" name="title" id="name_search" lay-verify="title" autocomplete="off"
+                               placeholder="姓名" class="layui-input">
+                    </div>
+                    <a class="layui-btn" onclick="studentClass.list()"><i class="layui-icon">&#xe615;</i>搜索</a>
+
                 </div>
+        </div>
+        </blockquote>
+        <div class="larry-separate"></div>
+        <div class="layui-tab-content larry-personal-body clearfix mylog-info-box">
+            <a class="layui-btn" onclick="studentClass.distributeDirection()"><i class="layui-icon">&#xe630;</i>就业方向</a>
+            <a class="layui-btn" onclick="studentClass.add()"><i class="layui-icon">&#xe630;</i>班级选择</a>
+            <a class="layui-form-mid layui-word-aux">请先勾选学生</a>
+            <div class="layui-form">
+                <table class="layui-table">
+                    <thead>
+                    <tr>
+                        <th><input type="checkbox" lay-filter="checkedAll" name="" lay-skin="primary"
+                                   lay-filter="allChoose"></th>
+                        <th>学号</th>
+                        <th>姓名</th>
+                        <th>性别</th>
+                        <th>方向</th>
+                        <th>专业</th>
+                        <th>班级</th>
+                    </tr>
+                    </thead>
+                    <tbody id="list">
+
+                    </tbody>
+                </table>
             </div>
         </div>
+    </div>
     </div>
 </section>
 </body>
@@ -90,20 +101,20 @@
             {{# }else{ }}
             男
             {{#}}}
-            </td>
+        </td>
         <td> {{# if(item.direction === undefined){ }}
             未分配
             {{# }else{ }}
             {{ item.direction}}
             {{#}}}
-            </td>
+        </td>
         <td>
             {{# if(item.profession === undefined){ }}
             未分配
             {{# }else{ }}
             {{ item.profession}}
             {{#}}}
-            </td>
+        </td>
         <td>
             {{# if(item.classes === undefined){ }}
             未分配
@@ -177,11 +188,11 @@
                 $.ajax({
                     url: baseUrl + "/studentClass/list",
                     data: data,
-                    type:"post",
+                    type: "post",
                     success: function (data) {
                         if (data.result) {
-                            $("#profession_search").html("<option value=''>专业</option>"+studentClass.loadSelectElementHtml(data.data.professions));
-                            $("#direction_search").html("<option value=''>方向</option>"+studentClass.loadSelectElementHtml(data.data.directions));
+                            $("#profession_search").html("<option value=''>专业</option>" + studentClass.loadSelectElementHtml(data.data.professions));
+                            $("#direction_search").html("<option value=''>方向</option>" + studentClass.loadSelectElementHtml(data.data.directions));
 
 
                             laytpl($("#list-tpl").text()).render(data, function (html) {
@@ -217,7 +228,7 @@
 
                 $.post(baseUrl + "/studentClass/loadTeacherHasClassess", function (data) {
                     if (data.result) {
-                        $("#classess").html("<option value='0'>班级</option>"+studentClass.loadSelectElementHtml(data.data));
+                        $("#classess").html("<option value='0'>班级</option>" + studentClass.loadSelectElementHtml(data.data));
                         form.render();
                         layer.open({
                             type: 1,
@@ -228,8 +239,8 @@
                     }
                 })
             },
-            distributeDirection:function () {
-                 selectStudents = $(".no_checkbox:checked");
+            distributeDirection: function () {
+                selectStudents = $(".no_checkbox:checked");
                 if (selectStudents.length === 0) {
                     layer.msg("请先勾选学生");
                     return false;
@@ -242,25 +253,25 @@
                         layer.open({
                             type: 1,
                             title: '专业方向',
-                            area:["100%","100%"]
+                            area: ["100%", "100%"]
                             , content: $("#distribute_direction")
                         });
-                    }else{
+                    } else {
                         layer.msg(data.msg);
                     }
                 })
             },
-            distributeDirectionAjax:function () {
+            distributeDirectionAjax: function () {
                 let directionId = $("#directions").val();
 
                 let studentClassIds = "";
                 for (let i = 0; i < selectStudents.length; ++i)studentClassIds += $(selectStudents[i]).val().split("-")[0] + ",";
                 console.log(studentClassIds);
                 let data = {
-                    directionId:directionId,
-                    studentIds:studentClassIds
+                    directionId: directionId,
+                    studentIds: studentClassIds
                 }
-                let msg = "确定分配"+selectStudents.length+"个学生到该方向?"
+                let msg = "确定分配" + selectStudents.length + "个学生到该方向?"
                 layer.confirm(msg, {icon: 3, title: '提示'}, function (index) {
                     layer.close(index);
                     $.post(baseUrl + "/studentClass/distributedDirection", data, function (data) {
@@ -274,7 +285,7 @@
             },
             addAjax: function () {
                 let classesId = $("#classess").val();
-                if(classesId == "0") {
+                if (classesId == "0") {
                     layer.msg("请选择一个班级");
                     return false;
                 }
@@ -282,10 +293,10 @@
                 let selectStudents = $(".hasSelected:checked");
                 for (let i = 0; i < selectStudents.length; ++i)studentClassIds += $(selectStudents[i]).val() + ",";
                 let data = {
-                    classesId:classesId,
-                    studentIds:studentClassIds
+                    classesId: classesId,
+                    studentIds: studentClassIds
                 }
-                let msg = "确定分配"+selectStudents.length+"个学生到该年级?"
+                let msg = "确定分配" + selectStudents.length + "个学生到该年级?"
                 layer.confirm(msg, {icon: 3, title: '提示'}, function (index) {
                     layer.close(index);
                     $.post(baseUrl + "/studentClass/distributedClass", data, function (data) {
