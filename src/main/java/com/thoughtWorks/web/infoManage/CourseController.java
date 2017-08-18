@@ -39,7 +39,6 @@ public class CourseController {
         try {
             List<Map<String, String>> courses = trainModuleService.queryCoursesLikes(page, searchDto);
             List<Map<String, String>> modules = trainModuleService.queryAllTrainModules();
-            page.setPageSize(99999);
             List<Map<String, Object>> testMethods = trainModuleService.queryAllTestMethod(page);
             data.put("courses", courses);
             data.put("modules", modules);

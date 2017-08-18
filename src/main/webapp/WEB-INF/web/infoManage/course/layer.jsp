@@ -2,8 +2,7 @@
 <script id="list-tpl" type="text/html">
     {{# layui.each(d.courses, function(index, item){ }}
     <tr>
-        <td>{{ item.code}}</td>
-        <td>{{ item.name}}</td>
+        <td>{{ index+1}}</td>
         <td>
             {{# if(item.moduleName === undefined){ }}
             未分配
@@ -11,6 +10,8 @@
             {{ item.moduleName}}
             {{#}}}
         </td>
+        <td>{{ item.code}}</td>
+        <td>{{ item.name}}</td>
         <td>{{ item.schoolScore}}</td>
         <td>{{ item.schoolHours}}</td>
         <td>{{ item.semester}}</td>

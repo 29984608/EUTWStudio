@@ -61,9 +61,10 @@
                     <table class="layui-table">
                         <thead>
                         <tr>
+                            <th>序号</th>
+                            <th>课程模块</th>
                             <th>课程代码</th>
                             <th>名称</th>
-                            <th>模块</th>
                             <th>学分</th>
                             <th>学时</th>
                             <th>开课学期</th>
@@ -83,7 +84,9 @@
     </div>
 </section>
 </body>
+
 <%@ include file="layer.jsp" %>
+<script src="${baseurl}/js/searchJs.js"></script>
 <script type="text/javascript" src="${baseurl}/public/common/layui/layui.js"></script>
 <script type="text/javascript">
     let totalSize = 10;
@@ -104,16 +107,7 @@
             upload = layui.upload,
             laytpl = layui.laytpl;
 
-        upload({
-            url: baseUrl + '/course/importExcel',
-            before: function (input) {
-                layer.msg('上传中...');
-            },
-            success: function (data) {
-                console.log(data)
-                layer.msg(data.msg);
-            }
-        });
+
 
         course = {
             page: function () {
@@ -152,6 +146,7 @@
                             $("#module_search").html("<option value=''>模块</option>" + course.loadSelectElementHtml(modules, 0));
                             currentIndex = data.page.currentIndex;
                             totalSize = data.page.totalSize;
+                            showTotalCount(data.page.totalCount);
                             course.page();
                             laytpl($("#list-tpl").text()).render(data, function (html) {
                                 $("#list").html(html);
