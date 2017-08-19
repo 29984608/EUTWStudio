@@ -647,7 +647,29 @@
                                           id="updateStudentParentsName">
                                 </div>
                            </span></th>
-                                        <th colspan="5"><span>
+                            <th colspan="2">联系方式：<span>
+                               <div class="layui-input-inline" style="width: 60%">
+                                   <input type="text" name="text"
+                                          placeholder="请输入内容" autocomplete="off" class="layui-input updateStudentParent_phone"
+                                          id="updateStudentParent_phone">
+                                </div>
+                           </span></th>
+                            <th colspan="2">工作单位：<span>
+                               <div class="layui-input-inline" style="width: 60%">
+                                   <input type="text" name="text"
+                                          placeholder="请输入内容" autocomplete="off" class="layui-input updateStudentParent_employer"
+                                          id="updateStudentParent_employer">
+                                </div>
+                           </span></th>
+                                    </tr>
+                                    <tr>
+
+                        </tr>
+                               `)
+
+                    $("#family_member_information").append(`
+                           <tr id="family_information2" style="float: left;margin-bottom: 20px">
+                           <th colspan="5"><span>
                             <div class="political">
                                政治面貌： <div class="layui-input-inline" >
                                  <select name="politicalOutlook1" lay-filter="politicalOutlookParent"  class="updateStudentParent_political_status">
@@ -670,35 +692,17 @@
                                </span>
                            </div>
                                </span></th>
-                                    </tr>
-                               `)
-
-                    $("#family_member_information").append(`
-                           <tr id="family_information2" style="float: left;margin-bottom: 20px">
-                                        <th colspan="2">工作单位：<span>
-                               <div class="layui-input-inline" style="width: 60%">
-                                   <input type="text" name="text"
-                                          placeholder="请输入内容" autocomplete="off" class="layui-input updateStudentParent_employer"
-                                          id="updateStudentParent_employer">
-                                </div>
-                           </span></th>
-                                        <th colspan="2">职务：<span>
+                                        <th colspan="1">职务：<span>
                                <div class="layui-input-inline" style="width: 60%">
                                    <input type="text" name="text"
                                           placeholder="请输入内容" autocomplete="off" class="layui-input updateStudentParent_duties"
                                           id="updateStudentParent_duties">
                                 </div>
                            </span></th>
-                                        <th colspan="2">联系方式：<span>
-                               <div class="layui-input-inline" style="width: 60%">
-                                   <input type="text" name="text"
-                                          placeholder="请输入内容" autocomplete="off" class="layui-input updateStudentParent_phone"
-                                          id="updateStudentParent_phone">
-                                </div>
-                           </span></th>
+
                                     </tr>`)
 
-                    $("#family_member_information").append(` <button  class="layui-btn layui-btn-danger delStudentFamily" onclick="student.delStudentFamily(` + (familyList[j].id) + `)"　 style="margin-bottom: 10px;float: left;margin-left: 60px" value="` + familyList[j].id + `"><i class="layui-icon">&#xe640;</i>删除</button>`)
+                    $("#family_member_information").append(` <button  class="layui-btn layui-btn-danger delStudentFamily" onclick="student.delStudentFamily(` + (familyList[j].id) + `)"　 style="margin-bottom: 10px;float: right;" value="` + familyList[j].id + `"><i class="layui-icon">&#xe640;</i>删除</button>`)
 
                 }
 
@@ -758,7 +762,7 @@
                                              </div>
                                         </span></th>
                                     </tr>`)
-                    $("#educational_experience").append(` <button class="layui-btn  layui-btn-danger" onclick="student.delExperience(` + experienceList[i].id + `)" style="margin-bottom: 10px;float: left;margin-left: 60px"><i class="layui-icon">&#xe640;</i> 删除</button>`)
+                    $("#educational_experience").append(` <button class="layui-btn  layui-btn-danger" onclick="student.delExperience(` + experienceList[i].id + `)" style="margin-bottom: 10px;float: right;"><i class="layui-icon">&#xe640;</i> 删除</button>`)
 
                 }
 
