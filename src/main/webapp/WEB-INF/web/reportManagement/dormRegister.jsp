@@ -25,7 +25,7 @@
             <div id="container" class="layui-tab-content larry-personal-body clearfix mylog-info-box"
                  style="background: #fff;width: 100%;height: 100%;margin: 5px 0px">
                 <div style="text-align: center;font-size: 20px;font-weight: bold;color: #21a1a1">
-                    西安欧亚学院高职学院宿舍人数统计表
+                    西安欧亚学院高职学院住宿统计表
                     <%--(<span style="font-size: 13px;" id="time">2017-6-3 12:12:21</span>)--%>
                 </div>
                 <table class="layui-table">

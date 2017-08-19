@@ -20,13 +20,14 @@
             student_classify,
             actual_address,
             family_zip_code,
-            family_phone,
+            student.student_contact_method phone,
             pre_school_work,
             pre_school_staff,
             health_status,
             idcard,
             own_experience,
-            own_punishment
+            own_punishment,
+            pre_school_education
         FROM t_student student
             LEFT JOIN (SELECT para_dispname,para_no FROM t_famous_family) f on f.para_no = student.famous_family
             LEFT JOIN (SELECT

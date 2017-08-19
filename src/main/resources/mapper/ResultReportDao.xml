@@ -84,7 +84,8 @@
             idcard,
             profession.name professionName,
             direction.name  directionName,
-            in_school
+            in_school,
+            student.student_contact_method phone
         FROM t_student student
             LEFT JOIN (SELECT
                            para_no,

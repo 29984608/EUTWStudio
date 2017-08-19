@@ -38,7 +38,7 @@
     <button class="layui-btn " style="float:right;" onclick="resultReport.exportRegisterReport()">
         <i class="layui-icon">&#xe61e;</i>导出 Excel
     </button>
-    <h1>西安欧亚学院学生入学登记表</h1>
+    <h2>西安欧亚学院学生入学登记表</h2>
     <div id="head">
         <ul>
             <li>
@@ -65,15 +65,15 @@
         </ul>
     </div>
     <table class="layui-table">
-        <tbody>
-        <tr>
-            <td>姓名</td>
-            <td class="studentName"></td>
+        <tbody id="stu_info">
+        <tr >
+            <td style="width: 80px">姓名</td>
+            <td class="studentName" style="width: 100px;"></td>
 
             <td>性别</td>
             <td id="gender"></td>
 
-            <td>出生年月</td>
+            <td >出生年月</td>
             <td id="born"></td>
 
             <td>民族</td>
@@ -82,22 +82,22 @@
             <td>婚否</td>
             <td id="is_marry"></td>
 
-            <td width="130px" style="padding: 0" rowspan="4"><img id="head_image" src="${baseurl}/images/user/user.jpg"
-                                                                  width="130px"
-                                                                  height="200px"></td>
+            <td width="100px" style="padding: 0" rowspan="4"><img id="head_image" src="${baseurl}/images/user/user.jpg"
+                                                                  width="100px"
+                                                                  height="150px"></td>
         </tr>
         <tr>
-            <td>籍贯</td>
-            <td colspan="2" id="origin_address"></td>
+            <td >籍贯</td>
+            <td  id="origin_address"></td>
 
             <td>政治面貌</td>
             <td id="political_status"></td>
 
             <td>文化程度</td>
-            <td>高中</td>
+            <td id="pre_school_education">高中</td>
 
             <td>学生类别</td>
-            <td colspan="2" id="student_classify">☐本科 ☐专升本 ☐专科</td>
+            <td colspan="3" id="student_classify">☐本科 ☐专升本 ☐专科</td>
         </tr>
         <tr>
             <td>家庭住址</td>
@@ -136,17 +136,17 @@
             <td colspan="11" style="text-align: center">本人学历及社会经历(从小学起)</td>
         </tr>
 
-        <tr id="experience">
+        <tr >
             <td colspan="2">自何年何月</td>
             <td colspan="2">至何年何月</td>
-            <td colspan="6">在何地何校或和单位学习或工作，任何职</td>
+            <td colspan="6">在何地何校或和单位学习或工作</td>
             <td colspan="1">证明人</td>
         </tr>
 
-        <tr>
+        <tr id="experience">
             <td colspan="11" style="text-align: center">直系亲属或主要社会关系情况</td>
         </tr>
-        <tr id="family">
+        <tr >
             <td colspan="1">称呼</td>
             <td colspan="1">姓名</td>
             <td colspan="1">政治面貌</td>
@@ -154,7 +154,7 @@
             <td colspan="6">工作单位</td>
             <td colspan="1">联系电话</td>
         </tr>
-
+        <tr id="family"></tr>
         </tbody>
     </table>
 </div>
