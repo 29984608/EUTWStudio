@@ -112,6 +112,7 @@
 
 <%@include file="layer.jsp" %>
 <script src="${baseurl}/js/searchJs.js"/>
+
 <script type="text/javascript" src="${baseurl}/public/js/pdf/html2canvas.js"></script>
 <script type="text/javascript" src="${baseurl}/public/js/pdf/jspdf.debug.js"></script>
 <script type="text/javascript" src="${baseurl}/public/js/pdf/renderPDF.js"></script>
@@ -222,13 +223,10 @@
                 })
             },
             loadStudentInfo: function (student) {
-                if (student.origin_address != null) {
-                    let originAddress = student.origin_address.split(ADDRESS_SPLIT_FLAG);
-                    $("#address").text(originAddress[0] == undefined ? "" : originAddress[0] + originAddress[1] === undefined ? "" : originAddress[1]);
-                } else  $("#address").text("");
+                $("#address").text(student.native_place == undefined ? "" : student.native_place);
                 $("#name").text(student.studentName);
                 $("#gender").text(student.gender === "F" ? "女" : "男");
-                $("#famous_family").text(student.famous_family);
+                $("#famous_family").text(student.famousFamily);
 
                 $("#headImg").attr({src: HEAD_IMAGE_PREFIX + student.head_image});
                 $("#no").text(student.no);
@@ -236,7 +234,7 @@
                 $("#idcard").text(student.idcard);
                 $("#profession").text(student.professionName);
                 $("#direction").text(student.directionName);
-                $("#in_school").text(student.in_school);
+                $("#in_school").text(student.in_school+"-09-01");
             },
             loadResults: function (results) {
                 $("#left_result").html("");
@@ -299,9 +297,8 @@
     })
 
 
-    function exportPDF() {
-        pdf(document.getElementById("container"), $("#name").text(), "a3");
-//        location.reload();
+    function printPdf() {
+        pdf(document.getElementById("container"), $("#name").text(), "a4");
     }
 </script>
 

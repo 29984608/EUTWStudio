@@ -32,7 +32,7 @@
                 <table class="layui-table">
                     <thead>
                     <tr id="head">
-                        <td>系别<br>名称</td>
+                        <td>系别名称</td>
                         <td>年级</td>
                         <td>就业方向</td>
                         <td>班级名称</td>

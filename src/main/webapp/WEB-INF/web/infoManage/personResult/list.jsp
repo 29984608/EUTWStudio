@@ -227,11 +227,11 @@
         $(function () {
             personResult.preview();
         });
-    })
+    });
 
 
     function exportPDF() {
-        pdf(document.getElementById("container"), $("#name").text(), "a3");
+        pdf(document.getElementById("container"), $("#name").text(), "a4");
 //        location.reload();
     }
 </script>
