@@ -114,7 +114,7 @@
         </div>
 
         <div class="layui-form-item layui-form-pane">
-            <label class="layui-form-label " style="font-size: 13px">沟通内容：</label>
+            <label class="layui-form-label " style="font-size: 13px">沟通反馈记录</label>
         </div>
 
         <div id="content">
@@ -122,11 +122,11 @@
 
                 <label class="layui-form-label " style="font-size: 13px">Q</label>
                 <textarea placeholder="请输入问题" class="layui-textarea add-contents textarea"
-                          style="width: 80%;min-height: 50px;height: 70px;font-size: 12px;"></textarea>
+                          style="width: 80%;min-height: 30px;height: 38px;font-size: 12px;margin-bottom: 5px"></textarea>
                 <label class="layui-form-label " style="font-size: 13px">A</label>
                 <textarea placeholder="请输入回答" class="layui-textarea add-contents textarea"
                           style="width: 80%;min-height: 50px;height: 70px;font-size: 12px;margin-left: .9%"></textarea>
-                <div class="layui-btn-group" style="margin-left: .9%">
+                <div class="layui-btn-group">
                     <a onclick="addTalkContent()" class="layui-btn layui-btn-small"><i
                             class="layui-icon">&#xe608;</i>添加一条 Q&A</a>
 
@@ -134,7 +134,7 @@
             </div>
         </div>
 
-        <div class="layui-form-item sub" style="margin:30px 0 0 20%">
+        <div class="layui-form-item sub" style="margin:30px 0 0 -10%">
             <div class="layui-input-block">
                 <a class="layui-btn" onclick="communication.addAjax()">立即提交</a>
             </div>
@@ -143,33 +143,34 @@
 </div>
 
 <div id="update" style="display: none;background: #fff;">
-    <a class="layui-btn" onclick="printPdf()" id="printPDF" style="float: right"><i class="layui-icon">&#xe630;</i>导出 PDF</a>
+    <a class="layui-btn" onclick="printPdf()" id="printPDF" style="float: right"><i class="layui-icon">&#xe630;</i>导出
+        PDF</a>
     <div class="container" id="container" style="padding: 35px 15px 35px 60px;width: 750px">
 
-        <h2 style="text-align: center;margin-left: -30px">西安欧亚学院高职学院<span id="who"></span>学生沟通反馈记录</h2>
+        <h2 style="text-align: center;margin-left: -30px">西安欧亚学院高职学院<span id="who" style="display: none"></span>学生沟通反馈报告</h2>
         <div style="margin:40px 0">
 
-            <table  class="layui-table lay-even " data-name="articleCatData">
+            <table class="layui-table lay-even " data-name="articleCatData">
                 <thead>
-                <tr >
+                <tr>
                     <th style="font-size: 12px">姓名</th>
                     <th style="font-size: 12px">性别</th>
                     <th style="font-size: 12px">籍贯</th>
                     <th style="font-size: 12px">身份证号码</th>
                     <th style="font-size: 12px">专业</th>
                     <th style="font-size: 12px">就业方向</th>
-                    <th style="font-size: 12px">政治面貌</th>
+                    <th style="font-size: 12px">班级</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
-                    <th  style="font-size: 12px" id="name"></th>
-                    <th  style="font-size: 12px" id="gender"></th>
-                    <th  style="font-size: 12px" id="native_place"></th>
-                    <th  style="font-size: 12px" id="idcard"></th>
-                    <th  style="font-size: 12px" id="profession"></th>
-                    <th  style="font-size: 12px" id="direction2"></th>
-                    <th  style="font-size: 12px" id="political_status"></th>
+                    <th style="font-size: 12px" id="name"></th>
+                    <th style="font-size: 12px" id="gender"></th>
+                    <th style="font-size: 12px" id="native_place"></th>
+                    <th style="font-size: 12px" id="idcard"></th>
+                    <th style="font-size: 12px" id="profession"></th>
+                    <th style="font-size: 12px" id="direction2"></th>
+                    <th style="font-size: 12px" id="political_status"></th>
                 </tr>
                 </tbody>
             </table>
@@ -202,7 +203,8 @@
     <div class="layui-form-item content_node">
     <label class="layui-form-label " style="font-size: 13px">Q</label>
                     <textarea placeholder="请输入问题" class="layui-textarea add-contents"
-                              style="width: 80%;min-height: 50px;height: 70px;font-size: 12px;"></textarea>
+                              style="width: 80%;min-height: 30px;height: 38px;font-size: 12px;margin-bottom: 5px"></textarea>
+                              <br>
                     <label class="layui-form-label " style="font-size: 13px">A</label>
                     <textarea placeholder="请输入回答" class="layui-textarea add-contents"
                               style="width: 80%;min-height: 50px;height: 70px;font-size: 12px;margin-left: .9%"></textarea>
@@ -266,7 +268,7 @@
                 </div>
 
                 <dd class="timelineEvent" id="` + index + `EX" style="display:none;">
-                     <textarea style="min-height: 50px;height: 70px;font-size: 12px;width: 500px"
+                     <textarea style="min-height: 30px;height: 38px;font-size: 12px;width: 500px;margin-bottom: 5px"
                                class="layui-textarea update-contents">` + contents[index] + `</textarea>
                     <textarea style="min-height: 50px;height: 70px;font-size: 12px;width: 500px"
                               class="layui-textarea update-contents">` + contents[index + 1] + `</textarea>

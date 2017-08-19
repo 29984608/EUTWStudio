@@ -107,7 +107,7 @@
                         <col width="120">
                         <col width="100">
                         <col width="140">
-                        <col width="380">
+                        <col width="400">
                     </colgroup>
                     <thead>
                     <tr>
@@ -302,7 +302,7 @@
                         $("#idcard").text(data.data[(data.data.length - 1)].idcard);
                         $("#profession").text(data.data[(data.data.length - 1)].profession);
                         $("#direction2").text(data.data[(data.data.length - 1)].direction);
-                        $("#political_status").text(data.data[(data.data.length - 1)].political_status);
+                        $("#political_status").text(data.data[(data.data.length - 1)].classesName);
                         let title = null;
                         if (type === "preview") {
                             $("#printPDF").show();
