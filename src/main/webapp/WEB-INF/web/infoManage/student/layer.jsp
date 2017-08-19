@@ -967,7 +967,7 @@
                                     <tr>
                                         <th colspan="1">录取专业：<span>
                                             <div class="layui-input-inline" style="width: 60%">
-                                                <select id="studentsProfessionList" lay-filter="studentsProfessionList">
+                                                <select id="studentsProfessionList" lay-filter="studentsProfessionList" disabled="disabled">
                                                     <option value=""></option>
                                                 </select>
                                             </div>
@@ -983,7 +983,7 @@
                                         <th colspan="4">现专业：<span>
                                             <div class="layui-input-inline" style="width: 60%">
                                                 <select id="studentsNowProfessional"
-                                                        lay-filter="studentsNowProfessional">
+                                                        lay-filter="studentsNowProfessional" >
                                                     <option value=""></option>
                                                 </select>
                                             </div>
@@ -1017,17 +1017,7 @@
                                                 </select>
                                             </div>
                                         </span></th>
-                                        <th colspan="2">社区辅导员：<span>
-                                            <div class="layui-input-inline" style="width: 60%">
-                                                <select lay-filter="update_community_counselor"
-                                                        id="update_community_counselor">
-                                                    <option value=""></option>
-                                                </select>
-                                            </div>
-                                        </span></th>
-                                    </tr>
-                                    <tr>
-                                        <th colspan="1">学籍状态：<span>
+                                        <th colspan="2">学籍状态：<span>
                                             <div class="layui-input-inline" style="width: 60%">
                                                 <select lay-filter="update_student_status" id="update_student_status">
                                                     <option value=""></option>
@@ -1040,6 +1030,17 @@
                                                 </select>
                                             </div>
                                         </span></th>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="1">社区辅导员：<span>
+                                            <div class="layui-input-inline" style="width: 60%">
+                                                <select lay-filter="update_community_counselor"
+                                                        id="update_community_counselor">
+                                                    <option value=""></option>
+                                                </select>
+                                            </div>
+                                        </span></th>
+
                                         <th colspan="5">困难类别：<span>
                                             <div class="layui-input-inline" style="width: 60%">
                                                 <div class="layui-inline" pane="" id="update_hard_type">

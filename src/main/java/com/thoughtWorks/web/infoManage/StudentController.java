@@ -80,9 +80,10 @@ public class StudentController {
         try {
             Map<String, Object> students = personService.queryStudentsToUpdate(studentNo);
             List<Map<String, Object>> students_family = personService.queryStudentFamily(studentNo);
-            List<Map<String, String>> professionList = personService.queryStudentsProfessionList();
+            System.out.println(students.get("departmentId"));
+            List<Map<String, String>> professionList = personService.queryStudentsProfessionList((String) students.get("department_id"));
             List<Map<String, String>> AwardOrPunishmentList = personService.queryStudentsAwardOrPunishmentList(studentNo);
-            List<Map<String, String>> directionList = personService.queryStudentsDirection();
+            List<Map<String, String>> directionList = personService.queryStudentsDirection((String) students.get("department_id"));
             List<Map<String, Object>> classesList = personService.queryStudentsClassList();
             List<Map<String, Object>> experienceList = personService.queryStudentExperienceList(studentNo);
             List<Map<String, Object>> teacherList = personService.queryTeacherList();
@@ -244,13 +245,20 @@ public class StudentController {
         return Result.failure(null, Constant.ADD_FAILURE);
     }
 
-    @RequestMapping("/showAutoClassByDepartment")
+    @RequestMapping("/showAutoClassAndProAndDirByDepartment")
     @ResponseBody
-    public Result showAutoClassByDepartment(String departmentId) {
+    public Result showAutoClassAndProAndDirByDepartment(String departmentId) {
         try {
             List<Map<String, Object>> classesList = personService.showAutoClassByDepartment(departmentId);
+            List<Map<String, Object>> professionList = personService.showAutoProfessionListByDepartment(departmentId);
+            List<Map<String, Object>> directionList = personService.showAutoDirectionListByDepartment(departmentId);
 
-            return Result.success(classesList, Constant.SEARCH_SUCCESS);
+            Map<String, Object> data = new HashMap<>();
+            data.put("classesList", classesList);
+            data.put("professionList", professionList);
+            data.put("directionList", directionList);
+
+            return Result.success(data, Constant.SEARCH_SUCCESS);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -270,4 +278,5 @@ public class StudentController {
         }
         return Result.failure(null, Constant.ADD_FAILURE);
     }
+
 }

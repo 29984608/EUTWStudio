@@ -807,6 +807,7 @@
                                             <button class="layui-btn  layui-btn-danger" onclick="student.delExperience(\` + AwardOrPunishmentList[i].id + \`)" style="margin-bottom: 10px;float: right;"><i class="layui-icon">&#xe640;</i> 删除</button>
 </th>
                                     </tr>`)
+//                    $("#updateStudent_Award_or_punishment").append(` `)
 
                 }
 
@@ -857,7 +858,6 @@
             addAwardOrPunishmentByUpdate: function () {
                 let dateAwardOrPunishment = $("#dateAwardOrPunishment").val();
                 let contentAwardOrPunishment = $("#contentAwardOrPunishment").val();
-                alert(dateAwardOrPunishment);
 
                 layer.confirm('该操作将直接添加，无需更新！是否添加？', {icon: 3, title: '提示'}, function (index) {
                     let studentNo = studentInfo.no;
@@ -1513,6 +1513,11 @@
 
 
             form.on('select(department)', function (data) {
+                let department_id = data.value;
+                $.post(baseUrl + "/student/showAutoClassAndProAndDirByDepartment", {departmentId: department_id}, function (resultData) {
+                    $("#profession_search").html(`<option value="">专业</option>` + loadOptionsHtmlOfClass(resultData.data.professionList));
+                    form.render();
+                })
 
                 $("#department_search").html(student.loadClassByDepartmentId(data.value));
                 $("#direction_search").html(student.loadDirectionsByDepartmentId(data.value));
@@ -1649,11 +1654,13 @@
                     $("#show_other_family_political_status").hide();
                 }
             });
-            //监听系,从而动态获取相应的班级
+            //监听系,从而动态获取相应的班级、现专业、就业方向
             form.on('select(student_departments)', function (data) {
                 let department_id = data.value;
-                $.post(baseUrl + "/student/showAutoClassByDepartment", {departmentId: department_id}, function (resultData) {
-                    $("#student_class").html(loadOptionsHtmlOfClass(resultData.data));
+                $.post(baseUrl + "/student/showAutoClassAndProAndDirByDepartment", {departmentId: department_id}, function (resultData) {
+                    $("#student_class").html(loadOptionsHtmlOfClass(resultData.data.classesList));
+                    $("#studentsNowProfessional").html(loadOptionsHtmlOfClass(resultData.data.professionList));
+                    $("#employment_direction").html(loadOptionsHtmlOfClass(resultData.data.directionList));
                     form.render();
                 })
             })
