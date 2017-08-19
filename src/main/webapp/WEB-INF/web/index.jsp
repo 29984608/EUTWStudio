@@ -15,7 +15,7 @@
     <!-- 顶部区域 -->
     <div class="layui-header header-menu">
         <div class="logo posb" id="log" >
-            <img src="${baseurl}/images/public/logo_.png" height="200px">
+            <img src="${baseurl}/images/public/logo_.png" style="height: 45px" />
         </div>
 
         <div class="layui-main posb">

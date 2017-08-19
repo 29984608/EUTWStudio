@@ -7,6 +7,7 @@ import com.thoughtWorks.entity.ActiveUser;
 import com.thoughtWorks.entity.Classes;
 import com.thoughtWorks.entity.CommunicationContent;
 import com.thoughtWorks.entity.Student;
+import com.thoughtWorks.service.DepartmentService;
 import com.thoughtWorks.service.PersonService;
 import com.thoughtWorks.util.Constant;
 import com.thoughtWorks.web.UpdateStudentUtil;
@@ -28,6 +29,8 @@ public class StudentClassController {
 
     @Autowired
     private UpdateStudentUtil updateStudentUtil;
+    @Autowired
+    private DepartmentService departmentService;
 
     @RequestMapping()
     public String index() {
@@ -67,7 +70,19 @@ public class StudentClassController {
 
         return Result.failure(null, Constant.SEARCH_FAILURE);
     }
+    @RequestMapping("queryClassesByDirectionId")
+    @ResponseBody
+    public Result queryClassesByDirectionId(String id) {
+        try {
+            List<Map<String,String>> classes = departmentService.queryClassesByDirectionId(id);
 
+            return Result.success(classes, Constant.SEARCH_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return Result.failure(null, Constant.SEARCH_FAILURE);
+    }
     @RequestMapping("loadTeacherHasClassess")
     @ResponseBody
     public Result loadTeacherHasClassess() {

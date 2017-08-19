@@ -205,7 +205,7 @@
 </body>
 
 <%@include file="layer.jsp" %>
-
+<script src="${baseurl}/js/searchJs.js" />
 <script type="text/javascript" src="${baseurl}/public/js/pdf/html2canvas.js"></script>
 <script type="text/javascript">
     let student;
@@ -220,6 +220,8 @@
     let famousFamily;
     let departmentList;
     let addStudentFamilyInfoIndex;
+    let AwardOrPunishmentInfo;
+    let addAwardOrPunishmentInfoIndex;
     layui.use(['jquery', 'layer', 'element', 'laypage', 'form', 'laytpl', 'tree'], function () {
         window.jQuery = window.$ = layui.jquery;
         window.layer = layui.layer;
@@ -233,6 +235,7 @@
                     cont: 'demo1',
                     pages: totalSize, //总页数
                     curr: currentIndex,
+                    last:totalSize,
                     groups: 5,//连续显示分页数
                     skin: '#1E9FFF',
                     jump: function (obj, first) {
@@ -280,6 +283,7 @@
                             currentIndex = data.page.currentIndex;
                             totalSize = data.page.totalSize;
                             student.page();
+                            showTotalCount(data.page.totalCount);
                             laytpl($("#list-tpl").text()).render(data, function (html) {
                                 $("#list").html(html);
                             });
@@ -361,8 +365,8 @@
                     $("#health_status").text("").append(data.student[0].health_status);
                     $("#is_marry").text("").append(data.student[0].is_marry);
                     $("#family_zip_code").text("").append(data.student[0].family_zip_code);
-                    $("#student_contact_method").text("").append(data.student[0].student_contact_method );
-                    $("#actual_address").text("").append(data.student[0].actual_address );
+                    $("#student_contact_method").text("").append(data.student[0].student_contact_method);
+                    $("#actual_address").text("").append(data.student[0].actual_address);
                     $("#family").html("")
                     for (var i = 0; i < data.family.length; i++) {
                         $("#family").append("<tr> <th colspan='2'>" + data.family[i].relationship + "：" + data.family[i].name + "</th>" +
@@ -421,7 +425,9 @@
                             familyInfo = data.students_family;
                             famousFamily = data.famousFamily;
                             departmentList = data.departmentList;
+                            AwardOrPunishmentInfo = data.AwardOrPunishmentList;
                             let studentList = data.students;
+                            let AwardOrPunishmentList = data.AwardOrPunishmentList;
                             let familyList = data.students_family;
                             let professionList = data.professionList;
                             let directionList = data.directionList;
@@ -444,7 +450,8 @@
                             }
                             $("#updateStudentIdCard").val(studentList.idcard);
                             $("#updateStudentNativePlace").val(studentList.native_place);
-                            $("#updateStudentBirthday").val(studentList.born);
+                            let born = studentList.idcard.substr(6, 8);
+                            $("#updateStudentBirthday").val(born.substr(0,4)+"-"+born.substr(4,2)+"-"+born.substr(6,2));
                             $("input[type='radio'][name='isMarry'][value='" + studentList.is_marry + "']").attr("checked", 'true');
                             $("input[type='radio'][name='accommodation_type'][value='" + studentList.stay_type + "']").attr("checked", 'true');
                             $("#updateStudentHeight").val(studentList.height);
@@ -526,15 +533,6 @@
                             })
                             $("#student_class").html("").append(`<option value=""></option>` + loadOptionsHtml(oneShowClasses, studentList.classes_id));
                             form.render();
-                            //监听系,从而动态获取相应的班级
-                            form.on('select(student_departments)', function (data) {
-                                let department_id = data.value;
-                                $.post(baseUrl + "/student/showAutoClassByDepartment", {departmentId: department_id}, function (resultData) {
-                                    $("#student_class").html(loadOptionsHtmlOfClass(resultData.data));
-                                    form.render();
-                                })
-                            })
-
                             student.educationalExperience(experienceList);
 
                             $("input[type='radio'][name='student_type1'][value='" + studentList.student_type + "']").attr("checked", "checked");
@@ -608,7 +606,8 @@
                             $("input[type='radio'][name='update_hard_type'][value='" + studentList.hard_type + "']").attr("checked", "checked");
                             form.render();
 
-                            $("#update_award_or_honor").val(studentList.own_punishment);
+//                            $("#update_award_or_honor").val(studentList.own_punishment);
+                            student.updateStudentAwardOrPunishment(AwardOrPunishmentList);
                             student.queryAreaAndFloorAndRoomByRoomIdOfUpdate(studentList.room_id)
                             //如果住宿类型为校外,则隐藏宿舍信息,否则显示
                             //1表示校内,2表示校外
@@ -639,23 +638,23 @@
                     let isOther = student.isOther(politicalStatus);
                     let isShow = isOther ? "display" : "none";
                     $("#family_member_information").append(
-                        `<tr id="family_information1" class="family_information1" style="float: left;">
-                                        <th colspan="1"><span class = "family_relationship"></span><span>
-                               ：<div class="layui-input-inline" style="width: 60%">
+                        `<tr id="family_information1" class="family_information1">
+                                        <th colspan="1" style="width: 20%"><span class = "family_relationship"></span><span>
+                               ：<div class="layui-input-inline" style="width: 70%">
                                    <input type="text" name="text"
                                           placeholder="请输入成员姓名" autocomplete="off" class="layui-input updateStudentParentsName"
                                           id="updateStudentParentsName">
                                 </div>
                            </span></th>
-                            <th colspan="2">联系方式：<span>
-                               <div class="layui-input-inline" style="width: 60%">
+                            <th colspan="1" style="width: 30%">联系方式：<span>
+                               <div class="layui-input-inline" style="width: 70%">
                                    <input type="text" name="text"
                                           placeholder="请输入内容" autocomplete="off" class="layui-input updateStudentParent_phone"
                                           id="updateStudentParent_phone">
                                 </div>
                            </span></th>
-                            <th colspan="2">工作单位：<span>
-                               <div class="layui-input-inline" style="width: 60%">
+                            <th colspan="4">工作单位：<span>
+                               <div class="layui-input-inline">
                                    <input type="text" name="text"
                                           placeholder="请输入内容" autocomplete="off" class="layui-input updateStudentParent_employer"
                                           id="updateStudentParent_employer">
@@ -668,10 +667,10 @@
                                `)
 
                     $("#family_member_information").append(`
-                           <tr id="family_information2" style="float: left;margin-bottom: 20px">
-                           <th colspan="5"><span>
+                           <tr id="family_information2" style="margin-bottom: 20px">
+                           <th colspan="4"><span>
                             <div class="political">
-                               政治面貌： <div class="layui-input-inline" >
+                               政治面貌： <div class="layui-input-inline" style="width: 30%;" >
                                  <select name="politicalOutlook1" lay-filter="politicalOutlookParent"  class="updateStudentParent_political_status">
                                    <option value="">请选择</option>
                                    <option value="1" ` + (politicalStatus === "中共党员" ? "selected" : "") + `>中共党员</option>
@@ -692,17 +691,20 @@
                                </span>
                            </div>
                                </span></th>
-                                        <th colspan="1">职务：<span>
-                               <div class="layui-input-inline" style="width: 60%">
+
+                           <th colspan="1">职务：<span>
+                                 <div class="layui-input-inline">
                                    <input type="text" name="text"
                                           placeholder="请输入内容" autocomplete="off" class="layui-input updateStudentParent_duties"
                                           id="updateStudentParent_duties">
                                 </div>
-                           </span></th>
-
+                           </th>
+                           <th colspan="1">
+                           <button  class="layui-btn layui-btn-danger delStudentFamily" onclick="student.delStudentFamily(` + (familyList[j].id) + `)"　 style="margin-bottom: 10px;float: right;" value="` + familyList[j].id + `"><i class="layui-icon">&#xe640;</i>删除</button>
+                            </th>
                                     </tr>`)
 
-                    $("#family_member_information").append(` <button  class="layui-btn layui-btn-danger delStudentFamily" onclick="student.delStudentFamily(` + (familyList[j].id) + `)"　 style="margin-bottom: 10px;float: right;" value="` + familyList[j].id + `"><i class="layui-icon">&#xe640;</i>删除</button>`)
+//                    $("#family_member_information").append(` `)
 
                 }
 
@@ -733,7 +735,7 @@
             educationalExperience: function (experienceList) {
                 $("#educational_experience").html("")
                 for (let i = 0; i < experienceList.length; i++) {
-                    $("#educational_experience").append(`<tr style="float: left;margin-bottom: 20px">
+                    $("#educational_experience").append(`<tr style="margin-bottom: 20px">
                                         <th colspan="2"><span>
                                             <div class="layui-input-inline" style="width: 30%;float: left">
                                                 <input name="date" lay-verify="date" placeholder="yyyy-mm-dd"
@@ -761,8 +763,11 @@
                                                        placeholder="担任什么职务" autocomplete="off" class="layui-input update_duties" id="update_duties">
                                              </div>
                                         </span></th>
+                                        <th>
+                                            <button class="layui-btn  layui-btn-danger" onclick="student.delExperience(\` + experienceList[i].id + \`)" style="margin-bottom: 10px;float: right;"><i class="layui-icon">&#xe640;</i> 删除</button>
+                                        </th>
                                     </tr>`)
-                    $("#educational_experience").append(` <button class="layui-btn  layui-btn-danger" onclick="student.delExperience(` + experienceList[i].id + `)" style="margin-bottom: 10px;float: right;"><i class="layui-icon">&#xe640;</i> 删除</button>`)
+//                    $("#educational_experience").append(` `)
 
                 }
 
@@ -777,6 +782,52 @@
                     $(update_duties[i]).val(experienceList[i].staff);
                 }
 
+            },
+
+            updateStudentAwardOrPunishment: function (AwardOrPunishmentList) {
+                $("#updateStudent_Award_or_punishment").html("")
+                for (let i = 0; i < AwardOrPunishmentList.length; i++) {
+                    $("#updateStudent_Award_or_punishment").append(`<tr style="margin-bottom: 20px;">
+                                        <th colspan="2"><span>时间：
+                                            <div class="layui-input-inline">
+                                                <input name="date" lay-verify="date" placeholder="yyyy-mm-dd"
+                                                       autocomplete="off" class="layui-input updateStudent_Award_or_punishment_date"
+                                                       onclick="layui.laydate({elem: this})" type="text"
+                                                       id="updateStudent_Award_or_punishment_date">
+                                            </div>
+                                           </th>
+
+                                        <th colspan="4" width="600px"><span>内容：
+                                            <div class="layui-input-inline" style="width: 90%">
+                                                <input type="text" name="text"
+                                                       placeholder="内容" autocomplete="off" class="layui-input updateStudent_Award_or_punishment_content" id="updateStudent_Award_or_punishment_content">
+                                             </div>
+                                        </span></th>
+                                        <th>
+                                            <button class="layui-btn  layui-btn-danger" onclick="student.delExperience(\` + AwardOrPunishmentList[i].id + \`)" style="margin-bottom: 10px;float: right;"><i class="layui-icon">&#xe640;</i> 删除</button>
+</th>
+                                    </tr>`)
+//                    $("#updateStudent_Award_or_punishment").append(` `)
+
+                }
+
+                let updateStudent_Award_or_punishment_date = $(".updateStudent_Award_or_punishment_date");
+                let updateStudent_Award_or_punishment_content = $(".updateStudent_Award_or_punishment_content");
+                for (let i = 0; i < AwardOrPunishmentList.length; i++) {
+                    $(updateStudent_Award_or_punishment_date[i]).val(AwardOrPunishmentList[i].date);
+                    $(updateStudent_Award_or_punishment_content[i]).val(AwardOrPunishmentList[i].centent);
+                }
+
+            },
+
+            addAwardOrPunishmentInfo: function () {
+                addAwardOrPunishmentInfoIndex = layer.open({
+                    type: 1,
+                    title: "添加荣誉或处分",
+                    area: ["40%", "60%"],
+                    content: $("#addAwardOrPunishment")
+
+                });
             },
 
             delStudentFamily: function (familyId) {
@@ -804,8 +855,30 @@
                 });
 
             },
+            addAwardOrPunishmentByUpdate: function () {
+                let dateAwardOrPunishment = $("#dateAwardOrPunishment").val();
+                let contentAwardOrPunishment = $("#contentAwardOrPunishment").val();
+
+                layer.confirm('该操作将直接添加，无需更新！是否添加？', {icon: 3, title: '提示'}, function (index) {
+                    let studentNo = studentInfo.no;
+                    $.post(baseUrl + "/student/addAwardOrPunishmentByUpdate",
+                        {
+                            studentNo: studentNo,
+                            date: dateAwardOrPunishment,
+                            centent: contentAwardOrPunishment,
+                        },
+                        function (data) {
+                            if (data.result) {
+                                layer.msg(data.msg, {icon: 1});
+                                layer.close(addAwardOrPunishmentInfoIndex);
+                                student.updateStudentAwardOrPunishment(data.data);
+                            }
+                        }
+                    )
+                })
+
+            },
             addFamilyByUpdate: function () {
-                let studentNo = studentInfo.no;
                 let family_relationship = $("#family_relationship").val();
                 let family_name = $("#family_name").val();
                 let family_work_place = $("#family_work_place").val();
@@ -1302,7 +1375,7 @@
                 $("#updateCardAddress").show();
             },
 
-            updateNativeAddress:function () {
+            updateNativeAddress: function () {
                 $("#updateNativeAddress").show();
             }
         };
@@ -1440,6 +1513,11 @@
 
 
             form.on('select(department)', function (data) {
+                let department_id = data.value;
+                $.post(baseUrl + "/student/showAutoClassAndProAndDirByDepartment", {departmentId: department_id}, function (resultData) {
+                    $("#profession_search").html(`<option value="">专业</option>` + loadOptionsHtmlOfClass(resultData.data.professionList));
+                    form.render();
+                })
 
                 $("#department_search").html(student.loadClassByDepartmentId(data.value));
                 $("#direction_search").html(student.loadDirectionsByDepartmentId(data.value));
@@ -1576,11 +1654,14 @@
                     $("#show_other_family_political_status").hide();
                 }
             });
-            //监听系,从而动态获取相应的班级
+            //监听系,从而动态获取相应的班级、现专业、就业方向
             form.on('select(student_departments)', function (data) {
                 let department_id = data.value;
-                $.post(baseUrl + "/student/showAutoClassByDepartment", {departmentId: department_id}, function (resultData) {
-                    $(".student_class").html(loadOptionsHtmlOfClass(resultData.data));
+                $.post(baseUrl + "/student/showAutoClassAndProAndDirByDepartment", {departmentId: department_id}, function (resultData) {
+                    $("#student_class").html(loadOptionsHtmlOfClass(resultData.data.classesList));
+                    $("#studentsNowProfessional").html(loadOptionsHtmlOfClass(resultData.data.professionList));
+                    $("#employment_direction").html(loadOptionsHtmlOfClass(resultData.data.directionList));
+                    form.render();
                 })
             })
 

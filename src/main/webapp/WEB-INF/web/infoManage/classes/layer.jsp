@@ -4,8 +4,8 @@
     <tr>
         <td>{{ index+1}}</td>
         <td>{{ item.departmentName}}</td>
-        <td>{{ item.directionName}}</td>
         <td>{{ item.level}}</td>
+        <td>{{ item.directionName}}</td>
         <td>{{ item.name}}</td>
         <td>
             <shiro:hasPermission name="classes:update">

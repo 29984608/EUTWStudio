@@ -75,9 +75,9 @@ public interface PersonDao {
 
     List<Map<String, Object>> queryStudentFamily(String studentNo) throws Exception;
 
-    List<Map<String, String>> queryStudentsProfessionList() throws Exception;
+    List<Map<String, String>> queryStudentsProfessionList(@Param("departmentId") String departmentId) throws Exception;
 
-    List<Map<String, String>> queryStudentsDirection() throws Exception;
+    List<Map<String, String>> queryStudentsDirection(@Param("departmentId") String departmentId) throws Exception;
 
     List<Map<String, Object>> queryStudentsClassList() throws Exception;
 
@@ -124,5 +124,13 @@ public interface PersonDao {
     List<Map<String,Object>> queryFamousFamilyList();
 
     List<Map<String,String>> queryStudentsByLikesAdmin(Map<String, Object> data);
+
+    List<Map<String,String>> queryStudentsAwardOrPunishmentList(String studentNo);
+
+    void addAwardOrPunishmentByUpdate(OwnOrPunishment ownOrPunishment);
+
+    List<Map<String,Object>> showAutoProfessionListByDepartment(@Param("departmentId") String departmentId);
+
+    List<Map<String,Object>> showAutoDirectionListByDepartment(@Param("departmentId") String departmentId);
 }
 

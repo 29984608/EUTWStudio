@@ -36,4 +36,6 @@ public interface DepartmentService {
     void updateDepartment(Department department, String professionsIds, String directionsIds)throws Exception;
 
     void deleteDepartment(String id)throws Exception;
+
+    List<Map<String,String>> queryClassesByDirectionId(String id)throws Exception;
 }

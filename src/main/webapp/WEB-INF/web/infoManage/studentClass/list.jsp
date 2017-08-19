@@ -16,7 +16,7 @@
 <section class="larry-grid layui-form">
     <div class="larry-personal">
         <div class="layui-tab">
-            <blockquote class="layui-elem-quote mylog-info-tit" style="height: 70px";>
+            <blockquote class="layui-elem-quote mylog-info-tit" style="height: 140px" ;>
                 <div class="layui-form-item">
                     <div class="layui-input-inline">
                         <div class="layui-inline">
@@ -31,7 +31,7 @@
                     <div class="layui-input-inline">
                         <div class="layui-inline">
                             <div class="layui-input-inline">
-                                <select lay-filter="studentClass" id="direction_search">
+                                <select lay-filter="direction" id="direction_search">
                                     <option value="">方向</option>
                                 </select>
                             </div>
@@ -40,52 +40,72 @@
                     <div class="layui-input-inline">
                         <div class="layui-inline">
                             <div class="layui-input-inline">
-                                <select id="level_search">
+                                <select id="level_search" lay-filter="level">
                                     <option value="">年级</option>
                                 </select>
                             </div>
                         </div>
                     </div>
-
                     <div class="layui-input-inline">
-                        <input type="text" name="title" id="no_search" lay-verify="title" autocomplete="off"
-                               placeholder="学号" class="layui-input">
+                        <div class="layui-inline">
+                            <div class="layui-input-inline">
+                                <select id="classes_search">
+                                    <option value="">班级</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-inline">
+                        <div class="layui-inline">
+                            <div class="layui-input-inline">
+                                <input type="text" name="title" id="no_search" lay-verify="title" autocomplete="off"
+                                       placeholder="学号" class="layui-input">
+                            </div>
+                        </div>
+
                     </div>
                     <div class="layui-input-inline">
-                        <input type="text" name="title" id="name_search" lay-verify="title" autocomplete="off"
-                               placeholder="姓名" class="layui-input">
+                        <div class="layui-inline">
+                            <div class="layui-input-inline">
+                                <input type="text" name="title" id="name_search" lay-verify="title" autocomplete="off"
+                                       placeholder="姓名" class="layui-input">
+                            </div>
+                        </div>
+
                     </div>
                     <a class="layui-btn" onclick="studentClass.list()"><i class="layui-icon">&#xe615;</i>搜索</a>
 
                 </div>
-        </div>
-        </blockquote>
-        <div class="larry-separate"></div>
-        <div class="layui-tab-content larry-personal-body clearfix mylog-info-box">
-            <a class="layui-btn" onclick="studentClass.distributeDirection()"><i class="layui-icon">&#xe630;</i>就业方向</a>
-            <a class="layui-btn" onclick="studentClass.add()"><i class="layui-icon">&#xe630;</i>班级选择</a>
-            <a class="layui-form-mid layui-word-aux">请先勾选学生</a>
-            <div class="layui-form">
-                <table class="layui-table">
-                    <thead>
-                    <tr>
-                        <th><input type="checkbox" lay-filter="checkedAll" name="" lay-skin="primary"
-                                   lay-filter="allChoose"></th>
-                        <th>学号</th>
-                        <th>姓名</th>
-                        <th>性别</th>
-                        <th>方向</th>
-                        <th>专业</th>
-                        <th>班级</th>
-                    </tr>
-                    </thead>
-                    <tbody id="list">
+            </blockquote>
+            <div class="larry-separate"></div>
+            <div class="layui-tab-content larry-personal-body clearfix mylog-info-box">
+                <a class="layui-btn" onclick="studentClass.distributeDirection()"><i class="layui-icon">&#xe630;</i>就业方向</a>
+                <a id="classid" class="layui-btn" onclick="studentClass.add()"><i class="layui-icon">&#xe630;</i>班级选择</a>
+                <a class="layui-form-mid layui-word-aux">请先勾选学生</a>
+                <div class="layui-form">
+                    <table class="layui-table">
+                        <thead>
+                        <tr>
+                            <th><input type="checkbox" lay-filter="checkedAll" name="" lay-skin="primary"
+                                       lay-filter="allChoose"></th>
+                            <th>学号</th>
+                            <th>姓名</th>
+                            <th>性别</th>
+                            <th>方向</th>
+                            <th>专业</th>
+                            <th>班级</th>
+                        </tr>
+                        </thead>
+                        <tbody id="list">
 
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-    </div>
     </div>
 </section>
 </body>
@@ -116,10 +136,10 @@
             {{#}}}
         </td>
         <td>
-            {{# if(item.classes === undefined){ }}
+            {{# if(item.classesName === undefined){ }}
             未分配
             {{# }else{ }}
-            {{ item.classes}}
+            {{ item.classesName}}
             {{#}}}
         </td>
     </tr>
@@ -177,24 +197,26 @@
 
 
         studentClass = {
+
             list: function () {
                 let data = {
                     name: $("#name_search").val(),
                     studentNo: $("#no_search").val(),
                     directionId: $("#direction_search").val(),
                     professionId: $("#profession_search").val(),
-                    level: $("#level_search").val()
+                    level: $("#level_search").val(),
+                    classesId: $("#classes_search").val()
                 };
+                layer.msg("查询中...");
                 $.ajax({
                     url: baseUrl + "/studentClass/list",
                     data: data,
                     type: "post",
                     success: function (data) {
                         if (data.result) {
-                            $("#profession_search").html("<option value=''>专业</option>" + studentClass.loadSelectElementHtml(data.data.professions));
-                            $("#direction_search").html("<option value=''>方向</option>" + studentClass.loadSelectElementHtml(data.data.directions));
-
-
+                            let stus = data.data.studentClass;
+                            $("#totalCount").remove();
+                            $("#classid").after(`<a class=" layui-word-aux" id="totalCount">总记录数`+stus.length+`</a>`);
                             laytpl($("#list-tpl").text()).render(data, function (html) {
                                 $("#list").html(html);
                             });
@@ -308,15 +330,44 @@
                 });
 
             },
+            loadAllDirections: function () {
+                $.post(baseUrl + "/communication/queryDirectionByDepartment", function (data) {
+                    if (data.result) {
+                        $("#direction_search").html(`<option value="">方向</option>`).append(loadOptionsHtml(data.data, "-"))
+                    }
+                    form.render();
+                })
+            },
+            loadAllProfessions: function () {
+                $.post(baseUrl + "/profession/all", function (data) {
+                    if (data.result) {
+                        $("#profession_search").html(`<option value="">专业</option>`).append(loadOptionsHtml(data.data, "-"))
+                    }
+                    form.render();
+                })
+            },
+            loadClassessByDirectionId: function (id) {
+            $.post(baseUrl + "/studentClass/queryClassesByDirectionId", {id: id}, function (data) {
+                if (data.result) {
+                    $("#classes_search").html(`<option value="">班级</option>`).append(loadOptionsHtml(data.data, "-"))
+                }
+                form.render();
+            })
+        }
         };
         $(function () {
             loadAllLevels();
+            studentClass.loadAllDirections();
+            studentClass.loadAllProfessions();
             form.render();
-            studentClass.list();
+//            studentClass.list();
 
             form.on('checkbox(checkedAll)', function (data) {
                 $(".no_checkbox").prop({checked: data.elem.checked});
                 form.render();
+            });
+            form.on('select(direction)', function (data) {
+                studentClass.loadClassessByDirectionId(data.value);
             });
         });
     });

@@ -109,18 +109,35 @@ public class PersonServiceImpl implements PersonService {
         Map<String, Object> data = new HashMap<>();
         data.put("professionId", searchDto.getProfessionId());
         data.put("directionId", searchDto.getDirectionId());
+        data.put("classesId", searchDto.getClassesId());
         data.put("level", searchDto.getLevel());
         data.put("studentNo", searchDto.getStudentNo() + "%");
         data.put("name", "%" + searchDto.getName() + "%");
         List<Map<String, String>> students = personDao.queryStudentsByLikesAdmin(data);
-        List<Direction> directions = departmentDao.queryAllDirections();
-        List<Profession> professions = departmentDao.queryAllProfession();
 
         result.put("studentClass", students);
-        result.put("professions", professions);
-        result.put("directions", directions);
 
         return result;
+    }
+
+    @Override
+    public List<Map<String, String>> queryStudentsAwardOrPunishmentList(String studentNo) throws Exception {
+        return personDao.queryStudentsAwardOrPunishmentList(studentNo);
+    }
+
+    @Override
+    public void addAwardOrPunishmentByUpdate(OwnOrPunishment ownOrPunishment) throws Exception {
+        personDao.addAwardOrPunishmentByUpdate(ownOrPunishment);
+    }
+
+    @Override
+    public List<Map<String, Object>> showAutoProfessionListByDepartment(String departmentId) throws Exception {
+        return personDao.showAutoProfessionListByDepartment(departmentId);
+    }
+
+    @Override
+    public List<Map<String, Object>> showAutoDirectionListByDepartment(String departmentId) throws Exception {
+        return personDao.showAutoDirectionListByDepartment(departmentId);
     }
 
     @Override
@@ -131,17 +148,14 @@ public class PersonServiceImpl implements PersonService {
         data.put("professionId", searchDto.getProfessionId());
         data.put("directionId", searchDto.getDirectionId());
         data.put("level", searchDto.getLevel());
+        data.put("classesId", searchDto.getClassesId());
         data.put("studentNo", searchDto.getStudentNo() + "%");
         data.put("name", "%" + searchDto.getName() + "%");
 
         List<Map<String, String>> students = personDao.queryStudentsByLikes(data);
         Map<String, String> teacher = personDao.queryTeacherByNo(user.getUserName());
-        List<Direction> directions = departmentDao.queryDirectionsByDepartmentId(String.valueOf(teacher.get("department_id")));
-        List<Profession> professions = departmentDao.queryProfessionsByDepartmentId(String.valueOf(teacher.get("department_id")));
 
         result.put("studentClass", students);
-        result.put("professions", professions);
-        result.put("directions", directions);
 
         return result;
     }
@@ -314,13 +328,13 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public List<Map<String, String>> queryStudentsProfessionList() throws Exception {
-        return personDao.queryStudentsProfessionList();
+    public List<Map<String, String>> queryStudentsProfessionList(String departmentId) throws Exception {
+        return personDao.queryStudentsProfessionList(departmentId);
     }
 
     @Override
-    public List<Map<String, String>> queryStudentsDirection() throws Exception {
-        return personDao.queryStudentsDirection();
+    public List<Map<String, String>> queryStudentsDirection(String departmentId) throws Exception {
+        return personDao.queryStudentsDirection(departmentId);
     }
 
     @Override

@@ -19,10 +19,24 @@ function loadAllLevels() {
     }
 }
 
+function loadClassessByDirectionId(id) {
+    $.post(baseUrl + "/studentClass/queryClassesByDirectionId", {id: id}, function (data) {
+        if (data.result) {
+            $("#classes_search").html(`<option value="">班级</option>`).append(loadOptionsHtml(data.data, "-"))
+        }
+    })
+}
 function loadAllDirections() {
     $.post(baseUrl + "/communication/queryDirectionByDepartment", function (data) {
         if (data.result) {
             $("#direction_search").html(`<option value="">方向</option>`).append(loadOptionsHtml(data.data, "-"))
+        }
+    })
+}
+function loadAllProfessions() {
+    $.post(baseUrl + "/profession/list", function (data) {
+        if (data.result) {
+            $("#profession_search").html(`<option value="">专业</option>`).append(loadOptionsHtml(data.data, "-"))
         }
     })
 }

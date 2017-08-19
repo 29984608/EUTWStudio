@@ -63,6 +63,7 @@
                         <th>系</th>
                         <th>年级</th>
                         <th>就业方向</th>
+                        <th>班级</th>
                         <th>学号</th>
                         <th>姓名</th>
                         <th>平均分</th>
@@ -97,7 +98,13 @@
             {{ item.directionName}}{{#}}}
 
         </td>
+        <td>
+            {{# if(item.classesName === undefined){ }}
+            未分配
+            {{# }else{ }}
+            {{ item.classesName}}{{#}}}
 
+        </td>
         <td>{{ item.no}}</td>
         <td>{{ item.studentName}}</td>
         <td>{{ item.score}}</td>

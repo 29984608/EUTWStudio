@@ -24,11 +24,12 @@
     </update>
     <select id="queryStudentsByLikes" parameterType="map" resultType="map">
         SELECT student.no,student.name,student.gender,direction.name direction,profession.name profession,class.name
-        classes,teacher.department_id departmentId
+        classes,teacher.department_id departmentId,classes.name classesName
         FROM t_student student
         LEFT JOIN (SELECT no, department_id FROM t_teacher) teacher ON teacher.no = #{no}
         LEFT JOIN (SELECT id FROM t_department) department ON department.id = teacher.department_id
         LEFT JOIN (SELECT id, name FROM t_direction) direction ON direction.id = student.direction_id
+        LEFT JOIN (SELECT id,name FROM t_classes) classes ON classes.id = student.classes_id
         <if test="directionId!=''">
             AND direction.id = #{directionId}
         </if>
@@ -49,19 +50,23 @@
             <if test="professionId!=''">
                 AND profession.id = profession_id
             </if>
+            <if test="classesId!=''">
+                AND student.classes_id = #{classesId}
+            </if>
             and student.name
 
             LIKE #{name}
         </where>
     </select>
     <select id="queryStudentsByLikesAdmin" parameterType="map" resultType="map">
-        SELECT student.no,student.name,student.gender,direction.name direction,profession.name profession
+        SELECT student.no,student.name,student.gender,direction.name direction,profession.name profession,classes.name classesName
         FROM t_student student
         LEFT JOIN (SELECT id, name FROM t_direction) direction ON direction.id = student.direction_id
         <if test="directionId!=''">
             AND direction.id = #{directionId}
         </if>
         LEFT JOIN (SELECT id,name FROM t_profession) profession ON profession.id = student.profession_id
+        LEFT JOIN (SELECT id,name FROM t_classes) classes ON classes.id = student.classes_id
         <if test="professionId!=''">
             AND profession.id=#{professionId}
         </if>
@@ -75,6 +80,9 @@
             </if>
             <if test="professionId!=''">
                 AND profession.id = profession_id
+            </if>
+            <if test="classesId!=''">
+                AND student.classes_id = #{classesId}
             </if>
             and student.name
 
@@ -662,10 +670,12 @@ WHERE student.no =#{studentNo}
     </select>
     <select id="queryStudentsProfessionList" resultType="map">
         select * from t_profession
+        WHERE department_id  = #{departmentId}
     </select>
     <select id="queryStudentsDirection" resultType="map">
         SELECT *
         FROM t_direction
+        WHERE department_id = #{departmentId}
     </select>
     <select id="queryStudentsClassList" resultType="map">
         select * from t_classes
@@ -912,7 +922,7 @@ WHERE student.no =#{studentNo}
                     family.work_place = #{item.updateStudentParent_employerList},
                 </if>
                 <if test="item.updateStudentParent_phoneList != null">
-                    family.phone = #{item.updateStudentParent_phoneList}
+                    family.phone = #{item.updateStudentParent_phoneList},
                 </if>
             </set>
             WHERE family.id = #{item.updateStudentParentIds}
@@ -988,6 +998,25 @@ WHERE student.no =#{studentNo}
 
     <select id="queryFamousFamilyList" resultType="map">
         select * from t_famous_family
+    </select>
+
+    <select id="queryStudentsAwardOrPunishmentList" resultType="map" parameterType="string">
+        select * from t_own_punishment
+        WHERE studentNo = #{studentNo}
+    </select>
+
+    <insert id="addAwardOrPunishmentByUpdate" parameterType="OwnOrPunishment">
+        insert into t_own_punishment (date,centent,studentNo) values (#{date},#{centent},#{studentNo})
+    </insert>
+
+    <select id="showAutoProfessionListByDepartment" parameterType="string" resultType="map">
+        select * from t_profession
+        WHERE department_id = #{departmentId}
+    </select>
+
+    <select id="showAutoDirectionListByDepartment" parameterType="string" resultType="map">
+        select * from t_direction
+        WHERE department_id = #{departmentId}
     </select>
 
 </mapper>
