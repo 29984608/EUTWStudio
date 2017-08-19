@@ -456,6 +456,7 @@
                             $("input[type='radio'][name='accommodation_type'][value='" + studentList.stay_type + "']").attr("checked", 'true');
                             $("#updateStudentHeight").val(studentList.height);
                             $("#updateStudentWight").val(studentList.weight);
+                            $("#religiousBelief").val(studentList.religion);
                             $("input:radio[value='" + studentList.health_status + "']").prop('checked', 'true');
                             $("input:radio[value=" + studentList.student_type + "]").prop('checked', 'true');
 
@@ -1046,6 +1047,7 @@
                 var stay_type = $('#update_accommodation_type input[name="accommodation_type"]:checked ').val();
                 var is_out = $('#update_isOut input[name="isOut"]:checked ').val();
                 var blood = $("#updateStudentBloodType").find("option:selected").text()
+                var religion = $("#religiousBelief").val();
                 if ($("#updateStudentPoliticalOutlook").find("option:selected").text() == "其他党派") {
                     var political_status = $("#otherUpdateStudentPoliticalOutlook").val()
                 } else {
@@ -1277,6 +1279,7 @@
                             born: born,
                             name: name,
                             blood: blood,
+                            religion:religion,
                             stay_type: stay_type,
                             famous_family: famous_family,
                             department_id: department_id,

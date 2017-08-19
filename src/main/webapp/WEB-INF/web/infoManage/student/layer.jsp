@@ -527,7 +527,7 @@
                                                     <label class="layui-form-label"
                                                            style="margin-left: -50px;">宗教信仰</label>
                                                     <div class="layui-input-block">
-                                                        <input type="text" name="title"
+                                                        <input type="text" name="title" id="religiousBelief"
                                                                autocomplete="off" placeholder="何时经何人介绍参加何种党派、团体、任何职?"
                                                                class="layui-input" style="margin-left: -60px">
                                                     </div>
@@ -536,7 +536,7 @@
                                     </tr>
 
                                     <tr>
-                                        <th colspan="2">生源类别:<span>
+                                        <th colspan="3">生源类别:<span>
                                         <div class="layui-inline" pane="" id="student_classify">
                                             <label class="layui-form-label" style="width: auto"></label>
                                             <div class="layui-inline">
