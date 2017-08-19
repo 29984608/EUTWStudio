@@ -278,7 +278,7 @@
                                             <tr>
                                                 <th>
                                                     <div class="layui-inline">
-                                                        <label class="layui-form-label">TEL</label>
+                                                        <label class="layui-form-label" style="width:auto;"><img style="width: 18px;height:18px;" src="${baseurl}/images/public/TEL.png"></label>
                                                         <div class="layui-input-inline">
                                                             <input type="tel" name="phone"
                                                                    autocomplete="off" class="layui-input"
@@ -290,7 +290,7 @@
                                             <tr>
                                                 <th>
                                                     <div class="layui-inline">
-                                                        <label class="layui-form-label">QQ</label>
+                                                        <label class="layui-form-label" style="width:auto;"><img style="width: 18px;height:18px;" src="${baseurl}/images/public/qq.png"></label>
                                                         <div class="layui-input-inline">
                                                             <input type="number" name="QQ"
                                                                    autocomplete="off" class="layui-input"
@@ -303,7 +303,7 @@
                                                 <th>
                                                     <div class="layui-inline">
                                                         <label class="layui-form-label"
-                                                               style="width: auto">E-mail</label>
+                                                               style="width: auto"><img style="width: 18px;height:18px;" src="${baseurl}/images/public/Email.png"></label>
                                                         <div class="layui-input-inline">
                                                             <input type="email" name="email"
                                                                    autocomplete="off" class="layui-input"
