@@ -132,13 +132,13 @@
                     <table class="layui-table lay-even " data-name="articleCatData" style="width: 150px;" >
                         <tbody >
                         <tr>
-                            <th>TEL：<span id="phone"></span></th>
+                            <th><img style="width: 18px;height:18px;" src="${baseurl}/images/public/TEL.png">：<span id="phone"></span></th>
                         </tr>
                         <tr>
-                            <th>QQ：<span id="qq"></span></th>
+                            <th><img style="width: 18px;height:18px;" src="${baseurl}/images/public/qq.png">：<span id="qq"></span></th>
                         </tr>
                         <tr>
-                            <th>E-mail：<span id="email"></span></th>
+                            <th><img style="width: 18px;height:18px;" src="${baseurl}/images/public/Email.png">：<span id="email"></span></th>
                         </tr>
                         </tbody>
                     </table>
