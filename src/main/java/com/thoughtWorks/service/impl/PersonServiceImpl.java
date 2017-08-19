@@ -124,6 +124,16 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
+    public List<Map<String, String>> queryStudentsAwardOrPunishmentList(String studentNo) throws Exception {
+        return personDao.queryStudentsAwardOrPunishmentList(studentNo);
+    }
+
+    @Override
+    public void addAwardOrPunishmentByUpdate(OwnOrPunishment ownOrPunishment) throws Exception {
+        personDao.addAwardOrPunishmentByUpdate(ownOrPunishment);
+    }
+
+    @Override
     public Map<String, Object> queryStudentsByLikes(ActiveUser user, SearchDto searchDto) throws Exception {
         Map<String, Object> result = new HashMap<>();
         Map<String, Object> data = new HashMap<>();

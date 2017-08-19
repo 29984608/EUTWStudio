@@ -1,11 +1,9 @@
 package com.thoughtWorks.web.infoManage;
 
+import com.sun.org.apache.regexp.internal.RE;
 import com.thoughtWorks.dto.Result;
 import com.thoughtWorks.dto.SearchDto;
-import com.thoughtWorks.entity.CommunicationContent;
-import com.thoughtWorks.entity.Experience;
-import com.thoughtWorks.entity.StudentFamily;
-import com.thoughtWorks.entity.StudentUpdate;
+import com.thoughtWorks.entity.*;
 import com.thoughtWorks.service.PersonService;
 import com.thoughtWorks.util.Constant;
 import com.thoughtWorks.util.ImgUtil;
@@ -83,6 +81,7 @@ public class StudentController {
             Map<String, Object> students = personService.queryStudentsToUpdate(studentNo);
             List<Map<String, Object>> students_family = personService.queryStudentFamily(studentNo);
             List<Map<String, String>> professionList = personService.queryStudentsProfessionList();
+            List<Map<String, String>> AwardOrPunishmentList = personService.queryStudentsAwardOrPunishmentList(studentNo);
             List<Map<String, String>> directionList = personService.queryStudentsDirection();
             List<Map<String, Object>> classesList = personService.queryStudentsClassList();
             List<Map<String, Object>> experienceList = personService.queryStudentExperienceList(studentNo);
@@ -96,6 +95,7 @@ public class StudentController {
             data.put("professionList", professionList);
             data.put("directionList", directionList);
             data.put("classesList", classesList);
+            data.put("AwardOrPunishmentList", AwardOrPunishmentList);
             data.put("experienceList", experienceList);
             data.put("teacherList", teacherList);
             data.put("famousFamily", famousFamilyFoUpdate);
@@ -255,5 +255,19 @@ public class StudentController {
             e.printStackTrace();
         }
         return Result.failure(null, Constant.SEARCH_FAILURE);
+    }
+
+    @RequestMapping("/addAwardOrPunishmentByUpdate")
+    @ResponseBody
+    public Result addAwardOrPunishmentByUpdate(OwnOrPunishment ownOrPunishment) {
+        try {
+            personService.addAwardOrPunishmentByUpdate(ownOrPunishment);
+            List<Map<String, String>> AwardOrPunishmentList = personService.queryStudentsAwardOrPunishmentList(ownOrPunishment.getStudentNo());
+
+            return Result.success(AwardOrPunishmentList, Constant.ADD_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return Result.failure(null, Constant.ADD_FAILURE);
     }
 }

@@ -912,7 +912,7 @@ WHERE student.no =#{studentNo}
                     family.work_place = #{item.updateStudentParent_employerList},
                 </if>
                 <if test="item.updateStudentParent_phoneList != null">
-                    family.phone = #{item.updateStudentParent_phoneList}
+                    family.phone = #{item.updateStudentParent_phoneList},
                 </if>
             </set>
             WHERE family.id = #{item.updateStudentParentIds}
@@ -989,5 +989,14 @@ WHERE student.no =#{studentNo}
     <select id="queryFamousFamilyList" resultType="map">
         select * from t_famous_family
     </select>
+
+    <select id="queryStudentsAwardOrPunishmentList" resultType="map" parameterType="string">
+        select * from t_own_punishment
+        WHERE studentNo = #{studentNo}
+    </select>
+
+    <insert id="addAwardOrPunishmentByUpdate" parameterType="OwnOrPunishment">
+        insert into t_own_punishment (date,centent,studentNo) values (#{date},#{centent},#{studentNo})
+    </insert>
 
 </mapper>

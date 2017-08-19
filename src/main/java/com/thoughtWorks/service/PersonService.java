@@ -108,4 +108,8 @@ public interface PersonService {
     List<Map<String, Object>> queryFamousFamilyList() throws Exception;
 
     Map<String, Object> queryStudentsByLikesAdmin(SearchDto searchDto) throws Exception;
+
+    List<Map<String,String>> queryStudentsAwardOrPunishmentList(String studentNo)throws Exception;
+
+    void addAwardOrPunishmentByUpdate(OwnOrPunishment ownOrPunishment)throws Exception;
 }
