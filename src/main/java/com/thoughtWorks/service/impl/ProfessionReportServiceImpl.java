@@ -73,8 +73,8 @@ public class ProfessionReportServiceImpl implements ProfessionReportService {
     private void setDepartmentProfessionStudentCount(Map<String, Object> tempDepartment, Map<String, Object> student) {
         String professionName = (String) student.get("professionName");
         if (professionName == null) {
-            student.put("professionName", "未分配");
-            professionName = "未分配";
+            student.put("professionName", "无");
+            professionName = "无";
         }
         List<Map<String, Object>> professions = (List<Map<String, Object>>) tempDepartment.get("professions");
 

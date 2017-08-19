@@ -26,7 +26,7 @@
                 <from id="searchInfo">
                     <div class="layui-inline">
                         <div class="layui-input-inline " style="width: auto ;margin-bottom: 10px;">
-                            <select lay-filter="course" id="module_search">
+                            <select lay-filter="department" id="module_search">
                                 <option value="">系</option>
                             </select>
                         </div>
@@ -38,7 +38,7 @@
                         </div>
 
                         <div class="layui-input-inline" style="width: auto;margin-bottom: 10px;">
-                            <select lay-filter="t_direction" id="findDirection">
+                            <select lay-filter="direction" id="findDirection">
                                 <option value="">方向</option>
                             </select>
                         </div>
@@ -95,20 +95,34 @@
         <div class="layui-tab-content larry-personal-body clearfix mylog-info-box">
             <div class="layui-form">
                 <table class="layui-table">
+                    <colgroup>
+                        <col width="80">
+                        <col width="100">
+                        <col width="100">
+                        <col width="200">
+                        <col width="80">
+                        <col width="200">
+                        <col width="200">
+                        <col width="200">
+                        <col width="120">
+                        <col width="100">
+                        <col width="140">
+                        <col width="380">
+                    </colgroup>
                     <thead>
                     <tr>
-                        <th>学号</th>
-                        <th>姓名</th>
-                        <th>性别</th>
-                        <th>系</th>
-                        <th>年级</th>
-                        <th>方向</th>
-                        <th>专业</th>
-                        <th>班级</th>
-                        <th>区号</th>
-                        <th>层号</th>
-                        <th>房间号</th>
-                        <th>操作</th>
+                        <th style="font-size: 12px">学号</th>
+                        <th style="font-size: 12px">姓名</th>
+                        <th style="font-size: 12px">性别</th>
+                        <th style="font-size: 12px">系名称</th>
+                        <th style="font-size: 12px">年级</th>
+                        <th style="font-size: 12px">方向</th>
+                        <th style="font-size: 12px">专业</th>
+                        <th style="font-size: 12px">班级</th>
+                        <th style="font-size: 12px">区号</th>
+                        <th style="font-size: 12px">层号</th>
+                        <th style="font-size: 12px">房间号</th>
+                        <th style="font-size: 12px">操作</th>
                     </tr>
                     </thead>
                     <tbody id="list">
@@ -381,23 +395,33 @@
                     }
                 })
             },
+            queryClassByDirectionId:function (id) {
+                $.post(baseUrl + "/studentClass/queryClassesByDirectionId", {id: id}, function (data) {
+                    if (data.result) {
+                        $("#queryClass").html(`<option value="">班级</option>`).append(loadOptionsHtml(data.data, "-"))
+                    }
+                    form.render();
+                })
+            }
 
 
         };
         $(function () {
-            communication.list();
+//            communication.list();
             communication.select();
             communication.nowDate();
-            communication.directionOne();
-            communication.queryClass();
+//            communication.directionOne();
             communication.queryFloorAndAreaOfRoom();
             form.on('radio(talk)', function (data) {
                 let talkName = data.value == "parent" ? student.parentName : student.name;
                 $("#talkName").text(talkName);
             });
-            form.on('select(course)', function (data) {
+            form.on('select(department)', function (data) {
                 communication.direction(data.value);
-                communication.queryClassByDepartmentId(data.value);
+
+            });
+            form.on('select(direction)', function (data) {
+                communication.queryClassByDirectionId(data.value);
 
             });
             form.on('select(queryAreaOfRoom)', function (data) {

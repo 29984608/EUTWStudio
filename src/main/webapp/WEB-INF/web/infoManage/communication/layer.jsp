@@ -2,74 +2,74 @@
 <script id="list-tpl" type="text/html">
     {{# layui.each(d.students, function(index, item){ }}
     <tr>
-        <td>{{ item.no}}</td>
-        <td>{{ item.name}}</td>
-        <td>{{ item.gender === "M" ? "男" : "女"}}</td>
-        <td>
+        <td style="font-size: 12px">{{ item.no}}</td>
+        <td style="font-size: 12px">{{ item.name}}</td>
+        <td style="font-size: 12px">{{ item.gender === "M" ? "男" : "女"}}</td>
+        <td style="font-size: 12px">
             {{# if(item.department === undefined){ }}
-            未分配
+            无
             {{# }else{ }}
             {{ item.department}}
             {{#}}}
         </td>
-        <td>{{ item.level}}</td>
-        <td>
+        <td style="font-size: 12px">{{ item.level}}</td>
+        <td style="font-size: 12px">
             {{# if(item.direction === undefined){ }}
-            未分配
+            无
             {{# }else{ }}
             {{ item.direction}}
             {{#}}}
         </td>
-        <td>
+        <td style="font-size: 12px">
             {{# if(item.profession === undefined){ }}
-            未分配
+            无
             {{# }else{ }}
             {{ item.profession}}
             {{#}}}
         </td>
-        <td>
+        <td style="font-size: 12px">
             {{# if(item.classes === undefined){ }}
-            未分配
+            无
             {{# }else{ }}
             {{ item.classes}}
             {{#}}}
         </td>
-        <td>
+        <td style="font-size: 12px">
             {{# if(item.area === undefined){ }}
-            未分配
+            无
             {{# }else{ }}
             {{ item.area}}
             {{#}}}
         </td>
         <td>
             {{# if(item.floor === undefined){ }}
-            未分配
+            无
             {{# }else{ }}
             {{ item.floor}}
             {{#}}}
         </td>
-        <td>
+        <td style="font-size: 12px">
             {{# if(item.room === undefined){ }}
-            未分配
+            无
             {{# }else{ }}
             {{ item.room}}
             {{#}}}
         </td>
-        <td>
+        <td style="font-size: 12px">
             <button class="layui-btn layui-btn-mini "
                     onclick="communication.add('{{item.no}}')">
-                <i class="layui-icon">&#xe61f;</i>添加反馈
+                添加反馈
             </button>
             <%--<shiro:hasPermission name="communication:update">--%>
             <button class="layui-btn layui-btn-mini " style="background: #21a1a1"
                     onclick="communication.previewOrUpdate('{{ item.name}}','{{item.no}}','update')">
-                <i class="layui-icon">&#xe642;</i>修改
+                修改
             </button>
             <%--</shiro:hasPermission>--%>
             <%--<shiro:hasPermission name="communication:delete">--%>
             <button class="layui-btn layui-btn-mini  "
                     onclick="communication.previewOrUpdate('{{ item.name}}','{{item.no}}','preview')">
-                <i class="layui-icon">&#xe60a;</i>预览
+                预览
             </button>
             <%--</shiro:hasPermission>--%>
         </td>

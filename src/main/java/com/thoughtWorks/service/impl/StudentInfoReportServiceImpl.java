@@ -118,7 +118,7 @@ public class StudentInfoReportServiceImpl implements StudentInfoReportService {
 
     private void statisticDirections(List<Map<String, Object>> directions, Map<String, Object> student) {
         if (student.get("directionName") == null) {
-            student.put("directionName", "未分配");
+            student.put("directionName", "无");
         }
         if (!isExistDirection(directions, student))
             createDirection(directions, student);
@@ -153,7 +153,7 @@ public class StudentInfoReportServiceImpl implements StudentInfoReportService {
 
     private void statisticClassess(List<Map<String, Object>> classess, Map<String, Object> student) {
         if (student.get("classesName") == null) {
-            student.put("classesName", "未分配");
+            student.put("classesName", "无");
         }
         if (!isExistClasses(classess, student))
             createClassess(classess, student);
