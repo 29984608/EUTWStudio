@@ -1353,7 +1353,7 @@
         </tbody>
     </table>
     <button class="layui-btn" style="float: right;margin-bottom: 10px;margin-right: 30px"
-            onclick="student.addFamilyByUpdate()"><i class="layui-icon">&#xe61f;</i> 添加
+            onclick="student.addFamilyByUpdate()"><i class="layui-icon">&#xe61f;</i> 保存
     </button>
 </div>
 
@@ -1410,7 +1410,7 @@
         </tbody>
     </table>
     <button class="layui-btn" style="float: right;margin-bottom: 10px;margin-right: 30px"
-            onclick="student.addExperienceByUpdate()"><i class="layui-icon">&#xe61f;</i> 添加
+            onclick="student.addExperienceByUpdate()"><i class="layui-icon">&#xe61f;</i> 保存
     </button>
 </div>
 <%--省市区联动--%>
