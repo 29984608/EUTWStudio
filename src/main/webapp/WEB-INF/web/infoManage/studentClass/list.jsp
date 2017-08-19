@@ -136,10 +136,10 @@
             {{#}}}
         </td>
         <td>
-            {{# if(item.classes === undefined){ }}
+            {{# if(item.classesName === undefined){ }}
             未分配
             {{# }else{ }}
-            {{ item.classes}}
+            {{ item.classesName}}
             {{#}}}
         </td>
     </tr>
@@ -215,6 +215,7 @@
                     success: function (data) {
                         if (data.result) {
                             let stus = data.data.studentClass;
+                            $("#totalCount").remove();
                             $("#classid").after(`<a class=" layui-word-aux" id="totalCount">总记录数`+stus.length+`</a>`);
                             laytpl($("#list-tpl").text()).render(data, function (html) {
                                 $("#list").html(html);
