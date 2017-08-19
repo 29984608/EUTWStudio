@@ -124,5 +124,9 @@ public interface PersonDao {
     List<Map<String,Object>> queryFamousFamilyList();
 
     List<Map<String,String>> queryStudentsByLikesAdmin(Map<String, Object> data);
+
+    List<Map<String,String>> queryStudentsAwardOrPunishmentList(String studentNo);
+
+    void addAwardOrPunishmentByUpdate(OwnOrPunishment ownOrPunishment);
 }
 
