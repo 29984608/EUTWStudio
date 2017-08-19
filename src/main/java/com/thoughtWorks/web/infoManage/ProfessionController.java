@@ -1,5 +1,6 @@
 package com.thoughtWorks.web.infoManage;
 
+import com.thoughtWorks.dao.DepartmentDao;
 import com.thoughtWorks.dto.Result;
 import com.thoughtWorks.entity.Profession;
 import com.thoughtWorks.service.DepartmentService;
@@ -20,6 +21,8 @@ import java.util.Map;
 public class ProfessionController {
     @Autowired
     private DepartmentService departmentService;
+    @Autowired
+    private DepartmentDao departmentDao;
 
     @RequestMapping()
     public String index() {
@@ -34,6 +37,22 @@ public class ProfessionController {
             List<Map<String, String>> professions = departmentService.queryProfessionList(page);
             data.put("professions", professions);
             data.put("page", page);
+            data.put("result", true);
+            data.put("msg", Constant.SEARCH_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+            data.put("msg", Constant.SEARCH_FAILURE);
+        }
+
+        return data;
+    }
+    @RequestMapping("all")
+    @ResponseBody
+    public Map<String, Object> list() {
+        Map<String, Object> data = new HashMap<>();
+        try {
+            List<Profession> professions = departmentDao.queryAllProfession();
+            data.put("data", professions);
             data.put("result", true);
             data.put("msg", Constant.SEARCH_SUCCESS);
         } catch (Exception e) {

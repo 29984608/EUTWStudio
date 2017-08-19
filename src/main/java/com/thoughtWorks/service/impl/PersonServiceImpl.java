@@ -113,12 +113,8 @@ public class PersonServiceImpl implements PersonService {
         data.put("studentNo", searchDto.getStudentNo() + "%");
         data.put("name", "%" + searchDto.getName() + "%");
         List<Map<String, String>> students = personDao.queryStudentsByLikesAdmin(data);
-        List<Direction> directions = departmentDao.queryAllDirections();
-        List<Profession> professions = departmentDao.queryAllProfession();
 
         result.put("studentClass", students);
-        result.put("professions", professions);
-        result.put("directions", directions);
 
         return result;
     }
@@ -136,12 +132,8 @@ public class PersonServiceImpl implements PersonService {
 
         List<Map<String, String>> students = personDao.queryStudentsByLikes(data);
         Map<String, String> teacher = personDao.queryTeacherByNo(user.getUserName());
-        List<Direction> directions = departmentDao.queryDirectionsByDepartmentId(String.valueOf(teacher.get("department_id")));
-        List<Profession> professions = departmentDao.queryProfessionsByDepartmentId(String.valueOf(teacher.get("department_id")));
 
         result.put("studentClass", students);
-        result.put("professions", professions);
-        result.put("directions", directions);
 
         return result;
     }

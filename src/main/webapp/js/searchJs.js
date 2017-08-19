@@ -26,6 +26,13 @@ function loadAllDirections() {
         }
     })
 }
+function loadAllProfessions() {
+    $.post(baseUrl + "/profession/list", function (data) {
+        if (data.result) {
+            $("#profession_search").html(`<option value="">专业</option>`).append(loadOptionsHtml(data.data, "-"))
+        }
+    })
+}
 function loadAllClassess() {
     $.post(baseUrl + "/communication/queryClass", function (data) {
         if (data.result) {
