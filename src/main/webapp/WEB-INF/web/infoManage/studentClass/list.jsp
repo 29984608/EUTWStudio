@@ -58,7 +58,6 @@
                     <a class="layui-btn" onclick="studentClass.list()"><i class="layui-icon">&#xe615;</i>搜索</a>
 
                 </div>
-        </div>
         </blockquote>
         <div class="larry-separate"></div>
         <div class="layui-tab-content larry-personal-body clearfix mylog-info-box">
@@ -312,7 +311,7 @@
         $(function () {
             loadAllLevels();
             form.render();
-            studentClass.list();
+//            studentClass.list();
 
             form.on('checkbox(checkedAll)', function (data) {
                 $(".no_checkbox").prop({checked: data.elem.checked});
