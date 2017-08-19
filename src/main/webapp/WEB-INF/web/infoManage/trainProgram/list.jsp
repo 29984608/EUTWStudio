@@ -17,7 +17,7 @@
 <section class="larry-grid">
     <div class="larry-personal">
         <div class="layui-tab">
-            <blockquote class="layui-elem-quote mylog-info-tit">
+            <blockquote class="layui-elem-quote mylog-info-tit" style="height: 70px";>
                 <%--<shiro:hasPermission name="trainProgram:add">--%>
                 <ul class="layui-tab-title">
                     <li class="layui-btn " onclick="trainProgram.add()"><i class="layui-icon">&#xe61f;</i>添加方案
@@ -33,9 +33,9 @@
                         <thead>
                         <tr>
                             <th>序号</th>
-                            <th>级</th>
-                            <th>系</th>
-                            <th>方向</th>
+                            <th>年级</th>
+                            <th>系名称</th>
+                            <th>就业方向</th>
                             <th>操作</th>
                         </tr>
                         </thead>

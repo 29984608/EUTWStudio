@@ -20,7 +20,7 @@ public interface TrainModuleService {
     void deleteCourseModule(String id)throws Exception;
 
 
-    List<Classes> queryClassesList(PageUtil page) throws Exception;
+    List<Map<String,String>> queryClassesList(PageUtil page) throws Exception;
 
     List<Map<String,String>> queryCoursesLikes(PageUtil page, SearchDto searchDto)throws Exception;
 

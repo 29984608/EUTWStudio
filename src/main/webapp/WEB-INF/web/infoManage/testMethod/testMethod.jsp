@@ -17,7 +17,7 @@
 <section class="larry-grid">
     <div class="larry-personal">
         <div class="layui-tab">
-            <blockquote class="layui-elem-quote mylog-info-tit">
+            <blockquote class="layui-elem-quote mylog-info-tit" style="height: 70px";>
                     <ul class="layui-tab-title">
                         <li class="layui-btn " onclick="testMethod.add()"><i class="layui-icon">&#xe61f;</i>添加考核方式
                         </li>
@@ -52,7 +52,7 @@
         <td>{{ index+1}}</td>
         <td>{{ item.name}}</td>
         <td>
-                <button class="layui-btn layui-btn-mini layui-btn-normal"
+                <button class="layui-btn layui-btn-mini " style="background: #21a1a1"
                         onclick="testMethod.update('{{item.id}}','{{item.name}}')">
                     <i class="layui-icon">&#xe642;</i>修改
                 </button>

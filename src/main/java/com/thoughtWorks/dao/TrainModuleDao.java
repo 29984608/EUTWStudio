@@ -1,5 +1,6 @@
 package com.thoughtWorks.dao;
 
+import com.thoughtWorks.dto.SearchDto;
 import com.thoughtWorks.entity.Classes;
 import com.thoughtWorks.entity.Course;
 import com.thoughtWorks.entity.CourseModule;
@@ -23,13 +24,13 @@ public interface TrainModuleDao {
     Long queryClassesTotalCount();
 
 
-    List<Classes> queryClassesList(Map<String, Object> data);
+    List<Map<String,String>> queryClassesList(Map<String, Object> data);
 
     void deleteClasses(String id);
 
     void updateClasses(Classes classes);
 
-    void addClassesManual(Classes classes);
+    void addClassesManual(SearchDto searchDto);
 
     List<Classes> queryClassessByDepartmentId(@Param("id") String id, @Param("start") int start, @Param("end") int end);
 

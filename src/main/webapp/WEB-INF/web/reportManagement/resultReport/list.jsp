@@ -18,49 +18,65 @@
 <section class="larry-grid layui-form">
     <div class="larry-personal">
         <div class="layui-tab">
-            <blockquote class="layui-elem-quote mylog-info-tit">
-                <div class="layui-inline">
-                    <div class="layui-input-inline " style="width: auto ;margin-bottom: 10px;">
-                        <select lay-filter="department" id="department_search">
-                            <option value="">系</option>
-
-                        </select>
-                    </div>
-                    <div class="layui-input-inline" style="width: auto;margin-bottom: 10px;">
-                        <select lay-filter="profession" id="level_search">
-                            <option value="">年级</option>
-
-
-                        </select>
-                    </div>
-
-                    <div class="layui-input-inline" style="width: auto;margin-bottom: 10px;">
-                        <select lay-filter="t_direction" id="direction_search">
-                            <option value="">方向</option>
-
-
-                        </select>
-                    </div>
-
-                    <div class="layui-input-inline" style="width: auto;margin-bottom: 10px;">
-                        <select lay-filter="profession" id="classes_search">
-                            <option value="">班级</option>
-
-
-                        </select>
-                    </div>
-
-                    <div class="layui-input-inline" style="width: auto ;margin-bottom: 10px;">
-                        <input type="text" name="no" id="no_search" lay-verify="title" autocomplete="off"
-                               placeholder="学号" value="" class="layui-input">
-                    </div>
-                    <div class="layui-inline">
-                        <div class="layui-input-inline" style="width: auto ;margin-bottom: 10px;">
-                            <input type="text" name="title" id="name_search" lay-verify="title" autocomplete="off"
-                                   placeholder="姓名" class="layui-input">
+            <blockquote class="layui-elem-quote mylog-info-tit" style="height: 130px">
+                <div class="layui-form-item">
+                    <div class="layui-input-inline">
+                        <div class="layui-inline">
+                            <div class="layui-input-inline">
+                                <select lay-filter="department" id="department_search">
+                                    <option value="">系</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
-                    <a class="layui-btn" style="width: auto ;margin-bottom: 10px;" onclick="currentIndex=1;resultReport.list()"><i
+                    <div class="layui-input-inline">
+                        <div class="layui-inline">
+                            <div class="layui-input-inline">
+                                <select lay-filter="profession" id="level_search">
+                                    <option value="">年级</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-input-inline">
+                        <div class="layui-inline">
+                            <div class="layui-input-inline">
+                                <select lay-filter="t_direction" id="direction_search">
+                                    <option value="">方向</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-input-inline">
+                        <div class="layui-inline">
+                            <div class="layui-input-inline">
+                                <select lay-filter="profession" id="classes_search">
+                                    <option value="">班级</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+
+                    <div class="layui-input-inline">
+                        <div class="layui-inline">
+                            <div class="layui-input-inline">
+                                <input type="text" name="no" id="no_search" lay-verify="title" autocomplete="off"
+                                       placeholder="学号" value="" class="layui-input">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-input-inline">
+                        <div class="layui-inline">
+                            <div class="layui-input-inline">
+                                <input type="text" name="title" id="name_search" lay-verify="title" autocomplete="off"
+                                       placeholder="姓名" class="layui-input">
+                            </div>
+                        </div>
+                    </div>
+                    <a class="layui-btn" style="width: auto ;margin-bottom: 10px;"
+                       onclick="currentIndex=1;resultReport.list()"><i
                             class="layui-icon">&#xe615;</i>搜索</a>
                 </div>
 
@@ -95,7 +111,7 @@
 </body>
 
 <%@include file="layer.jsp" %>
-<script src="${baseurl}/js/searchJs.js" />
+<script src="${baseurl}/js/searchJs.js"/>
 <script type="text/javascript" src="${baseurl}/public/js/pdf/html2canvas.js"></script>
 <script type="text/javascript" src="${baseurl}/public/js/pdf/jspdf.debug.js"></script>
 <script type="text/javascript" src="${baseurl}/public/js/pdf/renderPDF.js"></script>
@@ -120,7 +136,7 @@
                     cont: 'demo1',
                     pages: totalSize, //总页数
                     curr: currentIndex,
-                    last:totalSize,
+                    last: totalSize,
                     groups: 5,//连续显示分页数
                     skin: '#1E9FFF',
                     jump: function (obj, first) {
@@ -208,10 +224,10 @@
             loadStudentInfo: function (student) {
                 if (student.origin_address != null) {
                     let originAddress = student.origin_address.split(ADDRESS_SPLIT_FLAG);
-                    $("#address").text(originAddress[0] ==  undefined ? "":originAddress[0]  + originAddress[1] ===  undefined ? "":originAddress[1]);
+                    $("#address").text(originAddress[0] == undefined ? "" : originAddress[0] + originAddress[1] === undefined ? "" : originAddress[1]);
                 } else  $("#address").text("");
                 $("#name").text(student.studentName);
-                $("#gender").text(student.gender === "F" ? "女":"男");
+                $("#gender").text(student.gender === "F" ? "女" : "男");
                 $("#famous_family").text(student.famous_family);
 
                 $("#headImg").attr({src: HEAD_IMAGE_PREFIX + student.head_image});
@@ -258,21 +274,14 @@
                 }
                 $("#elective_score").text(elective_score);
                 $("#compulsory_score").text(compulsory_score);
-            },
-            loadAllLevels: function () {
-                $("#level_search").html();
-                let levels = getSearchLevels().reverse();
-                levels.forEach(level => {
-                    $("#level_search").append(`<option value="` + level + `" selected>` + level + `</option>`);
-                });
-            },
+            }
         };
         $(function () {
             loadALlDepartments();
             loadAllDirections();
-            resultReport.loadAllLevels();
+            loadAllLevels();
             loadAllClassess();
-            resultReport.list();
+//            resultReport.list();
             form.render();
 
             form.on('select(department)', function (data) {

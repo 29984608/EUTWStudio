@@ -8,7 +8,7 @@
         <td>{{ item.direction}}</td>
         <td>
             <%--<shiro:hasPermission name="trainProgram:update">--%>
-            <button class="layui-btn layui-btn-mini layui-btn-normal"
+            <button class="layui-btn layui-btn-mini " style="background: #21a1a1"
                     onclick="trainProgram.update('{{item.id}}','{{item.level}}','{{item.department}}','{{item.direction}}')">
                 <i class="layui-icon">&#xe642;</i>修改
             </button>

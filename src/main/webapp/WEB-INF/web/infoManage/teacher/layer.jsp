@@ -10,7 +10,7 @@
         {{ } }}
         <td>
             <shiro:hasPermission name="teacher:update">
-                <button class="layui-btn layui-btn-mini layui-btn-normal"
+                <button class="layui-btn layui-btn-mini " style="background: #21a1a1"
                         onclick="teacher.update('{{item.no}}',`{{item.identityCard}}`,'{{item.departmentId}}','{{item.directionId}}','{{item.name}}','{{item.gender}}','{{ item.classify}}','{{item.deptId}}')">
                     <i class="layui-icon">&#xe642;</i>修改
                 </button>

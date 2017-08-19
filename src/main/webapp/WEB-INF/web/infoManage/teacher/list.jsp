@@ -17,7 +17,7 @@
 <section class="larry-grid">
     <div class="larry-personal">
         <div class="layui-tab">
-            <blockquote class="layui-elem-quote mylog-info-tit">
+            <blockquote class="layui-elem-quote mylog-info-tit" style="height: 70px";>
                 <shiro:hasPermission name="teacher:add">
                     <ul class="layui-tab-title">
                         <li class="layui-btn " onclick="teacher.add()"><i class="layui-icon">&#xe61f;</i>添加教师

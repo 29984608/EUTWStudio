@@ -52,15 +52,15 @@
                             <input type="text" name="no" id="no-search" lay-verify="title" autocomplete="off"
                                    placeholder="学号" value="" class="layui-input">
                         </div>
-                        <div class="layui-inline">
-                            <div class="layui-input-inline" style="width: auto ;margin-bottom: 10px;">
-                                <input type="text" name="name" id="name_search" lay-verify="title" autocomplete="off"
-                                       placeholder="姓名" class="layui-input">
-                            </div>
-                        </div>
-                    </div>
-                    <br>
+
+                    </div> <div class="layui-inline">
                     <div class="layui-input-inline" style="width: auto ;margin-bottom: 10px;">
+                        <input type="text" name="name" id="name_search" lay-verify="title" autocomplete="off"
+                               placeholder="姓名" class="layui-input">
+                    </div>
+                </div>
+                    <div class="layui-input-inline" style="width: auto ;margin-bottom: 10px;">
+
                         <select lay-filter="queryAreaOfRoom" name="" id="queryAreaOfRoom">
                             <option value="">区号</option>
                         </select>

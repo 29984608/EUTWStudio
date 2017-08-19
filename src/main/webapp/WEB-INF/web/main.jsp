@@ -292,7 +292,7 @@
                                 <%--<td>--%>
                                     <%--<button class="layui-btn"><i class="layui-icon">&#xe61f;</i> 添加</button>--%>
                                     <%--<button class="layui-btn"><i class="layui-icon">&#xe615;</i> 搜索</button>--%>
-                                    <%--<button class="layui-btn layui-btn-normal"><i class="layui-icon">&#xe642;</i> 编辑--%>
+                                    <%--<button class="layui-btn " style="background: #21a1a1"><i class="layui-icon">&#xe642;</i> 编辑--%>
                                     <%--</button>--%>
                                     <%--<button class="layui-btn  layui-btn-danger"><i class="layui-icon">&#xe640;</i> 删除--%>
                                     <%--</button>--%>

@@ -17,12 +17,12 @@
 <section class="larry-grid">
     <div class="larry-personal">
         <div class="layui-tab">
-            <blockquote class="layui-elem-quote mylog-info-tit">
+            <blockquote class="layui-elem-quote mylog-info-tit" style="height: 70px" ;>
                 <shiro:hasPermission name="classes:add">
-                <ul class="layui-tab-title">
-                    <li class="layui-btn " onclick="classes.addManual()"><i class="layui-icon">&#xe61f;</i>添加班级
-                    </li>
-                </ul>
+                    <ul class="layui-tab-title">
+                        <li class="layui-btn " onclick="classes.addManual()"><i class="layui-icon">&#xe61f;</i>添加班级
+                        </li>
+                    </ul>
                 </shiro:hasPermission>
             </blockquote>
             <div class="larry-separate"></div>
@@ -33,6 +33,8 @@
                         <thead>
                         <tr>
                             <th>序号</th>
+                            <th>系名称</th>
+                            <th>就业方向</th>
                             <th>年级</th>
                             <th>名称</th>
                             <th>操作</th>
@@ -50,6 +52,7 @@
 </section>
 </body>
 <%@include file="layer.jsp" %>
+<script src="${baseurl}/js/searchJs.js"></script>
 <script type="text/javascript" src="${baseurl}/public/common/layui/layui.js"></script>
 <script type="text/javascript">
     let totalSize = 10;
@@ -88,6 +91,7 @@
                         if (data.result) {
                             currentIndex = data.page.currentIndex;
                             totalSize = data.page.totalSize;
+                            showTotalCount(data.page.totalCount);
                             classes.page();
                             laytpl($("#list-tpl").text()).render(data, function (html) {
                                 $("#list").html(html);
@@ -105,42 +109,39 @@
                         for (let i = 0; i < data.length; ++i) {
                             _html += `<option value="` + data[i].id + `">` + data[i].name + `</option>`;
                         }
-                        $("#department-add").html(_html);
+                        $("#department-add").html(`<option value="">请选择</option>`).append(_html);
                         form.render();
                         layer.open({
                             type: 1,
                             title: '添加'
-                            , content: $("#add")
+                            , content: $("#add"),
+                            cancel: function () {
+                                location.reload();
+                            }
                         });
                     }
                 });
 
             },
-            update: function (id, level, name,departmentId) {
+            update: function (id, level, name, departmentId, directionId) {
                 $("#id").val(id);
                 $("#level").val(level);
                 $("#name").val(name);
+                classes.direction(departmentId, "update",directionId);
                 $.post(baseUrl + "/department/allDepartments", function (data) {
                     if (data.result) {
-                        data = data.data;
-                        let _html = "";
-                        for (let i = 0; i < data.length; ++i) {
-                            if(data[i].id == departmentId) {
-                                _html += `<option selected value="` + data[i].id + `">` + data[i].name + `</option>`;
-                            }else{
-                                _html += `<option value="` + data[i].id + `">` + data[i].name + `</option>`;
-                            }
-                        }
-                        $("#department-update").html(_html);
+                        $("#department-update").html(classes.loadDepartmentOrDirection(data.data, departmentId));
                         form.render();
                         layer.open({
                             type: 1,
                             title: '修改'
-                            , content: $("#update")
+                            , content: $("#update"),
+                            cancel: function () {
+                                location.reload();
+                            }
                         });
                     }
                 });
-
             },
             delete: function (id) {
                 layer.confirm('确定删除？', {icon: 3, title: '提示'}, function (index) {
@@ -170,10 +171,38 @@
                     }
 
                 })
+            }, loadDepartmentOrDirection: function (data, selectId) {
+                let _html = "";
+                for (let i = 0; i < data.length; ++i) {
+                    if (selectId == data[i].id) {
+                        _html += `<option selected value="` + data[i].id + `">` + data[i].name + `</option>`;
+                    } else {
+                        _html += `<option value="` + data[i].id + `">` + data[i].name + `</option>`;
+                    }
+                }
+
+
+                return _html;
             }
-        };
+            , direction: function (data, type,directionId) {
+                $.post(baseUrl + "/communication/queryDirectionByDepartmentId", {departmentId: data}, function (data) {
+                    if (data.result) {
+                        if (data.result) {
+                            $("#direction-" + type + "").html(classes.loadDepartmentOrDirection(data.data, directionId));
+                            form.render();
+                        }
+                    }
+                })
+            },
+        }
         ;
         $(function () {
+            form.on('select(department-add)', function (data) {
+                classes.direction(data.value, "add");
+            });
+            form.on('select(department-update)', function (data) {
+                classes.direction(data.value, "update");
+            });
             classes.list();
         });
     })

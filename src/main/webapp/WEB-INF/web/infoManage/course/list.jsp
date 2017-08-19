@@ -16,48 +16,55 @@
 <section class="larry-grid layui-form">
     <div class="larry-personal">
         <div class="layui-tab">
-            <blockquote class="layui-elem-quote mylog-info-tit">
-
-                <div class="layui-inline">
-                    <div class="layui-inline">
-                        <div class="layui-input-inline">
-                            <select lay-filter="course" id="module_search">
-                                <option value="">课程模块</option>
-                            </select>
+            <blockquote class="layui-elem-quote mylog-info-tit" style="height: 70px";>
+                <div class="layui-form-item">
+                    <div class="layui-input-inline">
+                        <div class="layui-inline">
+                            <div class="layui-input-inline">
+                                <select lay-filter="course" id="module_search">
+                                    <option value="">课程模块</option>
+                                </select>
+                            </div>
                         </div>
-
-                        <div class="layui-input-inline" style="width: auto">
-                            <select lay-filter="profession" id="semester-search">
-                                <option value="">开课学期</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-
-                            </select>
-                        </div>
-                        <div class="layui-input-inline">
-                            <input type="text" name="title" id="name-search" lay-verify="title" autocomplete="off"
-                                   placeholder="课程名称" value="" class="layui-input">
-                        </div>
-                        <a class="layui-btn" onclick="currentIndex = 1;course.list()"><i class="layui-icon">&#xe615;</i>搜索</a>
-
                     </div>
+
+                    <div class="layui-input-inline">
+                        <div class="layui-inline">
+                            <div class="layui-input-inline">
+                                <select lay-filter="profession" id="semester-search">
+                                    <option value="">开课学期</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-input-inline">
+                        <input type="text" name="title" id="name-search" lay-verify="title" autocomplete="off"
+                               placeholder="课程名称" value="" class="layui-input">
+                    </div>
+                    <a class="layui-btn" onclick="currentIndex = 1;course.list()"><i
+                            class="layui-icon">&#xe615;</i>搜索</a>
+                    <a class="layui-btn" onclick="course.add()"><i class="layui-icon">&#xe61f;</i>添加</a>
                 </div>
             </blockquote>
             <div class="larry-separate"></div>
             <div class="layui-tab-content larry-personal-body clearfix mylog-info-box">
-                <a class="layui-btn" onclick="course.add()"><i class="layui-icon">&#xe61f;</i>添加</a>
+
                 <%--<a class="layui-btn" onclick="course.importExcel()"><i class="layui-icon">&#xe630;</i>导入 excel</a>--%>
                 <div class="layui-form">
                     <table class="layui-table">
                         <thead>
                         <tr>
+                            <th>序号</th>
+                            <th>课程模块</th>
                             <th>课程代码</th>
                             <th>名称</th>
-                            <th>模块</th>
                             <th>学分</th>
                             <th>学时</th>
                             <th>开课学期</th>
@@ -77,7 +84,9 @@
     </div>
 </section>
 </body>
+
 <%@ include file="layer.jsp" %>
+<script src="${baseurl}/js/searchJs.js"></script>
 <script type="text/javascript" src="${baseurl}/public/common/layui/layui.js"></script>
 <script type="text/javascript">
     let totalSize = 10;
@@ -98,16 +107,7 @@
             upload = layui.upload,
             laytpl = layui.laytpl;
 
-        upload({
-            url: baseUrl + '/course/importExcel',
-            before: function (input) {
-                layer.msg('上传中...');
-            },
-            success: function (data) {
-                console.log(data)
-                layer.msg(data.msg);
-            }
-        });
+
 
         course = {
             page: function () {
@@ -131,7 +131,7 @@
                 let name = $("#name-search").val();
                 $.ajax({
                     url: baseUrl + "/course/list",
-                    type:"post",
+                    type: "post",
                     data: {
                         currentIndex: currentIndex,
                         pageSize: pageSize,
@@ -146,6 +146,7 @@
                             $("#module_search").html("<option value=''>模块</option>" + course.loadSelectElementHtml(modules, 0));
                             currentIndex = data.page.currentIndex;
                             totalSize = data.page.totalSize;
+                            showTotalCount(data.page.totalCount);
                             course.page();
                             laytpl($("#list-tpl").text()).render(data, function (html) {
                                 $("#list").html(html);

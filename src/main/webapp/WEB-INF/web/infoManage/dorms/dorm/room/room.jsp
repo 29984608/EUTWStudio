@@ -20,13 +20,12 @@
 <section class="larry-grid layui-form">
     <div class="larry-personal">
         <div class="layui-tab">
-            <form id="update-form" lay-filter="role-add" class="layui-form layui-form-pane" method="post">
-`
+            <form id="update-form1" lay-filter="role-add" class="layui-form layui-form-pane" method="post">
+                <blockquote class="layui-elem-quote mylog-info-tit" style="height: 70px">
 
-                <blockquote class="layui-elem-quote mylog-info-tit">
 
                     <div class="layui-input-inline">
-                        <label class="layui-form-label">区</label>
+                        <label class="layui-form-label" style="width: 65px;font-size: 14px">区</label>
                         <div class="layui-inline">
                             <div class="layui-input-inline">
                                 <select name="modules" lay-filter="modules_3" lay-verify="required" lay-search=""
@@ -38,7 +37,7 @@
                     </div>
 
                     <div class="layui-input-inline">
-                        <label class="layui-form-label">楼层</label>
+                        <label class="layui-form-label" style="width: 65px;font-size: 14px">楼层</label>
                         <div class="layui-inline">
                             <div class="layui-input-inline">
                                 <select name="modules1" lay-filter="modules_2" lay-verify="required" lay-search=""
@@ -50,7 +49,7 @@
                     </div>
 
                     <div class="layui-input-inline">
-                        <label class="layui-form-label">宿舍</label>
+                        <label class="layui-form-label" style="width: 65px;font-size: 14px">宿舍</label>
                         <div class="layui-inline">
                             <div class="layui-input-inline">
                                 <div class="layui-inline">
@@ -59,19 +58,16 @@
                                            placeholder="宿舍号" value="" class="layui-input">
                                 </div>
                                 <a class="layui-btn" onclick="currentIndex = 1;room.list()"><i class="layui-icon">&#xe615;</i>搜索</a>
+                                <a class="layui-btn " onclick="room.add()"><i class="layui-icon">&#xe61f;</i>添加宿舍
+                                </a>
                             </div>
                         </div>
                     </div>
-
                 </blockquote>
             </form>
             <div class="larry-separate"></div>
 
             <div class="layui-tab-content larry-personal-body clearfix mylog-info-box">
-                <ul class="layui-tab-title">
-                    <li class="layui-btn " onclick="room.add()"><i class="layui-icon">&#xe61f;</i>添加宿舍
-                    </li>
-                </ul>
                 <div class="layui-form ">
                     <table id="example" class="layui-table lay-even " data-name="articleCatData">
                         <thead>
@@ -140,8 +136,8 @@
                         areaId: areaId,
                         floorId: floorId,
                         roomNo: roomNo,
-                        areaName:areaName,
-                        floorName:floorName
+                        areaName: areaName,
+                        floorName: floorName
                     },
                     success: function (data) {
                         if (data.result) {

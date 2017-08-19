@@ -11,10 +11,6 @@
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/common/css/global.css" media="all">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/common.css" media="all">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/personal.css" media="all">
-    <%--时间轴--%>
-    <link rel="stylesheet" href="${baseurl}/public/css/timeAsix/css/screen.css" type="text/css" media="screen">
-    <link rel="stylesheet" href="${baseurl}/public/css/timeAsix/css/responsive.css" type="text/css" media="screen">
-    <link rel="stylesheet" href="${baseurl}/public/css/timeAsix/inc/colorbox.css" type="text/css" media="screen">
 
 </head>
 <body>
@@ -22,15 +18,16 @@
     <div class="larry-personal">
         <div class="layui-tab">
 <shiro:hasPermission name="studentInfoReport:exportExcel">
-            <button class="layui-btn layui-btn-mini" style="float: right" onclick="studentInfo.exportExcel()"><i
+            <button class="layui-btn " style="float: right" onclick="studentInfo.exportExcel()"><i
                     class="layui-icon">&#xe61e;</i>导出
                 EXCEl
             </button>
 </shiro:hasPermission>
             <div id="container" class="layui-tab-content larry-personal-body clearfix mylog-info-box"
                  style="background: #fff;width: 100%;height: 100%;margin: 5px 0px">
-
-                <div style="text-align: center;font-size: 20px;font-weight: bold">西安欧亚学院高职学院学籍管理班级人数统计报表(<span style="font-size: 13px;" id="time">2017-6-3 12:12:21</span>)
+                <div style="text-align: center;font-size: 20px;font-weight: bold;color: #21a1a1">
+                    西安欧亚学院高职学院学籍管理班级人数统计报表
+                    <%--(<span style="font-size: 13px;" id="time">2017-6-3 12:12:21</span>)--%>
                 </div>
                 <table class="layui-table">
                     <thead>

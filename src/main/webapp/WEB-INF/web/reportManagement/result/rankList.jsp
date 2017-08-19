@@ -16,27 +16,33 @@
 <section class="larry-grid layui-form">
     <div class="larry-personal">
         <div class="layui-tab">
-            <blockquote class="layui-elem-quote mylog-info-tit">
-                <div class="layui-inline">
-                    <div class="layui-input-inline" style="width: auto;margin-bottom: 10px;">
-                        <select lay-filter="department" id="department_search">
-                            <option value="">系</option>
+            <blockquote class="layui-elem-quote mylog-info-tit" style="height: 70px">
+                <div class="layui-form-item">
+                    <div class="layui-input-inline">
+                        <div class="layui-inline">
+                            <div class="layui-input-inline">
+                                <select lay-filter="department" id="department_search">
+                                    <option value="">系</option>
 
-                        </select>
-                    </div>
-                    <div class="layui-input-inline" style="width: auto;margin-bottom: 10px;">
-                        <select lay-filter="level" id="level_search">
-                            <option value="">年级</option>
-
-
-                        </select>
-                    </div>
-                    <div class="layui-input-inline" style="width: auto;margin-bottom: 10px;">
-                        <select id="direction_search">
-                            <option value="">方向</option>
-
-
-                        </select>
+                                </select>
+                            </div>
+                        </div>
+                    </div> <div class="layui-input-inline">
+                        <div class="layui-inline">
+                            <div class="layui-input-inline">
+                                <select lay-filter="level" id="level_search">
+                                    <option value="">年级</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div><div class="layui-input-inline">
+                        <div class="layui-inline">
+                            <div class="layui-input-inline">
+                                <select id="direction_search">
+                                    <option value="">方向</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
 
                     <a class="layui-btn" style="width: auto ;margin-bottom: 10px;"
@@ -206,7 +212,7 @@
         $(function () {
             rank.loadALlDepartments();
             rank.loadAllDirections();
-            rank.loadAllLevels();
+            loadAllLevels();
 //            rank.list();
             form.render();
             form.on('select(department)', function (data) {

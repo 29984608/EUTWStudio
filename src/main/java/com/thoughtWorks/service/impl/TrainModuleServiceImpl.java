@@ -142,8 +142,7 @@ public class TrainModuleServiceImpl implements TrainModuleService {
     public List<Map<String, Object>> queryAllTestMethod(PageUtil pageUtil) {
         Map<String, Object> data = new HashMap<>();
         data.put("start", (pageUtil.getCurrentIndex() - 1) * pageUtil.getPageSize());
-        data.put("pageSize", pageUtil.getPageSize());
-        pageUtil.setTotalSize(trainModuleDao.queryTestMethodTotalCount());
+        data.put("pageSize", 10);
         return trainModuleDao.queryAllTestMethod(data);
     }
 
@@ -153,7 +152,7 @@ public class TrainModuleServiceImpl implements TrainModuleService {
     }
 
     @Override
-    public void updateTestMethod(String name,String id) {
+    public void updateTestMethod(String name, String id) {
         Map<String, Object> data = new HashMap<>();
         data.put("id", id);
         data.put("name", name);
@@ -166,7 +165,7 @@ public class TrainModuleServiceImpl implements TrainModuleService {
     }
 
     @Override
-    public List<Classes> queryClassesList(PageUtil page) throws Exception {
+    public List<Map<String,String>> queryClassesList(PageUtil page) throws Exception {
         Map<String, Object> data = new HashMap<>();
         data.put("start", (page.getCurrentIndex() - 1) * page.getPageSize());
         data.put("end", page.getPageSize());

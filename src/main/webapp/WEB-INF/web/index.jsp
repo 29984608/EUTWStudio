@@ -14,8 +14,8 @@
 <div class="layui-layout layui-layout-admin" id="layui_layout">
     <!-- 顶部区域 -->
     <div class="layui-header header-menu">
-        <div class="logo posb" id="log" style="background: lightgoldenrodyellow">
-            <img src="${baseurl}/images/public/logo_.png">
+        <div class="logo posb" id="log" >
+            <img src="${baseurl}/images/public/logo_.png" height="200px">
         </div>
 
         <div class="layui-main posb">
@@ -31,12 +31,6 @@
 
                 <ul class="layui-nav clearfix">
 
-                    <li class="layui-nav-item">
-                        <a class="onFullScreen" id="FullScreen"><i class="larry-icon larry-quanping"></i>全屏</a>
-                    </li>
-                    <li class="layui-nav-item">
-                        <a id="clearCached"><i class="larry-icon larry-qingchuhuancun"></i>清除缓存</a>
-                    </li>
                     <li class="layui-nav-item">
                         <a id="larryTheme"><i class="larry-icon larry-theme1"></i>设置主题</a>
                     </li>

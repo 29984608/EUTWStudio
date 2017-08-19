@@ -17,7 +17,7 @@
 <section class="larry-grid">
     <div class="larry-personal">
         <div class="layui-tab">
-            <blockquote class="layui-elem-quote mylog-info-tit">
+            <blockquote class="layui-elem-quote mylog-info-tit" style="height: 70px";>
                 <shiro:hasPermission name="direction:add">
                     <ul class="layui-tab-title">
                         <li class="layui-btn " onclick="direction.add()"><i class="layui-icon">&#xe61f;</i>添加专业方向
@@ -57,7 +57,7 @@
         <td>{{ item.name}}</td>
         <td>
             <shiro:hasPermission name="direction:update">
-                <button class="layui-btn layui-btn-mini layui-btn-normal"
+                <button class="layui-btn layui-btn-mini " style="background: #21a1a1"
                         onclick="direction.update('{{item.id}}','{{item.code}}','{{item.name}}')">
                     <i class="layui-icon">&#xe642;</i>修改
                 </button>
