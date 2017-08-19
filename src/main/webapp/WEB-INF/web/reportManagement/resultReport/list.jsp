@@ -274,15 +274,21 @@
                 }
                 $("#elective_score").text(elective_score);
                 $("#compulsory_score").text(compulsory_score);
+            },
+            loadALlDepartments: function () {
+                $.post(baseUrl + "/department/allDepartments", function (data) {
+                    if (data.result) {
+                        $("#department_search").html(`<option value="" selected>系</option>`).append(loadOptionsHtml(data.data, "-"));
+                        form.render();
+                    }
+                });
             }
         };
         $(function () {
-            loadALlDepartments();
-            loadAllDirections();
+            resultReport.loadALlDepartments();
             loadAllLevels();
-            loadAllClassess();
-//            resultReport.list();
             form.render();
+//            resultReport.list();
 
             form.on('select(department)', function (data) {
 
