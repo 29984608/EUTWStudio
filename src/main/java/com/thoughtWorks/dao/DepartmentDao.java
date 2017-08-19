@@ -72,4 +72,5 @@ public interface DepartmentDao {
 
     List<Profession> queryAllProfession();
 
+    List<Map<String,String>> queryClassesByDirectionId(String id);
 }

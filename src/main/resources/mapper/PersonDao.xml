@@ -49,6 +49,9 @@
             <if test="professionId!=''">
                 AND profession.id = profession_id
             </if>
+            <if test="classesId!=''">
+                AND student.classes_id = #{classesId}
+            </if>
             and student.name
 
             LIKE #{name}
@@ -75,6 +78,9 @@
             </if>
             <if test="professionId!=''">
                 AND profession.id = profession_id
+            </if>
+            <if test="classesId!=''">
+                AND student.classes_id = #{classesId}
             </if>
             and student.name
 

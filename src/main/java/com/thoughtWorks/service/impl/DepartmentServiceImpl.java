@@ -142,6 +142,11 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
+    public List<Map<String, String>> queryClassesByDirectionId(String id) throws Exception {
+        return departmentDao.queryClassesByDirectionId(id);
+    }
+
+    @Override
     public List<Map<String, String>> queryDirectionList(PageUtil page) throws Exception {
         Map<String, Object> data = new HashMap<>();
         data.put("start", (page.getCurrentIndex() - 1) * page.getPageSize());

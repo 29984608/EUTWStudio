@@ -109,6 +109,7 @@ public class PersonServiceImpl implements PersonService {
         Map<String, Object> data = new HashMap<>();
         data.put("professionId", searchDto.getProfessionId());
         data.put("directionId", searchDto.getDirectionId());
+        data.put("classesId", searchDto.getClassesId());
         data.put("level", searchDto.getLevel());
         data.put("studentNo", searchDto.getStudentNo() + "%");
         data.put("name", "%" + searchDto.getName() + "%");
@@ -127,6 +128,7 @@ public class PersonServiceImpl implements PersonService {
         data.put("professionId", searchDto.getProfessionId());
         data.put("directionId", searchDto.getDirectionId());
         data.put("level", searchDto.getLevel());
+        data.put("classesId", searchDto.getClassesId());
         data.put("studentNo", searchDto.getStudentNo() + "%");
         data.put("name", "%" + searchDto.getName() + "%");
 

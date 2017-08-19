@@ -4,6 +4,9 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.thoughtWorks.dao.DepartmentDao">
 
+    <select id="queryClassesByDirectionId" parameterType="string" resultType="map">
+        SELECT id,name FROM t_classes WHERE t_classes.direction_id=#{id}
+    </select>
     <!--系-->
     <select id="queryAllDepartments" resultType="Department">
         SELECT *

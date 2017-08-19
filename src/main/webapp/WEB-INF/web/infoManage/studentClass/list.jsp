@@ -16,7 +16,7 @@
 <section class="larry-grid layui-form">
     <div class="larry-personal">
         <div class="layui-tab">
-            <blockquote class="layui-elem-quote mylog-info-tit" style="height: 70px" ;>
+            <blockquote class="layui-elem-quote mylog-info-tit" style="height: 140px" ;>
                 <div class="layui-form-item">
                     <div class="layui-input-inline">
                         <div class="layui-inline">
@@ -40,20 +40,41 @@
                     <div class="layui-input-inline">
                         <div class="layui-inline">
                             <div class="layui-input-inline">
-                                <select id="level_search">
+                                <select id="level_search" lay-filter="level">
                                     <option value="">年级</option>
                                 </select>
                             </div>
                         </div>
                     </div>
-
                     <div class="layui-input-inline">
-                        <input type="text" name="title" id="no_search" lay-verify="title" autocomplete="off"
-                               placeholder="学号" class="layui-input">
+                        <div class="layui-inline">
+                            <div class="layui-input-inline">
+                                <select id="classes_search">
+                                    <option value="">班级</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-inline">
+                        <div class="layui-inline">
+                            <div class="layui-input-inline">
+                                <input type="text" name="title" id="no_search" lay-verify="title" autocomplete="off"
+                                       placeholder="学号" class="layui-input">
+                            </div>
+                        </div>
+
                     </div>
                     <div class="layui-input-inline">
-                        <input type="text" name="title" id="name_search" lay-verify="title" autocomplete="off"
-                               placeholder="姓名" class="layui-input">
+                        <div class="layui-inline">
+                            <div class="layui-input-inline">
+                                <input type="text" name="title" id="name_search" lay-verify="title" autocomplete="off"
+                                       placeholder="姓名" class="layui-input">
+                            </div>
+                        </div>
+
                     </div>
                     <a class="layui-btn" onclick="studentClass.list()"><i class="layui-icon">&#xe615;</i>搜索</a>
 
@@ -183,7 +204,8 @@
                     studentNo: $("#no_search").val(),
                     directionId: $("#direction_search").val(),
                     professionId: $("#profession_search").val(),
-                    level: $("#level_search").val()
+                    level: $("#level_search").val(),
+                    classesId: $("#classes_search").val()
                 };
                 layer.msg("查询中...");
                 $.ajax({
@@ -322,7 +344,15 @@
                     }
                     form.render();
                 })
-            }
+            },
+            loadClassessByDirectionId: function (id) {
+            $.post(baseUrl + "/studentClass/queryClassesByDirectionId", {id: id}, function (data) {
+                if (data.result) {
+                    $("#classes_search").html(`<option value="">班级</option>`).append(loadOptionsHtml(data.data, "-"))
+                }
+                form.render();
+            })
+        }
         };
         $(function () {
             loadAllLevels();
@@ -334,6 +364,9 @@
             form.on('checkbox(checkedAll)', function (data) {
                 $(".no_checkbox").prop({checked: data.elem.checked});
                 form.render();
+            });
+            form.on('select(direction)', function (data) {
+                studentClass.loadClassessByDirectionId(data.value);
             });
         });
     });

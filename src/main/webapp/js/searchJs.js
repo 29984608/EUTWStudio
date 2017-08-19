@@ -19,6 +19,13 @@ function loadAllLevels() {
     }
 }
 
+function loadClassessByDirectionId(id) {
+    $.post(baseUrl + "/studentClass/queryClassesByDirectionId", {id: id}, function (data) {
+        if (data.result) {
+            $("#classes_search").html(`<option value="">班级</option>`).append(loadOptionsHtml(data.data, "-"))
+        }
+    })
+}
 function loadAllDirections() {
     $.post(baseUrl + "/communication/queryDirectionByDepartment", function (data) {
         if (data.result) {
