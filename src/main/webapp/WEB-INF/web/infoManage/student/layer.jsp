@@ -150,17 +150,17 @@
                        style="border: 0px solid red">
                     <tbody>
                     <tr>
-                        <th colspan="3" style="width:135px;">学号：<span id="studentNo"></span></th>
+                        <th colspan="3" style="width:135px;">学号:<span id="studentNo"></span></th>
                         <th colspan="3" style="width:100px;">姓名：<span id="studentName"></span></th>
-                        <th colspan="1" style="width:60px;">性别：<span id="studentSex"></span></th>
+                        <th colspan="1" style="width:60px;">性别:<span id="studentSex"></span></th>
                         <th colspan="2" style="width:87px;">民族：<span id="famous_family"></span></th>
-                        <th colspan="3">身份证号：<span id="idcard"></span></th>
+                        <th colspan="3" style="width:211px;">身份证号:<span id="idcard"></span></th>
                     </tr>
                     <tr>
-                        <th colspan="3" style="width:120px;">出生日期：<span id="born"></span></th>
-                        <th colspan="4">籍贯：<span id="native_place"></span></th>
-                        <th colspan="3">政治面貌：<span id="political_status"></span></th>
-                        <th colspan="2">婚否：<span id="is_marry"></span></th>
+                        <th colspan="3" style="width:145px;">出生日期:<span id="born"></span></th>
+                        <th colspan="5">籍贯：<span id="native_place"></span></th>
+                        <th colspan="3" style="width:130px;">政治面貌:<span id="political_status"></span></th>
+                        <th colspan="1">婚否：<span id="is_marry"></span></th>
                     </tr>
                     <tr>
                         <th colspan="3" style="width:120px;">血型：<span id="blood"></span></th>
@@ -171,7 +171,7 @@
                     <tr>
                         <th colspan="7">家庭住址：<span id="actual_address"></span></th>
                         <th colspan="3">邮编编码：<span id="family_zip_code"></span></th>
-                        <th colspan="3">联系电话：<span id="student_contact_method"></span></th>
+                        <th colspan="3">联系电话:<span id="student_contact_method"></span></th>
                     </tr>
                     <tbody id="family">
                     </tbody>
@@ -233,11 +233,8 @@
                 <h4 style="color: #00ab9f;font-weight: bold ;padding-top: 15px;">获奖或荣誉</h4>
                 <table class="layui-table lay-even " data-name="articleCatData"
                        style="border: 0px solid red">
-                    <tbody>
-                    <tr>
-                        <th id="own_punishment">
-                        </th>
-                    </tr>
+                    <tbody id="own_punishment">
+
                     </tbody>
                 </table>
             </div>

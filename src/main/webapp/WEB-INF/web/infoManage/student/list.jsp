@@ -370,9 +370,9 @@
                     $("#family").html("")
                     for (var i = 0; i < data.family.length; i++) {
                         $("#family").append("<tr> <th colspan='2'>" + data.family[i].relationship + "：" + data.family[i].name + "</th>" +
-                            "<th colspan='4'>政治面貌：<br>" + data.family[i].political_status + "</th>" +
-                            "<th colspan='3'>工作单位：" + data.family[i].work_place + "</th>" +
-                            "<th colspan='2' style='width: 70px'>职务：" + data.family[i].staff + "</th>" +
+                            "<th colspan='4' style='width: 130px'>政治面貌:" + data.family[i].political_status + "</th>" +
+                            "<th colspan='3'>工作单位：<br>" + data.family[i].work_place + "</th>" +
+                            "<th colspan='2' style='width: 70px'>职务:" + data.family[i].staff + "</th>" +
                             "<th colspan='1'>联系电话：<br>" + data.family[i].phone + "</th> </tr>");
                     }
                     $("#emergency_contact_name").text("").append(data.student[0].emergency_contact_name);
@@ -401,7 +401,11 @@
                     $("#floor").text("").append(data.student[0].floor);
                     $("#room").text("").append(data.student[0].room);
                     $("#hard_type").text("").append(data.student[0].hard_type);
-                    $("#own_punishment").text("").append(data.student[0].own_punishment);
+                    $("#own_punishment").text("")
+                    for (var i = 0; i < data.ownPunishment.length; i++) {
+                        $("#own_punishment").append("<tr><th>" + data.ownPunishment[i].date+" —— " + data.ownPunishment[i].centent + "</th></tr>");
+                    }
+
 
                 });
                 layer.open({

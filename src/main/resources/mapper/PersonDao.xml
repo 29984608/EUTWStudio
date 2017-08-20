@@ -653,6 +653,9 @@ FROM t_student student
              FROM t_famous_family) famousFamily ON famousFamily.para_no = student.famous_family
 WHERE student.no =#{studentNo}
     </select>
+    <select id="queryOwnPunishmentByStudentNo" parameterType="String" resultType="map">
+          SELECT * FROM t_own_punishment where studentNo=#{studentNo}
+    </select>
     <select id="updateFamilyByStudentNo" parameterType="String" resultType="map">
         SELECT family.*
         FROM t_student_family family

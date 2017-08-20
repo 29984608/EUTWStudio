@@ -67,6 +67,8 @@ public interface PersonDao {
 
     List<Map<String, Object>> updateByStudentNo(String studentNo) throws Exception;
 
+    List<Map<String, Object>> queryOwnPunishmentByStudentNo(String studentNo) throws Exception;
+
     List<Map<String, Object>> updateExperienceByStudentNo(String studentNo) throws Exception;
 
     List<Map<String, Object>> updateFamilyByStudentNo(String studentNo) throws Exception;
