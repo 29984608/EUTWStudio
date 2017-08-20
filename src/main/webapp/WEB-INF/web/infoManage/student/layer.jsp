@@ -233,11 +233,8 @@
                 <h4 style="color: #00ab9f;font-weight: bold ;padding-top: 15px;">获奖或荣誉</h4>
                 <table class="layui-table lay-even " data-name="articleCatData"
                        style="border: 0px solid red">
-                    <tbody>
-                    <tr>
-                        <th id="own_punishment">
-                        </th>
-                    </tr>
+                    <tbody id="own_punishment">
+
                     </tbody>
                 </table>
             </div>

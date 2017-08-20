@@ -401,7 +401,11 @@
                     $("#floor").text("").append(data.student[0].floor);
                     $("#room").text("").append(data.student[0].room);
                     $("#hard_type").text("").append(data.student[0].hard_type);
-                    $("#own_punishment").text("").append(data.student[0].own_punishment);
+                    $("#own_punishment").text("")
+                    for (var i = 0; i < data.ownPunishment.length; i++) {
+                        $("#own_punishment").append("<tr><th>" + data.ownPunishment[i].date+" —— " + data.ownPunishment[i].centent + "</th></tr>");
+                    }
+
 
                 });
                 layer.open({
