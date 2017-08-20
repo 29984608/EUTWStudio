@@ -405,8 +405,6 @@
                     for (var i = 0; i < data.ownPunishment.length; i++) {
                         $("#own_punishment").append("<tr><th>" + data.ownPunishment[i].date+" —— " + data.ownPunishment[i].centent + "</th></tr>");
                     }
-
-
                 });
                 layer.open({
                     type: 1,
