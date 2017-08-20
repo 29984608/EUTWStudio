@@ -64,9 +64,9 @@ public interface PersonService {
 
     List<Map<String, Object>> queryStudentFamily(String studentNo) throws Exception;
 
-    List<Map<String, String>> queryStudentsProfessionList() throws Exception;
+    List<Map<String, String>> queryStudentsProfessionList(String departmentId) throws Exception;
 
-    List<Map<String, String>> queryStudentsDirection() throws Exception;
+    List<Map<String, String>> queryStudentsDirection(String departmentId) throws Exception;
 
     List<Map<String, Object>> queryStudentsClassList() throws Exception;
 
@@ -112,4 +112,8 @@ public interface PersonService {
     List<Map<String,String>> queryStudentsAwardOrPunishmentList(String studentNo)throws Exception;
 
     void addAwardOrPunishmentByUpdate(OwnOrPunishment ownOrPunishment)throws Exception;
+
+    List<Map<String,Object>> showAutoProfessionListByDepartment(String departmentId)throws Exception;
+
+    List<Map<String,Object>> showAutoDirectionListByDepartment(String departmentId)throws Exception;
 }

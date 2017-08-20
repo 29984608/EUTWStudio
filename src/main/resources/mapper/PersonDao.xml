@@ -677,10 +677,12 @@ WHERE student.no =#{studentNo}
     </select>
     <select id="queryStudentsProfessionList" resultType="map">
         select * from t_profession
+        WHERE department_id  = #{departmentId}
     </select>
     <select id="queryStudentsDirection" resultType="map">
         SELECT *
         FROM t_direction
+        WHERE department_id = #{departmentId}
     </select>
     <select id="queryStudentsClassList" resultType="map">
         select * from t_classes
@@ -1013,5 +1015,15 @@ WHERE student.no =#{studentNo}
     <insert id="addAwardOrPunishmentByUpdate" parameterType="OwnOrPunishment">
         insert into t_own_punishment (date,centent,studentNo) values (#{date},#{centent},#{studentNo})
     </insert>
+
+    <select id="showAutoProfessionListByDepartment" parameterType="string" resultType="map">
+        select * from t_profession
+        WHERE department_id = #{departmentId}
+    </select>
+
+    <select id="showAutoDirectionListByDepartment" parameterType="string" resultType="map">
+        select * from t_direction
+        WHERE department_id = #{departmentId}
+    </select>
 
 </mapper>

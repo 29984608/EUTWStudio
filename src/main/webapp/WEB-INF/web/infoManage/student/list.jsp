@@ -369,10 +369,10 @@
                     $("#actual_address").text("").append(data.student[0].actual_address);
                     $("#family").html("")
                     for (var i = 0; i < data.family.length; i++) {
-                        $("#family").append("<tr> <th colspan='1'>" + data.family[i].relationship + "：" + data.family[i].name + "</th>" +
-                            "<th colspan='2'>政治面貌：<br>" + data.family[i].political_status + "</th>" +
-                            "<th colspan='3'>工作单位：<br>" + data.family[i].work_place + "</th>" +
-                            "<th colspan='1' style='width: 70px'>职务：<br>" + data.family[i].staff + "</th>" +
+                        $("#family").append("<tr> <th colspan='2'>" + data.family[i].relationship + "：" + data.family[i].name + "</th>" +
+                            "<th colspan='4'>政治面貌：<br>" + data.family[i].political_status + "</th>" +
+                            "<th colspan='3'>工作单位：" + data.family[i].work_place + "</th>" +
+                            "<th colspan='2' style='width: 70px'>职务：" + data.family[i].staff + "</th>" +
                             "<th colspan='1'>联系电话：<br>" + data.family[i].phone + "</th> </tr>");
                     }
                     $("#emergency_contact_name").text("").append(data.student[0].emergency_contact_name);
@@ -456,6 +456,7 @@
                             $("input[type='radio'][name='accommodation_type'][value='" + studentList.stay_type + "']").attr("checked", 'true');
                             $("#updateStudentHeight").val(studentList.height);
                             $("#updateStudentWight").val(studentList.weight);
+                            $("#religiousBelief").val(studentList.religion);
                             $("input:radio[value='" + studentList.health_status + "']").prop('checked', 'true');
                             $("input:radio[value=" + studentList.student_type + "]").prop('checked', 'true');
 
@@ -807,6 +808,7 @@
                                             <button class="layui-btn  layui-btn-danger" onclick="student.delExperience(\` + AwardOrPunishmentList[i].id + \`)" style="margin-bottom: 10px;float: right;"><i class="layui-icon">&#xe640;</i> 删除</button>
 </th>
                                     </tr>`)
+//                    $("#updateStudent_Award_or_punishment").append(` `)
 
                 }
 
@@ -857,7 +859,6 @@
             addAwardOrPunishmentByUpdate: function () {
                 let dateAwardOrPunishment = $("#dateAwardOrPunishment").val();
                 let contentAwardOrPunishment = $("#contentAwardOrPunishment").val();
-                alert(dateAwardOrPunishment);
 
                 layer.confirm('该操作将直接添加，无需更新！是否添加？', {icon: 3, title: '提示'}, function (index) {
                     let studentNo = studentInfo.no;
@@ -1046,6 +1047,7 @@
                 var stay_type = $('#update_accommodation_type input[name="accommodation_type"]:checked ').val();
                 var is_out = $('#update_isOut input[name="isOut"]:checked ').val();
                 var blood = $("#updateStudentBloodType").find("option:selected").text()
+                var religion = $("#religiousBelief").val();
                 if ($("#updateStudentPoliticalOutlook").find("option:selected").text() == "其他党派") {
                     var political_status = $("#otherUpdateStudentPoliticalOutlook").val()
                 } else {
@@ -1277,6 +1279,7 @@
                             born: born,
                             name: name,
                             blood: blood,
+                            religion:religion,
                             stay_type: stay_type,
                             famous_family: famous_family,
                             department_id: department_id,
@@ -1513,6 +1516,11 @@
 
 
             form.on('select(department)', function (data) {
+                let department_id = data.value;
+                $.post(baseUrl + "/student/showAutoClassAndProAndDirByDepartment", {departmentId: department_id}, function (resultData) {
+                    $("#profession_search").html(`<option value="">专业</option>` + loadOptionsHtmlOfClass(resultData.data.professionList));
+                    form.render();
+                })
 
                 $("#department_search").html(student.loadClassByDepartmentId(data.value));
                 $("#direction_search").html(student.loadDirectionsByDepartmentId(data.value));
@@ -1649,11 +1657,13 @@
                     $("#show_other_family_political_status").hide();
                 }
             });
-            //监听系,从而动态获取相应的班级
+            //监听系,从而动态获取相应的班级、现专业、就业方向
             form.on('select(student_departments)', function (data) {
                 let department_id = data.value;
-                $.post(baseUrl + "/student/showAutoClassByDepartment", {departmentId: department_id}, function (resultData) {
-                    $("#student_class").html(loadOptionsHtmlOfClass(resultData.data));
+                $.post(baseUrl + "/student/showAutoClassAndProAndDirByDepartment", {departmentId: department_id}, function (resultData) {
+                    $("#student_class").html(loadOptionsHtmlOfClass(resultData.data.classesList));
+                    $("#studentsNowProfessional").html(loadOptionsHtmlOfClass(resultData.data.professionList));
+                    $("#employment_direction").html(loadOptionsHtmlOfClass(resultData.data.directionList));
                     form.render();
                 })
             })

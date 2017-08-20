@@ -131,6 +131,16 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
+    public List<Map<String, Object>> showAutoProfessionListByDepartment(String departmentId) throws Exception {
+        return personDao.showAutoProfessionListByDepartment(departmentId);
+    }
+
+    @Override
+    public List<Map<String, Object>> showAutoDirectionListByDepartment(String departmentId) throws Exception {
+        return personDao.showAutoDirectionListByDepartment(departmentId);
+    }
+
+    @Override
     public Map<String, Object> queryStudentsByLikes(ActiveUser user, SearchDto searchDto) throws Exception {
         Map<String, Object> result = new HashMap<>();
         Map<String, Object> data = new HashMap<>();
@@ -318,13 +328,13 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public List<Map<String, String>> queryStudentsProfessionList() throws Exception {
-        return personDao.queryStudentsProfessionList();
+    public List<Map<String, String>> queryStudentsProfessionList(String departmentId) throws Exception {
+        return personDao.queryStudentsProfessionList(departmentId);
     }
 
     @Override
-    public List<Map<String, String>> queryStudentsDirection() throws Exception {
-        return personDao.queryStudentsDirection();
+    public List<Map<String, String>> queryStudentsDirection(String departmentId) throws Exception {
+        return personDao.queryStudentsDirection(departmentId);
     }
 
     @Override

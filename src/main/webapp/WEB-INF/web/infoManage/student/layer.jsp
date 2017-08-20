@@ -2,7 +2,8 @@
 
 <style>
     .layui-table th{
-        font-size: 12px;
+        font-size: 11px;
+        padding: 8px 5px;
     }
 </style>
 <script id="list-tpl" type="text/html">
@@ -123,61 +124,61 @@
         <h1 style="text-align: center;margin-left: -30px;margin-top: 40px; ;color:#00ab9f ">西安欧亚学院<span
                 id="studentName1"></span>学生档案</h1>
         <div style="margin-top: 40px;">
-            <div style="width: 25%; height: 100%; float: left;border-right: 0px solid #00ab9f">
-                <div style="width:140px; height: 200px; margin:10px 50px;border: 0px solid #00ab9f">
+            <div style="width: 150px; height: 100%; float: left;border-right: 0px solid #00ab9f">
+                <div style="width:140px; height: 200px; margin:10px 10px;border: 0px solid #00ab9f">
                     <img id="images" style="width: 100%" height="100%"/>
                 </div>
-                <div style="width:220px; height: 240px; margin:10px 30px; ">
-                    <table class="layui-table lay-even " data-name="articleCatData" style="width: 174px;" >
+                <div style="width:150px; height: 240px; margin:10px 10px; ">
+                    <table class="layui-table lay-even " data-name="articleCatData" style="width: 150px;" >
                         <tbody >
                         <tr>
-                            <th>TEL：<span id="phone"></span></th>
+                            <th><img style="width: 18px;height:18px;" src="${baseurl}/images/public/TEL.png">：<span id="phone"></span></th>
                         </tr>
                         <tr>
-                            <th>QQ：<span id="qq"></span></th>
+                            <th><img style="width: 18px;height:18px;" src="${baseurl}/images/public/qq.png">：<span id="qq"></span></th>
                         </tr>
                         <tr>
-                            <th>E-mail：<span id="email"></span></th>
+                            <th><img style="width: 18px;height:18px;" src="${baseurl}/images/public/Email.png">：<span id="email"></span></th>
                         </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
-            <div style="width: 75%; height: 100%; float: left;padding-left: 25px">
+            <div style="width: 620px; height: 100%; float: left;padding-left: 25px">
                 <h4 style="color: #00ab9f;font-weight: bold">基本信息</h4>
                 <table class="layui-table lay-even " data-name="articleCatData"
                        style="border: 0px solid red">
                     <tbody>
                     <tr>
-                        <th colspan="1" style="width:93px;">学号：<br><span id="studentNo"></span></th>
-                        <th colspan="3" style="width:192px;">姓名：<br><span id="studentName"></span></th>
-                        <th colspan="1" style="width:107px;">性别：<span id="studentSex"></span></th>
-                        <th colspan="2">民族：<br><span id="famous_family"></span></th>
-                        <th >身份证号：<br><span id="idcard"></span></th>
+                        <th colspan="3" style="width:135px;">学号：<span id="studentNo"></span></th>
+                        <th colspan="3" style="width:100px;">姓名：<span id="studentName"></span></th>
+                        <th colspan="1" style="width:60px;">性别：<span id="studentSex"></span></th>
+                        <th colspan="2" style="width:87px;">民族：<span id="famous_family"></span></th>
+                        <th colspan="3">身份证号：<span id="idcard"></span></th>
                     </tr>
                     <tr>
-                        <th colspan="1">出生日期：<br><span id="born"></span></th>
-                        <th colspan="3">籍贯：<br><span id="native_place"></span></th>
+                        <th colspan="3" style="width:120px;">出生日期：<span id="born"></span></th>
+                        <th colspan="4">籍贯：<span id="native_place"></span></th>
                         <th colspan="3">政治面貌：<span id="political_status"></span></th>
-                        <th colspan="1">婚否：<span id="is_marry"></span></th>
+                        <th colspan="2">婚否：<span id="is_marry"></span></th>
                     </tr>
                     <tr>
-                        <th colspan="1">血型：<span id="blood"></span></th>
+                        <th colspan="3" style="width:120px;">血型：<span id="blood"></span></th>
                         <th colspan="3">身高：<span id="height"></span>cm</th>
-                        <th colspan="2" style="width:170px;">体重：<span id="weight"></span>kg</th>
-                        <th colspan="2">健康状况：<span id="health_status"></span></th>
+                        <th colspan="3" style="width:170px;">体重：<span id="weight"></span>kg</th>
+                        <th colspan="3">健康状况：<span id="health_status"></span></th>
                     </tr>
                     <tr>
-                        <th colspan="4">家庭住址：<br><span id="actual_address"></span></th>
-                        <th colspan="2">邮编编码：<span id="family_zip_code"></span></th>
-                        <th colspan="2">联系电话：<span id="student_contact_method"></span></th>
+                        <th colspan="7">家庭住址：<span id="actual_address"></span></th>
+                        <th colspan="3">邮编编码：<span id="family_zip_code"></span></th>
+                        <th colspan="3">联系电话：<span id="student_contact_method"></span></th>
                     </tr>
                     <tbody id="family">
                     </tbody>
                     <tr>
-                        <th colspan="4">紧急联系人：<span id="emergency_contact_name"></span></th>
+                        <th colspan="7">紧急联系人：<span id="emergency_contact_name"></span></th>
 
-                        <th colspan="4">联系方式：<span id="emergency_contact_method"></span></th>
+                        <th colspan="6">联系方式：<span id="emergency_contact_method"></span></th>
                     </tr>
                     </tbody>
                 </table>
@@ -277,7 +278,7 @@
                                             <tr>
                                                 <th>
                                                     <div class="layui-inline">
-                                                        <label class="layui-form-label">TEL</label>
+                                                        <label class="layui-form-label" style="width:auto;"><img style="width: 18px;height:18px;" src="${baseurl}/images/public/TEL.png"></label>
                                                         <div class="layui-input-inline">
                                                             <input type="tel" name="phone"
                                                                    autocomplete="off" class="layui-input"
@@ -289,7 +290,7 @@
                                             <tr>
                                                 <th>
                                                     <div class="layui-inline">
-                                                        <label class="layui-form-label">QQ</label>
+                                                        <label class="layui-form-label" style="width:auto;"><img style="width: 18px;height:18px;" src="${baseurl}/images/public/qq.png"></label>
                                                         <div class="layui-input-inline">
                                                             <input type="number" name="QQ"
                                                                    autocomplete="off" class="layui-input"
@@ -302,7 +303,7 @@
                                                 <th>
                                                     <div class="layui-inline">
                                                         <label class="layui-form-label"
-                                                               style="width: auto">E-mail</label>
+                                                               style="width: auto"><img style="width: 18px;height:18px;" src="${baseurl}/images/public/Email.png"></label>
                                                         <div class="layui-input-inline">
                                                             <input type="email" name="email"
                                                                    autocomplete="off" class="layui-input"
@@ -527,7 +528,7 @@
                                                     <label class="layui-form-label"
                                                            style="margin-left: -50px;">宗教信仰</label>
                                                     <div class="layui-input-block">
-                                                        <input type="text" name="title"
+                                                        <input type="text" name="title" id="religiousBelief"
                                                                autocomplete="off" placeholder="何时经何人介绍参加何种党派、团体、任何职?"
                                                                class="layui-input" style="margin-left: -60px">
                                                     </div>
@@ -536,7 +537,7 @@
                                     </tr>
 
                                     <tr>
-                                        <th colspan="2">生源类别:<span>
+                                        <th colspan="3">生源类别:<span>
                                         <div class="layui-inline" pane="" id="student_classify">
                                             <label class="layui-form-label" style="width: auto"></label>
                                             <div class="layui-inline">
@@ -967,7 +968,7 @@
                                     <tr>
                                         <th colspan="1">录取专业：<span>
                                             <div class="layui-input-inline" style="width: 60%">
-                                                <select id="studentsProfessionList" lay-filter="studentsProfessionList">
+                                                <select id="studentsProfessionList" lay-filter="studentsProfessionList" disabled="disabled">
                                                     <option value=""></option>
                                                 </select>
                                             </div>
@@ -983,7 +984,7 @@
                                         <th colspan="4">现专业：<span>
                                             <div class="layui-input-inline" style="width: 60%">
                                                 <select id="studentsNowProfessional"
-                                                        lay-filter="studentsNowProfessional">
+                                                        lay-filter="studentsNowProfessional" >
                                                     <option value=""></option>
                                                 </select>
                                             </div>
@@ -1017,17 +1018,7 @@
                                                 </select>
                                             </div>
                                         </span></th>
-                                        <th colspan="2">社区辅导员：<span>
-                                            <div class="layui-input-inline" style="width: 60%">
-                                                <select lay-filter="update_community_counselor"
-                                                        id="update_community_counselor">
-                                                    <option value=""></option>
-                                                </select>
-                                            </div>
-                                        </span></th>
-                                    </tr>
-                                    <tr>
-                                        <th colspan="1">学籍状态：<span>
+                                        <th colspan="2">学籍状态：<span>
                                             <div class="layui-input-inline" style="width: 60%">
                                                 <select lay-filter="update_student_status" id="update_student_status">
                                                     <option value=""></option>
@@ -1040,6 +1031,17 @@
                                                 </select>
                                             </div>
                                         </span></th>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="1">社区辅导员：<span>
+                                            <div class="layui-input-inline" style="width: 60%">
+                                                <select lay-filter="update_community_counselor"
+                                                        id="update_community_counselor">
+                                                    <option value=""></option>
+                                                </select>
+                                            </div>
+                                        </span></th>
+
                                         <th colspan="5">困难类别：<span>
                                             <div class="layui-input-inline" style="width: 60%">
                                                 <div class="layui-inline" pane="" id="update_hard_type">
