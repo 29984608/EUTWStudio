@@ -133,13 +133,9 @@
                 </div>
             </div>
         </div>
-
-        <div class="layui-form-item sub" style="margin:30px 0 0 -10%">
-            <div class="layui-input-block">
-                <a class="layui-btn" onclick="communication.addAjax()">立即提交</a>
-            </div>
-        </div>
     </form>
+                <a class="layui-btn" onclick="communication.addAjax()" style="width: 115px;margin-left: 30px">立即提交</a>
+
 </div>
 
 <div id="update" style="display: none;background: #fff;">
@@ -209,7 +205,7 @@
                     <textarea placeholder="请输入回答" class="layui-textarea add-contents"
                               style="width: 80%;min-height: 50px;height: 70px;font-size: 12px;margin-left: .9%"></textarea>
 
-                    <div class="layui-btn-group" style="margin-left: .9%">
+                    <div class="layui-btn-group" >
                         <a onclick="addTalkContent()" class="layui-btn layui-btn-small"><i class="layui-icon">&#xe608;</i>添加一条 Q&A</a>
                           <a onclick="deleteContent(this)" class="layui-btn layui-btn-small layui-btn-danger"><i
                                 class="layui-icon">&#xe640;</i>删除本条

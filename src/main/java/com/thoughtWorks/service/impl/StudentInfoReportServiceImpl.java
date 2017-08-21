@@ -45,20 +45,7 @@ public class StudentInfoReportServiceImpl implements StudentInfoReportService {
         List<Map<String, Object>> students = studentInfoReportDao.studentInfoList(getSearchLevels());
 
         if (null == students || students.size() == 0) return new ArrayList<>();
-        List<Map<String, Object>> result = statisticReport(students);
-        return removeEmptyDirection(result);
-    }
-
-    private List<Map<String, Object>> removeEmptyDirection(List<Map<String, Object>> data) {
-        List<Map<String, Object>> result = new ArrayList<>();
-        for (int i = 0; i < data.size(); ++i) {
-            Map<String, Object> department = new HashMap<>();
-            List<Map<String, Object>> directions = (List<Map<String, Object>>) data.get(i).get("levels");
-            for (Map<String, Object> l : directions) {
-                List<Map<String,Object>> classess = (List<Map<String, Object>>) l.get("directions");
-            }
-        }
-        return null;
+        return statisticReport(students);
     }
 
     private List<Map<String, Object>> statisticReport(List<Map<String, Object>> students) {

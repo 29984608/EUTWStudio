@@ -22,70 +22,74 @@
 <section class="larry-grid layui-form">
     <div class="larry-personal">
         <div class="layui-tab">
-            <blockquote class="layui-elem-quote mylog-info-tit">
+            <blockquote class="layui-elem-quote mylog-info-tit" style="height: 140px">
                 <from id="searchInfo">
-                    <div class="layui-inline">
-                        <div class="layui-input-inline " style="width: auto ;margin-bottom: 10px;">
-                            <select lay-filter="department" id="module_search">
-                                <option value="">系</option>
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <div class="layui-input-inline " style="width: 150px ;">
+                                <select lay-filter="department" id="module_search">
+                                    <option value="">系</option>
+                                </select>
+                            </div>
+
+                            <div class="layui-input-inline" style="width: 150px;">
+                                <select lay-filter="profession" id="semester_search">
+                                    <option value="">年级</option>
+                                </select>
+                            </div>
+
+                            <div class="layui-input-inline" style="width: 150px;">
+                                <select lay-filter="direction" id="findDirection">
+                                    <option value="">方向</option>
+                                </select>
+                            </div>
+
+                            <div class="layui-input-inline" style="width: 150px;">
+                                <select lay-filter="profession" id="queryClass">
+                                    <option value="">班级</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                            <div class="layui-input-inline" style="width: 150px ;">
+                                <input type="text" name="no" id="no-search" lay-verify="title" autocomplete="off"
+                                       placeholder="学号" value="" class="layui-input">
+                            </div>
+                        <div class="layui-input-inline" style="width: 150px ;">
+                            <input type="text" name="name" id="name_search" lay-verify="title"
+                                   autocomplete="off"
+                                   placeholder="姓名" class="layui-input">
+                        </div>
+                        <div class="layui-input-inline" style="width: 150px ;">
+
+                            <select lay-filter="queryAreaOfRoom" name="" id="queryAreaOfRoom">
+                                <option value="">区号</option>
+                            </select>
+                        </div>
+                        <div class="layui-input-inline" style="width: 150px ;">
+                            <select lay-filter="queryFloor" id="queryFloor">
+                                <option value="">层号</option>
                             </select>
                         </div>
 
-                        <div class="layui-input-inline" style="width: auto;margin-bottom: 10px;">
-                            <select lay-filter="profession" id="semester_search">
-                                <option value="">年级</option>
+                        <div class="layui-input-inline" style="width: 150px ;">
+                            <select lay-filter="queryRoom" id="queryRoom">
+                                <option value="">宿舍</option>
                             </select>
                         </div>
 
-                        <div class="layui-input-inline" style="width: auto;margin-bottom: 10px;">
-                            <select lay-filter="direction" id="findDirection">
-                                <option value="">方向</option>
-                            </select>
-                        </div>
-
-                        <div class="layui-input-inline" style="width: auto;margin-bottom: 10px;">
-                            <select lay-filter="profession" id="queryClass">
-                                <option value="">班级</option>
-                            </select>
-                        </div>
-                        <div class="layui-input-inline" style="width: auto ;margin-bottom: 10px;">
-                            <input type="text" name="no" id="no-search" lay-verify="title" autocomplete="off"
-                                   placeholder="学号" value="" class="layui-input">
-                        </div>
-
-                    </div> <div class="layui-inline">
-                    <div class="layui-input-inline" style="width: auto ;margin-bottom: 10px;">
-                        <input type="text" name="name" id="name_search" lay-verify="title" autocomplete="off"
-                               placeholder="姓名" class="layui-input">
+                        <%--
+                                            <div class="layui-inline">
+                                                <div class="layui-input-inline" style="width: auto ;">
+                                                    <input type="text" name="roomId" lay-verify="title" autocomplete="off"
+                                                           placeholder="房间号码" id="roomId" class="layui-input">
+                                                </div>
+                                            </div>--%>
+                        <a class="layui-btn" style="width: auto ;"
+                           onclick="currentIndex=1;communication.list()"><i
+                                class="layui-icon">&#xe615;</i>搜索</a>
                     </div>
-                </div>
-                    <div class="layui-input-inline" style="width: auto ;margin-bottom: 10px;">
-
-                        <select lay-filter="queryAreaOfRoom" name="" id="queryAreaOfRoom">
-                            <option value="">区号</option>
-                        </select>
-                    </div>
-                    <div class="layui-input-inline" style="width: auto ;margin-bottom: 10px;">
-                        <select lay-filter="queryFloor" id="queryFloor">
-                            <option value="">层号</option>
-                        </select>
-                    </div>
-
-                    <div class="layui-input-inline" style="width: auto ;margin-bottom: 10px;">
-                        <select lay-filter="queryRoom" id="queryRoom">
-                            <option value="">宿舍</option>
-                        </select>
-                    </div>
-                    <%--
-                                        <div class="layui-inline">
-                                            <div class="layui-input-inline" style="width: auto ;margin-bottom: 10px;">
-                                                <input type="text" name="roomId" lay-verify="title" autocomplete="off"
-                                                       placeholder="房间号码" id="roomId" class="layui-input">
-                                            </div>
-                                        </div>--%>
-                    <a class="layui-btn" style="width: auto ;margin-bottom: 10px;"
-                       onclick="currentIndex=1;communication.list()"><i
-                            class="layui-icon">&#xe615;</i>搜索</a>
 
                 </from>
             </blockquote>
@@ -183,7 +187,7 @@
                     cont: 'demo1',
                     pages: totalSize, //总页数
                     curr: currentIndex,
-                    last:totalSize,
+                    last: totalSize,
                     groups: 5,//连续显示分页数
                     skin: '#1E9FFF',
                     jump: function (obj, first) {
@@ -395,7 +399,7 @@
                     }
                 })
             },
-            queryClassByDirectionId:function (id) {
+            queryClassByDirectionId: function (id) {
                 $.post(baseUrl + "/studentClass/queryClassesByDirectionId", {id: id}, function (data) {
                     if (data.result) {
                         $("#queryClass").html(`<option value="">班级</option>`).append(loadOptionsHtml(data.data, "-"))
