@@ -119,54 +119,45 @@
 </script>
 
 
-<div id="update" style="display: none; background-color: #F8F8F8">
+<div id="update" style="display: none; height: 100%;">
     <div class="container" id="container" style=" background: #fff;width: 800px; ">
         <h1 style="text-align: center;margin-left: -30px;margin-top: 40px; ;color:#00ab9f ">西安欧亚学院<span
                 id="studentName1"></span>学生档案</h1>
         <div style="margin-top: 40px;">
-            <div style="width: 150px; height: 100%; float: left;border-right: 0px solid #00ab9f">
-                <div style="width:140px; height: 200px; margin:10px 10px;border: 0px solid #00ab9f">
-                    <img id="images" style="width: 100%" height="100%"/>
-                </div>
-                <div style="width:150px; height: 240px; margin:10px 10px; ">
-                    <table class="layui-table lay-even " data-name="articleCatData" style="width: 150px;" >
-                        <tbody >
-                        <tr>
-                            <th><img style="width: 18px;height:18px;" src="${baseurl}/images/public/TEL.png">：<span id="phone"></span></th>
-                        </tr>
-                        <tr>
-                            <th><img style="width: 18px;height:18px;" src="${baseurl}/images/public/qq.png">：<span id="qq"></span></th>
-                        </tr>
-                        <tr>
-                            <th><img style="width: 18px;height:18px;" src="${baseurl}/images/public/Email.png">：<span id="email"></span></th>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div style="width: 620px; height: 100%; float: left;padding-left: 25px">
+            <div style="width: 100%; height: 100%; float: left;padding-left: 25px">
                 <h4 style="color: #00ab9f;font-weight: bold">基本信息</h4>
                 <table class="layui-table lay-even " data-name="articleCatData"
                        style="border: 0px solid red">
                     <tbody>
                     <tr>
-                        <th colspan="3" style="width:135px;">学号:<span id="studentNo"></span></th>
-                        <th colspan="3" style="width:100px;">姓名：<span id="studentName"></span></th>
+                        <th colspan="3" style="width:140px;">学号:<span id="studentNo"></span></th>
+                        <th colspan="3" style="width:125px;">姓名：<span id="studentName"></span></th>
                         <th colspan="1" style="width:60px;">性别:<span id="studentSex"></span></th>
                         <th colspan="2" style="width:87px;">民族：<span id="famous_family"></span></th>
                         <th colspan="3" style="width:211px;">身份证号:<span id="idcard"></span></th>
+                        <th rowspan = " 3 " style="padding: 1px;">
+                            <div style="width:110px; height: 150px; border: 0px solid #00ab9f">
+                                <img id="images" style="width: 100%" height="100%"/>
+                            </div>
+                        </th>
                     </tr>
                     <tr>
-                        <th colspan="3" style="width:145px;">出生日期:<span id="born"></span></th>
-                        <th colspan="5">籍贯：<span id="native_place"></span></th>
-                        <th colspan="3" style="width:130px;">政治面貌:<span id="political_status"></span></th>
-                        <th colspan="1">婚否：<span id="is_marry"></span></th>
+
+                        <th colspan="4" style="width:145px;">出生日期：<span id="born"></span></th>
+                        <th colspan="4">籍贯：<span id="native_place"></span></th>
+                        <th colspan="3" style="width:190px;">政治面貌:<span id="political_status"></span></th>
+                        <th >婚否：<span id="is_marry"></span></th>
                     </tr>
                     <tr>
                         <th colspan="3" style="width:120px;">血型：<span id="blood"></span></th>
                         <th colspan="3">身高：<span id="height"></span>cm</th>
                         <th colspan="3" style="width:170px;">体重：<span id="weight"></span>kg</th>
                         <th colspan="3">健康状况：<span id="health_status"></span></th>
+                    </tr>
+                    <tr>
+                        <th colspan="5">联系方式：<span id="phone"></span></th>
+                        <th colspan="4">qq：<span id="qq"></span></th>
+                        <th colspan="4">邮箱：<span id="email"></span></th>
                     </tr>
                     <tr>
                         <th colspan="7">家庭住址：<span id="actual_address"></span></th>
@@ -194,13 +185,16 @@
                        style="border: 0px solid red">
                     <tbody>
                     <tr>
+                        <th colspan="4">学籍状态：<span id="student_status"></span></th>
+                    </tr>
+                    <tr>
                         <th colspan="2">学生类别：<span id="student_type"></span></th>
                         <th colspan="2">高考成绩：<span id="sat_score"></span></th>
 
                     </tr>
                     <tr>
-                        <th>录取专业：<span id="originProfession"></span></th>
-                        <th>现专业：<span id="profession"></span></th>
+                        <th>录取专业：<span id="profession"></span></th>
+                        <th>现专业：<span id="originProfession"></span></th>
                         <th>就业方向：<span id="direction"></span></th>
                         <th>班级：<span id="classes"></span></th>
                     </tr>
@@ -209,17 +203,16 @@
                         <th colspan="2">社区辅导员：<span id="teacherCommunity"></span></th>
                     </tr>
                     <tr>
-                        <th colspan="2">学籍状态：<span id="student_status"></span></th>
-                        <th colspan="2">实践类型：<span id="practice_learning_type"></span></th>
                     </tr>
 
                     <tr>
-                        <th colspan="4">缴费状态：
+                        <th colspan="2">缴费状态：
                             第一年：(<span id="payment_status_first_year"></span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             第二年：(<span id="payment_status_second_year"></span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             第三年：(<span id="payment_status_third_year"></span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
                         </th>
+                        <th colspan="2">实践类型：<span id="practice_learning_type"></span></th>
 
                     </tr>
                     <tr>

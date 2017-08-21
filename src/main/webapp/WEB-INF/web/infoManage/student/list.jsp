@@ -205,7 +205,7 @@
 </body>
 
 <%@include file="layer.jsp" %>
-<script src="${baseurl}/js/searchJs.js" />
+<script src="${baseurl}/js/searchJs.js"/>
 <script type="text/javascript" src="${baseurl}/public/js/pdf/html2canvas.js"></script>
 <script type="text/javascript">
     let student;
@@ -235,7 +235,7 @@
                     cont: 'demo1',
                     pages: totalSize, //总页数
                     curr: currentIndex,
-                    last:totalSize,
+                    last: totalSize,
                     groups: 5,//连续显示分页数
                     skin: '#1E9FFF',
                     jump: function (obj, first) {
@@ -369,11 +369,11 @@
                     $("#actual_address").text("").append(data.student[0].actual_address);
                     $("#family").html("")
                     for (var i = 0; i < data.family.length; i++) {
-                        $("#family").append("<tr> <th colspan='2'>" + data.family[i].relationship + "：" + data.family[i].name + "</th>" +
-                            "<th colspan='4' style='width: 130px'>政治面貌:" + data.family[i].political_status + "</th>" +
-                            "<th colspan='3'>工作单位：<br>" + data.family[i].work_place + "</th>" +
-                            "<th colspan='2' style='width: 70px'>职务:" + data.family[i].staff + "</th>" +
-                            "<th colspan='1'>联系电话：<br>" + data.family[i].phone + "</th> </tr>");
+                        $("#family").append("<tr> <th colspan='2' rowspan = '2 '>" + data.family[i].relationship + "：" + data.family[i].name + "</th>" +
+                            "<th colspan='5' style='width: 130px'>政治面貌:" + data.family[i].political_status + "</th>" +
+                            "<th colspan='6'>工作单位:" + data.family[i].work_place + "</th></tr>" +
+                            "<tr><th colspan='5' style='width: 70px'>职务:" + data.family[i].staff + "</th>" +
+                            "<th colspan='6'>联系电话：" + data.family[i].phone + "</th> </tr>");
                     }
                     $("#emergency_contact_name").text("").append(data.student[0].emergency_contact_name);
                     $("#emergency_contact_method").text("").append(data.student[0].emergency_contact_method);
@@ -403,10 +403,8 @@
                     $("#hard_type").text("").append(data.student[0].hard_type);
                     $("#own_punishment").text("")
                     for (var i = 0; i < data.ownPunishment.length; i++) {
-                        $("#own_punishment").append("<tr><th>" + data.ownPunishment[i].date+" —— " + data.ownPunishment[i].centent + "</th></tr>");
+                        $("#own_punishment").append("<tr><th>" + data.ownPunishment[i].date + " —— " + data.ownPunishment[i].centent + "</th></tr>");
                     }
-
-
                 });
                 layer.open({
                     type: 1,
@@ -456,7 +454,7 @@
                             $("#updateStudentIdCard").val(studentList.idcard);
                             $("#updateStudentNativePlace").val(studentList.native_place);
                             let born = studentList.idcard.substr(6, 8);
-                            $("#updateStudentBirthday").val(born.substr(0,4)+"-"+born.substr(4,2)+"-"+born.substr(6,2));
+                            $("#updateStudentBirthday").val(born.substr(0, 4) + "-" + born.substr(4, 2) + "-" + born.substr(6, 2));
                             $("input[type='radio'][name='isMarry'][value='" + studentList.is_marry + "']").attr("checked", 'true');
                             $("input[type='radio'][name='accommodation_type'][value='" + studentList.stay_type + "']").attr("checked", 'true');
                             $("#updateStudentHeight").val(studentList.height);
@@ -1298,7 +1296,7 @@
                             born: born,
                             name: name,
                             blood: blood,
-                            religion:religion,
+                            religion: religion,
                             stay_type: stay_type,
                             famous_family: famous_family,
                             department_id: department_id,
