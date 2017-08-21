@@ -60,6 +60,7 @@
                 <table class="layui-table">
                     <thead>
                     <tr>
+                        <th>名次</th>
                         <th>系</th>
                         <th>年级</th>
                         <th>就业方向</th>
@@ -85,6 +86,7 @@
 <script id="list-tpl" type="text/html">
     {{# layui.each(d.results, function(index, item){ }}
     <tr>
+        <td>{{ (index+1)+(d.page.currentIndex-1)*(d.page.pageSize)}}</td>
         <td> {{# if(item.departmentName === undefined){ }}
             无
             {{# }else{ }}
@@ -118,7 +120,7 @@
     let rank;
     let totalSize = 10;
     let currentIndex = 1;
-    let pageSize = 10;
+    let pageSize = 50;
     let level;
     layui.use(['jquery', 'layer', 'element', 'laypage', 'form', 'laytpl'], function () {
         window.jQuery = window.$ = layui.jquery;
