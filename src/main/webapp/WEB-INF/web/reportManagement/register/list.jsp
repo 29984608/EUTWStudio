@@ -259,7 +259,7 @@
                 $("#health_status").text(student.health_status == undefined ? "无" : student.health_status);
                 $("#idcard").text(student.idcard == undefined ? "无" : student.idcard);
                 $("#own_experience").text(student.own_experience == undefined ? "无" : student.own_experience);
-                $("#own_punishment").text(student.own_punishment == undefined ? "无" : student.own_punishment);
+                $("#own_punishment").text(student.own_punishment == "" ? "无" : student.own_punishment);
 
             },
             showStudentExperienceInfo: function (experiences) {
