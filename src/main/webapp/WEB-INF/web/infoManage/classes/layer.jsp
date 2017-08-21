@@ -50,10 +50,10 @@
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">年级名称</label>
+            <label class="layui-form-label">班级名称</label>
             <div class="layui-input-inline">
                 <input type="text" name="name" id="name-add"
-                       placeholder="请输入年级名称" autocomplete="off" class="layui-input ">
+                       placeholder="请输入班级名称" autocomplete="off" class="layui-input ">
             </div>
         </div>
         <div class="layui-form-item">
@@ -91,10 +91,10 @@
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">年级名称</label>
+            <label class="layui-form-label">班级名称</label>
             <div class="layui-input-inline">
                 <input type="text" id="name" name="name" required jq-verify="required"
-                       placeholder="请输入年级名称" autocomplete="off" class="layui-input ">
+                       placeholder="请输入班级名称" autocomplete="off" class="layui-input ">
             </div>
         </div>
         <div class="layui-form-item">
