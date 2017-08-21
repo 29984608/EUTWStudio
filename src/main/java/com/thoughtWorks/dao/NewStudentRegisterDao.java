@@ -11,4 +11,6 @@ public interface NewStudentRegisterDao {
     List<Map<String, String>> queryStudentExperience(String no);
 
     List<Map<String, String>> queryStudentFamily(String no);
+
+    List<String> queryStudentPunishmentByNo(String no);
 }

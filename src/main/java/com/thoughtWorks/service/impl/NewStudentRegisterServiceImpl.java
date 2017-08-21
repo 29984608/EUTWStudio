@@ -27,6 +27,9 @@ public class NewStudentRegisterServiceImpl implements NewStudentRegisterService 
         List<Map<String, String>> experience = newStudentRegisterDao.queryStudentExperience(no);
         List<Map<String, String>> family = newStudentRegisterDao.queryStudentFamily(no);
 
+        List<String> punishments = newStudentRegisterDao.queryStudentPunishmentByNo(no);
+        basicStudentInfo.put("own_punishment", punishments.size() == 0 ? "" : punishments.get(0));
+
         studentInfo.put("basicStudentInfo", basicStudentInfo);
         studentInfo.put("experience", experience);
         studentInfo.put("family", family);

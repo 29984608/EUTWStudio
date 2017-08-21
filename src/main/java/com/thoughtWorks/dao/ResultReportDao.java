@@ -12,4 +12,5 @@ public interface ResultReportDao {
     Map<String,String> queryStudentByNo(String no);
 
     List<Map<String,String>> queryStudentCourseResultByNo(String no);
+
 }

@@ -3,6 +3,9 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.thoughtWorks.dao.NewStudentRegisterDao">
+    <select id="queryStudentPunishmentByNo" parameterType="string" resultType="string">
+        SELECT centent FROM t_own_punishment WHERE t_own_punishment.studentNo = #{no}
+    </select>
     <select id="queryRegisterBasicInfo" parameterType="string" resultType="map">
         SELECT
             student.name    studentName,
