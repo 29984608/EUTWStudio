@@ -123,21 +123,21 @@
             {{#}}}
         </td>
         <td> {{# if(item.direction === undefined){ }}
-            未分配
+            无
             {{# }else{ }}
             {{ item.direction}}
             {{#}}}
         </td>
         <td>
             {{# if(item.profession === undefined){ }}
-            未分配
+            无
             {{# }else{ }}
             {{ item.profession}}
             {{#}}}
         </td>
         <td>
             {{# if(item.classesName === undefined){ }}
-            未分配
+            无
             {{# }else{ }}
             {{ item.classesName}}
             {{#}}}

@@ -304,7 +304,7 @@
 
                 $.post(baseUrl + "/teacher/add", data, function (data) {
                     layer.msg(data.msg);
-                    if (data.result) {
+                    if (data.msg) {
                         setTimeout("location.reload()", 500);
                     }
                 })

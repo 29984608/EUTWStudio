@@ -2,7 +2,7 @@
 .idea/
 target/
 out/
-
+*.war
 jdbc.properties
 rebel.xml
 rebble-remote.xml

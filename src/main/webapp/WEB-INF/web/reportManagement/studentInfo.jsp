@@ -17,12 +17,12 @@
 <section class=" layui-form">
     <div class="larry-personal">
         <div class="layui-tab">
-<shiro:hasPermission name="studentInfoReport:exportExcel">
-            <button class="layui-btn " style="float: right" onclick="studentInfo.exportExcel()"><i
-                    class="layui-icon">&#xe61e;</i>导出
-                EXCEl
-            </button>
-</shiro:hasPermission>
+            <shiro:hasPermission name="studentInfoReport:exportExcel">
+                <button class="layui-btn " style="float: right" onclick="studentInfo.exportExcel()"><i
+                        class="layui-icon">&#xe61e;</i>导出
+                    EXCEl
+                </button>
+            </shiro:hasPermission>
             <div id="container" class="layui-tab-content larry-personal-body clearfix mylog-info-box"
                  style="background: #fff;width: 100%;height: 100%;margin: 5px 0px">
                 <div style="text-align: center;font-size: 20px;font-weight: bold;color: #21a1a1">
@@ -32,7 +32,7 @@
                 <table class="layui-table">
                     <thead>
                     <tr id="head">
-                        <td>系别<br>名称</td>
+                        <td>系别名称</td>
                         <td>年级</td>
                         <td>就业方向</td>
                         <td>班级名称</td>
@@ -96,11 +96,11 @@
                     if (classess === undefined || classess.length === 0) continue;
                     let reportCount = (classess[0])["reportCount"]["statisticCount"];
 
-                    _html += `<tr>
-                        <th rowspan="` + studentInfo.getDepartmentRows(department) + `">` + department["departmentName"] + `</th>
-                        <th rowspan="` + studentInfo.getLevelRows(levels[0]) + `">` + levels[0]["level"] + `</th>
-                        <th rowspan="` + studentInfo.getDirectionRows(directions[0]) + `">` + directions[0]["directionName"] + `</th>
-                        <th >` + classess[0]["classesName"] + `</th>`
+                    _html += `<tr>`;
+                    _html += `<th rowspan="` + studentInfo.getDepartmentRows(department) + `">` + department["departmentName"] + `</th>`;
+                    _html += `<th rowspan="` + studentInfo.getLevelRows(levels[0]) + `">` + levels[0]["level"] + `</th>`;
+                    _html += `<th rowspan="` + studentInfo.getDirectionRows(directions[0]) + `">` + directions[0]["directionName"] + `</th>
+                        <th >` + classess[0]["classesName"] + `</th>`;
                     _html += studentInfo.getReportCount(reportCount);
                     _html += `</tr>`;
                     _html += studentInfo.loadClassess(classess);
@@ -146,7 +146,7 @@
                 let _html = "";
                 for (let directionIndex = 1; directionIndex < directions.length; ++directionIndex) {
                     let classess = directions[directionIndex]["classess"];
-                    if(classess === undefined || classess.length === 0) continue;
+                    if (classess === undefined || classess.length === 0) continue;
                     let reportCount = (classess[0])["reportCount"]["statisticCount"];
                     _html += "<tr>";
 
@@ -167,7 +167,7 @@
 
                 for (let levelIndex = 1; levelIndex < levels.length; ++levelIndex) {
                     let directions = levels[levelIndex]["directions"];
-                    if(directions === undefined || directions.length === 0) continue;
+                    if (directions === undefined || directions.length === 0) continue;
                     let classess = (directions[0])["classess"];
                     let reportCount = (classess[0])["reportCount"]["statisticCount"];
                     _html += `<tr>

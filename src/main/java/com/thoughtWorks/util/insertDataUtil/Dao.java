@@ -8,7 +8,7 @@ import java.sql.Statement;
 public class Dao {
     private static String user = "root";
     private static String password = "root";
-    private static String url = "jdbc:mysql://192.168.1.112:3306/stuInfo?useUnicode=true&characterEncoding=GBK";
+    private static String url = "jdbc:mysql://localhost:3306/stuInfo?useUnicode=true&characterEncoding=GBK";
 
     public static Connection getDao() throws Exception {
         Class.forName("com.mysql.jdbc.Driver");

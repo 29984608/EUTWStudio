@@ -88,21 +88,21 @@
     {{# layui.each(d.results, function(index, item){ }}
     <tr>
         <td>  {{# if(item.departmentName === undefined){ }}
-            未分配
+            无
             {{# }else{ }}
             {{ item.departmentName}}{{#}}}
         </td>
         <td>{{ item.level}}</td>
         <td>
             {{# if(item.directionName === undefined){ }}
-            未分配
+            无
             {{# }else{ }}
             {{ item.directionName}}{{#}}}
 
         </td>
         <td>
             {{# if(item.classesName === undefined){ }}
-            未分配
+            无
             {{# }else{ }}
             {{ item.classesName}}{{#}}}
            </td>

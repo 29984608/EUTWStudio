@@ -62,9 +62,12 @@
         <td>{{ item.staff}}</td>
         <td>
             <shiro:hasPermission name="userRole:update">
-                <select name="{{ item.username}}" lay-filter="role_select" haha="222">
+                <select name="{{ item.username}}" lay-filter="role_select" >
 
-                    <option value={{ item.roleId}}>{{ item.roleName}}</option>
+                    <option value={{ item.roleId}}> {{# if(item.roleName === undefined){ }}
+                        请分配
+                        {{# }else{ }}
+                        {{ item.roleName}}{{#}}}</option>
 
                     {{# layui.each(d.roles, function(index, role){ }}
                     {{#if (item.roleId!=role.id){ }}
@@ -75,7 +78,12 @@
             </shiro:hasPermission>
             <shiro:lacksPermission name="userRole:update">
                 <select disabled>
-                    <option value={{ item.roleId}}>{{ item.roleName}}</option>
+                    <option value={{ item.roleId}}>
+                        {{# if(item.roleName === undefined){ }}
+                        请分配
+                        {{# }else{ }}
+                        {{ item.roleName}}{{#}}}
+                       </option>
                 </select>
             </shiro:lacksPermission>
         </td>

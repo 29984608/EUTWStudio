@@ -4,20 +4,20 @@
     <tr>
         <td>
             {{# if(item.departmentName === undefined){ }}
-            未分配
+            无
             {{# }else{ }}
             {{ item.departmentName}}{{#}}}
         </td>
         <td>{{ item.level}}</td>
         <td>
             {{# if(item.directionName === undefined){ }}
-            未分配
+            无
             {{# }else{ }}
             {{ item.directionName}}{{#}}}
 
         </td>
         <td>{{# if(item.classesName === undefined){ }}
-            未分配
+            无
             {{# }else{ }}
             {{ item.classesName}}{{#}}}
         </td>
@@ -35,7 +35,7 @@
 
 </script>
 <div id="preview" style="display: none;width: auto;margin-top: 20px">
-    <button class="layui-btn " style="float: right" onclick="exportPDF()">
+    <button class="layui-btn " style="float: right" onclick="printPdf()">
         <i class="layui-icon">&#xe60a;</i>导出 PDF
     </button>
     <section class="larry-grid">
@@ -71,12 +71,12 @@
                         </tr>
                     </table>
 
-                    <div style="float: left;width: 50%;">
+                    <div style="float: left;width: 50%;height: 1170px">
                         <table class="layui-table"  lay-skin="nob" style="border-right: 2px dashed #e8e8e8">
                             <colgroup>
-                                <col width="20%">
                                 <col width="15%">
-                                <col width="35%">
+                                <col width="15%">
+                                <col width="40%">
                                 <col width="15%">
                                 <col width="15%">
                                 <col>
@@ -85,7 +85,7 @@
                             <tr style="color: #20a1a1;border:2px solid #e0e0e0;border-left: none">
                                 <th>时间</th>
                                 <th>属性</th>
-                                <th>课程</th>
+                                <th>课程名称</th>
                                 <th>学分</th>
                                 <th>成绩</th>
                             </tr>
@@ -95,7 +95,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <div style="float: left;width: 50%">
+                    <div style="float: left;width: 50%;height: 1170px">
                         <table class="layui-table" lay-even="" lay-skin="nob"
                         >
                             <colgroup>
@@ -110,7 +110,7 @@
                             <tr style="color: #20a1a1;border:2px solid #e0e0e0;border-right: none">
                                 <th>时间</th>
                                 <th>属性</th>
-                                <th>课程</th>
+                                <th>课程名称</th>
                                 <th>学分</th>
                                 <th>成绩</th>
                             </tr>

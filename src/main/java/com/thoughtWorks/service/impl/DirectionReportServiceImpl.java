@@ -74,8 +74,8 @@ public class DirectionReportServiceImpl implements DirectionReportService {
     private void setDepartmentProfessionStudentCount(Map<String, Object> tempDepartment, Map<String, Object> student) {
         String directionName = (String) student.get("directionName");
         if (directionName == null) {
-            student.put("directionName", "未分配");
-            directionName = "未分配";
+            student.put("directionName", "无");
+            directionName = "无";
         }
         List<Map<String, Object>> directions = (List<Map<String, Object>>) tempDepartment.get("directions");
 

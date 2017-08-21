@@ -43,7 +43,7 @@ public class PersonServiceImpl implements PersonService {
             teacher.setDepartmentId("0");
             teacher.setDirectionId("0");
             teacher.setDeptId(0);
-            roleId = 4;
+            roleId = 0;
             floorId = Arrays.asList(floorIds.split(","));
             if (floorId.size() != 0) personDao.insertCommunityTeacher(teacher.getNo(),areaId, floorId);
             personDao.addTeacher(teacher);
@@ -53,13 +53,13 @@ public class PersonServiceImpl implements PersonService {
                 teacher.setClassify("职业导师");
                 ids = Arrays.asList(classIds.split(","));
                 teacher.setDeptId(0);
-                roleId = 2;
+                roleId = 0;
                 if (ids.size() != 0) trainModuleDao.updateClassTeacher(teacher.getNo(), ids);
             } else if (teacher.getClassify().equals("2")) {
                 teacher.setClassify("行政");
                 teacher.setDepartmentId("0");
                 teacher.setDirectionId("0");
-                roleId = 6;
+                roleId = 0;
             }
             personDao.addTeacher(teacher);
         }

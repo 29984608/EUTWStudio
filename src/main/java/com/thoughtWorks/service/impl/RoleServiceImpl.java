@@ -50,7 +50,7 @@ public class RoleServiceImpl implements RoleService {
         List<String> shouldInsert = shouldInsertPers(oldPermissions, newPermissions);
 
         if (shouldDelete.size() != 0) roleDao.deleteRolePermissions(shouldDelete, roleId);
-        if (shouldInsert.size() != 0) roleDao.addRolePermissions(shouldInsert, roleId);
+        if (shouldInsert.size() != 0 && !"".equals(shouldInsert.get(0))) roleDao.addRolePermissions(shouldInsert, roleId);
     }
 
     @Override

@@ -79,3 +79,7 @@ function showTotalCount(totalCount) {
     $("#demo1").css({display: "inline-block"});
     $("#demo1").after(`<a class=" layui-word-aux" id="totalCount">总记录数${totalCount}</a>`);
 }
+
+function getBirthday(idcard) {
+    return idcard.substr(6, 4) + "年" + idcard.substr(10, 2) + "月" + idcard.substr(12, 2) + "日";
+}

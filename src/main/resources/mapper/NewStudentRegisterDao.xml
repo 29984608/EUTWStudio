@@ -3,6 +3,9 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.thoughtWorks.dao.NewStudentRegisterDao">
+    <select id="queryStudentPunishmentByNo" parameterType="string" resultType="string">
+        SELECT centent FROM t_own_punishment WHERE t_own_punishment.studentNo = #{no}
+    </select>
     <select id="queryRegisterBasicInfo" parameterType="string" resultType="map">
         SELECT
             student.name    studentName,
@@ -20,13 +23,14 @@
             student_classify,
             actual_address,
             family_zip_code,
-            family_phone,
+            student.student_contact_method phone,
             pre_school_work,
             pre_school_staff,
             health_status,
             idcard,
             own_experience,
-            own_punishment
+            own_punishment,
+            pre_school_education
         FROM t_student student
             LEFT JOIN (SELECT para_dispname,para_no FROM t_famous_family) f on f.para_no = student.famous_family
             LEFT JOIN (SELECT

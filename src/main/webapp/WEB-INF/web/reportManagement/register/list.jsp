@@ -19,6 +19,11 @@
         margin: 3% 0 1% 3%;
         font-weight: 400;
     }
+
+    #stu_info td {
+        font-size: 12px;
+        text-align: center
+    }
 </style>
 <body>
 <section class="larry-grid layui-form">
@@ -86,32 +91,30 @@
                        onclick="currentIndex=1;resultReport.list()"><i
                             class="layui-icon">&#xe615;</i>搜索</a>
                 </div>
+            </blockquote>
         </div>
+        <div class="larry-separate"></div>
+        <div class="layui-tab-content larry-personal-body clearfix mylog-info-box">
+            <div class="layui-form">
+                <table class="layui-table">
+                    <thead>
+                    <tr>
+                        <th>系</th>
+                        <th>年级</th>
+                        <th>就业方向</th>
+                        <th>班级</th>
+                        <th>学号</th>
+                        <th>姓名</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody id="list">
 
-        </blockquote>
-    </div>
-    <div class="larry-separate"></div>
-    <div class="layui-tab-content larry-personal-body clearfix mylog-info-box">
-        <div class="layui-form">
-            <table class="layui-table">
-                <thead>
-                <tr>
-                    <th>系</th>
-                    <th>年级</th>
-                    <th>就业方向</th>
-                    <th>班级</th>
-                    <th>学号</th>
-                    <th>姓名</th>
-                    <th>操作</th>
-                </tr>
-                </thead>
-                <tbody id="list">
-
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
+            <div id="demo1"></div>
         </div>
-        <div id="demo1"></div>
-    </div>
     </div>
     </div>
 </section>
@@ -200,7 +203,7 @@
                 });
             },
             loadDepartmentOrDirection: function (data, selectId) {
-                let _html = ""
+                let _html = "";
                 for (let i = 0; i < data.length; ++i) {
                     if (selectId == data[i].id) {
                         _html += `<option selected value="` + data[i].id + `">` + data[i].name + `</option>`;
@@ -233,61 +236,74 @@
                 resultReport.showStudentFamilyInfo(student.family);
             },
             showStudentBasicInfo: function (student) {
-                let studentClassify = student.student_classify;
-                if ("本科" == studentClassify) $("#student_classify").text("☑本科 ☐专升本 ☐专科");
-                if ("专升本" == studentClassify) $("#student_classify").text("☐本科 ☑专升本 ☐专科");
-                if ("专科" == studentClassify) $("#student_classify").text("☐本科 ☐专升本 ☑专科");
+                $("#student_classify").text("☑本科 ☐专升本 ☐专科");
 
-                $(".studentName").text(student.studentName == undefined ? "" : student.studentName);
-                $("#professionName").text(student.professionName == undefined ? "" : student.professionName);
-                $("#classesName").text(student.classesName == undefined ? "" : student.classesName);
-                $("#no").text(student.no == undefined ? "" : student.no);
-                $("#in_school").text(student.in_school == undefined ? "" : student.in_school);
-                $("#gender").text(student.gender == undefined ? "" : (student.gender === "M" ? "女" : "男"));
-                $("#born").text(student.born == undefined ? "" : student.born);
-                $("#famous_family").text(student.famous_family == undefined ? "" : student.famous_family);
-                $("#is_marry").text(student.is_marry == undefined ? "" : student.is_marry);
+                $(".studentName").text(student.studentName == undefined ? "无" : student.studentName);
+                $("#professionName").text(student.professionName == undefined ? "无" : student.professionName);
+                $("#classesName").text(student.classesName == undefined ? "无" : student.classesName);
+                $("#no").text(student.no == undefined ? "无" : student.no);
+                $("#in_school").text(student.in_school == undefined ? "无" : student.in_school + "-09-01");
+                $("#gender").text(student.gender == undefined ? "无" : (student.gender === "F" ? "女" : "男"));
+                $("#born").text(getBirthday(student.idcard));
+                $("#famous_family").text(student.famous_family == undefined ? "无" : student.famous_family);
+                $("#pre_school_education").text(student.pre_school_education == undefined ? "无" : student.pre_school_education);
+                $("#is_marry").text(student.is_marry == undefined ? "无" : student.is_marry);
                 $("#head_image").attr({src: HEAD_IMAGE_PREFIX + student.head_image});
-                $("#origin_address").text(student.origin_address == undefined ? "" : student.origin_address);
-                $("#political_status").text(student.political_status == undefined ? "" : student.political_status);
-                $("#actual_address").text(student.actual_address == undefined ? "" : student.actual_address);
-                $("#family_zip_code").text(student.family_zip_code == undefined ? "" : student.family_zip_code);
-                $("#family_phone").text(student.family_phone == undefined ? "" : student.family_phone);
-                $("#pre_school_work").text(student.pre_school_work == undefined ? "" : student.pre_school_work);
-                $("#pre_school_staff").text(student.pre_school_staff == undefined ? "" : student.pre_school_staff);
-                $("#health_status").text(student.health_status == undefined ? "" : student.health_status);
-                $("#idcard").text(student.idcard == undefined ? "" : student.idcard);
-                $("#own_experience").text(student.own_experience == undefined ? "" : student.own_experience);
-                $("#own_punishment").text(student.own_punishment == undefined ? "" : student.own_punishment);
+                $("#origin_address").text(student.origin_address == undefined ? "无" : student.origin_address);
+                $("#political_status").text(student.political_status == undefined ? "无" : student.political_status);
+                $("#actual_address").text(student.actual_address == undefined ? "无" : student.actual_address);
+                $("#family_zip_code").text(student.family_zip_code == undefined ? "无" : student.family_zip_code);
+                $("#family_phone").text(student.phone == undefined ? "无" : student.phone);
+                $("#pre_school_work").text(student.pre_school_work == undefined ? "无" : student.pre_school_work);
+                $("#pre_school_staff").text(student.pre_school_staff == undefined ? "无" : student.pre_school_staff);
+                $("#health_status").text(student.health_status == undefined ? "无" : student.health_status);
+                $("#idcard").text(student.idcard == undefined ? "无" : student.idcard);
+                $("#own_experience").text(student.own_experience == undefined ? "无" : student.own_experience);
+                $("#own_punishment").text(student.own_punishment == "" ? "无" : student.own_punishment);
 
             },
             showStudentExperienceInfo: function (experiences) {
                 $(".experience_node").remove();
-                experiences.forEach(experience => {
-                    $("#experience").after(`
+                let start_time,end_time,work_place,staff;
+                for(let i = 0; i < 4; ++i){
+                    let experience = experiences[i];
+                    if(experience) {
+                        [start_time, end_time, work_place, staff] = [experience.start_time, experience.end_time, experience.work_place, experience.staff];
+                    }else{
+                        [start_time, end_time, work_place, staff] = [" "," "," "," "];
+                    }
+                    $("#experience").before(`
                      <tr class="experience_node">
-                        <td colspan="2">` + experience.start_time + `</td>
-                        <td colspan="2">` + experience.end_time + `</td>
-                        <td colspan="6">` + experience.work_place + `(` + experience.staff + `)</td>
-                        <td colspan="1">` + experience.witness + `</td>
+                        <td colspan="2" style="height: 35px;">` + start_time + `</td>
+                        <td colspan="2">` + end_time + `</td>
+                        <td colspan="6">` + work_place + `</td>
+                        <td colspan="1">` + staff + `</td>
                     </tr>
                     `);
-                })
+                }
             },
             showStudentFamilyInfo: function (familys) {
                 $(".family_node").remove();
-                familys.forEach(family => {
-                    $("#family").after(`
+                let relationship,name,political_status,staff,work_place,phone;
+                for(let i = 0; i < 4; ++i){
+                    let family = familys[i];
+                    if(family) {
+                        [relationship, name, political_status, staff,work_place,phone] =
+                            [family.relationship, family.name, family.political_status, family.staff,family.work_place,family.phone];
+                    }else{
+                        [relationship, name, political_status, staff,work_place,phone] = [" "," "," "," ","",""];
+                    }
+                    $("#family").before(`
                      <tr class="family_node">
-                        <td colspan="1">` + family.relationship + `</td>
-                        <td colspan="1">` + family.name + `</td>
-                        <td colspan="1">` + family.political_status + `</td>
-                        <td colspan="1">` + family.staff + `</td>
-                        <td colspan="6">` + family.work_place + `</td>
-                        <td colspan="1">` + family.phone + `</td>
+                        <td colspan="1" style="height: 35px;">` + relationship + `</td>
+                        <td colspan="1">` + name + `</td>
+                        <td colspan="1">` + political_status + `</td>
+                        <td colspan="1">` + staff + `</td>
+                        <td colspan="6">` + work_place + `</td>
+                        <td colspan="1">` + phone + `</td>
                     </tr>
                     `);
-                })
+                }
             },
             exportRegisterReport: function () {
                 location.href = baseUrl + "/newStudentRegister/exportRegisterReport?no=" + $("#no").text() + "";

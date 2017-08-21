@@ -5,7 +5,7 @@
         <td>{{ index+1}}</td>
         <td>
             {{# if(item.moduleName === undefined){ }}
-            未分配
+            无
             {{# }else{ }}
             {{ item.moduleName}}
             {{#}}}
@@ -18,7 +18,7 @@
         <td>{{ item.nature}}</td>
 
         <td> {{# if(item.method === undefined){ }}
-            未分配
+            无
             {{# }else{ }}
             {{ item.method}}
             {{#}}}</td>
