@@ -1029,4 +1029,8 @@ WHERE student.no =#{studentNo}
         WHERE department_id = #{departmentId}
     </select>
 
+    <select id="queryAllStudentsProfessionList" resultType="map">
+        select * from stuInfo.t_profession
+    </select>
+
 </mapper>

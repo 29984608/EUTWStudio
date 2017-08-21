@@ -87,7 +87,7 @@
                             <div class="layui-form-inline">
                                 <div>
                                     <label class="layui-form-label" style="font-size: 13px">性别</label>
-                                    <div class="layui-input-inline" id="sexQuery" style="width: 20%;">
+                                    <div class="layui-input-inline" id="sexQuery" style="width: 250px;">
                                         <input type="radio" name="sexQuery" value="" title="全部" checked="">
                                         <input type="radio" name="sexQuery" value="M" title="男">
                                         <input type="radio" name="sexQuery" value="F" title="女">
@@ -434,6 +434,7 @@
                             let AwardOrPunishmentList = data.AwardOrPunishmentList;
                             let familyList = data.students_family;
                             let professionList = data.professionList;
+                            let allProfessionList = data.allProfessionList;
                             let directionList = data.directionList;
                             let classesList = data.classesList;
                             let experienceList = data.experienceList;
@@ -499,13 +500,12 @@
                             $("input:radio[value='" + studentList.is_out + "']").prop('checked', 'true');
                             $("#Identity_card_address").val(studentList.idcard_address);
 
-                            $("#detailedAddresses").val(studentList.actual_address)
-                            $("#update_name_of_the_source").val(studentList.origin_address)
+                            $("#detailedAddresses").val(studentList.actual_address);
+                            $("#update_name_of_the_source").val(studentList.origin_address);
+                            $("#updateOffCampusAddress").val(studentList.off_school_stay_address);
 
-                            $("#updateStudentZip_code").val(studentList.family_zip_code)
-                            $("#updateStudentHome_phone").val(studentList.family_phone)
-
-                            $("#family_information").append(``)
+                            $("#updateStudentZip_code").val(studentList.family_zip_code);
+                            $("#updateStudentHome_phone").val(studentList.family_phone);
 
                             student.familyFnformation(familyList);
 
@@ -525,7 +525,7 @@
                             }
                             $("#school_account_where_the_police_station_detailed").val(studentList.pre_school_account_where_station);
 
-                            $("#studentsProfessionList").html("").append(`<option value=""></option>` + loadOptionsHtml(professionList, studentList.origin_profession_id));
+                            $("#studentsProfessionList").html("").append(`<option value=""></option>` + loadOptionsHtml(allProfessionList, studentList.origin_profession_id));
                             $("#studentsNowProfessional").html("").append(`<option value=""></option>` + loadOptionsHtml(professionList, studentList.profession_id));
                             $("#employment_direction").html("").append(`<option value=""></option>` + loadOptionsHtml(directionList, studentList.direction_id));
                             $("#student_department").html("").append(`<option value=""></option>` + loadOptionsHtml(departmentList, studentList.department_id));
@@ -618,8 +618,10 @@
                             //1表示校内,2表示校外
                             if (studentList.stay_type == "2") {
                                 $("#dorms").hide();
+                                $("#OffCampusAddress").show();
                             } else {
-                                $("#dorms").show();
+                                $("#OffCampusAddress").hide();
+                                $("#dorms").show();``
                             }
                         }
                     }
@@ -660,7 +662,7 @@
                            </span></th>
                             <th colspan="4">工作单位：<span>
                                <div class="layui-input-inline">
-                                   <input type="text" name="text"
+                                   <input type="text" name="text" style="width: 150%"
                                           placeholder="请输入内容" autocomplete="off" class="layui-input updateStudentParent_employer"
                                           id="updateStudentParent_employer">
                                 </div>
@@ -976,8 +978,10 @@
                 let stay_type = $('#update_accommodation_type input[name="accommodation_type"]:checked ').val();
                 if (stay_type === '2') {
                     $("#dorms").hide();
+                    $("#OffCampusAddress").show();
                 } else {
                     $("#dorms").show();
+                    $("#OffCampusAddress").hide();
                 }
             },
 
@@ -1065,9 +1069,20 @@
                 }
 
                 var student_classify = $("#student_classify input[name='student_classify']:checked").val()
+                //校外住址
+                if ($("#province12").find("option:selected").text() == "—— 省 ——" || $("#city12").find("option:selected").text() == "—— 市 ——" || $("#district12").find("option:selected").text() == "—— 区/县 ——") {
+                    var off_school_stay_address = $("#updateOffCampusAddress").val();
+                } else {
+                    let detailedAddresses = "";
+                    detailedAddresses += $("#province12").find("option:selected").text() + "-";
+                    detailedAddresses += $("#city12").find("option:selected").text() + "-";
+                    detailedAddresses += $("#district12").find("option:selected").text() + "-";
+                    detailedAddresses += $("#detailedOffCampusAddress").val();
+                    var off_school_stay_address = detailedAddresses;
+                }
                 //籍贯
-                if ($("#province9").find("option:selected").text() == "—— 省 ——" || $("#city9").find("option:selected").text() == "—— 市 ——" || $("#district9").find("option:selected").text() == "—— 区/县 ——") {
-                    var idcard_address = $("#updateStudentNativePlace").val();
+                if ($("#province9").find("option:selected").text() == "—— 省 ——" || $("#city9").find("option:selected").text() == "—— 市 ——" || $("#district9").find("option:selected").text() == "—— 区/县 ——" || $("#detailedOffCampusAddress").val() != null) {
+                    var native_place = $("#updateStudentNativePlace").val();
                 } else {
                     let detailedAddresses = "";
                     detailedAddresses += $("#province9").find("option:selected").text() + "-";
@@ -1287,6 +1302,7 @@
                             stay_type: stay_type,
                             famous_family: famous_family,
                             department_id: department_id,
+                            off_school_stay_address:off_school_stay_address,
                             native_place: native_place,
                             political_status: political_status,
                             pre_school_education: pre_school_education,
@@ -1354,15 +1370,30 @@
                         function (data) {
                             if (data.result) {
                                 layer.msg(data.msg);
+                                $("#showUpdateDorms").hide();
+                                $("#updateDetailedAddress").hide();
+                                $("#showUpdate_name_of_the_source").hide();
+                                $("#update_Pre_enrollment_file_unit").hide();
+                                $("#show_Pre_school_account_where_the_police_station_detailed").hide();
+                                $("#updateCardAddress").hide();
+                                $("#updateNativeAddress").hide();
+                                $("#showUpdateOffCampusAddress").hide();
                             }
                         }
                     )
                 })
             },
 
+            updateSameToIdcard_address: function () {
+                $("#detailedAddresses").val(studentInfo.idcard_address);
+            },
+
 
             showUpdateDorms: function () {
                 $("#showUpdateDorms").show();
+            },
+            showUpdateOffCampusAddress:function () {
+                $("#showUpdateOffCampusAddress").show();
             },
 
             updateDetailedAddress: function () {

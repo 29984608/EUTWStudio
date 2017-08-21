@@ -134,5 +134,7 @@ public interface PersonDao {
     List<Map<String,Object>> showAutoProfessionListByDepartment(@Param("departmentId") String departmentId);
 
     List<Map<String,Object>> showAutoDirectionListByDepartment(@Param("departmentId") String departmentId);
+
+    List<Map<String,String>> queryAllStudentsProfessionList();
 }
 

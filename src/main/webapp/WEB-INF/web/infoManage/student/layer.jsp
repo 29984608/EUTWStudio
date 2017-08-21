@@ -341,7 +341,7 @@
                                         <th colspan="3">性别：<span>
                                             <div class="layui-inline" pane="" id="updateStudentSex">
                                                 <div class="layui-inline" id="updateStudentSexToJs">
-                                                    <input name="sexOfUpdate" value="M" title="男"
+                                                    <input name="sexOfUpdate" value="M" title="男" style="font-weight: 100: 8px"
                                                            type="radio">
                                                     <input name="sexOfUpdate" value="F" title="女"
                                                            type="radio">
@@ -425,16 +425,7 @@
 
 
                                     <tr>
-                                        <th colspan="2">住宿类型:<span>
-                                        <div class="layui-inline" pane="" id="update_accommodation_type">
-                                            <label class="layui-form-label" style="width: auto"></label>
-                                            <div class="layui-inline" onclick="student.showAreaInfo()">
-                                               <input name="accommodation_type" value="2" title="校外"
-                                                      type="radio">
-                                               <input name="accommodation_type" value="1" title="校内" type="radio">
-                                            </div>
-                                        </div>
-                                    </span></th>
+
                                         <th colspan="2">血型：<span>
                                         <div class="layui-input-inline"
                                         >
@@ -452,7 +443,7 @@
 
                                         <th colspan="2">华侨、港澳台:<span>
                                         <div class="layui-inline" pane="" id="update_isOut">
-                                            <label class="layui-form-label" style="width: auto"></label>
+                                            <label class="layui-form-label" ></label>
                                             <div class="layui-inline" onclick="student.showAreaInfo()">
                                                <input name="isOut" value="是" title="是"
                                                       type="radio">
@@ -523,7 +514,7 @@
                                         <th colspan="6">
                                                 <div class="layui-form-item" style="margin-bottom: 0px">
                                                     <label class="layui-form-label"
-                                                           style="margin-left: -50px;">宗教信仰</label>
+                                                           style="margin-left: -46px;">宗教信仰：</label>
                                                     <div class="layui-input-block">
                                                         <input type="text" name="title" id="religiousBelief"
                                                                autocomplete="off" placeholder="何时经何人介绍参加何种党派、团体、任何职?"
@@ -630,7 +621,7 @@
 
                                     <tr>
                                         <th colspan="6"><span style="font-weight: bold"></span>
-                                            <div class="layui-input-inline" style="width: 100%">
+                                            <div class="layui-input-inline" style="width: 100%;float: right">
                                                 <label class="layui-form-label" style="width: auto;margin-left: -15px">家庭实际住址: </label>
                                                 <div class="layui-input-inline" style="width: 60%">
                                                     <input type="text" name="idcard_address" placeholder="请输入家庭实际住址"
@@ -638,6 +629,8 @@
                                                            readonly style="border: none">
                                                 </div>
                                                 <span style="float: right">
+                                                     <button class="layui-btn"
+                                                             onclick="student.updateSameToIdcard_address()">同身份证住址</button>
                                                      <button class="layui-btn"
                                                              onclick="student.updateDetailedAddress()">编辑地址信息</button>
                                                 </span>
@@ -906,6 +899,140 @@
                                         </th>
                                     </tr>
 
+                                    <tr>
+
+                                        <th colspan="3">社区辅导员：<span>
+                                            <div class="layui-input-inline" style="width: 60%">
+                                                <select lay-filter="update_community_counselor"
+                                                        id="update_community_counselor">
+                                                    <option value=""></option>
+                                                </select>
+                                            </div>
+                                        </span></th>
+
+                                        <th colspan="3">住宿类型:<span>
+                                        <div class="layui-inline" pane="" id="update_accommodation_type">
+                                            <label class="layui-form-label" style="width: auto"></label>
+                                            <div class="layui-inline" onclick="student.showAreaInfo()">
+                                               <input name="accommodation_type" value="2" title="校外"
+                                                      type="radio">
+                                               <input name="accommodation_type" value="1" title="校内" type="radio">
+                                            </div>
+                                        </div>
+                                    </span></th>
+                                    </tr>
+
+                                    <tr id="dorms">
+                                        <th colspan="6"><span><span style="font-weight: bold"></span>
+
+                                                <div class="layui-input-inline" style="width: 100%">
+                                                <label class="layui-form-label" style="width: auto;margin-left: -15px">宿舍信息: </label>
+                                                <div class="layui-input-inline" style="width: 60%">
+                                                    <input type="text" name="idcard_address" placeholder="请输入宿舍信息"
+                                                           autocomplete="off" class="layui-input" id="updateDorms"
+                                                           readonly style="border: none">
+                                                </div>
+                                                <span style="float: right">
+                                                     <button class="layui-btn"
+                                                             onclick="student.showUpdateDorms()">编辑地址信息</button>
+                                                </span>
+                                            </div>
+                                            </span>
+                                            <div id="showUpdateDorms" style="display: none">
+                                                <br>
+
+                                                <div class="layui-input-inline">
+                                                    <label class="layui-form-label">区</label>
+                                                    <div class="layui-inline">
+                                                        <div class="layui-input-inline">
+                                                            <select name="modules" lay-filter="modules_3"
+                                                                    lay-search=""
+                                                                    id="queryAreas">
+                                                                <option value="">直接选择或搜索选择</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="layui-input-inline">
+                                                    <label class="layui-form-label">楼层</label>
+                                                    <div class="layui-inline">
+                                                        <div class="layui-input-inline">
+                                                            <select name="modules1" lay-filter="modules_2"
+                                                                    lay-search=""
+                                                                    id="queryFloors">
+                                                                <option value="">直接选择或搜索选择</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="layui-input-inline">
+                                                    <label class="layui-form-label">宿舍</label>
+                                                    <div class="layui-inline">
+                                                        <div class="layui-input-inline">
+                                                            <select name="modules1" lay-filter="modules_1"
+                                                                    lay-search=""
+                                                                    id="queryRooms">
+                                                                <option value="">直接选择或搜索选择</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        </th>
+                                    </tr>
+                                    <tr id="OffCampusAddress" style="display: none">
+                                        <th colspan="6"><span><span style="font-weight: bold"></span>
+
+                                                <div class="layui-input-inline" style="width: 100%">
+                                                <label class="layui-form-label" style="width: auto;margin-left: -15px">校外住址信息: </label>
+                                                <div class="layui-input-inline" style="width: 60%">
+                                                    <input type="text" name="idcard_address" placeholder="请输入校外住址信息信息"
+                                                           autocomplete="off" class="layui-input" id="updateOffCampusAddress"
+                                                           readonly style="border: none">
+                                                </div>
+                                                <span style="float: right">
+                                                     <button class="layui-btn"
+                                                             onclick="student.showUpdateOffCampusAddress()">编辑地址信息</button>
+                                                </span>
+                                            </div>
+                                            </span>
+                                            <div id="showUpdateOffCampusAddress" style="display: none">
+                                                <br>
+                                                <form class="form-inline">
+                                                    <div id="distpicker12">
+                                                        <div class="form-group">
+                                                            <label class="sr-only" for="province12">Province</label>
+                                                            <select class="form-control" id="province12"
+                                                                    lay-ignore></select>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="sr-only" for="city12">City</label>
+                                                            <select class="form-control" id="city12" lay-ignore></select>
+                                                        </div>
+                                                        <div class="form-group" style="margin-right: -5px">
+                                                            <label class="sr-only" for="district12">District</label>
+                                                            <select class="form-control" id="district12"
+                                                                    lay-ignore></select>
+                                                        </div>
+                                                        <div class="layui-input-block form-group"
+                                                             style="margin-left: 5px">
+                                                            <input type="text" name="detailedAddress"
+                                                                   placeholder="请输入详细地址"
+                                                                   autocomplete="off" class="layui-input"
+                                                                   id="detailedOffCampusAddress">
+                                                        </div>
+                                                    </div>
+                                                </form>
+
+                                            </div>
+
+                                        </th>
+                                    </tr>
+
                                     </tbody>
                                 </table>
 
@@ -1007,7 +1134,7 @@
                                     </tr>
 
                                     <tr>
-                                        <th colspan="2">职业导师：<span>
+                                        <th colspan="1">职业导师：<span>
                                             <div class="layui-input-inline" style="width: 60%">
                                                 <select lay-filter="update_community_counselor"
                                                         id="update_career_mentor" readonly>
@@ -1015,7 +1142,7 @@
                                                 </select>
                                             </div>
                                         </span></th>
-                                        <th colspan="2">学籍状态：<span>
+                                        <th colspan="5">学籍状态：<span>
                                             <div class="layui-input-inline" style="width: 60%">
                                                 <select lay-filter="update_student_status" id="update_student_status">
                                                     <option value=""></option>
@@ -1030,14 +1157,7 @@
                                         </span></th>
                                     </tr>
                                     <tr>
-                                        <th colspan="1">社区辅导员：<span>
-                                            <div class="layui-input-inline" style="width: 60%">
-                                                <select lay-filter="update_community_counselor"
-                                                        id="update_community_counselor">
-                                                    <option value=""></option>
-                                                </select>
-                                            </div>
-                                        </span></th>
+
 
                                         <th colspan="5">困难类别：<span>
                                             <div class="layui-input-inline" style="width: 60%">
@@ -1144,68 +1264,7 @@
                                             </span>
                                         </span></th>
                                     </tr>
-                                    <tr id="dorms">
-                                        <th colspan="6"><span><span style="font-weight: bold"></span>
 
-                                                <div class="layui-input-inline" style="width: 100%">
-                                                <label class="layui-form-label" style="width: auto;margin-left: -15px">宿舍信息: </label>
-                                                <div class="layui-input-inline" style="width: 60%">
-                                                    <input type="text" name="idcard_address" placeholder="请输入宿舍信息"
-                                                           autocomplete="off" class="layui-input" id="updateDorms"
-                                                           readonly style="border: none">
-                                                </div>
-                                                <span style="float: right">
-                                                     <button class="layui-btn"
-                                                             onclick="student.showUpdateDorms()">编辑地址信息</button>
-                                                </span>
-                                            </div>
-                                            </span>
-                                            <div id="showUpdateDorms" style="display: none">
-                                                <br>
-                                                <br>
-                                                <div class="layui-input-inline">
-                                                    <label class="layui-form-label">区</label>
-                                                    <div class="layui-inline">
-                                                        <div class="layui-input-inline">
-                                                            <select name="modules" lay-filter="modules_3"
-                                                                    lay-search=""
-                                                                    id="queryAreas">
-                                                                <option value="">直接选择或搜索选择</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="layui-input-inline">
-                                                    <label class="layui-form-label">楼层</label>
-                                                    <div class="layui-inline">
-                                                        <div class="layui-input-inline">
-                                                            <select name="modules1" lay-filter="modules_2"
-                                                                    lay-search=""
-                                                                    id="queryFloors">
-                                                                <option value="">直接选择或搜索选择</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="layui-input-inline">
-                                                    <label class="layui-form-label">宿舍</label>
-                                                    <div class="layui-inline">
-                                                        <div class="layui-input-inline">
-                                                            <select name="modules1" lay-filter="modules_1"
-                                                                    lay-search=""
-                                                                    id="queryRooms">
-                                                                <option value="">直接选择或搜索选择</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-
-                                        </th>
-                                    </tr>
                                     </tbody>
                                 </table>
                                 <h4 style="color: #00ab9f;font-weight: bold ;padding-top: 15px;">获奖或处分</h4>
@@ -1452,6 +1511,9 @@
         autoSelect: false
     });
     $("#distpicker9").distpicker({
+        autoSelect: false
+    });
+    $("#distpicker12").distpicker({
         autoSelect: false
     });
     $("#family_phone_add").formatInput({

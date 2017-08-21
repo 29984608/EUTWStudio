@@ -82,6 +82,8 @@ public class StudentController {
             List<Map<String, Object>> students_family = personService.queryStudentFamily(studentNo);
             System.out.println(students.get("departmentId"));
             List<Map<String, String>> professionList = personService.queryStudentsProfessionList((String) students.get("department_id"));
+            List<Map<String, String>> allProfessionList = personService.queryAllStudentsProfessionList();
+            System.out.println("000000"+professionList);
             List<Map<String, String>> AwardOrPunishmentList = personService.queryStudentsAwardOrPunishmentList(studentNo);
             List<Map<String, String>> directionList = personService.queryStudentsDirection((String) students.get("department_id"));
             List<Map<String, Object>> classesList = personService.queryStudentsClassList();
@@ -94,6 +96,7 @@ public class StudentController {
             data.put("students", students);
             data.put("students_family", students_family);
             data.put("professionList", professionList);
+            data.put("allProfessionList", allProfessionList);
             data.put("directionList", directionList);
             data.put("classesList", classesList);
             data.put("AwardOrPunishmentList", AwardOrPunishmentList);

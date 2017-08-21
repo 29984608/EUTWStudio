@@ -116,4 +116,6 @@ public interface PersonService {
     List<Map<String,Object>> showAutoProfessionListByDepartment(String departmentId)throws Exception;
 
     List<Map<String,Object>> showAutoDirectionListByDepartment(String departmentId)throws Exception;
+
+    List<Map<String,String>> queryAllStudentsProfessionList()throws Exception;
 }
