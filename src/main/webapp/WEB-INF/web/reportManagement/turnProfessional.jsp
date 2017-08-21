@@ -99,10 +99,10 @@
                           <th>` + item.no + `</th>
                           <th>` + item.name + `</th>
                           <th>专科</th>
-                          <th>` + item.originProfession + `</th>
-                          <th>` + item.originProfessionId + `</th>
                           <th>` + item.profession + `</th>
                           <th>` + item.professionId + `</th>
+                          <th>` + item.originProfession + `</th>
+                          <th>` + item.originProfessionId + `</th>
                     </tr>`;
                 })
                 $("#report").html(_html);
