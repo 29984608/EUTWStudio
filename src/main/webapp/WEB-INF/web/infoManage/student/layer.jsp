@@ -145,7 +145,7 @@
                     </tr>
                     <tr>
 
-                        <th colspan="3" style="width:145px;">出生日期：<span id="born"></span></th>
+                        <th colspan="3" style="width:162px;">出生日期：<span id="born"></span></th>
                         <th colspan="5" style="width:230px;">籍贯：<span id="native_place"></span></th>
                         <th colspan="3" style="width:190px;">政治面貌：<span id="political_status"></span></th>
                         <th >婚否：<span id="is_marry"></span></th>
