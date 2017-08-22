@@ -23,10 +23,11 @@
 <body>
 
 <style>
-    .layui-form-radio span{
+    .layui-form-radio span {
         font-size: 10px;
     }
-    .layui-form-radio i{
+
+    .layui-form-radio i {
         font-size: 15px;
     }
 </style>
@@ -381,7 +382,7 @@
                     $("#family").html("")
                     for (var i = 0; i < data.family.length; i++) {
                         $("#family").append("<tr> <th colspan='5' >" + data.family[i].relationship + "：" + data.family[i].name + "</th>" +
-                            "<th colspan='4' style='width: 70px'>职务：" + data.family[i].staff + "</th>"+
+                            "<th colspan='4' style='width: 70px'>职务：" + data.family[i].staff + "</th>" +
                             "<th colspan='4'>联系电话：" + data.family[i].phone + "</th></tr>" +
                             "<tr><th colspan='5' style='width: 130px'>政治面貌：" + data.family[i].political_status + "</th>" +
                             "<th colspan='8'>工作单位：" + data.family[i].work_place + "</th> </tr>");
@@ -630,7 +631,8 @@
                                 $("#OffCampusAddress").show();
                             } else {
                                 $("#OffCampusAddress").hide();
-                                $("#dorms").show();``
+                                $("#dorms").show();
+                                ``
                             }
                         }
                     }
@@ -742,10 +744,10 @@
 
                 }
 
-                    $(updateStudentParent_phone[i]).formatInput({
-                        formatArr: [3, 4, 4],
-                        delimiter: '-'
-                    });
+                $(updateStudentParent_phone[i]).formatInput({
+                    formatArr: [3, 4, 4],
+                    delimiter: '-'
+                });
             },
             educationalExperience: function (experienceList) {
                 $("#educational_experience").html("")
@@ -1310,7 +1312,7 @@
                             stay_type: stay_type,
                             famous_family: famous_family,
                             department_id: department_id,
-                            off_school_stay_address:off_school_stay_address,
+                            off_school_stay_address: off_school_stay_address,
                             native_place: native_place,
                             political_status: political_status,
                             pre_school_education: pre_school_education,
@@ -1400,7 +1402,7 @@
             showUpdateDorms: function () {
                 $("#showUpdateDorms").show();
             },
-            showUpdateOffCampusAddress:function () {
+            showUpdateOffCampusAddress: function () {
                 $("#showUpdateOffCampusAddress").show();
             },
 
@@ -1530,7 +1532,6 @@
                 $("#studentEmail").val($(this).val() + "@qq.com");
             })
         }
-
 
         $(function () {
             student.list();

@@ -565,17 +565,20 @@
                                                     <div id="distpicker9">
                                                         <div class="form-group">
                                                             <label class="sr-only" for="province9">Province</label>
-                                                            <select class="form-control" id="province9" onchange="selectProvince9(this)"
+                                                            <select class="form-control" id="province9"
+                                                                    onchange="selectProvince9(this)"
                                                                     lay-ignore></select>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="sr-only" for="city9">City</label>
-                                                            <select class="form-control" id="city9" onchange="selectCity9(this)"
+                                                            <select class="form-control" id="city9"
+                                                                    onchange="selectCity9(this)"
                                                                     lay-ignore></select>
                                                         </div>
                                                         <div class="form-group" style="margin-right: -5px">
                                                             <label class="sr-only" for="district9">District</label>
-                                                            <select class="form-control" id="district9" onchange="selectDistrict9(this)"
+                                                            <select class="form-control" id="district9"
+                                                                    onchange="selectDistrict9(this)"
                                                                     lay-ignore></select>
                                                         </div>
                                                     </div>
@@ -607,17 +610,20 @@
                                                     <div id="distpicker0">
                                                         <div class="form-group">
                                                             <label class="sr-only" for="province0">Province</label>
-                                                            <select class="form-control" id="province0" onchange="selectProvince0(this)"
+                                                            <select class="form-control" id="province0"
+                                                                    onchange="selectProvince0(this)"
                                                                     lay-ignore></select>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="sr-only" for="city0">City</label>
-                                                            <select class="form-control" id="city0" onchange="selectCity0(this)"
+                                                            <select class="form-control" id="city0"
+                                                                    onchange="selectCity0(this)"
                                                                     lay-ignore></select>
                                                         </div>
                                                         <div class="form-group" style="margin-right: -5px">
                                                             <label class="sr-only" for="district0">District</label>
-                                                            <select class="form-control" id="district0" onchange="selectDistrict0(this)"
+                                                            <select class="form-control" id="district0"
+                                                                    onchange="selectDistrict0(this)"
                                                                     lay-ignore></select>
                                                         </div>
                                                     </div>
@@ -650,17 +656,20 @@
                                                     <div id="distpicker3">
                                                         <div class="form-group">
                                                             <label class="sr-only" for="province3">Province</label>
-                                                            <select class="form-control" id="province3" onchange="selectProvince3(this)"
+                                                            <select class="form-control" id="province3"
+                                                                    onchange="selectProvince3(this)"
                                                                     lay-ignore></select>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="sr-only" for="city3">City</label>
-                                                            <select class="form-control" id="city3" onchange="selectCity3(this)"
+                                                            <select class="form-control" id="city3"
+                                                                    onchange="selectCity3(this)"
                                                                     lay-ignore></select>
                                                         </div>
                                                         <div class="form-group" style="margin-right: -5px">
                                                             <label class="sr-only" for="district3">District</label>
-                                                            <select class="form-control" id="district3" onchange="selectDistrict3(this)"
+                                                            <select class="form-control" id="district3"
+                                                                    onchange="selectDistrict3(this)"
                                                                     lay-ignore></select>
                                                         </div>
                                                         <%--<label class="layui-form-label " style="width: auto">详细地址</label>--%>
@@ -1539,6 +1548,7 @@
     let P_school_account_where_the_police_station_detailed = '';
     let C_school_account_where_the_police_station_detailed = '';
     let D_school_account_where_the_police_station_detailed = '';
+    let this_school_account_where_the_police_station_detailed = '';
 
     function selectProvince5(e) {
         P_school_account_where_the_police_station_detailed = e.options[e.selectedIndex].text;
@@ -1555,11 +1565,17 @@
         $("#school_account_where_the_police_station_detailed").val(D_school_account_where_the_police_station_detailed);
     }
 
+    $("#Pre_school_account_where_the_police_station_detailed").bind('input propertychange', function () {
+        this_school_account_where_the_police_station_detailed = D_school_account_where_the_police_station_detailed;
+        $("#school_account_where_the_police_station_detailed").val(this_school_account_where_the_police_station_detailed + "-" + $(this).val());
+    })
+
     //校外住址信息：
 
     let P_updateOffCampusAddress = '';
     let C_updateOffCampusAddress = '';
     let D_updateOffCampusAddress = '';
+    let this_updateOffCampusAddress = '';
 
     function selectProvince12(e) {
         P_updateOffCampusAddress = e.options[e.selectedIndex].text;
@@ -1576,11 +1592,17 @@
         $("#updateOffCampusAddress").val(D_updateOffCampusAddress);
     }
 
+    $("#detailedOffCampusAddress").bind('input propertychange', function () {
+        this_updateOffCampusAddress = D_updateOffCampusAddress;
+        $("#updateOffCampusAddress").val(this_updateOffCampusAddress + "-" + $(this).val());
+    })
+
     //入学前档案所在单位：
 
     let P_Pre_enrollment_file_unit = '';
     let C_Pre_enrollment_file_unit = '';
     let D_Pre_enrollment_file_unit = '';
+    let this_Pre_enrollment_file_unit = '';
 
     function selectProvince2(e) {
         P_Pre_enrollment_file_unit = e.options[e.selectedIndex].text;
@@ -1596,6 +1618,11 @@
         D_Pre_enrollment_file_unit = C_Pre_enrollment_file_unit + "-" + e.options[e.selectedIndex].text;
         $("#Pre_enrollment_file_unit").val(D_Pre_enrollment_file_unit);
     }
+
+    $("#updateStudent_Pre_enrollment_file_unit_detailed").bind('input propertychange', function () {
+        this_Pre_enrollment_file_unit = D_Pre_enrollment_file_unit;
+        $("#Pre_enrollment_file_unit").val(this_Pre_enrollment_file_unit + "-" + $(this).val());
+    })
 
     //生源所在地名称：
 
@@ -1618,11 +1645,14 @@
         $("#update_name_of_the_source").val(D_update_name_of_the_source);
     }
 
-    //生源所在地名称：
+
+
+    //家庭实际住址：
 
     let P_detailedAddresses = '';
     let C_detailedAddresses = '';
     let D_detailedAddresses = '';
+    let this_detailedAddresses = '';
 
     function selectProvince3(e) {
         P_detailedAddresses = e.options[e.selectedIndex].text;
@@ -1638,6 +1668,12 @@
         D_detailedAddresses = C_detailedAddresses + "-" + e.options[e.selectedIndex].text;
         $("#detailedAddresses").val(D_detailedAddresses);
     }
+
+    $("#detailedAddress").bind('input propertychange', function () {
+        this_detailedAddresses = D_detailedAddresses;
+        $("#detailedAddresses").val(this_detailedAddresses + "-" + $(this).val());
+    })
+
     //身份证住址：
 
     let P_Identity_card_address = '';
@@ -1658,7 +1694,10 @@
         D_Identity_card_address = C_Identity_card_address + "-" + e.options[e.selectedIndex].text;
         $("#Identity_card_address").val(D_Identity_card_address);
     }
-    //身份证住址：
+
+
+
+    //籍贯：
 
     let P_updateStudentNativePlace = '';
     let C_updateStudentNativePlace = '';
@@ -1678,5 +1717,13 @@
         D_updateStudentNativePlace = C_updateStudentNativePlace + "-" + e.options[e.selectedIndex].text;
         $("#updateStudentNativePlace").val(D_updateStudentNativePlace);
     }
+
+    //监听省市区详细地址添加
+
+
+  /*  $("#detailedOffCampusAddress").bind('input propertychange', function () {
+        thisUpdateOffCampusAddress = $(this).val();
+        $("#updateOffCampusAddress").val(thisUpdateOffCampusAddress);
+    })*/
 
 </script>
