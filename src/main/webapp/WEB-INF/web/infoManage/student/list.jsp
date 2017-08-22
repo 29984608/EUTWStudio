@@ -580,9 +580,9 @@
                             }
 
                             //职业导师
-                            $("#update_career_mentor").html("").append(`<option value=""></option>` + loadOptionsHtmlToTeacher(teacherList, studentList.teacher_id))
+                            $("#update_career_mentor").html("").append(`<option value=""></option>` + loadOptionsHtmlToTeacher(teacherList.filter(item => item.classify === "行政"), studentList.teacher_id))
                             //社区辅导员
-                            $("#update_community_counselor").html("").append(`<option value=""></option>` + loadOptionsHtmlToTeacher(teacherList, studentList.community_teacher_id))
+                            $("#update_community_counselor").html("").append(`<option value=""></option>` + loadOptionsHtmlToTeacher(teacherList.filter(item => item.classify === "社区辅导员"), studentList.community_teacher_id))
 
                             $("#Amount_of_arrears").val(studentList.arrears_first_year);
                             $("#Amount_of_arrears2").val(studentList.arrears_second_year);
