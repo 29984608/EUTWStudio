@@ -19,7 +19,18 @@
     <script src="${baseurl}/js/city/distpicker.data.js"></script>
 
 </head>
+
 <body>
+
+<style>
+    .layui-form-radio span{
+        font-size: 10px;
+    }
+    .layui-form-radio i{
+        font-size: 15px;
+    }
+</style>
+
 <section class="larry-grid layui-form">
     <div class="larry-personal">
         <div class="layui-tab">

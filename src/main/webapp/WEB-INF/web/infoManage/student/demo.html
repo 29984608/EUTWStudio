@@ -1,44 +1,29 @@
-<HTML>
-<HEAD>
-    <TITLE> New Document </TITLE>
-    <META NAME="Generator" CONTENT="EditPlus">
-    <META NAME="Author" CONTENT="">
-    <META NAME="Keywords" CONTENT="">
-    <META NAME="Description" CONTENT="">
-    <script language="javascript">
-        function doit(ofrm){
-            ofrm.t1.value=parseInt(ofrm.s1.value)+parseInt(ofrm.s2.value)+parseInt(ofrm.s3.value)+parseInt(ofrm.s4.value);
-//            ofrmofrm.t1.value=ofrm.s1.value+ofrm.s2.value+ofrm.s3.value+ofrm.s4.value;
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js">
+    </script>
+    <script>
+        function select(e){
+            document.getElementById("txtValue").value=e.value+"----->"+e.options[e.selectedIndex].text;
         }
     </script>
-</HEAD>
-<BODY>
-<form name="tfrm">
-    <select name="s1" onChange="javascript:doit(this.form);">
-        <option value="*" selected>请选择</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-    </select>
-    <select name="s2" onChange="javascript:doit(this.form);">
-        <option value="*" selected>请选择</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-    </select>
-    <select name="s3" onChange="javascript:doit(this.form);">
-        <option value="*" selected>请选择</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-    </select>
-    <select name="s4" onChange="javascript:doit(this.form);">
-        <option value="*" selected>请选择</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-    </select>
-    <input type="text" name="t1" value="">
-</form>
-</BODY>
-</HTML>
+</head>
+<body>
+<table>
+    <tr>
+        <td width="30%" style="padding: 5px;">请选择要借用的设备：</td>
+        <td width="70%">
+            <select onchange="select(this)">
+                <option value='11'/>111</option>
+                <option value='12'/>122</option>
+                <select></td>
+    </tr>
+    <tr>
+        <td width="15%" style="padding: 5px;">库存数量：</td>
+        <td width="30%">
+            <input type='text' id='txtValue' value='' disabled="disabled"/>
+    </tr>
+</table>
+</body>
+</html>

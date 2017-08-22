@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 
 <style>
-    .layui-table th{
+    .layui-table th {
         font-size: 11px;
         padding: 8px 5px;
         line-height: 31px;
@@ -137,7 +137,7 @@
                         <th colspan="1" style="width:60px;">性别：<span id="studentSex"></span></th>
                         <th colspan="1" style="width:87px;">民族：<span id="famous_family"></span></th>
                         <th colspan="3" style="width:211px">身份证号：<span id="idcard"></span></th>
-                        <th rowspan = " 3 " style="padding: 1px;">
+                        <th rowspan=" 3 " style="padding: 1px;">
                             <div style="width:120px; height: 140px; border: 0px solid #00ab9f">
                                 <img id="images" style="width:100%" height="100%"/>
                             </div>
@@ -148,7 +148,7 @@
                         <th colspan="4" style="width:145px;">出生日期：<span id="born"></span></th>
                         <th colspan="4" style="width:200px;">籍贯：<span id="native_place"></span></th>
                         <th colspan="3" style="width:190px;">政治面貌：<span id="political_status"></span></th>
-                        <th >婚否：<span id="is_marry"></span></th>
+                        <th>婚否：<span id="is_marry"></span></th>
                     </tr>
                     <tr>
                         <th colspan="3" style="width:120px;">血型：<span id="blood"></span></th>
@@ -270,7 +270,9 @@
                                             <tr>
                                                 <th>
                                                     <div class="layui-inline">
-                                                        <label class="layui-form-label" style="width:auto;"><img style="width: 18px;height:18px;" src="${baseurl}/images/public/TEL.png"></label>
+                                                        <label class="layui-form-label" style="width:auto;"><img
+                                                                style="width: 18px;height:18px;"
+                                                                src="${baseurl}/images/public/TEL.png"></label>
                                                         <div class="layui-input-inline">
                                                             <input type="tel" name="phone"
                                                                    autocomplete="off" class="layui-input"
@@ -282,7 +284,9 @@
                                             <tr>
                                                 <th>
                                                     <div class="layui-inline">
-                                                        <label class="layui-form-label" style="width:auto;"><img style="width: 18px;height:18px;" src="${baseurl}/images/public/qq.png"></label>
+                                                        <label class="layui-form-label" style="width:auto;"><img
+                                                                style="width: 18px;height:18px;"
+                                                                src="${baseurl}/images/public/qq.png"></label>
                                                         <div class="layui-input-inline">
                                                             <input type="number" name="QQ"
                                                                    autocomplete="off" class="layui-input"
@@ -295,7 +299,8 @@
                                                 <th>
                                                     <div class="layui-inline">
                                                         <label class="layui-form-label"
-                                                               style="width: auto"><img style="width: 18px;height:18px;" src="${baseurl}/images/public/Email.png"></label>
+                                                               style="width: auto"><img style="width: 18px;height:18px;"
+                                                                                        src="${baseurl}/images/public/Email.png"></label>
                                                         <div class="layui-input-inline">
                                                             <input type="email" name="email"
                                                                    autocomplete="off" class="layui-input"
@@ -335,8 +340,9 @@
                                     <tr>
                                         <th colspan="3">性别：<span>
                                             <div class="layui-inline" pane="" id="updateStudentSex">
-                                                <div class="layui-inline" id="updateStudentSexToJs" >
-                                                    <input name="sexOfUpdate" value="M" title="男" style="font-size: 12px"
+                                                <div class="layui-inline" id="updateStudentSexToJs">
+                                                    <input name="sexOfUpdate" value="M" title="男"
+                                                           style="font-size: 10px"
                                                            type="radio">
                                                     <input name="sexOfUpdate" value="F" title="女"
                                                            type="radio">
@@ -396,7 +402,7 @@
                                         <th colspan="2">健康状况：<span>
                                             <div class="layui-input-inline">
                                                 <div class="layui-inline" pane="" id="health">
-                                                    <label class="layui-form-label" style="width: auto" ></label>
+                                                    <label class="layui-form-label" style="width: auto"></label>
                                                     <div class="layui-inline">
                                                        <input name="health" value="良好" title="良好"
                                                               type="radio">
@@ -438,7 +444,7 @@
 
                                         <th colspan="3">华侨、港澳台:<span>
                                         <div class="layui-inline" pane="" id="update_isOut">
-                                            <label class="layui-form-label" ></label>
+                                            <label class="layui-form-label"></label>
                                             <div class="layui-inline" onclick="student.showAreaInfo()">
                                                <input name="isOut" value="是" title="是"
                                                       type="radio">
@@ -507,15 +513,15 @@
 
                                     <tr class="layui-form">
                                         <th colspan="6">
-                                                <div class="layui-form-item" style="margin-bottom: 0px">
-                                                    <label class="layui-form-label"
-                                                           style="margin-left: -46px;">宗教信仰：</label>
-                                                    <div class="layui-input-block">
-                                                        <input type="text" name="title" id="religiousBelief"
-                                                               autocomplete="off" placeholder="何时经何人介绍参加何种党派、团体、任何职?"
-                                                               class="layui-input" style="margin-left: -60px">
-                                                    </div>
+                                            <div class="layui-form-item" style="margin-bottom: 0px">
+                                                <label class="layui-form-label"
+                                                       style="margin-left: -46px;">宗教信仰：</label>
+                                                <div class="layui-input-block">
+                                                    <input type="text" name="title" id="religiousBelief"
+                                                           autocomplete="off" placeholder="何时经何人介绍参加何种党派、团体、任何职?"
+                                                           class="layui-input" style="margin-left: -60px">
                                                 </div>
+                                            </div>
                                         </th>
                                     </tr>
 
@@ -559,16 +565,17 @@
                                                     <div id="distpicker9">
                                                         <div class="form-group">
                                                             <label class="sr-only" for="province9">Province</label>
-                                                            <select class="form-control" id="province9"
+                                                            <select class="form-control" id="province9" onchange="selectProvince9(this)"
                                                                     lay-ignore></select>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="sr-only" for="city9">City</label>
-                                                            <select class="form-control" id="city9" lay-ignore></select>
+                                                            <select class="form-control" id="city9" onchange="selectCity9(this)"
+                                                                    lay-ignore></select>
                                                         </div>
                                                         <div class="form-group" style="margin-right: -5px">
                                                             <label class="sr-only" for="district9">District</label>
-                                                            <select class="form-control" id="district9"
+                                                            <select class="form-control" id="district9" onchange="selectDistrict9(this)"
                                                                     lay-ignore></select>
                                                         </div>
                                                     </div>
@@ -600,16 +607,17 @@
                                                     <div id="distpicker0">
                                                         <div class="form-group">
                                                             <label class="sr-only" for="province0">Province</label>
-                                                            <select class="form-control" id="province0"
+                                                            <select class="form-control" id="province0" onchange="selectProvince0(this)"
                                                                     lay-ignore></select>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="sr-only" for="city0">City</label>
-                                                            <select class="form-control" id="city0" lay-ignore></select>
+                                                            <select class="form-control" id="city0" onchange="selectCity0(this)"
+                                                                    lay-ignore></select>
                                                         </div>
                                                         <div class="form-group" style="margin-right: -5px">
                                                             <label class="sr-only" for="district0">District</label>
-                                                            <select class="form-control" id="district0"
+                                                            <select class="form-control" id="district0" onchange="selectDistrict0(this)"
                                                                     lay-ignore></select>
                                                         </div>
                                                     </div>
@@ -623,7 +631,7 @@
                                         <th colspan="6"><span style="font-weight: bold"></span>
                                             <div class="layui-input-inline" style="width: 100%;float: right">
                                                 <label class="layui-form-label" style="width: auto;margin-left: -15px">家庭实际住址: </label>
-                                                <div class="layui-input-inline" style="width: 60%">
+                                                <div class="layui-input-inline" style="width: 55%">
                                                     <input type="text" name="idcard_address" placeholder="请输入家庭实际住址"
                                                            autocomplete="off" class="layui-input" id="detailedAddresses"
                                                            readonly style="border: none">
@@ -642,16 +650,17 @@
                                                     <div id="distpicker3">
                                                         <div class="form-group">
                                                             <label class="sr-only" for="province3">Province</label>
-                                                            <select class="form-control" id="province3"
+                                                            <select class="form-control" id="province3" onchange="selectProvince3(this)"
                                                                     lay-ignore></select>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="sr-only" for="city3">City</label>
-                                                            <select class="form-control" id="city3" lay-ignore></select>
+                                                            <select class="form-control" id="city3" onchange="selectCity3(this)"
+                                                                    lay-ignore></select>
                                                         </div>
                                                         <div class="form-group" style="margin-right: -5px">
                                                             <label class="sr-only" for="district3">District</label>
-                                                            <select class="form-control" id="district3"
+                                                            <select class="form-control" id="district3" onchange="selectDistrict3(this)"
                                                                     lay-ignore></select>
                                                         </div>
                                                         <%--<label class="layui-form-label " style="width: auto">详细地址</label>--%>
@@ -692,13 +701,17 @@
                                                     <div id="distpicker">
                                                         <div class="form-group">
                                                             <select class="form-control" id="province1"
+                                                                    onchange="selectProvince1(this)"
                                                                     lay-ignore></select>
                                                         </div>
                                                         <div class="form-group">
-                                                            <select class="form-control" id="city1" lay-ignore></select>
+                                                            <select class="form-control" id="city1"
+                                                                    onchange="selectCity1(this)"
+                                                                    lay-ignore></select>
                                                         </div>
                                                         <div class="form-group">
                                                             <select class="form-control" id="district1"
+                                                                    onchange="selectDistrict1(this)"
                                                                     lay-ignore></select>
                                                         </div>
                                                     </div>
@@ -707,8 +720,6 @@
 
                                         </th>
                                     </tr>
-
-
 
 
                                     <div id="family_information">
@@ -783,15 +794,19 @@
                                                         <div class="form-group">
                                                             <label class="sr-only" for="province2">Province</label>
                                                             <select class="form-control" id="province2"
+                                                                    onchange="selectProvince2(this)"
                                                                     lay-ignore></select>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="sr-only" for="city2">City</label>
-                                                            <select class="form-control" id="city2" lay-ignore></select>
+                                                            <select class="form-control" id="city2"
+                                                                    onchange="selectCity2(this)"
+                                                                    lay-ignore></select>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="sr-only" for="district2">District</label>
                                                             <select class="form-control" id="district2"
+                                                                    onchange="selectDistrict2(this)"
                                                                     lay-ignore></select>
                                                         </div>
                                                         <div class="layui-input-block form-group"
@@ -861,15 +876,18 @@
                                                         <div class="form-group">
                                                             <label class="sr-only" for="province5">Province</label>
                                                             <select class="form-control" id="province5"
+                                                                    onchange="selectProvince5(this)"
                                                                     lay-ignore></select>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="sr-only" for="city5">City</label>
-                                                            <select class="form-control" id="city5" lay-ignore></select>
+                                                            <select class="form-control" id="city5"
+                                                                    onchange="selectCity5(this)" lay-ignore></select>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="sr-only" for="district5">District</label>
                                                             <select class="form-control" id="district5"
+                                                                    onchange="selectDistrict5(this)"
                                                                     lay-ignore></select>
                                                         </div>
                                                         <div class="layui-input-block form-group"
@@ -979,7 +997,8 @@
                                                 <label class="layui-form-label" style="width: auto;margin-left: -15px">校外住址信息: </label>
                                                 <div class="layui-input-inline" style="width: 60%">
                                                     <input type="text" name="idcard_address" placeholder="请输入校外住址信息信息"
-                                                           autocomplete="off" class="layui-input" id="updateOffCampusAddress"
+                                                           autocomplete="off" class="layui-input"
+                                                           id="updateOffCampusAddress"
                                                            readonly style="border: none">
                                                 </div>
                                                 <span style="float: right">
@@ -995,15 +1014,19 @@
                                                         <div class="form-group">
                                                             <label class="sr-only" for="province12">Province</label>
                                                             <select class="form-control" id="province12"
+                                                                    onchange="selectProvince12(this)"
                                                                     lay-ignore></select>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="sr-only" for="city12">City</label>
-                                                            <select class="form-control" id="city12" lay-ignore></select>
+                                                            <select class="form-control" id="city12"
+                                                                    onchange="selectCity12(this)"
+                                                                    lay-ignore></select>
                                                         </div>
                                                         <div class="form-group" style="margin-right: -5px">
                                                             <label class="sr-only" for="district12">District</label>
                                                             <select class="form-control" id="district12"
+                                                                    onchange="selectDistrict12(this)"
                                                                     lay-ignore></select>
                                                         </div>
                                                         <div class="layui-input-block form-group"
@@ -1080,7 +1103,8 @@
                                     <tr>
                                         <th colspan="1">录取专业：<span>
                                             <div class="layui-input-inline" style="width: 60%">
-                                                <select id="studentsProfessionList" lay-filter="studentsProfessionList" disabled="disabled">
+                                                <select id="studentsProfessionList" lay-filter="studentsProfessionList"
+                                                        disabled="disabled">
                                                     <option value=""></option>
                                                 </select>
                                             </div>
@@ -1096,7 +1120,7 @@
                                         <th colspan="4">现专业：<span>
                                             <div class="layui-input-inline" style="width: 60%">
                                                 <select id="studentsNowProfessional"
-                                                        lay-filter="studentsNowProfessional" >
+                                                        lay-filter="studentsNowProfessional">
                                                     <option value=""></option>
                                                 </select>
                                             </div>
@@ -1508,5 +1532,151 @@
         formatArr: [3, 4, 4],
         delimiter: '-'
     })
+
+    //动态显示省市区
+    //入学前户口所在派出所：
+
+    let P_school_account_where_the_police_station_detailed = '';
+    let C_school_account_where_the_police_station_detailed = '';
+    let D_school_account_where_the_police_station_detailed = '';
+
+    function selectProvince5(e) {
+        P_school_account_where_the_police_station_detailed = e.options[e.selectedIndex].text;
+        $("#school_account_where_the_police_station_detailed").val(P_school_account_where_the_police_station_detailed);
+    }
+
+    function selectCity5(e) {
+        C_school_account_where_the_police_station_detailed = P_school_account_where_the_police_station_detailed + "-" + e.options[e.selectedIndex].text;
+        $("#school_account_where_the_police_station_detailed").val(C_school_account_where_the_police_station_detailed);
+    }
+
+    function selectDistrict5(e) {
+        D_school_account_where_the_police_station_detailed = C_school_account_where_the_police_station_detailed + "-" + e.options[e.selectedIndex].text;
+        $("#school_account_where_the_police_station_detailed").val(D_school_account_where_the_police_station_detailed);
+    }
+
+    //校外住址信息：
+
+    let P_updateOffCampusAddress = '';
+    let C_updateOffCampusAddress = '';
+    let D_updateOffCampusAddress = '';
+
+    function selectProvince12(e) {
+        P_updateOffCampusAddress = e.options[e.selectedIndex].text;
+        $("#updateOffCampusAddress").val(P_updateOffCampusAddress);
+    }
+
+    function selectCity12(e) {
+        C_updateOffCampusAddress = P_updateOffCampusAddress + "-" + e.options[e.selectedIndex].text;
+        $("#updateOffCampusAddress").val(C_updateOffCampusAddress);
+    }
+
+    function selectDistrict12(e) {
+        D_updateOffCampusAddress = C_updateOffCampusAddress + "-" + e.options[e.selectedIndex].text;
+        $("#updateOffCampusAddress").val(D_updateOffCampusAddress);
+    }
+
+    //入学前档案所在单位：
+
+    let P_Pre_enrollment_file_unit = '';
+    let C_Pre_enrollment_file_unit = '';
+    let D_Pre_enrollment_file_unit = '';
+
+    function selectProvince2(e) {
+        P_Pre_enrollment_file_unit = e.options[e.selectedIndex].text;
+        $("#Pre_enrollment_file_unit").val(P_Pre_enrollment_file_unit);
+    }
+
+    function selectCity2(e) {
+        C_Pre_enrollment_file_unit = P_Pre_enrollment_file_unit + "-" + e.options[e.selectedIndex].text;
+        $("#Pre_enrollment_file_unit").val(C_Pre_enrollment_file_unit);
+    }
+
+    function selectDistrict2(e) {
+        D_Pre_enrollment_file_unit = C_Pre_enrollment_file_unit + "-" + e.options[e.selectedIndex].text;
+        $("#Pre_enrollment_file_unit").val(D_Pre_enrollment_file_unit);
+    }
+
+    //生源所在地名称：
+
+    let P_update_name_of_the_source = '';
+    let C_update_name_of_the_source = '';
+    let D_update_name_of_the_source = '';
+
+    function selectProvince1(e) {
+        P_update_name_of_the_source = e.options[e.selectedIndex].text;
+        $("#update_name_of_the_source").val(P_update_name_of_the_source);
+    }
+
+    function selectCity1(e) {
+        C_update_name_of_the_source = P_update_name_of_the_source + "-" + e.options[e.selectedIndex].text;
+        $("#update_name_of_the_source").val(C_update_name_of_the_source);
+    }
+
+    function selectDistrict1(e) {
+        D_update_name_of_the_source = C_update_name_of_the_source + "-" + e.options[e.selectedIndex].text;
+        $("#update_name_of_the_source").val(D_update_name_of_the_source);
+    }
+
+    //生源所在地名称：
+
+    let P_detailedAddresses = '';
+    let C_detailedAddresses = '';
+    let D_detailedAddresses = '';
+
+    function selectProvince3(e) {
+        P_detailedAddresses = e.options[e.selectedIndex].text;
+        $("#detailedAddresses").val(P_detailedAddresses);
+    }
+
+    function selectCity3(e) {
+        C_detailedAddresses = P_detailedAddresses + "-" + e.options[e.selectedIndex].text;
+        $("#detailedAddresses").val(C_detailedAddresses);
+    }
+
+    function selectDistrict3(e) {
+        D_detailedAddresses = C_detailedAddresses + "-" + e.options[e.selectedIndex].text;
+        $("#detailedAddresses").val(D_detailedAddresses);
+    }
+    //身份证住址：
+
+    let P_Identity_card_address = '';
+    let C_Identity_card_address = '';
+    let D_Identity_card_address = '';
+
+    function selectProvince0(e) {
+        P_Identity_card_address = e.options[e.selectedIndex].text;
+        $("#Identity_card_address").val(P_Identity_card_address);
+    }
+
+    function selectCity0(e) {
+        C_Identity_card_address = P_Identity_card_address + "-" + e.options[e.selectedIndex].text;
+        $("#Identity_card_address").val(C_Identity_card_address);
+    }
+
+    function selectDistrict0(e) {
+        D_Identity_card_address = C_Identity_card_address + "-" + e.options[e.selectedIndex].text;
+        $("#Identity_card_address").val(D_Identity_card_address);
+    }
+    //身份证住址：
+
+    let P_updateStudentNativePlace = '';
+    let C_updateStudentNativePlace = '';
+    let D_updateStudentNativePlace = '';
+
+    function selectProvince9(e) {
+        P_updateStudentNativePlace = e.options[e.selectedIndex].text;
+        $("#updateStudentNativePlace").val(P_updateStudentNativePlace);
+    }
+
+    function selectCity9(e) {
+        C_updateStudentNativePlace = P_updateStudentNativePlace + "-" + e.options[e.selectedIndex].text;
+        $("#updateStudentNativePlace").val(C_updateStudentNativePlace);
+    }
+
+    function selectDistrict9(e) {
+        D_updateStudentNativePlace = C_updateStudentNativePlace + "-" + e.options[e.selectedIndex].text;
+        $("#updateStudentNativePlace").val(D_updateStudentNativePlace);
+    }
 
 </script>
