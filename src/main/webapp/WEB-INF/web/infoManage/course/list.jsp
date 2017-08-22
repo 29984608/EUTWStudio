@@ -16,8 +16,18 @@
 <section class="larry-grid layui-form">
     <div class="larry-personal">
         <div class="layui-tab">
-            <blockquote class="layui-elem-quote mylog-info-tit" style="height: 70px";>
+            <blockquote class="layui-elem-quote mylog-info-tit" style="height: 70px" ;>
                 <div class="layui-form-item">
+
+                    <div class="layui-input-inline">
+                        <div class="layui-inline">
+                            <div class="layui-input-inline">
+                                <select lay-filter="department" id="department_search">
+                                    <option value="">系名称</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
                     <div class="layui-input-inline">
                         <div class="layui-inline">
                             <div class="layui-input-inline">
@@ -27,7 +37,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="layui-input-inline">
                         <div class="layui-inline">
                             <div class="layui-input-inline">
@@ -62,6 +71,7 @@
                         <thead>
                         <tr>
                             <th>序号</th>
+                            <th>课程归属</th>
                             <th>课程模块</th>
                             <th>课程代码</th>
                             <th>名称</th>
@@ -95,6 +105,7 @@
     let course;
     let modules;
     let methods;
+    let departments;
     let semesters = [{id: "1", name: "1"}, {id: "2", name: "2"}, {id: "3", name: "3"}, {id: "4", name: "4"}, {
         id: "5",
         name: "5"
@@ -106,7 +117,6 @@
             form = layui.form(),
             upload = layui.upload,
             laytpl = layui.laytpl;
-
 
 
         course = {
@@ -129,6 +139,7 @@
                 let moduleId = $("#module_search").val();
                 let semester = $("#semester-search").val();
                 let name = $("#name-search").val();
+                let departmentId = $("#department_search").val();
                 $.ajax({
                     url: baseUrl + "/course/list",
                     type: "post",
@@ -137,6 +148,7 @@
                         pageSize: pageSize,
                         semester: semester,
                         moduleId: moduleId,
+                        departmentId: departmentId,
                         name: name
                     },
                     success: function (data) {
@@ -171,6 +183,7 @@
                 $("#add-module").html(course.loadSelectElementHtml(modules, null));
                 $("#add-method").html(course.loadSelectElementHtml(methods, null));
                 $("#add-semester").html(course.loadSelectElementHtml(semesters, null));
+                $("#add-department").html(course.loadSelectElementHtml(departments, null));
                 form.render();
                 layer.open({
                     type: 1,
@@ -181,16 +194,16 @@
             },
             addAjax: function () {
                 let data = $("#add-form").serialize();
-                console.log(data);
+
                 $.post(baseUrl + "/course/add", data, function (data) {
                     layer.msg(data.msg);
                     if (data.result) {
-                        setTimeout("location.reload()", 500);
+                        setTimeout("location.reload()", 200);
                     }
                 })
 
             },
-            update: function (id, code, name, method, moduleId, schoolScore, schoolHours, semester, nature) {
+            update: function (id, code, name, method, moduleId, schoolScore, schoolHours, semester, nature,departmentId) {
                 $("#id").val(id);
                 $("#update-code").val(code);
                 $("#update-name").val(name);
@@ -201,6 +214,7 @@
                 $("#update-module").html(course.loadSelectElementHtml(modules, moduleId));
                 $("#update-method").html(course.loadSelectElementHtml(methods, method));
                 $("#update-semester").html(course.loadSelectElementHtml(semesters, semester));
+                $("#update-department").html(course.loadSelectElementHtml(departments, departmentId));
 
                 form.render();
                 layer.open({
@@ -215,7 +229,7 @@
                 $.post(baseUrl + "/course/update", data, function (data) {
                     layer.msg(data.msg);
                     if (data.result) {
-                        setTimeout("location.reload()", 500);
+                        setTimeout("location.reload()", 200);
                     }
                 })
             },
@@ -224,8 +238,17 @@
                     layer.close(index);
                     $.post(baseUrl + "/course/delete", {id: id}, function (data) {
                         layer.msg(data.msg);
-                        setTimeout("location.reload()", 500);
+                        setTimeout("location.reload()", 200);
                     })
+                });
+            },
+            loadDepartment: function () {
+                $.post(baseUrl + "/department/allDepartments", function (data) {
+                    if (data.result) {
+                        departments = data.data;
+                        $("#department_search").html(`<option value="" selected>系名称</option>`).append(loadOptionsHtml(data.data, "-"));
+                        form.render();
+                    }
                 });
             },
             importExcel: function () {
@@ -239,6 +262,8 @@
         };
         $(function () {
             course.list();
+            course.loadDepartment();
+            form.render();
 
             form.on('checkbox(checkedAll)', function (data) {
                 $(".no_checkbox").prop({checked: data.elem.checked});

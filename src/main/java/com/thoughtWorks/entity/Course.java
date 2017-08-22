@@ -2,6 +2,7 @@ package com.thoughtWorks.entity;
 
 public class Course {
     private long id;
+    private int departmentId;
     private String code;
     private String name;
     private int schoolScore;
@@ -10,6 +11,14 @@ public class Course {
     private String nature;
     private String method;
     private int moduleId;
+
+    public int getDepartmentId() {
+        return departmentId;
+    }
+
+    public void setDepartmentId(int departmentId) {
+        this.departmentId = departmentId;
+    }
 
     public long getId() {
         return id;

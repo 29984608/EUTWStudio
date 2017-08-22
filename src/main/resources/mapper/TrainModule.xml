@@ -98,13 +98,13 @@
 
     <!--课程-->
     <insert id="addCourse" parameterType="Course">
-        INSERT INTO t_course (code, name, school_score, school_hours, semester, nature, method, module_id)
-        VALUES (#{code}, #{name}, #{schoolScore}, #{schoolHours}, #{semester}, #{nature}, #{method}, #{moduleId})
+        INSERT INTO t_course (department_id,code, name, school_score, school_hours, semester, nature, method, module_id)
+        VALUES (#{departmentId},#{code}, #{name}, #{schoolScore}, #{schoolHours}, #{semester}, #{nature}, #{method}, #{moduleId})
     </insert>
     <update id="updateCourse" parameterType="Course">
         UPDATE t_course
         SET code     = #{code}, name = #{name}, school_score = #{schoolScore}, school_hours = #{schoolHours},
-            semester = #{semester}, nature = #{nature}, method = #{method}, module_id = #{moduleId}
+            semester = #{semester}, nature = #{nature}, method = #{method}, module_id = #{moduleId},department_id=#{departmentId}
         WHERE id = #{id}
     </update>
     <delete id="deleteCourse" parameterType="string">
@@ -118,6 +118,9 @@
             <if test="moduleId != ''">
                 and module_id = #{moduleId}
             </if>
+            <if test="departmentId != ''">
+                and department_id = #{departmentId}
+            </if>
             <if test="semester != ''">
                 and semester = #{semester}
             </if>
@@ -128,6 +131,8 @@
     <select id="queryCoursesList" parameterType="map" resultType="map">
         SELECT
         t_course.id,
+        department.id departmentId,
+        department.name departmentName,
         code,
         t_course.nature,
         t_course.name,
@@ -144,9 +149,13 @@
         name
         FROM t_train_module) module ON module.id = t_course.module_id
         LEFT JOIN (SELECT id,name FROM t_test_method) m on m.id = t_course.method
+        LEFT JOIN (SELECT id,name FROM t_department) department on department.id = t_course.department_id
         <where>
             <if test="moduleId != ''">
                 and module_id = #{moduleId}
+            </if>
+            <if test="departmentId != ''">
+                and department_id = #{departmentId}
             </if>
             <if test="semester != ''">
                 and semester = #{semester}
