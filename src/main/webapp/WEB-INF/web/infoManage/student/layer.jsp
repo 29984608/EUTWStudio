@@ -333,8 +333,8 @@
                                     <tr>
                                         <th colspan="3">性别：<span>
                                             <div class="layui-inline" pane="" id="updateStudentSex">
-                                                <div class="layui-inline" id="updateStudentSexToJs">
-                                                    <input name="sexOfUpdate" value="M" title="男" style="font-weight: 100: 8px"
+                                                <div class="layui-inline" id="updateStudentSexToJs" >
+                                                    <input name="sexOfUpdate" value="M" title="男" style="font-size: 12px"
                                                            type="radio">
                                                     <input name="sexOfUpdate" value="F" title="女"
                                                            type="radio">
