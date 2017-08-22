@@ -68,7 +68,7 @@
             {{#}}}
         </td>
 
-        <td>
+        <td style="width: 60px">
             {{# if(item.stay_type === "1"){ }}
             校内
             {{# }else{ }}
@@ -99,7 +99,7 @@
             {{#}}}
         </td>
 
-        <td>
+        <td width="170px">
 
             <%--<shiro:hasPermission name="communication:update">--%>
             <button class="layui-btn layui-btn-mini " style="background: #21a1a1"
