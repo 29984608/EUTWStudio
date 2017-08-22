@@ -33,7 +33,8 @@
                         <thead>
                         <tr>
                             <th>序号</th>
-                            <th>专业方向代码</th>
+                            <th>系名称</th>
+                            <th>就业方向代码</th>
                             <th>名称</th>
                             <th>操作</th>
                         </tr>
@@ -53,6 +54,12 @@
     {{# layui.each(d.directions, function(index, item){ }}
     <tr>
         <td>{{ index+1}}</td>
+        <td> {{# if(item.departmentName === undefined){ }}
+            无
+            {{# }else{ }}
+            {{ item.departmentName}}
+            {{#}}}
+        </td>
         <td>{{ item.code}}</td>
         <td>{{ item.name}}</td>
         <td>

@@ -89,9 +89,10 @@
         FROM t_direction
     </select>
 
-    <select id="queryDirectionList" resultType="Direction">
-        SELECT *
+    <select id="queryDirectionList" resultType="map">
+        SELECT t_direction.*,department.name departmentName
         FROM t_direction
+            LEFT JOIN (SELECT id,name FROM t_department) department on department.id = t_direction.department_id
         LIMIT #{start}, #{end}
     </select>
     <insert id="insertDirection" parameterType="Direction">
