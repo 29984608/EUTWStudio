@@ -30,11 +30,8 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public Map<String, List<Map<String, String>>> getProfessionAndDirectionData() throws Exception {
         Map<String, List<Map<String, String>>> result = new HashMap<>();
-        Map<String, Object> data = new HashMap<>();
-        data.put("start", 0);
-        data.put("end", 10000);
-        result.put("directions", departmentDao.queryDirectionList(data));
-        result.put("professions", departmentDao.queryProfessionList(data));
+        result.put("directions", departmentDao.queryDirections());
+        result.put("professions", departmentDao.queryProfessions());
 
         return result;
     }
