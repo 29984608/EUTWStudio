@@ -369,11 +369,11 @@
                     $("#actual_address").text("").append(data.student[0].actual_address);
                     $("#family").html("")
                     for (var i = 0; i < data.family.length; i++) {
-                        $("#family").append("<tr> <th colspan='2' rowspan = '2 '>" + data.family[i].relationship + "：" + data.family[i].name + "</th>" +
-                            "<th colspan='5' style='width: 130px'>政治面貌:" + data.family[i].political_status + "</th>" +
-                            "<th colspan='6'>工作单位:" + data.family[i].work_place + "</th></tr>" +
-                            "<tr><th colspan='5' style='width: 70px'>职务:" + data.family[i].staff + "</th>" +
-                            "<th colspan='6'>联系电话：" + data.family[i].phone + "</th> </tr>");
+                        $("#family").append("<tr> <th colspan='5' >" + data.family[i].relationship + "：" + data.family[i].name + "</th>" +
+                            "<th colspan='4' style='width: 70px'>职务：" + data.family[i].staff + "</th>"+
+                            "<th colspan='4'>联系电话：" + data.family[i].phone + "</th></tr>" +
+                            "<tr><th colspan='5' style='width: 130px'>政治面貌：" + data.family[i].political_status + "</th>" +
+                            "<th colspan='8'>工作单位：" + data.family[i].work_place + "</th> </tr>");
                     }
                     $("#emergency_contact_name").text("").append(data.student[0].emergency_contact_name);
                     $("#emergency_contact_method").text("").append(data.student[0].emergency_contact_method);

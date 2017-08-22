@@ -4,6 +4,8 @@
     .layui-table th{
         font-size: 11px;
         padding: 8px 5px;
+        line-height: 31px;
+        min-height: 30px;
     }
 </style>
 <script id="list-tpl" type="text/html">
@@ -130,22 +132,22 @@
                        style="border: 0px solid red">
                     <tbody>
                     <tr>
-                        <th colspan="3" style="width:140px;">学号:<span id="studentNo"></span></th>
-                        <th colspan="3" style="width:125px;">姓名：<span id="studentName"></span></th>
-                        <th colspan="1" style="width:60px;">性别:<span id="studentSex"></span></th>
-                        <th colspan="2" style="width:87px;">民族：<span id="famous_family"></span></th>
-                        <th colspan="3" style="width:211px;">身份证号:<span id="idcard"></span></th>
+                        <th colspan="3" style="width:140px;">学号：<span id="studentNo"></span></th>
+                        <th colspan="4" style="width:125px;">姓名：<span id="studentName"></span></th>
+                        <th colspan="1" style="width:60px;">性别：<span id="studentSex"></span></th>
+                        <th colspan="1" style="width:87px;">民族：<span id="famous_family"></span></th>
+                        <th colspan="3" style="width:211px">身份证号：<span id="idcard"></span></th>
                         <th rowspan = " 3 " style="padding: 1px;">
-                            <div style="width:110px; height: 150px; border: 0px solid #00ab9f">
-                                <img id="images" style="width: 100%" height="100%"/>
+                            <div style="width:120px; height: 140px; border: 0px solid #00ab9f">
+                                <img id="images" style="width:100%" height="100%"/>
                             </div>
                         </th>
                     </tr>
                     <tr>
 
                         <th colspan="4" style="width:145px;">出生日期：<span id="born"></span></th>
-                        <th colspan="4">籍贯：<span id="native_place"></span></th>
-                        <th colspan="3" style="width:190px;">政治面貌:<span id="political_status"></span></th>
+                        <th colspan="4" style="width:200px;">籍贯：<span id="native_place"></span></th>
+                        <th colspan="3" style="width:190px;">政治面貌：<span id="political_status"></span></th>
                         <th >婚否：<span id="is_marry"></span></th>
                     </tr>
                     <tr>
@@ -160,9 +162,9 @@
                         <th colspan="4">邮箱：<span id="email"></span></th>
                     </tr>
                     <tr>
-                        <th colspan="7">家庭住址：<span id="actual_address"></span></th>
-                        <th colspan="3">邮编编码：<span id="family_zip_code"></span></th>
-                        <th colspan="3">联系电话:<span id="student_contact_method"></span></th>
+                        <th colspan="9">家庭住址：<span id="actual_address"></span></th>
+                        <th colspan="2">邮编编码：<span id="family_zip_code"></span></th>
+                        <th colspan="2">联系电话：<span id="student_contact_method"></span></th>
                     </tr>
                     <tbody id="family">
                     </tbody>
