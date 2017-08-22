@@ -17,7 +17,9 @@
 </head>
 <style>
     .layui-table th {
-        font-size: 12px;
+        font-size: 13px;
+        line-height: 31px;
+        min-height: 30px;
     }
 </style>
 <body style=" background: #fff;">
@@ -35,23 +37,23 @@
                                    style="border: 0px solid red">
                                 <tbody>
                                 <tr>
-                                    <th colspan="3" >学号:<span id="studentNo"></span></th>
-                                    <th colspan="3" >姓名：<span id="studentName"></span></th>
-                                    <th colspan="1" >性别:<span id="studentSex"></span></th>
-                                    <th colspan="2" >民族：<span id="famous_family"></span></th>
-                                    <th colspan="3" >身份证号:<span id="idcard"></span></th>
-                                    <th rowspan=" 3 " style="padding: 1px; width:120px;">
-                                        <div style="width:120px; height: 150px;  border: 0px solid #00ab9f">
-                                            <img id="images" style="width: 100%" height="100%"/>
+                                    <th colspan="3" style="width:140px;">学号：<span id="studentNo"></span></th>
+                                    <th colspan="4" style="width:125px;">姓名：<span id="studentName"></span></th>
+                                    <th colspan="1" >性别：<span id="studentSex"></span></th>
+                                    <th colspan="1" >民族：<span id="famous_family"></span></th>
+                                    <th colspan="3" style="width:211px">身份证号：<span id="idcard"></span></th>
+                                    <th rowspan = " 3 " style="padding: 1px;width:130px;">
+                                        <div style="width:130px; height: 150px; border: 0px solid #00ab9f">
+                                            <img id="images" style="width:100%" height="100%"/>
                                         </div>
                                     </th>
                                 </tr>
                                 <tr>
 
                                     <th colspan="4" style="width:145px;">出生日期：<span id="born"></span></th>
-                                    <th colspan="4">籍贯：<span id="native_place"></span></th>
-                                    <th colspan="3" style="width:130px;">政治面貌:<span id="political_status"></span></th>
-                                    <th colspan="1">婚否：<span id="is_marry"></span></th>
+                                    <th colspan="4" style="width:200px;">籍贯：<span id="native_place"></span></th>
+                                    <th colspan="3" style="width:190px;">政治面貌：<span id="political_status"></span></th>
+                                    <th >婚否：<span id="is_marry"></span></th>
                                 </tr>
                                 <tr>
                                     <th colspan="3" style="width:120px;">血型：<span id="blood"></span></th>
@@ -65,9 +67,9 @@
                                     <th colspan="4">邮箱：<span id="email"></span></th>
                                 </tr>
                                 <tr>
-                                    <th colspan="7">家庭住址：<span id="actual_address"></span></th>
-                                    <th colspan="3">邮编编码：<span id="family_zip_code"></span></th>
-                                    <th colspan="3">联系电话:<span id="student_contact_method"></span></th>
+                                    <th colspan="9">家庭住址：<span id="actual_address"></span></th>
+                                    <th colspan="2">邮编编码：<span id="family_zip_code"></span></th>
+                                    <th colspan="2">联系电话：<span id="student_contact_method"></span></th>
                                 </tr>
                                 <tbody id="family">
                                 </tbody>
@@ -185,11 +187,11 @@
                     $("#actual_address").text("").append(data.student[0].actual_address);
                     $("#family").html("")
                     for (var i = 0; i < data.family.length; i++) {
-                        $("#family").append("<tr> <th colspan='2' rowspan = '2 '>" + data.family[i].relationship + "：" + data.family[i].name + "</th>" +
-                            "<th colspan='5' style='width: 130px'>政治面貌:" + data.family[i].political_status + "</th>" +
-                            "<th colspan='6'>工作单位:" + data.family[i].work_place + "</th></tr>" +
-                            "<tr><th colspan='5' style='width: 70px'>职务:" + data.family[i].staff + "</th>" +
-                            "<th colspan='6'>联系电话：" + data.family[i].phone + "</th> </tr>");
+                        $("#family").append("<tr> <th colspan='5' >" + data.family[i].relationship + "：" + data.family[i].name + "</th>" +
+                            "<th colspan='4' style='width: 70px'>职务：" + data.family[i].staff + "</th>"+
+                            "<th colspan='4'>联系电话：" + data.family[i].phone + "</th></tr>" +
+                            "<tr><th colspan='5' style='width: 130px'>政治面貌：" + data.family[i].political_status + "</th>" +
+                            "<th colspan='8'>工作单位：" + data.family[i].work_place + "</th> </tr>");
                     }
                     $("#emergency_contact_name").text("").append(data.student[0].emergency_contact_name);
                     $("#emergency_contact_method").text("").append(data.student[0].emergency_contact_method);
