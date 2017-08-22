@@ -391,10 +391,10 @@
                                         </span>
                                             <span>kg</span>
                                         </th>
-                                        <th colspan="2" style="width: 34%">健康状况：<span>
-                                            <div class="layui-input-inline" style="width: 60%">
+                                        <th colspan="2">健康状况：<span>
+                                            <div class="layui-input-inline">
                                                 <div class="layui-inline" pane="" id="health">
-                                                    <label class="layui-form-label" style="width: auto"></label>
+                                                    <label class="layui-form-label" style="width: auto" ></label>
                                                     <div class="layui-inline">
                                                        <input name="health" value="良好" title="良好"
                                                               type="radio">
@@ -419,7 +419,7 @@
 
                                     <tr>
 
-                                        <th colspan="2">血型：<span>
+                                        <th colspan="3">血型：<span>
                                         <div class="layui-input-inline"
                                         >
                                           <select name="quiz1" lay-filter="updateStudentBloodType"
@@ -434,7 +434,7 @@
                                         </div>
                                     </span></th>
 
-                                        <th colspan="2">华侨、港澳台:<span>
+                                        <th colspan="3">华侨、港澳台:<span>
                                         <div class="layui-inline" pane="" id="update_isOut">
                                             <label class="layui-form-label" ></label>
                                             <div class="layui-inline" onclick="student.showAreaInfo()">
@@ -528,6 +528,11 @@
                                             </div>
                                         </div>
                                     </span></th>
+                                        <th colspan="3">邮政编码：<span class="layui-input-inline">
+                                            <input type="text" name="text"
+                                                   placeholder="请输入内容" autocomplete="off" class="layui-input"
+                                                   id="updateStudentZip_code">
+                                        </span></th>
                                     </tr>
 
                                     <tr>
@@ -702,19 +707,7 @@
                                     </tr>
 
 
-                                    <tr>
-                                        <th colspan="3">邮编编码：<span class="layui-input-inline">
-                                            <input type="text" name="text"
-                                                   placeholder="请输入内容" autocomplete="off" class="layui-input"
-                                                   id="updateStudentZip_code">
-                                        </span></th>
-                                       <%-- <th colspan="3">家庭电话：<span class="layui-input-inline">
 
-                                            <input type="text" name="text"
-                                                   placeholder="请输入内容" autocomplete="off" class="layui-input"
-                                                   id="updateStudentHome_phone">
-                                        </span></th>--%>
-                                    </tr>
 
                                     <div id="family_information">
 
@@ -1136,7 +1129,7 @@
                                             </div>
                                         </span></th>
                                         <th colspan="5">学籍状态：<span>
-                                            <div class="layui-input-inline" style="width: 60%">
+                                            <div class="layui-input-inline">
                                                 <select lay-filter="update_student_status" id="update_student_status">
                                                     <option value=""></option>
                                                     <option value="1">在读</option>

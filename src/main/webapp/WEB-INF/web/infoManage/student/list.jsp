@@ -730,12 +730,11 @@
 
 
                 }
-                for (var i = 0; i <= familyList.length; i++) {
+
                     $(updateStudentParent_phone[i]).formatInput({
                         formatArr: [3, 4, 4],
                         delimiter: '-'
                     });
-                }
             },
             educationalExperience: function (experienceList) {
                 $("#educational_experience").html("")
