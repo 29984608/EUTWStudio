@@ -176,7 +176,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     public List<Map<String, String>> queryProfessionList(PageUtil page) throws Exception {
         Map<String, Object> data = new HashMap<>();
         data.put("start", (page.getCurrentIndex() - 1) * page.getPageSize());
-        data.put("end", (page.getCurrentIndex() - 1) * page.getPageSize() + page.getPageSize());
+        data.put("end", page.getPageSize());
         page.setTotalSize(departmentDao.queryProfessionTotalCount());
 
         return departmentDao.queryProfessionList(data);

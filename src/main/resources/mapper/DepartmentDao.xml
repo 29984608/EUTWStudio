@@ -139,9 +139,10 @@
         FROM t_profession
     </select>
 
-    <select id="queryProfessionList" resultType="Profession">
-        SELECT *
+    <select id="queryProfessionList" resultType="map">
+        SELECT t_profession.*,department.name departmentName
         FROM t_profession
+        LEFT JOIN (SELECT id,name FROM t_department) department on department.id = t_profession.department_id
         LIMIT #{start}, #{end}
     </select>
     <insert id="insertProfession" parameterType="Profession">
