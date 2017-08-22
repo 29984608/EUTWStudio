@@ -363,14 +363,14 @@
                                     </tr>
 
                                     <tr>
-                                        <th colspan="3">身份证号：<span>
+                                        <th colspan="2">身份证号：<span>
                                             <div class="layui-input-inline" style="width: 60%">
                                                 <input type="text" name="text"
                                                        placeholder="请输入内容" autocomplete="off" class="layui-input"
                                                        id="updateStudentIdCard" readonly style="border: none">
                                              </div>
                                         </span></th>
-                                        <th colspan="3">出生日期：
+                                        <th colspan="2">出生日期：
                                             <div class="layui-input-inline" style="width: 60%">
                                                 <input name="date" placeholder="yyyy-mm-dd"
                                                        autocomplete="off" class="layui-input"
@@ -378,27 +378,7 @@
                                                        id="updateStudentBirthday" readonly style="border: none">
                                             </div>
                                         </th>
-                                    </tr>
 
-                                    <tr>
-                                        <th colspan="1" style="width: 18%">身高：<span>
-                                            <div class="layui-input-inline" style="width: 40%">
-                                                <input type="text" name="text"
-                                                       placeholder="请输入内容" autocomplete="off" class="layui-input"
-                                                       id="updateStudentHeight">
-                                             </div>
-                                        </span>
-                                            <span>cm</span>
-                                        </th>
-                                        <th colspan="1" style="width: 18%">体重：<span>
-                                            <div class="layui-input-inline" style="width: 40%">
-                                                <input type="text" name="text"
-                                                       placeholder="请输入内容" autocomplete="off" class="layui-input"
-                                                       id="updateStudentWight">
-                                             </div>
-                                        </span>
-                                            <span>kg</span>
-                                        </th>
                                         <th colspan="2">健康状况：<span>
                                             <div class="layui-input-inline">
                                                 <div class="layui-inline" pane="" id="health">
@@ -411,49 +391,8 @@
                                                 </div>
                                              </div>
                                         </span></th>
-                                        <th colspan="1">婚否：
-                                            <div class="layui-inline" pane="" id="isMarry">
-                                                <label class="layui-form-label" style="width: auto"></label>
-                                                <div class="layui-inline">
-                                                    <input class="marry" name="isMarry" value="是" title="是"
-                                                           type="radio">
-                                                    <input class="marry" name="isMarry" value="否" title="否"
-                                                           type="radio">
-                                                </div>
-                                            </div>
-                                        </th>
+
                                     </tr>
-
-
-                                    <tr>
-
-                                        <th colspan="3">血型：<span>
-                                        <div class="layui-input-inline"
-                                        >
-                                          <select name="quiz1" lay-filter="updateStudentBloodType"
-                                                  id="updateStudentBloodType">
-                                            <option value="">请选择血型</option>
-                                            <option value="1">O型</option>
-                                            <option value="2">A型</option>
-                                            <option value="3">B型</option>
-                                            <option value="4">AB型</option>
-                                            <option value="5">RH阴性</option>
-                                          </select>
-                                        </div>
-                                    </span></th>
-
-                                        <th colspan="3">华侨、港澳台:<span>
-                                        <div class="layui-inline" pane="" id="update_isOut">
-                                            <label class="layui-form-label"></label>
-                                            <div class="layui-inline" onclick="student.showAreaInfo()">
-                                               <input name="isOut" value="是" title="是"
-                                                      type="radio">
-                                               <input name="isOut" value="否" title="否" type="radio">
-                                            </div>
-                                        </div>
-                                        </span></th>
-                                    </tr>
-
 
                                     <tr>
                                         <th colspan="6">政治面貌：
@@ -515,7 +454,7 @@
                                         <th colspan="6">
                                             <div class="layui-form-item" style="margin-bottom: 0px">
                                                 <label class="layui-form-label"
-                                                       style="margin-left: -46px;">宗教信仰：</label>
+                                                       style="margin-left: -3%;">宗教信仰：</label>
                                                 <div class="layui-input-block">
                                                     <input type="text" name="title" id="religiousBelief"
                                                            autocomplete="off" placeholder="何时经何人介绍参加何种党派、团体、任何职?"
@@ -916,7 +855,7 @@
 
                                     <tr>
 
-                                        <th colspan="3">社区辅导员：<span>
+                                        <th colspan="2">社区辅导员：<span>
                                             <div class="layui-input-inline" style="width: 60%">
                                                 <select lay-filter="update_community_counselor"
                                                         id="update_community_counselor">
@@ -924,7 +863,83 @@
                                                 </select>
                                             </div>
                                         </span></th>
+                                        <th colspan="4">困难类别：<span>
+                                            <div class="layui-input-inline" style="width: 60%">
+                                                <div class="layui-inline" pane="" id="update_hard_type">
+                                            <label class="layui-form-label" style="width: auto"></label>
+                                            <div class="layui-inline">
+                                               <input name="update_hard_type" value="" title="不是" type="radio" checked>
+                                               <input name="update_hard_type" value="一般" title="一般" type="radio">
+                                               <input name="update_hard_type" value="特困" title="特困" type="radio">
+                                            </div>
+                                        </div>
+                                             </div>
+                                        </span></th>
 
+                                    </tr>
+
+                                    <tr>
+                                        <th colspan="1" style="width: 18%">身高：<span>
+                                            <div class="layui-input-inline" style="width: 40%">
+                                                <input type="text" name="text"
+                                                       placeholder="请输入内容" autocomplete="off" class="layui-input"
+                                                       id="updateStudentHeight">
+                                             </div>
+                                        </span>
+                                            <span>cm</span>
+                                        </th>
+                                        <th colspan="1" style="width: 18%">体重：<span>
+                                            <div class="layui-input-inline" style="width: 40%">
+                                                <input type="text" name="text"
+                                                       placeholder="请输入内容" autocomplete="off" class="layui-input"
+                                                       id="updateStudentWight">
+                                             </div>
+                                        </span>
+                                            <span>kg</span>
+                                        </th>
+
+                                        <th colspan="3">血型：<span>
+                                        <div class="layui-input-inline"
+                                        >
+                                          <select name="quiz1" lay-filter="updateStudentBloodType"
+                                                  id="updateStudentBloodType">
+                                            <option value="">请选择血型</option>
+                                            <option value="1">O型</option>
+                                            <option value="2">A型</option>
+                                            <option value="3">B型</option>
+                                            <option value="4">AB型</option>
+                                            <option value="5">RH阴性</option>
+                                          </select>
+                                        </div>
+                                    </span></th>
+                                    </tr>
+
+                                    <tr>
+                                        <th colspan="2">婚否：
+                                            <div class="layui-inline" pane="" id="isMarry">
+                                                <label class="layui-form-label" style="width: auto"></label>
+                                                <div class="layui-inline">
+                                                    <input class="marry" name="isMarry" value="是" title="是"
+                                                           type="radio">
+                                                    <input class="marry" name="isMarry" value="否" title="否"
+                                                           type="radio">
+                                                </div>
+                                            </div>
+                                        </th>
+
+                                        <th colspan="4">华侨、港澳台:<span>
+                                        <div class="layui-inline" pane="" id="update_isOut">
+                                            <label class="layui-form-label"></label>
+                                            <div class="layui-inline" onclick="student.showAreaInfo()">
+                                               <input name="isOut" value="是" title="是"
+                                                      type="radio">
+                                               <input name="isOut" value="否" title="否" type="radio">
+                                            </div>
+                                        </div>
+                                        </span></th>
+                                    </tr>
+
+                                    <tr>
                                         <th colspan="3">住宿类型:<span>
                                         <div class="layui-inline" pane="" id="update_accommodation_type">
                                             <label class="layui-form-label" style="width: auto"></label>
@@ -1087,6 +1102,34 @@
                                 <table class="layui-table lay-even " data-name="articleCatData"
                                        style="border: 0px solid red" id="updateStudent_Academic information">
                                     <tbody>
+
+                                    <tr>
+                                        <th colspan="1">职业导师：<span>
+                                            <div class="layui-input-inline" style="width: 60%">
+                                                <select lay-filter="update_community_counselor"
+                                                        id="update_career_mentor" readonly>
+                                                    <option value=""></option>
+                                                </select>
+                                            </div>
+                                        </span></th>
+                                        <th colspan="5">学籍状态：<span>
+                                            <div class="layui-input-inline">
+                                                <select lay-filter="update_student_status" id="update_student_status">
+                                                    <option value=""></option>
+                                                    <option value="1">在读</option>
+                                                    <option value="2">休学</option>
+                                                    <option value="3">入伍</option>
+                                                    <option value="4">退学</option>
+                                                    <option value="5">复学</option>
+                                                    <option value="6">留级</option>
+                                                </select>
+                                            </div>
+                                        </span></th>
+
+
+
+                                    </tr>
+
                                     <tr>
                                         <th colspan="2">学生类型：<span>
                                             <div class="layui-input-inline" style="width: 60%">
@@ -1154,45 +1197,7 @@
                                         </span></th>
                                     </tr>
 
-                                    <tr>
-                                        <th colspan="1">职业导师：<span>
-                                            <div class="layui-input-inline" style="width: 60%">
-                                                <select lay-filter="update_community_counselor"
-                                                        id="update_career_mentor" readonly>
-                                                    <option value=""></option>
-                                                </select>
-                                            </div>
-                                        </span></th>
-                                        <th colspan="5">学籍状态：<span>
-                                            <div class="layui-input-inline">
-                                                <select lay-filter="update_student_status" id="update_student_status">
-                                                    <option value=""></option>
-                                                    <option value="1">在读</option>
-                                                    <option value="2">休学</option>
-                                                    <option value="3">入伍</option>
-                                                    <option value="4">退学</option>
-                                                    <option value="5">复学</option>
-                                                    <option value="6">留级</option>
-                                                </select>
-                                            </div>
-                                        </span></th>
-                                    </tr>
-                                    <tr>
 
-
-                                        <th colspan="5">困难类别：<span>
-                                            <div class="layui-input-inline" style="width: 60%">
-                                                <div class="layui-inline" pane="" id="update_hard_type">
-                                            <label class="layui-form-label" style="width: auto"></label>
-                                            <div class="layui-inline">
-                                               <input name="update_hard_type" value="" title="不是" type="radio" checked>
-                                               <input name="update_hard_type" value="一般" title="一般" type="radio">
-                                               <input name="update_hard_type" value="特困" title="特困" type="radio">
-                                            </div>
-                                        </div>
-                                             </div>
-                                        </span></th>
-                                    </tr>
 
                                     <tr>
                                         <th colspan="5">第一年缴费状态：<span>
@@ -1461,7 +1466,7 @@
         <tr>
             <td>
                 <div class="layui-form-item">
-                    <label class="layui-form-label" style="width: auto">担任职务</label>
+                    <label class="layui-form-label" style="width: auto">证明人</label>
                     <div class="layui-input-block">
                         <input type="text" name="staffExperience" id="staffExperience" lay-verify="required"
                                placeholder="请输入" autocomplete="off" class="layui-input">

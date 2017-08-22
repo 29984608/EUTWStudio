@@ -41,8 +41,11 @@ public class StudentController {
     public Map<String, Object> list(PageUtil page, SearchDto searchDto) {
         Map<String, Object> data = new HashMap<>();
         try {
+            List<Map<String, String>> allProfessionList = personService.queryAllStudentsProfessionList();
+            System.out.println("555555555555555555"+allProfessionList);
             List<Map<String, Object>> student = personService.queryStudentList(searchDto, page);
             data.put("student", student);
+            data.put("allProfessionList", allProfessionList);
             data.put("msg", Constant.SEARCH_SUCCESS);
             data.put("page", page);
             data.put("result", true);
@@ -54,6 +57,20 @@ public class StudentController {
         }
 
         return data;
+    }
+
+    @RequestMapping("/queryProfessionByDepartment")
+    @ResponseBody
+    public Map<String,Object> queryProfessionByDepartment(){
+        try {
+            Map<String, Object> data = new HashMap<>();
+            List<Map<String, String>> allProfessionList = personService.queryAllStudentsProfessionList();
+            data.put("allProfessionList", allProfessionList);
+            return data;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @RequestMapping("/update")
@@ -80,10 +97,8 @@ public class StudentController {
         try {
             Map<String, Object> students = personService.queryStudentsToUpdate(studentNo);
             List<Map<String, Object>> students_family = personService.queryStudentFamily(studentNo);
-            System.out.println(students.get("departmentId"));
             List<Map<String, String>> professionList = personService.queryStudentsProfessionList((String) students.get("department_id"));
             List<Map<String, String>> allProfessionList = personService.queryAllStudentsProfessionList();
-            System.out.println("000000"+professionList);
             List<Map<String, String>> AwardOrPunishmentList = personService.queryStudentsAwardOrPunishmentList(studentNo);
             List<Map<String, String>> directionList = personService.queryStudentsDirection((String) students.get("department_id"));
             List<Map<String, Object>> classesList = personService.queryStudentsClassList();
@@ -224,6 +239,7 @@ public class StudentController {
     public Result delExperience(String experienceId,String studentNo) {
         try {
             personService.delExperience(experienceId);
+            System.out.println("22222222222222"+experienceId);
             List<Map<String, Object>> experienceList = personService.queryStudentExperienceList(studentNo);
 
             return Result.success(experienceList, Constant.DELETE_SUCCESS);
@@ -239,8 +255,9 @@ public class StudentController {
     public Result addExperienceByUpdate(Experience experience) {
         try {
             personService.addExperienceByUpdate(experience);
+            List<Map<String, Object>> experienceList = personService.queryStudentExperienceList(experience.getNo());
 
-            return Result.success(null, Constant.ADD_SUCCESS);
+            return Result.success(experienceList, Constant.ADD_SUCCESS);
         } catch (Exception e) {
             e.printStackTrace();
         }

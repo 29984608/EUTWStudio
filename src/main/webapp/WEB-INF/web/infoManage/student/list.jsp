@@ -234,6 +234,8 @@
     let addStudentFamilyInfoIndex;
     let AwardOrPunishmentInfo;
     let addAwardOrPunishmentInfoIndex;
+    let allProfessionInfo;
+    let addExperienceByUpdateOffOpen;
     layui.use(['jquery', 'layer', 'element', 'laypage', 'form', 'laytpl', 'tree'], function () {
         window.jQuery = window.$ = layui.jquery;
         window.layer = layui.layer;
@@ -293,6 +295,7 @@
                     success: function (data) {
                         if (data.result) {
                             currentIndex = data.page.currentIndex;
+                            allProfessionInfo = data.allProfessionList;
                             totalSize = data.page.totalSize;
                             student.page();
                             showTotalCount(data.page.totalCount);
@@ -760,7 +763,7 @@
                                                        onclick="layui.laydate({elem: this})" type="text"
                                                        id="educational_experience_start">
                                             </div>
-                                            <span style="float: left;margin-top: 8px"><p class="layui-input-inline" style="align-content:center;">--至--</p></span>
+                                            <span style="float: left;margin-top: 8px"><p class="layui-input-inline" style="align-content:center;"> 至 </p></span>
                                              <div class="layui-input-inline" style="width: 30%;float: left">
                                                 <input name="date" lay-verify="date" placeholder="yyyy-mm-dd"
                                                        autocomplete="off" class="layui-input educational_experience_end"
@@ -768,20 +771,20 @@
                                                        id="educational_experience_end">
                                             </div>
                                         </span></th>
-                                        <th colspan="2"><span>
-                                            <div class="layui-input-inline" style="width: 90%">
+                                        <th colspan="2"><span>地点：
+                                            <div class="layui-input-inline" style="width: 60%">
                                                 <input type="text" name="text"
                                                        placeholder="请输入学校名称" autocomplete="off" class="layui-input update_schoolName" id="update_schoolName">
                                              </div>
                                         </span></th>
-                                        <th colspan="2"><span>
-                                            <div class="layui-input-inline" style="width: 90%">
+                                        <th colspan="2"><span>证明人：
+                                            <div class="layui-input-inline" style="width: 60%">
                                                 <input type="text" name="text"
-                                                       placeholder="担任什么职务" autocomplete="off" class="layui-input update_duties" id="update_duties">
+                                                       placeholder="请输入证明人" autocomplete="off" class="layui-input update_duties" id="update_duties">
                                              </div>
                                         </span></th>
                                         <th>
-                                            <button class="layui-btn  layui-btn-danger" onclick="student.delExperience(\` + experienceList[i].id + \`)" style="margin-bottom: 10px;float: right;"><i class="layui-icon">&#xe640;</i> 删除</button>
+                                            <button class="layui-btn  layui-btn-danger" onclick="student.delExperience(` + experienceList[i].id + `)" style="margin-bottom: 10px;float: right;"><i class="layui-icon">&#xe640;</i> 删除</button>
                                         </th>
                                     </tr>`)
 //                    $("#educational_experience").append(` `)
@@ -930,7 +933,7 @@
                 })
             },
             addExperienceInfo: function () {
-                layer.open({
+                addExperienceByUpdateOffOpen = layer.open({
                     type: 1,
                     title: "添加学生教育经历",
                     area: ["40%", "60%"],
@@ -939,7 +942,6 @@
             },
             delExperience: function (experienceId) {
                 layer.confirm('该操作直接删除，无需更新。确定删除？', {icon: 3, title: '提示'}, function (index) {
-                    layer.close(index);
                     let studentNo = studentInfo.no;
                     $.post(baseUrl + "/student/delExperience",
                         {experienceId: experienceId, studentNo: studentNo},
@@ -960,7 +962,6 @@
 
 
                 layer.confirm('确定添加？', {icon: 3, title: '提示'}, function (index) {
-                    layer.close(index);
                     $.post(baseUrl + "/student/addExperienceByUpdate",
                         {
                             start_time: startDateExperience,
@@ -971,11 +972,11 @@
                         },
                         function (data) {
                             layer.msg(data.msg);
+                            student.educationalExperience(data.data);
+                            layer.close(addExperienceByUpdateOffOpen);
                         }
                     )
                 })
-
-                Closepage();
             },
 
             isOther: function (political) {
@@ -1460,6 +1461,14 @@
             })
         }
 
+        function loadAllProfession() {
+            $.post(baseUrl + "/student/queryProfessionByDepartment", function (data) {
+                console.log(data.allProfessionList);
+                $("#profession_search").html(`<option value="">专业</option>`).append(loadOptionsHtml(data.allProfessionList, "-"));
+            })
+
+        }
+
         function loadAllClassess() {
             $.post(baseUrl + "/communication/queryClass", function (data) {
                 if (data.result) {
@@ -1539,6 +1548,7 @@
             loadALlDepartments();
             loadAllDirections();
             loadAllLevels();
+            loadAllProfession();
             loadAllClassess();
             monitorQQOfEmail();
             student.queryAreaAndFloorOfUpdate()
@@ -1558,11 +1568,17 @@
                 delimiter: '-'
             });
 
+            //搜索条件中显示全部的专业信息
+//            console.log(allProfessionInfo)
+//            $("#profession_search").html(`<option value="">专业</option>` + loadOptionsHtmlOfClass(allProfessionInfo));
+
 
             form.on('select(department)', function (data) {
                 let department_id = data.value;
+//                根据系动态选择专业
                 $.post(baseUrl + "/student/showAutoClassAndProAndDirByDepartment", {departmentId: department_id}, function (resultData) {
                     $("#profession_search").html(`<option value="">专业</option>` + loadOptionsHtmlOfClass(resultData.data.professionList));
+//                    $("#profession_search").html(`<option value="">专业</option>` + loadOptionsHtmlOfClass(resultData.data.professionList));
                     form.render();
                 })
 
