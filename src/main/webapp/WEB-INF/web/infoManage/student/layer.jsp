@@ -169,9 +169,9 @@
                     <tbody id="family">
                     </tbody>
                     <tr>
-                        <th colspan="7">紧急联系人：<span id="emergency_contact_name"></span></th>
+                        <th colspan="5">紧急联系人：<span id="emergency_contact_name"></span></th>
 
-                        <th colspan="6">联系方式：<span id="emergency_contact_method"></span></th>
+                        <th colspan="8">联系方式：<span id="emergency_contact_method"></span></th>
                     </tr>
                     </tbody>
                 </table>
@@ -187,41 +187,36 @@
                        style="border: 0px solid red">
                     <tbody>
                     <tr>
-                        <th colspan="4">学籍状态：<span id="student_status"></span></th>
-                    </tr>
-                    <tr>
-                        <th colspan="2">学生类别：<span id="student_type"></span></th>
-                        <th colspan="2">高考成绩：<span id="sat_score"></span></th>
+                        <th width="25%">学籍状态：<span id="student_status"></span></th>
+                        <th width="25%">学生类别：<span id="student_type"></span></th>
+                        <th width="25%">高考成绩：<span id="sat_score"></span></th>
+                        <th width="25%">职业导师：<span id="teacherName"></span></th>
 
                     </tr>
                     <tr>
                         <th>录取专业：<span id="profession"></span></th>
                         <th>现专业：<span id="originProfession"></span></th>
                         <th>就业方向：<span id="direction"></span></th>
-                        <th>班级：<span id="classes"></span></th>
-                    </tr>
-                    <tr>
-                        <th colspan="2">职业导师：<span id="teacherName"></span></th>
-                        <th colspan="2">社区辅导员：<span id="teacherCommunity"></span></th>
-                    </tr>
-                    <tr>
-                    </tr>
+                        <th >班级：<span id="classes"></span></th>
 
+                    </tr>
                     <tr>
-                        <th colspan="2">缴费状态：
+                        <th colspan="3">缴费状态：
                             第一年：(<span id="payment_status_first_year"></span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             第二年：(<span id="payment_status_second_year"></span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             第三年：(<span id="payment_status_third_year"></span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
                         </th>
-                        <th colspan="2">实践类型：<span id="practice_learning_type"></span></th>
+                        <th colspan="1">实践类型：<span id="practice_learning_type"></span></th>
 
                     </tr>
                     <tr>
+                        <th>社区辅导员：<span id="teacherCommunity"></span></th>
+
                         <th colspan="2">宿舍位置：<span id="area"></span>&nbsp;-&nbsp;<span
                                 id="floor"></span>&nbsp;-&nbsp;<span id="room"></span>房间
                         </th>
-                        <th colspan="2">困难类别：<span id="hard_type"></span></th>
+                        <th colspan="1">困难类别：<span id="hard_type"></span></th>
                     </tr>
                     </tbody>
                 </table>
