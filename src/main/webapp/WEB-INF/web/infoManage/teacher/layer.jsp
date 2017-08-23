@@ -79,7 +79,7 @@
                     </div>
                 </div>
                 <div>
-                    <label class="layui-form-label" style="margin-bottom: 20px">可选班级</label>
+                    <label class="layui-form-label" style="margin-bottom: 20px;">可选班级</label>
                     <div id="classes">
 
                     </div>
@@ -102,17 +102,17 @@
             </div>
 
                 <div id="show_community" style="display: none;">
-                    <div style="display: inline-block">
+                    <div style="display: none">
                     <div class="layui-form-item">
                         <label class="layui-form-label" style="width:80px;"> 区号</label>
                         <div class="layui-input-inline">
                             <select lay-filter="queryAreaOfRoom" name="areaId" id="queryAreaOfRoom">
-                                <option value="">选择区号</option>
+                                <option value="0">选择区号</option>
                             </select>
                         </div>
                     </div>
                     </div>
-                    <div class="layui-form-item">
+                    <div class="layui-form-item" style="display: none">
                         <label class="layui-form-label">层号</label>
                         <div id="floor">
 
@@ -201,7 +201,7 @@
         </div>
 
         <div id="show_community_update" style="display: none">
-            <div class="layui-form-item">
+            <div class="layui-form-item" style="display: none">
                 <label class="layui-form-label" style="width:80px;">区号</label>
                 <div class="layui-input-inline">
                     <select lay-filter="queryAreaOfRoom_update" name="areaId" id="queryAreaOfRoom_update">
@@ -209,7 +209,7 @@
                     </select>
                 </div>
             </div>
-            <div class="layui-form-item">
+            <div class="layui-form-item" style="display: none">
                 <label class="layui-form-label">层号</label>
                 <div id="floor_update">
 

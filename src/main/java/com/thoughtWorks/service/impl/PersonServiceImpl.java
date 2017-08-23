@@ -45,7 +45,7 @@ public class PersonServiceImpl implements PersonService {
             teacher.setDeptId(0);
             roleId = 0;
             floorId = Arrays.asList(floorIds.split(","));
-            if (floorId.size() != 0) personDao.insertCommunityTeacher(teacher.getNo(),areaId, floorId);
+//            if (floorId.size() != 0) personDao.insertCommunityTeacher(teacher.getNo(),areaId, floorId);
             personDao.addTeacher(teacher);
 
         }else {
@@ -91,7 +91,7 @@ public class PersonServiceImpl implements PersonService {
             teacher.setDirectionId("0");
             floorId = Arrays.asList(floorIds.split(","));
             trainModuleDao.deleteTeacherCommunityAllClassesId(teacher.getNo());
-            if (floorId.size() != 0) personDao.insertCommunityTeacher(teacher.getNo(),_areaId, floorId);
+//            if (floorId.size() != 0) personDao.insertCommunityTeacher(teacher.getNo(),_areaId, floorId);
         }
         personDao.updateTeacher(teacher);
     }
