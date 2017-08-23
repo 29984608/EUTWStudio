@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 
 <style>
-    .layui-table th{
+    .layui-table th {
         font-size: 11px;
         padding: 8px 5px;
         line-height: 31px;
@@ -137,7 +137,7 @@
                         <th colspan="1" style="width:60px;">性别：<span id="studentSex"></span></th>
                         <th colspan="1" style="width:87px;">民族：<span id="famous_family"></span></th>
                         <th colspan="3" style="width:211px">身份证号：<span id="idcard"></span></th>
-                        <th rowspan = " 3 " style="padding: 1px;">
+                        <th rowspan=" 3 " style="padding: 1px;">
                             <div style="width:120px; height: 140px; border: 0px solid #00ab9f">
                                 <img id="images" style="width:100%" height="100%"/>
                             </div>
@@ -148,7 +148,7 @@
                         <th colspan="3" style="width:162px;">出生日期：<span id="born"></span></th>
                         <th colspan="5" style="width:230px;">籍贯：<span id="native_place"></span></th>
                         <th colspan="3" style="width:190px;">政治面貌：<span id="political_status"></span></th>
-                        <th >婚否：<span id="is_marry"></span></th>
+                        <th>婚否：<span id="is_marry"></span></th>
                     </tr>
                     <tr>
                         <th colspan="3" style="width:120px;">血型：<span id="blood"></span></th>
@@ -169,9 +169,9 @@
                     <tbody id="family">
                     </tbody>
                     <tr>
-                        <th colspan="7">紧急联系人：<span id="emergency_contact_name"></span></th>
+                        <th colspan="5">紧急联系人：<span id="emergency_contact_name"></span></th>
 
-                        <th colspan="6">联系方式：<span id="emergency_contact_method"></span></th>
+                        <th colspan="8">联系方式：<span id="emergency_contact_method"></span></th>
                     </tr>
                     </tbody>
                 </table>
@@ -187,41 +187,36 @@
                        style="border: 0px solid red">
                     <tbody>
                     <tr>
-                        <th colspan="4">学籍状态：<span id="student_status"></span></th>
-                    </tr>
-                    <tr>
-                        <th colspan="2">学生类别：<span id="student_type"></span></th>
-                        <th colspan="2">高考成绩：<span id="sat_score"></span></th>
+                        <th width="25%">学籍状态：<span id="student_status"></span></th>
+                        <th width="25%">学生类别：<span id="student_type"></span></th>
+                        <th width="25%">高考成绩：<span id="sat_score"></span></th>
+                        <th width="25%">职业导师：<span id="teacherName"></span></th>
 
                     </tr>
                     <tr>
                         <th>录取专业：<span id="profession"></span></th>
                         <th>现专业：<span id="originProfession"></span></th>
                         <th>就业方向：<span id="direction"></span></th>
-                        <th>班级：<span id="classes"></span></th>
-                    </tr>
-                    <tr>
-                        <th colspan="2">职业导师：<span id="teacherName"></span></th>
-                        <th colspan="2">社区辅导员：<span id="teacherCommunity"></span></th>
-                    </tr>
-                    <tr>
-                    </tr>
+                        <th >班级：<span id="classes"></span></th>
 
+                    </tr>
                     <tr>
-                        <th colspan="2">缴费状态：
+                        <th colspan="3">缴费状态：
                             第一年：(<span id="payment_status_first_year"></span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             第二年：(<span id="payment_status_second_year"></span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             第三年：(<span id="payment_status_third_year"></span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
                         </th>
-                        <th colspan="2">实践类型：<span id="practice_learning_type"></span></th>
+                        <th colspan="1">实践类型：<span id="practice_learning_type"></span></th>
 
                     </tr>
                     <tr>
+                        <th>社区辅导员：<span id="teacherCommunity"></span></th>
+
                         <th colspan="2">宿舍位置：<span id="area"></span>&nbsp;-&nbsp;<span
                                 id="floor"></span>&nbsp;-&nbsp;<span id="room"></span>房间
                         </th>
-                        <th colspan="2">困难类别：<span id="hard_type"></span></th>
+                        <th colspan="1">困难类别：<span id="hard_type"></span></th>
                     </tr>
                     </tbody>
                 </table>
@@ -270,7 +265,9 @@
                                             <tr>
                                                 <th>
                                                     <div class="layui-inline">
-                                                        <label class="layui-form-label" style="width:auto;"><img style="width: 18px;height:18px;" src="${baseurl}/images/public/TEL.png"></label>
+                                                        <label class="layui-form-label" style="width:auto;"><img
+                                                                style="width: 18px;height:18px;"
+                                                                src="${baseurl}/images/public/TEL.png"></label>
                                                         <div class="layui-input-inline">
                                                             <input type="tel" name="phone"
                                                                    autocomplete="off" class="layui-input"
@@ -282,7 +279,9 @@
                                             <tr>
                                                 <th>
                                                     <div class="layui-inline">
-                                                        <label class="layui-form-label" style="width:auto;"><img style="width: 18px;height:18px;" src="${baseurl}/images/public/qq.png"></label>
+                                                        <label class="layui-form-label" style="width:auto;"><img
+                                                                style="width: 18px;height:18px;"
+                                                                src="${baseurl}/images/public/qq.png"></label>
                                                         <div class="layui-input-inline">
                                                             <input type="number" name="QQ"
                                                                    autocomplete="off" class="layui-input"
@@ -295,7 +294,8 @@
                                                 <th>
                                                     <div class="layui-inline">
                                                         <label class="layui-form-label"
-                                                               style="width: auto"><img style="width: 18px;height:18px;" src="${baseurl}/images/public/Email.png"></label>
+                                                               style="width: auto"><img style="width: 18px;height:18px;"
+                                                                                        src="${baseurl}/images/public/Email.png"></label>
                                                         <div class="layui-input-inline">
                                                             <input type="email" name="email"
                                                                    autocomplete="off" class="layui-input"
@@ -335,8 +335,9 @@
                                     <tr>
                                         <th colspan="3">性别：<span>
                                             <div class="layui-inline" pane="" id="updateStudentSex">
-                                                <div class="layui-inline" id="updateStudentSexToJs" >
-                                                    <input name="sexOfUpdate" value="M" title="男" style="font-size: 12px"
+                                                <div class="layui-inline" id="updateStudentSexToJs">
+                                                    <input name="sexOfUpdate" value="M" title="男"
+                                                           style="font-size: 10px"
                                                            type="radio">
                                                     <input name="sexOfUpdate" value="F" title="女"
                                                            type="radio">
@@ -357,14 +358,14 @@
                                     </tr>
 
                                     <tr>
-                                        <th colspan="3">身份证号：<span>
+                                        <th colspan="2">身份证号：<span>
                                             <div class="layui-input-inline" style="width: 60%">
                                                 <input type="text" name="text"
                                                        placeholder="请输入内容" autocomplete="off" class="layui-input"
                                                        id="updateStudentIdCard" readonly style="border: none">
                                              </div>
                                         </span></th>
-                                        <th colspan="3">出生日期：
+                                        <th colspan="2">出生日期：
                                             <div class="layui-input-inline" style="width: 60%">
                                                 <input name="date" placeholder="yyyy-mm-dd"
                                                        autocomplete="off" class="layui-input"
@@ -372,31 +373,11 @@
                                                        id="updateStudentBirthday" readonly style="border: none">
                                             </div>
                                         </th>
-                                    </tr>
 
-                                    <tr>
-                                        <th colspan="1" style="width: 18%">身高：<span>
-                                            <div class="layui-input-inline" style="width: 40%">
-                                                <input type="text" name="text"
-                                                       placeholder="请输入内容" autocomplete="off" class="layui-input"
-                                                       id="updateStudentHeight">
-                                             </div>
-                                        </span>
-                                            <span>cm</span>
-                                        </th>
-                                        <th colspan="1" style="width: 18%">体重：<span>
-                                            <div class="layui-input-inline" style="width: 40%">
-                                                <input type="text" name="text"
-                                                       placeholder="请输入内容" autocomplete="off" class="layui-input"
-                                                       id="updateStudentWight">
-                                             </div>
-                                        </span>
-                                            <span>kg</span>
-                                        </th>
                                         <th colspan="2">健康状况：<span>
                                             <div class="layui-input-inline">
                                                 <div class="layui-inline" pane="" id="health">
-                                                    <label class="layui-form-label" style="width: auto" ></label>
+                                                    <label class="layui-form-label" style="width: auto"></label>
                                                     <div class="layui-inline">
                                                        <input name="health" value="良好" title="良好"
                                                               type="radio">
@@ -405,49 +386,8 @@
                                                 </div>
                                              </div>
                                         </span></th>
-                                        <th colspan="1">婚否：
-                                            <div class="layui-inline" pane="" id="isMarry">
-                                                <label class="layui-form-label" style="width: auto"></label>
-                                                <div class="layui-inline">
-                                                    <input class="marry" name="isMarry" value="是" title="是"
-                                                           type="radio">
-                                                    <input class="marry" name="isMarry" value="否" title="否"
-                                                           type="radio">
-                                                </div>
-                                            </div>
-                                        </th>
+
                                     </tr>
-
-
-                                    <tr>
-
-                                        <th colspan="3">血型：<span>
-                                        <div class="layui-input-inline"
-                                        >
-                                          <select name="quiz1" lay-filter="updateStudentBloodType"
-                                                  id="updateStudentBloodType">
-                                            <option value="">请选择血型</option>
-                                            <option value="1">O型</option>
-                                            <option value="2">A型</option>
-                                            <option value="3">B型</option>
-                                            <option value="4">AB型</option>
-                                            <option value="5">RH阴性</option>
-                                          </select>
-                                        </div>
-                                    </span></th>
-
-                                        <th colspan="3">华侨、港澳台:<span>
-                                        <div class="layui-inline" pane="" id="update_isOut">
-                                            <label class="layui-form-label" ></label>
-                                            <div class="layui-inline" onclick="student.showAreaInfo()">
-                                               <input name="isOut" value="是" title="是"
-                                                      type="radio">
-                                               <input name="isOut" value="否" title="否" type="radio">
-                                            </div>
-                                        </div>
-                                        </span></th>
-                                    </tr>
-
 
                                     <tr>
                                         <th colspan="6">政治面貌：
@@ -507,15 +447,15 @@
 
                                     <tr class="layui-form">
                                         <th colspan="6">
-                                                <div class="layui-form-item" style="margin-bottom: 0px">
-                                                    <label class="layui-form-label"
-                                                           style="margin-left: -46px;">宗教信仰：</label>
-                                                    <div class="layui-input-block">
-                                                        <input type="text" name="title" id="religiousBelief"
-                                                               autocomplete="off" placeholder="何时经何人介绍参加何种党派、团体、任何职?"
-                                                               class="layui-input" style="margin-left: -60px">
-                                                    </div>
+                                            <div class="layui-form-item" style="margin-bottom: 0px">
+                                                <label class="layui-form-label"
+                                                       style="margin-left: -3%;">宗教信仰：</label>
+                                                <div class="layui-input-block">
+                                                    <input type="text" name="title" id="religiousBelief"
+                                                           autocomplete="off" placeholder="何时经何人介绍参加何种党派、团体、任何职?"
+                                                           class="layui-input" style="margin-left: -60px">
                                                 </div>
+                                            </div>
                                         </th>
                                     </tr>
 
@@ -560,15 +500,19 @@
                                                         <div class="form-group">
                                                             <label class="sr-only" for="province9">Province</label>
                                                             <select class="form-control" id="province9"
+                                                                    onchange="selectProvince9(this)"
                                                                     lay-ignore></select>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="sr-only" for="city9">City</label>
-                                                            <select class="form-control" id="city9" lay-ignore></select>
+                                                            <select class="form-control" id="city9"
+                                                                    onchange="selectCity9(this)"
+                                                                    lay-ignore></select>
                                                         </div>
                                                         <div class="form-group" style="margin-right: -5px">
                                                             <label class="sr-only" for="district9">District</label>
                                                             <select class="form-control" id="district9"
+                                                                    onchange="selectDistrict9(this)"
                                                                     lay-ignore></select>
                                                         </div>
                                                     </div>
@@ -601,15 +545,19 @@
                                                         <div class="form-group">
                                                             <label class="sr-only" for="province0">Province</label>
                                                             <select class="form-control" id="province0"
+                                                                    onchange="selectProvince0(this)"
                                                                     lay-ignore></select>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="sr-only" for="city0">City</label>
-                                                            <select class="form-control" id="city0" lay-ignore></select>
+                                                            <select class="form-control" id="city0"
+                                                                    onchange="selectCity0(this)"
+                                                                    lay-ignore></select>
                                                         </div>
                                                         <div class="form-group" style="margin-right: -5px">
                                                             <label class="sr-only" for="district0">District</label>
                                                             <select class="form-control" id="district0"
+                                                                    onchange="selectDistrict0(this)"
                                                                     lay-ignore></select>
                                                         </div>
                                                     </div>
@@ -623,7 +571,7 @@
                                         <th colspan="6"><span style="font-weight: bold"></span>
                                             <div class="layui-input-inline" style="width: 100%;float: right">
                                                 <label class="layui-form-label" style="width: auto;margin-left: -15px">家庭实际住址: </label>
-                                                <div class="layui-input-inline" style="width: 60%">
+                                                <div class="layui-input-inline" style="width: 55%">
                                                     <input type="text" name="idcard_address" placeholder="请输入家庭实际住址"
                                                            autocomplete="off" class="layui-input" id="detailedAddresses"
                                                            readonly style="border: none">
@@ -643,15 +591,19 @@
                                                         <div class="form-group">
                                                             <label class="sr-only" for="province3">Province</label>
                                                             <select class="form-control" id="province3"
+                                                                    onchange="selectProvince3(this)"
                                                                     lay-ignore></select>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="sr-only" for="city3">City</label>
-                                                            <select class="form-control" id="city3" lay-ignore></select>
+                                                            <select class="form-control" id="city3"
+                                                                    onchange="selectCity3(this)"
+                                                                    lay-ignore></select>
                                                         </div>
                                                         <div class="form-group" style="margin-right: -5px">
                                                             <label class="sr-only" for="district3">District</label>
                                                             <select class="form-control" id="district3"
+                                                                    onchange="selectDistrict3(this)"
                                                                     lay-ignore></select>
                                                         </div>
                                                         <%--<label class="layui-form-label " style="width: auto">详细地址</label>--%>
@@ -692,13 +644,17 @@
                                                     <div id="distpicker">
                                                         <div class="form-group">
                                                             <select class="form-control" id="province1"
+                                                                    onchange="selectProvince1(this)"
                                                                     lay-ignore></select>
                                                         </div>
                                                         <div class="form-group">
-                                                            <select class="form-control" id="city1" lay-ignore></select>
+                                                            <select class="form-control" id="city1"
+                                                                    onchange="selectCity1(this)"
+                                                                    lay-ignore></select>
                                                         </div>
                                                         <div class="form-group">
                                                             <select class="form-control" id="district1"
+                                                                    onchange="selectDistrict1(this)"
                                                                     lay-ignore></select>
                                                         </div>
                                                     </div>
@@ -707,8 +663,6 @@
 
                                         </th>
                                     </tr>
-
-
 
 
                                     <div id="family_information">
@@ -783,15 +737,19 @@
                                                         <div class="form-group">
                                                             <label class="sr-only" for="province2">Province</label>
                                                             <select class="form-control" id="province2"
+                                                                    onchange="selectProvince2(this)"
                                                                     lay-ignore></select>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="sr-only" for="city2">City</label>
-                                                            <select class="form-control" id="city2" lay-ignore></select>
+                                                            <select class="form-control" id="city2"
+                                                                    onchange="selectCity2(this)"
+                                                                    lay-ignore></select>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="sr-only" for="district2">District</label>
                                                             <select class="form-control" id="district2"
+                                                                    onchange="selectDistrict2(this)"
                                                                     lay-ignore></select>
                                                         </div>
                                                         <div class="layui-input-block form-group"
@@ -861,15 +819,18 @@
                                                         <div class="form-group">
                                                             <label class="sr-only" for="province5">Province</label>
                                                             <select class="form-control" id="province5"
+                                                                    onchange="selectProvince5(this)"
                                                                     lay-ignore></select>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="sr-only" for="city5">City</label>
-                                                            <select class="form-control" id="city5" lay-ignore></select>
+                                                            <select class="form-control" id="city5"
+                                                                    onchange="selectCity5(this)" lay-ignore></select>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="sr-only" for="district5">District</label>
                                                             <select class="form-control" id="district5"
+                                                                    onchange="selectDistrict5(this)"
                                                                     lay-ignore></select>
                                                         </div>
                                                         <div class="layui-input-block form-group"
@@ -889,7 +850,7 @@
 
                                     <tr>
 
-                                        <th colspan="3">社区辅导员：<span>
+                                        <th colspan="2">社区辅导员：<span>
                                             <div class="layui-input-inline" style="width: 60%">
                                                 <select lay-filter="update_community_counselor"
                                                         id="update_community_counselor">
@@ -897,7 +858,83 @@
                                                 </select>
                                             </div>
                                         </span></th>
+                                        <th colspan="4">困难类别：<span>
+                                            <div class="layui-input-inline" style="width: 60%">
+                                                <div class="layui-inline" pane="" id="update_hard_type">
+                                            <label class="layui-form-label" style="width: auto"></label>
+                                            <div class="layui-inline">
+                                               <input name="update_hard_type" value="" title="不是" type="radio" checked>
+                                               <input name="update_hard_type" value="一般" title="一般" type="radio">
+                                               <input name="update_hard_type" value="特困" title="特困" type="radio">
+                                            </div>
+                                        </div>
+                                             </div>
+                                        </span></th>
 
+                                    </tr>
+
+                                    <tr>
+                                        <th colspan="1" style="width: 18%">身高：<span>
+                                            <div class="layui-input-inline" style="width: 40%">
+                                                <input type="text" name="text"
+                                                       placeholder="请输入内容" autocomplete="off" class="layui-input"
+                                                       id="updateStudentHeight">
+                                             </div>
+                                        </span>
+                                            <span>cm</span>
+                                        </th>
+                                        <th colspan="1" style="width: 18%">体重：<span>
+                                            <div class="layui-input-inline" style="width: 40%">
+                                                <input type="text" name="text"
+                                                       placeholder="请输入内容" autocomplete="off" class="layui-input"
+                                                       id="updateStudentWight">
+                                             </div>
+                                        </span>
+                                            <span>kg</span>
+                                        </th>
+
+                                        <th colspan="3">血型：<span>
+                                        <div class="layui-input-inline"
+                                        >
+                                          <select name="quiz1" lay-filter="updateStudentBloodType"
+                                                  id="updateStudentBloodType">
+                                            <option value="">请选择血型</option>
+                                            <option value="1">O型</option>
+                                            <option value="2">A型</option>
+                                            <option value="3">B型</option>
+                                            <option value="4">AB型</option>
+                                            <option value="5">RH阴性</option>
+                                          </select>
+                                        </div>
+                                    </span></th>
+                                    </tr>
+
+                                    <tr>
+                                        <th colspan="2">婚否：
+                                            <div class="layui-inline" pane="" id="isMarry">
+                                                <label class="layui-form-label" style="width: auto"></label>
+                                                <div class="layui-inline">
+                                                    <input class="marry" name="isMarry" value="是" title="是"
+                                                           type="radio">
+                                                    <input class="marry" name="isMarry" value="否" title="否"
+                                                           type="radio">
+                                                </div>
+                                            </div>
+                                        </th>
+
+                                        <th colspan="4">华侨、港澳台:<span>
+                                        <div class="layui-inline" pane="" id="update_isOut">
+                                            <label class="layui-form-label"></label>
+                                            <div class="layui-inline" onclick="student.showAreaInfo()">
+                                               <input name="isOut" value="是" title="是"
+                                                      type="radio">
+                                               <input name="isOut" value="否" title="否" type="radio">
+                                            </div>
+                                        </div>
+                                        </span></th>
+                                    </tr>
+
+                                    <tr>
                                         <th colspan="3">住宿类型:<span>
                                         <div class="layui-inline" pane="" id="update_accommodation_type">
                                             <label class="layui-form-label" style="width: auto"></label>
@@ -979,7 +1016,8 @@
                                                 <label class="layui-form-label" style="width: auto;margin-left: -15px">校外住址信息: </label>
                                                 <div class="layui-input-inline" style="width: 60%">
                                                     <input type="text" name="idcard_address" placeholder="请输入校外住址信息信息"
-                                                           autocomplete="off" class="layui-input" id="updateOffCampusAddress"
+                                                           autocomplete="off" class="layui-input"
+                                                           id="updateOffCampusAddress"
                                                            readonly style="border: none">
                                                 </div>
                                                 <span style="float: right">
@@ -995,15 +1033,19 @@
                                                         <div class="form-group">
                                                             <label class="sr-only" for="province12">Province</label>
                                                             <select class="form-control" id="province12"
+                                                                    onchange="selectProvince12(this)"
                                                                     lay-ignore></select>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="sr-only" for="city12">City</label>
-                                                            <select class="form-control" id="city12" lay-ignore></select>
+                                                            <select class="form-control" id="city12"
+                                                                    onchange="selectCity12(this)"
+                                                                    lay-ignore></select>
                                                         </div>
                                                         <div class="form-group" style="margin-right: -5px">
                                                             <label class="sr-only" for="district12">District</label>
                                                             <select class="form-control" id="district12"
+                                                                    onchange="selectDistrict12(this)"
                                                                     lay-ignore></select>
                                                         </div>
                                                         <div class="layui-input-block form-group"
@@ -1055,6 +1097,34 @@
                                 <table class="layui-table lay-even " data-name="articleCatData"
                                        style="border: 0px solid red" id="updateStudent_Academic information">
                                     <tbody>
+
+                                    <tr>
+                                        <th colspan="1">职业导师：<span>
+                                            <div class="layui-input-inline" style="width: 60%">
+                                                <select lay-filter="update_community_counselor"
+                                                        id="update_career_mentor" readonly>
+                                                    <option value=""></option>
+                                                </select>
+                                            </div>
+                                        </span></th>
+                                        <th colspan="5">学籍状态：<span>
+                                            <div class="layui-input-inline">
+                                                <select lay-filter="update_student_status" id="update_student_status">
+                                                    <option value=""></option>
+                                                    <option value="1">在读</option>
+                                                    <option value="2">休学</option>
+                                                    <option value="3">入伍</option>
+                                                    <option value="4">退学</option>
+                                                    <option value="5">复学</option>
+                                                    <option value="6">留级</option>
+                                                </select>
+                                            </div>
+                                        </span></th>
+
+
+
+                                    </tr>
+
                                     <tr>
                                         <th colspan="2">学生类型：<span>
                                             <div class="layui-input-inline" style="width: 60%">
@@ -1080,7 +1150,8 @@
                                     <tr>
                                         <th colspan="1">录取专业：<span>
                                             <div class="layui-input-inline" style="width: 60%">
-                                                <select id="studentsProfessionList" lay-filter="studentsProfessionList" disabled="disabled">
+                                                <select id="studentsProfessionList" lay-filter="studentsProfessionList"
+                                                        disabled="disabled">
                                                     <option value=""></option>
                                                 </select>
                                             </div>
@@ -1096,7 +1167,7 @@
                                         <th colspan="4">现专业：<span>
                                             <div class="layui-input-inline" style="width: 60%">
                                                 <select id="studentsNowProfessional"
-                                                        lay-filter="studentsNowProfessional" >
+                                                        lay-filter="studentsNowProfessional">
                                                     <option value=""></option>
                                                 </select>
                                             </div>
@@ -1121,45 +1192,7 @@
                                         </span></th>
                                     </tr>
 
-                                    <tr>
-                                        <th colspan="1">职业导师：<span>
-                                            <div class="layui-input-inline" style="width: 60%">
-                                                <select lay-filter="update_community_counselor"
-                                                        id="update_career_mentor" readonly>
-                                                    <option value=""></option>
-                                                </select>
-                                            </div>
-                                        </span></th>
-                                        <th colspan="5">学籍状态：<span>
-                                            <div class="layui-input-inline">
-                                                <select lay-filter="update_student_status" id="update_student_status">
-                                                    <option value=""></option>
-                                                    <option value="1">在读</option>
-                                                    <option value="2">休学</option>
-                                                    <option value="3">入伍</option>
-                                                    <option value="4">退学</option>
-                                                    <option value="5">复学</option>
-                                                    <option value="6">留级</option>
-                                                </select>
-                                            </div>
-                                        </span></th>
-                                    </tr>
-                                    <tr>
 
-
-                                        <th colspan="5">困难类别：<span>
-                                            <div class="layui-input-inline" style="width: 60%">
-                                                <div class="layui-inline" pane="" id="update_hard_type">
-                                            <label class="layui-form-label" style="width: auto"></label>
-                                            <div class="layui-inline">
-                                               <input name="update_hard_type" value="" title="不是" type="radio" checked>
-                                               <input name="update_hard_type" value="一般" title="一般" type="radio">
-                                               <input name="update_hard_type" value="特困" title="特困" type="radio">
-                                            </div>
-                                        </div>
-                                             </div>
-                                        </span></th>
-                                    </tr>
 
                                     <tr>
                                         <th colspan="5">第一年缴费状态：<span>
@@ -1428,7 +1461,7 @@
         <tr>
             <td>
                 <div class="layui-form-item">
-                    <label class="layui-form-label" style="width: auto">担任职务</label>
+                    <label class="layui-form-label" style="width: auto">证明人</label>
                     <div class="layui-input-block">
                         <input type="text" name="staffExperience" id="staffExperience" lay-verify="required"
                                placeholder="请输入" autocomplete="off" class="layui-input">
@@ -1508,5 +1541,189 @@
         formatArr: [3, 4, 4],
         delimiter: '-'
     })
+
+    //动态显示省市区
+    //入学前户口所在派出所：
+
+    let P_school_account_where_the_police_station_detailed = '';
+    let C_school_account_where_the_police_station_detailed = '';
+    let D_school_account_where_the_police_station_detailed = '';
+    let this_school_account_where_the_police_station_detailed = '';
+
+    function selectProvince5(e) {
+        P_school_account_where_the_police_station_detailed = e.options[e.selectedIndex].text;
+        $("#school_account_where_the_police_station_detailed").val(P_school_account_where_the_police_station_detailed);
+    }
+
+    function selectCity5(e) {
+        C_school_account_where_the_police_station_detailed = P_school_account_where_the_police_station_detailed + "-" + e.options[e.selectedIndex].text;
+        $("#school_account_where_the_police_station_detailed").val(C_school_account_where_the_police_station_detailed);
+    }
+
+    function selectDistrict5(e) {
+        D_school_account_where_the_police_station_detailed = C_school_account_where_the_police_station_detailed + "-" + e.options[e.selectedIndex].text;
+        $("#school_account_where_the_police_station_detailed").val(D_school_account_where_the_police_station_detailed);
+    }
+
+    $("#Pre_school_account_where_the_police_station_detailed").bind('input propertychange', function () {
+        this_school_account_where_the_police_station_detailed = D_school_account_where_the_police_station_detailed;
+        $("#school_account_where_the_police_station_detailed").val(this_school_account_where_the_police_station_detailed + "-" + $(this).val());
+    })
+
+    //校外住址信息：
+
+    let P_updateOffCampusAddress = '';
+    let C_updateOffCampusAddress = '';
+    let D_updateOffCampusAddress = '';
+    let this_updateOffCampusAddress = '';
+
+    function selectProvince12(e) {
+        P_updateOffCampusAddress = e.options[e.selectedIndex].text;
+        $("#updateOffCampusAddress").val(P_updateOffCampusAddress);
+    }
+
+    function selectCity12(e) {
+        C_updateOffCampusAddress = P_updateOffCampusAddress + "-" + e.options[e.selectedIndex].text;
+        $("#updateOffCampusAddress").val(C_updateOffCampusAddress);
+    }
+
+    function selectDistrict12(e) {
+        D_updateOffCampusAddress = C_updateOffCampusAddress + "-" + e.options[e.selectedIndex].text;
+        $("#updateOffCampusAddress").val(D_updateOffCampusAddress);
+    }
+
+    $("#detailedOffCampusAddress").bind('input propertychange', function () {
+        this_updateOffCampusAddress = D_updateOffCampusAddress;
+        $("#updateOffCampusAddress").val(this_updateOffCampusAddress + "-" + $(this).val());
+    })
+
+    //入学前档案所在单位：
+
+    let P_Pre_enrollment_file_unit = '';
+    let C_Pre_enrollment_file_unit = '';
+    let D_Pre_enrollment_file_unit = '';
+    let this_Pre_enrollment_file_unit = '';
+
+    function selectProvince2(e) {
+        P_Pre_enrollment_file_unit = e.options[e.selectedIndex].text;
+        $("#Pre_enrollment_file_unit").val(P_Pre_enrollment_file_unit);
+    }
+
+    function selectCity2(e) {
+        C_Pre_enrollment_file_unit = P_Pre_enrollment_file_unit + "-" + e.options[e.selectedIndex].text;
+        $("#Pre_enrollment_file_unit").val(C_Pre_enrollment_file_unit);
+    }
+
+    function selectDistrict2(e) {
+        D_Pre_enrollment_file_unit = C_Pre_enrollment_file_unit + "-" + e.options[e.selectedIndex].text;
+        $("#Pre_enrollment_file_unit").val(D_Pre_enrollment_file_unit);
+    }
+
+    $("#updateStudent_Pre_enrollment_file_unit_detailed").bind('input propertychange', function () {
+        this_Pre_enrollment_file_unit = D_Pre_enrollment_file_unit;
+        $("#Pre_enrollment_file_unit").val(this_Pre_enrollment_file_unit + "-" + $(this).val());
+    })
+
+    //生源所在地名称：
+
+    let P_update_name_of_the_source = '';
+    let C_update_name_of_the_source = '';
+    let D_update_name_of_the_source = '';
+
+    function selectProvince1(e) {
+        P_update_name_of_the_source = e.options[e.selectedIndex].text;
+        $("#update_name_of_the_source").val(P_update_name_of_the_source);
+    }
+
+    function selectCity1(e) {
+        C_update_name_of_the_source = P_update_name_of_the_source + "-" + e.options[e.selectedIndex].text;
+        $("#update_name_of_the_source").val(C_update_name_of_the_source);
+    }
+
+    function selectDistrict1(e) {
+        D_update_name_of_the_source = C_update_name_of_the_source + "-" + e.options[e.selectedIndex].text;
+        $("#update_name_of_the_source").val(D_update_name_of_the_source);
+    }
+
+
+
+    //家庭实际住址：
+
+    let P_detailedAddresses = '';
+    let C_detailedAddresses = '';
+    let D_detailedAddresses = '';
+    let this_detailedAddresses = '';
+
+    function selectProvince3(e) {
+        P_detailedAddresses = e.options[e.selectedIndex].text;
+        $("#detailedAddresses").val(P_detailedAddresses);
+    }
+
+    function selectCity3(e) {
+        C_detailedAddresses = P_detailedAddresses + "-" + e.options[e.selectedIndex].text;
+        $("#detailedAddresses").val(C_detailedAddresses);
+    }
+
+    function selectDistrict3(e) {
+        D_detailedAddresses = C_detailedAddresses + "-" + e.options[e.selectedIndex].text;
+        $("#detailedAddresses").val(D_detailedAddresses);
+    }
+
+    $("#detailedAddress").bind('input propertychange', function () {
+        this_detailedAddresses = D_detailedAddresses;
+        $("#detailedAddresses").val(this_detailedAddresses + "-" + $(this).val());
+    })
+
+    //身份证住址：
+
+    let P_Identity_card_address = '';
+    let C_Identity_card_address = '';
+    let D_Identity_card_address = '';
+
+    function selectProvince0(e) {
+        P_Identity_card_address = e.options[e.selectedIndex].text;
+        $("#Identity_card_address").val(P_Identity_card_address);
+    }
+
+    function selectCity0(e) {
+        C_Identity_card_address = P_Identity_card_address + "-" + e.options[e.selectedIndex].text;
+        $("#Identity_card_address").val(C_Identity_card_address);
+    }
+
+    function selectDistrict0(e) {
+        D_Identity_card_address = C_Identity_card_address + "-" + e.options[e.selectedIndex].text;
+        $("#Identity_card_address").val(D_Identity_card_address);
+    }
+
+
+
+    //籍贯：
+
+    let P_updateStudentNativePlace = '';
+    let C_updateStudentNativePlace = '';
+    let D_updateStudentNativePlace = '';
+
+    function selectProvince9(e) {
+        P_updateStudentNativePlace = e.options[e.selectedIndex].text;
+        $("#updateStudentNativePlace").val(P_updateStudentNativePlace);
+    }
+
+    function selectCity9(e) {
+        C_updateStudentNativePlace = P_updateStudentNativePlace + "-" + e.options[e.selectedIndex].text;
+        $("#updateStudentNativePlace").val(C_updateStudentNativePlace);
+    }
+
+    function selectDistrict9(e) {
+        D_updateStudentNativePlace = C_updateStudentNativePlace + "-" + e.options[e.selectedIndex].text;
+        $("#updateStudentNativePlace").val(D_updateStudentNativePlace);
+    }
+
+    //监听省市区详细地址添加
+
+
+  /*  $("#detailedOffCampusAddress").bind('input propertychange', function () {
+        thisUpdateOffCampusAddress = $(this).val();
+        $("#updateOffCampusAddress").val(thisUpdateOffCampusAddress);
+    })*/
 
 </script>
