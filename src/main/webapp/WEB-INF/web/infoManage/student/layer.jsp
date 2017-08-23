@@ -1718,12 +1718,4 @@
         $("#updateStudentNativePlace").val(D_updateStudentNativePlace);
     }
 
-    //监听省市区详细地址添加
-
-
-  /*  $("#detailedOffCampusAddress").bind('input propertychange', function () {
-        thisUpdateOffCampusAddress = $(this).val();
-        $("#updateOffCampusAddress").val(thisUpdateOffCampusAddress);
-    })*/
-
 </script>

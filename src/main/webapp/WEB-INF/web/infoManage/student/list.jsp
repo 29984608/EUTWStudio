@@ -302,7 +302,7 @@
                             laytpl($("#list-tpl").text()).render(data, function (html) {
                                 $("#list").html(html);
                             });
-                            form.render();
+                            form.render();d
                         }
                     }
                 });
