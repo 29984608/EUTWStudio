@@ -302,7 +302,7 @@
                             laytpl($("#list-tpl").text()).render(data, function (html) {
                                 $("#list").html(html);
                             });
-                            form.render();d
+                            form.render();
                         }
                     }
                 });
@@ -650,7 +650,8 @@
                     closeBtn: 1,
                     content: $("#updateStudent"),
                     cancel: function () {
-                        location.reload();
+                        //点击关闭按钮刷新列表
+//                        location.reload();
                     }
                 })
                 form.render();

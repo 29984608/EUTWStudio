@@ -397,8 +397,10 @@
                                                       id="updateStudent_pre_school_education">
                                                 <option value="">请选择</option>
                                                 <option value="1">高中</option>
-                                                <option value="2">三校生</option>
-                                                <option value="3">其他</option>
+                                                <option value="2">中专</option>
+                                                <option value="3">技校</option>
+                                                <option value="4">职高</option>
+                                                <option value="5">其他</option>
                                               </select>
                                             </div>
                                             <span id="pre_school_education" style="display: none">
@@ -1120,10 +1122,10 @@
                                     </tr>
 
                                     <tr>
-                                        <th colspan="6"><span style="font-weight: bold"></span>
+                                        <th colspan="2"><span style="font-weight: bold"></span>
                                             <div class="layui-input-inline" style="width: 100%">
                                                 <label class="layui-form-label" style="width: auto;margin-left: -15px">来校前毕业学校或工作单位：</label>
-                                                <div class="layui-input-inline" style="width: 60%">
+                                                <div class="layui-input-inline" style="width: 40%">
                                                     <input type="text" name="idcard_address" placeholder="请输入来校前毕业学校或工作单位"
                                                            autocomplete="off" class="layui-input"
                                                            id="pre_school_work"
@@ -1169,10 +1171,18 @@
                                             </div>
 
                                         </th>
+
+                                        <th colspan="4">任何职务：<span>
+                                            <div class="layui-input-inline" style="width: 60%" id="pre_school_staff">
+                                                <input type="text" name="text"
+                                                       placeholder="请输入相关职务" autocomplete="off" class="layui-input"
+                                                       id="update_pre_school_staff">
+                                             </div>
+                                        </span></th>
                                     </tr>
 
                                     <tr>
-                                        <th colspan="1">学生类型：<span>
+                                        <th colspan="3">学生类型：<span>
                                             <div class="layui-input-inline" style="width: 65%">
                                                 <div class="layui-inline" pane="" id="updateStudentType">
                                             <label class="layui-form-label" style="width: auto"></label>
@@ -1184,20 +1194,14 @@
                                         </div>
                                              </div>
                                         </span></th>
-                                        <th colspan="1">高考成绩：<span>
+                                        <th colspan="3">高考成绩：<span>
                                             <div class="layui-input-inline" style="width: 60%" id="show_SAT_score">
                                                 <input type="text" name="text"
                                                        placeholder="请输入高考成绩" autocomplete="off" class="layui-input"
                                                        id="upadte_SAT_score">
                                              </div>
                                         </span></th>
-                                        <th colspan="4">任何职务：<span>
-                                            <div class="layui-input-inline" style="width: 60%" id="pre_school_staff">
-                                                <input type="text" name="text"
-                                                       placeholder="请输入相关职务" autocomplete="off" class="layui-input"
-                                                       id="update_pre_school_staff">
-                                             </div>
-                                        </span></th>
+
 
                                     </tr>
                                     <tr>
