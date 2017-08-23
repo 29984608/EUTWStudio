@@ -27,11 +27,8 @@
     </div>
 
     <div class="layui-login-text">
-        <p>  </p>
-        <a class="layui-form-mid layui-word-aux" style="font-size: 10px;color: #0f0f0f;text-decoration: none">
-            推荐使用 Chorme(谷歌)、Firefox(火狐)浏览器</a>
-        <a class="layui-form-mid layui-word-aux" style="font-size: 10px;color: #0f0f0f;text-decoration: none">
-            360浏览器请先打开急速模式</a>
+        <%--<a class="layui-form-mid layui-word-aux" style="font-size: 10px;color: #0f0f0f;text-decoration: none">--%>
+            <%--推荐使用 Chorme(谷歌)、Firefox(火狐)浏览器<br>360浏览器请先打开急速模式</a>--%>
     </div>
 </div>
 <script type="text/javascript" src="${baseurl}/public/common/js/jquery-1.12.4.min.js"></script>
