@@ -136,9 +136,9 @@
                         <th colspan="4" style="width:125px;">姓名：<span id="studentName"></span></th>
                         <th colspan="1" style="width:60px;">性别：<span id="studentSex"></span></th>
                         <th colspan="1" style="width:87px;">民族：<span id="famous_family"></span></th>
-                        <th colspan="3" style="width:211px">身份证号：<span id="idcard"></span></th>
+                        <th colspan="3" style="width:220px">身份证号：<span id="idcard"></span></th>
                         <th rowspan=" 3 " style="padding: 1px;">
-                            <div style="width:120px; height: 140px; border: 0px solid #00ab9f">
+                            <div style="width:100px; height: 140px; border: 0px solid #00ab9f">
                                 <img id="images" style="width:100%" height="100%"/>
                             </div>
                         </th>
