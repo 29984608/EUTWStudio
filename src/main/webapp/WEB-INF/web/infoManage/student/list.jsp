@@ -520,6 +520,8 @@
                             $("#updateStudentZip_code").val(studentList.family_zip_code);
                             $("#updateStudentHome_phone").val(studentList.family_phone);
 
+                            $("#update_pre_school_staff").val(studentList.pre_school_staff);
+
                             student.familyFnformation(familyList);
 
 
@@ -555,6 +557,7 @@
 
                             $("input[type='radio'][name='student_type1'][value='" + studentList.student_type + "']").attr("checked", "checked");
                             $("#upadte_SAT_score").val(studentList.sat_score);
+                            $("#pre_school_work").val(studentList.pre_school_work);
 
 
                             var count3 = $("#update_student_status option").length;
@@ -756,28 +759,28 @@
                 $("#educational_experience").html("")
                 for (let i = 0; i < experienceList.length; i++) {
                     $("#educational_experience").append(`<tr style="margin-bottom: 20px">
-                                        <th colspan="2"><span>
-                                            <div class="layui-input-inline" style="width: 30%;float: left">
+                                        <th colspan="1" width="25%"><span>
+                                            <div class="layui-input-inline" style="width: 40%;float: left">
                                                 <input name="date" lay-verify="date" placeholder="yyyy-mm-dd"
                                                        autocomplete="off" class="layui-input educational_experience_start"
                                                        onclick="layui.laydate({elem: this})" type="text"
                                                        id="educational_experience_start">
                                             </div>
-                                            <span style="float: left;margin-top: 8px"><p class="layui-input-inline" style="align-content:center;"> 至 </p></span>
-                                             <div class="layui-input-inline" style="width: 30%;float: left">
+                                            <span style="float: left;margin-top: 8px"><p class="layui-input-inline" style="align-content:center;">至</p></span>
+                                             <div class="layui-input-inline" style="width: 40%;float: left">
                                                 <input name="date" lay-verify="date" placeholder="yyyy-mm-dd"
                                                        autocomplete="off" class="layui-input educational_experience_end"
                                                        onclick="layui.laydate({elem: this})" type="text"
                                                        id="educational_experience_end">
                                             </div>
                                         </span></th>
-                                        <th colspan="2"><span>地点：
-                                            <div class="layui-input-inline" style="width: 60%">
+                                        <th colspan="4" width="50%"><span>地点：
+                                            <div class="layui-input-inline" style="width: 80%">
                                                 <input type="text" name="text"
                                                        placeholder="请输入学校名称" autocomplete="off" class="layui-input update_schoolName" id="update_schoolName">
                                              </div>
                                         </span></th>
-                                        <th colspan="2"><span>证明人：
+                                        <th colspan="1" width="25%"><span>证明人：
                                             <div class="layui-input-inline" style="width: 60%">
                                                 <input type="text" name="text"
                                                        placeholder="请输入证明人" autocomplete="off" class="layui-input update_duties" id="update_duties">
@@ -857,7 +860,6 @@
                     $.post(baseUrl + "/student/delStudentFamily",
                         {familyId: familyId, studentNo: studentNo},
                         function (data) {
-                            console.log(data.data);
                             if (data.result) {
                                 layer.msg("删除成功!");
                                 student.familyFnformation(data.data);
@@ -1170,6 +1172,18 @@
                     var pre_school_account_where_station = detailedAddresses;
                 }
 
+                //来校前毕业学校或工作单位
+                if ($("#province13").find("option:selected").text() == "—— 省 ——" || $("#city13").find("option:selected").text() == "—— 市 ——" || $("#district13").find("option:selected").text() == "—— 区/县 ——" || $("#Pre_school_account_where_the_police_station_detailed").val() == "") {
+                    var pre_school_work = $("#pre_school_work").val()
+                } else {
+                    var detailedAddresses = "";
+                    detailedAddresses += $("#province13").find("option:selected").text() + "-";
+                    detailedAddresses += $("#city13").find("option:selected").text() + "-";
+                    detailedAddresses += $("#district13").find("option:selected").text() + "-";
+                    detailedAddresses += $("#detail_pre_school_work").val();
+                    var pre_school_work = detailedAddresses;
+                }
+
                 //家庭成员信息
                 var updateStudentParentsName = $(".updateStudentParentsName");
                 var updateStudentParent_political_status = $(".updateStudentParent_political_status");
@@ -1288,6 +1302,8 @@
                 var sat_score = $("#upadte_SAT_score").val();
 //                var native_place = $("#updateStudentNativePlace").val();
 
+                var pre_school_staff = $("#update_pre_school_staff").val();
+
                 //获奖或荣誉
                 var own_punishment = $("#update_award_or_honor").val();
 
@@ -1332,6 +1348,8 @@
                             pre_school_file_where_location: pre_school_file_where_location,
                             file_in: file_in,
                             pre_school_name: pre_school_name,
+                            pre_school_staff:pre_school_staff,
+                            pre_school_work:pre_school_work,
                             pre_school_account_where_station: pre_school_account_where_station,
                             student_status: student_status,//学籍状态
                             hard_type: hard_type,//困难生类别
@@ -1389,6 +1407,7 @@
                                 $("#updateCardAddress").hide();
                                 $("#updateNativeAddress").hide();
                                 $("#showUpdateOffCampusAddress").hide();
+                                $("#show_pre_school_work").hide();
                             }
                         }
                     )
@@ -1426,6 +1445,10 @@
 
             updateNativeAddress: function () {
                 $("#updateNativeAddress").show();
+            },
+
+            show_pre_school_work: function () {
+                $("#show_pre_school_work").show();
             }
         };
 
@@ -1463,7 +1486,6 @@
 
         function loadAllProfession() {
             $.post(baseUrl + "/student/queryProfessionByDepartment", function (data) {
-                console.log(data.allProfessionList);
                 $("#profession_search").html(`<option value="">专业</option>`).append(loadOptionsHtml(data.allProfessionList, "-"));
             })
 
@@ -1700,7 +1722,6 @@
             //监听学生家人政治面貌
             form.on('select(politicalOutlookParent)', function (data) {
                 let political = $(data.elem).parents(".political").find(".otherParty1");
-                console.log(data.elem);
                 if (data.value === '6') {
                     $(political).show();
                 } else {

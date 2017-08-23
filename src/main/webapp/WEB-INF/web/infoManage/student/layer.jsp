@@ -390,36 +390,6 @@
                                     </tr>
 
                                     <tr>
-                                        <th colspan="6">政治面貌：
-                                            <span>
-                                            <div class="layui-input-inline">
-                                              <select name="politicalOutlook" lay-filter="politicalOutlook"
-                                                      id="updateStudentPoliticalOutlook">
-                                                <option value="">请选择</option>
-                                                <option value="1">中共党员</option>
-                                                <option value="2">预备党员</option>
-                                                <option value="3">共青团员</option>
-                                                <option value="4">积极分子</option>
-                                                <option value="5">群众</option>
-                                                <option value="6">其他党派</option>
-                                              </select>
-                                            </div>
-                                            <span id="otherParty" style="display: none">
-                                                  <div class="layui-input-inline">
-                                                    <label class="layui-form-label" style="width: auto">其他党派: </label>
-                                                    <div class="layui-input-inline">
-                                                      <input type="text" name="otherPartyName"
-                                                             placeholder="请输入党派名称"
-                                                             autocomplete="off" class="layui-input"
-                                                             id="otherUpdateStudentPoliticalOutlook">
-                                                    </div>
-                                                  </div>
-                                            </span>
-                                        </span>
-                                        </th>
-                                    </tr>
-
-                                    <tr>
                                         <th colspan="6">入学前文化程度：
                                             <span>
                                             <div class="layui-input-inline">
@@ -446,16 +416,13 @@
                                     </tr>
 
                                     <tr class="layui-form">
-                                        <th colspan="6">
-                                            <div class="layui-form-item" style="margin-bottom: 0px">
-                                                <label class="layui-form-label"
-                                                       style="margin-left: -3%;">宗教信仰：</label>
-                                                <div class="layui-input-block">
+                                        <th colspan="6"><span>宗教信仰：</span>
+
+                                                <div class="layui-input-inline" style="width: 90%">
                                                     <input type="text" name="title" id="religiousBelief"
                                                            autocomplete="off" placeholder="何时经何人介绍参加何种党派、团体、任何职?"
-                                                           class="layui-input" style="margin-left: -60px">
+                                                           class="layui-input">
                                                 </div>
-                                            </div>
                                         </th>
                                     </tr>
 
@@ -674,7 +641,7 @@
                                         <th colspan="3">紧急联系人：<span>
                                             <div class="layui-input-inline" style="width: 60%">
                                                 <input type="text" name="text"
-                                                       placeholder="请输入内容" autocomplete="off" class="layui-input"
+                                                       placeholder="请输入联系人姓名" autocomplete="off" class="layui-input"
                                                        id="updateStudent_emergency_contact">
                                              </div>
                                         </span></th>
@@ -877,7 +844,7 @@
                                         <th colspan="1" style="width: 18%">身高：<span>
                                             <div class="layui-input-inline" style="width: 40%">
                                                 <input type="text" name="text"
-                                                       placeholder="请输入内容" autocomplete="off" class="layui-input"
+                                                       placeholder="" autocomplete="off" class="layui-input"
                                                        id="updateStudentHeight">
                                              </div>
                                         </span>
@@ -886,7 +853,7 @@
                                         <th colspan="1" style="width: 18%">体重：<span>
                                             <div class="layui-input-inline" style="width: 40%">
                                                 <input type="text" name="text"
-                                                       placeholder="请输入内容" autocomplete="off" class="layui-input"
+                                                       placeholder="" autocomplete="off" class="layui-input"
                                                        id="updateStudentWight">
                                              </div>
                                         </span>
@@ -935,7 +902,37 @@
                                     </tr>
 
                                     <tr>
-                                        <th colspan="3">住宿类型:<span>
+                                        <th colspan="6">政治面貌：
+                                            <span>
+                                            <div class="layui-input-inline">
+                                              <select name="politicalOutlook" lay-filter="politicalOutlook"
+                                                      id="updateStudentPoliticalOutlook">
+                                                <option value="">请选择</option>
+                                                <option value="1">中共党员</option>
+                                                <option value="2">预备党员</option>
+                                                <option value="3">共青团员</option>
+                                                <option value="4">积极分子</option>
+                                                <option value="5">群众</option>
+                                                <option value="6">其他党派</option>
+                                              </select>
+                                            </div>
+                                            <span id="otherParty" style="display: none">
+                                                  <div class="layui-input-inline">
+                                                    <label class="layui-form-label" style="width: auto">其他党派: </label>
+                                                    <div class="layui-input-inline">
+                                                      <input type="text" name="otherPartyName"
+                                                             placeholder="请输入党派名称"
+                                                             autocomplete="off" class="layui-input"
+                                                             id="otherUpdateStudentPoliticalOutlook">
+                                                    </div>
+                                                  </div>
+                                            </span>
+                                        </span>
+                                        </th>
+                                    </tr>
+
+                                    <tr>
+                                        <th colspan="6">住宿类型:<span>
                                         <div class="layui-inline" pane="" id="update_accommodation_type">
                                             <label class="layui-form-label" style="width: auto"></label>
                                             <div class="layui-inline" onclick="student.showAreaInfo()">
@@ -1120,14 +1117,63 @@
                                                 </select>
                                             </div>
                                         </span></th>
-
-
-
                                     </tr>
 
                                     <tr>
-                                        <th colspan="2">学生类型：<span>
-                                            <div class="layui-input-inline" style="width: 60%">
+                                        <th colspan="6"><span style="font-weight: bold"></span>
+                                            <div class="layui-input-inline" style="width: 100%">
+                                                <label class="layui-form-label" style="width: auto;margin-left: -15px">来校前毕业学校或工作单位：</label>
+                                                <div class="layui-input-inline" style="width: 60%">
+                                                    <input type="text" name="idcard_address" placeholder="请输入来校前毕业学校或工作单位"
+                                                           autocomplete="off" class="layui-input"
+                                                           id="pre_school_work"
+                                                           readonly style="border: none">
+                                                </div>
+                                                <span style="float: right">
+                                                     <button class="layui-btn"
+                                                             onclick="student.show_pre_school_work()">编辑地址信息</button>
+                                                </span>
+                                            </div>
+                                            <div id="show_pre_school_work"
+                                                 style="display: none;">
+                                                <br>
+                                                <form class="form-inline">
+                                                    <div id="distpicker13">
+                                                        <div class="form-group">
+                                                            <label class="sr-only" for="province13">Province</label>
+                                                            <select class="form-control" id="province13"
+                                                                    onchange="selectProvince13(this)"
+                                                                    lay-ignore></select>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="sr-only" for="city13">City</label>
+                                                            <select class="form-control" id="city13"
+                                                                    onchange="selectCity13(this)" lay-ignore></select>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="sr-only" for="district13">District</label>
+                                                            <select class="form-control" id="district13"
+                                                                    onchange="selectDistrict13(this)"
+                                                                    lay-ignore></select>
+                                                        </div>
+                                                        <div class="layui-input-block form-group"
+                                                             style="margin-left: 5px">
+                                                            <input type="text" name="detailedAddress"
+                                                                   placeholder="请输入详细地址"
+                                                                   autocomplete="off" class="layui-input"
+                                                                   id="detail_pre_school_work">
+                                                        </div>
+                                                    </div>
+
+                                                </form>
+                                            </div>
+
+                                        </th>
+                                    </tr>
+
+                                    <tr>
+                                        <th colspan="1">学生类型：<span>
+                                            <div class="layui-input-inline" style="width: 65%">
                                                 <div class="layui-inline" pane="" id="updateStudentType">
                                             <label class="layui-form-label" style="width: auto"></label>
                                             <div class="layui-inline" onclick="student.showSAT_score()">
@@ -1138,11 +1184,18 @@
                                         </div>
                                              </div>
                                         </span></th>
-                                        <th colspan="2">高考成绩：<span>
+                                        <th colspan="1">高考成绩：<span>
                                             <div class="layui-input-inline" style="width: 60%" id="show_SAT_score">
                                                 <input type="text" name="text"
-                                                       placeholder="请输入内容" autocomplete="off" class="layui-input"
+                                                       placeholder="请输入高考成绩" autocomplete="off" class="layui-input"
                                                        id="upadte_SAT_score">
+                                             </div>
+                                        </span></th>
+                                        <th colspan="4">任何职务：<span>
+                                            <div class="layui-input-inline" style="width: 60%" id="pre_school_staff">
+                                                <input type="text" name="text"
+                                                       placeholder="请输入相关职务" autocomplete="off" class="layui-input"
+                                                       id="update_pre_school_staff">
                                              </div>
                                         </span></th>
 
@@ -1540,7 +1593,10 @@
     $("#family_phone_add").formatInput({
         formatArr: [3, 4, 4],
         delimiter: '-'
-    })
+    });
+    $("#distpicker13").distpicker({
+        autoSelect: false
+    });
 
     //动态显示省市区
     //入学前户口所在派出所：
@@ -1672,6 +1728,33 @@
     $("#detailedAddress").bind('input propertychange', function () {
         this_detailedAddresses = D_detailedAddresses;
         $("#detailedAddresses").val(this_detailedAddresses + "-" + $(this).val());
+    })
+
+    //家庭实际住址：
+
+    let P_pre_school_work = '';
+    let C_pre_school_work = '';
+    let D_pre_school_work = '';
+    let this_pre_school_work = '';
+
+    function selectProvince13(e) {
+        P_pre_school_work = e.options[e.selectedIndex].text;
+        $("#pre_school_work").val(P_pre_school_work);
+    }
+
+    function selectCity13(e) {
+        C_pre_school_work = P_pre_school_work + "-" + e.options[e.selectedIndex].text;
+        $("#pre_school_work").val(C_pre_school_work);
+    }
+
+    function selectDistrict13(e) {
+        D_pre_school_work = C_pre_school_work + "-" + e.options[e.selectedIndex].text;
+        $("#pre_school_work").val(D_pre_school_work);
+    }
+
+    $("#detail_pre_school_work").bind('input propertychange', function () {
+        this_pre_school_work = D_pre_school_work;
+        $("#pre_school_work").val(this_pre_school_work + "-" + $(this).val());
     })
 
     //身份证住址：
