@@ -381,7 +381,7 @@
                                                     <div class="layui-inline">
                                                        <input name="health" value="良好" title="良好"
                                                               type="radio">
-                                                       <input name="health" value="其他" title="其他" type="radio">
+                                                       <input name="health" value="其它" title="其它" type="radio">
                                                     </div>
                                                 </div>
                                              </div>
@@ -400,12 +400,12 @@
                                                 <option value="2">中专</option>
                                                 <option value="3">技校</option>
                                                 <option value="4">职高</option>
-                                                <option value="5">其他</option>
+                                                <option value="5">其它</option>
                                               </select>
                                             </div>
                                             <span id="pre_school_education" style="display: none">
                                                   <div class="layui-input-inline">
-                                                    <label class="layui-form-label" style="width: auto">其他: </label>
+                                                    <label class="layui-form-label" style="width: auto">其它: </label>
                                                     <div class="layui-input-inline">
                                                       <input type="text" name="otherPartyName" placeholder="请输入文化程度"
                                                              autocomplete="off" class="layui-input"
@@ -915,12 +915,12 @@
                                                 <option value="3">共青团员</option>
                                                 <option value="4">积极分子</option>
                                                 <option value="5">群众</option>
-                                                <option value="6">其他党派</option>
+                                                <option value="6">其它党派</option>
                                               </select>
                                             </div>
                                             <span id="otherParty" style="display: none">
                                                   <div class="layui-input-inline">
-                                                    <label class="layui-form-label" style="width: auto">其他党派: </label>
+                                                    <label class="layui-form-label" style="width: auto">其它党派: </label>
                                                     <div class="layui-input-inline">
                                                       <input type="text" name="otherPartyName"
                                                              placeholder="请输入党派名称"
@@ -1330,7 +1330,7 @@
                                                     <option value="2">自主实习</option>
                                                     <option value="3">创新创业</option>
                                                     <option value="4">专升本</option>
-                                                    <option value="5">其他</option>
+                                                    <option value="5">其它</option>
                                                 </select>
                                             </div>
                                              <span id="show_other_practical_type" style="display: none">实践类型:
@@ -1452,7 +1452,7 @@
                             <option value="3">共青团员</option>
                             <option value="4">积极分子</option>
                             <option value="5">群众</option>
-                            <option value="6">其他党派</option>
+                            <option value="6">其它党派</option>
                         </select>
                     </div>
                 </div>
@@ -1460,7 +1460,7 @@
             <td>
                 <div class="layui-inline" placeholder="请输入相关内容" id="show_other_family_political_status"
                      style="display: none">
-                    <label class="layui-form-label" style="width: auto">其他党派</label>
+                    <label class="layui-form-label" style="width: auto">其它党派</label>
                     <div class="layui-input-inline">
                         <input type="tel" name="phone"
                                autocomplete="off" class="layui-input"

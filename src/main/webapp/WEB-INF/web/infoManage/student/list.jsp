@@ -703,10 +703,10 @@
                                    <option value="3" ` + (politicalStatus === "共青团员" ? "selected" : "") + `>共青团员</option>
                                    <option value="4" ` + (politicalStatus === "积极分子" ? "selected" : "") + `>积极分子</option>
                                    <option value="5" ` + (politicalStatus === "群众" ? "selected" : "") + `>群众</option>
-                                   <option value="6" ` + (isOther ? "selected" : "") + `>其他党派</option>
+                                   <option value="6" ` + (isOther ? "selected" : "") + `>其它党派</option>
                                  </select>
                                </div>
-                                <span  class="otherParty1" style="display: ` + isShow + `">其他党派:
+                                <span  class="otherParty1" style="display: ` + isShow + `">其它党派:
                                        <div class="layui-input-inline">
                                          <input type="text" name="otherPartyName"  value="` + politicalStatus + `"
                                                 placeholder="请输入党派名称"
@@ -907,7 +907,7 @@
                 let family_work_place = $("#family_work_place").val();
                 let family_staff = $("#family_staff").val();
                 let family_phone_add = $("#family_phone_add").val();
-                if ($("#family_political_status").find("option:selected").text() == "其他党派") {
+                if ($("#family_political_status").find("option:selected").text() == "其它党派") {
                     var family_political_status = $("#other_family_political_status").val();
                 } else {
                     var family_political_status = $("#family_political_status").find("option:selected").text();
@@ -1070,13 +1070,13 @@
                 var is_out = $('#update_isOut input[name="isOut"]:checked ').val();
                 var blood = $("#updateStudentBloodType").find("option:selected").text()
                 var religion = $("#religiousBelief").val();
-                if ($("#updateStudentPoliticalOutlook").find("option:selected").text() == "其他党派") {
+                if ($("#updateStudentPoliticalOutlook").find("option:selected").text() == "其它党派") {
                     var political_status = $("#otherUpdateStudentPoliticalOutlook").val()
                 } else {
                     var political_status = $("#updateStudentPoliticalOutlook").find("option:selected").text()
                 }
 
-                if ($("#updateStudent_pre_school_education").find("option:selected").text() == "其他") {
+                if ($("#updateStudent_pre_school_education").find("option:selected").text() == "其它") {
                     var pre_school_education = $("#other_updateStudent_pre_school_education").val()
                 } else {
                     var pre_school_education = $("#updateStudent_pre_school_education").find("option:selected").text()
@@ -1202,7 +1202,7 @@
 
                 for (let i = 0; i < familyInfo.length; i++) {
                     updateStudentParentsNameList.push($(updateStudentParentsName [i]).val())
-                    if ($(updateStudentParent_political_status [i]).find("option:selected").text() == "其他党派") {
+                    if ($(updateStudentParent_political_status [i]).find("option:selected").text() == "其它党派") {
                         updateStudentParent_political_statusList.push($(other_updateStudentParent_political_status [i]).val())
                     } else {
                         updateStudentParent_political_statusList.push($(updateStudentParent_political_status [i]).find("option:selected").text())
@@ -1284,7 +1284,7 @@
                 }
 
                 //实践类型
-                if ($("#update_practical_type").find('option:selected').text() == "其他") {
+                if ($("#update_practical_type").find('option:selected').text() == "其它") {
                     var practice_learning_type = $("#other_practical_type").val()
                 } else {
                     var practice_learning_type = $("#update_practical_type").find('option:selected').text()
