@@ -30,11 +30,8 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public Map<String, List<Map<String, String>>> getProfessionAndDirectionData() throws Exception {
         Map<String, List<Map<String, String>>> result = new HashMap<>();
-        Map<String, Object> data = new HashMap<>();
-        data.put("start", 0);
-        data.put("end", 10000);
-        result.put("directions", departmentDao.queryDirectionList(data));
-        result.put("professions", departmentDao.queryProfessionList(data));
+        result.put("directions", departmentDao.queryDirections());
+        result.put("professions", departmentDao.queryProfessions());
 
         return result;
     }
@@ -176,7 +173,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     public List<Map<String, String>> queryProfessionList(PageUtil page) throws Exception {
         Map<String, Object> data = new HashMap<>();
         data.put("start", (page.getCurrentIndex() - 1) * page.getPageSize());
-        data.put("end", (page.getCurrentIndex() - 1) * page.getPageSize() + page.getPageSize());
+        data.put("end", page.getPageSize());
         page.setTotalSize(departmentDao.queryProfessionTotalCount());
 
         return departmentDao.queryProfessionList(data);

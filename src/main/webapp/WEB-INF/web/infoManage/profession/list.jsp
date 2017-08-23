@@ -33,6 +33,7 @@
                         <thead>
                         <tr>
                             <th>序号</th>
+                            <th>系名称</th>
                             <th>专业代码</th>
                             <th>名称</th>
                             <th>操作</th>
@@ -53,6 +54,12 @@
     {{# layui.each(d.professions, function(index, item){ }}
     <tr>
         <td>{{ index+1}}</td>
+        <td> {{# if(item.departmentName === undefined){ }}
+            无
+            {{# }else{ }}
+            {{ item.departmentName}}
+            {{#}}}
+        </td>
         <td>{{ item.code}}</td>
         <td>{{ item.name}}</td>
         <td>
@@ -122,6 +129,7 @@
     </form>
 </div>
 <script type="text/javascript" src="${baseurl}/public/common/layui/layui.js"></script>
+<script type="text/javascript" src="${baseurl}/js/searchJs.js"></script>
 <script type="text/javascript">
     let totalSize = 10;
     let currentIndex = 1;
@@ -141,6 +149,7 @@
                     cont: 'demo1',
                     pages: totalSize, //总页数
                     curr: currentIndex,
+                    last:totalSize,
                     groups: 5,//连续显示分页数
                     skin: '#1E9FFF',
                     jump: function (obj, first) {
@@ -159,6 +168,7 @@
                         if (data.result) {
                             currentIndex = data.page.currentIndex;
                             totalSize = data.page.totalSize;
+                            showTotalCount(data.page.totalCount);
                             profession.page();
                             laytpl($("#list-tpl").text()).render(data, function (html) {
                                 $("#list").html(html);

@@ -4,12 +4,20 @@
     <tr>
         <td>{{ index+1}}</td>
         <td>
+            {{# if(item.departmentName === undefined){ }}
+            无
+            {{# }else{ }}
+            {{ item.departmentName}}
+            {{#}}}
+        </td>
+        <td>
             {{# if(item.moduleName === undefined){ }}
             无
             {{# }else{ }}
             {{ item.moduleName}}
             {{#}}}
         </td>
+
         <td>{{ item.code}}</td>
         <td>{{ item.name}}</td>
         <td>{{ item.schoolScore}}</td>
@@ -21,11 +29,12 @@
             无
             {{# }else{ }}
             {{ item.method}}
-            {{#}}}</td>
+            {{#}}}
+        </td>
         <td>
             <button class="layui-btn layui-btn-mini " style="background: #21a1a1"
                     onclick="course.update('{{item.id}}','{{item.code}}','{{item.name}}','{{item.methodId}}',
-                                        '{{item.moduleId}}','{{item.schoolScore}}','{{item.schoolHours}}','{{item.semester}}','{{item.nature}}')">
+                                        '{{item.moduleId}}','{{item.schoolScore}}','{{item.schoolHours}}','{{item.semester}}','{{item.nature}}','{{item.departmentId}}')">
                 <i class="layui-icon">&#xe642;</i> 修改
             </button>
             <button class="layui-btn layui-btn-mini  layui-btn-danger" onclick="course.delete('{{item.id}}')">
@@ -39,6 +48,12 @@
 <div id="add" style="margin: 10px;display: none">
     <form id="add-form" class="layui-form layui-form-pane" method="post">
         <div class="layui-form-item">
+            <label class="layui-form-label">课程归属</label>
+            <div class="layui-input-inline">
+                <select id="add-department" name="departmentId">
+                    <option value="">课程归属</option>
+                </select>
+            </div>
             <label class="layui-form-label">课程代码</label>
             <div class="layui-input-inline">
                 <input type="text" name="code"
@@ -49,6 +64,7 @@
                 <input type="text" name="name"
                        placeholder="请输入课程名称" id="add-name" autocomplete="off" class="layui-input ">
             </div>
+
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">课程学分</label>
@@ -78,18 +94,14 @@
             <label class="layui-form-label">课程性质</label>
             <div class="layui-input-inline">
                 <select id="add-nature" name="nature">
-                    <option value="选修">选修</option>
                     <option value="必修">必修</option>
+                    <option value="选修">选修</option>
                 </select>
             </div>
             <label class="layui-form-label">考核方式</label>
             <div class="layui-input-inline">
                 <select id="add-method" name="method">
                     <option value="笔试">笔试</option>
-                    <option value="机考">机考</option>
-                    <option value="大作业">大作业</option>
-                    <option value="课堂作业">课堂作业</option>
-                    <option value="实践">实践</option>
                 </select>
             </div>
             <label class="layui-form-label">模块</label>
@@ -110,7 +122,14 @@
 <div id="update" style="margin: 10px;display: none">
     <form id="update-form" class="layui-form layui-form-pane" method="post">
         <input type="hidden" name="id" id="id">
+
         <div class="layui-form-item">
+            <label class="layui-form-label">开课学期</label>
+            <div class="layui-input-inline">
+                <select id="update-department" name="departmentId">
+                    <option value="">课程归属</option>
+                </select>
+            </div>
             <label class="layui-form-label">课程代码</label>
             <div class="layui-input-inline">
                 <input type="text" name="code"
@@ -121,6 +140,7 @@
                 <input type="text" name="name"
                        placeholder="请输入课程名称" id="update-name" autocomplete="off" class="layui-input ">
             </div>
+
         </div>
 
         <div class="layui-form-item">
@@ -173,9 +193,11 @@
 </div>
 
 <div id="upload" style="display: none">
-    <form id="upload-form" class="layui-form layui-form-pane"  method="post" enctype="multipart/form-data"  style="padding: 20% 20%">
+    <form id="upload-form" class="layui-form layui-form-pane" method="post" enctype="multipart/form-data"
+          style="padding: 20% 20%">
         <div class="layui-form-item">
-            <input type="file" name="file" lay-ext="xls|xlsx" lay-type="file" lay-title="请选择Excel文件" class=" layui-upload-file ">
+            <input type="file" name="file" lay-ext="xls|xlsx" lay-type="file" lay-title="请选择Excel文件"
+                   class=" layui-upload-file ">
         </div>
         <%--<a class="layui-form-mid layui-word-aux">只支持 excel 2003 ，后缀为 .xls 的文件</a>--%>
     </form>

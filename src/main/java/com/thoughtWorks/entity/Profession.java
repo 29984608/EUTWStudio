@@ -5,6 +5,15 @@ public class Profession {
     private String code;
     private String name;
     private String departmentId;
+    private String department;
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
 
     public String getDepartmentId() {
         return departmentId;
