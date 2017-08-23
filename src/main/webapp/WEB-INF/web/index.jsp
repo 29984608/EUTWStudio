@@ -113,7 +113,7 @@
     <div class="layui-footer layui-larry-foot psob" id="larry-footer">
         <div class="layui-main">
 
-            <p> 2017-2018 © Write by Eurasia ThoughtWorks Studio. 版权所有</p>
+            <p> 2017-2018 © Write by Eurasia ThoughtWorks Studio.</p>
         </div>
     </div>
     <!-- footer end -->
