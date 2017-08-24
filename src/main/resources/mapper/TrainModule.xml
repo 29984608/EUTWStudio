@@ -212,7 +212,11 @@
         WHERE department_id = #{id} AND level >= #{start}
         ORDER BY level ASC
     </select>
-
+    <select id="queryClassess" resultType="Classes">
+        SELECT *
+        FROM t_classes
+        ORDER BY level ASC,department_id ASC ,t_classes.direction_id ASC ,name ASC
+    </select>
     <update id="updateClassTeacher">
         UPDATE t_classes SET teacher_id = #{no} WHERE id IN
         <foreach collection="ids" open="(" close=")" separator="," item="item">

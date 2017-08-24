@@ -83,4 +83,6 @@ public interface TrainModuleDao {
     void deleteTeacherCommunityAllClassesId(String no);
 
     Map<String,Object> queryTrainProgramByNo(String studentNo);
+
+    List<Classes> queryClassess(int i, int year);
 }

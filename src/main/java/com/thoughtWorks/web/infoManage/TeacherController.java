@@ -56,13 +56,14 @@ public class TeacherController {
     public Result loadDepartmentsAndDirectionsAndClasses() {
         try {
             Map<String, Object> result = new HashMap<>();
-            List<Department> departments = departmentDao.queryAllDepartments();
-            result.put("departments", departments);
-            if (departments.size() != 0) {
-                result.put("directions", departmentDao.queryDirectionsByDepartmentId(String.valueOf(departments.get(0).getId())));
+//            List<Department> departments = departmentDao.queryAllDepartments();
+//            result.put("departments", departments);
+//            if (departments.size() != 0) {
+//                result.put("directions", departmentDao.queryDirectionsByDepartmentId(String.valueOf(departments.get(0).getId())));
 //                查找系下班级时只查找最近三年的班级(当前年份-4 到 当前年份,大一到大四)
-                result.put("classess", trainModuleDao.queryClassessByDepartmentId(String.valueOf(departments.get(0).getId()), Calendar.getInstance().get(Calendar.YEAR) - 4, new Date().getYear()));
-            }
+//                result.put("classess", trainModuleDao.queryClassessByDepartmentId(String.valueOf(departments.get(0).getId()), Calendar.getInstance().get(Calendar.YEAR) - 4, new Date().getYear()));
+                result.put("classess", trainModuleDao.queryClassess(Calendar.getInstance().get(Calendar.YEAR) - 4, new Date().getYear()));
+//            }
 
             return Result.success(result, Constant.OPERATION_SUCCESS);
         } catch (Exception e) {
@@ -77,10 +78,10 @@ public class TeacherController {
     public Result loadDirectionsAndClassesByDepartmentId(String departmentId) {
         try {
             Map<String, Object> result = new HashMap<>();
-            List<Department> departments = departmentDao.queryAllDepartments();
-            result.put("departments", departments);
-            result.put("directions", departmentDao.queryDirectionsByDepartmentId(departmentId));
-            result.put("classess", trainModuleDao.queryClassessByDepartmentId(departmentId, Calendar.getInstance().get(Calendar.YEAR) - 4, new Date().getYear()));
+//            List<Department> departments = departmentDao.queryAllDepartments();
+//            result.put("departments", departments);
+//            result.put("directions", departmentDao.queryDirectionsByDepartmentId(departmentId));
+            result.put("classess", trainModuleDao.queryClassess(Calendar.getInstance().get(Calendar.YEAR) - 4, new Date().getYear()));
             result.put("depts", departmentDao.queryDeptList());
 
             return Result.success(result, Constant.OPERATION_SUCCESS);

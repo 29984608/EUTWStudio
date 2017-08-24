@@ -124,7 +124,7 @@
         <input type="hidden" name="id" id="id">
 
         <div class="layui-form-item">
-            <label class="layui-form-label">开课学期</label>
+            <label class="layui-form-label">课程归属</label>
             <div class="layui-input-inline">
                 <select id="update-department" name="departmentId">
                     <option value="">课程归属</option>

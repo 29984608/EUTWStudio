@@ -59,32 +59,7 @@
                     <option value="3">社区辅导员</option>
                 </select>
             </div>
-            <div id="show_career" >
-                <div style="display: inline-block">
-                    <div class="layui-form-item">
-                        <label class="layui-form-label" style="width:120px;">所属系</label>
-                        <div class="layui-input-inline">
-                            <select id="department" name="departmentId" lay-filter="department">
-                                <option value="">请选择一个系</option>
 
-                            </select>
-                        </div>
-                        <label class="layui-form-label" style="width:160px;">所属方向</label>
-                        <div class="layui-input-inline">
-                            <select id="direction" name="directionId" lay-verify="">
-                                <option value="">请选择一个方向</option>
-
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <label class="layui-form-label" style="margin-bottom: 20px;">可选班级</label>
-                    <div id="classes">
-
-                    </div>
-                </div>
-            </div>
             <div style="display: inline-block">
                 <div id="show_dept" style="display: none">
                     <div class="layui-form-item">
@@ -101,8 +76,8 @@
                 </div>
             </div>
 
-                <div id="show_community" style="display: none;">
-                    <div style="display: none">
+            <div id="show_community" style="display: none;">
+                <div style="display: none">
                     <div class="layui-form-item">
                         <label class="layui-form-label" style="width:80px;"> 区号</label>
                         <div class="layui-input-inline">
@@ -111,13 +86,37 @@
                             </select>
                         </div>
                     </div>
-                    </div>
-                    <div class="layui-form-item" style="display: none">
-                        <label class="layui-form-label">层号</label>
-                        <div id="floor">
+                </div>
+                <div class="layui-form-item" style="display: none">
+                    <label class="layui-form-label">层号</label>
+                    <div id="floor">
 
-                        </div>
                     </div>
+                </div>
+
+            </div>
+        </div>
+        <div id="show_career">
+            <%--<div style="display: inline-block">--%>
+            <%--<div class="layui-form-item">--%>
+            <%--<label class="layui-form-label" style="width:120px;">所属系</label>--%>
+            <%--<div class="layui-input-inline">--%>
+            <%--<select id="department" name="departmentId" lay-filter="department">--%>
+            <%--<option value="">请选择一个系</option>--%>
+
+            <%--</select>--%>
+            <%--</div>--%>
+            <%--<label class="layui-form-label" style="width:160px;">所属方向</label>--%>
+            <%--<div class="layui-input-inline">--%>
+            <%--<select id="direction" name="directionId" lay-verify="">--%>
+            <%--<option value="">请选择一个方向</option>--%>
+
+            <%--</select>--%>
+            <%--</div>--%>
+            <%--</div>--%>
+            <%--</div>--%>
+            <div class="layui-form-label" style="margin-bottom: 20px;">可选班级</div>
+            <div id="classes">
 
             </div>
         </div>
@@ -164,26 +163,26 @@
                 <label class="layui-form-label" style="width:160px;">所属类别</label>
                 <input type="hidden" name="classify" id="classify_hidden">
                 <div class="layui-input-inline">
-                    <input type="text" disabled name="classify" id="classify_text" autocomplete="off" class="layui-input ">
+                    <input type="text" disabled name="classify" id="classify_text" autocomplete="off"
+                           class="layui-input ">
                 </div>
 
-                <label class="layui-form-label" style="width:120px;">所属系</label>
-                <div class="layui-input-inline">
-                    <select id="department-update" name="departmentId" lay-filter="department">
-                        <option value="">请选择一个系</option>
+                <%--<label class="layui-form-label" style="width:120px;">所属系</label>--%>
+                <%--<div class="layui-input-inline">--%>
+                    <%--<select id="department-update" name="departmentId" lay-filter="department">--%>
+                        <%--<option value="">请选择一个系</option>--%>
 
-                    </select>
-                </div>
-                <label class="layui-form-label">所属方向</label>
-                <div class="layui-input-inline">
-                    <select id="direction-update" name="directionId" lay-verify="">
-                        <option value="">请选择一个方向</option>
+                    <%--</select>--%>
+                <%--</div>--%>
+                <%--<label class="layui-form-label">所属方向</label>--%>
+                <%--<div class="layui-input-inline">--%>
+                    <%--<select id="direction-update" name="directionId" lay-verify="">--%>
+                        <%--<option value="">请选择一个方向</option>--%>
 
-                    </select>
-                </div>
+                    <%--</select>--%>
+                <%--</div>--%>
             </div>
             <label class="layui-form-label" style="margin-bottom: 20px">可选班级</label>
-            <div class="layui-form-mid layui-word-aux">修改了系,那么原来的班级就会被删除!</div>
             <div id="classes-update">
 
             </div>

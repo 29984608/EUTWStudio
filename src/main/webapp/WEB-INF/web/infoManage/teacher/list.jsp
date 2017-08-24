@@ -209,12 +209,12 @@
             add: function () {
                 $.post(baseUrl + "/teacher/loadDepartmentsAndDirectionsAndClasses", function (data) {
                     if (data.result) {
-                        let departments = data.data.departments;
-                        let directions = data.data.directions;
+//                        let departments = data.data.departments;
+//                        let directions = data.data.directions;
                         let classess = data.data.classess;
 
-                        $("#department").html(teacher.loadDepartmentOrDirection(departments, "-"));
-                        $("#direction").html(teacher.loadDepartmentOrDirection(directions, "-"));
+//                        $("#department").html(teacher.loadDepartmentOrDirection(departments, "-"));
+//                        $("#direction").html(teacher.loadDepartmentOrDirection(directions, "-"));
                         $("#classes").html(teacher.loadClasses(classess, "-"));
                         $("#no-add").val("");
                         $("#name-add").val("");
@@ -234,8 +234,8 @@
 
                 $.post(baseUrl + "/teacher/loadDirectionsAndClassesByDepartmentId", {departmentId: departmentId}, function (data) {
                     if (data.result) {
-                        let departments = data.data.departments;
-                        let directions = data.data.directions;
+//                        let departments = data.data.departments;
+//                        let directions = data.data.directions;
                         let classess = data.data.classess;
                         let depts = data.data.depts;
                         $("#id").val(no)
@@ -250,8 +250,8 @@
                             $("#show_dept_update").hide();
                             $("#show_community_update").hide();
                             $("#show_career_update").show();
-                            $("#department-update").html(teacher.loadDepartmentOrDirection(departments, departmentId));
-                            $("#direction-update").html(teacher.loadDepartmentOrDirection(directions, directionId));
+//                            $("#department-update").html(teacher.loadDepartmentOrDirection(departments, departmentId));
+//                            $("#direction-update").html(teacher.loadDepartmentOrDirection(directions, directionId));
                             $("#classes-update").html(teacher.loadClasses(classess, no));
                         } else if (classify === "社区辅导员") {
                             $("#show_dept_update").hide();
