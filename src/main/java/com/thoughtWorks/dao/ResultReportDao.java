@@ -13,4 +13,5 @@ public interface ResultReportDao {
 
     List<Map<String,String>> queryStudentCourseResultByNo(String no);
 
+    List<Integer> queryTotalCredits(Map<String, String> student);
 }

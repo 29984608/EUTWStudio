@@ -85,6 +85,9 @@
             profession.name professionName,
             direction.name  directionName,
             in_school,
+            direction_id,
+            department_id,
+            student.level,
             student.student_contact_method phone
         FROM t_student student
             LEFT JOIN (SELECT
@@ -111,5 +114,13 @@
             is_pass
         FROM t_result
         WHERE no = #{no} ORDER BY is_pass DESC,nature ASC
+    </select>
+    <select id="queryTotalCredits" parameterType="map" resultType="int">
+        SELECT school_score score FROM t_train_program module
+        LEFT JOIN (SELECT cource_id,program_id FROM t_program_module_course) mcourse on module.id = mcourse.program_id
+        LEFT JOIN (SELECT id,school_score,nature FROM t_course) course on course.id = mcourse.cource_id and course.nature="必修"
+        WHERE module.department_id = #{department_id}
+        and module.direction_id = #{direction_id}
+        and module.level = #{level}
     </select>
 </mapper>

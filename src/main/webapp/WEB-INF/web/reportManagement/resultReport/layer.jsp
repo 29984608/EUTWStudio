@@ -125,7 +125,7 @@
                         <fieldset class="layui-elem-field layui-field-title" style="margin: 5px;">
                         </fieldset>
                         <p style="color: #20a1a1">必修/实修&nbsp;&nbsp;&nbsp;&nbsp
-                            108 / <span id="compulsory_score">75</span>
+                            <span id="totalCredit">108</span> / <span id="compulsory_score">75</span>
                             &nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp
                             选修/实修&nbsp;&nbsp;&nbsp;&nbsp8/<span id="elective_score">3</span></p>
                         <fieldset class="layui-elem-field layui-field-title" style="margin-top: 5px;">

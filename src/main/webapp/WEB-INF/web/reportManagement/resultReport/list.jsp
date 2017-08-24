@@ -181,6 +181,7 @@
                 $.post(baseUrl + "/resultReport/preview", {studentNo: no}, function (data) {
                     if (data.result) {
                         resultReport.loadStudentInfo(data.student);
+                        $("#totalCredit").text(data.totalCredit)
                         if (data.results != null)
                             resultReport.loadResults(data.results);
                         layer.open({

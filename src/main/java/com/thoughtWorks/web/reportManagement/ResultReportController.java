@@ -51,8 +51,10 @@ public class ResultReportController {
         try {
             Map<String,String> student = resultReportService.queryStudentByNo(studentNo);
             List<Map<String,String>> results = resultReportService.queryStudentCourseResultByNo(studentNo);
+            int result = resultReportService.queryTotalCredits(student);
             data.put("student", student);
             data.put("results", results);
+            data.put("totalCredit", result);
             data.put("result", true);
             data.put("msg", Constant.SEARCH_SUCCESS);
         } catch (Exception e) {
