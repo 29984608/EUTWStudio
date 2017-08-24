@@ -30,13 +30,6 @@
         LEFT JOIN (SELECT id FROM t_department) department ON department.id = teacher.department_id
         LEFT JOIN (SELECT id, name FROM t_direction) direction ON direction.id = student.direction_id
         LEFT JOIN (SELECT id,name FROM t_classes) classes ON classes.id = student.classes_id
-        <if test="directionId!=''">
-            AND direction.id = #{directionId}
-        </if>
-        LEFT JOIN (SELECT id,name FROM t_profession) profession ON profession.id = student.profession_id
-        <if test="professionId!=''">
-            AND profession.id=#{professionId}
-        </if>
         LEFT JOIN (SELECT id, name FROM t_classes) class ON class.id = student.classes_id
         <where>
             <if test="level!=''">
@@ -45,10 +38,10 @@
             and student.no LIKE #{studentNo}
             and student.department_id = teacher.department_id
             <if test="directionId!=''">
-                and direction_id =direction.id
+                and direction_id =#{directionId}
             </if>
             <if test="professionId!=''">
-                AND profession.id = profession_id
+                AND profession.id = #{professionId}
             </if>
             <if test="classesId!=''">
                 AND student.classes_id = #{classesId}
@@ -62,24 +55,21 @@
         SELECT student.no,student.name,student.gender,direction.name direction,profession.name profession,classes.name classesName
         FROM t_student student
         LEFT JOIN (SELECT id, name FROM t_direction) direction ON direction.id = student.direction_id
-        <if test="directionId!=''">
-            AND direction.id = #{directionId}
-        </if>
+
         LEFT JOIN (SELECT id,name FROM t_profession) profession ON profession.id = student.profession_id
         LEFT JOIN (SELECT id,name FROM t_classes) classes ON classes.id = student.classes_id
-        <if test="professionId!=''">
-            AND profession.id=#{professionId}
-        </if>
+
         <where>
+
             <if test="level!=''">
-                student.level = ${level}
+               and student.level = ${level}
             </if>
             and student.no LIKE #{studentNo}
             <if test="directionId!=''">
-                and direction_id =direction.id
+                and direction_id =#{directionId}
             </if>
             <if test="professionId!=''">
-                AND profession.id = profession_id
+                AND profession.id = #{professionId}
             </if>
             <if test="classesId!=''">
                 AND student.classes_id = #{classesId}
