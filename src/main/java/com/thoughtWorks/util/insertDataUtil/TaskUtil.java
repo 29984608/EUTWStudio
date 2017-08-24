@@ -44,7 +44,8 @@ public class TaskUtil {
 
     @Test
     public void insertUser() {
-
+        long time = new Date().getTime();
+        System.out.println("start:" + time);
         String studentsSql = "SELECT no,name,idcard FROM t_student_ex";
 
         try {
@@ -59,6 +60,7 @@ public class TaskUtil {
                     insert(result);
                 }
             }
+            System.out.println("end:" + (new Date().getTime()-time));
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

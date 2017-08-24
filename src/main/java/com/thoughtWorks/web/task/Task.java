@@ -9,10 +9,10 @@ import org.springframework.stereotype.Component;
 public class Task {
     private TaskUtil taskUtil = new TaskUtil();
 
-    @Scheduled(cron = "5 0 0 * * *")
+    @Scheduled(cron = "0 0 1 * * ?")
     public void executeJob() {
-        System.out.println(222);
-//        taskUtil.insertUser();
+//        System.out.println(222);
+        taskUtil.insertUser();
     }
 }
 
