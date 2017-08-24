@@ -9,9 +9,10 @@ import org.springframework.stereotype.Component;
 public class Task {
     private TaskUtil taskUtil = new TaskUtil();
 
-    @Scheduled(fixedRate = 1000 * 2)
+    @Scheduled(cron = "5 0 0 * * *")
     public void executeJob() {
-//        taskUtil.say();
+        System.out.println(222);
+//        taskUtil.insertUser();
     }
 }
 

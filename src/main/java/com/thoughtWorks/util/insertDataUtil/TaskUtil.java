@@ -8,10 +8,16 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Date;
+
 public class TaskUtil {
     private Connection conn = null;
     private Statement state = null;
+
     @Test
     public void test() throws Exception {
         try {
@@ -36,18 +42,50 @@ public class TaskUtil {
         }
     }
 
-    public void say(){
-        String sql = "update t_student set gender ='F' where no ='105010000104'" ;
+    @Test
+    public void insertUser() {
+
+        String studentsSql = "SELECT no,name,idcard FROM t_student_ex";
+
         try {
             conn = Dao.getDao();
             state = conn.createStatement();
-            System.out.println("开始");
-            int result = state.executeUpdate(sql);
-            System.out.println(result);
+
+            ArrayList<String> studentNos  = allUserNos();
+
+            ResultSet result = state.executeQuery(studentsSql);
+            while (result.next()) {
+                if (!studentNos.contains(result.getString(1))) {
+                    insert(result);
+                }
+            }
         } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             Dao.close(state, conn);
         }
+    }
+
+    private ArrayList<String> allUserNos() throws Exception{
+        String studentsNosSql = "SELECT username FROM t_user";
+        ArrayList<String> studentNos = new ArrayList<>();
+        ResultSet nos = state.executeQuery(studentsNosSql);
+
+        while (nos.next()) {
+            studentNos.add(nos.getString(1));
+        }
+
+        return studentNos;
+    }
+
+    private void insert(ResultSet result) throws SQLException {
+        String no = result.getString(1);
+        String pwd = result.getString(3).substring(result.getString(3).length() - 6);
+        String name = result.getString(2);
+        StringBuffer sql = new StringBuffer("insert into t_user values(");
+        sql.append(no).append(",'");
+        sql.append(pwd).append("',3,1,'");
+        sql.append(name).append("','学生')");
+        conn.prepareStatement(sql.toString()).executeUpdate();
     }
 }
