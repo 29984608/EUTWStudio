@@ -108,7 +108,7 @@
                                 <div>
                                     <label class="layui-form-label" style="font-size: 13px">住宿类型</label>
                                     <div class="layui-input-inline" id="TypeOfAccommodation"
-                                         onclick="student.showDormAndHideDorm()" style="width: 30%">
+                                         onclick="student.showDormAndHideDorm()" style="width: 260px">
 
                                         <input type="radio" name="TypeOfAccommodation" value="" title="全部" checked=""
                                         >
@@ -116,6 +116,29 @@
                                         >
                                         <input type="radio" name="TypeOfAccommodation" value="2" title="校外"
                                         >
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="layui-input-inline">
+                                <div class="layui-inline">
+                                    <div class="layui-input-inline">
+                                        <select name="modules" lay-search=""
+                                                id="teacher_id">
+                                            <option value="">职业导师</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="layui-input-inline">
+                                <div class="layui-inline">
+                                    <div class="layui-input-inline">
+                                        <select name="modules1" lay-filter="modules_2"
+                                                lay-search=""
+                                                id="community_teacher_id">
+                                            <option value="">社区辅导员</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -224,10 +247,10 @@
     let totalSize = 10;
     let currentIndex = 1;
     let pageSize = 10;
-    var studentInfo;
-    var teacherInfo;
-    var experienceInfo;
-    var familyInfo;
+    let studentInfo;
+    let teacherInfo;
+    let experienceInfo;
+    let familyInfo;
     let imgName;
     let famousFamily;
     let departmentList;
@@ -271,6 +294,8 @@
                 let profession_search = $("#profession_search").val();
                 let roomNo_search = $("#roomNo_search").val();
                 let studentNo_search = $("#studentNo_search").val();
+                let teacher_id = $("#teacher_id").val();
+                let community_teacher_id = $("#community_teacher_id").val();
                 let name = $("#studentName_search").val();
                 let sex = $("input[name='sexQuery']:checked").val();
                 let TypeOfAccommodation = $("input[name='TypeOfAccommodation']:checked").val();
@@ -286,6 +311,8 @@
                         directionId: direction_search,
                         professionSearch:profession_search,
                         classesId: classes_search,
+                        teacherId: teacher_id,
+                        communityTeacherId: community_teacher_id,
                         areaId: area_search,
                         floorId: floor_search,
                         roomId: roomNo_search,
@@ -1502,6 +1529,16 @@
             });
         }
 
+        function loadTeacher() {
+            $.post(baseUrl + "/student/showTeacherOfSearch",function (data) {
+                //职业导师
+                $("#teacher_id").html("").append(`<option value="">职业导师</option>` + loadOptionsHtmlToTeacher(data.teacherList.filter(item => item.classify === "行政"), "-"));
+                //社区辅导员
+                $("#community_teacher_id").html("").append(`<option value="">社区辅导员</option>` + loadOptionsHtmlToTeacher(data.teacherList.filter(item => item.classify === "社区辅导员"), "-"));
+            })
+
+        }
+
         function loadOptionsHtml(data, selectId) {
             let _html = "";
             for (let i = 0; i < data.length; ++i) {
@@ -1575,6 +1612,7 @@
             loadAllLevels();
             loadAllProfession();
             loadAllClassess();
+            loadTeacher();
             monitorQQOfEmail();
             student.queryAreaAndFloorOfUpdate()
             queryAreaAndFloor();

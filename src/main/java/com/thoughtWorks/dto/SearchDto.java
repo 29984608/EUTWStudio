@@ -27,6 +27,25 @@ public class SearchDto {
     private String lessThanScore;
     private String moreThanScore;
 
+    private String teacherId;
+    private String communityTeacherId;
+
+    public String getCommunityTeacherId() {
+        return communityTeacherId;
+    }
+
+    public void setCommunityTeacherId(String communityTeacherId) {
+        this.communityTeacherId = communityTeacherId;
+    }
+
+    public String getTeacherId() {
+        return teacherId;
+    }
+
+    public void setTeacherId(String teacherId) {
+        this.teacherId = teacherId;
+    }
+
     public String getProfessionSearch() {
         return professionSearch;
     }

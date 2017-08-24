@@ -298,4 +298,20 @@ public class StudentController {
         return Result.failure(null, Constant.ADD_FAILURE);
     }
 
+    @RequestMapping("/showTeacherOfSearch")
+    @ResponseBody
+    public Map<String,Object> showTeacherOfSearch() {
+        try {
+            Map<String, Object> data = new HashMap<>();
+            List<Map<String, Object>> teacherList = personService.queryTeacherList();
+            data.put("teacherList", teacherList);
+
+            return data;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
 }
