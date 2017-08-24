@@ -42,7 +42,6 @@ public class StudentController {
         Map<String, Object> data = new HashMap<>();
         try {
             List<Map<String, String>> allProfessionList = personService.queryAllStudentsProfessionList();
-            System.out.println("555555555555555555"+allProfessionList);
             List<Map<String, Object>> student = personService.queryStudentList(searchDto, page);
             data.put("student", student);
             data.put("allProfessionList", allProfessionList);
@@ -297,6 +296,22 @@ public class StudentController {
             e.printStackTrace();
         }
         return Result.failure(null, Constant.ADD_FAILURE);
+    }
+
+    @RequestMapping("/showTeacherOfSearch")
+    @ResponseBody
+    public Map<String,Object> showTeacherOfSearch() {
+        try {
+            Map<String, Object> data = new HashMap<>();
+            List<Map<String, Object>> teacherList = personService.queryTeacherList();
+            data.put("teacherList", teacherList);
+
+            return data;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
 }

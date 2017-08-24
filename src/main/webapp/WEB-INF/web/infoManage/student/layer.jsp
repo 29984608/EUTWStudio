@@ -374,19 +374,30 @@
                                             </div>
                                         </th>
 
-                                        <th colspan="2">健康状况：<span>
-                                            <div class="layui-input-inline">
-                                                <div class="layui-inline" pane="" id="health">
-                                                    <label class="layui-form-label" style="width: auto"></label>
-                                                    <div class="layui-inline">
-                                                       <input name="health" value="良好" title="良好"
-                                                              type="radio">
-                                                       <input name="health" value="其它" title="其它" type="radio">
-                                                    </div>
-                                                </div>
-                                             </div>
+
+
+                                        <th colspan="2">华侨、港澳台:<span>
+                                        <div class="layui-inline" pane="" id="update_isOut">
+                                            <label class="layui-form-label"></label>
+                                            <div class="layui-inline" onclick="student.showAreaInfo()">
+                                               <input name="isOut" value="是" title="是"
+                                                      type="radio">
+                                               <input name="isOut" value="否" title="否" type="radio">
+                                            </div>
+                                        </div>
                                         </span></th>
 
+                                    </tr>
+
+                                    <tr class="layui-form">
+                                        <th colspan="6"><span>宗教信仰：</span>
+
+                                            <div class="layui-input-inline" style="width: 90%">
+                                                <input type="text" name="title" id="religiousBelief"
+                                                       autocomplete="off" placeholder="何时经何人介绍参加何种党派、团体、任何职?"
+                                                       class="layui-input">
+                                            </div>
+                                        </th>
                                     </tr>
 
                                     <tr>
@@ -417,16 +428,7 @@
                                         </th>
                                     </tr>
 
-                                    <tr class="layui-form">
-                                        <th colspan="6"><span>宗教信仰：</span>
 
-                                                <div class="layui-input-inline" style="width: 90%">
-                                                    <input type="text" name="title" id="religiousBelief"
-                                                           autocomplete="off" placeholder="何时经何人介绍参加何种党派、团体、任何职?"
-                                                           class="layui-input">
-                                                </div>
-                                        </th>
-                                    </tr>
 
                                     <tr>
                                         <th colspan="3">生源类别:<span>
@@ -862,7 +864,24 @@
                                             <span>kg</span>
                                         </th>
 
-                                        <th colspan="3">血型：<span>
+                                        <th colspan="3">婚否：
+                                            <div class="layui-inline" pane="" id="isMarry">
+                                                <label class="layui-form-label" style="width: auto"></label>
+                                                <div class="layui-inline">
+                                                    <input class="marry" name="isMarry" value="是" title="是"
+                                                           type="radio">
+                                                    <input class="marry" name="isMarry" value="否" title="否"
+                                                           type="radio">
+                                                </div>
+                                            </div>
+                                        </th>
+
+
+                                    </tr>
+
+                                    <tr>
+
+                                        <th colspan="2">血型：<span>
                                         <div class="layui-input-inline"
                                         >
                                           <select name="quiz1" lay-filter="updateStudentBloodType"
@@ -876,30 +895,18 @@
                                           </select>
                                         </div>
                                     </span></th>
-                                    </tr>
 
-                                    <tr>
-                                        <th colspan="2">婚否：
-                                            <div class="layui-inline" pane="" id="isMarry">
-                                                <label class="layui-form-label" style="width: auto"></label>
-                                                <div class="layui-inline">
-                                                    <input class="marry" name="isMarry" value="是" title="是"
-                                                           type="radio">
-                                                    <input class="marry" name="isMarry" value="否" title="否"
-                                                           type="radio">
+                                        <th colspan="4">健康状况：<span>
+                                            <div class="layui-input-inline">
+                                                <div class="layui-inline" pane="" id="health">
+                                                    <label class="layui-form-label" style="width: auto"></label>
+                                                    <div class="layui-inline">
+                                                       <input name="health" value="良好" title="良好"
+                                                              type="radio">
+                                                       <input name="health" value="其它" title="其它" type="radio">
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </th>
-
-                                        <th colspan="4">华侨、港澳台:<span>
-                                        <div class="layui-inline" pane="" id="update_isOut">
-                                            <label class="layui-form-label"></label>
-                                            <div class="layui-inline" onclick="student.showAreaInfo()">
-                                               <input name="isOut" value="是" title="是"
-                                                      type="radio">
-                                               <input name="isOut" value="否" title="否" type="radio">
-                                            </div>
-                                        </div>
+                                             </div>
                                         </span></th>
                                     </tr>
 
