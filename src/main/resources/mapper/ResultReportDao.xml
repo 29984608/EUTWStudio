@@ -110,6 +110,6 @@
             score,
             is_pass
         FROM t_result
-        WHERE no = #{no} ORDER BY is_pass DESC,test_entry_time ASC
+        WHERE no = #{no} ORDER BY is_pass DESC,nature ASC
     </select>
 </mapper>

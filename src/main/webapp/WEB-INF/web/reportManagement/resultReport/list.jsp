@@ -262,7 +262,7 @@
                                     <td>` + credit + `</td>
                                     <td>` + score + `</td>
                                 </tr>`;
-                    if (i < 25) {
+                    if (i <= 25) {
                         $("#left_result").append(_html);
                     } else {
                         $("#right_result").append(_html);

@@ -71,7 +71,7 @@
                         </tr>
                     </table>
 
-                    <div style="float: left;width: 50%;height: 1170px">
+                    <div style="float: left;width: 50%;height: 1200px">
                         <table class="layui-table"  lay-skin="nob" style="border-right: 2px dashed #e8e8e8">
                             <colgroup>
                                 <col width="15%">
