@@ -627,9 +627,12 @@
                             }
 
                             //职业导师
-                            $("#update_career_mentor").html("").append(`<option value=""></option>` + loadOptionsHtmlToTeacher(teacherList.filter(item => item.classify === "行政"), studentList.teacher_id))
+                            let update_career_mentor1 = teacherList.filter(item => item.classify === "职业导师");
+                            $("#update_career_mentor").html("").append(`<option value=""></option>` + loadOptionsHtmlToTeacher(update_career_mentor1, studentList.teacher_id));
+
+                            let update_community_counselor1 = teacherList.filter(item => item.classify === "社区辅导员");
                             //社区辅导员
-                            $("#update_community_counselor").html("").append(`<option value=""></option>` + loadOptionsHtmlToTeacher(teacherList.filter(item => item.classify === "社区辅导员"), studentList.community_teacher_id))
+                            $("#update_community_counselor").html("").append(`<option value=""></option>` + loadOptionsHtmlToTeacher(update_community_counselor1, studentList.community_teacher_id));
 
                             $("#Amount_of_arrears").val(studentList.arrears_first_year);
                             $("#Amount_of_arrears2").val(studentList.arrears_second_year);
@@ -1532,9 +1535,11 @@
         function loadTeacher() {
             $.post(baseUrl + "/student/showTeacherOfSearch",function (data) {
                 //职业导师
-                $("#teacher_id").html("").append(`<option value="">职业导师</option>` + loadOptionsHtmlToTeacher(data.teacherList.filter(item => item.classify === "行政"), "-"));
+                let teacher_id1 = data.teacherList.filter(item => item.classify === "职业导师");
+                $("#teacher_id").html("").append(`<option value="">职业导师</option>` + loadOptionsHtmlToTeacher(teacher_id1, "-"));
                 //社区辅导员
-                $("#community_teacher_id").html("").append(`<option value="">社区辅导员</option>` + loadOptionsHtmlToTeacher(data.teacherList.filter(item => item.classify === "社区辅导员"), "-"));
+                let community_teacher_id1 = data.teacherList.filter(item => item.classify === "社区辅导员");
+                $("#community_teacher_id").html("").append(`<option value="">社区辅导员</option>` + loadOptionsHtmlToTeacher(community_teacher_id1, "-"));
             })
 
         }
