@@ -268,6 +268,7 @@
                 let classes_search = $("#classes_search").val();
                 let area_search = $("#area_search").val();
                 let floor_search = $("#floor_search").val();
+                let profession_search = $("#profession_search").val();
                 let roomNo_search = $("#roomNo_search").val();
                 let studentNo_search = $("#studentNo_search").val();
                 let name = $("#studentName_search").val();
@@ -283,6 +284,7 @@
                         departmentId: department_search,
                         level: level_search,
                         directionId: direction_search,
+                        professionSearch:profession_search,
                         classesId: classes_search,
                         areaId: area_search,
                         floorId: floor_search,

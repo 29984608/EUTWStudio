@@ -158,6 +158,9 @@
         <if test=" searchDto.directionId !=''">
             and student.direction_id = #{searchDto.directionId}
         </if>
+        <if test=" searchDto.professionSearch !=''">
+            and student.profession_id = #{searchDto.professionSearch}
+        </if>
 
         <if test=" searchDto.TypeOfAccommodation != ''">
             and student.stay_type = #{searchDto.TypeOfAccommodation}
@@ -234,6 +237,10 @@
 
         <if test=" searchDto.TypeOfAccommodation != ''">
             and student.stay_type = #{searchDto.TypeOfAccommodation}
+        </if>
+
+        <if test=" searchDto.professionSearch !=''">
+            and student.profession_id = #{searchDto.professionSearch}
         </if>
 
         <if test=" searchDto.level != ''">

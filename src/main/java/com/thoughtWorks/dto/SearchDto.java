@@ -13,6 +13,7 @@ public class SearchDto {
     private String directionName;
     private String sex;
     private String TypeOfAccommodation;     //住宿类型
+    private String professionSearch;
 
     private String moduleId;
     private String semester;
@@ -25,6 +26,14 @@ public class SearchDto {
     private String courseName;
     private String lessThanScore;
     private String moreThanScore;
+
+    public String getProfessionSearch() {
+        return professionSearch;
+    }
+
+    public void setProfessionSearch(String professionSearch) {
+        this.professionSearch = professionSearch;
+    }
 
     public String getDepartmentName() {
         return departmentName;
