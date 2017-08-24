@@ -374,17 +374,17 @@
                                             </div>
                                         </th>
 
-                                        <th colspan="2">健康状况：<span>
-                                            <div class="layui-input-inline">
-                                                <div class="layui-inline" pane="" id="health">
-                                                    <label class="layui-form-label" style="width: auto"></label>
-                                                    <div class="layui-inline">
-                                                       <input name="health" value="良好" title="良好"
-                                                              type="radio">
-                                                       <input name="health" value="其它" title="其它" type="radio">
-                                                    </div>
-                                                </div>
-                                             </div>
+
+
+                                        <th colspan="2">华侨、港澳台:<span>
+                                        <div class="layui-inline" pane="" id="update_isOut">
+                                            <label class="layui-form-label"></label>
+                                            <div class="layui-inline" onclick="student.showAreaInfo()">
+                                               <input name="isOut" value="是" title="是"
+                                                      type="radio">
+                                               <input name="isOut" value="否" title="否" type="radio">
+                                            </div>
+                                        </div>
                                         </span></th>
 
                                     </tr>
@@ -891,15 +891,17 @@
                                             </div>
                                         </th>
 
-                                        <th colspan="4">华侨、港澳台:<span>
-                                        <div class="layui-inline" pane="" id="update_isOut">
-                                            <label class="layui-form-label"></label>
-                                            <div class="layui-inline" onclick="student.showAreaInfo()">
-                                               <input name="isOut" value="是" title="是"
-                                                      type="radio">
-                                               <input name="isOut" value="否" title="否" type="radio">
-                                            </div>
-                                        </div>
+                                        <th colspan="4">健康状况：<span>
+                                            <div class="layui-input-inline">
+                                                <div class="layui-inline" pane="" id="health">
+                                                    <label class="layui-form-label" style="width: auto"></label>
+                                                    <div class="layui-inline">
+                                                       <input name="health" value="良好" title="良好"
+                                                              type="radio">
+                                                       <input name="health" value="其它" title="其它" type="radio">
+                                                    </div>
+                                                </div>
+                                             </div>
                                         </span></th>
                                     </tr>
 
