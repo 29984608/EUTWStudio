@@ -34,10 +34,10 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public void addTeacher(Teacher teacher, String classIds,String floorIds,int areaId) throws Exception {
+    public void addTeacher(Teacher teacher, String classIds, String floorIds, int areaId) throws Exception {
         List<String> ids;
         List<String> floorId;
-        int roleId =0;
+        int roleId = 0;
         if (teacher.getClassify().equals("3")) {
             teacher.setClassify("社区辅导员");
             teacher.setDepartmentId("0");
@@ -48,7 +48,7 @@ public class PersonServiceImpl implements PersonService {
 //            if (floorId.size() != 0) personDao.insertCommunityTeacher(teacher.getNo(),areaId, floorId);
             personDao.addTeacher(teacher);
 
-        }else {
+        } else {
             if (teacher.getClassify().equals("1")) {
                 teacher.setClassify("职业导师");
                 ids = Arrays.asList(classIds.split(","));
@@ -63,22 +63,21 @@ public class PersonServiceImpl implements PersonService {
             }
             personDao.addTeacher(teacher);
         }
-        String str= teacher.getIdentityCard();
+        String str = teacher.getIdentityCard();
         teacher.setClassify("教师");
-        if(str.length()>=6){
-            teacher.setIdentityCard(str.substring(str.length()- 6));
+        if (str.length() >= 6) {
+            teacher.setIdentityCard(str.substring(str.length() - 6));
         }
-        personDao.addTeacherToUser(teacher,roleId);
-
+        personDao.addTeacherToUser(teacher, roleId);
 
 
     }
 
     @Override
-    public void updateTeacher(Teacher teacher, String classIds,String floorIds,int areaId) throws Exception {
+    public void updateTeacher(Teacher teacher, String classIds, String floorIds, int areaId) throws Exception {
         List<String> ids;
         List<String> floorId;
-        int _areaId =areaId;
+        int _areaId = areaId;
         if (teacher.getClassify().equals("职业导师")) {
             ids = Arrays.asList(classIds.split(","));
             trainModuleDao.deleteTeacherAllClassesId(teacher.getNo());
@@ -86,7 +85,7 @@ public class PersonServiceImpl implements PersonService {
         } else if (teacher.getClassify().equals("行政")) {
             teacher.setDepartmentId("0");
             teacher.setDirectionId("0");
-        }else{
+        } else {
             teacher.setDepartmentId("0");
             teacher.setDirectionId("0");
             floorId = Arrays.asList(floorIds.split(","));
@@ -143,6 +142,11 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public List<Map<String, String>> queryAllStudentsProfessionList() throws Exception {
         return personDao.queryAllStudentsProfessionList();
+    }
+
+    @Override
+    public List<Map<String, Object>> queryDirectionSelectionClass(String directionId) throws Exception {
+        return personDao.queryDirectionSelectionClass(directionId);
     }
 
     @Override
@@ -298,9 +302,9 @@ public class PersonServiceImpl implements PersonService {
             searchDto.setSex("%" + searchDto.getSex() + "%");
         }
 
-        if (searchDto.getTypeOfAccommodation()==null){
+        if (searchDto.getTypeOfAccommodation() == null) {
             searchDto.setTypeOfAccommodation("");
-        }else {
+        } else {
             searchDto.setTypeOfAccommodation(searchDto.getTypeOfAccommodation());
         }
         data.put("start", (page.getCurrentIndex() - 1) * page.getPageSize());
@@ -313,13 +317,13 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public Map<String, Object>updateByStudentNo(String studentNo) throws Exception{
-        Map<String ,Object> data = new HashMap<>();
+    public Map<String, Object> updateByStudentNo(String studentNo) throws Exception {
+        Map<String, Object> data = new HashMap<>();
 
-       data.put("student",personDao.updateByStudentNo(studentNo));
-       data.put("family",personDao.updateFamilyByStudentNo(studentNo));
-       data.put("experience",personDao.updateExperienceByStudentNo(studentNo));
-       data.put("ownPunishment",personDao.queryOwnPunishmentByStudentNo(studentNo));
+        data.put("student", personDao.updateByStudentNo(studentNo));
+        data.put("family", personDao.updateFamilyByStudentNo(studentNo));
+        data.put("experience", personDao.updateExperienceByStudentNo(studentNo));
+        data.put("ownPunishment", personDao.queryOwnPunishmentByStudentNo(studentNo));
         return data;
     }
 
@@ -354,7 +358,7 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public List<Map<String,Object>> queryTeacherCommunity(String no) throws Exception {
+    public List<Map<String, Object>> queryTeacherCommunity(String no) throws Exception {
 
         return personDao.queryTeacherCommunity(no);
     }
@@ -364,10 +368,12 @@ public class PersonServiceImpl implements PersonService {
         List<String> ids = Arrays.asList(studentIds.split(","));
         if (ids.size() != 0) personDao.updateStudentTeacherId(teacherId, ids);
     }
+
     public List<Map<String, Object>> teacherCommunity(String no) throws Exception {
 
         return personDao.teacherCommunity(no);
     }
+
     @Override
     public List<Map<String, Object>> teacherCommunity_floors(String no) throws Exception {
 
@@ -385,7 +391,7 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public void updateExperienceList(List<Map<String, Object>> experiences)throws Exception {
+    public void updateExperienceList(List<Map<String, Object>> experiences) throws Exception {
         personDao.updateExperienceList(experiences);
     }
 

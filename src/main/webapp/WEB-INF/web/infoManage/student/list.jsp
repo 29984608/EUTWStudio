@@ -75,7 +75,7 @@
                         <div class="layui-input-inline">
                             <div class="layui-inline">
                                 <div class="layui-input-inline">
-                                    <select name="modules" lay-filter="modules_3" lay-search=""
+                                    <select name="modules" lay-filter="modules_direction" lay-search=""
                                             id="direction_search">
                                         <option value="">方向</option>
                                     </select>
@@ -1793,7 +1793,15 @@
                     $("#employment_direction").html(loadOptionsHtmlOfClass(resultData.data.directionList));
                     form.render();
                 })
-            })
+            });
+
+            //根据方向动态选择班级
+            form.on('select(modules_direction)', function (data) {
+                $.post(baseUrl + "student/directionSelectionClass", {directionId: data.value}, function (dataResult) {
+                    $("#classes_search").html(`<option value="">班级</option>` + loadOptionsHtml(dataResult.classList));
+                    form.render();
+                })
+            });
 
             //图片上传
             layui.use('upload', function () {
