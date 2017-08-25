@@ -17,17 +17,19 @@
 </head>
 <style>
     .layui-table th {
-        font-size: 13px;
+        font-size: 11px;
+        padding: 8px 5px;
         line-height: 31px;
         min-height: 30px;
     }
+
 </style>
 <body style=" background: #fff;">
 <section class=" layui-form">
     <div class="larry-personal">
         <div class="layui-tab">
-            <div id="update" style="">
-                <div class="container" id="container" style=" background: #fff;width: 60%; ">
+            <div id="update" style=" height: 100%;">
+                <div class="container" id="container" style=" background: #fff;width: 800px; ">
                     <h1 style="text-align: center;margin-left: -30px;margin-top: 40px; ;color:#00ab9f ">西安欧亚学院<span
                             id="studentName1"></span>学生档案</h1>
                     <div style="margin-top: 40px;">
@@ -39,19 +41,19 @@
                                 <tr>
                                     <th colspan="3" style="width:140px;">学号：<span id="studentNo"></span></th>
                                     <th colspan="4" style="width:125px;">姓名：<span id="studentName"></span></th>
-                                    <th colspan="1">性别：<span id="studentSex"></span></th>
-                                    <th colspan="1">民族：<span id="famous_family"></span></th>
-                                    <th colspan="3" style="width:211px">身份证号：<span id="idcard"></span></th>
-                                    <th rowspan=" 3 " style="padding: 1px;width:130px;">
-                                        <div style="width:130px; height: 150px; border: 0px solid #00ab9f">
+                                    <th colspan="1" style="width:60px;">性别：<span id="studentSex"></span></th>
+                                    <th colspan="1" style="width:87px;">民族：<span id="famous_family"></span></th>
+                                    <th colspan="3" style="width:220px">身份证号：<span id="idcard"></span></th>
+                                    <th rowspan=" 3 " style="padding: 1px;">
+                                        <div style="width:100px; height: 140px; border: 0px solid #00ab9f">
                                             <img id="images" style="width:100%" height="100%"/>
                                         </div>
                                     </th>
                                 </tr>
                                 <tr>
 
-                                    <th colspan="3" style="width:145px;">出生日期：<span id="born"></span></th>
-                                    <th colspan="5" style="width:200px;">籍贯：<span id="native_place"></span></th>
+                                    <th colspan="3" style="width:162px;">出生日期：<span id="born"></span></th>
+                                    <th colspan="5" style="width:230px;">籍贯：<span id="native_place"></span></th>
                                     <th colspan="3" style="width:190px;">政治面貌：<span id="political_status"></span></th>
                                     <th>婚否：<span id="is_marry"></span></th>
                                 </tr>
@@ -96,6 +98,7 @@
                                     <th width="25%">学生类别：<span id="student_type"></span></th>
                                     <th width="25%">高考成绩：<span id="sat_score"></span></th>
                                     <th width="25%">职业导师：<span id="teacherName"></span></th>
+
                                 </tr>
                                 <tr>
                                     <th>录取专业：<span id="profession"></span></th>
