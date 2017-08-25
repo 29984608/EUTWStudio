@@ -78,6 +78,7 @@
 </section>
 
 <%@ include file="layer.jsp" %>
+<script type="text/javascript" src="${baseurl}/js/searchJs.js"></script>
 <script type="text/javascript" src="${baseurl}/public/common/layui/layui.js"></script>
 <script type="text/javascript">
     let totalSize = 10;
@@ -98,6 +99,7 @@
                 layui.laypage({
                     cont: 'demo1',
                     pages: totalSize, //总页数
+                    last: totalSize, //总页数
                     curr: currentIndex,
                     groups: 5,//连续显示分页数
                     skin: '#1E9FFF',
@@ -129,6 +131,7 @@
                         if (data.result) {
                             currentIndex = data.data.pageUtil.currentIndex;
                             totalSize = data.data.pageUtil.totalSize;
+                            showTotalCount(data.data.pageUtil.totalCount)
                             floor.page();
 
                             laytpl($("#list-tpl").text()).render(data, function (html) {
@@ -193,7 +196,7 @@
                 return _html;
             },
             loadDepartmentOrDirection: function (data, selectId) {
-                let _html = `<option value="">直接选择或搜索选择</option>`;
+                let _html = `<option value="">直选择</option><option value="">直选择</option>`;
                 for (let i = 0; i < data.length; ++i) {
                     if (selectId == data[i].id) {
                         _html += `<option selected value="` + data[i].id + `">` + data[i].name + `</option>`;

@@ -62,7 +62,7 @@
         </div>
     </div>
 </section>
-
+<script src="${baseurl}/js/searchJs.js"></script>
 <script id="list-tpl" type="text/html">
     {{# layui.each(d.data.pageInfos, function(index, item){ }}
     <tr>
@@ -136,6 +136,7 @@
                 layui.laypage({
                     cont: 'demo1',
                     pages: totalSize, //总页数
+                    last: totalSize, //总页数
                     curr: currentIndex,
                     groups: 5,//连续显示分页数
                     skin: '#1E9FFF',
@@ -162,6 +163,7 @@
                         if (data.result) {
                             currentIndex = data.data.pageUtil.currentIndex;
                             totalSize = data.data.pageUtil.totalSize;
+                            showTotalCount(data.data.pageUtil.totalCount);
                             area.page();
                             laytpl($("#list-tpl").text()).render(data, function (html) {
                                 $("#list").html(html);
@@ -181,7 +183,7 @@
                 })
             },
             loadSelectElementHtml: function (data, type) {
-                let _html = `<option value=''></option>`;
+                let _html = `<option value=''></option><option value=''>请选择</option>`;
                 for (let i = 0; i < data.length; ++i) {
                     let isSelected = data[i].id == type ? "selected" : "";
                     _html += ` <option ` + isSelected + `  value="` + data[i].id + `">` + data[i].name + `</option>`;
