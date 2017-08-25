@@ -40,7 +40,20 @@ public class ResultReportServiceImpl implements ResultReportService {
     }
 
     @Override
-    public List<Map<String,String>> queryStudentCourseResultByNo(String no) throws Exception {
+    public List<Map<String, String>> queryStudentCourseResultByNo(String no) throws Exception {
         return resultReportDao.queryStudentCourseResultByNo(no);
+    }
+
+    @Override
+    public int queryTotalCredits(Map<String, String> student) throws Exception {
+        int totalScore = 0;
+
+        List<Integer> scores = resultReportDao.queryTotalCredits(student);
+        if (null == scores.get(0)) return totalScore;
+        for (int score : scores) {
+            totalScore += score;
+        }
+
+        return totalScore;
     }
 }

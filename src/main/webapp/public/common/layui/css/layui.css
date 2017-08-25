@@ -738,7 +738,8 @@ a cite {
 }
 
 .layui-form-select dl dd {
-    cursor: pointer
+    cursor: pointer;
+    font-size: 14px;
 }
 
 .layui-form-select dl dd:hover {

@@ -57,7 +57,7 @@
         <if test="floorName != ''">
             AND f.name LIKE #{floorName}
         </if>
-        ORDER BY a.id
+        ORDER BY f.id,a.id
         limit #{start},#{pageSize}
     </select>
 
@@ -116,7 +116,7 @@
                 AND f.name LIKE #{floorName}
             </if>
             AND r.name LIKE #{roomNo}
-            ORDER BY a.id
+            ORDER BY r.id ,f.id,a.id
             limit #{start},#{pageSize}
         </where>
     </select>

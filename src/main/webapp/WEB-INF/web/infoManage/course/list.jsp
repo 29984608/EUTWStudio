@@ -106,7 +106,7 @@
     let modules;
     let methods;
     let departments;
-    let semesters = [{id: "1", name: "1"}, {id: "2", name: "2"}, {id: "3", name: "3"}, {id: "4", name: "4"}, {
+    let semesters = [{id:"",name:"请选择"},{id: "1", name: "1"}, {id: "2", name: "2"}, {id: "3", name: "3"}, {id: "4", name: "4"}, {
         id: "5",
         name: "5"
     }, {id: "6", name: "6"}];
@@ -124,6 +124,7 @@
                 layui.laypage({
                     cont: 'demo1',
                     pages: totalSize, //总页数
+                    last: totalSize,
                     curr: currentIndex,
                     groups: 5,//连续显示分页数
                     skin: '#1E9FFF',
@@ -155,7 +156,7 @@
                         if (data.result) {
                             modules = data.modules;
                             methods = data.testMethods;
-                            $("#module_search").html("<option value=''>模块</option>" + course.loadSelectElementHtml(modules, 0));
+                            $("#module_search").html(course.loadSelectElementHtml(modules, 0));
                             currentIndex = data.page.currentIndex;
                             totalSize = data.page.totalSize;
                             showTotalCount(data.page.totalCount);
@@ -171,7 +172,7 @@
                 });
             },
             loadSelectElementHtml: function (data, type) {
-                let _html = "";
+                let _html = `<option value="">直选择</option><option value="">直选择</option>`;
                 for (let i = 0; i < data.length; ++i) {
                     let isSelected = data[i].id == type ? "selected" : "";
                     _html += ` <option ` + isSelected + `  value="` + data[i].id + `">` + data[i].name + `</option>`;
@@ -246,7 +247,7 @@
                 $.post(baseUrl + "/department/allDepartments", function (data) {
                     if (data.result) {
                         departments = data.data;
-                        $("#department_search").html(`<option value="" selected>系名称</option>`).append(loadOptionsHtml(data.data, "-"));
+                        $("#department_search").html(loadOptionsHtml(data.data, "-"));
                         form.render();
                     }
                 });

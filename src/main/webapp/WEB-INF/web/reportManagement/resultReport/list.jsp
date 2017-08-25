@@ -181,6 +181,7 @@
                 $.post(baseUrl + "/resultReport/preview", {studentNo: no}, function (data) {
                     if (data.result) {
                         resultReport.loadStudentInfo(data.student);
+                        $("#totalCredit").text(data.totalCredit)
                         if (data.results != null)
                             resultReport.loadResults(data.results);
                         layer.open({
@@ -262,7 +263,7 @@
                                     <td>` + credit + `</td>
                                     <td>` + score + `</td>
                                 </tr>`;
-                    if (i < 25) {
+                    if (i <= 25) {
                         $("#left_result").append(_html);
                     } else {
                         $("#right_result").append(_html);
