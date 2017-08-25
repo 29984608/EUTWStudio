@@ -49,7 +49,7 @@ public class ResultReportServiceImpl implements ResultReportService {
         int totalScore = 0;
 
         List<Integer> scores = resultReportDao.queryTotalCredits(student);
-        if (null == scores.get(0)) return totalScore;
+        if (scores.size() == 0 || null == scores.get(0)) return totalScore;
         for (int score : scores) {
             totalScore += score;
         }
