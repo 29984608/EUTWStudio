@@ -33,7 +33,7 @@
                             </div>
 
                             <div class="layui-input-inline" style="width: 150px;">
-                                <select lay-filter="profession" id="semester_search">
+                                <select lay-filter="level" id="semester_search">
                                     <option value="">年级</option>
                                 </select>
                             </div>
@@ -406,6 +406,14 @@
                     }
                     form.render();
                 })
+            },
+            queryClassByDirectionIdAndLevel: function (directionId,level) {
+                $.post(baseUrl + "/studentClass/queryClassByDirectionIdAndLevel", {directionId: directionId,level:level}, function (data) {
+                    if (data.result) {
+                        $("#queryClass").html(loadOptionsHtml(data.data, "-"))
+                    }
+                    form.render();
+                })
             }
 
 
@@ -425,7 +433,13 @@
 
             });
             form.on('select(direction)', function (data) {
-                communication.queryClassByDirectionId(data.value);
+                let level = $("#semester_search").val();
+                communication.queryClassByDirectionIdAndLevel(data.value,level);
+
+            });
+            form.on('select(level)', function (data) {
+                let directionId = $("#findDirection").val();
+                communication.queryClassByDirectionIdAndLevel(directionId,data.value);
 
             });
             form.on('select(queryAreaOfRoom)', function (data) {

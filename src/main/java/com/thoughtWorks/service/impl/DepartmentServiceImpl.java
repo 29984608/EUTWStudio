@@ -142,6 +142,10 @@ public class DepartmentServiceImpl implements DepartmentService {
     public List<Map<String, String>> queryClassesByDirectionId(String id) throws Exception {
         return departmentDao.queryClassesByDirectionId(id);
     }
+  @Override
+    public List<Map<String, String>> queryClassByDirectionIdAndLevel(String directionId,String level) throws Exception {
+        return departmentDao.queryClassByDirectionIdAndLevel(directionId,level);
+    }
 
     @Override
     public List<Map<String, String>> queryDirectionList(PageUtil page) throws Exception {

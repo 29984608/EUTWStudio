@@ -83,6 +83,20 @@ public class StudentClassController {
 
         return Result.failure(null, Constant.SEARCH_FAILURE);
     }
+
+    @RequestMapping("queryClassByDirectionIdAndLevel")
+    @ResponseBody
+    public Result queryClassByDirectionIdAndLevel(String directionId,String level) {
+        try {
+            List<Map<String, String>> classes = departmentService.queryClassByDirectionIdAndLevel(directionId,level);
+
+            return Result.success(classes, Constant.SEARCH_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return Result.failure(null, Constant.SEARCH_FAILURE);
+    }
     @RequestMapping("loadTeacherHasClassess")
     @ResponseBody
     public Result loadTeacherHasClassess() {

@@ -38,4 +38,6 @@ public interface DepartmentService {
     void deleteDepartment(String id)throws Exception;
 
     List<Map<String,String>> queryClassesByDirectionId(String id)throws Exception;
+
+    List<Map<String,String>> queryClassByDirectionIdAndLevel(String directionId, String level)throws Exception;
 }
