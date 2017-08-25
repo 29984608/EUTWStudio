@@ -10,8 +10,7 @@ public class Task {
     private TaskUtil taskUtil = new TaskUtil();
 
     @Scheduled(cron = "0 0 1 * * ?")
-    public void executeJob() {
-//        System.out.println(222);
+    public synchronized void executeJob() {
         taskUtil.insertUser();
     }
 }
