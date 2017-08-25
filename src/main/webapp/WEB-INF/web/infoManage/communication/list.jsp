@@ -330,7 +330,7 @@
                 });
             },
             loadDepartmentOrDirection: function (data, selectId) {
-                let _html = ""
+                let _html = `<option value=''>请选择</option>`;
                 for (let i = 0; i < data.length; ++i) {
                     if (selectId == data[i].id) {
                         _html += `<option selected value="` + data[i].id + `">` + data[i].name + `</option>`;
@@ -352,7 +352,7 @@
                 });
             },
             nowDate: function () {
-                $("#semester_search").html(`<option value="" selected>年级</option>`);
+                $("#semester_search").html(`<option value="" selected>年级</option><option value=''>请选择</option>`);
                 let levels = getSearchLevels().reverse();
                 levels.forEach(level => {
                     $("#semester_search").append(`<option value="` + level + `" >` + level + `</option>`);
@@ -402,7 +402,7 @@
             queryClassByDirectionId: function (id) {
                 $.post(baseUrl + "/studentClass/queryClassesByDirectionId", {id: id}, function (data) {
                     if (data.result) {
-                        $("#queryClass").html(`<option value="">班级</option>`).append(loadOptionsHtml(data.data, "-"))
+                        $("#queryClass").html(`<option value=''></option>班级<option value="">请选择</option>`).append(loadOptionsHtml(data.data, "-"))
                     }
                     form.render();
                 })
@@ -435,7 +435,7 @@
                         var queryAreaOfRoom = data.data.queryAreaOfRoom
                         var queryFloorOfRoom = data.data.queryFloorOfRoom
                         $("#queryAreaOfRoom").html(communication.loadDepartmentOrDirection(queryAreaOfRoom, id))
-                        $("#queryFloor").html(`<option value="">层号</option>`).append(communication.loadDepartmentOrDirection(queryFloorOfRoom, "-"))
+                        $("#queryFloor").html(`<option value="">层号</option><option value=''>请选择</option>`).append(communication.loadDepartmentOrDirection(queryFloorOfRoom, "-"))
 
                         form.render();
                     }
