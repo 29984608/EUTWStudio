@@ -50,7 +50,7 @@ function loadAllClassess() {
 
 
 function loadOptionsHtml(data, selectId) {
-    let _html = "";
+    let _html = `<option value="">直选择</option><option value="">直选择</option>`;
     for (let i = 0; i < data.length; ++i) {
         if (selectId == data[i].id) {
             _html += `<option  selected value="` + data[i].id + `">` + data[i].name + `</option>`;
