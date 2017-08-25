@@ -45,7 +45,7 @@
                     <div class="layui-input-inline">
                         <div class="layui-inline">
                             <div class="layui-input-inline">
-                                <select lay-filter="profession" id="level_search">
+                                <select lay-filter="level" id="level_search">
                                     <option value="">年级</option>
                                 </select>
                             </div>
@@ -54,7 +54,7 @@
                     <div class="layui-input-inline">
                         <div class="layui-inline">
                             <div class="layui-input-inline">
-                                <select lay-filter="t_direction" id="direction_search">
+                                <select lay-filter="direction" id="direction_search">
                                     <option value="">方向</option>
                                 </select>
                             </div>
@@ -216,7 +216,7 @@
             }, loadDirectionsByDepartmentId: function (id) {
                 $.post(baseUrl + "/communication/queryDirectionByDepartmentId", {departmentId: id}, function (data) {
                     if (data.result) {
-                        $("#direction_search").html(`<option value="">方向</option>`).append(loadOptionsHtml(data.data, "-"));
+                        $("#direction_search").html(loadOptionsHtml(data.data, "-"));
 
                         form.render();
                     }
@@ -224,7 +224,7 @@
             }, loadClassByDepartmentId: function (id) {
                 $.post(baseUrl + "/communication/queryClassByDepartmentId", {departmentId: id}, function (data) {
                     if (data.result) {
-                        $("#classes_search").html(`<option value="">班级</option>`).append(loadOptionsHtml(data.data, "-"));
+                        $("#classes_search").html(loadOptionsHtml(data.data, "-"));
 
                         form.render();
                     }
@@ -264,13 +264,13 @@
             },
             showStudentExperienceInfo: function (experiences) {
                 $(".experience_node").remove();
-                let start_time,end_time,work_place,staff;
-                for(let i = 0; i < 4; ++i){
+                let start_time, end_time, work_place, staff;
+                for (let i = 0; i < 4; ++i) {
                     let experience = experiences[i];
-                    if(experience) {
+                    if (experience) {
                         [start_time, end_time, work_place, staff] = [experience.start_time, experience.end_time, experience.work_place, experience.staff];
-                    }else{
-                        [start_time, end_time, work_place, staff] = [" "," "," "," "];
+                    } else {
+                        [start_time, end_time, work_place, staff] = [" ", " ", " ", " "];
                     }
                     $("#experience").before(`
                      <tr class="experience_node">
@@ -284,14 +284,14 @@
             },
             showStudentFamilyInfo: function (familys) {
                 $(".family_node").remove();
-                let relationship,name,political_status,staff,work_place,phone;
-                for(let i = 0; i < 4; ++i){
+                let relationship, name, political_status, staff, work_place, phone;
+                for (let i = 0; i < 4; ++i) {
                     let family = familys[i];
-                    if(family) {
-                        [relationship, name, political_status, staff,work_place,phone] =
-                            [family.relationship, family.name, family.political_status, family.staff,family.work_place,family.phone];
-                    }else{
-                        [relationship, name, political_status, staff,work_place,phone] = [" "," "," "," ","",""];
+                    if (family) {
+                        [relationship, name, political_status, staff, work_place, phone] =
+                            [family.relationship, family.name, family.political_status, family.staff, family.work_place, family.phone];
+                    } else {
+                        [relationship, name, political_status, staff, work_place, phone] = [" ", " ", " ", " ", "", ""];
                     }
                     $("#family").before(`
                      <tr class="family_node">
@@ -305,21 +305,46 @@
                     `);
                 }
             },
+            queryClassByDirectionIdAndLevel: function (directionId, level) {
+                $.post(baseUrl + "/studentClass/queryClassByDirectionIdAndLevel", {
+                    directionId: directionId,
+                    level: level
+                }, function (data) {
+                    if (data.result) {
+                        $("#classes_search").html(loadOptionsHtml(data.data, "-"))
+                    }
+                    form.render();
+                })
+            },
+            loadALlDepartments: function () {
+                $.post(baseUrl + "/department/allDepartments", function (data) {
+                    if (data.result) {
+                        $("#department_search").html(loadOptionsHtml(data.data, "-"));
+                    }
+                    form.render();
+                });
+            },
             exportRegisterReport: function () {
                 location.href = baseUrl + "/newStudentRegister/exportRegisterReport?no=" + $("#no").text() + "";
             }
         };
         $(function () {
-            loadALlDepartments();
-            loadAllDirections();
+            resultReport.loadALlDepartments();
+//            loadAllDirections();
             loadAllLevels();
-            loadAllClassess();
+//            loadAllClassess();
             form.render();
 
             form.on('select(department)', function (data) {
 
                 $("#department_search").html(resultReport.loadClassByDepartmentId(data.value));
                 $("#direction_search").html(resultReport.loadDirectionsByDepartmentId(data.value));
+            });
+            form.on('select(direction)', function (data) {
+                resultReport.queryClassByDirectionIdAndLevel(data.value, $("#level_search").val());
+            });
+            form.on('select(level)', function (data) {
+                resultReport.queryClassByDirectionIdAndLevel($("#direction_search").val(), data.value);
             });
         });
     })
