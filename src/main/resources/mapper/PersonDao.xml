@@ -1043,7 +1043,12 @@ WHERE student.no =#{studentNo}
     </select>
 
     <select id="queryAllStudentsProfessionList" resultType="map">
-        select * from stuInfo.t_profession
+        select * from t_profession
+    </select>
+
+    <select id="queryDirectionSelectionClass" parameterType="string" resultType="map">
+        select * from t_classes
+        WHERE direction_id = #{directionId}
     </select>
 
 </mapper>

@@ -163,6 +163,7 @@ public class StudentController {
 
             personService.updateStudentList(studentUpdate);
             if (null != experiences && experiences.size() != 0) {
+                System.out.println(experiences);
                 personService.updateExperienceList(experiences);
             }
 
@@ -306,6 +307,22 @@ public class StudentController {
             List<Map<String, Object>> teacherList = personService.queryTeacherList();
             data.put("teacherList", teacherList);
 
+            return data;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    @RequestMapping("/directionSelectionClass")
+    @ResponseBody
+    public Map<String,Object> directionSelectionClass(String directionId){
+        try {
+            System.out.println(directionId);
+            Map<String, Object> data = new HashMap<>();
+            List<Map<String, Object>> classList = personService.queryDirectionSelectionClass(directionId);
+            data.put("classList", classList);
             return data;
         } catch (Exception e) {
             e.printStackTrace();
