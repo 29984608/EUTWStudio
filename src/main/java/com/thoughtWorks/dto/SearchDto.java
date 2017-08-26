@@ -29,6 +29,15 @@ public class SearchDto {
 
     private String teacherId;
     private String communityTeacherId;
+    private String studentStatusSearch;
+
+    public String getStudentStatusSearch() {
+        return studentStatusSearch;
+    }
+
+    public void setStudentStatusSearch(String studentStatusSearch) {
+        this.studentStatusSearch = studentStatusSearch;
+    }
 
     public String getCommunityTeacherId() {
         return communityTeacherId;

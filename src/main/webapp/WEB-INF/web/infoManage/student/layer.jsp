@@ -61,6 +61,29 @@
             {{ item.direction}}
             {{#}}}
         </td>
+        //学籍状态
+        <td>
+            {{# if(item.student_status === undefined){ }}
+            无
+            {{# }else if(item.student_status == 1){ }}
+            在读
+            {{#}}
+            {{# }else if(item.student_status == 2){ }}
+            复学
+            {{#}}
+            {{# }else if(item.student_status == 3){ }}
+            入伍
+            {{#}}
+            {{# }else if(item.student_status == 4){ }}
+            退学
+            {{#}}
+            {{# }else if(item.student_status == 5){ }}
+            留级
+            {{#}}
+            {{# }else if(item.student_status == 6){ }}
+            流失
+            {{#}}}
+        </td>
 
         <td>
             {{# if(item.classes === undefined){ }}
@@ -375,17 +398,19 @@
                                         </th>
 
 
-
-                                        <th colspan="2">华侨、港澳台:<span>
-                                        <div class="layui-inline" pane="" id="update_isOut">
-                                            <label class="layui-form-label"></label>
-                                            <div class="layui-inline" onclick="student.showAreaInfo()">
-                                               <input name="isOut" value="是" title="是"
-                                                      type="radio">
-                                               <input name="isOut" value="否" title="否" type="radio">
+                                        <th colspan="2">婚否：
+                                            <div class="layui-inline" pane="" id="isMarry">
+                                                <label class="layui-form-label" style="width: auto"></label>
+                                                <div class="layui-inline">
+                                                    <input class="marry" name="isMarry" value="是" title="是"
+                                                           type="radio">
+                                                    <input class="marry" name="isMarry" value="否" title="否"
+                                                           type="radio">
+                                                </div>
                                             </div>
-                                        </div>
-                                        </span></th>
+                                        </th>
+
+
 
                                     </tr>
 
@@ -531,6 +556,14 @@
                                                                     onchange="selectDistrict0(this)"
                                                                     lay-ignore></select>
                                                         </div>
+
+                                                        <div class="layui-input-block form-group"
+                                                             style="margin-left: 5px;width: 250px">
+                                                            <input type="text" name="detailedAddress"
+                                                                   placeholder="请输入详细地址"
+                                                                   autocomplete="off" class="layui-input"
+                                                                   id="detailedUpdateCardAddress">
+                                                        </div>
                                                     </div>
                                                 </form>
                                             </div>
@@ -579,7 +612,7 @@
                                                         </div>
                                                         <%--<label class="layui-form-label " style="width: auto">详细地址</label>--%>
                                                         <div class="layui-input-block form-group"
-                                                             style="margin-left: 5px">
+                                                             style="margin-left: 5px;width: 250px">
                                                             <input type="text" name="detailedAddress"
                                                                    placeholder="请输入详细地址"
                                                                    autocomplete="off" class="layui-input"
@@ -864,17 +897,17 @@
                                             <span>kg</span>
                                         </th>
 
-                                        <th colspan="3">婚否：
-                                            <div class="layui-inline" pane="" id="isMarry">
-                                                <label class="layui-form-label" style="width: auto"></label>
-                                                <div class="layui-inline">
-                                                    <input class="marry" name="isMarry" value="是" title="是"
-                                                           type="radio">
-                                                    <input class="marry" name="isMarry" value="否" title="否"
-                                                           type="radio">
-                                                </div>
+
+                                        <th colspan="3">华侨、港澳台:<span>
+                                        <div class="layui-inline" pane="" id="update_isOut">
+                                            <label class="layui-form-label" style="width: auto"></label>
+                                            <div class="layui-inline" onclick="student.showAreaInfo()">
+                                               <input name="isOut" value="是" title="是"
+                                                      type="radio">
+                                               <input name="isOut" value="否" title="否" type="radio">
                                             </div>
-                                        </th>
+                                        </div>
+                                        </span></th>
 
 
                                     </tr>
@@ -1117,12 +1150,13 @@
                                             <div class="layui-input-inline">
                                                 <select lay-filter="update_student_status" id="update_student_status">
                                                     <option value=""></option>
-                                                    <option value="1">在读</option>
-                                                    <option value="2">休学</option>
-                                                    <option value="3">入伍</option>
-                                                    <option value="4">退学</option>
-                                                    <option value="5">复学</option>
-                                                    <option value="6">留级</option>
+                                                        <option value="1">在读</option>
+                                                        <option value="2">复学</option>
+                                                        <option value="3">入伍</option>
+                                                        <option value="4">退学</option>
+                                                        <option value="5">留级</option>
+                                                        <option value="6">退学</option>
+                                                        <option value="7">流失</option>
                                                 </select>
                                             </div>
                                         </span></th>
@@ -1247,10 +1281,20 @@
                                                 </select>
                                             </div>
                                         </span></th>
-                                        <th colspan="5">班级：<span>
+                                        <th colspan="1">班级：<span>
                                              <div class="layui-input-inline">
                                                 <select id="student_class" lay-filter="student_classe">
                                                     <option value=""></option>
+                                                </select>
+                                            </div>
+                                        </span></th>
+
+                                        <th colspan="4">组别：<span>
+                                             <div class="layui-input-inline">
+                                                <select id="student_group" lay-filter="student_classe">
+                                                    <option value="" selected>组别</option>
+                                                    <option value="A">A</option>
+                                                    <option value="B">B</option>
                                                 </select>
                                             </div>
                                         </span></th>
@@ -1773,6 +1817,7 @@
     let P_Identity_card_address = '';
     let C_Identity_card_address = '';
     let D_Identity_card_address = '';
+    let this_Identity_card_address = '';
 
     function selectProvince0(e) {
         P_Identity_card_address = e.options[e.selectedIndex].text;
@@ -1788,6 +1833,11 @@
         D_Identity_card_address = C_Identity_card_address + "-" + e.options[e.selectedIndex].text;
         $("#Identity_card_address").val(D_Identity_card_address);
     }
+
+    $("#detailedUpdateCardAddress").bind('input propertychange', function () {
+        this_Identity_card_address = D_Identity_card_address;
+        $("#Identity_card_address").val(this_Identity_card_address + "-" + $(this).val());
+    })
 
 
 

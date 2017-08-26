@@ -82,6 +82,22 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="layui-input-inline" style="display: none">
+                            <div class="layui-inline">
+                                <div class="layui-input-inline">
+                                    <select name="modules" lay-filter="modules_direction" lay-search=""
+                                            id="student_status_search">
+                                        <option value="">学籍状态</option>
+                                        <option value="1">在读</option>
+                                        <option value="2">复学</option>
+                                        <option value="3">入伍</option>
+                                        <option value="4">退学</option>
+                                        <option value="5">留级</option>
+                                        <option value="6">流失</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
 
                         <div class="layui-input-inline">
                             <div class="layui-inline">
@@ -219,6 +235,7 @@
                             <th>年级</th>
                             <th>专业</th>
                             <th>方向</th>
+                            <th>学籍状态</th>
                             <th>班级</th>
                             <th>住宿类型</th>
                             <th>区</th>
@@ -299,6 +316,7 @@
                 let name = $("#studentName_search").val();
                 let sex = $("input[name='sexQuery']:checked").val();
                 let TypeOfAccommodation = $("input[name='TypeOfAccommodation']:checked").val();
+                let studentStatusSearch = $("#student_status_search").val();
 
                 $.ajax({
                     url: baseUrl + "student/list",
@@ -319,9 +337,11 @@
                         studentNo: studentNo_search,
                         name: name,
                         sex: sex,
-                        TypeOfAccommodation: TypeOfAccommodation
+                        TypeOfAccommodation: TypeOfAccommodation,
+                        studentStatusSearch:studentStatusSearch
                     },
                     success: function (data) {
+                        console.log(data)
                         if (data.result) {
                             currentIndex = data.page.currentIndex;
                             allProfessionInfo = data.allProfessionList;
@@ -591,7 +611,8 @@
 
                             var count3 = $("#update_student_status option").length;
                             for (var i = 0; i < count3; i++) {
-                                if ($("#update_student_status").get(0).options[i].text == studentList.student_status) {
+//                                console.log($("#update_student_status").get(0).options[i].value);
+                                if ($("#update_student_status").get(0).options[i].value == studentList.student_status) {
                                     $("#update_student_status").get(0).options[i].selected = true;
                                 }
                             }
@@ -624,6 +645,13 @@
                                     $("#other_practical_type").val(studentList.practice_learning_type);
                                 }
 
+                            }
+
+                            var count10 = $("#student_group option").length;
+                            for (var i = 0; i < count10; i++) {
+                                if ($("#student_group").get(0).options[i].text == studentList.group) {
+                                    $("#student_group").get(0).options[i].selected = true;
+                                }
                             }
 
                             //职业导师
@@ -1286,9 +1314,11 @@
                 var teacher_id = $("#update_career_mentor").val()
                 var community_teacher_id = $("#update_community_counselor").val()
 
-                var student_status = $("#update_student_status").find('option:selected').text()
+                var student_status = $("#update_student_status").val();
 
                 var hard_type = $("#update_hard_type input[name='update_hard_type']:checked").val();
+
+                var group = $("#student_group").val();
 
                 //缴费状态
                 if ($("#update_payment_status").find('option:selected').text() == "欠费") {
@@ -1374,6 +1404,7 @@
                             family_zip_code: family_zip_code,
                             family_phone: family_phone,
                             sat_score: sat_score,
+                            group:group,
                             emergency_contact_name: emergency_contact_name,
                             emergency_contact_method: emergency_contact_method,
                             account_in: account_in,

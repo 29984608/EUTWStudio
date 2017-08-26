@@ -87,6 +87,7 @@
         student.gender,
         student.level,
         student.stay_type,
+        student.student_status,
         department.name department,
         profession.name profession,
         direction.name direction,
@@ -173,6 +174,9 @@
         <if test=" searchDto.TypeOfAccommodation != ''">
             and student.stay_type = #{searchDto.TypeOfAccommodation}
         </if>
+        <if test=" searchDto.studentStatusSearch != ''">
+            and student.student_status = #{searchDto.studentStatusSearch}
+        </if>
 
         <if test=" searchDto.areaId !=''">
             <if test="searchDto.TypeOfAccommodation == 1">
@@ -190,7 +194,8 @@
             </if>
         </if>
 
-        limit #{start},#{pageSize}
+        ORDER BY -student_status DESC ,no
+        limit #{start},#{pageSize};
     </select>
     <select id="queryStudentsListCount" resultType="long">
         SELECT count(*)
@@ -249,6 +254,10 @@
 
         <if test=" searchDto.professionSearch !=''">
             and student.profession_id = #{searchDto.professionSearch}
+        </if>
+
+        <if test=" searchDto.studentStatusSearch != ''">
+            and student.student_status = #{searchDto.studentStatusSearch}
         </if>
 
         <if test=" searchDto.teacherId !=''">
@@ -859,6 +868,9 @@ WHERE student.no =#{studentNo}
             </if>
             <if test="pre_school_work != null and pre_school_work !=''">
                 t_student.pre_school_work = #{pre_school_work},
+            </if>
+            <if test="group != null and group !=''">
+                t_student.group = #{group},
             </if>
             <if test="pre_school_staff != null and pre_school_staff !=''">
                 t_student.pre_school_staff = #{pre_school_staff},
