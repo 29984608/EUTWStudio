@@ -1,6 +1,7 @@
 package com.thoughtWorks.service;
 
 import com.thoughtWorks.util.PageUtil;
+import jdk.nashorn.internal.runtime.ECMAException;
 
 import java.util.List;
 import java.util.Map;
@@ -40,4 +41,6 @@ public interface DormService {
     Map<String,Object> showDorms(String areaId, String floorId)throws Exception;
 
     Map<String, Object> queryAreaAndFloorAndRoomByRoomId(String roomId) throws Exception;
+
+    List<Map<String, Object>> queryAllArea() throws ECMAException;
 }

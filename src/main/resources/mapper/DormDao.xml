@@ -183,4 +183,8 @@
         WHERE room.id = #{roomId}
     </select>
 
+    <select id="queryAllArea" resultType="map">
+        select * from t_area
+    </select>
+
 </mapper>

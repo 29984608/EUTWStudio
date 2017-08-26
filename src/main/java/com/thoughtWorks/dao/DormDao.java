@@ -47,4 +47,6 @@ public interface DormDao {
     List<Map<String,Object>> showFloorsAndRooms(String floorId)throws Exception;
 
     Map<String, Object> queryAreaAndFloorAndRoomByRoomId(String roomId) throws Exception;
+
+    List<Map<String,Object>> queryAllArea();
 }

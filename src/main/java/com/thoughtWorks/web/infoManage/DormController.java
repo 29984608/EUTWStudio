@@ -4,6 +4,7 @@ import com.thoughtWorks.dto.Result;
 import com.thoughtWorks.service.DormService;
 import com.thoughtWorks.util.Constant;
 import com.thoughtWorks.util.PageUtil;
+import jdk.nashorn.internal.runtime.ECMAException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -56,6 +57,21 @@ public class DormController {
         }
 
         return Result.failure("null", Constant.SEARCH_FAILURE);
+    }
+
+    @RequestMapping("/area/loadAllArea")
+    @ResponseBody
+    public Result loadAllArea() {
+        try {
+            Map<String, Object> data = new HashMap<>();
+            List<Map<String,Object>> allArea = dormService.queryAllArea();
+            data.put("allArea", allArea);
+
+            return Result.success(data,Constant.SEARCH_SUCCESS);
+        } catch (ECMAException e) {
+            e.printStackTrace();
+        }
+        return Result.failure(null, Constant.SEARCH_FAILURE);
     }
 
     @RequestMapping("/area/add")
@@ -245,12 +261,13 @@ public class DormController {
         return Result.failure("null", Constant.DELETE_FAILURE);
     }
 
-    @RequestMapping("/room/showAreaAndFloors")
+    @RequestMapping("/room/showAreaAndFloorInfos")
     @ResponseBody
     public Result showAreaAndFloorInfos(String areaId) {
         try {
 
             Map<String, Object> data = dormService.showAreaAndFloorInfos(areaId);
+            System.out.println(data);
 
             return Result.success(data, Constant.SEARCH_SUCCESS);
         } catch (Exception e) {

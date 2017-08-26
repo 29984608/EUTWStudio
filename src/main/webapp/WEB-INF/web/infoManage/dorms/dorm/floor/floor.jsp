@@ -44,7 +44,8 @@
                                     <option value="">直接选择或搜索选择</option>
                                 </select>
                             </div>
-                            <a class="layui-btn" onclick="currentIndex = 1;floor.list()"><i class="layui-icon">&#xe615;</i>搜索</a>
+                            <a class="layui-btn" onclick="currentIndex = 1;floor.list()"><i
+                                    class="layui-icon">&#xe615;</i>搜索</a>
                             <a class="layui-btn " onclick="floor.add()"><i class="layui-icon">&#xe61f;</i>添加楼层
                             </a>
                         </div>
@@ -140,8 +141,8 @@
                             floor.loadSelectAreaHtml();
                             form.render();
                         }
-                        $("#queryAreas").html(floor.loadDepartmentOrDirection(data.data.showAreaAndFloorInfos.queryAreaOfRoom), "-")
-                        $("#queryFloors").html(floor.loadDepartmentOrDirection(data.data.showAreaAndFloorInfos.queryFloorOfRoom), "-")
+//                        $("#queryAreas").html(floor.loadDepartmentOrDirection(data.data.showAreaAndFloorInfos.queryAreaOfRoom), "-")
+//                        $("#queryFloors").html(floor.loadDepartmentOrDirection(data.data.showAreaAndFloorInfos.queryFloorOfRoom), "-")
                     }
                 });
             },
@@ -184,7 +185,7 @@
                 });
             },
             loadSelectAreaHtml: function (area_id) {
-                let _html = "";
+                let _html = "<option value=\"\">请选择</option><option value=\"\">请选择</option>";
                 $.post(baseUrl + "dorm/floor/selectArea", function (data) {
                     $("#showAreasUpdates").html(floor.loadDepartmentOrDirection(data.data.dormInfos, area_id))
                     laytpl($("#list-areas").text()).render(data, function (html) {
@@ -196,7 +197,7 @@
                 return _html;
             },
             loadDepartmentOrDirection: function (data, selectId) {
-                let _html = `<option value="">直选择</option><option value="">直选择</option>`;
+                let _html = `<option value="">请选择</option><option value="">请选择</option>`;
                 for (let i = 0; i < data.length; ++i) {
                     if (selectId == data[i].id) {
                         _html += `<option selected value="` + data[i].id + `">` + data[i].name + `</option>`;
@@ -232,20 +233,30 @@
                         }
                     })
                 })
+            },
+            loadArea: function () {
+                $.post(baseUrl + "dorm/area/loadAllArea", function (dataResult) {
+                    if (dataResult.result) {
+                        var queryAreaOfRoom = dataResult.data.allArea;
+
+                        $("#queryAreas").html(floor.loadDepartmentOrDirection(queryAreaOfRoom), "-")
+                        form.render();
+                    }
+                })
             }
         };
         $(function () {
             floor.list();
+            floor.loadArea();
 
             form.on('select(modules_1)', function (data) {
-                var id = data.value;
+                $.post(baseUrl + "dorm/room/showAreaAndFloorInfos", {areaId: data.value}, function (dataResult) {
+                    if (dataResult.result) {
+                        console.log(dataResult.data.queryFloorOfRoom)
+                        var queryAreaOfRoom = dataResult.data.queryAreaOfRoom
+                        var queryFloorOfRoom = dataResult.data.queryFloorOfRoom
 
-                $.post(baseUrl + "dorm/room/showAreaAndFloorInfos", {areaId: data.value}, function (data) {
-                    if (data.result) {
-                        var queryAreaOfRoom = data.data.queryAreaOfRoom
-                        var queryFloorOfRoom = data.data.queryFloorOfRoom
-
-                        $("#queryAreas").html(floor.loadDepartmentOrDirection(queryAreaOfRoom, id))
+                        $("#queryAreas").html(floor.loadDepartmentOrDirection(queryAreaOfRoom, data.value))
                         $("#queryFloors").html(floor.loadDepartmentOrDirection(queryFloorOfRoom), "-")
                         form.render();
                     }
