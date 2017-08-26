@@ -3,6 +3,7 @@ package com.thoughtWorks.service.impl;
 import com.thoughtWorks.dao.DormDao;
 import com.thoughtWorks.service.DormService;
 import com.thoughtWorks.util.PageUtil;
+import jdk.nashorn.internal.runtime.ECMAException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -68,6 +69,9 @@ public class DormServiceImpl implements DormService {
         } else {
             data.put("floorName", data1.get("floorName"));
         }
+
+        data.put("areaId", data1.get("areaId"));
+        data.put("floorId", data1.get("floorId"));
 
 
         pageUtil.setTotalSize(dormDao.queryFloorsTotalCount(data));
@@ -176,4 +180,10 @@ public class DormServiceImpl implements DormService {
     public Map<String, Object> queryAreaAndFloorAndRoomByRoomId(String roomId) throws Exception {
         return dormDao.queryAreaAndFloorAndRoomByRoomId(roomId);
     }
+
+    @Override
+    public List<Map<String, Object>> queryAllArea() throws ECMAException {
+        return dormDao.queryAllArea();
+    }
+
 }

@@ -327,7 +327,7 @@
                         departmentId: department_search,
                         level: level_search,
                         directionId: direction_search,
-                        professionSearch:profession_search,
+                        professionSearch: profession_search,
                         classesId: classes_search,
                         teacherId: teacher_id,
                         communityTeacherId: community_teacher_id,
@@ -338,7 +338,7 @@
                         name: name,
                         sex: sex,
                         TypeOfAccommodation: TypeOfAccommodation,
-                        studentStatusSearch:studentStatusSearch
+                        studentStatusSearch: studentStatusSearch
                     },
                     success: function (data) {
                         console.log(data)
@@ -366,7 +366,7 @@
             loadDirectionsByDepartmentId: function (id) {
                 $.post(baseUrl + "/communication/queryDirectionByDepartmentId", {departmentId: id}, function (data) {
                     if (data.result) {
-                        $("#direction_search").html(`<option value="">方向</option>`).append(loadOptionsHtml(data.data, "-"));
+                        $("#direction_search").html(`<option value="">方向</option><option value=''>请选择</option>`).append(loadOptionsHtml(data.data, "-"));
 
                         form.render();
                     }
@@ -695,10 +695,12 @@
                             if (studentList.stay_type == "2") {
                                 $("#dorms").hide();
                                 $("#OffCampusAddress").show();
-                            } else {
+                            } else if (studentList.stay_type == "1") {
                                 $("#OffCampusAddress").hide();
                                 $("#dorms").show();
-                                ``
+                            } else {
+                                $("#OffCampusAddress").hide();
+                                $("#dorms").hide();
                             }
                         }
                     }
@@ -1404,7 +1406,7 @@
                             family_zip_code: family_zip_code,
                             family_phone: family_phone,
                             sat_score: sat_score,
-                            group:group,
+                            group: group,
                             emergency_contact_name: emergency_contact_name,
                             emergency_contact_method: emergency_contact_method,
                             account_in: account_in,
@@ -1412,8 +1414,8 @@
                             pre_school_file_where_location: pre_school_file_where_location,
                             file_in: file_in,
                             pre_school_name: pre_school_name,
-                            pre_school_staff:pre_school_staff,
-                            pre_school_work:pre_school_work,
+                            pre_school_staff: pre_school_staff,
+                            pre_school_work: pre_school_work,
                             pre_school_account_where_station: pre_school_account_where_station,
                             student_status: student_status,//学籍状态
                             hard_type: hard_type,//困难生类别
@@ -1485,6 +1487,10 @@
 
             showUpdateDorms: function () {
                 $("#showUpdateDorms").show();
+                $("#province12").val("");
+                $("#city12").val("");
+                $("#district12").val("");
+
             },
             showUpdateOffCampusAddress: function () {
                 $("#showUpdateOffCampusAddress").show();
@@ -1525,7 +1531,7 @@
         }
 
         function loadAllLevels() {
-            $("#level_search").html(`<option value="" selected>年级</option>`);
+            $("#level_search").html(`<option value="" selected>年级</option><option value="">请选择</option>`);
             let levels = getSearchLevels().reverse();
             levels.forEach(level => {
                 $("#level_search").append(`<option value="` + level + `" >` + level + `</option>`);
@@ -1564,19 +1570,19 @@
         }
 
         function loadTeacher() {
-            $.post(baseUrl + "/student/showTeacherOfSearch",function (data) {
+            $.post(baseUrl + "/student/showTeacherOfSearch", function (data) {
                 //职业导师
                 let teacher_id1 = data.teacherList.filter(item => item.classify === "职业导师");
-                $("#teacher_id").html("").append(`<option value="">职业导师</option>` + loadOptionsHtmlToTeacher(teacher_id1, "-"));
+                $("#teacher_id").html("").append(`<option value="">职业导师</option><option value="">请选择</option>` + loadOptionsHtmlToTeacher(teacher_id1, "-"));
                 //社区辅导员
                 let community_teacher_id1 = data.teacherList.filter(item => item.classify === "社区辅导员");
-                $("#community_teacher_id").html("").append(`<option value="">社区辅导员</option>` + loadOptionsHtmlToTeacher(community_teacher_id1, "-"));
+                $("#community_teacher_id").html("").append(`<option value="">社区辅导员</option><option value="">请选择</option>` + loadOptionsHtmlToTeacher(community_teacher_id1, "-"));
             })
 
         }
 
         function loadOptionsHtml(data, selectId) {
-            let _html = "";
+            let _html = "<option value=''>请选择</option>";
             for (let i = 0; i < data.length; ++i) {
                 if (selectId == data[i].id) {
                     _html += `<option  selected value="` + data[i].id + `">` + data[i].name + `</option>`;
@@ -1626,8 +1632,8 @@
         function queryAreaAndFloor() {
             $.post(baseUrl + "dorm/room/showAreaAndFloorsToQuery", function (data) {
                 if (data.result) {
-                    $("#area_search").html(student.loadDepartmentOrDirectionArea(data.data.queryAreaOfRoom, "-"))
-                    $("#floor_search").html(student.loadDepartmentOrDirectionFloor(data.data.queryFloorOfRoom, "-"))
+                    $("#area_search").html(`<option value=''>区</option>`+student.loadDepartmentOrDirectionArea(data.data.queryAreaOfRoom, "-"))
+//                    $("#floor_search").html(student.loadDepartmentOrDirectionFloor(data.data.queryFloorOfRoom, "-"))
                 }
                 form.render();
             })
@@ -1693,8 +1699,8 @@
                         var queryAreaOfRoom = data.data.queryAreaOfRoom
                         var queryFloorOfRoom = data.data.queryFloorOfRoom
 
-                        $("#area_search").html(student.loadDepartmentOrDirectionArea(queryAreaOfRoom, id))
-                        $("#floor_search").html(student.loadDepartmentOrDirectionFloor(queryFloorOfRoom), "-")
+                        $("#area_search").html(`<option value="">区</option>`+student.loadDepartmentOrDirectionArea(queryAreaOfRoom, id))
+                        $("#floor_search").html(`<option value="">楼层</option>`+student.loadDepartmentOrDirectionFloor(queryFloorOfRoom), "-")
                         form.render();
                     }
                 })
@@ -1767,7 +1773,7 @@
                         var queryAreaOfRoom = data.data.queryAreaOfRoom
                         var queryFloorOfRoom = data.data.queryFloorOfRoom
 
-                        $("#queryAreas").html(student.loadDepartmentOrDirection(queryAreaOfRoom, id))
+                        $("#queryAreas").html(``+student.loadDepartmentOrDirection(queryAreaOfRoom, id))
                         $("#queryFloors").html(student.loadDepartmentOrDirection(queryFloorOfRoom, "-"))
                         form.render();
                     }

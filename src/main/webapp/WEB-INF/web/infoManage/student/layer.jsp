@@ -101,7 +101,7 @@
             {{#}}}
         </td>
         <td>
-            {{# if(item.area === undefined){ }}
+            {{# if(item.stay_type !== "1"){ }}
             无
             {{# }else{ }}
             {{ item.area}}
@@ -109,7 +109,7 @@
         </td>
 
         <td>
-            {{# if(item.floor === undefined){ }}
+            {{# if(item.stay_type !== "1"){ }}
             无
             {{# }else{ }}
             {{ item.floor}}
@@ -117,7 +117,7 @@
         </td>
 
         <td>
-            {{# if(item.room === undefined){ }}
+            {{# if(item.stay_type !== "1"){ }}
             无
             {{# }else{ }}
             {{ item.room}}
@@ -757,7 +757,7 @@
                                                                     lay-ignore></select>
                                                         </div>
                                                         <div class="layui-input-block form-group"
-                                                             style="margin-left: 5px">
+                                                             style="margin-left: 5px;width: 250px">
                                                             <input type="text" name="detailedAddress"
                                                                    placeholder="请输入详细地址"
                                                                    autocomplete="off" class="layui-input"
@@ -838,7 +838,7 @@
                                                                     lay-ignore></select>
                                                         </div>
                                                         <div class="layui-input-block form-group"
-                                                             style="margin-left: 5px">
+                                                             style="margin-left: 5px;width: 250px">
                                                             <input type="text" name="detailedAddress"
                                                                    placeholder="请输入详细地址"
                                                                    autocomplete="off" class="layui-input"
@@ -1088,7 +1088,7 @@
                                                                     lay-ignore></select>
                                                         </div>
                                                         <div class="layui-input-block form-group"
-                                                             style="margin-left: 5px">
+                                                             style="margin-left: 5px;width: 250px">
                                                             <input type="text" name="detailedAddress"
                                                                    placeholder="请输入详细地址"
                                                                    autocomplete="off" class="layui-input"
@@ -1155,8 +1155,7 @@
                                                         <option value="3">入伍</option>
                                                         <option value="4">退学</option>
                                                         <option value="5">留级</option>
-                                                        <option value="6">退学</option>
-                                                        <option value="7">流失</option>
+                                                        <option value="6">流失</option>
                                                 </select>
                                             </div>
                                         </span></th>
