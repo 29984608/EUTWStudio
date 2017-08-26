@@ -70,6 +70,9 @@ public class DormServiceImpl implements DormService {
             data.put("floorName", data1.get("floorName"));
         }
 
+        data.put("areaId", data1.get("areaId"));
+        data.put("floorId", data1.get("floorId"));
+
 
         pageUtil.setTotalSize(dormDao.queryFloorsTotalCount(data));
 

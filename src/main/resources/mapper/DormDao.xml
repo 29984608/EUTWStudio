@@ -49,14 +49,15 @@
         select *,a.id areaId,a.name areaName from t_floor f
         LEFT JOIN
         (select id,name from t_area ) a on f.area_id = a.id
-        WHERE TRUE
-        <if test="areaName != ''">
-            AND a.name LIKE #{areaName}
-        </if>
+        <where>
+            <if test="areaId != ''">
+                AND f.area_id = #{areaId}
+            </if>
 
-        <if test="floorName != ''">
-            AND f.name LIKE #{floorName}
-        </if>
+            <if test="floorId != ''">
+                AND f.id = #{floorId}
+            </if>
+        </where>
         ORDER BY f.id,a.id
         limit #{start},#{pageSize}
     </select>
@@ -65,13 +66,16 @@
         select count(*) from t_floor f
         LEFT JOIN
         (select id,name from t_area ) a on f.area_id = a.id
-        WHERE TRUE
-        <if test="areaName != ''">
-            AND a.name LIKE #{areaName}
-        </if>
-        <if test="floorName != ''">
-            AND f.name LIKE #{floorName}
-        </if>
+        <where>
+            <if test="areaId != ''">
+                AND f.area_id = #{areaId}
+            </if>
+
+            <if test="floorId != ''">
+                AND f.id = #{floorId}
+            </if>
+        </where>
+
     </select>
 
     <insert id="addFloor" parameterType="string">
