@@ -757,7 +757,7 @@
                                                                     lay-ignore></select>
                                                         </div>
                                                         <div class="layui-input-block form-group"
-                                                             style="margin-left: 5px">
+                                                             style="margin-left: 5px;width: 250px">
                                                             <input type="text" name="detailedAddress"
                                                                    placeholder="请输入详细地址"
                                                                    autocomplete="off" class="layui-input"
@@ -838,7 +838,7 @@
                                                                     lay-ignore></select>
                                                         </div>
                                                         <div class="layui-input-block form-group"
-                                                             style="margin-left: 5px">
+                                                             style="margin-left: 5px;width: 250px">
                                                             <input type="text" name="detailedAddress"
                                                                    placeholder="请输入详细地址"
                                                                    autocomplete="off" class="layui-input"
@@ -1088,7 +1088,7 @@
                                                                     lay-ignore></select>
                                                         </div>
                                                         <div class="layui-input-block form-group"
-                                                             style="margin-left: 5px">
+                                                             style="margin-left: 5px;width: 250px">
                                                             <input type="text" name="detailedAddress"
                                                                    placeholder="请输入详细地址"
                                                                    autocomplete="off" class="layui-input"
