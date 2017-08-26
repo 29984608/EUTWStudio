@@ -30,6 +30,25 @@
                     <%--(<span style="font-size: 13px;" id="time">2017-6-3 12:12:21</span>)--%>
                 </div>
                 <table class="layui-table">
+                    <colgroup>
+                        <col width="160">
+                        <col width="70">
+                        <col width="160">
+                        <col width="160">
+                        <col width="70">
+                        <col width="70">
+                        <col width="70">
+                        <col width="70">
+                        <col width="70">
+                        <col width="70">
+                        <col width="70">
+                        <col width="70">
+                        <col width="70">
+                        <col width="70">
+                        <col width="70">
+                        <col width="120">
+                        <col width="70">
+                    </colgroup>
                     <thead>
                     <tr id="head">
                         <td>系别名称</td>
