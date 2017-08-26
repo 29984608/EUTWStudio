@@ -41,6 +41,7 @@ public class StudentController {
     public Map<String, Object> list(PageUtil page, SearchDto searchDto) {
         Map<String, Object> data = new HashMap<>();
         try {
+            System.out.println("00000000000012"+searchDto);
             List<Map<String, String>> allProfessionList = personService.queryAllStudentsProfessionList();
             List<Map<String, Object>> student = personService.queryStudentList(searchDto, page);
             data.put("student", student);

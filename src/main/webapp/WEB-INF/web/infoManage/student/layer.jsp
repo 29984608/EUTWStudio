@@ -1155,8 +1155,7 @@
                                                         <option value="3">入伍</option>
                                                         <option value="4">退学</option>
                                                         <option value="5">留级</option>
-                                                        <option value="6">退学</option>
-                                                        <option value="7">流失</option>
+                                                        <option value="6">流失</option>
                                                 </select>
                                             </div>
                                         </span></th>

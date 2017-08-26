@@ -366,7 +366,7 @@
             loadDirectionsByDepartmentId: function (id) {
                 $.post(baseUrl + "/communication/queryDirectionByDepartmentId", {departmentId: id}, function (data) {
                     if (data.result) {
-                        $("#direction_search").html(`<option value="">方向</option>`).append(loadOptionsHtml(data.data, "-"));
+                        $("#direction_search").html(`<option value="">方向</option><option value=''>请选择</option>`).append(loadOptionsHtml(data.data, "-"));
 
                         form.render();
                     }
@@ -401,6 +401,8 @@
                         _html += `<option value="` + data[i].id + `">` + data[i].name + `</option>`;
                     }
                 }
+
+                console.log(_html)
 
                 return _html;
             },
