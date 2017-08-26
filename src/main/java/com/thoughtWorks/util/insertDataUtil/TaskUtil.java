@@ -42,33 +42,35 @@ public class TaskUtil {
         }
     }
 
-    @Test
     public void insertUser() {
-        long time = new Date().getTime();
-        System.out.println("start:" + time);
-        String studentsSql = "SELECT no,name,idcard FROM t_student_ex";
+        synchronized (TaskUtil.class) {
+            long time = new Date().getTime();
+            System.out.println("start:" + time);
+            String studentsSql = "SELECT no,name,idcard FROM t_student_ex";
 
-        try {
-            conn = Dao.getDao();
-            state = conn.createStatement();
+            try {
+                conn = Dao.getDao();
+                state = conn.createStatement();
 
-            ArrayList<String> studentNos  = allUserNos();
+                ArrayList<String> studentNos = allUserNos();
 
-            ResultSet result = state.executeQuery(studentsSql);
-            while (result.next()) {
-                if (!studentNos.contains(result.getString(1))) {
-                    insert(result);
+                ResultSet result = state.executeQuery(studentsSql);
+                while (result.next()) {
+                    if (!studentNos.contains(result.getString(1))) {
+                        insert(result);
+                    }
                 }
+                System.out.println("end:" + (new Date().getTime() - time));
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                Dao.close(state, conn);
             }
-            System.out.println("end:" + (new Date().getTime()-time));
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            Dao.close(state, conn);
+
         }
     }
 
-    private ArrayList<String> allUserNos() throws Exception{
+    private ArrayList<String> allUserNos() throws Exception {
         String studentsNosSql = "SELECT username FROM t_user";
         ArrayList<String> studentNos = new ArrayList<>();
         ResultSet nos = state.executeQuery(studentsNosSql);
