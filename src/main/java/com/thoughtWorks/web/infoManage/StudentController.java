@@ -41,7 +41,7 @@ public class StudentController {
     public Map<String, Object> list(PageUtil page, SearchDto searchDto) {
         Map<String, Object> data = new HashMap<>();
         try {
-            System.out.println("00000000000012"+searchDto);
+            System.out.println("00000000000012" + searchDto);
             List<Map<String, String>> allProfessionList = personService.queryAllStudentsProfessionList();
             List<Map<String, Object>> student = personService.queryStudentList(searchDto, page);
             data.put("student", student);
@@ -61,7 +61,7 @@ public class StudentController {
 
     @RequestMapping("/queryProfessionByDepartment")
     @ResponseBody
-    public Map<String,Object> queryProfessionByDepartment(){
+    public Map<String, Object> queryProfessionByDepartment() {
         try {
             Map<String, Object> data = new HashMap<>();
             List<Map<String, String>> allProfessionList = personService.queryAllStudentsProfessionList();
@@ -124,7 +124,6 @@ public class StudentController {
             data.put("result", true);
 
 
-
         } catch (Exception e) {
             data.put("msg", Constant.SEARCH_FAILURE);
             data.put("result", false);
@@ -183,7 +182,7 @@ public class StudentController {
                 personService.updateFamilyInfo(familyList);
             }
             //添加修改日志到沟通反馈页面
-            CommunicationContent content = new CommunicationContent(studentUpdate.getNo(),personService.queryStudentNameByStudentNo(studentUpdate.getNo()),"基本信息");
+            CommunicationContent content = new CommunicationContent(studentUpdate.getNo(), personService.queryStudentNameByStudentNo(studentUpdate.getNo()), "基本信息");
             updateStudentUtil.updateStudentToCommunication(content);
             return Result.success(null, Constant.UPDATE_SUCCESS);
         } catch (Exception e) {
@@ -209,7 +208,7 @@ public class StudentController {
 
     @RequestMapping("/addFamilyByUpdate")
     @ResponseBody
-    public Result addFamilyByUpdate(StudentFamily studentFamily,String studentNo) {
+    public Result addFamilyByUpdate(StudentFamily studentFamily, String studentNo) {
         try {
             personService.addFamilyByUpdate(studentFamily);
             List<Map<String, Object>> students_family = personService.queryStudentFamily(studentNo);
@@ -223,7 +222,7 @@ public class StudentController {
 
     @RequestMapping("/delStudentFamily")
     @ResponseBody
-    public Result delStudentFamily(String familyId,String studentNo) {
+    public Result delStudentFamily(String familyId, String studentNo) {
         try {
             personService.delStudentFamily(familyId);
             List<Map<String, Object>> students_family = personService.queryStudentFamily(studentNo);
@@ -237,10 +236,10 @@ public class StudentController {
 
     @RequestMapping("/delExperience")
     @ResponseBody
-    public Result delExperience(String experienceId,String studentNo) {
+    public Result delExperience(String experienceId, String studentNo) {
         try {
             personService.delExperience(experienceId);
-            System.out.println("22222222222222"+experienceId);
+            System.out.println("22222222222222" + experienceId);
             List<Map<String, Object>> experienceList = personService.queryStudentExperienceList(studentNo);
 
             return Result.success(experienceList, Constant.DELETE_SUCCESS);
@@ -302,7 +301,7 @@ public class StudentController {
 
     @RequestMapping("/showTeacherOfSearch")
     @ResponseBody
-    public Map<String,Object> showTeacherOfSearch() {
+    public Map<String, Object> showTeacherOfSearch() {
         try {
             Map<String, Object> data = new HashMap<>();
             List<Map<String, Object>> teacherList = personService.queryTeacherList();
@@ -318,7 +317,7 @@ public class StudentController {
 
     @RequestMapping("/directionSelectionClass")
     @ResponseBody
-    public Map<String,Object> directionSelectionClass(String directionId){
+    public Map<String, Object> directionSelectionClass(String directionId) {
         try {
             System.out.println(directionId);
             Map<String, Object> data = new HashMap<>();

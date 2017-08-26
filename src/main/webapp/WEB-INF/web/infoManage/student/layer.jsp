@@ -101,7 +101,7 @@
             {{#}}}
         </td>
         <td>
-            {{# if(item.area === undefined){ }}
+            {{# if(item.stay_type !== "1"){ }}
             无
             {{# }else{ }}
             {{ item.area}}
@@ -109,7 +109,7 @@
         </td>
 
         <td>
-            {{# if(item.floor === undefined){ }}
+            {{# if(item.stay_type !== "1"){ }}
             无
             {{# }else{ }}
             {{ item.floor}}
@@ -117,7 +117,7 @@
         </td>
 
         <td>
-            {{# if(item.room === undefined){ }}
+            {{# if(item.stay_type !== "1"){ }}
             无
             {{# }else{ }}
             {{ item.room}}
