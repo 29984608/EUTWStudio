@@ -347,4 +347,19 @@ public class DormController {
         }
         return Result.failure("null", Constant.SEARCH_FAILURE);
     }
+
+    @RequestMapping("/room/showAreaAndFloors")
+    @ResponseBody
+    public Result showAreaAndFloorInfosByStudent(String areaId) {
+        try {
+
+            Map<String, Object> data = dormService.showAreaAndFloorInfos(areaId);
+
+            return Result.success(data, Constant.SEARCH_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return Result.failure("null", Constant.SEARCH_FAILURE);
+    }
 }
