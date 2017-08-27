@@ -56,22 +56,24 @@
             {{#}}}
         </td>
         <td style="font-size: 12px">
-            <button class="layui-btn layui-btn-mini "
-                    onclick="communication.add('{{item.no}}')">
-                添加反馈
-            </button>
-            <%--<shiro:hasPermission name="communication:update">--%>
-            <button class="layui-btn layui-btn-mini " style="background: #21a1a1"
-                    onclick="communication.previewOrUpdate('{{ item.name}}','{{item.no}}','update')">
-                修改
-            </button>
-            <%--</shiro:hasPermission>--%>
-            <%--<shiro:hasPermission name="communication:delete">--%>
-            <button class="layui-btn layui-btn-mini  "
-                    onclick="communication.previewOrUpdate('{{ item.name}}','{{item.no}}','preview')">
-                预览
-            </button>
-            <%--</shiro:hasPermission>--%>
+            <shiro:hasPermission name="communication:add">
+                <button class="layui-btn layui-btn-mini "
+                        onclick="communication.add('{{item.no}}')">
+                    添加反馈
+                </button>
+            </shiro:hasPermission>
+            <shiro:hasPermission name="communication:update">
+                <button class="layui-btn layui-btn-mini " style="background: #21a1a1"
+                        onclick="communication.previewOrUpdate('{{ item.name}}','{{item.no}}','update')">
+                    修改
+                </button>
+            </shiro:hasPermission>
+            <shiro:hasPermission name="communication:delete">
+                <button class="layui-btn layui-btn-mini  "
+                        onclick="communication.previewOrUpdate('{{ item.name}}','{{item.no}}','preview')">
+                    预览
+                </button>
+            </shiro:hasPermission>
         </td>
     </tr>
     {{# }); }}
@@ -134,7 +136,7 @@
             </div>
         </div>
     </form>
-                <a class="layui-btn" onclick="communication.addAjax()" style="width: 115px;margin-left: 30px">立即提交</a>
+    <a class="layui-btn" onclick="communication.addAjax()" style="width: 115px;margin-left: 30px">立即提交</a>
 
 </div>
 
@@ -143,7 +145,8 @@
         PDF</a>
     <div class="container" id="container" style="padding: 35px 15px 35px 60px;width: 750px">
 
-        <h2 style="text-align: center;margin-left: -30px">西安欧亚学院高职学院<span id="who" style="display: none"></span>学生沟通反馈报告</h2>
+        <h2 style="text-align: center;margin-left: -30px">西安欧亚学院高职学院<span id="who" style="display: none"></span>学生沟通反馈报告
+        </h2>
         <div style="margin:40px 0">
 
             <table class="layui-table lay-even " data-name="articleCatData">
