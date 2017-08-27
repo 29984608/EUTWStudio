@@ -400,9 +400,9 @@
                                         </th>
 
 
-                                        <th colspan="2">婚否：
+                                        <th colspan="2">
                                             <div class="layui-inline" pane="" id="isMarry">
-                                                <label class="layui-form-label" style="width: auto"></label>
+                                                <label class="layui-form-label" >婚否：</label>
                                                 <div class="layui-inline">
                                                     <input class="marry" name="isMarry" value="是" title="是"
                                                            type="radio">
@@ -1009,10 +1009,10 @@
                                                         <label class="layui-form-label">区</label>
                                                         <div class="layui-inline">
                                                             <div class="layui-input-inline">
-                                                                <select name="modules" onchange="selectArea(this)"
-                                                                        lay-filter="modules_3"
+                                                                <select name="modules"
+                                                                        lay-filter="_dorm"
                                                                         id="queryAreas">
-                                                                    <option value="">直接选择或搜索选择</option>
+                                                                    <option value="">请选择</option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -1022,11 +1022,11 @@
                                                         <label class="layui-form-label">楼层</label>
                                                         <div class="layui-inline">
                                                             <div class="layui-input-inline">
-                                                                <select name="modules1" onchange="selectFloor(this)"
-                                                                        lay-filter="modules_2"
+                                                                <select name="modules1"
+                                                                        lay-filter="_dorm"
                                                                         lay-search=""
                                                                         id="queryFloors">
-                                                                    <option value="">直接选择或搜索选择</option>
+                                                                    <option value="">请选择</option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -1036,11 +1036,11 @@
                                                         <label class="layui-form-label">宿舍</label>
                                                         <div class="layui-inline">
                                                             <div class="layui-input-inline">
-                                                                <select name="modules1" onchange="selectRoom(this)"
-                                                                        lay-filter="modules_1"
+                                                                <select name="modules1"
+                                                                        lay-filter="_dorm"
                                                                         lay-search=""
                                                                         id="queryRooms">
-                                                                    <option value="">直接选择或搜索选择</option>
+                                                                    <option value="">请选择</option>
                                                                 </select>
                                                             </div>
                                                         </div>

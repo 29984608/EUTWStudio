@@ -1103,7 +1103,7 @@
             },
 
             loadDepartmentOrDirection: function (data, selectId) {
-                let _html = "<option value=\"\">直接选择或搜索选择</option>";
+                let _html = "<option value=\"\">请选择</option>";
                 for (let i = 0; i < data.length; ++i) {
                     if (selectId == data[i].id) {
                         _html += `<option  selected value="` + data[i].id + `">` + data[i].name + `</option>`;
@@ -1484,7 +1484,7 @@
             },
 
             updateSameToIdcard_address: function () {
-                $("#detailedAddresses").val(studentInfo.idcard_address);
+                $("#detailedAddresses").val($("#Identity_card_address").val());
             },
 
 
@@ -1856,6 +1856,17 @@
                     $("#classes_search").html(`<option value="">班级</option>` + loadOptionsHtml(dataResult.classList));
                     form.render();
                 })
+            });
+            //动态显示宿舍信息
+            form.on('select(_dorm)', function (data) {
+                let info = [];
+                let area = $("#queryAreas").find("option:selected").text();
+                let floor = $("#queryFloors").find("option:selected").text();
+                let room = $("#queryRooms").find("option:selected").text();
+                if(area !== "请选择") info.push(area);
+                if(floor !== "请选择") info.push(floor);
+                if(room !== "请选择") info.push(room);
+                $("#updateDorms").val(info.join("-"))
             });
 
             //监听年级动态获得相应班级
