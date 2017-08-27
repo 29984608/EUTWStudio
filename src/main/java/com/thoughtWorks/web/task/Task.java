@@ -11,7 +11,7 @@ public class Task {
 
     @Scheduled(cron = "0 0 1 * * ?")
     public  void executeJob() {
-        taskUtil.insertUser();
+        taskUtil.updateNewUser();
     }
 }
 

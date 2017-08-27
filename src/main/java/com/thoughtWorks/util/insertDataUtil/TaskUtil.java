@@ -92,4 +92,19 @@ public class TaskUtil {
         sql.append(name).append("','学生')");
         conn.prepareStatement(sql.toString()).executeUpdate();
     }
+
+    public void updateNewUser() {
+        String studentsSql = "UPDATE t_user SET staff='学生' where roleId=3";
+        try {
+            conn = Dao.getDao();
+            state = conn.createStatement();
+            state.executeQuery(studentsSql);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            Dao.close(state, conn);
+        }
+
+    }
+
 }
