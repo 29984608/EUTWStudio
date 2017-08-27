@@ -188,20 +188,6 @@
                 let name = $("#addRoomName").val();
                 let areaName = $("#showAreasAdd").find("option:selected").text();
                 let floorName = $("#showFloorsAdd").find("option:selected").text();
-                if (areaName === "一楼") {
-
-                } else if (areaName === "二楼") {
-
-                } else if (areaName === "三楼") {
-
-                } else if (areaName === "四楼") {
-
-                } else if (areaName === "五楼") {
-
-                } else if (areaName === "六楼") {
-
-                }
-
 
                 layer.confirm('确定添加？', {icon: 3, title: '提示'}, function (index) {
                     layer.close(index);
