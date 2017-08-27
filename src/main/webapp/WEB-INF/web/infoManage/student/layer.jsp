@@ -101,7 +101,7 @@
             {{#}}}
         </td>
         <td>
-            {{# if(item.stay_type !== "1"  || item.area === undefined){ }}
+            {{# if(item.stay_type !== "1" || item.area === undefined){ }}
             无
             {{# }else{ }}
             {{ item.area}}
@@ -222,7 +222,7 @@
                         <th>录取专业：<span id="profession"></span></th>
                         <th>现专业：<span id="originProfession"></span></th>
                         <th>就业方向：<span id="direction"></span></th>
-                        <th >班级：<span id="classes"></span></th>
+                        <th>班级：<span id="classes"></span></th>
 
                     </tr>
                     <tr>
@@ -413,7 +413,6 @@
                                         </th>
 
 
-
                                     </tr>
 
                                     <tr class="layui-form">
@@ -454,7 +453,6 @@
                                         </span>
                                         </th>
                                     </tr>
-
 
 
                                     <tr>
@@ -1004,48 +1002,50 @@
                                                 </span>
                                             </div>
                                             </span>
-                                            <div id="showUpdateDorms" style="display: none">
+                                            <div id="showUpdateDorms" style="display: none" class="">
                                                 <br>
-
-                                                <div class="layui-input-inline">
-                                                    <label class="layui-form-label">区</label>
-                                                    <div class="layui-inline">
-                                                        <div class="layui-input-inline">
-                                                            <select name="modules" lay-filter="modules_3"
-                                                                    lay-search=""
-                                                                    id="queryAreas">
-                                                                <option value="">直接选择或搜索选择</option>
-                                                            </select>
+                                                <form class="form-inline">
+                                                    <div class="layui-input-inline">
+                                                        <label class="layui-form-label">区</label>
+                                                        <div class="layui-inline">
+                                                            <div class="layui-input-inline">
+                                                                <select name="modules" onchange="selectArea(this)"
+                                                                        lay-filter="modules_3"
+                                                                        id="queryAreas">
+                                                                    <option value="">直接选择或搜索选择</option>
+                                                                </select>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
 
-                                                <div class="layui-input-inline">
-                                                    <label class="layui-form-label">楼层</label>
-                                                    <div class="layui-inline">
-                                                        <div class="layui-input-inline">
-                                                            <select name="modules1" lay-filter="modules_2"
-                                                                    lay-search=""
-                                                                    id="queryFloors">
-                                                                <option value="">直接选择或搜索选择</option>
-                                                            </select>
+                                                    <div class="layui-input-inline">
+                                                        <label class="layui-form-label">楼层</label>
+                                                        <div class="layui-inline">
+                                                            <div class="layui-input-inline">
+                                                                <select name="modules1" onchange="selectFloor(this)"
+                                                                        lay-filter="modules_2"
+                                                                        lay-search=""
+                                                                        id="queryFloors">
+                                                                    <option value="">直接选择或搜索选择</option>
+                                                                </select>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
 
-                                                <div class="layui-input-inline">
-                                                    <label class="layui-form-label">宿舍</label>
-                                                    <div class="layui-inline">
-                                                        <div class="layui-input-inline">
-                                                            <select name="modules1" lay-filter="modules_1"
-                                                                    lay-search=""
-                                                                    id="queryRooms">
-                                                                <option value="">直接选择或搜索选择</option>
-                                                            </select>
+                                                    <div class="layui-input-inline">
+                                                        <label class="layui-form-label">宿舍</label>
+                                                        <div class="layui-inline">
+                                                            <div class="layui-input-inline">
+                                                                <select name="modules1" onchange="selectRoom(this)"
+                                                                        lay-filter="modules_1"
+                                                                        lay-search=""
+                                                                        id="queryRooms">
+                                                                    <option value="">直接选择或搜索选择</option>
+                                                                </select>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-
+                                                </form>
                                             </div>
 
                                         </th>
@@ -1168,7 +1168,8 @@
                                             <div class="layui-input-inline" style="width: 100%">
                                                 <label class="layui-form-label" style="width: auto;margin-left: -15px">来校前毕业学校或工作单位：</label>
                                                 <div class="layui-input-inline" style="width: 40%">
-                                                    <input type="text" name="idcard_address" placeholder="请输入来校前毕业学校或工作单位"
+                                                    <input type="text" name="idcard_address"
+                                                           placeholder="请输入来校前毕业学校或工作单位"
                                                            autocomplete="off" class="layui-input"
                                                            id="pre_school_work"
                                                            readonly style="border: none">
@@ -1300,7 +1301,6 @@
                                             </div>
                                         </span></th>
                                     </tr>
-
 
 
                                     <tr>
@@ -1690,6 +1690,7 @@
     let this_updateOffCampusAddress = '';
 
     function selectProvince12(e) {
+        alert(123)
         P_updateOffCampusAddress = e.options[e.selectedIndex].text;
         $("#updateOffCampusAddress").val(P_updateOffCampusAddress);
     }
@@ -1756,7 +1757,6 @@
         D_update_name_of_the_source = C_update_name_of_the_source + "-" + e.options[e.selectedIndex].text;
         $("#update_name_of_the_source").val(D_update_name_of_the_source);
     }
-
 
 
     //家庭实际住址：
@@ -1841,7 +1841,6 @@
     })
 
 
-
     //籍贯：
 
     let P_updateStudentNativePlace = '';
@@ -1861,6 +1860,27 @@
     function selectDistrict9(e) {
         D_updateStudentNativePlace = C_updateStudentNativePlace + "-" + e.options[e.selectedIndex].text;
         $("#updateStudentNativePlace").val(D_updateStudentNativePlace);
+    }
+
+    //宿舍
+    let area_updateDorms = '';
+    let floor_updateDorms = '';
+    let room_updateDorms = '';
+
+    function selectArea(e) {
+        alert(12)
+        area_updateDorms = e.options[e.selectedIndex].text;
+        $("#updateDorms").val(area_updateDorms);
+    }
+
+    function selectFloor(e) {
+        floor_updateDorms = area_updateDorms + "-" + e.options[e.selectedIndex].text;
+        $("#updateDorms").val(floor_updateDorms);
+    }
+
+    function selectRoom(e) {
+        room_updateDorms = floor_updateDorms + "-" + e.options[e.selectedIndex].text;
+        $("#updateDorms").val(room_updateDorms);
     }
 
 </script>
