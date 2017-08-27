@@ -24,7 +24,7 @@
                         西安欧亚学院高职学院课程学习计划
                     </legend>
                     <div class="layui-field-box">
-                        <div id="modelCourses-preview" style="margin: 3% 0 0 20%">
+                        <div id="modelCourses-preview" style="margin: 3% 0 0 6%">
 
                         </div>
                     </div>
@@ -77,19 +77,21 @@
                 moduleId = moduleCourses[i].id;
                 _html = ` <div class="layui-input-block" >
                                             <p style="color: black"  class="course" >
-                                                <span style="margin-right: 40px"> ` + moduleCourses[i].courseName + `</span>
-                                                <span style="margin-right: 40px"> ` + moduleCourses[i].schoolScore + ` 学分</span>
-                                                <span style="margin-right: 40px"> ` + moduleCourses[i].schoolHours + ` 课时</span>
-                                                <span style="margin-right: 40px"> ` + moduleCourses[i].nature + `</span>
+                                                <span style="margin-right: 0px"> ` + moduleCourses[i].courseName + `</span>
+                                                <span style="margin-right: 0px">/` + moduleCourses[i].schoolScore + ` 学分</span>
+                                                <span style="margin-right: 0px">/` + moduleCourses[i].schoolHours + ` 课时</span>
+                                                <span style="margin-right: 0px">/` + moduleCourses[i].nature + `</span>
+                                                <span style="margin-right: 0px">/` +(moduleCourses[i].testMethodName!==undefined ?moduleCourses[i].testMethodName:"暂无")+ `</span>
                                             </p>
                                    </div>`
             } else {
                 _html += ` <div class="layui-input-block" >
                                         <p style="color: black"  class="course" >
-                                            <span style="margin-right: 40px"> ` + moduleCourses[i].courseName + `</span>
-                                            <span style="margin-right: 40px"> ` + moduleCourses[i].schoolScore + ` 学分</span>
-                                            <span style="margin-right: 40px"> ` + moduleCourses[i].schoolHours + ` 课时</span>
-                                            <span style="margin-right: 40px"> ` + moduleCourses[i].nature + `</span>
+                                            <span style="margin-right: 0px">` + moduleCourses[i].courseName + `</span>
+                                            <span style="margin-right: 0px">/` + moduleCourses[i].schoolScore + ` 学分</span>
+                                            <span style="margin-right: 0px">/` + moduleCourses[i].schoolHours + ` 课时</span>
+                                            <span style="margin-right: 0px">/` + moduleCourses[i].nature + `</span>
+                                            <span style="margin-right: 0px">/` + (moduleCourses[i].testMethodName!==undefined ?moduleCourses[i].testMethodName:"暂无") + `</span>
                                         </p>
                                   </div>`
             }

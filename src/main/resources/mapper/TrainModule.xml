@@ -56,18 +56,21 @@
     </delete>
     <!--模块-->
     <select id="queryAllModuleCourses" resultType="map">
-        SELECT
-            module.id           id,
-            module.name         moduleName,
-            course.id           courseId,
-            course.name         courseName,
-            course.nature,
-            course.school_score schoolScore,
-            course.school_hours schoolHours
+      SELECT
+          module.id           id,
+          module.name         moduleName,
+          course.id           courseId,
+          course.name         courseName,
+          course.nature,
+          course.school_score schoolScore,
+          course.school_hours schoolHours,
+          testMethod.name testMethodName
         FROM t_train_module module
-            LEFT JOIN (SELECT *
-                       FROM t_course) course ON module.id = course.module_id
-        ORDER BY module_id ASC
+          LEFT JOIN (SELECT *
+                     FROM t_course) course ON module.id = course.module_id
+          LEFT JOIN (SELECT *
+                     FROM t_test_method) testMethod ON testMethod.id = course.method
+        ORDER BY module_id ASC;
     </select>
     <select id="queryTrainModuleTotalCount" resultType="long">
         SELECT count(1)
