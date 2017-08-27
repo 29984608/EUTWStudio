@@ -119,11 +119,11 @@ public class StudentClassController {
             ActiveUser teacher = (ActiveUser) SecurityUtils.getSubject().getPrincipal();
             personService.distributedClass(classesId, studentIds);
             personService.updateStudentTeacherId(teacher.getUserName(), studentIds);
-            String[] studentList = studentIds.split(",");
-            for (int i = 0; i < studentList.length; i++) {
-                CommunicationContent content = new CommunicationContent(studentList[i], personService.queryStudentNameByStudentNo(studentList[i]), "班级信息");
-                updateStudentUtil.updateStudentToCommunication(content);
-            }
+//            String[] studentList = studentIds.split(",");
+//            for (int i = 0; i < studentList.length; i++) {
+//                CommunicationContent content = new CommunicationContent(studentList[i], personService.queryStudentNameByStudentNo(studentList[i]), "班级信息");
+//                updateStudentUtil.updateStudentToCommunication(content);
+//            }
 
             return Result.success(null, Constant.ADD_SUCCESS);
         } catch (Exception e) {
@@ -138,11 +138,11 @@ public class StudentClassController {
     public Result distributedDirection(String directionId, String studentIds) {
         try {
             personService.distributedDirection(directionId, studentIds);
-            String[] studentList = studentIds.split(",");
-            for (int i = 0; i < studentList.length; i++) {
-                CommunicationContent content = new CommunicationContent(studentList[i], personService.queryStudentNameByStudentNo(studentList[i]), "方向信息");
-                updateStudentUtil.updateStudentToCommunication(content);
-            }
+//            String[] studentList = studentIds.split(",");
+//            for (int i = 0; i < studentList.length; i++) {
+//                CommunicationContent content = new CommunicationContent(studentList[i], personService.queryStudentNameByStudentNo(studentList[i]), "方向信息");
+//                updateStudentUtil.updateStudentToCommunication(content);
+//            }
 
             return Result.success(null, Constant.UPDATE_SUCCESS);
         } catch (Exception e) {

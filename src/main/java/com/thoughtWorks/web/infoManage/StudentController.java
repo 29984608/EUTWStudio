@@ -180,8 +180,8 @@ public class StudentController {
                 personService.updateFamilyInfo(familyList);
             }
             //添加修改日志到沟通反馈页面
-            CommunicationContent content = new CommunicationContent(studentUpdate.getNo(), personService.queryStudentNameByStudentNo(studentUpdate.getNo()), "基本信息");
-            updateStudentUtil.updateStudentToCommunication(content);
+//            CommunicationContent content = new CommunicationContent(studentUpdate.getNo(), personService.queryStudentNameByStudentNo(studentUpdate.getNo()), "基本信息");
+//            updateStudentUtil.updateStudentToCommunication(content);
             return Result.success(null, Constant.UPDATE_SUCCESS);
         } catch (Exception e) {
             e.printStackTrace();
