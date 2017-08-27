@@ -120,4 +120,6 @@ public interface PersonService {
     List<Map<String,String>> queryAllStudentsProfessionList()throws Exception;
 
     List<Map<String,Object>> queryDirectionSelectionClass(String directionId)throws Exception;
+
+    List<Map<String,Object>> querylevelSelectionClass(String levelName)throws Exception;
 }

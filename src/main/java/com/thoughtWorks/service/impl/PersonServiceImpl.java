@@ -150,6 +150,11 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
+    public List<Map<String, Object>> querylevelSelectionClass(String levelName) throws Exception {
+        return personDao.querylevelSelectionClass(levelName);
+    }
+
+    @Override
     public Map<String, Object> queryStudentsByLikes(ActiveUser user, SearchDto searchDto) throws Exception {
         Map<String, Object> result = new HashMap<>();
         Map<String, Object> data = new HashMap<>();
