@@ -62,7 +62,7 @@ layui.use(['elements', 'jquery', 'layer', 'larry', 'navtab', 'form', 'common'], 
                 if (id == firstTopMenuPid && isLoad) {
                     isLoad = false;
                     result.unshift({
-                        title: '后台首页',
+                        title: '最新动态',
                         icon: 'larry-wangzhanshouye',
                         href: baseUrl + 'main'
                     });
