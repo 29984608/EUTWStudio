@@ -113,11 +113,12 @@
         LEFT JOIN
         (select id,name from t_area) a ON f.area_id = a.id
         <where>
-            <if test="areaName != ''">
-                AND a.name LIKE #{areaName}
+            <if test="areaId != '' and areaId != null">
+                AND f.area_id = #{areaId}
             </if>
-            <if test="floorName != ''">
-                AND f.name LIKE #{floorName}
+
+            <if test="floorId != '' and floorId != null">
+                AND f.id = #{floorId}
             </if>
             AND r.name LIKE #{roomNo}
             ORDER BY r.id ,f.id,a.id
@@ -132,11 +133,12 @@
         LEFT JOIN
         (select id,name from t_area) a ON f.area_id = a.id
         <where>
-            <if test="areaName != ''">
-                AND a.name LIKE #{areaName}
+            <if test="areaId != '' and areaId != null">
+                AND f.area_id = #{areaId}
             </if>
-            <if test="floorName != ''">
-                AND f.name LIKE #{floorName}
+
+            <if test="floorId != '' and floorId != null">
+                AND f.id = #{floorId}
             </if>
             AND r.name LIKE #{roomNo}
         </where>

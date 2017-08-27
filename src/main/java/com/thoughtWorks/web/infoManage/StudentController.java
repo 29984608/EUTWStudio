@@ -1,6 +1,5 @@
 package com.thoughtWorks.web.infoManage;
 
-import com.sun.org.apache.regexp.internal.RE;
 import com.thoughtWorks.dto.Result;
 import com.thoughtWorks.dto.SearchDto;
 import com.thoughtWorks.entity.*;
@@ -318,7 +317,6 @@ public class StudentController {
     @ResponseBody
     public Map<String, Object> directionSelectionClass(String directionId) {
         try {
-            System.out.println(directionId);
             Map<String, Object> data = new HashMap<>();
             List<Map<String, Object>> classList = personService.queryDirectionSelectionClass(directionId);
             data.put("classList", classList);
@@ -330,4 +328,18 @@ public class StudentController {
         return null;
     }
 
+    @RequestMapping("/levelSelectionClass")
+    @ResponseBody
+    public Map<String, Object> levelSelectionClass(String levelName) {
+        try {
+            Map<String, Object> data = new HashMap<>();
+            List<Map<String, Object>> classList = personService.querylevelSelectionClass(levelName);
+            data.put("classList", classList);
+            return data;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
 }

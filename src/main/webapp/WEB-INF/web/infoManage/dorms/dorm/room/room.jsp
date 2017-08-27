@@ -152,7 +152,6 @@
                             });
                             form.render();
                         }
-                        room.queryAreaAndFloor()
                     }
                 });
             },
@@ -188,20 +187,6 @@
                 let name = $("#addRoomName").val();
                 let areaName = $("#showAreasAdd").find("option:selected").text();
                 let floorName = $("#showFloorsAdd").find("option:selected").text();
-                if (areaName === "一楼") {
-
-                } else if (areaName === "二楼") {
-
-                } else if (areaName === "三楼") {
-
-                } else if (areaName === "四楼") {
-
-                } else if (areaName === "五楼") {
-
-                } else if (areaName === "六楼") {
-
-                }
-
 
                 layer.confirm('确定添加？', {icon: 3, title: '提示'}, function (index) {
                     layer.close(index);
@@ -262,7 +247,7 @@
                 })
             },
             loadDepartmentOrDirection: function (data, selectId) {
-                let _html = `<option value="">直选择</option><option value="">直选择</option>`;
+                let _html = `<option value="">请选择</option><option value="">请选择</option>`;
                 for (let i = 0; i < data.length; ++i) {
                     if (selectId == data[i].id) {
                         _html += `<option  selected value="` + data[i].id + `">` + data[i].name + `</option>`;
@@ -273,9 +258,21 @@
 
                 return _html;
             },
+            loadArea: function () {
+                $.post(baseUrl + "dorm/area/loadAllArea", function (dataResult) {
+                    if (dataResult.result) {
+                        var queryAreaOfRoom = dataResult.data.allArea;
+
+                        $("#queryAreas").html(floor.loadDepartmentOrDirection(queryAreaOfRoom), "-")
+                        form.render();
+                    }
+                })
+            }
         };
         $(function () {
             room.list();
+            room.loadArea();
+            room.queryAreaAndFloor()
 
             form.on('select(modules_1)', function (data) {
                 var id = data.value;
