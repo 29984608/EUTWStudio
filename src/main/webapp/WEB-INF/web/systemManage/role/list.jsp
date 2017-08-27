@@ -29,11 +29,17 @@
                 <div class="layui-form ">
                     <table id="example" class="layui-table lay-even " data-name="articleCatData">
                         <thead>
+                        <colgroup>
+                            <col width="100">
+                            <col width="200">
+                            <col width="100">
+                            <col width="200">
+                        </colgroup>
                         <tr>
                             <th>序号</th>
                             <th>角色名称</th>
                             <th>是否可用</th>
-                            <th width="150">操作</th>
+                            <th >操作</th>
                         </tr>
                         </thead>
                         <tbody id="list">
@@ -48,6 +54,7 @@
 </section>
 </body>
 <%@ include file="layer.jsp" %>
+<script type="text/javascript" src="${baseurl}/js/searchJs.js"></script>
 <script type="text/javascript" src="${baseurl}/public/common/layui/layui.js"></script>
 <script type="text/javascript">
     let totalSize = 10;
@@ -69,6 +76,7 @@
                 layui.laypage({
                     cont: 'demo1',
                     pages: totalSize, //总页数
+                    last: totalSize,
                     curr: currentIndex,
                     groups: 5,//连续显示分页数
                     skin: '#1E9FFF',
@@ -89,6 +97,7 @@
                         if (data.result) {
                             currentIndex = data.page.currentIndex;
                             totalSize = data.page.totalSize;
+                            showTotalCount(data.page.totalCount);
                             role.page();
                             laytpl($("#list-tpl").text()).render(data, function (html) {
                                 $("#list").html(html);
