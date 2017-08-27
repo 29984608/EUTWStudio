@@ -829,7 +829,7 @@
                                                        onclick="layui.laydate({elem: this})" type="text"
                                                        id="educational_experience_start">
                                             </div>
-                                            <span style="float: left;margin-top: 8px"><p class="layui-input-inline" style="align-content:center;">至</p></span>
+                                            <span style="float: left;margin-top: 8px"><p class="layui-input-inline" style="align-content:center;">&nbsp;&nbsp;至&nbsp;&nbsp;</p></span>
                                              <div class="layui-input-inline" style="width: 40%;float: left">
                                                 <input name="date" lay-verify="date" placeholder="yyyy-mm-dd"
                                                        autocomplete="off" class="layui-input educational_experience_end"

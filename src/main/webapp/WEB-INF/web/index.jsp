@@ -4,7 +4,7 @@
 <head>
     <title>高职学生信息管理系统</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-
+    <link rel="shortcut icon" href="${baseurl}/images/public/favicon.ico">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/common/layui/css/layui.css" media="all">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/common/css/global.css" media="all">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/font_bmgv5kod1961tt9.css">
