@@ -164,7 +164,7 @@
                         <th colspan="3" style="width:220px">身份证号：<span id="idcard"></span></th>
                         <th rowspan=" 3 " style="padding: 1px;">
                             <div style="width:100px; height: 140px; border: 0px solid #00ab9f">
-                                <img id="images" style="width:100%" height="100%"/>
+                                <img id="images" class="head_image" style="width:100%;" height="100%"/>
                             </div>
                         </th>
                     </tr>
@@ -277,7 +277,7 @@
                                 <div style="margin: 30px 10px;border: 1px ;">
                                     <div style="float: left;margin: 10px 37%">
                                         <div style="width:140px; height: 200px;border: 2px solid #e2e2e2;margin-bottom: 10px">
-                                            <img id="imagesToUpdate" style="width: 100%" height="100%"/>
+                                            <img id="imagesToUpdate" class="head_image" style="width: 100%" height="100%"/>
                                         </div>
                                         <div>
                                             <input type="file" name="file" class="layui-upload-file" style="width: auto"
@@ -415,16 +415,6 @@
 
                                     </tr>
 
-                                    <tr class="layui-form">
-                                        <th colspan="6"><span>宗教信仰：</span>
-
-                                            <div class="layui-input-inline" style="width: 90%">
-                                                <input type="text" name="title" id="religiousBelief"
-                                                       autocomplete="off" placeholder="何时经何人介绍参加何种党派、团体、任何职?"
-                                                       class="layui-input">
-                                            </div>
-                                        </th>
-                                    </tr>
 
                                     <tr>
                                         <th colspan="6">入学前文化程度：
@@ -943,6 +933,16 @@
                                         </span></th>
                                     </tr>
 
+                                    <tr class="layui-form">
+                                        <th colspan="6"><span>宗教信仰：</span>
+
+                                            <div class="layui-input-inline" style="width: 90%">
+                                                <input type="text" name="title" id="religiousBelief"
+                                                       autocomplete="off" placeholder="无"
+                                                       class="layui-input">
+                                            </div>
+                                        </th>
+                                    </tr>
                                     <tr>
                                         <th colspan="6">政治面貌：
                                             <span>

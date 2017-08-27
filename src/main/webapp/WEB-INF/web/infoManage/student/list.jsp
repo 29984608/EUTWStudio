@@ -366,7 +366,7 @@
             loadDirectionsByDepartmentId: function (id) {
                 $.post(baseUrl + "/communication/queryDirectionByDepartmentId", {departmentId: id}, function (data) {
                     if (data.result) {
-                        $("#direction_search").html(`<option value="">方向</option><option value=''>请选择</option>`).append(loadOptionsHtml(data.data, "-"));
+                        $("#direction_search").html(`<option value=''>方向</option>`).append(loadOptionsHtml(data.data, "-"));
 
                         form.render();
                     }
@@ -1576,10 +1576,10 @@
             $.post(baseUrl + "/student/showTeacherOfSearch", function (data) {
                 //职业导师
                 let teacher_id1 = data.teacherList.filter(item => item.classify === "职业导师");
-                $("#teacher_id").html("").append(`<option value="">职业导师</option><option value="">请选择</option>` + loadOptionsHtmlToTeacher(teacher_id1, "-"));
+                $("#teacher_id").html("").append(`<option value="">职业导师</option>` + loadOptionsHtmlToTeacher(teacher_id1, "-"));
                 //社区辅导员
                 let community_teacher_id1 = data.teacherList.filter(item => item.classify === "社区辅导员");
-                $("#community_teacher_id").html("").append(`<option value="">社区辅导员</option><option value="">请选择</option>` + loadOptionsHtmlToTeacher(community_teacher_id1, "-"));
+                $("#community_teacher_id").html("").append(`<option value="">社区辅导员</option>` + loadOptionsHtmlToTeacher(community_teacher_id1, "-"));
             })
 
         }
@@ -1611,7 +1611,7 @@
         }
 
         function loadOptionsHtmlOfClass(data) {
-            let _html = "";
+            let _html = "<option value=''>请选择</option><option value=''>请选择</option>";
             for (let i = 0; i < data.length; ++i) {
                 _html += `<option value="` + data[i].id + `">` + data[i].name + `</option>`;
             }
@@ -1620,7 +1620,7 @@
         }
 
         function loadOptionsHtmlToTeacher(data, selectId) {
-            let _html = "";
+            let _html = "<option value=''>请选择</option>";
             for (let i = 0; i < data.length; ++i) {
                 if (selectId == data[i].no) {
                     _html += `<option  selected value="` + data[i].no + `">` + data[i].name + `</option>`;
@@ -1637,6 +1637,14 @@
                 if (data.result) {
                     $("#area_search").html(`<option value=''>区</option>`+student.loadDepartmentOrDirectionArea(data.data.queryAreaOfRoom, "-"))
 //                    $("#floor_search").html(student.loadDepartmentOrDirectionFloor(data.data.queryFloorOfRoom, "-"))
+                }
+                form.render();
+            })
+        }
+        function queryClassByDirectionIdAndLevel(directionId,level) {
+            $.post(baseUrl + "/studentClass/queryClassByDirectionIdAndLevel", {directionId: directionId,level:level}, function (data) {
+                if (data.result) {
+                    $("#student_class").html("<option value=''>请选择</option>" + loadOptionsHtml(data.data, "-"));
                 }
                 form.render();
             })
@@ -1663,6 +1671,8 @@
             queryAreaAndFloor();
             form.render();
 
+
+
             $("#studentPhone").formatInput({
                 formatArr: [3, 4, 4],
                 delimiter: '-'
@@ -1685,7 +1695,7 @@
                 let department_id = data.value;
 //                根据系动态选择专业
                 $.post(baseUrl + "/student/showAutoClassAndProAndDirByDepartment", {departmentId: department_id}, function (resultData) {
-                    $("#profession_search").html(`<option value="">专业</option><option value="">请选择</option>` + loadOptionsHtmlOfClass(resultData.data.professionList));
+                    $("#profession_search").html(loadOptionsHtmlOfClass(resultData.data.professionList));
 //                    $("#profession_search").html(`<option value="">专业</option>` + loadOptionsHtmlOfClass(resultData.data.professionList));
                     form.render();
                 })
@@ -1833,6 +1843,11 @@
                     $("#employment_direction").html(loadOptionsHtmlOfClass(resultData.data.directionList));
                     form.render();
                 })
+            });
+
+            form.on('select(employment_direction)', function (data) {
+                let directionId = data.value;
+                queryClassByDirectionIdAndLevel(directionId,"");
             });
 
             //根据方向动态选择班级
