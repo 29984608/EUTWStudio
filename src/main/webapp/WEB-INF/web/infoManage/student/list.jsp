@@ -926,6 +926,7 @@
                             if (data.result) {
                                 layer.msg("删除成功!");
                                 student.familyFnformation(data.data);
+                                form.render();
                             }
                         })
                 })
@@ -992,6 +993,7 @@
                                 layer.msg(data.msg, {icon: 1});
                                 layer.close(addStudentFamilyInfoIndex);
                                 student.familyFnformation(data.data);
+                                form.render();
                             }
                         }
                     )
@@ -1173,7 +1175,8 @@
                     let detailedAddresses = "";
                     detailedAddresses += $("#province0").find("option:selected").text() + "-";
                     detailedAddresses += $("#city0").find("option:selected").text() + "-";
-                    detailedAddresses += $("#district0").find("option:selected").text();
+                    detailedAddresses += $("#district0").find("option:selected").text() + "-";
+                    detailedAddresses += $("#detailedUpdateCardAddress").val();
                     var idcard_address = detailedAddresses;
                 }
                 //家庭实际住址
@@ -1682,7 +1685,7 @@
                 let department_id = data.value;
 //                根据系动态选择专业
                 $.post(baseUrl + "/student/showAutoClassAndProAndDirByDepartment", {departmentId: department_id}, function (resultData) {
-                    $("#profession_search").html(`<option value="">专业</option>` + loadOptionsHtmlOfClass(resultData.data.professionList));
+                    $("#profession_search").html(`<option value="">专业</option><option value="">请选择</option>` + loadOptionsHtmlOfClass(resultData.data.professionList));
 //                    $("#profession_search").html(`<option value="">专业</option>` + loadOptionsHtmlOfClass(resultData.data.professionList));
                     form.render();
                 })
