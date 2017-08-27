@@ -152,7 +152,6 @@
                             });
                             form.render();
                         }
-                        room.queryAreaAndFloor()
                     }
                 });
             },
@@ -248,7 +247,7 @@
                 })
             },
             loadDepartmentOrDirection: function (data, selectId) {
-                let _html = `<option value="">直选择</option><option value="">直选择</option>`;
+                let _html = `<option value="">请选择</option><option value="">请选择</option>`;
                 for (let i = 0; i < data.length; ++i) {
                     if (selectId == data[i].id) {
                         _html += `<option  selected value="` + data[i].id + `">` + data[i].name + `</option>`;
@@ -259,9 +258,21 @@
 
                 return _html;
             },
+            loadArea: function () {
+                $.post(baseUrl + "dorm/area/loadAllArea", function (dataResult) {
+                    if (dataResult.result) {
+                        var queryAreaOfRoom = dataResult.data.allArea;
+
+                        $("#queryAreas").html(floor.loadDepartmentOrDirection(queryAreaOfRoom), "-")
+                        form.render();
+                    }
+                })
+            }
         };
         $(function () {
             room.list();
+            room.loadArea();
+            room.queryAreaAndFloor()
 
             form.on('select(modules_1)', function (data) {
                 var id = data.value;
