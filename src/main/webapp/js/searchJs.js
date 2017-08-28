@@ -81,5 +81,5 @@ function showTotalCount(totalCount) {
 }
 
 function getBirthday(idcard) {
-    return idcard.substr(6, 4) + "年" + idcard.substr(10, 2) + "月" + idcard.substr(12, 2) + "日";
+    return idcard.substr(6, 4) + "-" + idcard.substr(10, 2) + "-" + idcard.substr(12, 2);
 }
