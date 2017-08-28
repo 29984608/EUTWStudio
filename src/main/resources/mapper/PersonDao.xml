@@ -755,9 +755,7 @@ WHERE student.no =#{studentNo}
             <if test="classes_id != null and classes_id !=''">
                 t_student.classes_id = #{classes_id},
             </if>
-            <if test="profession_id != null and profession_id !=''">
-                t_student.profession_id = #{profession_id},
-            </if>
+
             <if test="origin_profession_id != null and origin_profession_id !=''">
                 t_student.origin_profession_id = #{origin_profession_id},
             </if>
@@ -1002,7 +1000,7 @@ WHERE student.no =#{studentNo}
     </delete>
 
     <delete id="delExperience" parameterType="string">
-        DELETE FROM t_student_experience
+        DELETE FROM t_own_punishment
         WHERE id = #{experienceId}
     </delete>
 

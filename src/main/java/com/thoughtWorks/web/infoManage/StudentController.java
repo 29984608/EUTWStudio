@@ -161,7 +161,6 @@ public class StudentController {
 
             personService.updateStudentList(studentUpdate);
             if (null != experiences && experiences.size() != 0) {
-                System.out.println(experiences);
                 personService.updateExperienceList(experiences);
             }
 
@@ -237,7 +236,6 @@ public class StudentController {
     public Result delExperience(String experienceId, String studentNo) {
         try {
             personService.delExperience(experienceId);
-            System.out.println("22222222222222" + experienceId);
             List<Map<String, Object>> experienceList = personService.queryStudentExperienceList(studentNo);
 
             return Result.success(experienceList, Constant.DELETE_SUCCESS);

@@ -1562,7 +1562,7 @@
         <tr>
             <td>
                 <div class="layui-form-item">
-                    <label class="layui-form-label" style="width: auto">地点</label>
+                    <label class="layui-form-label" style="width: auto">学校</label>
                     <div class="layui-input-block">
                         <input type="text" name="placeExperience" id="placeExperience" lay-verify="required"
                                placeholder="请输入" autocomplete="off" class="layui-input">

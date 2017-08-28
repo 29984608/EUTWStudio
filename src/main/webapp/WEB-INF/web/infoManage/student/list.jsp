@@ -598,8 +598,8 @@
                             }
                             $("#school_account_where_the_police_station_detailed").val(studentList.pre_school_account_where_station);
 
-                            $("#studentsProfessionList").html("").append(`<option value=""></option>` + loadOptionsHtml(allProfessionList, studentList.origin_profession_id));
-                            $("#studentsNowProfessional").html("").append(`<option value=""></option>` + loadOptionsHtml(professionList, studentList.profession_id));
+                            $("#studentsProfessionList").html("").append(`<option value=""></option>` + loadOptionsHtml(allProfessionList, studentList.profession_id));
+                            $("#studentsNowProfessional").html("").append(`<option value=""></option>` + loadOptionsHtml(allProfessionList, studentList.origin_profession_id));
                             $("#employment_direction").html("").append(`<option value=""></option>` + loadOptionsHtml(directionList, studentList.direction_id));
                             $("#student_department").html("").append(`<option value=""></option>` + loadOptionsHtml(departmentList, studentList.department_id));
                             let oneDepartmentId = studentList.department_id;
@@ -831,7 +831,7 @@
                 $("#educational_experience").html("")
                 for (let i = 0; i < experienceList.length; i++) {
                     $("#educational_experience").append(`<tr style="margin-bottom: 20px">
-                                        <th colspan="1" width="25%"><span>
+                                        <th colspan="1" width="40%"><span>
                                             <div class="layui-input-inline" style="width: 40%;float: left">
                                                 <input name="date" lay-verify="date" placeholder="yyyy-mm-dd"
                                                        autocomplete="off" class="layui-input educational_experience_start"
@@ -846,7 +846,7 @@
                                                        id="educational_experience_end">
                                             </div>
                                         </span></th>
-                                        <th colspan="4" width="50%"><span>地点：
+                                        <th colspan="4" width="50%"><span>学校：
                                             <div class="layui-input-inline" style="width: 80%">
                                                 <input type="text" name="text"
                                                        placeholder="请输入学校名称" autocomplete="off" class="layui-input update_schoolName" id="update_schoolName">
@@ -899,7 +899,7 @@
                                              </div>
                                         </span></th>
                                         <th>
-                                            <button class="layui-btn  layui-btn-danger" onclick="student.delExperience(\` + AwardOrPunishmentList[i].id + \`)" style="margin-bottom: 10px;float: right;"><i class="layui-icon">&#xe640;</i> 删除</button>
+                                            <button class="layui-btn  layui-btn-danger" onclick="student.delExperience(this,`+AwardOrPunishmentList[i].id+`)" style="margin-bottom: 10px;float: right;"><i class="layui-icon">&#xe640;</i> 删除</button>
 </th>
                                     </tr>`)
 //                    $("#updateStudent_Award_or_punishment").append(` `)
@@ -967,6 +967,7 @@
                                 layer.msg(data.msg, {icon: 1});
                                 layer.close(addAwardOrPunishmentInfoIndex);
                                 student.updateStudentAwardOrPunishment(data.data);
+
                             }
                         }
                     )
@@ -1016,7 +1017,7 @@
                     content: $("#addExperienceInfo")
                 })
             },
-            delExperience: function (experienceId) {
+            delExperience: function (t,experienceId) {
                 layer.confirm('该操作直接删除，无需更新。确定删除？', {icon: 3, title: '提示'}, function (index) {
                     let studentNo = studentInfo.no;
                     $.post(baseUrl + "/student/delExperience",
@@ -1025,6 +1026,7 @@
                             if (data.result) {
                                 layer.msg("删除成功!");
                                 student.educationalExperience(data.data);
+                                $(t).parents("tr").remove();
                             }
                         })
                 })
@@ -1314,10 +1316,10 @@
 
                 //学业信息
                 $("#updateStudentType1 input[name='student_type1']:checked").val();
-                //录取专业
-                var origin_profession_id = $("#studentsProfessionList").val();
                 //现专业
-                var profession_id = $("#studentsNowProfessional").val();
+                var origin_profession_id = $("#studentsNowProfessional").val();
+                //录取专业
+                var profession_id = $("#studentsProfessionList").val();
                 //就业方向
                 var direction_id = $("#employment_direction").val();
                 //系
