@@ -263,12 +263,8 @@
         <div class="larry-personal">
 
             <div class="layui-tab layui-form" style="height: auto">
-                <div style="float:left;position:fixed;">
-                    <button class="layui-btn" onclick="student.updateStudentList()"><i class="layui-icon">&#xe61f;</i>
-                        更新
-                    </button>
-                </div>
-                <div class="larry-separate"></div>
+
+
                 <div id="update1">
                     <div id="container1" style=" background: #fff">
                         <h1 style="text-align: center;color:#00ab9f;margin-top: 20px">西安欧亚学院高职学院学生档案修改页面</h1>
@@ -1408,12 +1404,19 @@
                                         class="layui-icon">&#xe61f;</i> 添加荣誉或处分
                                 </button>
                             </div>
+
                         </div>
+                            <button  style="position: fixed;top: 60px;left:5%" class="layui-btn" onclick="student.updateStudentList()"><i class="layui-icon">&#xe61f;</i>
+                                更新
+                            </button>
                     </div>
+
                 </div>
+
             </div>
         </div>
     </section>
+   
 </div>
 
 <div id="addStudentFamily" style="display: none">

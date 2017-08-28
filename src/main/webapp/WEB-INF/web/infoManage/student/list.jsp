@@ -341,7 +341,6 @@
                         studentStatusSearch: studentStatusSearch
                     },
                     success: function (data) {
-                        console.log(data)
                         if (data.result) {
                             currentIndex = data.page.currentIndex;
                             allProfessionInfo = data.allProfessionList;
@@ -1658,7 +1657,7 @@
         }
 
         $(function () {
-            student.list();
+//            student.list();
             student.showDormAndHideDorm();
             loadALlDepartments();
             loadAllDirections();
