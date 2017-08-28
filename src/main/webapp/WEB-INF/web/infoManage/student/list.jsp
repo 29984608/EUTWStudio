@@ -276,6 +276,16 @@
     let addAwardOrPunishmentInfoIndex;
     let allProfessionInfo;
     let addExperienceByUpdateOffOpen;
+    function showDormInfo() {
+        let info = [];
+        let area = $("#queryAreas").find("option:selected").text();
+        let floor = $("#queryFloors").find("option:selected").text();
+        let room = $("#queryRooms").find("option:selected").text();
+        if (area !== "请选择") info.push(area);
+        if (floor !== "请选择") info.push(floor);
+        if (room !== "请选择") info.push(room);
+        $("#updateDorms").val(info.join("-"))
+    }
     layui.use(['jquery', 'layer', 'element', 'laypage', 'form', 'laytpl', 'tree'], function () {
         window.jQuery = window.$ = layui.jquery;
         window.layer = layui.layer;
@@ -1634,14 +1644,18 @@
         function queryAreaAndFloor() {
             $.post(baseUrl + "dorm/room/showAreaAndFloorsToQuery", function (data) {
                 if (data.result) {
-                    $("#area_search").html(`<option value=''>区</option>`+student.loadDepartmentOrDirectionArea(data.data.queryAreaOfRoom, "-"))
+                    $("#area_search").html(`<option value=''>区</option>` + student.loadDepartmentOrDirectionArea(data.data.queryAreaOfRoom, "-"))
 //                    $("#floor_search").html(student.loadDepartmentOrDirectionFloor(data.data.queryFloorOfRoom, "-"))
                 }
                 form.render();
             })
         }
-        function queryClassByDirectionIdAndLevel(directionId,level) {
-            $.post(baseUrl + "/studentClass/queryClassByDirectionIdAndLevel", {directionId: directionId,level:level}, function (data) {
+
+        function queryClassByDirectionIdAndLevel(directionId, level) {
+            $.post(baseUrl + "/studentClass/queryClassByDirectionIdAndLevel", {
+                directionId: directionId,
+                level: level
+            }, function (data) {
                 if (data.result) {
                     $("#student_class").html("<option value=''>请选择</option>" + loadOptionsHtml(data.data, "-"));
                 }
@@ -1669,7 +1683,6 @@
             student.queryAreaAndFloorOfUpdate()
             queryAreaAndFloor();
             form.render();
-
 
 
             $("#studentPhone").formatInput({
@@ -1711,8 +1724,8 @@
                         var queryAreaOfRoom = data.data.queryAreaOfRoom
                         var queryFloorOfRoom = data.data.queryFloorOfRoom
 
-                        $("#area_search").html(`<option value="">区</option>`+student.loadDepartmentOrDirectionArea(queryAreaOfRoom, id))
-                        $("#floor_search").html(`<option value="">楼层</option>`+student.loadDepartmentOrDirectionFloor(queryFloorOfRoom), "-")
+                        $("#area_search").html(`<option value="">区</option>` + student.loadDepartmentOrDirectionArea(queryAreaOfRoom, id))
+                        $("#floor_search").html(`<option value="">楼层</option>` + student.loadDepartmentOrDirectionFloor(queryFloorOfRoom), "-")
                         form.render();
                     }
                 })
@@ -1779,13 +1792,14 @@
             //监听根据区id显示楼层
             form.on('select(modules_3)', function (data) {
                 var id = data.value;
+                showDormInfo();
 
                 $.post(baseUrl + "dorm/room/showAreaAndFloors", {areaId: data.value}, function (data) {
                     if (data.result) {
                         var queryAreaOfRoom = data.data.queryAreaOfRoom
                         var queryFloorOfRoom = data.data.queryFloorOfRoom
 
-                        $("#queryAreas").html(``+student.loadDepartmentOrDirection(queryAreaOfRoom, id))
+                        $("#queryAreas").html(`` + student.loadDepartmentOrDirection(queryAreaOfRoom, id))
                         $("#queryFloors").html(student.loadDepartmentOrDirection(queryFloorOfRoom, "-"))
                         form.render();
                     }
@@ -1795,15 +1809,18 @@
             //监听根据楼层id显示宿舍
             form.on('select(modules_2)', function (data) {
                 var id = data.value;
-
+                showDormInfo();
                 $.post(baseUrl + "dorm/room/showFloorsAndRooms", {floorId: data.value}, function (data) {
                     if (data.result) {
                         var queryRoomList = data.data.queryRoomList
-
                         $("#queryRooms").html(student.loadDepartmentOrDirection(queryRoomList, "-"))
                         form.render();
                     }
                 })
+            })
+            form.on('select(modules_1)', function (data) {
+                showDormInfo();
+
             })
 
             //监听学生政治面貌
@@ -1846,7 +1863,7 @@
 
             form.on('select(employment_direction)', function (data) {
                 let directionId = data.value;
-                queryClassByDirectionIdAndLevel(directionId,"");
+                queryClassByDirectionIdAndLevel(directionId, "");
             });
 
             //根据方向动态选择班级
@@ -1856,21 +1873,11 @@
                     form.render();
                 })
             });
-            //动态显示宿舍信息
-            form.on('select(_dorm)', function (data) {
-                let info = [];
-                let area = $("#queryAreas").find("option:selected").text();
-                let floor = $("#queryFloors").find("option:selected").text();
-                let room = $("#queryRooms").find("option:selected").text();
-                if(area !== "请选择") info.push(area);
-                if(floor !== "请选择") info.push(floor);
-                if(room !== "请选择") info.push(room);
-                $("#updateDorms").val(info.join("-"))
-            });
+
 
             //监听年级动态获得相应班级
-            form.on('select(modules_level)',function(data){
-                $.post(baseUrl + "student/levelSelectionClass",{levelName:data.value},function(dataResult){
+            form.on('select(modules_level)', function (data) {
+                $.post(baseUrl + "student/levelSelectionClass", {levelName: data.value}, function (dataResult) {
                     $("#classes_search").html(`<option value="">班级</option>` + loadOptionsHtml(dataResult.classList));
                     form.render();
                 })

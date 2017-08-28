@@ -1006,7 +1006,7 @@
                                                         <div class="layui-inline">
                                                             <div class="layui-input-inline">
                                                                 <select name="modules"
-                                                                        lay-filter="_dorm"
+                                                                        lay-filter="modules_3"
                                                                         id="queryAreas">
                                                                     <option value="">请选择</option>
                                                                 </select>
@@ -1019,7 +1019,7 @@
                                                         <div class="layui-inline">
                                                             <div class="layui-input-inline">
                                                                 <select name="modules1"
-                                                                        lay-filter="_dorm"
+                                                                        lay-filter="modules_2"
                                                                         lay-search=""
                                                                         id="queryFloors">
                                                                     <option value="">请选择</option>
@@ -1033,7 +1033,7 @@
                                                         <div class="layui-inline">
                                                             <div class="layui-input-inline">
                                                                 <select name="modules1"
-                                                                        lay-filter="_dorm"
+                                                                        lay-filter="modules_1"
                                                                         lay-search=""
                                                                         id="queryRooms">
                                                                     <option value="">请选择</option>
@@ -1693,7 +1693,6 @@
     let this_updateOffCampusAddress = '';
 
     function selectProvince12(e) {
-        alert(123)
         P_updateOffCampusAddress = e.options[e.selectedIndex].text;
         $("#updateOffCampusAddress").val(P_updateOffCampusAddress);
     }
@@ -1871,7 +1870,6 @@
     let room_updateDorms = '';
 
     function selectArea(e) {
-        alert(12)
         area_updateDorms = e.options[e.selectedIndex].text;
         $("#updateDorms").val(area_updateDorms);
     }
