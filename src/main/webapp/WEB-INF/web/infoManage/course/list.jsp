@@ -41,7 +41,8 @@
                         <div class="layui-inline">
                             <div class="layui-input-inline">
                                 <select lay-filter="profession" id="semester-search">
-                                    <option value="">开课学期</option>
+                                    <option value="">请选择</option>
+                                    <option value="">请选择</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -106,7 +107,7 @@
     let modules;
     let methods;
     let departments;
-    let semesters = [{id: "1", name: "1"}, {id: "2", name: "2"}, {id: "3", name: "3"}, {id: "4", name: "4"}, {
+    let semesters = [{id: "", name: "开课学期"},{id: "1", name: "1"}, {id: "2", name: "2"}, {id: "3", name: "3"}, {id: "4", name: "4"}, {
         id: "5",
         name: "5"
     }, {id: "6", name: "6"}];
@@ -154,9 +155,13 @@
                     },
                     success: function (data) {
                         if (data.result) {
-                            modules = data.modules;
-                            methods = data.testMethods;
-                            $("#module_search").html(course.loadSelectElementHtml(modules, 0));
+                            if(modules === undefined) {
+                                modules = data.modules;
+                            }
+                            if(methods === undefined) {
+                                methods = data.testMethods;
+                            }
+                            $("#module_search").html(`<option value="">请选择</option><option value="">请选择</option>`+course.loadSelectElementHtml(modules, 0));
                             currentIndex = data.page.currentIndex;
                             totalSize = data.page.totalSize;
                             showTotalCount(data.page.totalCount);
@@ -172,7 +177,7 @@
                 });
             },
             loadSelectElementHtml: function (data, type) {
-                let _html = `<option value="">直选择</option><option value="">直选择</option>`;
+                let _html = ``;
                 for (let i = 0; i < data.length; ++i) {
                     let isSelected = data[i].id == type ? "selected" : "";
                     _html += ` <option ` + isSelected + `  value="` + data[i].id + `">` + data[i].name + `</option>`;
@@ -181,10 +186,10 @@
                 return _html;
             },
             add: function () {
-                $("#add-module").html(course.loadSelectElementHtml(modules, null));
+                $("#add-module").html(`<option>请选择</option>`+course.loadSelectElementHtml(modules, null));
                 $("#add-method").html(course.loadSelectElementHtml(methods, null));
                 $("#add-semester").html(course.loadSelectElementHtml(semesters, null));
-                $("#add-department").html(course.loadSelectElementHtml(departments, null));
+                $("#add-department").html(`<option>请选择</option>`+course.loadSelectElementHtml(departments, null));
                 form.render();
                 layer.open({
                     type: 1,
