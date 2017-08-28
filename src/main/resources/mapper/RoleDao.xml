@@ -76,7 +76,7 @@
     <select id="queryUserRoleTotalCount" resultType="long" parameterType="string">
         SELECT count(1)
         FROM t_user
-        WHERE t_user.name LIKE #{name}
+        WHERE t_user.name LIKE #{name} and roleId != 3
     </select>
     <select id="queryUserRoleList" parameterType="map" resultType="map">
         SELECT
@@ -88,7 +88,7 @@
         FROM t_user user
             LEFT JOIN (SELECT *
                        FROM t_role) role ON role.id = user.roleId
-        WHERE user.name LIKE #{name}
+        WHERE user.name LIKE #{name} and roleId != 3
         LIMIT #{start }, #{end}
     </select>
 
