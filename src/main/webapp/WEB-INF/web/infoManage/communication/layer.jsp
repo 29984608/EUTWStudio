@@ -68,7 +68,7 @@
                     修改
                 </button>
             </shiro:hasPermission>
-            <shiro:hasPermission name="communication:delete">
+            <shiro:hasPermission name="communication:preview">
                 <button class="layui-btn layui-btn-mini  "
                         onclick="communication.previewOrUpdate('{{ item.name}}','{{item.no}}','preview')">
                     预览
