@@ -172,7 +172,7 @@
                     $("#famous_family").text("").append(data.student[0].famousFamily);
                     $("#idcard").text("").append(data.student[0].idcard);
                     $("#native_place").text("").append(data.student[0].native_place);
-                    $("#born").text("").append(data.student[0].born);
+                    $("#born").html(getBirthday(data.student[0].idcard));
                     $("#political_status").text("").append(data.student[0].political_status);
                     $("#blood").text("").append(data.student[0].blood);
                     $("#height").text("").append(data.student[0].height);

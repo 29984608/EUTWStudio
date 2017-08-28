@@ -20,7 +20,7 @@ public class ImgUtil {
 
         try {
             file.transferTo(new File(filePath));
-            rotateImage(filePath,-90,null);
+//            rotateImage(filePath,-90,null);
         } catch (Exception e) {
             e.printStackTrace();
         }
