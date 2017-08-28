@@ -298,8 +298,8 @@
             loadLevel: function () {
                 let currentYear = new Date().getFullYear();
                 let _html = "";
-                for (let i = 0; i < 5; ++i) {
-                    let next = currentYear++;
+                for (let i = -2; i < 3; ++i) {
+                    let next = currentYear+i;
                     _html += `<option value="` + next + `">` + next + `</option>`;
                 }
 
