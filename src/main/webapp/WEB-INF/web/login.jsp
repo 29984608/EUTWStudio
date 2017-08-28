@@ -5,52 +5,105 @@
 <head>
     <title>高职学院信息管理系统</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <link rel="shortcut icon" href="${baseurl}/images/public/favicon.ico">
 
-    <link rel="stylesheet" type="text/css" href="${baseurl}/public/common/layui/css/layui.css" media="all">
-    <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/login.css" media="all">
+    <link rel="stylesheet" type="text/css" href="${baseurl}/public/loginStyle/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="${baseurl}/public/loginStyle/assets/css/form-elements.css">
+    <link rel="stylesheet" type="text/css" href="${baseurl}/public/loginStyle/assets/css/style.css">
 </head>
-<body>
-<div class="larry-canvas" id="canvas"></div>
-<div class="layui-layout layui-layout-login">
-    <h1 style="margin-left: -10px">
-        <strong>高职学院信息管理系统</strong>
-        <%--<em>Management System</em>--%>
-    </h1>
-    <div class="layui-user-icon larry-login">
-        <input type="text" placeholder="账号" id="userName" required class="login_txtbx"/>
-    </div>
-    <div class="layui-pwd-icon larry-login">
-        <input type="password" placeholder="密码" id="password" required class="login_txtbx"/>
-    </div>
-    <div class="layui-submit larry-login" style="margin-top: 20px;width:90%">
-        <button  onclick="login()"  class="submit_btn">立即登录</button>
+<body >
+<div style="z-index: -1;width: 100%;height: 100%;position: absolute;background-color: #000; opacity:.65;"> </div>
+<!-- Top content -->
+<div class="top-content" style="z-index: 1000">
+
+    <div class="container">
+        <div class="row" style="margin-top: 8%">
+            <div class="col-sm-8 col-sm-offset-2 text">
+                <h1>高职学生信息管理系统</h1>
+                <div class="description">
+                    为未来，为你而来
+                </div>
+            </div>
+        </div>
+        <div class="row" >
+            <div class="col-sm-6 col-sm-offset-3 form-box" >
+                <div  style="box-shadow: 0 0 3px 3px  seashell">
+                    <div class="form-top">
+                        <div class="form-top-left">
+                            <i class="fa fa-key"> <span style="font-size: 20px">系统登录</span></i>
+                        </div>
+                    </div>
+                    <div class="form-bottom" >
+                        <form role="form" action="" method="post" class="login-form">
+                            <div class="form-group">
+                                <label class="sr-only" for="userName">帐号</label>
+                                <input type="text" name="form-username" placeholder="请输入帐号" class="form-username form-control" id="userName">
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only" for="password">密码</label>
+                                <input type="password" name="form-password" placeholder="请输入密码" class="form-password form-control" id="password">
+                            </div>
+                            <button type="submit" class="btn " style="  background: #21a1a1">登录</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="layui-login-text">
-        <%--<a class="layui-form-mid layui-word-aux" style="font-size: 10px;color: #0f0f0f;text-decoration: none">--%>
-            <%--推荐使用 Chorme(谷歌)、Firefox(火狐)浏览器<br>360浏览器请先打开急速模式</a>--%>
-    </div>
 </div>
-<script type="text/javascript" src="${baseurl}/public/common/js/jquery-1.12.4.min.js"></script>
-<script type="text/javascript" src="${baseurl}/public/common/jsplugin/jparticle.jquery.js"></script>
-<script type="text/javascript" src="${baseurl}/public/js/login.js"></script>
+<script src="${baseurl}/public/loginStyle/assets/js/jquery-1.11.1.min.js"></script>
+<script src="${baseurl}/public/loginStyle/assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="${baseurl}/public/loginStyle/assets/js/jquery.backstretch.min.js"></script>
 
-<script>
-    function login() {
-        let userName = $("#userName").val();
-        let password = $("#password").val();
-        $.ajax({
-            url: "${baseurl}/login",
-            data: {userName: userName, password: password},
-            success: function (data) {
-                if (data.result) {
-                    location.href = "${baseurl}/index";
-                } else {
-                    layer.msg(data.msg);
-                }
-            }
+<script type="text/javascript">
+    layui.use(['jquery', 'layer'], function () {
+        window.jQuery = window.$ = layui.jquery;
+        window.layer = layui.layer;
+        $(function () {
+            /*
+             Fullscreen background
+             */
+            $.backstretch("${baseurl}/public/loginStyle/assets/img/backgrounds/225591069.jpg");
+
+            /*
+             Form validation
+             */
+            $('.login-form input[type="text"], .login-form input[type="password"], .login-form textarea').on('focus', function () {
+                $(this).removeClass('input-error');
+            });
+
+            $('.login-form').on('submit', function (e) {
+                e.preventDefault();
+                $(this).find('input[type="text"], input[type="password"], textarea').each(function () {
+                    if ($(this).val() == "") {
+
+                        $(this).addClass('input-error');
+                    }
+                    else {
+                        $(this).removeClass('input-error');
+                    }
+                });
+                login();
+            });
         });
-    }
+        function login() {
+            let userName = $("#userName").val();
+            let password = $("#password").val();
+            $.ajax({
+                url: "${baseurl}/login",
+                data: {userName: userName, password: password},
+                success: function (data) {
+                    if (data.result) {
+                        location.href = "${baseurl}/index";
+                    } else {
+                        layer.msg(data.msg);
+                    }
+                }
+            });
+        }
+    });
+
 
 </script>
 </body>
