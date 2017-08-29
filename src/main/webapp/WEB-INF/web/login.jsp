@@ -12,7 +12,7 @@
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/loginStyle/assets/css/style.css">
 </head>
 <body>
-<div style="height: 70px;width:100%;position: absolute;z-index: 10000;background: white;text-align: left" >
+<div style="height: 70px;width:100%;position: absolute;z-index: 10000;background: white;text-align: left;opacity: .6" >
     <div style="padding: 15px 0 0 5%;display: inline-block">
         <img src="${baseurl}/public/loginStyle/assets/img/backgrounds/eurasia.png" height="55px">
     </div>
@@ -63,7 +63,7 @@
     </div>
 
 </div>
-<div style="height: 50px;width:100%;position: fixed;bottom: 0;z-index: 10000;background: white;" >
+<div style="height: 50px;width:100%;position: fixed;bottom: 0;z-index: 10000;background: white;opacity: .6" >
     <span style="font-size: 12px;"> 2017-2018 © Write by Eurasia ThoughtWorks Studio.</span><br>
     <span style="font-size: 12px;display: inline-block;margin-top: -5px"> 推荐使用 Google 、 Firefox 浏览器进行访问</span>
 
@@ -80,7 +80,7 @@
             /*
              Fullscreen background
              */
-            $.backstretch("${baseurl}/public/loginStyle/assets/img/backgrounds/1711990924.jpg");
+            $.backstretch("${baseurl}/public/loginStyle/assets/img/backgrounds/1790388793.jpg");
 
             /*
              Form validation
