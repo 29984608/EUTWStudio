@@ -11,37 +11,48 @@
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/loginStyle/assets/css/form-elements.css">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/loginStyle/assets/css/style.css">
 </head>
-<body >
-<div style="z-index: -1;width: 100%;height: 100%;position: absolute;background-color: #000; opacity:.65;"> </div>
+<body>
+<div style="height: 70px;width:100%;position: absolute;z-index: 10000;background: white;text-align: left" >
+    <div style="padding: 15px 0 0 5%;display: inline-block">
+        <img src="${baseurl}/public/loginStyle/assets/img/backgrounds/eurasia.png" height="55px">
+    </div>
+        <span style="color: #21a1a1;font-size: 25px;font-weight: bold;margin: 10px 0 0 20px;display: inline-block">高职学院欢迎您！</span>
+
+</div>
+
+<div style="z-index: -1;width: 100%;height: 100%;position: absolute;background-color: #000; opacity:.25;"></div>
 <!-- Top content -->
 <div class="top-content" style="z-index: 1000">
 
     <div class="container">
-        <div class="row" style="margin-top: 8%">
-            <div class="col-sm-8 col-sm-offset-2 text">
-                <h1>高职学生信息管理系统</h1>
-                <div class="description">
-                    为未来，为你而来
-                </div>
-            </div>
-        </div>
-        <div class="row" >
-            <div class="col-sm-6 col-sm-offset-3 form-box" >
-                <div  style="box-shadow: 0 0 3px 3px  seashell">
+        <%--<div class="row" style="margin-top: 8%">--%>
+            <%--<div class="col-sm-8 col-sm-offset-2 text">--%>
+                <%--<h1>高职学生信息管理系统</h1>--%>
+                <%--<div class="description">--%>
+                    <%--为未来，为你而来--%>
+                <%--</div>--%>
+            <%--</div>--%>
+        <%--</div>--%>
+        <div class="row" style="margin: 14% 0 0 25%">
+            <div class="col-sm-6 col-sm-offset-5 form-box" style="width: 500px">
+                <div style="box-shadow: 0 0 3px 3px  seashell">
                     <div class="form-top">
                         <div class="form-top-left">
-                            <i class="fa fa-key"> <span style="font-size: 20px">系统登录</span></i>
+                            <span style="font-size: 20px;font-weight: bold;color: #21a1a1">高职信息管理系统</span>
+                            <span style="font-size: 13px;font-weight:bold;font-style: italic ;float: right">为未来，为你而来</span>
                         </div>
                     </div>
-                    <div class="form-bottom" >
+                    <div class="form-bottom">
                         <form role="form" action="" method="post" class="login-form">
                             <div class="form-group">
                                 <label class="sr-only" for="userName">帐号</label>
-                                <input type="text" name="form-username" placeholder="请输入帐号" class="form-username form-control" id="userName">
+                                <input type="text" name="form-username" placeholder="请输入帐号"
+                                       class="form-username form-control" id="userName">
                             </div>
                             <div class="form-group">
                                 <label class="sr-only" for="password">密码</label>
-                                <input type="password" name="form-password" placeholder="请输入密码" class="form-password form-control" id="password">
+                                <input type="password" name="form-password" placeholder="请输入密码"
+                                       class="form-password form-control" id="password">
                             </div>
                             <button type="submit" class="btn " style="  background: #21a1a1">登录</button>
                         </form>
@@ -50,6 +61,11 @@
             </div>
         </div>
     </div>
+
+</div>
+<div style="height: 50px;width:100%;position: fixed;bottom: 0;z-index: 10000;background: white;" >
+    <span style="font-size: 12px;"> 2017-2018 © Write by Eurasia ThoughtWorks Studio.</span><br>
+    <span style="font-size: 12px;display: inline-block;margin-top: -5px"> 推荐使用 Google 、 Firefox 浏览器进行访问</span>
 
 </div>
 <script src="${baseurl}/public/loginStyle/assets/js/jquery-1.11.1.min.js"></script>
@@ -64,7 +80,7 @@
             /*
              Fullscreen background
              */
-            $.backstretch("${baseurl}/public/loginStyle/assets/img/backgrounds/225591069.jpg");
+            $.backstretch("${baseurl}/public/loginStyle/assets/img/backgrounds/1711990924.jpg");
 
             /*
              Form validation
