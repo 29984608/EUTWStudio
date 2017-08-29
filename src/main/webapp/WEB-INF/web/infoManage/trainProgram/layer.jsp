@@ -7,21 +7,23 @@
         <td>{{ item.department}}</td>
         <td>{{ item.direction}}</td>
         <td>
-            <%--<shiro:hasPermission name="trainProgram:update">--%>
-            <button class="layui-btn layui-btn-mini " style="background: #21a1a1"
-                    onclick="trainProgram.update('{{item.id}}','{{item.level}}','{{item.department}}','{{item.direction}}')">
-                <i class="layui-icon">&#xe642;</i>修改
-            </button>
-            <%--</shiro:hasPermission>--%>
-            <%--<shiro:hasPermission name="trainProgram:delete">--%>
-            <button class="layui-btn layui-btn-mini  layui-btn-danger" onclick="trainProgram.delete('{{item.id}}')">
-                <i class="layui-icon">&#xe640;</i>删除
-            </button>
-            <%--</shiro:hasPermission>--%>
-            <button class="layui-btn layui-btn-mini  layui-btn-danger"
-                    onclick="trainProgram.preview('{{item.id}}','{{item.level}}','{{item.department}}','{{item.direction}}')">
-                <i class="layui-icon">&#xe60a;</i>预览
-            </button>
+            <shiro:hasPermission name="trainProgram:update">
+                <button class="layui-btn layui-btn-mini " style="background: #21a1a1"
+                        onclick="trainProgram.update('{{item.id}}','{{item.level}}','{{item.department}}','{{item.direction}}')">
+                    <i class="layui-icon">&#xe642;</i>修改
+                </button>
+            </shiro:hasPermission>
+            <shiro:hasPermission name="trainProgram:delete">
+                <button class="layui-btn layui-btn-mini  layui-btn-danger" onclick="trainProgram.delete('{{item.id}}')">
+                    <i class="layui-icon">&#xe640;</i>删除
+                </button>
+            </shiro:hasPermission>
+            <shiro:hasPermission name="trainProgram:preview">
+                <button class="layui-btn layui-btn-mini  layui-btn-danger"
+                        onclick="trainProgram.preview('{{item.id}}','{{item.level}}','{{item.department}}','{{item.direction}}')">
+                    <i class="layui-icon">&#xe60a;</i>预览
+                </button>
+            </shiro:hasPermission>
         </td>
     </tr>
     {{# }); }}
@@ -101,7 +103,8 @@
 <div id="preview" style="margin: 10px;display: none">
     <form id="preview-form" class="layui-form layui-form-pane" method="post">
         <fieldset class="layui-elem-field">
-            <legend id="title-preview" style="font-size: 24px;font-weight: 700;padding: 10px 10%">西安欧亚学院高职学院2017级物业方向人才培养方案
+            <legend id="title-preview" style="font-size: 24px;font-weight: 700;padding: 10px 10%">
+                西安欧亚学院高职学院2017级物业方向人才培养方案
             </legend>
             <div class="layui-field-box">
                 <div id="modelCourses-preview" style="margin: 3% 0 0 6%">
@@ -110,7 +113,8 @@
             </div>
         </fieldset>
         <blockquote class="layui-elem-quote layui-quote-nm">
-            必修：<span id="compulsoryScore">100</span>学分&nbsp;&nbsp;&nbsp;选修：<span id="electiveScore">8</span>学分&nbsp;&nbsp;&nbsp;总计：<span id="totalScore">108</span>学分
+            必修：<span id="compulsoryScore">100</span>学分&nbsp;&nbsp;&nbsp;选修：<span id="electiveScore">8</span>学分&nbsp;&nbsp;&nbsp;总计：<span
+                id="totalScore">108</span>学分
         </blockquote>
 
     </form>

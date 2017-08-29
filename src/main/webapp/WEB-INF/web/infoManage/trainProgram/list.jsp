@@ -18,12 +18,12 @@
     <div class="larry-personal">
         <div class="layui-tab">
             <blockquote class="layui-elem-quote mylog-info-tit" style="height: 70px";>
-                <%--<shiro:hasPermission name="trainProgram:add">--%>
+                <shiro:hasPermission name="trainProgram:add">
                 <ul class="layui-tab-title">
                     <li class="layui-btn " onclick="trainProgram.add()"><i class="layui-icon">&#xe61f;</i>添加方案
                     </li>
                 </ul>
-                <%--</shiro:hasPermission>--%>
+                </shiro:hasPermission>
             </blockquote>
             <div class="larry-separate"></div>
 
@@ -317,20 +317,22 @@
                     str = str.substr(0, str.length - 1) + ",";
                 }
                 return str.substr(0, str.length - 1);
-            }
+            },
+            direction: function (data) {
+                $.post(baseUrl + "/communication/queryDirectionByDepartmentId", {departmentId: data}, function (data) {
+                    if (data.result) {
+                        $("#direction").html(`<option value="">方向</option>`).append(trainProgram.loadDepartmentOrDirection(data.data, "-"))
+                        form.render();
+                    }
+                })
+            },
         };
 
         $(function () {
             trainProgram.list();
 
             form.on('select(department)', function (data) {
-                $.post(baseUrl + "/teacher/loadDirectionsAndClassesByDepartmentId", {departmentId: data.value}, function (data) {
-                    if (data.result) {
-
-                        $("#direction").html(trainProgram.loadDepartmentOrDirection(data.data.directions));
-                        form.render();
-                    }
-                });
+                trainProgram.direction(data.value);
             });
         });
     })

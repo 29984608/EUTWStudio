@@ -168,7 +168,7 @@
                     </tr>
                     <tr>
                         <th colspan="5">联系方式：<span id="phone"></span></th>
-                        <th colspan="4">qq：<span id="qq"></span></th>
+                        <th colspan="4">QQ：<span id="qq"></span></th>
                         <th colspan="4">邮箱：<span id="email"></span></th>
                     </tr>
                     <tr>
