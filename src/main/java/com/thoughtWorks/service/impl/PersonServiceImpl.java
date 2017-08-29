@@ -155,6 +155,11 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
+    public void delAward(String id) throws Exception {
+        personDao.delAward(id);
+    }
+
+    @Override
     public Map<String, Object> queryStudentsByLikes(ActiveUser user, SearchDto searchDto) throws Exception {
         Map<String, Object> result = new HashMap<>();
         Map<String, Object> data = new HashMap<>();

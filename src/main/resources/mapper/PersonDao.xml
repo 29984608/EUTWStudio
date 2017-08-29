@@ -1000,6 +1000,10 @@ WHERE student.no =#{studentNo}
     </delete>
 
     <delete id="delExperience" parameterType="string">
+        DELETE FROM t_student_experience
+        WHERE id = #{experienceId}
+    </delete>
+    <delete id="delAward" parameterType="string">
         DELETE FROM t_own_punishment
         WHERE id = #{experienceId}
     </delete>

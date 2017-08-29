@@ -830,6 +830,7 @@
             educationalExperience: function (experienceList) {
                 $("#educational_experience").html("")
                 for (let i = 0; i < experienceList.length; i++) {
+
                     $("#educational_experience").append(`<tr style="margin-bottom: 20px">
                                         <th colspan="1" width="40%"><span>
                                             <div class="layui-input-inline" style="width: 40%;float: left">
@@ -846,7 +847,7 @@
                                                        id="educational_experience_end">
                                             </div>
                                         </span></th>
-                                        <th colspan="4" width="50%"><span>学校：
+                                        <th colspan="4" width="40%"><span>学校：
                                             <div class="layui-input-inline" style="width: 80%">
                                                 <input type="text" name="text"
                                                        placeholder="请输入学校名称" autocomplete="off" class="layui-input update_schoolName" id="update_schoolName">
@@ -859,7 +860,7 @@
                                              </div>
                                         </span></th>
                                         <th>
-                                            <button class="layui-btn  layui-btn-danger" onclick="student.delExperience(` + experienceList[i].id + `)" style="margin-bottom: 10px;float: right;"><i class="layui-icon">&#xe640;</i> 删除</button>
+                                            <button class="layui-btn  layui-btn-danger" onclick="student.delExperience(this,` + experienceList[i].id + `)" style="margin-bottom: 10px;float: right;"><i class="layui-icon">&#xe640;</i> 删除</button>
                                         </th>
                                     </tr>`)
 //                    $("#educational_experience").append(` `)
@@ -899,7 +900,7 @@
                                              </div>
                                         </span></th>
                                         <th>
-                                            <button class="layui-btn  layui-btn-danger" onclick="student.delExperience(this,`+AwardOrPunishmentList[i].id+`)" style="margin-bottom: 10px;float: right;"><i class="layui-icon">&#xe640;</i> 删除</button>
+                                            <button class="layui-btn  layui-btn-danger" onclick="student.delAward(this,`+AwardOrPunishmentList[i].id+`)" style="margin-bottom: 10px;float: right;"><i class="layui-icon">&#xe640;</i> 删除</button>
 </th>
                                     </tr>`)
 //                    $("#updateStudent_Award_or_punishment").append(` `)
@@ -1026,6 +1027,19 @@
                             if (data.result) {
                                 layer.msg("删除成功!");
                                 student.educationalExperience(data.data);
+                                $(t).parents("tr").remove();
+                            }
+                        })
+                })
+            },
+            delAward: function (t,id) {
+                layer.confirm('该操作直接删除，无需更新。确定删除？', {icon: 3, title: '提示'}, function (index) {
+                    let studentNo = studentInfo.no;
+                    $.post(baseUrl + "/student/delAward",
+                        {id: id, studentNo: studentNo},
+                        function (data) {
+                            if (data.result) {
+                                layer.msg("删除成功!");
                                 $(t).parents("tr").remove();
                             }
                         })

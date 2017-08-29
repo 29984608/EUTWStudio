@@ -122,4 +122,6 @@ public interface PersonService {
     List<Map<String,Object>> queryDirectionSelectionClass(String directionId)throws Exception;
 
     List<Map<String,Object>> querylevelSelectionClass(String levelName)throws Exception;
+
+    void delAward(String id)throws Exception;
 }

@@ -246,6 +246,20 @@ public class StudentController {
         return Result.failure(null, Constant.DELETE_FAILURE);
     }
 
+    @RequestMapping("/delAward")
+    @ResponseBody
+    public Result delAward(String id, String studentNo) {
+        try {
+            personService.delAward(id);
+
+            return Result.success(null, Constant.DELETE_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return Result.failure(null, Constant.DELETE_FAILURE);
+    }
+
     @RequestMapping("/addExperienceByUpdate")
     @ResponseBody
     public Result addExperienceByUpdate(Experience experience) {
