@@ -752,186 +752,186 @@ WHERE student.no =#{studentNo}
     <update id="updateStudentList" parameterType="com.thoughtWorks.entity.StudentUpdate">
         UPDATE t_student
         <set>
-            <if test="classes_id != null and classes_id !=''">
+            <if test="classes_id != null ">
                 t_student.classes_id = #{classes_id},
             </if>
 
-            <if test="origin_profession_id != null and origin_profession_id !=''">
+            <if test="origin_profession_id != null ">
                 t_student.origin_profession_id = #{origin_profession_id},
             </if>
-            <if test="direction_id != null and direction_id !=''">
+            <if test="direction_id != null ">
                 t_student.direction_id = #{direction_id},
             </if>
-            <if test="head_image != null and head_image !=''">
+            <if test="head_image != null ">
                 t_student.head_image = #{head_image},
             </if>
 
-            <if test="health_status != null and health_status !=''">
+            <if test="health_status != null ">
                 t_student.health_status = #{health_status},
             </if>
-            <if test="student_type != null and student_type !=''">
+            <if test="student_type != null ">
                 t_student.student_type = #{student_type},
             </if>
-            <if test="stay_type != null and stay_type !=''">
+            <if test="stay_type != null ">
                 t_student.stay_type = #{stay_type},
             </if>
-            <if test="in_school != null and in_school !=''">
+            <if test="in_school != null ">
                 t_student.in_school = #{in_school},
             </if>
-            <if test="graduate_school != null and graduate_school !=''">
+            <if test="graduate_school != null ">
                 t_student.graduate_school = #{graduate_school},
             </if>
-            <if test="blood != null and blood !=''">
+            <if test="blood != null  ">
                 t_student.blood = #{blood},
             </if>
-            <if test="height != null and height !=''">
+            <if test="height != null and height != ''">
                 t_student.height = #{height},
             </if>
-            <if test="born != null and born !=''">
+            <if test="born != null ">
                 t_student.born = #{born},
             </if>
-            <if test="is_marry != null and is_marry !=''">
+            <if test="is_marry != null ">
                 t_student.is_marry = #{is_marry},
             </if>
-            <if test="weight != null and weight !=''">
+            <if test="weight != null and weight != ''">
                 t_student.weight = #{weight},
             </if>
-            <if test="political_status != null and political_status !=''">
+            <if test="political_status != null ">
                 t_student.political_status = #{political_status},
             </if>
-            <if test="pre_school_education != null and pre_school_education !=''">
+            <if test="pre_school_education != null ">
                 t_student.pre_school_education = #{pre_school_education},
             </if>
-            <if test="student_classify != null and student_classify !=''">
+            <if test="student_classify != null ">
                 t_student.student_classify = #{student_classify},
             </if>
-            <if test="idcard_address != null and idcard_address !=''">
+            <if test="idcard_address != null ">
                 t_student.idcard_address = #{idcard_address},
             </if>
-            <if test="actual_address != null and actual_address !=''">
+            <if test="actual_address != null ">
                 t_student.actual_address = #{actual_address},
             </if>
-            <if test="origin_address != null and origin_address !=''">
+            <if test="origin_address != null ">
                 t_student.origin_address = #{origin_address},
             </if>
-            <if test="family_phone != null and family_phone !=''">
+            <if test="family_phone != null ">
                 t_student.family_phone = #{family_phone},
             </if>
-            <if test="family_zip_code != null and family_zip_code !=''">
+            <if test="family_zip_code != null ">
                 t_student.family_zip_code = #{family_zip_code},
             </if>
-            <if test="famous_family != null and famous_family !=''">
+            <if test="famous_family != null ">
                 t_student.famous_family = #{famous_family},
             </if>
-            <if test="student_contact_method != null and student_contact_method !=''">
+            <if test="student_contact_method != null ">
                 t_student.student_contact_method = #{student_contact_method},
             </if>
-            <if test="emergency_contact_name != null and emergency_contact_name !=''">
+            <if test="emergency_contact_name != null ">
                 t_student.emergency_contact_name = #{emergency_contact_name},
             </if>
-            <if test="emergency_contact_method != null and emergency_contact_method !=''">
+            <if test="emergency_contact_method != null ">
                 t_student.emergency_contact_method = #{emergency_contact_method},
             </if>
-            <if test="account_in != null and account_in !=''">
+            <if test="account_in != null ">
                 t_student.account_in = #{account_in},
             </if>
-            <if test="email != null and email !=''">
+            <if test="email != null ">
                 t_student.email = #{email},
             </if>
-            <if test="qq != null and qq !=''">
+            <if test="qq != null ">
                 t_student.qq = #{qq},
             </if>
-            <if test="department_id != null and department_id !=''">
+            <if test="department_id != null ">
                 t_student.department_id = #{department_id},
             </if>
-            <if test="native_place != null and native_place !=''">
+            <if test="native_place != null ">
                 t_student.native_place = #{native_place},
             </if>
-            <if test="area_origin_name != null and area_origin_name !=''">
+            <if test="area_origin_name != null ">
                 t_student.area_origin_name = #{area_origin_name},
             </if>
-            <if test="sat_score != null and sat_score !=''">
+            <if test="sat_score != null  and sat_score !=''">
                 t_student.sat_score = #{sat_score},
             </if>
-            <if test="pre_school_file_where_location != null and pre_school_file_where_location !=''">
+            <if test="pre_school_file_where_location != null ">
                 t_student.pre_school_file_where_location = #{pre_school_file_where_location},
             </if>
-            <if test="file_in != null and file_in !=''">
+            <if test="file_in != null ">
                 t_student.file_in = #{file_in},
             </if>
-            <if test="pre_school_name != null and pre_school_name !=''">
+            <if test="pre_school_name != null ">
                 t_student.pre_school_name = #{pre_school_name},
             </if>
-            <if test="pre_school_account_where_station != null and pre_school_account_where_station !=''">
+            <if test="pre_school_account_where_station != null ">
                 t_student.pre_school_account_where_station = #{pre_school_account_where_station},
             </if>
-            <if test="pre_school_work != null and pre_school_work !=''">
+            <if test="pre_school_work != null ">
                 t_student.pre_school_work = #{pre_school_work},
             </if>
-            <if test="group != null and group !=''">
+            <if test="group != null ">
                 t_student.group = #{group},
             </if>
-            <if test="pre_school_staff != null and pre_school_staff !=''">
+            <if test="pre_school_staff != null ">
                 t_student.pre_school_staff = #{pre_school_staff},
             </if>
-            <if test="own_experience != null and own_experience !=''">
+            <if test="own_experience != null ">
                 t_student.own_experience = #{own_experience},
             </if>
-            <if test="own_punishment != null and own_punishment !=''">
+            <if test="own_punishment != null ">
                 t_student.own_punishment = #{own_punishment},
             </if>
-            <if test="student_status != null and student_status !=''">
+            <if test="student_status != null ">
                 t_student.student_status = #{student_status},
             </if>
-            <if test="payment_status_first_year != null and payment_status_first_year !=''">
+            <if test="payment_status_first_year != null ">
                 t_student.payment_status_first_year = #{payment_status_first_year},
             </if>
-            <if test="arrears_first_year != null and arrears_first_year !=''">
+            <if test="arrears_first_year != null ">
                 t_student.arrears_first_year = #{arrears_first_year},
             </if>
-            <if test="payment_status_second_year != null and payment_status_second_year !=''">
+            <if test="payment_status_second_year != null ">
                 t_student.payment_status_second_year = #{payment_status_second_year},
             </if>
-            <if test="arrears_second_year != null and arrears_second_year !=''">
+            <if test="arrears_second_year != null ">
                 t_student.arrears_second_year = #{arrears_second_year},
             </if>
-            <if test="payment_status_third_year != null and payment_status_third_year !=''">
+            <if test="payment_status_third_year != null ">
                 t_student.payment_status_third_year = #{payment_status_third_year},
             </if>
-            <if test="arrears_third_year != null and arrears_third_year !=''">
+            <if test="arrears_third_year != null ">
                 t_student.arrears_third_year = #{arrears_third_year},
             </if>
-            <if test="practice_learning_type != null and practice_learning_type !=''">
+            <if test="practice_learning_type != null ">
                 t_student.practice_learning_type = #{practice_learning_type},
             </if>
-            <if test="off_school_stay_address != null and off_school_stay_address !=''">
+            <if test="off_school_stay_address != null ">
                 t_student.off_school_stay_address = #{off_school_stay_address},
             </if>
-            <if test="area_id != null and area_id !=''">
+            <if test="area_id != null ">
                 t_student.area_id = #{area_id},
             </if>
-            <if test="floor_id != null and floor_id !=''">
+            <if test="floor_id != null ">
                 t_student.floor_id = #{floor_id},
             </if>
-            <if test="room_id != null and room_id !=''">
+            <if test="room_id != null ">
                 t_student.room_id = #{room_id},
             </if>
-            <if test="counselor_id != null and counselor_id !=''">
+            <if test="counselor_id != null ">
                 t_student.counselor_id = #{counselor_id},
             </if>
-            <if test="is_out != null and is_out !=''">
+            <if test="is_out != null ">
                 t_student.is_out = #{is_out},
             </if>
-            <if test="religion != null and religion !=''">
+            <if test="religion != null ">
                 t_student.religion = #{religion},
             </if>
-            <if test="hard_type != null and hard_type !=''">
+            <if test="hard_type != null ">
                 t_student.hard_type = #{hard_type},
             </if>
-            <if test="teacher_id != null and teacher_id !=''">
+            <if test="teacher_id != null ">
                 t_student.teacher_id = #{teacher_id},
             </if>
-            <if test="community_teacher_id != null and community_teacher_id !=''">
+            <if test="community_teacher_id != null ">
                 t_student.community_teacher_id = #{community_teacher_id}
             </if>
         </set>

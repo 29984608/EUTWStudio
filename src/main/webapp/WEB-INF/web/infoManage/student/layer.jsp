@@ -1149,17 +1149,17 @@
                                         <th colspan="2"><span style="font-weight: bold"></span>
                                             <div class="layui-input-inline" style="width: 100%">
                                                 <label class="layui-form-label" style="width: auto;margin-left: -15px">来校前毕业学校或工作单位：</label>
-                                                <div class="layui-input-inline" style="width: 40%">
+                                                <div class="layui-input-inline" style="width: 50%">
                                                     <input type="text" name="idcard_address"
                                                            placeholder="请输入来校前毕业学校或工作单位"
                                                            autocomplete="off" class="layui-input"
                                                            id="pre_school_work"
-                                                           readonly style="border: none">
+                                                            style="border: none">
                                                 </div>
-                                                <span style="float: right">
-                                                     <button class="layui-btn"
-                                                             onclick="student.show_pre_school_work()">编辑地址信息</button>
-                                                </span>
+                                                <%--<span style="float: right">--%>
+                                                     <%--<button class="layui-btn"--%>
+                                                             <%--onclick="student.show_pre_school_work()">编辑地址信息</button>--%>
+                                                <%--</span>--%>
                                             </div>
                                             <div id="show_pre_school_work"
                                                  style="display: none;">
