@@ -65,23 +65,8 @@
         <td>
             {{# if(item.student_status === undefined){ }}
             无
-            {{# }else if(item.student_status == 1){ }}
-            在读
-            {{#}}
-            {{# }else if(item.student_status == 2){ }}
-            复学
-            {{#}}
-            {{# }else if(item.student_status == 3){ }}
-            入伍
-            {{#}}
-            {{# }else if(item.student_status == 4){ }}
-            退学
-            {{#}}
-            {{# }else if(item.student_status == 5){ }}
-            留级
-            {{#}}
-            {{# }else if(item.student_status == 6){ }}
-            流失
+            {{# }else { }}
+            {{item.student_status}}
             {{#}}}
         </td>
 
@@ -1148,12 +1133,13 @@
                                             <div class="layui-input-inline">
                                                 <select lay-filter="update_student_status" id="update_student_status">
                                                     <option value=""></option>
-                                                        <option value="1">在读</option>
-                                                        <option value="2">复学</option>
-                                                        <option value="3">入伍</option>
-                                                        <option value="4">退学</option>
-                                                        <option value="5">留级</option>
-                                                        <option value="6">流失</option>
+                                                        <option value="在读">在读</option>
+                                                        <option value="复学">复学</option>
+                                                        <option value="入伍">入伍</option>
+                                                        <option value="退学">退学</option>
+                                                        <option value="留级">留级</option>
+                                                        <option value="流失">流失</option>
+                                                        <option value="休学">休学</option>
                                                 </select>
                                             </div>
                                         </span></th>
