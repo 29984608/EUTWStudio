@@ -215,6 +215,7 @@
                             第一年：(<span id="payment_status_first_year"></span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             第二年：(<span id="payment_status_second_year"></span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             第三年：(<span id="payment_status_third_year"></span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            第四年：(<span id="payment_status_forth_year"></span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
                         </th>
                         <th colspan="1">实践类型：<span id="practice_learning_type"></span></th>
@@ -289,7 +290,7 @@
                                                                 style="width: 18px;height:18px;"
                                                                 src="${baseurl}/images/public/qq.png"></label>
                                                         <div class="layui-input-inline">
-                                                            <input type="number" name="QQ"
+                                                            <input type="text" name="QQ"
                                                                    autocomplete="off" class="layui-input"
                                                                    id="studentQQ">
                                                         </div>

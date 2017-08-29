@@ -470,6 +470,7 @@
                     $("#payment_status_first_year").text("").append(data.student[0].payment_status_first_year);
                     $("#payment_status_second_year").text("").append(data.student[0].payment_status_second_year);
                     $("#payment_status_third_year").text("").append(data.student[0].payment_status_third_year);
+                    $("#payment_status_forth_year").text("").append(data.student[0].payment_status_forth_year);
                     $("#area").text("").append(data.student[0].area);
                     $("#floor").text("").append(data.student[0].floor);
                     $("#room").text("").append(data.student[0].room);
