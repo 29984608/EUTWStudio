@@ -532,7 +532,14 @@
                             $("input[type='radio'][name='accommodation_type'][value='" + studentList.stay_type + "']").attr("checked", 'true');
                             $("#updateStudentHeight").val(studentList.height);
                             $("#updateStudentWight").val(studentList.weight);
-                            $("#religiousBelief").val(studentList.religion);
+                            if(studentList.religion != ""){
+                                $("#religiousBelief").val(studentList.religion);
+                                $("#religiousBelief_has").prop({checked: true});
+                            }else{
+                                $("#religiousBelief_none").prop({checked: true});
+                            }
+
+
                             $("input:radio[value='" + studentList.health_status + "']").prop('checked', 'true');
                             $("input:radio[value=" + studentList.student_type + "]").prop('checked', 'true');
 
@@ -1839,6 +1846,16 @@
 
             })
 
+            //监听宗教信仰
+            form.on('radio(religiousBelief)', function (data) {
+
+                if (data.value === "1") {
+                    $("#religiousBelief").show();
+                } else {
+                    $("#religiousBelief").val("");
+                    $("#religiousBelief").hide();
+                }
+            });
             //监听学生政治面貌
             form.on('select(politicalOutlook)', function (data) {
                 if (data.value === '6') {

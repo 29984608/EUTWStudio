@@ -192,7 +192,7 @@
 
                     </tbody>
                 </table>
-                <h4 style="color: #00ab9f;font-weight: bold ;padding-top: 15px;">学业信息</h4>
+                <h4 style="color: #00ab9f;font-weight: bold ;padding-top: 15px;">学业状态</h4>
                 <table class="layui-table lay-even " data-name="articleCatData"
                        style="border: 0px solid red">
                     <tbody>
@@ -822,7 +822,12 @@
 
                                         </th>
                                     </tr>
-
+                                    </tbody>
+                                </table>
+                                    <h4 style="color: #00ab9f;font-weight: bold ;padding-top: 15px;">社区管理</h4>
+                                    <table class="layui-table lay-even " data-name="articleCatData"
+                                           style="border: 0px solid red">
+                                        <tbody>
                                     <tr>
 
                                         <th colspan="2">社区辅导员：<span>
@@ -833,18 +838,33 @@
                                                 </select>
                                             </div>
                                         </span></th>
-                                        <th colspan="4">困难类别：<span>
-                                            <div class="layui-input-inline" style="width: 60%">
-                                                <div class="layui-inline" pane="" id="update_hard_type">
-                                            <label class="layui-form-label" style="width: auto"></label>
-                                            <div class="layui-inline">
-                                               <input name="update_hard_type" value="" title="不是" type="radio" checked>
-                                               <input name="update_hard_type" value="一般" title="一般" type="radio">
-                                               <input name="update_hard_type" value="特困" title="特困" type="radio">
+                                        <th colspan="4">政治面貌：
+                                            <span>
+                                            <div class="layui-input-inline">
+                                              <select name="politicalOutlook" lay-filter="politicalOutlook"
+                                                      id="updateStudentPoliticalOutlook">
+                                                <option value="">请选择</option>
+                                                <option value="1">中共党员</option>
+                                                <option value="2">预备党员</option>
+                                                <option value="3">共青团员</option>
+                                                <option value="4">积极分子</option>
+                                                <option value="5">群众</option>
+                                                <option value="6">其它党派</option>
+                                              </select>
                                             </div>
-                                        </div>
-                                             </div>
-                                        </span></th>
+                                            <span id="otherParty" style="display: none">
+                                                  <div class="layui-input-inline">
+                                                    <label class="layui-form-label" style="width: auto">其它党派: </label>
+                                                    <div class="layui-input-inline">
+                                                      <input type="text" name="otherPartyName"
+                                                             placeholder="请输入党派名称"
+                                                             autocomplete="off" class="layui-input"
+                                                             id="otherUpdateStudentPoliticalOutlook">
+                                                    </div>
+                                                  </div>
+                                            </span>
+                                        </span>
+                                        </th>
 
                                     </tr>
 
@@ -917,41 +937,33 @@
                                     <tr class="layui-form">
                                         <th colspan="6"><span>宗教信仰：</span>
 
-                                            <div class="layui-input-inline" style="width: 90%">
+                                            <div class="layui-input-inline" style="width: 80%">
+                                                <div class="layui-inline">
+                                                <input name="religiousBelief" value="0" lay-filter="religiousBelief"  title="无" type="radio" id="religiousBelief_none">
+                                                <input name="religiousBelief" value="1" lay-filter="religiousBelief" title="有" type="radio" id="religiousBelief_has">
+                                                </div>
+                                                <div class="layui-inline" style="width: 60%">
                                                 <input type="text" name="title" id="religiousBelief"
-                                                       autocomplete="off" placeholder="无"
+                                                       autocomplete="off" placeholder="无" style="display: none"
                                                        class="layui-input">
+                                                </div>
                                             </div>
                                         </th>
                                     </tr>
-                                    <tr>
-                                        <th colspan="6">政治面貌：
-                                            <span>
-                                            <div class="layui-input-inline">
-                                              <select name="politicalOutlook" lay-filter="politicalOutlook"
-                                                      id="updateStudentPoliticalOutlook">
-                                                <option value="">请选择</option>
-                                                <option value="1">中共党员</option>
-                                                <option value="2">预备党员</option>
-                                                <option value="3">共青团员</option>
-                                                <option value="4">积极分子</option>
-                                                <option value="5">群众</option>
-                                                <option value="6">其它党派</option>
-                                              </select>
+                                    <tr style="display: none">
+                                        <th colspan="4">困难类别：<span>
+                                            <div class="layui-input-inline" style="width: 60%">
+                                                <div class="layui-inline" pane="" id="update_hard_type">
+                                            <label class="layui-form-label" style="width: auto"></label>
+                                            <div class="layui-inline">
+                                               <input name="update_hard_type" value="" title="不是" type="radio" checked>
+                                               <input name="update_hard_type" value="一般" title="一般" type="radio">
+                                               <input name="update_hard_type" value="特困" title="特困" type="radio">
                                             </div>
-                                            <span id="otherParty" style="display: none">
-                                                  <div class="layui-input-inline">
-                                                    <label class="layui-form-label" style="width: auto">其它党派: </label>
-                                                    <div class="layui-input-inline">
-                                                      <input type="text" name="otherPartyName"
-                                                             placeholder="请输入党派名称"
-                                                             autocomplete="off" class="layui-input"
-                                                             id="otherUpdateStudentPoliticalOutlook">
-                                                    </div>
-                                                  </div>
-                                            </span>
-                                        </span>
-                                        </th>
+                                        </div>
+                                             </div>
+                                        </span></th>
+
                                     </tr>
 
                                     <tr>
