@@ -532,10 +532,10 @@
                             $("input[type='radio'][name='accommodation_type'][value='" + studentList.stay_type + "']").attr("checked", 'true');
                             $("#updateStudentHeight").val(studentList.height);
                             $("#updateStudentWight").val(studentList.weight);
-                            if(studentList.religion != ""){
+                            if (studentList.religion != "") {
                                 $("#religiousBelief").val(studentList.religion);
                                 $("#religiousBelief_has").prop({checked: true});
-                            }else{
+                            } else {
                                 $("#religiousBelief_none").prop({checked: true});
                             }
 
@@ -681,6 +681,7 @@
                             $("#Amount_of_arrears").val(studentList.arrears_first_year);
                             $("#Amount_of_arrears2").val(studentList.arrears_second_year);
                             $("#Amount_of_arrears3").val(studentList.arrears_third_year);
+                            $("#Amount_of_arrears4").val(studentList.arrears_forth_year);
 
                             if (studentList.arrears_first_year != null && studentList.arrears_first_year != '0') {
                                 $("#showAmount_of_arrears").show();
@@ -698,6 +699,11 @@
                                 $("#showAmount_of_arrears3").show();
                             } else {
                                 $("#showAmount_of_arrears3").hide();
+                            }
+                            if (studentList.arrears_forth_year != null && studentList.arrears_forth_year != '0') {
+                                $("#showAmount_of_arrears4").show();
+                            } else {
+                                $("#showAmount_of_arrears4").hide();
                             }
 
                             $("input[type='radio'][name='update_hard_type'][value='" + studentList.hard_type + "']").attr("checked", "checked");
@@ -907,7 +913,7 @@
                                              </div>
                                         </span></th>
                                         <th>
-                                            <button class="layui-btn  layui-btn-danger" onclick="student.delAward(this,`+AwardOrPunishmentList[i].id+`)" style="margin-bottom: 10px;float: right;"><i class="layui-icon">&#xe640;</i> 删除</button>
+                                            <button class="layui-btn  layui-btn-danger" onclick="student.delAward(this,` + AwardOrPunishmentList[i].id + `)" style="margin-bottom: 10px;float: right;"><i class="layui-icon">&#xe640;</i> 删除</button>
 </th>
                                     </tr>`)
 //                    $("#updateStudent_Award_or_punishment").append(` `)
@@ -1025,7 +1031,7 @@
                     content: $("#addExperienceInfo")
                 })
             },
-            delExperience: function (t,experienceId) {
+            delExperience: function (t, experienceId) {
                 layer.confirm('该操作直接删除，无需更新。确定删除？', {icon: 3, title: '提示'}, function (index) {
                     let studentNo = studentInfo.no;
                     $.post(baseUrl + "/student/delExperience",
@@ -1039,7 +1045,7 @@
                         })
                 })
             },
-            delAward: function (t,id) {
+            delAward: function (t, id) {
                 layer.confirm('该操作直接删除，无需更新。确定删除？', {icon: 3, title: '提示'}, function (index) {
                     let studentNo = studentInfo.no;
                     $.post(baseUrl + "/student/delAward",
@@ -1381,6 +1387,13 @@
                     var payment_status_third_year = $("#update_payment_status3").find('option:selected').text()
                     var arrears_third_year = '0'
                 }
+                if ($("#update_payment_status4").find('option:selected').text() == "欠费") {
+                    var payment_status_forth_year = $("#update_payment_status4").find('option:selected').text()
+                    var arrears_forth_year = $("#Amount_of_arrears4").val()
+                } else {
+                    var payment_status_forth_year = $("#update_payment_status4").find('option:selected').text()
+                    var arrears_forth_year = '0'
+                }
 
                 //实践类型
                 if ($("#update_practical_type").find('option:selected').text() == "其它") {
@@ -1461,6 +1474,8 @@
                             arrears_second_year: arrears_second_year,
                             payment_status_third_year: payment_status_third_year,
                             arrears_third_year: arrears_third_year,
+                            payment_status_forth_year: payment_status_forth_year,
+                            arrears_forth_year: arrears_forth_year,
 
                             practice_learning_type: practice_learning_type,
                             area_id: area_id,
@@ -1802,7 +1817,13 @@
                     $("#showAmount_of_arrears3").hide();
                 }
             })
-
+            form.on('select(update_payment_status4)', function (data) {
+                if (data.value == 5) {
+                    $("#showAmount_of_arrears4").show();
+                } else {
+                    $("#showAmount_of_arrears4").hide();
+                }
+            })
             //监听实践类型
             form.on('select(update_practical_type)', function (data) {
                 if (data.value == 5) {

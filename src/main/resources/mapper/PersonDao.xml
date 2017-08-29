@@ -898,6 +898,12 @@ WHERE student.no =#{studentNo}
             <if test="payment_status_third_year != null ">
                 t_student.payment_status_third_year = #{payment_status_third_year},
             </if>
+            <if test="arrears_forth_year != null ">
+                t_student.arrears_forth_year = #{arrears_forth_year},
+            </if>
+            <if test="payment_status_forth_year != null ">
+                t_student.payment_status_forth_year = #{payment_status_forth_year},
+            </if>
             <if test="arrears_third_year != null ">
                 t_student.arrears_third_year = #{arrears_third_year},
             </if>

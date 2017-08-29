@@ -53,6 +53,7 @@ public class StudentUpdate {
     private String payment_status_first_year;
     private String payment_status_second_year;
     private String payment_status_third_year;
+    private String payment_status_forth_year;
     private String practice_learning_type;
     private String stay_type;
     private String off_school_stay_address;
@@ -66,9 +67,26 @@ public class StudentUpdate {
     private String arrears_first_year;
     private String arrears_third_year;
     private String arrears_second_year;
+    private String arrears_forth_year;
     private String teacher_id;
     private String community_teacher_id;
     private String group;
+
+    public String getPayment_status_forth_year() {
+        return payment_status_forth_year;
+    }
+
+    public void setPayment_status_forth_year(String payment_status_forth_year) {
+        this.payment_status_forth_year = payment_status_forth_year;
+    }
+
+    public String getArrears_forth_year() {
+        return arrears_forth_year;
+    }
+
+    public void setArrears_forth_year(String arrears_forth_year) {
+        this.arrears_forth_year = arrears_forth_year;
+    }
 
     public String getGroup() {
         return group;

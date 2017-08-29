@@ -1366,7 +1366,28 @@
                                             </span>
                                         </span></th>
                                     </tr>
-
+                                    <tr>
+                                        <th colspan="5">第四年缴费状态：<span>
+                                             <div class="layui-input-inline" style="width: 30%">
+                                                <select lay-filter="update_payment_status4" id="update_payment_status4">
+                                                    <option value=""></option>
+                                                    <option value="1">全额</option>
+                                                    <option value="2">缓交</option>
+                                                    <option value="3">分期</option>
+                                                    <option value="4">贷款</option>
+                                                    <option value="5">欠费</option>
+                                                </select>
+                                            </div>
+                                             <span id="showAmount_of_arrears4" style="display: none">欠费金额:
+                                                    <div class="layui-input-inline">
+                                                      <input type="text" name="otherPartyName" placeholder="请输入欠费金额"
+                                                             autocomplete="off" class="layui-input"
+                                                             id="Amount_of_arrears4" style="width: 65%">
+                                                    </div>
+                                                 <span style="float: none;margin-left: -5%">单位:元</span>
+                                            </span>
+                                        </span></th>
+                                    </tr>
                                     <tr>
                                         <th colspan="6">实践类型：<span>
                                             <div class="layui-input-inline" style="width: 30%">
