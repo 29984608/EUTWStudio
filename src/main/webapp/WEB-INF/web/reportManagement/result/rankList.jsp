@@ -204,7 +204,7 @@
             loadALlDepartments: function () {
                 $.post(baseUrl + "/department/allDepartments", function (data) {
                     if (data.result) {
-                        $("#department_search").html(`<option value="" selected>系</option>`).append(loadOptionsHtml(data.data, "-"));
+                        $("#department_search").html(loadOptionsHtml(data.data, "-"));
                         form.render();
                     }
                 })
@@ -212,7 +212,7 @@
             loadAllDirections: function () {
                 $.post(baseUrl + "/communication/queryDirectionByDepartment", function (data) {
                     if (data.result) {
-                        $("#direction_search").html(`<option value="">方向</option>`).append(loadOptionsHtml(data.data, "-"))
+                        $("#direction_search").html(loadOptionsHtml(data.data, "-"));
                         form.render();
                     }
                 })
