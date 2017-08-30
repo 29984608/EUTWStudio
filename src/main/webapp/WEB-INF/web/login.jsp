@@ -33,8 +33,8 @@
                 <%--</div>--%>
             <%--</div>--%>
         <%--</div>--%>
-        <div class="row" style="margin: 14% 0 0 25%">
-            <div class="col-sm-6 col-sm-offset-5 form-box" style="width: 500px">
+        <div class="row" style="margin: 12% 0 0 25%">
+            <div class="col-sm-6 col-sm-offset-5 form-box" style="width: 450px">
                 <div style="box-shadow: 0 0 3px 3px  seashell">
                     <div class="form-top">
                         <div class="form-top-left">
@@ -80,7 +80,7 @@
             /*
              Fullscreen background
              */
-            $.backstretch("${baseurl}/public/loginStyle/assets/img/backgrounds/1790388793.jpg");
+            $.backstretch("${baseurl}/public/loginStyle/assets/img/backgrounds/eur.jpg");
 
             /*
              Form validation
