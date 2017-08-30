@@ -259,7 +259,8 @@
                                 <div style="margin: 30px 10px;border: 1px ;">
                                     <div style="float: left;margin: 10px 37%">
                                         <div style="width:140px; height: 200px;border: 2px solid #e2e2e2;margin-bottom: 10px">
-                                            <img id="imagesToUpdate" class="head_image" style="width: 100%" height="100%"/>
+                                            <img id="imagesToUpdate" class="head_image" style="width: 100%"
+                                                 height="100%"/>
                                         </div>
                                         <div>
                                             <input type="file" name="file" class="layui-upload-file" style="width: auto"
@@ -384,7 +385,7 @@
 
                                         <th colspan="2">
                                             <div class="layui-inline" pane="" id="isMarry">
-                                                <label class="layui-form-label" >婚否：</label>
+                                                <label class="layui-form-label">婚否：</label>
                                                 <div class="layui-inline">
                                                     <input class="marry" name="isMarry" value="是" title="是"
                                                            type="radio">
@@ -892,11 +893,11 @@
                                                            placeholder="请输入来校前毕业学校或工作单位"
                                                            autocomplete="off" class="layui-input"
                                                            id="pre_school_work"
-                                                            style="border: none">
+                                                           style="border: none">
                                                 </div>
                                                 <%--<span style="float: right">--%>
-                                                     <%--<button class="layui-btn"--%>
-                                                             <%--onclick="student.show_pre_school_work()">编辑地址信息</button>--%>
+                                                <%--<button class="layui-btn"--%>
+                                                <%--onclick="student.show_pre_school_work()">编辑地址信息</button>--%>
                                                 <%--</span>--%>
                                             </div>
                                             <div id="show_pre_school_work"
@@ -1015,7 +1016,7 @@
                                              <div class="layui-input-inline">
                                                 <select id="student_group" lay-filter="student_classe">
                                                     <option value="" selected>组别</option>
-                                                    <option value="" >请选择</option>
+                                                    <option value="">请选择</option>
                                                     <option value="A">A</option>
                                                     <option value="B">B</option>
                                                 </select>
@@ -1254,8 +1255,10 @@
 
                                             <div class="layui-input-inline" style="width: 80%">
                                                 <div class="layui-inline">
-                                                    <input name="religiousBelief" value="0" lay-filter="religiousBelief"  title="无" type="radio" id="religiousBelief_none">
-                                                    <input name="religiousBelief" value="1" lay-filter="religiousBelief" title="有" type="radio" id="religiousBelief_has">
+                                                    <input name="religiousBelief" value="0" lay-filter="religiousBelief"
+                                                           title="无" type="radio" id="religiousBelief_none">
+                                                    <input name="religiousBelief" value="1" lay-filter="religiousBelief"
+                                                           title="有" type="radio" id="religiousBelief_has">
                                                 </div>
                                                 <div class="layui-inline" style="width: 60%">
                                                     <input type="text" name="title" id="religiousBelief"
@@ -1428,9 +1431,10 @@
                             </div>
 
                         </div>
-                            <button  style="position: fixed;top: 60px;left:5%" class="layui-btn" onclick="student.updateStudentList()"><i class="layui-icon">&#xe61f;</i>
-                                更新
-                            </button>
+                        <button style="position: fixed;top: 60px;left:5%" class="layui-btn"
+                                onclick="student.updateStudentList()"><i class="layui-icon">&#xe61f;</i>
+                            更新
+                        </button>
                     </div>
 
                 </div>
@@ -1438,7 +1442,7 @@
             </div>
         </div>
     </section>
-   
+
 </div>
 
 <div id="addStudentFamily" style="display: none">
@@ -1689,21 +1693,41 @@
 
     function selectProvince5(e) {
         P_school_account_where_the_police_station_detailed = e.options[e.selectedIndex].text;
-        $("#school_account_where_the_police_station_detailed").val(P_school_account_where_the_police_station_detailed);
+        if (P_school_account_where_the_police_station_detailed === "—— 省 ——") {
+            $("#school_account_where_the_police_station_detailed").val("");
+            this_school_account_where_the_police_station_detailed = "";
+        } else {
+            $("#school_account_where_the_police_station_detailed").val(P_school_account_where_the_police_station_detailed);
+            this_school_account_where_the_police_station_detailed = P_school_account_where_the_police_station_detailed;
+        }
+        $("#Pre_school_account_where_the_police_station_detailed").val("");
     }
 
     function selectCity5(e) {
         C_school_account_where_the_police_station_detailed = P_school_account_where_the_police_station_detailed + "-" + e.options[e.selectedIndex].text;
-        $("#school_account_where_the_police_station_detailed").val(C_school_account_where_the_police_station_detailed);
+        if (e.options[e.selectedIndex].text === "—— 市 ——") {
+            $("#school_account_where_the_police_station_detailed").val(P_school_account_where_the_police_station_detailed);
+            this_school_account_where_the_police_station_detailed = P_school_account_where_the_police_station_detailed;
+        } else {
+            $("#school_account_where_the_police_station_detailed").val(C_school_account_where_the_police_station_detailed);
+            this_school_account_where_the_police_station_detailed = C_school_account_where_the_police_station_detailed;
+        }
+        $("#Pre_school_account_where_the_police_station_detailed").val("");
     }
 
     function selectDistrict5(e) {
         D_school_account_where_the_police_station_detailed = C_school_account_where_the_police_station_detailed + "-" + e.options[e.selectedIndex].text;
-        $("#school_account_where_the_police_station_detailed").val(D_school_account_where_the_police_station_detailed);
+        if(e.options[e.selectedIndex].text === "—— 区/县 ——"){
+            $("#school_account_where_the_police_station_detailed").val(C_school_account_where_the_police_station_detailed);
+            this_school_account_where_the_police_station_detailed = C_school_account_where_the_police_station_detailed;
+        }else{
+            $("#school_account_where_the_police_station_detailed").val(D_school_account_where_the_police_station_detailed);
+            this_school_account_where_the_police_station_detailed = D_school_account_where_the_police_station_detailed;
+        }
+        $("#Pre_school_account_where_the_police_station_detailed").val("");
     }
 
     $("#Pre_school_account_where_the_police_station_detailed").bind('input propertychange', function () {
-        this_school_account_where_the_police_station_detailed = D_school_account_where_the_police_station_detailed;
         $("#school_account_where_the_police_station_detailed").val(this_school_account_where_the_police_station_detailed + "-" + $(this).val());
     })
 
@@ -1743,21 +1767,41 @@
 
     function selectProvince2(e) {
         P_Pre_enrollment_file_unit = e.options[e.selectedIndex].text;
-        $("#Pre_enrollment_file_unit").val(P_Pre_enrollment_file_unit);
+        if (P_Pre_enrollment_file_unit === "—— 省 ——") {
+            $("#Pre_enrollment_file_unit").val("");
+            this_Pre_enrollment_file_unit = "";
+        } else {
+            $("#Pre_enrollment_file_unit").val(P_Pre_enrollment_file_unit);
+            this_Pre_enrollment_file_unit = P_Pre_enrollment_file_unit;
+        }
+        $("#updateStudent_Pre_enrollment_file_unit_detailed").val("");
     }
 
     function selectCity2(e) {
         C_Pre_enrollment_file_unit = P_Pre_enrollment_file_unit + "-" + e.options[e.selectedIndex].text;
-        $("#Pre_enrollment_file_unit").val(C_Pre_enrollment_file_unit);
+        if (e.options[e.selectedIndex].text === "—— 市 ——") {
+            $("#Pre_enrollment_file_unit").val(P_Pre_enrollment_file_unit);
+            this_Pre_enrollment_file_unit = P_Pre_enrollment_file_unit;
+        } else {
+            $("#Pre_enrollment_file_unit").val(C_Pre_enrollment_file_unit);
+            this_Pre_enrollment_file_unit = C_Pre_enrollment_file_unit;
+        }
+        $("#updateStudent_Pre_enrollment_file_unit_detailed").val("");
     }
 
     function selectDistrict2(e) {
         D_Pre_enrollment_file_unit = C_Pre_enrollment_file_unit + "-" + e.options[e.selectedIndex].text;
-        $("#Pre_enrollment_file_unit").val(D_Pre_enrollment_file_unit);
+        if(e.options[e.selectedIndex].text === "—— 区/县 ——"){
+            $("#Pre_enrollment_file_unit").val(C_Pre_enrollment_file_unit);
+            this_Pre_enrollment_file_unit = C_Pre_enrollment_file_unit;
+        }else{
+            $("#Pre_enrollment_file_unit").val(D_Pre_enrollment_file_unit);
+            this_Pre_enrollment_file_unit = D_Pre_enrollment_file_unit;
+        }
+        $("#updateStudent_Pre_enrollment_file_unit_detailed").val("");
     }
 
     $("#updateStudent_Pre_enrollment_file_unit_detailed").bind('input propertychange', function () {
-        this_Pre_enrollment_file_unit = D_Pre_enrollment_file_unit;
         $("#Pre_enrollment_file_unit").val(this_Pre_enrollment_file_unit + "-" + $(this).val());
     })
 
@@ -1769,17 +1813,30 @@
 
     function selectProvince1(e) {
         P_update_name_of_the_source = e.options[e.selectedIndex].text;
-        $("#update_name_of_the_source").val(P_update_name_of_the_source);
+        if (P_update_name_of_the_source === "—— 省 ——") {
+            $("#update_name_of_the_source").val("");
+        } else {
+            $("#update_name_of_the_source").val(P_update_name_of_the_source);
+        }
     }
 
     function selectCity1(e) {
         C_update_name_of_the_source = P_update_name_of_the_source + "-" + e.options[e.selectedIndex].text;
-        $("#update_name_of_the_source").val(C_update_name_of_the_source);
+        if (e.options[e.selectedIndex].text === "—— 市 ——") {
+            $("#update_name_of_the_source").val(P_update_name_of_the_source);
+        } else {
+            $("#update_name_of_the_source").val(C_update_name_of_the_source);
+        }
     }
 
     function selectDistrict1(e) {
         D_update_name_of_the_source = C_update_name_of_the_source + "-" + e.options[e.selectedIndex].text;
-        $("#update_name_of_the_source").val(D_update_name_of_the_source);
+        if(e.options[e.selectedIndex].text === "—— 区/县 ——"){
+            $("#update_name_of_the_source").val(C_update_name_of_the_source);
+        }else{
+            $("#update_name_of_the_source").val(D_update_name_of_the_source);
+        }
+
     }
 
 
@@ -1792,21 +1849,41 @@
 
     function selectProvince3(e) {
         P_detailedAddresses = e.options[e.selectedIndex].text;
-        $("#detailedAddresses").val(P_detailedAddresses);
+        if (P_detailedAddresses === "—— 省 ——") {
+            $("#detailedAddresses").val("");
+            this_detailedAddresses = "";
+        } else {
+            $("#detailedAddresses").val(P_detailedAddresses);
+            this_detailedAddresses = P_detailedAddresses;
+        }
+        $("#detailedAddress").val("");
     }
 
     function selectCity3(e) {
         C_detailedAddresses = P_detailedAddresses + "-" + e.options[e.selectedIndex].text;
-        $("#detailedAddresses").val(C_detailedAddresses);
+        if (e.options[e.selectedIndex].text === "—— 市 ——") {
+            $("#detailedAddresses").val(P_detailedAddresses);
+            this_detailedAddresses = P_detailedAddresses;
+        } else {
+            $("#detailedAddresses").val(C_detailedAddresses);
+            this_detailedAddresses = C_detailedAddresses;
+        }
+        $("#detailedAddress").val("");
     }
 
     function selectDistrict3(e) {
         D_detailedAddresses = C_detailedAddresses + "-" + e.options[e.selectedIndex].text;
-        $("#detailedAddresses").val(D_detailedAddresses);
+        if(e.options[e.selectedIndex].text === "—— 区/县 ——"){
+            $("#detailedAddresses").val(C_detailedAddresses);
+            this_detailedAddresses = C_detailedAddresses;
+        }else{
+            $("#detailedAddresses").val(D_detailedAddresses);
+            this_detailedAddresses = D_detailedAddresses;
+        }
+        $("#detailedAddress").val("");
     }
 
     $("#detailedAddress").bind('input propertychange', function () {
-        this_detailedAddresses = D_detailedAddresses;
         $("#detailedAddresses").val(this_detailedAddresses + "-" + $(this).val());
     })
 
@@ -1818,22 +1895,43 @@
     let this_pre_school_work = '';
 
     function selectProvince13(e) {
+        alert(e.options[e.selectedIndex].text)
         P_pre_school_work = e.options[e.selectedIndex].text;
-        $("#pre_school_work").val(P_pre_school_work);
+        if (P_pre_school_work === "—— 省 ——") {
+            $("#pre_school_work").val("");
+            this_pre_school_work = "";
+        } else {
+            $("#pre_school_work").val(P_pre_school_work);
+            this_pre_school_work = P_pre_school_work;
+        }
+        $("#detail_pre_school_work").val("");
     }
 
     function selectCity13(e) {
         C_pre_school_work = P_pre_school_work + "-" + e.options[e.selectedIndex].text;
-        $("#pre_school_work").val(C_pre_school_work);
+        if (e.options[e.selectedIndex].text === "—— 市 ——") {
+            $("#Identity_card_address").val(P_pre_school_work);
+            this_pre_school_work = P_pre_school_work;
+        } else {
+            $("#pre_school_work").val(C_pre_school_work);
+            this_pre_school_work = C_pre_school_work;
+        }
+        $("#detail_pre_school_work").val("");
     }
 
     function selectDistrict13(e) {
         D_pre_school_work = C_pre_school_work + "-" + e.options[e.selectedIndex].text;
-        $("#pre_school_work").val(D_pre_school_work);
+        if(e.options[e.selectedIndex].text === "—— 区/县 ——"){
+            $("#pre_school_work").val(C_pre_school_work);
+            this_pre_school_work = C_pre_school_work;
+        }else{
+            $("#pre_school_work").val(D_pre_school_work);
+            this_pre_school_work = D_pre_school_work;
+        }
+        $("#detail_pre_school_work").val("");
     }
 
     $("#detail_pre_school_work").bind('input propertychange', function () {
-        this_pre_school_work = D_pre_school_work;
         $("#pre_school_work").val(this_pre_school_work + "-" + $(this).val());
     })
 
@@ -1846,21 +1944,42 @@
 
     function selectProvince0(e) {
         P_Identity_card_address = e.options[e.selectedIndex].text;
-        $("#Identity_card_address").val(P_Identity_card_address);
+        if (P_Identity_card_address === "—— 省 ——") {
+            $("#Identity_card_address").val("");
+            this_Identity_card_address = "";
+        } else {
+            $("#Identity_card_address").val(P_Identity_card_address);
+            this_Identity_card_address = P_Identity_card_address;
+        }
+        $("#detailedUpdateCardAddress").val("");
     }
 
     function selectCity0(e) {
         C_Identity_card_address = P_Identity_card_address + "-" + e.options[e.selectedIndex].text;
-        $("#Identity_card_address").val(C_Identity_card_address);
+        if (e.options[e.selectedIndex].text === "—— 市 ——") {
+            $("#Identity_card_address").val(P_Identity_card_address);
+            this_Identity_card_address = P_Identity_card_address;
+        } else {
+            $("#Identity_card_address").val(C_Identity_card_address);
+            this_Identity_card_address = C_Identity_card_address;
+        }
+        $("#detailedUpdateCardAddress").val("");
     }
 
     function selectDistrict0(e) {
         D_Identity_card_address = C_Identity_card_address + "-" + e.options[e.selectedIndex].text;
-        $("#Identity_card_address").val(D_Identity_card_address);
+        if(e.options[e.selectedIndex].text === "—— 区/县 ——"){
+            $("#Identity_card_address").val(C_Identity_card_address);
+            this_Identity_card_address = C_Identity_card_address;
+        }else{
+            $("#Identity_card_address").val(D_Identity_card_address);
+            this_Identity_card_address = D_Identity_card_address;
+        }
+        $("#detailedUpdateCardAddress").val("");
     }
 
     $("#detailedUpdateCardAddress").bind('input propertychange', function () {
-        this_Identity_card_address = D_Identity_card_address;
+
         $("#Identity_card_address").val(this_Identity_card_address + "-" + $(this).val());
     })
 
@@ -1873,17 +1992,30 @@
 
     function selectProvince9(e) {
         P_updateStudentNativePlace = e.options[e.selectedIndex].text;
-        $("#updateStudentNativePlace").val(P_updateStudentNativePlace);
+        if (P_updateStudentNativePlace === "—— 省 ——") {
+            $("#updateStudentNativePlace").val("");
+        } else {
+            $("#updateStudentNativePlace").val(P_updateStudentNativePlace);
+        }
     }
 
     function selectCity9(e) {
         C_updateStudentNativePlace = P_updateStudentNativePlace + "-" + e.options[e.selectedIndex].text;
-        $("#updateStudentNativePlace").val(C_updateStudentNativePlace);
+        if (e.options[e.selectedIndex].text === "—— 市 ——") {
+            $("#updateStudentNativePlace").val(P_updateStudentNativePlace);
+        } else {
+            $("#updateStudentNativePlace").val(C_updateStudentNativePlace);
+        }
+
     }
 
     function selectDistrict9(e) {
         D_updateStudentNativePlace = C_updateStudentNativePlace + "-" + e.options[e.selectedIndex].text;
-        $("#updateStudentNativePlace").val(D_updateStudentNativePlace);
+        if(e.options[e.selectedIndex].text === "—— 区/县 ——"){
+            $("#updateStudentNativePlace").val(C_updateStudentNativePlace);
+        }else{
+            $("#updateStudentNativePlace").val(D_updateStudentNativePlace);
+        }
     }
 
     //宿舍
