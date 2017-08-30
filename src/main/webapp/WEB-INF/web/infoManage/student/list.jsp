@@ -521,7 +521,9 @@
                             $("#updateStudentNo").val(studentList.no)
                             $("#updateStudentName").val(studentList.name);
                             $("input:radio[value='" + studentList.gender + "'][name='sexOfUpdate']").prop('checked', 'true');
+                            console.log(data)
                             if (famousFamily != null) {
+
                                 $("#updateStudentNationalities").html("").append(loadOptionsHtmlOfFamousFamilyList(famousFamilyList, studentList.famous_family));
 
                             }
@@ -568,7 +570,7 @@
                                 if ($("#updateStudent_pre_school_education").get(0).options[i].text === studentList.pre_school_education) {
                                     $("#updateStudent_pre_school_education").get(0).options[i].selected = true;
                                 }
-                                if (studentList.pre_school_education != "高中" && studentList.pre_school_education != "三校生" && studentList.political_status != "") {
+                                if (studentList.pre_school_education != "高中" && studentList.pre_school_education != "中专" && studentList.pre_school_education != "技校" && studentList.pre_school_education != "职高" && studentList.pre_school_education != "请选择" && studentList.political_status != "") {
                                     $("#updateStudent_pre_school_education").get(0).options[count2 - 1].selected = true;
                                     $("#pre_school_education").show();
                                     $("#other_updateStudent_pre_school_education").val(studentList.pre_school_education);
@@ -1788,7 +1790,8 @@
 
             //监听select选择
             form.on('select(pre_school_education)', function (data) {
-                if (data.value === '3') {
+                if (data.value === '5') {
+
                     $("#pre_school_education").show();
                 } else {
                     $("#pre_school_education").hide();

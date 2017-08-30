@@ -356,7 +356,6 @@
                                             <div class="layui-input-inline" style="width: 60%">
                                                 <select id="updateStudentNationalities">
                                                     <option>汉族</option>
-                                                    <option>汉族</option>
                                                 </select>
                                                 <%--<input type="text" name="text"--%>
                                                        <%--placeholder="请输入内容" autocomplete="off" class="layui-input"--%>
@@ -405,6 +404,7 @@
                                             <div class="layui-input-inline">
                                               <select name="pre_school_education" lay-filter="pre_school_education"
                                                       id="updateStudent_pre_school_education">
+                                                <option value="">请选择</option>
                                                 <option value="">请选择</option>
                                                 <option value="1">高中</option>
                                                 <option value="2">中专</option>
