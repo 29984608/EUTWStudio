@@ -825,281 +825,6 @@
                                     </tr>
                                     </tbody>
                                 </table>
-                                    <h4 style="color: #00ab9f;font-weight: bold ;padding-top: 15px;">社区管理</h4>
-                                    <table class="layui-table lay-even " data-name="articleCatData"
-                                           style="border: 0px solid red">
-                                        <tbody>
-                                    <tr>
-
-                                        <th colspan="2">社区辅导员：<span>
-                                            <div class="layui-input-inline" style="width: 60%">
-                                                <select lay-filter="update_community_counselor"
-                                                        id="update_community_counselor">
-                                                    <option value=""></option>
-                                                </select>
-                                            </div>
-                                        </span></th>
-                                        <th colspan="4">政治面貌：
-                                            <span>
-                                            <div class="layui-input-inline">
-                                              <select name="politicalOutlook" lay-filter="politicalOutlook"
-                                                      id="updateStudentPoliticalOutlook">
-                                                <option value="">请选择</option>
-                                                <option value="1">中共党员</option>
-                                                <option value="2">预备党员</option>
-                                                <option value="3">共青团员</option>
-                                                <option value="4">积极分子</option>
-                                                <option value="5">群众</option>
-                                                <option value="6">其它党派</option>
-                                              </select>
-                                            </div>
-                                            <span id="otherParty" style="display: none">
-                                                  <div class="layui-input-inline">
-                                                    <label class="layui-form-label" style="width: auto">其它党派: </label>
-                                                    <div class="layui-input-inline">
-                                                      <input type="text" name="otherPartyName"
-                                                             placeholder="请输入党派名称"
-                                                             autocomplete="off" class="layui-input"
-                                                             id="otherUpdateStudentPoliticalOutlook">
-                                                    </div>
-                                                  </div>
-                                            </span>
-                                        </span>
-                                        </th>
-
-                                    </tr>
-
-                                    <tr>
-                                        <th colspan="1" style="width: 18%">身高：<span>
-                                            <div class="layui-input-inline" style="width: 40%">
-                                                <input type="text" name="text"
-                                                       placeholder="" autocomplete="off" class="layui-input"
-                                                       id="updateStudentHeight">
-                                             </div>
-                                        </span>
-                                            <span>cm</span>
-                                        </th>
-                                        <th colspan="1" style="width: 18%">体重：<span>
-                                            <div class="layui-input-inline" style="width: 40%">
-                                                <input type="text" name="text"
-                                                       placeholder="" autocomplete="off" class="layui-input"
-                                                       id="updateStudentWight">
-                                             </div>
-                                        </span>
-                                            <span>kg</span>
-                                        </th>
-
-
-                                        <th colspan="3">华侨、港澳台:<span>
-                                        <div class="layui-inline" pane="" id="update_isOut">
-                                            <label class="layui-form-label" style="width: auto"></label>
-                                            <div class="layui-inline" onclick="student.showAreaInfo()">
-                                               <input name="isOut" value="是" title="是"
-                                                      type="radio">
-                                               <input name="isOut" value="否" title="否" type="radio">
-                                            </div>
-                                        </div>
-                                        </span></th>
-
-
-                                    </tr>
-
-                                    <tr>
-
-                                        <th colspan="2">血型：<span>
-                                        <div class="layui-input-inline"
-                                        >
-                                          <select name="quiz1" lay-filter="updateStudentBloodType"
-                                                  id="updateStudentBloodType">
-                                            <option value="">请选择血型</option>
-                                            <option value="1">O型</option>
-                                            <option value="2">A型</option>
-                                            <option value="3">B型</option>
-                                            <option value="4">AB型</option>
-                                            <option value="5">RH阴性</option>
-                                          </select>
-                                        </div>
-                                    </span></th>
-
-                                        <th colspan="4">健康状况：<span>
-                                            <div class="layui-input-inline">
-                                                <div class="layui-inline" pane="" id="health">
-                                                    <label class="layui-form-label" style="width: auto"></label>
-                                                    <div class="layui-inline">
-                                                       <input name="health" value="良好" title="良好"
-                                                              type="radio">
-                                                       <input name="health" value="其它" title="其它" type="radio">
-                                                    </div>
-                                                </div>
-                                             </div>
-                                        </span></th>
-                                    </tr>
-
-                                    <tr class="layui-form">
-                                        <th colspan="6"><span>宗教信仰：</span>
-
-                                            <div class="layui-input-inline" style="width: 80%">
-                                                <div class="layui-inline">
-                                                <input name="religiousBelief" value="0" lay-filter="religiousBelief"  title="无" type="radio" id="religiousBelief_none">
-                                                <input name="religiousBelief" value="1" lay-filter="religiousBelief" title="有" type="radio" id="religiousBelief_has">
-                                                </div>
-                                                <div class="layui-inline" style="width: 60%">
-                                                <input type="text" name="title" id="religiousBelief"
-                                                       autocomplete="off" placeholder="无" style="display: none"
-                                                       class="layui-input">
-                                                </div>
-                                            </div>
-                                        </th>
-                                    </tr>
-                                    <tr style="display: none">
-                                        <th colspan="4">困难类别：<span>
-                                            <div class="layui-input-inline" style="width: 60%">
-                                                <div class="layui-inline" pane="" id="update_hard_type">
-                                            <label class="layui-form-label" style="width: auto"></label>
-                                            <div class="layui-inline">
-                                               <input name="update_hard_type" value="" title="不是" type="radio" checked>
-                                               <input name="update_hard_type" value="一般" title="一般" type="radio">
-                                               <input name="update_hard_type" value="特困" title="特困" type="radio">
-                                            </div>
-                                        </div>
-                                             </div>
-                                        </span></th>
-
-                                    </tr>
-
-                                    <tr>
-                                        <th colspan="6">住宿类型:<span>
-                                        <div class="layui-inline" pane="" id="update_accommodation_type">
-                                            <label class="layui-form-label" style="width: auto"></label>
-                                            <div class="layui-inline" onclick="student.showAreaInfo()">
-                                               <input name="accommodation_type" value="2" title="校外"
-                                                      type="radio">
-                                               <input name="accommodation_type" value="1" title="校内" type="radio">
-                                            </div>
-                                        </div>
-                                    </span></th>
-                                    </tr>
-
-                                    <tr id="dorms">
-                                        <th colspan="6"><span><span style="font-weight: bold"></span>
-
-                                                <div class="layui-input-inline" style="width: 100%">
-                                                <label class="layui-form-label" style="width: auto;margin-left: -15px">宿舍信息: </label>
-                                                <div class="layui-input-inline" style="width: 60%">
-                                                    <input type="text" name="idcard_address" placeholder="请输入宿舍信息"
-                                                           autocomplete="off" class="layui-input" id="updateDorms"
-                                                           readonly style="border: none">
-                                                </div>
-                                                <span style="float: right">
-                                                     <button class="layui-btn"
-                                                             onclick="student.showUpdateDorms()">编辑地址信息</button>
-                                                </span>
-                                            </div>
-                                            </span>
-                                            <div id="showUpdateDorms" style="display: none" class="">
-                                                <br>
-                                                <form class="form-inline">
-                                                    <div class="layui-input-inline">
-                                                        <label class="layui-form-label">区</label>
-                                                        <div class="layui-inline">
-                                                            <div class="layui-input-inline">
-                                                                <select name="modules"
-                                                                        lay-filter="modules_3"
-                                                                        id="queryAreas">
-                                                                    <option value="">请选择</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="layui-input-inline">
-                                                        <label class="layui-form-label">楼层</label>
-                                                        <div class="layui-inline">
-                                                            <div class="layui-input-inline">
-                                                                <select name="modules1"
-                                                                        lay-filter="modules_2"
-                                                                        lay-search=""
-                                                                        id="queryFloors">
-                                                                    <option value="">请选择</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="layui-input-inline">
-                                                        <label class="layui-form-label">宿舍</label>
-                                                        <div class="layui-inline">
-                                                            <div class="layui-input-inline">
-                                                                <select name="modules1"
-                                                                        lay-filter="modules_1"
-                                                                        lay-search=""
-                                                                        id="queryRooms">
-                                                                    <option value="">请选择</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            </div>
-
-                                        </th>
-                                    </tr>
-                                    <tr id="OffCampusAddress" style="display: none">
-                                        <th colspan="6"><span><span style="font-weight: bold"></span>
-
-                                                <div class="layui-input-inline" style="width: 100%">
-                                                <label class="layui-form-label" style="width: auto;margin-left: -15px">校外住址信息: </label>
-                                                <div class="layui-input-inline" style="width: 60%">
-                                                    <input type="text" name="idcard_address" placeholder="请输入校外住址信息信息"
-                                                           autocomplete="off" class="layui-input"
-                                                           id="updateOffCampusAddress"
-                                                           readonly style="border: none">
-                                                </div>
-                                                <span style="float: right">
-                                                     <button class="layui-btn"
-                                                             onclick="student.showUpdateOffCampusAddress()">编辑地址信息</button>
-                                                </span>
-                                            </div>
-                                            </span>
-                                            <div id="showUpdateOffCampusAddress" style="display: none">
-                                                <br>
-                                                <form class="form-inline">
-                                                    <div id="distpicker12">
-                                                        <div class="form-group">
-                                                            <label class="sr-only" for="province12">Province</label>
-                                                            <select class="form-control" id="province12"
-                                                                    onchange="selectProvince12(this)"
-                                                                    lay-ignore></select>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label class="sr-only" for="city12">City</label>
-                                                            <select class="form-control" id="city12"
-                                                                    onchange="selectCity12(this)"
-                                                                    lay-ignore></select>
-                                                        </div>
-                                                        <div class="form-group" style="margin-right: -5px">
-                                                            <label class="sr-only" for="district12">District</label>
-                                                            <select class="form-control" id="district12"
-                                                                    onchange="selectDistrict12(this)"
-                                                                    lay-ignore></select>
-                                                        </div>
-                                                        <div class="layui-input-block form-group"
-                                                             style="margin-left: 5px;width: 250px">
-                                                            <input type="text" name="detailedAddress"
-                                                                   placeholder="请输入详细地址"
-                                                                   autocomplete="off" class="layui-input"
-                                                                   id="detailedOffCampusAddress">
-                                                        </div>
-                                                    </div>
-                                                </form>
-
-                                            </div>
-
-                                        </th>
-                                    </tr>
-
-                                    </tbody>
-                                </table>
 
 
                                 <h4 style="color: #00ab9f;font-weight: bold ;padding-top: 15px;">家庭成员</h4>
@@ -1128,7 +853,7 @@
 
                                 <br>
                                 <br>
-                                <h4 style="color: #00ab9f;font-weight: bold ;padding-top: 15px;">学业信息</h4>
+                                <h4 style="color: #00ab9f;font-weight: bold ;padding-top: 15px;">学业状态</h4>
                                 <table class="layui-table lay-even " data-name="articleCatData"
                                        style="border: 0px solid red" id="updateStudent_Academic information">
                                     <tbody>
@@ -1290,6 +1015,7 @@
                                              <div class="layui-input-inline">
                                                 <select id="student_group" lay-filter="student_classe">
                                                     <option value="" selected>组别</option>
+                                                    <option value="" >请选择</option>
                                                     <option value="A">A</option>
                                                     <option value="B">B</option>
                                                 </select>
@@ -1413,6 +1139,282 @@
 
                                     </tbody>
                                 </table>
+                                <h4 style="color: #00ab9f;font-weight: bold ;padding-top: 15px;">社区管理</h4>
+                                <table class="layui-table lay-even " data-name="articleCatData"
+                                       style="border: 0px solid red">
+                                    <tbody>
+                                    <tr>
+
+                                        <th colspan="2">社区辅导员：<span>
+                                            <div class="layui-input-inline" style="width: 60%">
+                                                <select lay-filter="update_community_counselor"
+                                                        id="update_community_counselor">
+                                                    <option value=""></option>
+                                                </select>
+                                            </div>
+                                        </span></th>
+                                        <th colspan="4">政治面貌：
+                                            <span>
+                                            <div class="layui-input-inline">
+                                              <select name="politicalOutlook" lay-filter="politicalOutlook"
+                                                      id="updateStudentPoliticalOutlook">
+                                                <option value="">请选择</option>
+                                                <option value="1">中共党员</option>
+                                                <option value="2">预备党员</option>
+                                                <option value="3">共青团员</option>
+                                                <option value="4">积极分子</option>
+                                                <option value="5">群众</option>
+                                                <option value="6">其它党派</option>
+                                              </select>
+                                            </div>
+                                            <span id="otherParty" style="display: none">
+                                                  <div class="layui-input-inline">
+                                                    <label class="layui-form-label" style="width: auto">其它党派: </label>
+                                                    <div class="layui-input-inline">
+                                                      <input type="text" name="otherPartyName"
+                                                             placeholder="请输入党派名称"
+                                                             autocomplete="off" class="layui-input"
+                                                             id="otherUpdateStudentPoliticalOutlook">
+                                                    </div>
+                                                  </div>
+                                            </span>
+                                        </span>
+                                        </th>
+
+                                    </tr>
+
+                                    <tr>
+                                        <th colspan="1" style="width: 18%">身高：<span>
+                                            <div class="layui-input-inline" style="width: 40%">
+                                                <input type="text" name="text"
+                                                       placeholder="" autocomplete="off" class="layui-input"
+                                                       id="updateStudentHeight">
+                                             </div>
+                                        </span>
+                                            <span>cm</span>
+                                        </th>
+                                        <th colspan="1" style="width: 18%">体重：<span>
+                                            <div class="layui-input-inline" style="width: 40%">
+                                                <input type="text" name="text"
+                                                       placeholder="" autocomplete="off" class="layui-input"
+                                                       id="updateStudentWight">
+                                             </div>
+                                        </span>
+                                            <span>kg</span>
+                                        </th>
+
+
+                                        <th colspan="3">华侨、港澳台:<span>
+                                        <div class="layui-inline" pane="" id="update_isOut">
+                                            <label class="layui-form-label" style="width: auto"></label>
+                                            <div class="layui-inline" onclick="student.showAreaInfo()">
+                                               <input name="isOut" value="是" title="是"
+                                                      type="radio">
+                                               <input name="isOut" value="否" title="否" type="radio">
+                                            </div>
+                                        </div>
+                                        </span></th>
+
+
+                                    </tr>
+
+                                    <tr>
+
+                                        <th colspan="2">血型：<span>
+                                        <div class="layui-input-inline"
+                                        >
+                                          <select name="quiz1" lay-filter="updateStudentBloodType"
+                                                  id="updateStudentBloodType">
+                                            <option value="">请选择血型</option>
+                                            <option value="1">O型</option>
+                                            <option value="2">A型</option>
+                                            <option value="3">B型</option>
+                                            <option value="4">AB型</option>
+                                            <option value="5">RH阴性</option>
+                                          </select>
+                                        </div>
+                                    </span></th>
+
+                                        <th colspan="4">健康状况：<span>
+                                            <div class="layui-input-inline">
+                                                <div class="layui-inline" pane="" id="health">
+                                                    <label class="layui-form-label" style="width: auto"></label>
+                                                    <div class="layui-inline">
+                                                       <input name="health" value="良好" title="良好"
+                                                              type="radio">
+                                                       <input name="health" value="其它" title="其它" type="radio">
+                                                    </div>
+                                                </div>
+                                             </div>
+                                        </span></th>
+                                    </tr>
+
+                                    <tr class="layui-form">
+                                        <th colspan="6"><span>宗教信仰：</span>
+
+                                            <div class="layui-input-inline" style="width: 80%">
+                                                <div class="layui-inline">
+                                                    <input name="religiousBelief" value="0" lay-filter="religiousBelief"  title="无" type="radio" id="religiousBelief_none">
+                                                    <input name="religiousBelief" value="1" lay-filter="religiousBelief" title="有" type="radio" id="religiousBelief_has">
+                                                </div>
+                                                <div class="layui-inline" style="width: 60%">
+                                                    <input type="text" name="title" id="religiousBelief"
+                                                           autocomplete="off" placeholder="无" style="display: none"
+                                                           class="layui-input">
+                                                </div>
+                                            </div>
+                                        </th>
+                                    </tr>
+                                    <tr style="display: none">
+                                        <th colspan="4">困难类别：<span>
+                                            <div class="layui-input-inline" style="width: 60%">
+                                                <div class="layui-inline" pane="" id="update_hard_type">
+                                            <label class="layui-form-label" style="width: auto"></label>
+                                            <div class="layui-inline">
+                                               <input name="update_hard_type" value="" title="不是" type="radio" checked>
+                                               <input name="update_hard_type" value="一般" title="一般" type="radio">
+                                               <input name="update_hard_type" value="特困" title="特困" type="radio">
+                                            </div>
+                                        </div>
+                                             </div>
+                                        </span></th>
+
+                                    </tr>
+
+                                    <tr>
+                                        <th colspan="6">住宿类型:<span>
+                                        <div class="layui-inline" pane="" id="update_accommodation_type">
+                                            <label class="layui-form-label" style="width: auto"></label>
+                                            <div class="layui-inline" onclick="student.showAreaInfo()">
+                                               <input name="accommodation_type" value="2" title="校外"
+                                                      type="radio">
+                                               <input name="accommodation_type" value="1" title="校内" type="radio">
+                                            </div>
+                                        </div>
+                                    </span></th>
+                                    </tr>
+
+                                    <tr id="dorms">
+                                        <th colspan="6"><span><span style="font-weight: bold"></span>
+
+                                                <div class="layui-input-inline" style="width: 100%">
+                                                <label class="layui-form-label" style="width: auto;margin-left: -15px">宿舍信息: </label>
+                                                <div class="layui-input-inline" style="width: 60%">
+                                                    <input type="text" name="idcard_address" placeholder="请输入宿舍信息"
+                                                           autocomplete="off" class="layui-input" id="updateDorms"
+                                                           readonly style="border: none">
+                                                </div>
+                                                <span style="float: right">
+                                                     <button class="layui-btn"
+                                                             onclick="student.showUpdateDorms()">编辑地址信息</button>
+                                                </span>
+                                            </div>
+                                            </span>
+                                            <div id="showUpdateDorms" style="display: none" class="">
+                                                <br>
+                                                <form class="form-inline">
+                                                    <div class="layui-input-inline">
+                                                        <label class="layui-form-label">区</label>
+                                                        <div class="layui-inline">
+                                                            <div class="layui-input-inline">
+                                                                <select name="modules"
+                                                                        lay-filter="modules_3"
+                                                                        id="queryAreas">
+                                                                    <option value="">请选择</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="layui-input-inline">
+                                                        <label class="layui-form-label">楼层</label>
+                                                        <div class="layui-inline">
+                                                            <div class="layui-input-inline">
+                                                                <select name="modules1"
+                                                                        lay-filter="modules_2"
+                                                                        lay-search=""
+                                                                        id="queryFloors">
+                                                                    <option value="">请选择</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="layui-input-inline">
+                                                        <label class="layui-form-label">宿舍</label>
+                                                        <div class="layui-inline">
+                                                            <div class="layui-input-inline">
+                                                                <select name="modules1"
+                                                                        lay-filter="modules_1"
+                                                                        lay-search=""
+                                                                        id="queryRooms">
+                                                                    <option value="">请选择</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+
+                                        </th>
+                                    </tr>
+                                    <tr id="OffCampusAddress" style="display: none">
+                                        <th colspan="6"><span><span style="font-weight: bold"></span>
+
+                                                <div class="layui-input-inline" style="width: 100%">
+                                                <label class="layui-form-label" style="width: auto;margin-left: -15px">校外住址信息: </label>
+                                                <div class="layui-input-inline" style="width: 60%">
+                                                    <input type="text" name="idcard_address" placeholder="请输入校外住址信息信息"
+                                                           autocomplete="off" class="layui-input"
+                                                           id="updateOffCampusAddress"
+                                                           readonly style="border: none">
+                                                </div>
+                                                <span style="float: right">
+                                                     <button class="layui-btn"
+                                                             onclick="student.showUpdateOffCampusAddress()">编辑地址信息</button>
+                                                </span>
+                                            </div>
+                                            </span>
+                                            <div id="showUpdateOffCampusAddress" style="display: none">
+                                                <br>
+                                                <form class="form-inline">
+                                                    <div id="distpicker12">
+                                                        <div class="form-group">
+                                                            <label class="sr-only" for="province12">Province</label>
+                                                            <select class="form-control" id="province12"
+                                                                    onchange="selectProvince12(this)"
+                                                                    lay-ignore></select>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="sr-only" for="city12">City</label>
+                                                            <select class="form-control" id="city12"
+                                                                    onchange="selectCity12(this)"
+                                                                    lay-ignore></select>
+                                                        </div>
+                                                        <div class="form-group" style="margin-right: -5px">
+                                                            <label class="sr-only" for="district12">District</label>
+                                                            <select class="form-control" id="district12"
+                                                                    onchange="selectDistrict12(this)"
+                                                                    lay-ignore></select>
+                                                        </div>
+                                                        <div class="layui-input-block form-group"
+                                                             style="margin-left: 5px;width: 250px">
+                                                            <input type="text" name="detailedAddress"
+                                                                   placeholder="请输入详细地址"
+                                                                   autocomplete="off" class="layui-input"
+                                                                   id="detailedOffCampusAddress">
+                                                        </div>
+                                                    </div>
+                                                </form>
+
+                                            </div>
+
+                                        </th>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+
                                 <h4 style="color: #00ab9f;font-weight: bold ;padding-top: 15px;">获奖或处分</h4>
                                 <table class="layui-table lay-even " data-name="articleCatData"
                                        style="border: 0px solid red" id="updateStudent_Award_or_punishment">
