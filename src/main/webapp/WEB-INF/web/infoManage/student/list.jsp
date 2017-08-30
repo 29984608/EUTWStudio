@@ -900,16 +900,15 @@
                     $("#updateStudent_Award_or_punishment").append(`<tr style="margin-bottom: 20px;">
                                         <th colspan="2"><span>时间：
                                             <div class="layui-input-inline">
-                                                <input name="date" lay-verify="date" placeholder="yyyy-mm-dd"
+                                                <input name="date" lay-verify="date" placeholder="yyyy-mm-dd" readonly="readonly"
                                                        autocomplete="off" class="layui-input updateStudent_Award_or_punishment_date"
-                                                       onclick="layui.laydate({elem: this})" type="text"
-                                                       id="updateStudent_Award_or_punishment_date">
+                                                        type="text" id="updateStudent_Award_or_punishment_date">
                                             </div>
                                            </th>
 
                                         <th colspan="4" width="600px"><span>内容：
                                             <div class="layui-input-inline" style="width: 90%">
-                                                <input type="text" name="text"
+                                                <input type="text" name="text" readonly="readonly"
                                                        placeholder="内容" autocomplete="off" class="layui-input updateStudent_Award_or_punishment_content" id="updateStudent_Award_or_punishment_content">
                                              </div>
                                         </span></th>
