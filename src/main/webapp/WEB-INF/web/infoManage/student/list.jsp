@@ -638,7 +638,6 @@
 
                             var count3 = $("#update_student_status option").length;
                             for (var i = 0; i < count3; i++) {
-//                                console.log($("#update_student_status").get(0).options[i].value);
                                 if ($("#update_student_status").get(0).options[i].value == studentList.student_status) {
                                     $("#update_student_status").get(0).options[i].selected = true;
                                 }
@@ -922,6 +921,7 @@
                                                        placeholder="内容" autocomplete="off" class="layui-input updateStudent_Award_or_punishment_content" id="updateStudent_Award_or_punishment_content">
                                              </div>
                                         </span></th>
+                                        <th>证明人：<span  class=" updateStudent_witness"id = "updateStudent_witness"></span></th>
                                         <th>
                                             <button class="layui-btn  layui-btn-danger" onclick="student.delAward(this,` + AwardOrPunishmentList[i].id + `)" style="margin-bottom: 10px;float: right;"><i class="layui-icon">&#xe640;</i> 删除</button>
 </th>
@@ -932,11 +932,12 @@
 
                 let updateStudent_Award_or_punishment_date = $(".updateStudent_Award_or_punishment_date");
                 let updateStudent_Award_or_punishment_content = $(".updateStudent_Award_or_punishment_content");
+                let updateStudent_witness = $(".updateStudent_witness");
                 for (let i = 0; i < AwardOrPunishmentList.length; i++) {
                     $(updateStudent_Award_or_punishment_date[i]).val(AwardOrPunishmentList[i].date);
                     $(updateStudent_Award_or_punishment_content[i]).val(AwardOrPunishmentList[i].centent);
+                    $(updateStudent_witness[i]).html(AwardOrPunishmentList[i].witness);
                 }
-
             },
 
             addAwardOrPunishmentInfo: function () {
@@ -977,7 +978,7 @@
             addAwardOrPunishmentByUpdate: function () {
                 let dateAwardOrPunishment = $("#dateAwardOrPunishment").val();
                 let contentAwardOrPunishment = $("#contentAwardOrPunishment").val();
-
+                let witness = $("#witness").val();
                 layer.confirm('该操作将直接添加，无需更新！是否添加？', {icon: 3, title: '提示'}, function (index) {
                     let studentNo = studentInfo.no;
                     $.post(baseUrl + "/student/addAwardOrPunishmentByUpdate",
@@ -985,6 +986,7 @@
                             studentNo: studentNo,
                             date: dateAwardOrPunishment,
                             centent: contentAwardOrPunishment,
+                            witness:witness
                         },
                         function (data) {
                             if (data.result) {
@@ -1074,7 +1076,6 @@
                 let placeExperience = $("#placeExperience").val();
                 let staffExperience = $("#staffExperience").val();
                 let studentNo = studentInfo.no;
-
 
                 layer.confirm('确定添加？', {icon: 3, title: '提示'}, function (index) {
                     $.post(baseUrl + "/student/addExperienceByUpdate",
@@ -1747,9 +1748,7 @@
             });
 
             //搜索条件中显示全部的专业信息
-//            console.log(allProfessionInfo)
 //            $("#profession_search").html(`<option value="">专业</option>` + loadOptionsHtmlOfClass(allProfessionInfo));
-
 
             form.on('select(department)', function (data) {
                 let department_id = data.value;

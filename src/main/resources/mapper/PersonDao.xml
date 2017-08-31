@@ -1050,7 +1050,7 @@ WHERE student.no =#{studentNo}
     </select>
 
     <insert id="addAwardOrPunishmentByUpdate" parameterType="OwnOrPunishment">
-        insert into t_own_punishment (date,centent,studentNo) values (#{date},#{centent},#{studentNo})
+        insert into t_own_punishment (date,centent,studentNo,witness) values (#{date},#{centent},#{studentNo},#{witness})
     </insert>
 
     <select id="showAutoProfessionListByDepartment" parameterType="string" resultType="map">

@@ -4,14 +4,24 @@ public class OwnOrPunishment {
     private String date;
     private String centent;
     private String studentNo;
+    private String witness;
 
     public OwnOrPunishment() {
     }
 
-    public OwnOrPunishment(String date, String centent, String studentNo) {
+    public OwnOrPunishment(String date, String centent, String studentNo, String witness) {
         this.date = date;
         this.centent = centent;
         this.studentNo = studentNo;
+        this.witness = witness;
+    }
+
+    public String getWitness() {
+        return witness;
+    }
+
+    public void setWitness(String witness) {
+        this.witness = witness;
     }
 
     public String getCentent() {
@@ -44,6 +54,7 @@ public class OwnOrPunishment {
                 "date='" + date + '\'' +
                 ", centent='" + centent + '\'' +
                 ", studentNo='" + studentNo + '\'' +
+                ", witness='" + witness + '\'' +
                 '}';
     }
 }

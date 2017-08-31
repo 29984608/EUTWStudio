@@ -1426,7 +1426,7 @@
                                     </tbody>
                                 </table>
 
-                                <h4 style="color: #00ab9f;font-weight: bold ;padding-top: 15px;">获奖或处分</h4>
+                                <h4 style="color: #00ab9f;font-weight: bold ;padding-top: 15px;">获奖与荣誉</h4>
                                 <table class="layui-table lay-even " data-name="articleCatData"
                                        style="border: 0px solid red" id="updateStudent_Award_or_punishment">
                                     <tbody>
@@ -1434,7 +1434,7 @@
                                     </tbody>
                                 </table>
                                 <button class="layui-btn" onclick="student.addAwardOrPunishmentInfo()"><i
-                                        class="layui-icon">&#xe61f;</i> 添加荣誉或处分
+                                        class="layui-icon">&#xe61f;</i> 添加获奖与荣誉
                                 </button>
                             </div>
 
@@ -1641,14 +1641,24 @@
             </td>
         </tr>
 
-
         <tr>
             <td>
                 <div class="layui-form-item">
                     <label class="layui-form-label" style="width: auto;margin-right: 0px">内容</label>
-                    <div class="layui-input-inline" style="width: 80%">
+                    <div class="layui-input-inline" style="width: auto">
                         <input type="text" name="staffExperience" id="contentAwardOrPunishment" lay-verify="required"
                                placeholder="请输入详细内容" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="layui-form-item">
+                    <label class="layui-form-label" style="width: auto;margin-right: 0px">证明人</label>
+                    <div class="layui-input-inline" style="width: 160px">
+                        <input type="text" name="witness" id="witness" style="background-color: #EEEEEE"
+                                autocomplete="off" class="layui-input" disabled="disabled">
                     </div>
                 </div>
             </td>
@@ -1666,6 +1676,7 @@
 <script src="${baseurl}/js/city/distpicker.data.js"></script>
 <script src="${baseurl}/js/separator.js" charset="utf-8"></script>
 <script type="text/javascript">
+    $("#witness").val("<shiro:principal property="name"/>");
     $("#distpicker").distpicker({
         autoSelect: false
     });
