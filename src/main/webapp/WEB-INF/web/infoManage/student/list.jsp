@@ -431,7 +431,12 @@
                     $("#idcard").text("").append(data.student[0].idcard);
                     $("#native_place").text("").append(data.student[0].native_place);
                     $("#born").html(getBirthday(data.student[0].idcard));
-                    $("#political_status").text("").append(data.student[0].political_status);
+                    if( data.student[0].political_status === "请选择"){
+                        $("#political_status").text("");
+
+                    }else {
+                        $("#political_status").text("").append(data.student[0].political_status);
+                    }
                     $("#blood").text("").append(data.student[0].blood);
                     $("#height").text("").append(data.student[0].height);
                     $("#weight").text("").append(data.student[0].weight);
@@ -441,7 +446,11 @@
                     $("#student_contact_method").text("").append(data.student[0].student_contact_method);
                     $("#actual_address").text("").append(data.student[0].actual_address);
                     $("#family").html("")
+
                     for (var i = 0; i < data.family.length; i++) {
+                        if(data.family[i].political_status === "请选择"){
+                            data.family[i].political_status = "";
+                        }
                         $("#family").append("<tr> <th colspan='5' >" + data.family[i].relationship + "：" + data.family[i].name + "</th>" +
                             "<th colspan='4' style='width: 70px'>职务：" + data.family[i].staff + "</th>" +
                             "<th colspan='4'>联系电话：" + data.family[i].phone + "</th></tr>" +
@@ -521,11 +530,10 @@
                             $("#updateStudentNo").val(studentList.no)
                             $("#updateStudentName").val(studentList.name);
                             $("input:radio[value='" + studentList.gender + "'][name='sexOfUpdate']").prop('checked', 'true');
-                            console.log(data)
                             if (famousFamily != null) {
-
                                 $("#updateStudentNationalities").html("").append(loadOptionsHtmlOfFamousFamilyList(famousFamilyList, studentList.famous_family));
-
+                            }else{
+                                $("#updateStudentNationalities").html("").append(loadOptionsHtmlOfFamousFamilyList(famousFamilyList, "-"));
                             }
                             $("#updateStudentIdCard").val(studentList.idcard);
                             $("#updateStudentNativePlace").val(studentList.native_place);
@@ -558,7 +566,7 @@
                                 if ($("#updateStudentPoliticalOutlook").get(0).options[i].text === studentList.political_status) {
                                     $("#updateStudentPoliticalOutlook").get(0).options[i].selected = true;
                                 }
-                                if (studentList.political_status != "中共党员" && studentList.political_status != "预备党员" && studentList.political_status != "共青团员" && studentList.political_status != "积极分子" && studentList.political_status != "群众" && studentList.political_status != "") {
+                                if (studentList.political_status != "中共党员" && studentList.political_status != "预备党员" && studentList.political_status != "共青团员" && studentList.political_status != "积极分子" && studentList.political_status != "群众" && studentList.political_status != "请选择" && studentList.political_status != "") {
                                     $("#updateStudentPoliticalOutlook").get(0).options[count1 - 1].selected = true;
                                     $("#otherParty").show();
                                     $("#otherUpdateStudentPoliticalOutlook").val(studentList.political_status);
@@ -784,7 +792,7 @@
                             <div class="political">
                                政治面貌： <div class="layui-input-inline" style="width: 30%;" >
                                  <select name="politicalOutlook1" lay-filter="politicalOutlookParent"  class="updateStudentParent_political_status">
-                                   <option value="">请选择</option>
+                                   <option value="">请选择</option>  <option value="">请选择</option>
                                    <option value="1" ` + (politicalStatus === "中共党员" ? "selected" : "") + `>中共党员</option>
                                    <option value="2" ` + (politicalStatus === "预备党员" ? "selected" : "") + `>预备党员</option>
                                    <option value="3" ` + (politicalStatus === "共青团员" ? "selected" : "") + `>共青团员</option>
@@ -1087,7 +1095,7 @@
             },
 
             isOther: function (political) {
-                if (political != "中共党员" && political != "预备党员" && political != "共青团员" && political != "积极分子" && political != "群众")
+                if (political != "中共党员" && political != "预备党员" && political != "共青团员" && political != "积极分子" && political != "群众" && political != "请选择" )
                     return true;
 
                 return false;
@@ -1647,7 +1655,7 @@
         }
 
         function loadOptionsHtmlOfFamousFamilyList(data, selectId) {
-            let _html = "";
+            let _html = "<option value=''>请选择</option><option value=''>请选择</option>";
             for (let i = 0; i < data.length; ++i) {
                 if (selectId == data[i].para_no) {
                     _html += `<option  selected value="` + data[i].para_no + `">` + data[i].para_dispname + `</option>`;

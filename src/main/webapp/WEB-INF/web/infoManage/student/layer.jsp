@@ -872,6 +872,7 @@
                                             <div class="layui-input-inline">
                                                 <select lay-filter="update_student_status" id="update_student_status">
                                                     <option value=""></option>
+                                                        <option value="">请选择</option>
                                                         <option value="在读">在读</option>
                                                         <option value="复学">复学</option>
                                                         <option value="入伍">入伍</option>
@@ -1030,6 +1031,7 @@
                                              <div class="layui-input-inline" style="width: 30%">
                                                 <select lay-filter="update_payment_status" id="update_payment_status">
                                                     <option value=""></option>
+                                                    <option value="">请选择</option>
                                                     <option value="1">全额</option>
                                                     <option value="2">缓交</option>
                                                     <option value="3">分期</option>
@@ -1054,6 +1056,7 @@
                                              <div class="layui-input-inline" style="width: 30%">
                                                 <select lay-filter="update_payment_status2" id="update_payment_status2">
                                                     <option value=""></option>
+                                                    <option value="">请选择</option>
                                                     <option value="1">全额</option>
                                                     <option value="2">缓交</option>
                                                     <option value="3">分期</option>
@@ -1077,6 +1080,7 @@
                                              <div class="layui-input-inline" style="width: 30%">
                                                 <select lay-filter="update_payment_status3" id="update_payment_status3">
                                                     <option value=""></option>
+                                                    <option value="">请选择</option>
                                                     <option value="1">全额</option>
                                                     <option value="2">缓交</option>
                                                     <option value="3">分期</option>
@@ -1099,6 +1103,7 @@
                                              <div class="layui-input-inline" style="width: 30%">
                                                 <select lay-filter="update_payment_status4" id="update_payment_status4">
                                                     <option value=""></option>
+                                                    <option value="">请选择</option>
                                                     <option value="1">全额</option>
                                                     <option value="2">缓交</option>
                                                     <option value="3">分期</option>
@@ -1121,6 +1126,7 @@
                                             <div class="layui-input-inline" style="width: 30%">
                                                 <select lay-filter="update_practical_type" id="update_practical_type">
                                                     <option value=""></option>
+                                                    <option value="">请选择</option>
                                                     <option value="1">合作企业</option>
                                                     <option value="2">自主实习</option>
                                                     <option value="3">创新创业</option>
@@ -1159,6 +1165,7 @@
                                             <div class="layui-input-inline">
                                               <select name="politicalOutlook" lay-filter="politicalOutlook"
                                                       id="updateStudentPoliticalOutlook">
+                                                <option value="">请选择</option>
                                                 <option value="">请选择</option>
                                                 <option value="1">中共党员</option>
                                                 <option value="2">预备党员</option>
@@ -1226,7 +1233,8 @@
                                         >
                                           <select name="quiz1" lay-filter="updateStudentBloodType"
                                                   id="updateStudentBloodType">
-                                            <option value="">请选择血型</option>
+                                            <option value="">请选择</option>
+                                            <option value="">请选择</option>
                                             <option value="1">O型</option>
                                             <option value="2">A型</option>
                                             <option value="3">B型</option>
@@ -1527,6 +1535,7 @@
                     <label class="layui-form-label" style="width: auto">政治面貌</label>
                     <div class="layui-input-inline">
                         <select id="family_political_status" lay-filter="family_political_status">
+                            <option value="">请选择</option>
                             <option value="">请选择</option>
                             <option value="1">中共党员</option>
                             <option value="2">预备党员</option>
