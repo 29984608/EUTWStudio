@@ -938,8 +938,27 @@ WHERE student.no =#{studentNo}
                 t_student.teacher_id = #{teacher_id},
             </if>
             <if test="community_teacher_id != null ">
-                t_student.community_teacher_id = #{community_teacher_id}
+                t_student.community_teacher_id = #{community_teacher_id},
             </if>
+            <if test="first_scholarship != null ">
+                t_student.first_scholarship = #{first_scholarship},
+            </if>
+            <if test="first_stipend != null ">
+                t_student.first_stipend = #{first_stipend},
+            </if>
+            <if test="second_scholarship != null ">
+                t_student.second_scholarship = #{second_scholarship},
+            </if>
+            <if test="second_stipend != null ">
+                t_student.second_stipend = #{second_stipend},
+            </if>
+            <if test="third_scholarship != null ">
+                t_student.third_scholarship = #{third_scholarship},
+            </if>
+            <if test="third_stipend != null ">
+                t_student.third_stipend = #{third_stipend}
+            </if>
+
         </set>
         WHERE t_student.no = #{no}
     </update>

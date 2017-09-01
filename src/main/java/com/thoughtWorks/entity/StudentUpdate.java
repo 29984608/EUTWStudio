@@ -72,6 +72,13 @@ public class StudentUpdate {
     private String community_teacher_id;
     private String group;
 
+    private String first_scholarship;
+    private String first_stipend;
+    private String second_scholarship;
+    private String second_stipend;
+    private String third_scholarship;
+    private String third_stipend;
+
     public String getPayment_status_forth_year() {
         return payment_status_forth_year;
     }
@@ -625,6 +632,54 @@ public class StudentUpdate {
         this.hard_type = hard_type;
     }
 
+    public String getFirst_scholarship() {
+        return first_scholarship;
+    }
+
+    public void setFirst_scholarship(String first_scholarship) {
+        this.first_scholarship = first_scholarship;
+    }
+
+    public String getFirst_stipend() {
+        return first_stipend;
+    }
+
+    public void setFirst_stipend(String first_stipend) {
+        this.first_stipend = first_stipend;
+    }
+
+    public String getSecond_scholarship() {
+        return second_scholarship;
+    }
+
+    public void setSecond_scholarship(String second_scholarship) {
+        this.second_scholarship = second_scholarship;
+    }
+
+    public String getSecond_stipend() {
+        return second_stipend;
+    }
+
+    public void setSecond_stipend(String second_stipend) {
+        this.second_stipend = second_stipend;
+    }
+
+    public String getThird_scholarship() {
+        return third_scholarship;
+    }
+
+    public void setThird_scholarship(String third_scholarship) {
+        this.third_scholarship = third_scholarship;
+    }
+
+    public String getThird_stipend() {
+        return third_stipend;
+    }
+
+    public void setThird_stipend(String third_stipend) {
+        this.third_stipend = third_stipend;
+    }
+
     @Override
     public String toString() {
         return "StudentUpdate{" +
@@ -679,6 +734,7 @@ public class StudentUpdate {
                 ", payment_status_first_year='" + payment_status_first_year + '\'' +
                 ", payment_status_second_year='" + payment_status_second_year + '\'' +
                 ", payment_status_third_year='" + payment_status_third_year + '\'' +
+                ", payment_status_forth_year='" + payment_status_forth_year + '\'' +
                 ", practice_learning_type='" + practice_learning_type + '\'' +
                 ", stay_type='" + stay_type + '\'' +
                 ", off_school_stay_address='" + off_school_stay_address + '\'' +
@@ -692,8 +748,16 @@ public class StudentUpdate {
                 ", arrears_first_year='" + arrears_first_year + '\'' +
                 ", arrears_third_year='" + arrears_third_year + '\'' +
                 ", arrears_second_year='" + arrears_second_year + '\'' +
+                ", arrears_forth_year='" + arrears_forth_year + '\'' +
                 ", teacher_id='" + teacher_id + '\'' +
                 ", community_teacher_id='" + community_teacher_id + '\'' +
+                ", group='" + group + '\'' +
+                ", first_scholarship='" + first_scholarship + '\'' +
+                ", first_stipend='" + first_stipend + '\'' +
+                ", second_scholarship='" + second_scholarship + '\'' +
+                ", second_stipend='" + second_stipend + '\'' +
+                ", third_scholarship='" + third_scholarship + '\'' +
+                ", third_stipend='" + third_stipend + '\'' +
                 '}';
     }
 }

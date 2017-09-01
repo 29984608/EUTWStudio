@@ -1229,8 +1229,7 @@
                                     <tr>
 
                                         <th colspan="2">血型：<span>
-                                        <div class="layui-input-inline"
-                                        >
+                                        <div class="layui-input-inline">
                                           <select name="quiz1" lay-filter="updateStudentBloodType"
                                                   id="updateStudentBloodType">
                                             <option value="">请选择</option>
@@ -1422,7 +1421,86 @@
 
                                         </th>
                                     </tr>
+                                    <tr>
+                                        <th colspan="2"><span style="margin-right: 40px;">一年级:</span>奖学金：
+                                            <div class="layui-input-inline">
+                                                <select name="first_scholarship" lay-filter="updateStudentBloodType"
+                                                        id="first_scholarship">
+                                                    <option value="">请选择</option>
+                                                    <option value="">请选择</option>
+                                                    <option  value="国家奖学金">国家奖学金</option>
+                                                    <option value="励志奖学金">励志奖学金</option>
+                                                </select>
+                                            </div>
+                                        </th>
+                                        <th colspan="3">助学金：
+                                            <div class="layui-input-inline">
 
+                                                <select name="first_stipend" lay-filter="updateStudentBloodType"
+                                                        id="first_stipend">
+                                                    <option value="">请选择</option>
+                                                    <option value="">请选择</option>
+                                                    <option value="一般贫困">一般贫困</option>
+                                                    <option value="特殊贫困">特殊贫困</option>
+                                                    <option value="建档立卡">建档立卡</option>
+                                                </select>
+                                            </div>
+                                        </th>
+                                    </tr>
+
+                                    <tr>
+                                        <th colspan="2"><span style="margin-right: 40px;">二年级:</span>奖学金：
+                                            <div class="layui-input-inline">
+                                                <select name="second_scholarship" lay-filter="updateStudentBloodType"
+                                                        id="second_scholarship">
+                                                    <option value="">请选择</option>
+                                                    <option value="">请选择</option>
+                                                    <option value="国家奖学金">国家奖学金</option>
+                                                    <option value="励志奖学金">励志奖学金</option>
+                                                </select>
+                                            </div>
+                                        </th>
+                                        <th colspan="3">助学金：
+                                            <div class="layui-input-inline">
+
+                                                <select name="second_stipend" lay-filter="updateStudentBloodType"
+                                                        id="second_stipend">
+                                                    <option value="">请选择</option>
+                                                    <option value="">请选择</option>
+                                                    <option value="一般贫困">一般贫困</option>
+                                                    <option value="特殊贫困">特殊贫困</option>
+                                                    <option value="建档立卡">建档立卡</option>
+                                                </select>
+                                            </div>
+                                        </th>
+                                    </tr>
+
+                                    <tr>
+                                        <th colspan="2"><span style="margin-right: 40px;">三年级:</span>奖学金：
+                                            <div class="layui-input-inline">
+                                                <select name="third_scholarship" lay-filter="updateStudentBloodType"
+                                                        id="third_scholarship">
+                                                    <option value="">请选择</option>
+                                                    <option value="">请选择</option>
+                                                    <option value="国家奖学金">国家奖学金</option>
+                                                    <option value="励志奖学金">励志奖学金</option>
+                                                </select>
+                                            </div>
+                                        </th>
+                                        <th colspan="3">助学金：
+                                            <div class="layui-input-inline">
+
+                                                <select name="third_stipend" lay-filter="updateStudentBloodType"
+                                                        id="third_stipend">
+                                                    <option value="">请选择</option>
+                                                    <option value="">请选择</option>
+                                                    <option value="一般贫困">一般贫困</option>
+                                                    <option value="特殊贫困">特殊贫困</option>
+                                                    <option value="建档立卡">建档立卡</option>
+                                                </select>
+                                            </div>
+                                        </th>
+                                    </tr>
                                     </tbody>
                                 </table>
 
@@ -1658,7 +1736,7 @@
                     <label class="layui-form-label" style="width: auto;margin-right: 0px">证明人</label>
                     <div class="layui-input-inline" style="width: 160px">
                         <input type="text" name="witness" id="witness" style="background-color: #EEEEEE"
-                                autocomplete="off" class="layui-input" disabled="disabled">
+                               autocomplete="off" class="layui-input" disabled="disabled">
                     </div>
                 </div>
             </td>
@@ -1737,10 +1815,10 @@
 
     function selectDistrict5(e) {
         D_school_account_where_the_police_station_detailed = C_school_account_where_the_police_station_detailed + "-" + e.options[e.selectedIndex].text;
-        if(e.options[e.selectedIndex].text === "—— 区/县 ——"){
+        if (e.options[e.selectedIndex].text === "—— 区/县 ——") {
             $("#school_account_where_the_police_station_detailed").val(C_school_account_where_the_police_station_detailed);
             this_school_account_where_the_police_station_detailed = C_school_account_where_the_police_station_detailed;
-        }else{
+        } else {
             $("#school_account_where_the_police_station_detailed").val(D_school_account_where_the_police_station_detailed);
             this_school_account_where_the_police_station_detailed = D_school_account_where_the_police_station_detailed;
         }
@@ -1811,10 +1889,10 @@
 
     function selectDistrict2(e) {
         D_Pre_enrollment_file_unit = C_Pre_enrollment_file_unit + "-" + e.options[e.selectedIndex].text;
-        if(e.options[e.selectedIndex].text === "—— 区/县 ——"){
+        if (e.options[e.selectedIndex].text === "—— 区/县 ——") {
             $("#Pre_enrollment_file_unit").val(C_Pre_enrollment_file_unit);
             this_Pre_enrollment_file_unit = C_Pre_enrollment_file_unit;
-        }else{
+        } else {
             $("#Pre_enrollment_file_unit").val(D_Pre_enrollment_file_unit);
             this_Pre_enrollment_file_unit = D_Pre_enrollment_file_unit;
         }
@@ -1851,9 +1929,9 @@
 
     function selectDistrict1(e) {
         D_update_name_of_the_source = C_update_name_of_the_source + "-" + e.options[e.selectedIndex].text;
-        if(e.options[e.selectedIndex].text === "—— 区/县 ——"){
+        if (e.options[e.selectedIndex].text === "—— 区/县 ——") {
             $("#update_name_of_the_source").val(C_update_name_of_the_source);
-        }else{
+        } else {
             $("#update_name_of_the_source").val(D_update_name_of_the_source);
         }
 
@@ -1893,10 +1971,10 @@
 
     function selectDistrict3(e) {
         D_detailedAddresses = C_detailedAddresses + "-" + e.options[e.selectedIndex].text;
-        if(e.options[e.selectedIndex].text === "—— 区/县 ——"){
+        if (e.options[e.selectedIndex].text === "—— 区/县 ——") {
             $("#detailedAddresses").val(C_detailedAddresses);
             this_detailedAddresses = C_detailedAddresses;
-        }else{
+        } else {
             $("#detailedAddresses").val(D_detailedAddresses);
             this_detailedAddresses = D_detailedAddresses;
         }
@@ -1941,10 +2019,10 @@
 
     function selectDistrict13(e) {
         D_pre_school_work = C_pre_school_work + "-" + e.options[e.selectedIndex].text;
-        if(e.options[e.selectedIndex].text === "—— 区/县 ——"){
+        if (e.options[e.selectedIndex].text === "—— 区/县 ——") {
             $("#pre_school_work").val(C_pre_school_work);
             this_pre_school_work = C_pre_school_work;
-        }else{
+        } else {
             $("#pre_school_work").val(D_pre_school_work);
             this_pre_school_work = D_pre_school_work;
         }
@@ -1988,10 +2066,10 @@
 
     function selectDistrict0(e) {
         D_Identity_card_address = C_Identity_card_address + "-" + e.options[e.selectedIndex].text;
-        if(e.options[e.selectedIndex].text === "—— 区/县 ——"){
+        if (e.options[e.selectedIndex].text === "—— 区/县 ——") {
             $("#Identity_card_address").val(C_Identity_card_address);
             this_Identity_card_address = C_Identity_card_address;
-        }else{
+        } else {
             $("#Identity_card_address").val(D_Identity_card_address);
             this_Identity_card_address = D_Identity_card_address;
         }
@@ -2031,9 +2109,9 @@
 
     function selectDistrict9(e) {
         D_updateStudentNativePlace = C_updateStudentNativePlace + "-" + e.options[e.selectedIndex].text;
-        if(e.options[e.selectedIndex].text === "—— 区/县 ——"){
+        if (e.options[e.selectedIndex].text === "—— 区/县 ——") {
             $("#updateStudentNativePlace").val(C_updateStudentNativePlace);
-        }else{
+        } else {
             $("#updateStudentNativePlace").val(D_updateStudentNativePlace);
         }
     }

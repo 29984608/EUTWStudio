@@ -680,6 +680,43 @@
                                 }
                             }
 
+                            var count11 = $("#first_scholarship option").length;
+                            for (var i = 0; i < count11; i++) {
+                                if ($("#first_scholarship").get(0).options[i].text === studentList.first_scholarship) {
+                                    $("#first_scholarship").get(0).options[i].selected = true;
+                                }
+                            }
+                            var count12 = $("#first_stipend option").length;
+                            for (var i = 0; i < count12; i++) {
+                                if ($("#first_stipend").get(0).options[i].text === studentList.first_stipend) {
+                                    $("#first_stipend").get(0).options[i].selected = true;
+                                }
+                            }
+                            var count13 = $("#second_scholarship option").length;
+                            for (var i = 0; i < count13; i++) {
+                                if ($("#second_scholarship").get(0).options[i].text === studentList.second_scholarship) {
+                                    $("#second_scholarship").get(0).options[i].selected = true;
+                                }
+                            }
+                            var count14 = $("#second_stipend option").length;
+                            for (var i = 0; i < count14; i++) {
+                                if ($("#second_stipend").get(0).options[i].text === studentList.second_stipend) {
+                                    $("#second_stipend").get(0).options[i].selected = true;
+                                }
+                            }
+                            var count15 = $("#third_stipend option").length;
+                            for (var i = 0; i < count15; i++) {
+                                if ($("#third_stipend").get(0).options[i].text === studentList.third_stipend) {
+                                    $("#third_stipend").get(0).options[i].selected = true;
+                                }
+                            }
+                            var count16 = $("#third_scholarship option").length;
+                            for (var i = 0; i < count16; i++) {
+                                if ($("#third_scholarship").get(0).options[i].text === studentList.third_scholarship) {
+                                    $("#third_scholarship").get(0).options[i].selected = true;
+                                }
+                            }
+
                             //职业导师
                             let update_career_mentor1 = teacherList.filter(item => item.classify === "职业导师");
                             $("#update_career_mentor").html("").append(`<option value=""></option>` + loadOptionsHtmlToTeacher(update_career_mentor1, studentList.teacher_id));
@@ -734,6 +771,8 @@
                                 $("#OffCampusAddress").hide();
                                 $("#dorms").hide();
                             }
+
+
                         }
                     }
                 })
@@ -1431,6 +1470,13 @@
                 //获奖或荣誉
                 var own_punishment = $("#update_award_or_honor").val();
 
+                //奖助学金
+                var first_scholarship = $("#first_scholarship").val();
+                var first_stipend = $("#first_stipend").val();
+                var second_scholarship = $("#second_scholarship").val();
+                var second_stipend = $("#second_stipend").val();
+                var third_scholarship = $("#third_scholarship").val();
+                var third_stipend = $("#third_stipend").val();
 
                 layer.confirm('确定修改？', {icon: 3, title: '提示'}, function (index) {
                     layer.close(index);
@@ -1520,6 +1566,13 @@
                             teacher_id: teacher_id,
                             community_teacher_id: community_teacher_id,
 
+                            //奖助学金
+                            first_scholarship :first_scholarship,
+                            first_stipend :first_stipend,
+                            second_scholarship :second_scholarship,
+                            second_stipend :second_stipend,
+                            third_scholarship :third_scholarship,
+                            third_stipend :third_stipend
 
                         },
 
