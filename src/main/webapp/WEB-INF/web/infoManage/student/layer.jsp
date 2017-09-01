@@ -319,7 +319,7 @@
                             </div>
                             <div style="width: 75%; height: 100%; float: left;padding-left: 25px">
                                 <h4 style="color: #00ab9f;font-weight: bold">基本信息</h4>
-                                <table class="layui-table lay-even " data-name="articleCatData"
+                                <table class="layui-table lay-even" id="student_info" data-name="articleCatData"
                                        style="border: 0px solid red">
                                     <tbody>
                                     <tr>

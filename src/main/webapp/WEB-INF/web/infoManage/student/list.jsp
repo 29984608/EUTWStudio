@@ -276,6 +276,15 @@
     let addAwardOrPunishmentInfoIndex;
     let allProfessionInfo;
     let addExperienceByUpdateOffOpen;
+
+    $(function () {
+        <shiro:lacksPermission name="student:basicInfo">
+        $("#student_info").find("input").attr({disabled: "disabled"});
+        $("#student_info").find("select").attr({disabled: "disabled"});
+        $("#student_info").find("radio").attr({disabled: "disabled"});
+
+        </shiro:lacksPermission>
+    })
     function showDormInfo() {
         let info = [];
         let area = $("#queryAreas").find("option:selected").text();

@@ -16,12 +16,12 @@
 <style type="text/css">
     *{margin:0;padding:0;list-style-type:none;}
     a,img{border:0;}
-    .clock div{position:relative;float:left;background:white;border-radius:6px;width:96px;height:80px;line-height:80px;text-align:center;font-size:60px;margin:0px 5px;}
+    .clock div{position:relative;float:left;background:white;border-radius:6px;width:96px;height:80px;line-height:80px;text-align:center;font-size:27px;margin:0px 5px;}
 </style>
 <body>
 
 <div style="height: 20%;width:100%;z-index: 10000;;text-align: left;" >
-    <div style="padding: 3.5% 0 0 5%;display: inline-block;">
+    <div style="padding: 6.5% 0 0 5%;display: inline-block;">
         <img src="${baseurl}/public/loginStyle/assets/img/backgrounds/eurasia.png" height="55px">
     </div>
         <span style="color: #21a1a1;font-size: 30px;font-weight: bold;margin: 10px 0 0 20px;display: inline-block">高职学院欢迎您！</span>
@@ -34,22 +34,22 @@
             <div class="col-sm-6  form-box" style="position: absolute;margin: 5% 0 0 -4%;" >
                 <div class="htmleaf-content">
                     <div class="wrapper">
-                        <div class="content">
+                        <div style="color: white;font-size: 38px;font-weight: bold;margin: 15px 0 0 -25%;display: inline-block">
                             快乐工作 快乐学习
                         </div>
                     </div>
                 </div>
-                <div class='clock' style="margin: 2% 0 0 20%">
-                    <div class='h shake shake-slow'></div>
-                    <div class='m shake shake-slow'></div>
-                    <div class='s shake shake-slow'></div>
+                <div class='clock' style="margin: 2% 0 0 20%;font-size: 16px;">
+                    <div ><span id ="year"> </span>年</div>
+                    <div ><span id = "month"></span>月</div>
+                    <div ><span id = "date"></span>日</div>
                 </div>
             </div>
-            <div class="col-sm-6 col-sm-offset-5 form-box" style="width: 450px;margin-top: 5%;float: right;">
+            <div class="col-sm-6 col-sm-offset-5 form-box" style="width: 500px;margin-top: 5%;float: right;">
                 <div style="box-shadow: 0 0 3px 3px  seashell">
                     <div class="form-top">
                         <div class="form-top-left" >
-                            <span style="font-size: 25px;font-weight: bold;color: #21a1a1;margin-left: 25%">高职信息管理系统</span>
+                            <span style="font-size: 23px;font-weight: bold;color: #21a1a1;margin-left: 25%">高职学院信息管理系统</span>
                         </div>
                     </div>
                     <div class="form-bottom">
@@ -127,8 +127,13 @@
             });
         }
     });
-
-
+    var myDate = new Date();
+   let year = myDate.getFullYear();
+   let month = myDate.getMonth()+1;
+   let date = myDate.getDate();
+   $("#year").html(year);
+   $("#month").html(month);
+   $("#date").html(date);
 </script>
 </body>
 </html>
