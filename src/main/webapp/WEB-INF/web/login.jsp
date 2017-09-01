@@ -34,16 +34,20 @@
             <div class="col-sm-6  form-box" style="position: absolute;margin: 5% 0 0 -4%;" >
                 <div class="htmleaf-content">
                     <div class="wrapper">
-                        <div style="color: white;font-size: 38px;font-weight: bold;margin: 15px 0 0 -25%;display: inline-block">
+                        <div style="color: white;font-size: 38px;font-weight: bold;display: inline-block">
                             快乐工作 快乐学习
                         </div>
                     </div>
+                    <div class="wrapper">
+                        <div class='clock' style="font-size: 16px;">
+                            <div ><span id ="year"> </span>年</div>
+                            <div ><span id = "month"></span>月</div>
+                            <div ><span id = "date"></span>日</div>
+                        </div>
+                    </div>
+
                 </div>
-                <div class='clock' style="margin: 2% 0 0 20%;font-size: 16px;">
-                    <div ><span id ="year"> </span>年</div>
-                    <div ><span id = "month"></span>月</div>
-                    <div ><span id = "date"></span>日</div>
-                </div>
+
             </div>
             <div class="col-sm-6 col-sm-offset-5 form-box" style="width: 500px;margin-top: 5%;float: right;">
                 <div style="box-shadow: 0 0 3px 3px  seashell">

@@ -5,9 +5,9 @@
     box-sizing: border-box;
     display: flex;
     align-items: center;
-    justify-content: center;
     overflow: auto;
     box-sizing: border-box;
+    margin-left: 70px;
 }
 
 .content {
