@@ -276,11 +276,9 @@
     let addAwardOrPunishmentInfoIndex;
     let allProfessionInfo;
     let addExperienceByUpdateOffOpen;
-<<<<<<< HEAD
     let addDisciplineAndPunishmentInfoIndex;
     let disciplineAndPunishmentListInfo;
     let groupActivitiesListInfo;
-=======
 
     $(function () {
         <shiro:lacksPermission name="student:basicInfo">
@@ -290,7 +288,6 @@
 
         </shiro:lacksPermission>
     })
->>>>>>> bc1b78602487f53b55273c6e9926197cac24f333
     function showDormInfo() {
         let info = [];
         let area = $("#queryAreas").find("option:selected").text();
