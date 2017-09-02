@@ -405,8 +405,8 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public List<Map<String, Object>> queryStudentsClassList() throws Exception {
-        return personDao.queryStudentsClassList();
+    public List<Map<String, Object>> queryStudentsClassList(String searchLevel) throws Exception {
+        return personDao.queryStudentsClassList(searchLevel);
     }
 
     @Override
@@ -489,8 +489,8 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public List<Map<String, Object>> showAutoClassByDepartment(String departmentId) throws Exception {
-        return personDao.showAutoClassByDepartment(departmentId);
+    public List<Map<String, Object>> showAutoClassByDepartment(String departmentId,String searchLevel) throws Exception {
+        return personDao.showAutoClassByDepartment(departmentId,searchLevel);
     }
 
     @Override

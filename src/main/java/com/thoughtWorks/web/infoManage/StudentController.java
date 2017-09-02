@@ -90,7 +90,7 @@ public class StudentController {
 
     @RequestMapping("/studentUpdate")
     @ResponseBody
-    public Map<String, Object> studentUpdate(String studentNo) {
+    public Map<String, Object> studentUpdate(String studentNo,String searchLevel) {
         Map<String, Object> data = new HashMap<>();
         try {
             Map<String, Object> students = personService.queryStudentsToUpdate(studentNo);
@@ -99,7 +99,7 @@ public class StudentController {
             List<Map<String, String>> allProfessionList = personService.queryAllStudentsProfessionList();
             List<Map<String, String>> AwardOrPunishmentList = personService.queryStudentsAwardOrPunishmentList(studentNo);
             List<Map<String, String>> directionList = personService.queryStudentsDirection((String) students.get("department_id"));
-            List<Map<String, Object>> classesList = personService.queryStudentsClassList();
+            List<Map<String, Object>> classesList = personService.queryStudentsClassList(searchLevel);
             List<Map<String, Object>> experienceList = personService.queryStudentExperienceList(studentNo);
             List<Map<String, Object>> teacherList = personService.queryTeacherList();
             List<Map<String, Object>> departmentList = personService.queryDepartmentList();
@@ -328,9 +328,9 @@ public class StudentController {
 
     @RequestMapping("/showAutoClassAndProAndDirByDepartment")
     @ResponseBody
-    public Result showAutoClassAndProAndDirByDepartment(String departmentId) {
+    public Result showAutoClassAndProAndDirByDepartment(String departmentId,String searchLevel) {
         try {
-            List<Map<String, Object>> classesList = personService.showAutoClassByDepartment(departmentId);
+            List<Map<String, Object>> classesList = personService.showAutoClassByDepartment(departmentId,searchLevel);
             List<Map<String, Object>> professionList = personService.showAutoProfessionListByDepartment(departmentId);
             List<Map<String, Object>> directionList = personService.showAutoDirectionListByDepartment(departmentId);
 

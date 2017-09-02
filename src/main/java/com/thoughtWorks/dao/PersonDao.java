@@ -85,7 +85,7 @@ public interface PersonDao {
 
     List<Map<String, String>> queryStudentsDirection(@Param("departmentId") String departmentId) throws Exception;
 
-    List<Map<String, Object>> queryStudentsClassList() throws Exception;
+    List<Map<String, Object>> queryStudentsClassList(@Param("searchLevel") String searchLevel) throws Exception;
 
     List<Map<String, Object>> queryStudentExperienceList(@Param("studentNo") String studentNo) throws Exception;
 
@@ -123,7 +123,7 @@ public interface PersonDao {
 
     List<Map<String,Object>> queryDepartmentList();
 
-    List<Map<String,Object>> showAutoClassByDepartment(@Param("departmentId") String departmentId);
+    List<Map<String,Object>> showAutoClassByDepartment(@Param("departmentId") String departmentId,@Param("searchLevel") String searchLevel);
 
     String queryStudentNameByStudentNo(String studentNo);
 

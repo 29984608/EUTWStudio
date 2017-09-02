@@ -280,6 +280,7 @@
     let addGroupActivitiesIndex;
     let disciplineAndPunishmentListInfo;
     let groupActivitiesListInfo;
+    let searchLevel;
 
     $(function () {
         <shiro:lacksPermission name="student:basicInfo">
@@ -596,9 +597,11 @@
 
             },
             studentUpdate: function (studentName, studentNo) {
+                //当前搜索条件下的年级
+                searchLevel = $("#level_search").val();
                 $.ajax({
                     url: "${baseurl}/student/studentUpdate",
-                    data: {studentNo: studentNo},
+                    data: {studentNo: studentNo,searchLevel:searchLevel},
                     success: function (data) {
                         if (data.result) {
 
@@ -760,6 +763,18 @@
                             for (var i = 0; i < count6; i++) {
                                 if ($("#update_payment_status3").get(0).options[i].text == studentList.payment_status_third_year) {
                                     $("#update_payment_status3").get(0).options[i].selected = true;
+                                }
+                            }
+                            var count4Bypay = $("#update_payment_status4 option").length;
+                            for (var i = 0; i < count4Bypay; i++) {
+                                if ($("#update_payment_status4").get(0).options[i].text == studentList.payment_status_forth_year) {
+                                    $("#update_payment_status4").get(0).options[i].selected = true;
+                                }
+                            }
+                            var count5Bypay = $("#update_payment_status5 option").length;
+                            for (var i = 0; i < count5Bypay; i++) {
+                                if ($("#update_payment_status5").get(0).options[i].text == studentList.payment_status_fifth_year) {
+                                    $("#update_payment_status5").get(0).options[i].selected = true;
                                 }
                             }
                             var count7 = $("#update_practical_type option").length;
@@ -2094,10 +2109,12 @@
         }
 
         function queryClassByDirectionIdAndLevel(directionId, level) {
-            $.post(baseUrl + "/studentClass/queryClassByDirectionIdAndLevel", {
+            $.post(baseUrl + "/studentClass/queryClassByDirectionIdAndLevel",
+                {
                 directionId: directionId,
                 level: level
-            }, function (data) {
+            },
+                function (data) {
                 if (data.result) {
                     $("#student_class").html("<option value=''>请选择</option>" + loadOptionsHtml(data.data, "-"));
                 }
@@ -2317,7 +2334,7 @@
             //监听系,从而动态获取相应的班级、现专业、就业方向
             form.on('select(student_departments)', function (data) {
                 let department_id = data.value;
-                $.post(baseUrl + "/student/showAutoClassAndProAndDirByDepartment", {departmentId: department_id}, function (resultData) {
+                $.post(baseUrl + "/student/showAutoClassAndProAndDirByDepartment", {departmentId: department_id,searchLevel:searchLevel}, function (resultData) {
                     $("#student_class").html(loadOptionsHtmlOfClass(resultData.data.classesList));
                     $("#studentsNowProfessional").html(loadOptionsHtmlOfClass(resultData.data.professionList));
                     $("#employment_direction").html(loadOptionsHtmlOfClass(resultData.data.directionList));
@@ -2327,7 +2344,7 @@
 
             form.on('select(employment_direction)', function (data) {
                 let directionId = data.value;
-                queryClassByDirectionIdAndLevel(directionId, "");
+                queryClassByDirectionIdAndLevel(directionId, searchLevel);
             });
 
             //根据方向动态选择班级
