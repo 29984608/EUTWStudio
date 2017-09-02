@@ -424,6 +424,7 @@
             },
             preview: function (studentNo) {
                 $.post(baseUrl + "/student/update", {studentNo: studentNo}, function (data) {
+                    console.log(data)
                     $("#phone").text("").append(data.student[0].student_contact_method);
                     $("#qq").text("").append(data.student[0].qq);
                     $("#email").text("").append(data.student[0].email);
@@ -437,8 +438,20 @@
                         $("#studentSex").text("").append("男");
                     }
                     $("#famous_family").text("").append(data.student[0].famousFamily);
+                    $("#studentClassify").html(data.student[0].student_classify);
+                    $("#preSchoolName").html(data.student[0].pre_school_name);
+                    $("#account_in").html(data.student[0].account_in);
+                    $("#idcard_address").html(data.student[0].idcard_address);
+                    $("#studentClassify").html(data.student[0].student_classify);
+                    $("#actual_address").html(data.student[0].actual_address);
+                    $("#area_origin_name").html(data.student[0].area_origin_name);
+                    $("#origin_address").html(data.student[0].origin_address);
+                    $("#pre_school_education").html(data.student[0].origin_address);
+                    $("#pre_school_file_where_location").html(data.student[0].pre_school_file_where_location);
+                    $("#pre_school_account_where_station").html(data.student[0].pre_school_account_where_station);
+                    $("#file_in").html(data.student[0].file_in);
                     $("#idcard").text("").append(data.student[0].idcard);
-                    $("#native_place").text("").append(data.student[0].native_place);
+                    $("#native_place").html(data.student[0].native_place);
                     $("#born").html(getBirthday(data.student[0].idcard));
                     if( data.student[0].political_status === "请选择"){
                         $("#political_status").text("");

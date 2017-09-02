@@ -144,9 +144,9 @@
                     <tr>
                         <th colspan="3" style="width:140px;">学号：<span id="studentNo"></span></th>
                         <th colspan="4" style="width:125px;">姓名：<span id="studentName"></span></th>
-                        <th colspan="1" style="width:60px;">性别：<span id="studentSex"></span></th>
-                        <th colspan="1" style="width:87px;">民族：<span id="famous_family"></span></th>
-                        <th colspan="3" style="width:220px">身份证号：<span id="idcard"></span></th>
+                        <th colspan="1" >性别：<span id="studentSex"></span></th>
+                        <th colspan="3" >民族：<span id="famous_family"></span></th>
+                        <th>婚否：<span id="is_marry"></span></th>
                         <th rowspan=" 3 " style="padding: 1px;">
                             <div style="width:100px; height: 140px; border: 0px solid #00ab9f">
                                 <img id="images" class="head_image" style="width:100%;" height="100%"/>
@@ -154,11 +154,10 @@
                         </th>
                     </tr>
                     <tr>
-
-                        <th colspan="3" style="width:162px;">出生日期：<span id="born"></span></th>
-                        <th colspan="5" style="width:230px;">籍贯：<span id="native_place"></span></th>
-                        <th colspan="3" style="width:190px;">政治面貌：<span id="political_status"></span></th>
-                        <th>婚否：<span id="is_marry"></span></th>
+                        <th colspan="5" style="width:220px">身份证号：<span id="idcard"></span></th>
+                        <th colspan="4" style="width:162px;">出生日期：<span id="born"></span></th>
+                        <%--<th colspan="5" style="width:190px;">政治面貌：<span id="political_status"></span></th>--%>
+                        <th colspan="3" style="width:230px;">入学前文化程度：<span id="pre_school_education"></span></th>
                     </tr>
                     <tr>
                         <th colspan="3" style="width:120px;">血型：<span id="blood"></span></th>
@@ -166,23 +165,48 @@
                         <th colspan="3" style="width:170px;">体重：<span id="weight"></span>kg</th>
                         <th colspan="3">健康状况：<span id="health_status"></span></th>
                     </tr>
+
                     <tr>
                         <th colspan="5">联系方式：<span id="phone"></span></th>
-                        <th colspan="4">QQ：<span id="qq"></span></th>
                         <th colspan="4">邮箱：<span id="email"></span></th>
-                    </tr>
-                    <tr>
-                        <th colspan="9">家庭住址：<span id="actual_address"></span></th>
+                        <th colspan="2">QQ：<span id="qq"></span></th>
                         <th colspan="2">邮编编码：<span id="family_zip_code"></span></th>
-                        <th colspan="2">联系电话：<span id="student_contact_method"></span></th>
                     </tr>
-                    <tbody id="family">
-                    </tbody>
                     <tr>
-                        <th colspan="5">紧急联系人：<span id="emergency_contact_name"></span></th>
-
-                        <th colspan="8">联系方式：<span id="emergency_contact_method"></span></th>
+                        <th colspan="6">入学前学校名称：<span id="preSchoolName"></span></th>
+                        <th colspan="7">籍贯：<span id="native_place"></span></th>
                     </tr>
+                    <tr>
+                        <th colspan="6">紧急联系人：<span id="emergency_contact_name"></span></th>
+                        <th colspan="7">联系方式：<span id="emergency_contact_method"></span></th>
+                    </tr>
+                    <tr>
+                        <th colspan="5">户口是否转入：<span id="account_in"></span></th>
+                        <th colspan="8">身份证住址：<span id="idcard_address"></span></th>
+                    </tr>
+                    <tr>
+                        <th colspan="5">生源类别 ：<span id="studentClassify"></span></th>
+                        <th colspan="8">家庭实际住址：<span id="actual_address"></span></th>
+                    </tr>
+                    <tr>
+                        <th colspan="5">城乡生源名称：<span id="area_origin_name"></span></th>
+                        <th colspan="8">生源所在地名称：<span id="origin_address"></span></th>
+                    </tr>
+                    <tr>
+                        <th colspan="5">档案是否转入：<span id="file_in"></span></th>
+                        <th colspan="8">入学前档案所在单位：<span id="pre_school_file_where_location"></span></th>
+                    </tr>
+                    <tr>
+                        <th colspan="13">入学前户口所在派出所：<span id="pre_school_account_where_station"></span></th>
+                    </tr>
+
+
+                    </tbody>
+                </table>
+                <h4 style="color: #00ab9f;font-weight: bold ;padding-top: 15px;">家庭成员</h4>
+                <table class="layui-table lay-even " data-name="articleCatData"
+                       style="border: 0px solid red">
+                    <tbody id="family">
                     </tbody>
                 </table>
                 <h4 style="color: #00ab9f;font-weight: bold ;padding-top: 15px;">教育经历</h4>
@@ -198,9 +222,9 @@
                     <tbody>
                     <tr>
                         <th width="25%">学籍状态：<span id="student_status"></span></th>
+                        <th width="25%">职业导师：<span id="teacherName"></span></th>
                         <th width="25%">学生类别：<span id="student_type"></span></th>
                         <th width="25%">高考成绩：<span id="sat_score"></span></th>
-                        <th width="25%">职业导师：<span id="teacherName"></span></th>
 
                     </tr>
                     <tr>
@@ -1422,7 +1446,7 @@
                                         </th>
                                     </tr>
                                     <tr>
-                                        <th colspan="2"><span style="margin-right: 40px;">一年级:</span>奖学金：
+                                        <th colspan="2"><span style="margin-right: 30px;">一年级:</span>奖学金：
                                             <div class="layui-input-inline">
                                                 <select name="first_scholarship" lay-filter="updateStudentBloodType"
                                                         id="first_scholarship">
@@ -1449,7 +1473,7 @@
                                     </tr>
 
                                     <tr>
-                                        <th colspan="2"><span style="margin-right: 40px;">二年级:</span>奖学金：
+                                        <th colspan="2"><span style="margin-right: 30px;">二年级:</span>奖学金：
                                             <div class="layui-input-inline">
                                                 <select name="second_scholarship" lay-filter="updateStudentBloodType"
                                                         id="second_scholarship">
@@ -1476,7 +1500,7 @@
                                     </tr>
 
                                     <tr>
-                                        <th colspan="2"><span style="margin-right: 40px;">三年级:</span>奖学金：
+                                        <th colspan="2"><span style="margin-right: 30px;">三年级:</span>奖学金：
                                             <div class="layui-input-inline">
                                                 <select name="third_scholarship" lay-filter="updateStudentBloodType"
                                                         id="third_scholarship">
