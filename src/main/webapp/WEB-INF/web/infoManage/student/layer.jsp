@@ -234,10 +234,10 @@
                     <tr>
                         <th colspan="4">缴费状态：
                             第一年：(<span id="payment_status_first_year"></span><span id="arrears_first_year" style="display: none">：21441元</span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            第二年：(<span id="payment_status_second_year"></span><span id="arrears_third_year" style="display: none"></span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            第三年：(<span id="payment_status_third_year"></span><span id="arrears_second_year" style="display: none"></span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            第二年：(<span id="payment_status_second_year"></span><span id="arrears_second_year" style="display: none"></span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            第三年：(<span id="payment_status_third_year"></span><span id="arrears_third_year" style="display: none"></span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             第四年：(<span id="payment_status_forth_year"></span><span id="arrears_forth_year" style="display: none"></span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            第五年：(<span id=""></span><span id="" style="display: none"></span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            第五年：(<span id="payment_status_fifth_year"></span><span id="arrears_fifth_year" style="display: none"></span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </th>
                     </tr>
                     </tbody>
@@ -287,14 +287,14 @@
                 <h4 style="color: #00ab9f;font-weight: bold ;padding-top: 15px;">违纪与处分</h4>
                 <table class="layui-table lay-even " data-name="articleCatData"
                        style="border: 0px solid red">
-                    <tbody id="">
+                    <tbody id="t_discipline_and_punishment">
 
                     </tbody>
                 </table>
                 <h4 style="color: #00ab9f;font-weight: bold ;padding-top: 15px;">团学活动</h4>
                 <table class="layui-table lay-even " data-name="articleCatData"
                        style="border: 0px solid red">
-                    <tbody id="">
+                    <tbody id="t_group_activities">
 
                     </tbody>
                 </table>

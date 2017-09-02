@@ -379,6 +379,8 @@ public class PersonServiceImpl implements PersonService {
         data.put("family", personDao.updateFamilyByStudentNo(studentNo));
         data.put("experience", personDao.updateExperienceByStudentNo(studentNo));
         data.put("ownPunishment", personDao.queryOwnPunishmentByStudentNo(studentNo));
+        data.put("disciplineAndPunishment", personDao.queryDisciplineAndPunishmentByStudentNo(studentNo));
+        data.put("groupActivities", personDao.queryGroupActivitiesByStudentNo(studentNo));
         return data;
     }
 

@@ -515,33 +515,39 @@
                     $("#payment_status_first_year").html(data.student[0].payment_status_first_year);
                     $("#payment_status_second_year").html(data.student[0].payment_status_second_year);
                     $("#payment_status_third_year").html(data.student[0].payment_status_third_year);
-                    $("#payment_status_forth_year").html(data.student[0].payment_status_forth_year);
+                    $("#payment_status_forth_year").html(data.student[0].payment_status_forth_year  );
+                    $("#payment_status_fifth_year").html(data.student[0].payment_status_fifth_year);
                     $("#arrears_first_year").html("："+data.student[0].arrears_first_year+"元");
-                    $("#arrears_third_year").html("："+data.student[0].arrears_third_year+"元");
                     $("#arrears_second_year").html("："+data.student[0].arrears_second_year+"元");
+                    $("#arrears_third_year").html("："+data.student[0].arrears_third_year+"元");
                     $("#arrears_forth_year").html("："+data.student[0].arrears_forth_year+"元");
+                    $("#arrears_fifth_year").html("："+data.student[0].arrears_fifth_year+"元");
                     if(data.student[0].payment_status_first_year === "欠费"){
                         $("#arrears_first_year").css("display","inline");
                     }else{
                         $("#arrears_first_year").css("display","none");
                     }
                     if(data.student[0].payment_status_second_year === "欠费"){
-                        $("#arrears_third_year").css("display","inline");
-                    }else{
-                        $("#arrears_third_year").css("display","none");
-                    }
-                    if(data.student[0].payment_status_third_year === "欠费"){
                         $("#arrears_second_year").css("display","inline");
                     }else{
                         $("#arrears_second_year").css("display","none");
+                    }
+
+                    if(data.student[0].payment_status_third_year === "欠费"){
+                        $("#arrears_third_year").css("display","inline");
+                    }else{
+                        $("#arrears_third_year").css("display","none");
                     }
                     if(data.student[0].payment_status_forth_year === "欠费"){
                         $("#arrears_forth_year").css("display","inline");
                     }else{
                         $("#arrears_forth_year").css("display","none");
                     }
-
-
+                    if(data.student[0].payment_status_fifth_year === "欠费"){
+                        $("#arrears_fifth_year").css("display","inline");
+                    }else{
+                        $("#arrears_fifth_year").css("display","none");
+                    }
 
                     $("#area").html(data.student[0].area);
                     $("#floor").html(data.student[0].floor);
@@ -571,6 +577,14 @@
                     $("#own_punishment").text("");
                     for (var i = 0; i < data.ownPunishment.length; i++) {
                         $("#own_punishment").append("<tr><th>" + data.ownPunishment[i].date + " —— " + data.ownPunishment[i].centent + "</th><th>证明人："+data.ownPunishment[i].witness+"</th></tr>");
+                    }
+                    $("#t_discipline_and_punishment").text("");
+                    for (var i = 0; i < data.disciplineAndPunishment.length; i++) {
+                        $("#t_discipline_and_punishment").append("<tr><th>" + data.disciplineAndPunishment[i].date + " —— " + data.disciplineAndPunishment[i].content + "</th></tr>");
+                    }
+                    $("#t_group_activities").text("");
+                    for (var i = 0; i < data.groupActivities.length; i++) {
+                        $("#t_group_activities").append("<tr><th>" + data.groupActivities[i].date + " —— " + data.groupActivities[i].content + "</th></tr>");
                     }
                 });
                 layer.open({
