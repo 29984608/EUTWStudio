@@ -469,6 +469,12 @@
                     $("#height").text("").append(data.student[0].height);
                     $("#weight").text("").append(data.student[0].weight);
                     $("#health_status").text("").append(data.student[0].health_status);
+                    $("#firstScholarship").text("").append(data.student[0].first_scholarship);
+                    $("#secondScholarship").text("").append(data.student[0].second_scholarship);
+                    $("#thirdScholarship").text("").append(data.student[0].third_scholarship);
+                    $("#firstStipend").text("").append(data.student[0].first_stipend);
+                    $("#secondStipend").text("").append(data.student[0].second_stipend);
+                    $("#thirdStipend").text("").append(data.student[0].third_stipend);
                     $("#is_marry").text("").append(data.student[0].is_marry);
                     $("#family_zip_code").text("").append(data.student[0].family_zip_code);
                     $("#student_contact_method").text("").append(data.student[0].student_contact_method);
@@ -514,14 +520,26 @@
                     $("#arrears_third_year").html("："+data.student[0].arrears_third_year+"元");
                     $("#arrears_second_year").html("："+data.student[0].arrears_second_year+"元");
                     $("#arrears_forth_year").html("："+data.student[0].arrears_forth_year+"元");
-                    if(data.student[0].payment_status_first_year === "欠费")
+                    if(data.student[0].payment_status_first_year === "欠费"){
                         $("#arrears_first_year").css("display","inline");
-                    if(data.student[0].payment_status_second_year === "欠费")
+                    }else{
+                        $("#arrears_first_year").css("display","none");
+                    }
+                    if(data.student[0].payment_status_second_year === "欠费"){
                         $("#arrears_third_year").css("display","inline");
-                    if(data.student[0].payment_status_third_year === "欠费")
+                    }else{
+                        $("#arrears_third_year").css("display","none");
+                    }
+                    if(data.student[0].payment_status_third_year === "欠费"){
                         $("#arrears_second_year").css("display","inline");
-                    if(data.student[0].payment_status_forth_year === "欠费")
+                    }else{
+                        $("#arrears_second_year").css("display","none");
+                    }
+                    if(data.student[0].payment_status_forth_year === "欠费"){
                         $("#arrears_forth_year").css("display","inline");
+                    }else{
+                        $("#arrears_forth_year").css("display","none");
+                    }
 
 
 

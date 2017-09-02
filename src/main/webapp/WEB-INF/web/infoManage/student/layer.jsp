@@ -267,7 +267,13 @@
                         <th width="25%" >体重：<span id="weight"></span>kg</th>
                         <th width="25%">健康状况：<span id="health_status"></span></th>
                     </tr>
-
+                    <tr>
+                        <th colspan="2">一年级：&nbsp;&nbsp;奖学金(<span id="firstScholarship">国家奖学金</span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;助学金(<span id="firstStipend">一般贫困</span>)</th>
+                        <th colspan="2">二年级：&nbsp;&nbsp;奖学金(<span id="secondScholarship">国家奖学金</span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;助学金(<span id="secondStipend">一般贫困</span>)</th>
+                    </tr>
+                    <tr>
+                        <th colspan="4">三年级：&nbsp;&nbsp;奖学金(<span id="thirdScholarship">国家奖学金</span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;助学金(<span id="thirdStipend">一般贫困</span>)</th>
+                    </tr>
 
                     </tbody>
                 </table>
@@ -275,6 +281,20 @@
                 <table class="layui-table lay-even " data-name="articleCatData"
                        style="border: 0px solid red">
                     <tbody id="own_punishment">
+
+                    </tbody>
+                </table>
+                <h4 style="color: #00ab9f;font-weight: bold ;padding-top: 15px;">违纪与处分</h4>
+                <table class="layui-table lay-even " data-name="articleCatData"
+                       style="border: 0px solid red">
+                    <tbody id="">
+
+                    </tbody>
+                </table>
+                <h4 style="color: #00ab9f;font-weight: bold ;padding-top: 15px;">团学活动</h4>
+                <table class="layui-table lay-even " data-name="articleCatData"
+                       style="border: 0px solid red">
+                    <tbody id="">
 
                     </tbody>
                 </table>
