@@ -130,4 +130,10 @@ public interface PersonService {
     List<Map<String,Object>> queryGroupActivitiesList(String studentNo)throws Exception;
 
     void addDisciplineAndPunishmentByUpdate(DisciplineAndPunishmen disciplineAndPunishmen)throws Exception;
+
+    void delDisciplineAndPunishment(String id)throws Exception;
+
+    void addGroupActivitiesByUpdate(GroupActivities groupActivities)throws Exception;
+
+    void delGroupActivities(String id)throws Exception;
 }

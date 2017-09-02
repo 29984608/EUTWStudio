@@ -277,6 +277,7 @@
     let allProfessionInfo;
     let addExperienceByUpdateOffOpen;
     let addDisciplineAndPunishmentInfoIndex;
+    let addGroupActivitiesIndex;
     let disciplineAndPunishmentListInfo;
     let groupActivitiesListInfo;
 
@@ -1011,12 +1012,12 @@
 
                                         <th colspan="4" width="600px"><span>内容：
                                             <div class="layui-input-inline" style="width: 90%">
-                                                <input type="text" name="text" readonly="readonly"
+                                                <input type="text" name="text"
                                                        placeholder="内容" autocomplete="off" class="layui-input updateStudent_disciplineAndPunishment_content" id="updateStudent_disciplineAndPunishment_content">
                                              </div>
                                         </span></th>
                                         <th>
-                                            <button class="layui-btn  layui-btn-danger" onclick="student.delAward(this,` + disciplineAndPunishmentList[i].id + `)" style="margin-bottom: 10px;float: right;"><i class="layui-icon">&#xe640;</i> 删除</button>
+                                            <button class="layui-btn  layui-btn-danger" onclick="student.delDisciplineAndPunishment(this,` + disciplineAndPunishmentList[i].id + `)" style="margin-bottom: 10px;float: right;"><i class="layui-icon">&#xe640;</i> 删除</button>
 </th>
                                     </tr>`)
 
@@ -1026,18 +1027,18 @@
                 let updateStudent_disciplineAndPunishment_content = $(".updateStudent_disciplineAndPunishment_content");
                 for (let i = 0; i < disciplineAndPunishmentList.length; i++) {
                     $(updateStudent_disciplineAndPunishment_date[i]).val(disciplineAndPunishmentList[i].date);
-                    $(updateStudent_disciplineAndPunishment_content[i]).val(disciplineAndPunishmentList[i].centent);
+                    $(updateStudent_disciplineAndPunishment_content[i]).val(disciplineAndPunishmentList[i].content);
                 }
             },
 
-            //团队活动显示列表
+            //团学活动显示列表
             updateStudentGroupActivities:function (groupActivitiesList) {
                 $("#updateStudent_GroupActivities").html("")
                 for (let i = 0; i < groupActivitiesList.length; i++) {
                     $("#updateStudent_GroupActivities").append(`<tr style="margin-bottom: 20px;">
                                         <th colspan="2"><span>时间：
                                             <div class="layui-input-inline">
-                                                <input name="date" lay-verify="date" placeholder="yyyy-mm-dd" readonly="readonly"
+                                                <input name="date" lay-verify="date" placeholder="yyyy-mm-dd"
                                                        autocomplete="off" class="layui-input updateStudent_GroupActivities_date"
                                                         type="text" id="updateStudent_GroupActivities_date">
                                             </div>
@@ -1050,7 +1051,7 @@
                                              </div>
                                         </span></th>
                                         <th>
-                                            <button class="layui-btn  layui-btn-danger" onclick="student.delAward(this,` + AwardOrPunishmentList[i].id + `)" style="margin-bottom: 10px;float: right;"><i class="layui-icon">&#xe640;</i> 删除</button>
+                                            <button class="layui-btn  layui-btn-danger" onclick="student.delGroupActivities(this,` + groupActivitiesList[i].id + `)" style="margin-bottom: 10px;float: right;"><i class="layui-icon">&#xe640;</i> 删除</button>
 </th>
                                     </tr>`)
 
@@ -1060,7 +1061,7 @@
                 let updateStudent_GroupActivities_content = $(".updateStudent_GroupActivities_content");
                 for (let i = 0; i < groupActivitiesList.length; i++) {
                     $(updateStudent_GroupActivities_date[i]).val(groupActivitiesList[i].date);
-                    $(updateStudent_GroupActivities_content[i]).val(groupActivitiesList[i].centent);
+                    $(updateStudent_GroupActivities_content[i]).val(groupActivitiesList[i].content);
                 }
             },
 
@@ -1077,9 +1078,19 @@
             addDisciplineAndPunishmentInfo: function () {
                 addDisciplineAndPunishmentInfoIndex = layer.open({
                     type: 1,
-                    title: "违纪与处分",
+                    title: "添加违纪与处分",
                     area: ["40%", "40%"],
                     content: $("#addDisciplineAndPunishment")
+
+                });
+            },
+
+            addGroupActivitiesInfo:function () {
+                addGroupActivitiesIndex = layer.open({
+                    type: 1,
+                    title: "添加团学活动",
+                    area: ["40%", "40%"],
+                    content: $("#addGroupActivities")
 
                 });
             },
@@ -1146,13 +1157,37 @@
                         {
                             studentNo: studentNo,
                             date: dateDisciplineAndPunishment,
-                            centent: contentDisciplineAndPunishment,
+                            content: contentDisciplineAndPunishment,
                         },
                         function (data) {
                             if (data.result) {
                                 layer.msg(data.msg, {icon: 1});
                                 layer.close(addDisciplineAndPunishmentInfoIndex);
                                 student.updateStudentDisciplineAndPunishment(data.data);
+                            }
+                        }
+                    )
+                })
+
+            },
+            //添加团学活动的弹框
+            addGroupActivitiesIndexByUpdate: function () {
+                let dateGroupActivities = $("#dateGroupActivities").val();
+                let contentGroupActivities = $("#contentGroupActivities").val();
+
+                layer.confirm('该操作将直接添加，无需更新！是否添加？', {icon: 3, title: '提示'}, function (index) {
+                    let studentNo = studentInfo.no;
+                    $.post(baseUrl + "/student/addGroupActivitiesByUpdate",
+                        {
+                            studentNo: studentNo,
+                            date: dateGroupActivities,
+                            content: contentGroupActivities,
+                        },
+                        function (data) {
+                            if (data.result) {
+                                layer.msg(data.msg, {icon: 1});
+                                layer.close(addGroupActivitiesIndex);
+                                student.updateStudentGroupActivities(data.data);
                             }
                         }
                     )
@@ -1220,6 +1255,36 @@
                 layer.confirm('该操作直接删除，无需更新。确定删除？', {icon: 3, title: '提示'}, function (index) {
                     let studentNo = studentInfo.no;
                     $.post(baseUrl + "/student/delAward",
+                        {id: id, studentNo: studentNo},
+                        function (data) {
+                            if (data.result) {
+                                layer.msg("删除成功!");
+                                $(t).parents("tr").remove();
+                            }
+                        })
+                })
+            },
+
+            //删除违纪与处分按钮
+            delDisciplineAndPunishment:function (t,id) {
+                layer.confirm('该操作直接删除，无需更新。确定删除？', {icon: 3, title: '提示'}, function (index) {
+                    let studentNo = studentInfo.no;
+                    $.post(baseUrl + "/student/delDisciplineAndPunishment",
+                        {id: id, studentNo: studentNo},
+                        function (data) {
+                            if (data.result) {
+                                layer.msg("删除成功!");
+                                $(t).parents("tr").remove();
+                            }
+                        })
+                })
+            },
+
+            //删除团学活动记录按钮
+            delGroupActivities:function (t,id) {
+                layer.confirm('该操作直接删除，无需更新。确定删除？', {icon: 3, title: '提示'}, function (index) {
+                    let studentNo = studentInfo.no;
+                    $.post(baseUrl + "/student/delGroupActivities",
                         {id: id, studentNo: studentNo},
                         function (data) {
                             if (data.result) {

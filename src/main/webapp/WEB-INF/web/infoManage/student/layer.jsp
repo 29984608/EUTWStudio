@@ -1807,6 +1807,42 @@
     </button>
 </div>
 
+<div id="addGroupActivities" style="display: none;">
+    <table class="layui-table lay-even " data-name="articleCatData"
+           style="border: 0px solid red" id="add_addGroupActivitiesIndex_list">
+        <tbody id="add_addGroupActivitiesIndexInfo">
+        <tr>
+
+            <td>
+                <div class="layui-inline">
+                    <label class="layui-form-label" style="width: auto">时间</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="date" id="dateGroupActivities" lay-verify="date"
+                               placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input"
+                               onclick="layui.laydate({elem: this})">
+                    </div>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <div class="layui-form-item">
+                    <label class="layui-form-label" style="width: auto;margin-right: 0px">内容</label>
+                    <div class="layui-input-inline" style="width: 85%">
+                        <input type="text" name="staffExperience" id="contentGroupActivities" lay-verify="required"
+                               placeholder="请输入详细内容" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <button class="layui-btn" style="float: right;margin-bottom: 10px;margin-right: 30px"
+            onclick="student.addGroupActivitiesIndexByUpdate()"><i class="layui-icon">&#xe61f;</i> 保存
+    </button>
+</div>
+
 <%--省市区联动--%>
 <script src="${baseurl}/js/city/distpicker.js"></script>
 <script src="${baseurl}/js/city/main.js"></script>
