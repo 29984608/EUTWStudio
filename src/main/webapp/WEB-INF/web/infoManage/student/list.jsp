@@ -276,6 +276,9 @@
     let addAwardOrPunishmentInfoIndex;
     let allProfessionInfo;
     let addExperienceByUpdateOffOpen;
+    let addDisciplineAndPunishmentInfoIndex;
+    let disciplineAndPunishmentListInfo;
+    let groupActivitiesListInfo;
     function showDormInfo() {
         let info = [];
         let area = $("#queryAreas").find("option:selected").text();
@@ -511,6 +514,8 @@
                             famousFamily = data.famousFamily;
                             departmentList = data.departmentList;
                             AwardOrPunishmentInfo = data.AwardOrPunishmentList;
+                            disciplineAndPunishmentListInfo = data.disciplineAndPunishmentList;
+                            groupActivitiesListInfo = data.groupActivitiesList;
                             let studentList = data.students;
                             let AwardOrPunishmentList = data.AwardOrPunishmentList;
                             let familyList = data.students_family;
@@ -521,6 +526,8 @@
                             let experienceList = data.experienceList;
                             let teacherList = data.teacherList;
                             let famousFamilyList = data.famousFamilyList;
+                            let disciplineAndPunishmentList = data.disciplineAndPunishmentList;
+                            let groupActivitiesList = data.groupActivitiesList;
 
                             $("#studentPhone").val(studentList.student_contact_method);
                             $("#studentQQ").val(studentList.qq);
@@ -759,6 +766,8 @@
 //                            $("#update_award_or_honor").val(studentList.own_punishment);
                             student.updateStudentAwardOrPunishment(AwardOrPunishmentList);
                             student.queryAreaAndFloorAndRoomByRoomIdOfUpdate(studentList.room_id)
+                            student.updateStudentDisciplineAndPunishment(disciplineAndPunishmentList);
+                            student.updateStudentGroupActivities(groupActivitiesList);
                             //如果住宿类型为校外,则隐藏宿舍信息,否则显示
                             //1表示校内,2表示校外
                             if (studentList.stay_type == "2") {
@@ -889,6 +898,8 @@
                     delimiter: '-'
                 });
             },
+
+            //教育经历显示列表
             educationalExperience: function (experienceList) {
                 $("#educational_experience").html("")
                 for (let i = 0; i < experienceList.length; i++) {
@@ -925,7 +936,6 @@
                                             <button class="layui-btn  layui-btn-danger" onclick="student.delExperience(this,` + experienceList[i].id + `)" style="margin-bottom: 10px;float: right;"><i class="layui-icon">&#xe640;</i> 删除</button>
                                         </th>
                                     </tr>`)
-//                    $("#educational_experience").append(` `)
 
                 }
 
@@ -941,7 +951,7 @@
                 }
 
             },
-
+            //获奖与荣誉显示列表
             updateStudentAwardOrPunishment: function (AwardOrPunishmentList) {
                 $("#updateStudent_Award_or_punishment").html("")
                 for (let i = 0; i < AwardOrPunishmentList.length; i++) {
@@ -960,13 +970,11 @@
                                                        placeholder="内容" autocomplete="off" class="layui-input updateStudent_Award_or_punishment_content" id="updateStudent_Award_or_punishment_content">
                                              </div>
                                         </span></th>
-                                        <th>证明人：<span  class=" updateStudent_witness"id = "updateStudent_witness"></span></th>
+                                        <th>证明人：<span  class="updateStudent_witness"id = "updateStudent_witness"></span></th>
                                         <th>
                                             <button class="layui-btn  layui-btn-danger" onclick="student.delAward(this,` + AwardOrPunishmentList[i].id + `)" style="margin-bottom: 10px;float: right;"><i class="layui-icon">&#xe640;</i> 删除</button>
 </th>
                                     </tr>`)
-//                    $("#updateStudent_Award_or_punishment").append(` `)
-
                 }
 
                 let updateStudent_Award_or_punishment_date = $(".updateStudent_Award_or_punishment_date");
@@ -979,12 +987,90 @@
                 }
             },
 
+            //违纪与处分显示列表
+            updateStudentDisciplineAndPunishment: function (disciplineAndPunishmentList) {
+                $("#updateStudent_disciplineAndPunishment").html("")
+                for (let i = 0; i < disciplineAndPunishmentList.length; i++) {
+                    $("#updateStudent_disciplineAndPunishment").append(`<tr style="margin-bottom: 20px;">
+                                        <th colspan="2"><span>时间：
+                                            <div class="layui-input-inline">
+                                                <input name="date" lay-verify="date" placeholder="yyyy-mm-dd" readonly="readonly"
+                                                       autocomplete="off" class="layui-input updateStudent_disciplineAndPunishment_date"
+                                                        type="text" id="updateStudent_disciplineAndPunishment_date">
+                                            </div>
+                                           </th>
+
+                                        <th colspan="4" width="600px"><span>内容：
+                                            <div class="layui-input-inline" style="width: 90%">
+                                                <input type="text" name="text" readonly="readonly"
+                                                       placeholder="内容" autocomplete="off" class="layui-input updateStudent_disciplineAndPunishment_content" id="updateStudent_disciplineAndPunishment_content">
+                                             </div>
+                                        </span></th>
+                                        <th>
+                                            <button class="layui-btn  layui-btn-danger" onclick="student.delAward(this,` + disciplineAndPunishmentList[i].id + `)" style="margin-bottom: 10px;float: right;"><i class="layui-icon">&#xe640;</i> 删除</button>
+</th>
+                                    </tr>`)
+
+                }
+
+                let updateStudent_disciplineAndPunishment_date = $(".updateStudent_disciplineAndPunishment_date");
+                let updateStudent_disciplineAndPunishment_content = $(".updateStudent_disciplineAndPunishment_content");
+                for (let i = 0; i < disciplineAndPunishmentList.length; i++) {
+                    $(updateStudent_disciplineAndPunishment_date[i]).val(disciplineAndPunishmentList[i].date);
+                    $(updateStudent_disciplineAndPunishment_content[i]).val(disciplineAndPunishmentList[i].centent);
+                }
+            },
+
+            //团队活动显示列表
+            updateStudentGroupActivities:function (groupActivitiesList) {
+                $("#updateStudent_GroupActivities").html("")
+                for (let i = 0; i < groupActivitiesList.length; i++) {
+                    $("#updateStudent_GroupActivities").append(`<tr style="margin-bottom: 20px;">
+                                        <th colspan="2"><span>时间：
+                                            <div class="layui-input-inline">
+                                                <input name="date" lay-verify="date" placeholder="yyyy-mm-dd" readonly="readonly"
+                                                       autocomplete="off" class="layui-input updateStudent_GroupActivities_date"
+                                                        type="text" id="updateStudent_GroupActivities_date">
+                                            </div>
+                                           </th>
+
+                                        <th colspan="4" width="600px"><span>内容：
+                                            <div class="layui-input-inline" style="width: 90%">
+                                                <input type="text" name="text" readonly="readonly"
+                                                       placeholder="内容" autocomplete="off" class="layui-input updateStudent_GroupActivities_content" id="updateStudent_GroupActivities_content">
+                                             </div>
+                                        </span></th>
+                                        <th>
+                                            <button class="layui-btn  layui-btn-danger" onclick="student.delAward(this,` + AwardOrPunishmentList[i].id + `)" style="margin-bottom: 10px;float: right;"><i class="layui-icon">&#xe640;</i> 删除</button>
+</th>
+                                    </tr>`)
+
+                }
+
+                let updateStudent_GroupActivities_date = $(".updateStudent_GroupActivities_date");
+                let updateStudent_GroupActivities_content = $(".updateStudent_GroupActivities_content");
+                for (let i = 0; i < groupActivitiesList.length; i++) {
+                    $(updateStudent_GroupActivities_date[i]).val(groupActivitiesList[i].date);
+                    $(updateStudent_GroupActivities_content[i]).val(groupActivitiesList[i].centent);
+                }
+            },
+
             addAwardOrPunishmentInfo: function () {
                 addAwardOrPunishmentInfoIndex = layer.open({
                     type: 1,
-                    title: "添加荣誉或处分",
+                    title: "添加荣誉或获奖",
                     area: ["40%", "60%"],
                     content: $("#addAwardOrPunishment")
+
+                });
+            },
+
+            addDisciplineAndPunishmentInfo: function () {
+                addDisciplineAndPunishmentInfoIndex = layer.open({
+                    type: 1,
+                    title: "违纪与处分",
+                    area: ["40%", "40%"],
+                    content: $("#addDisciplineAndPunishment")
 
                 });
             },
@@ -1014,6 +1100,7 @@
                 });
 
             },
+            //添加荣誉与获奖的弹框
             addAwardOrPunishmentByUpdate: function () {
                 let dateAwardOrPunishment = $("#dateAwardOrPunishment").val();
                 let contentAwardOrPunishment = $("#contentAwardOrPunishment").val();
@@ -1033,6 +1120,30 @@
                                 layer.close(addAwardOrPunishmentInfoIndex);
                                 student.updateStudentAwardOrPunishment(data.data);
 
+                            }
+                        }
+                    )
+                })
+
+            },
+            //添加违纪与处分的弹框
+            addDisciplineAndPunishmentByUpdate: function () {
+                let dateDisciplineAndPunishment = $("#dateDisciplineAndPunishment").val();
+                let contentDisciplineAndPunishment = $("#contentDisciplineAndPunishment").val();
+
+                layer.confirm('该操作将直接添加，无需更新！是否添加？', {icon: 3, title: '提示'}, function (index) {
+                    let studentNo = studentInfo.no;
+                    $.post(baseUrl + "/student/addDisciplineAndPunishmentByUpdate",
+                        {
+                            studentNo: studentNo,
+                            date: dateDisciplineAndPunishment,
+                            centent: contentDisciplineAndPunishment,
+                        },
+                        function (data) {
+                            if (data.result) {
+                                layer.msg(data.msg, {icon: 1});
+                                layer.close(addDisciplineAndPunishmentInfoIndex);
+                                student.updateStudentDisciplineAndPunishment(data.data);
                             }
                         }
                     )

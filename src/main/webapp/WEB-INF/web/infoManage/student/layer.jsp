@@ -1422,7 +1422,7 @@
                                         </th>
                                     </tr>
                                     <tr>
-                                        <th colspan="2"><span style="margin-right: 40px;">一年级:</span>奖学金：
+                                        <th colspan="3"><span style="margin-right: 40px;">一年级:</span>奖学金：
                                             <div class="layui-input-inline">
                                                 <select name="first_scholarship" lay-filter="updateStudentBloodType"
                                                         id="first_scholarship">
@@ -1449,7 +1449,7 @@
                                     </tr>
 
                                     <tr>
-                                        <th colspan="2"><span style="margin-right: 40px;">二年级:</span>奖学金：
+                                        <th colspan="3"><span style="margin-right: 40px;">二年级:</span>奖学金：
                                             <div class="layui-input-inline">
                                                 <select name="second_scholarship" lay-filter="updateStudentBloodType"
                                                         id="second_scholarship">
@@ -1476,7 +1476,7 @@
                                     </tr>
 
                                     <tr>
-                                        <th colspan="2"><span style="margin-right: 40px;">三年级:</span>奖学金：
+                                        <th colspan="3"><span style="margin-right: 40px;">三年级:</span>奖学金：
                                             <div class="layui-input-inline">
                                                 <select name="third_scholarship" lay-filter="updateStudentBloodType"
                                                         id="third_scholarship">
@@ -1514,6 +1514,29 @@
                                 <button class="layui-btn" onclick="student.addAwardOrPunishmentInfo()"><i
                                         class="layui-icon">&#xe61f;</i> 添加获奖与荣誉
                                 </button>
+
+                                <h4 style="color: #00ab9f;font-weight: bold ;padding-top: 15px;">违纪与处分</h4>
+                                <table class="layui-table lay-even " data-name="articleCatData"
+                                       style="border: 0px solid red" id="updateStudent_disciplineAndPunishment">
+                                    <tbody>
+
+                                    </tbody>
+                                </table>
+                                <button class="layui-btn" onclick="student.addDisciplineAndPunishmentInfo()"><i
+                                        class="layui-icon">&#xe61f;</i> 添加违纪与处分
+                                </button>
+
+                                <h4 style="color: #00ab9f;font-weight: bold ;padding-top: 15px;">团学活动</h4>
+                                <table class="layui-table lay-even " data-name="articleCatData"
+                                       style="border: 0px solid red" id="updateStudent_GroupActivities">
+                                    <tbody>
+
+                                    </tbody>
+                                </table>
+                                <button class="layui-btn" onclick="student.addGroupActivitiesInfo()"><i
+                                        class="layui-icon">&#xe61f;</i> 添加团学活动
+                                </button>
+
                             </div>
 
                         </div>
@@ -1723,7 +1746,7 @@
             <td>
                 <div class="layui-form-item">
                     <label class="layui-form-label" style="width: auto;margin-right: 0px">内容</label>
-                    <div class="layui-input-inline" style="width: auto">
+                    <div class="layui-input-inline" style="width: 85%">
                         <input type="text" name="staffExperience" id="contentAwardOrPunishment" lay-verify="required"
                                placeholder="请输入详细内容" autocomplete="off" class="layui-input">
                     </div>
@@ -1745,6 +1768,42 @@
     </table>
     <button class="layui-btn" style="float: right;margin-bottom: 10px;margin-right: 30px"
             onclick="student.addAwardOrPunishmentByUpdate()"><i class="layui-icon">&#xe61f;</i> 保存
+    </button>
+</div>
+
+<div id="addDisciplineAndPunishment" style="display: none;">
+    <table class="layui-table lay-even " data-name="articleCatData"
+           style="border: 0px solid red" id="add_addDisciplineAndPunishment_list">
+        <tbody id="add_addDisciplineAndPunishmentInfo">
+        <tr>
+
+            <td>
+                <div class="layui-inline">
+                    <label class="layui-form-label" style="width: auto">时间</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="date" id="dateDisciplineAndPunishment" lay-verify="date"
+                               placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input"
+                               onclick="layui.laydate({elem: this})">
+                    </div>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <div class="layui-form-item">
+                    <label class="layui-form-label" style="width: auto;margin-right: 0px">内容</label>
+                    <div class="layui-input-inline" style="width: 85%">
+                        <input type="text" name="staffExperience" id="contentDisciplineAndPunishment" lay-verify="required"
+                               placeholder="请输入详细内容" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <button class="layui-btn" style="float: right;margin-bottom: 10px;margin-right: 30px"
+            onclick="student.addDisciplineAndPunishmentByUpdate()"><i class="layui-icon">&#xe61f;</i> 保存
     </button>
 </div>
 

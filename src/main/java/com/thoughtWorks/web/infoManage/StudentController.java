@@ -104,6 +104,8 @@ public class StudentController {
             List<Map<String, Object>> teacherList = personService.queryTeacherList();
             List<Map<String, Object>> departmentList = personService.queryDepartmentList();
             List<Map<String, Object>> famousFamilyList = personService.queryFamousFamilyList();
+            List<Map<String, Object>> disciplineAndPunishmentList = personService.queryDisciplineAndPunishment(studentNo);
+            List<Map<String, Object>> groupActivitiesList = personService.queryGroupActivitiesList(studentNo);
             String famousFamily = (String) students.get("famous_family");
             Map<String, String> famousFamilyFoUpdate = personService.queryFamousFamily(famousFamily);
             data.put("students", students);
@@ -118,6 +120,8 @@ public class StudentController {
             data.put("famousFamily", famousFamilyFoUpdate);
             data.put("departmentList", departmentList);
             data.put("famousFamilyList", famousFamilyList);
+            data.put("disciplineAndPunishmentList", disciplineAndPunishmentList);
+            data.put("groupActivitiesList", groupActivitiesList);
             data.put("msg", Constant.SEARCH_SUCCESS);
             data.put("result", true);
 
@@ -353,5 +357,18 @@ public class StudentController {
         }
 
         return null;
+    }
+
+    @RequestMapping("/addDisciplineAndPunishmentByUpdate")
+    @ResponseBody
+    public Result addDisciplineAndPunishmentByUpdate(DisciplineAndPunishmen disciplineAndPunishmen) {
+        try {
+            personService.addDisciplineAndPunishmentByUpdate(disciplineAndPunishmen);
+            List<Map<String,Object>> disciplineAndPunishmentList = personService.queryDisciplineAndPunishment(disciplineAndPunishmen.getStudentNo());
+            return Result.success(disciplineAndPunishmentList,Constant.SEARCH_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return Result.failure(null, Constant.SEARCH_FAILURE);
     }
 }
