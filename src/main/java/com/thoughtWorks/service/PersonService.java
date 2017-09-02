@@ -68,7 +68,7 @@ public interface PersonService {
 
     List<Map<String, String>> queryStudentsDirection(String departmentId) throws Exception;
 
-    List<Map<String, Object>> queryStudentsClassList() throws Exception;
+    List<Map<String, Object>> queryStudentsClassList(String searchLevel) throws Exception;
 
     List<Map<String, Object>> queryStudentExperienceList(String studentNo) throws Exception;
 
@@ -101,7 +101,7 @@ public interface PersonService {
 
     List<Map<String, Object>> queryDepartmentList() throws Exception;
 
-    List<Map<String, Object>> showAutoClassByDepartment(String departmentId) throws Exception;
+    List<Map<String, Object>> showAutoClassByDepartment(String departmentId,String searchLevel) throws Exception;
 
     String queryStudentNameByStudentNo(String studentNo) throws Exception;
 

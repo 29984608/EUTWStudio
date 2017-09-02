@@ -712,6 +712,7 @@ WHERE student.no =#{studentNo}
     </select>
     <select id="queryStudentsClassList" resultType="map">
         select * from t_classes
+        WHERE level = #{searchLevel}
     </select>
     <select id="queryStudentExperienceList" resultType="map">
         select * from t_student_experience
@@ -1057,6 +1058,7 @@ WHERE student.no =#{studentNo}
     <select id="showAutoClassByDepartment" parameterType="string" resultType="map">
         select * from t_classes
         WHERE department_id = #{departmentId}
+        AND level = #{searchLevel}
     </select>
 
     <select id="queryStudentNameByStudentNo" resultType="string" parameterType="string">
