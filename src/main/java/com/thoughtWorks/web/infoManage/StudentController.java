@@ -104,6 +104,8 @@ public class StudentController {
             List<Map<String, Object>> teacherList = personService.queryTeacherList();
             List<Map<String, Object>> departmentList = personService.queryDepartmentList();
             List<Map<String, Object>> famousFamilyList = personService.queryFamousFamilyList();
+            List<Map<String, Object>> disciplineAndPunishmentList = personService.queryDisciplineAndPunishment(studentNo);
+            List<Map<String, Object>> groupActivitiesList = personService.queryGroupActivitiesList(studentNo);
             String famousFamily = (String) students.get("famous_family");
             Map<String, String> famousFamilyFoUpdate = personService.queryFamousFamily(famousFamily);
             data.put("students", students);
@@ -118,6 +120,8 @@ public class StudentController {
             data.put("famousFamily", famousFamilyFoUpdate);
             data.put("departmentList", departmentList);
             data.put("famousFamilyList", famousFamilyList);
+            data.put("disciplineAndPunishmentList", disciplineAndPunishmentList);
+            data.put("groupActivitiesList", groupActivitiesList);
             data.put("msg", Constant.SEARCH_SUCCESS);
             data.put("result", true);
 
@@ -306,6 +310,7 @@ public class StudentController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         return Result.failure(null, Constant.ADD_FAILURE);
     }
 
@@ -332,6 +337,7 @@ public class StudentController {
             Map<String, Object> data = new HashMap<>();
             List<Map<String, Object>> classList = personService.queryDirectionSelectionClass(directionId);
             data.put("classList", classList);
+
             return data;
         } catch (Exception e) {
             e.printStackTrace();
@@ -347,11 +353,70 @@ public class StudentController {
             Map<String, Object> data = new HashMap<>();
             List<Map<String, Object>> classList = personService.querylevelSelectionClass(levelName);
             data.put("classList", classList);
+
             return data;
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         return null;
+    }
+
+    @RequestMapping("/addDisciplineAndPunishmentByUpdate")
+    @ResponseBody
+    public Result addDisciplineAndPunishmentByUpdate(DisciplineAndPunishmen disciplineAndPunishmen) {
+        try {
+            personService.addDisciplineAndPunishmentByUpdate(disciplineAndPunishmen);
+            List<Map<String,Object>> disciplineAndPunishmentList = personService.queryDisciplineAndPunishment(disciplineAndPunishmen.getStudentNo());
+
+            return Result.success(disciplineAndPunishmentList,Constant.SEARCH_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return Result.failure(null, Constant.SEARCH_FAILURE);
+    }
+    @RequestMapping("/addGroupActivitiesByUpdate")
+    @ResponseBody
+    public Result addGroupActivitiesByUpdate(GroupActivities groupActivities) {
+        try {
+            System.out.println(groupActivities);
+            personService.addGroupActivitiesByUpdate(groupActivities);
+            List<Map<String,Object>> groupActivitiesList = personService.queryGroupActivitiesList(groupActivities.getStudentNo());
+
+            return Result.success(groupActivitiesList,Constant.SEARCH_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return Result.failure(null, Constant.SEARCH_FAILURE);
+    }
+
+    @RequestMapping("/delDisciplineAndPunishment")
+    @ResponseBody
+    public Result delDisciplineAndPunishment(String id, String studentNo) {
+        try {
+            personService.delDisciplineAndPunishment(id);
+
+            return Result.success(null, Constant.DELETE_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return Result.failure(null, Constant.DELETE_FAILURE);
+    }
+
+    @RequestMapping("/delGroupActivities")
+    @ResponseBody
+    public Result delGroupActivities(String id, String studentNo) {
+        try {
+            personService.delGroupActivities(id);
+
+            return Result.success(null, Constant.DELETE_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return Result.failure(null, Constant.DELETE_FAILURE);
     }
 }

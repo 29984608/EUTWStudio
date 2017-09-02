@@ -160,6 +160,36 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
+    public List<Map<String, Object>> queryDisciplineAndPunishment(String studentNo) throws Exception {
+        return personDao.queryDisciplineAndPunishment(studentNo);
+    }
+
+    @Override
+    public List<Map<String, Object>> queryGroupActivitiesList(String studentNo) throws Exception {
+        return personDao.queryGroupActivitiesList(studentNo);
+    }
+
+    @Override
+    public void addDisciplineAndPunishmentByUpdate(DisciplineAndPunishmen disciplineAndPunishmen) throws Exception {
+        personDao.addDisciplineAndPunishmentByUpdate(disciplineAndPunishmen);
+    }
+
+    @Override
+    public void delDisciplineAndPunishment(String id) throws Exception {
+        personDao.delDisciplineAndPunishment(id);
+    }
+
+    @Override
+    public void addGroupActivitiesByUpdate(GroupActivities groupActivities) throws Exception {
+        personDao.addGroupActivitiesByUpdate(groupActivities);
+    }
+
+    @Override
+    public void delGroupActivities(String id) throws Exception {
+        personDao.delGroupActivities(id);
+    }
+
+    @Override
     public Map<String, Object> queryStudentsByLikes(ActiveUser user, SearchDto searchDto) throws Exception {
         Map<String, Object> result = new HashMap<>();
         Map<String, Object> data = new HashMap<>();

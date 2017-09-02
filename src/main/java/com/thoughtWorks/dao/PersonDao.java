@@ -142,5 +142,17 @@ public interface PersonDao {
     List<Map<String,Object>> querylevelSelectionClass(@Param("levelName") String levelName);
 
     void delAward(String id);
+
+    List<Map<String,Object>> queryDisciplineAndPunishment(@Param("studentNo") String studentNo);
+
+    List<Map<String,Object>> queryGroupActivitiesList(@Param("studentNo") String studentNo);
+
+    void addDisciplineAndPunishmentByUpdate(DisciplineAndPunishmen disciplineAndPunishmen);
+
+    void delDisciplineAndPunishment(@Param("id") String id);
+
+    void addGroupActivitiesByUpdate(GroupActivities groupActivities);
+
+    void delGroupActivities(@Param("id") String id);
 }
 

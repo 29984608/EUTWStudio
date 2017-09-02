@@ -1071,6 +1071,9 @@ WHERE student.no =#{studentNo}
     <insert id="addAwardOrPunishmentByUpdate" parameterType="OwnOrPunishment">
         insert into t_own_punishment (date,centent,studentNo,witness) values (#{date},#{centent},#{studentNo},#{witness})
     </insert>
+    <insert id="addDisciplineAndPunishmentByUpdate" parameterType="disciplineAndPunishmen">
+        insert into t_discipline_and_punishment (date,content,studentNo) values (#{date},#{content},#{studentNo})
+    </insert>
 
     <select id="showAutoProfessionListByDepartment" parameterType="string" resultType="map">
         select * from t_profession
@@ -1095,5 +1098,28 @@ WHERE student.no =#{studentNo}
         select * from t_classes
         WHERE level = #{levelName}
     </select>
+
+    <select id="queryDisciplineAndPunishment" parameterType="string" resultType="map">
+        select * from t_discipline_and_punishment
+        WHERE studentNo = #{studentNo}
+    </select>
+    <select id="queryGroupActivitiesList" parameterType="string" resultType="map">
+        select * from t_group_activities
+        WHERE studentNo = #{studentNo}
+    </select>
+
+    <delete id="delDisciplineAndPunishment" parameterType="string">
+        DELETE FROM t_discipline_and_punishment
+        WHERE id = #{id}
+    </delete>
+
+    <insert id="addGroupActivitiesByUpdate" parameterType="GroupActivities">
+        insert into t_group_activities (date,content,studentNo) values (#{date},#{content},#{studentNo});
+    </insert>
+
+    <delete id="delGroupActivities" parameterType="string">
+        DELETE FROM t_group_activities
+        WHERE id = #{id}
+    </delete>
 
 </mapper>

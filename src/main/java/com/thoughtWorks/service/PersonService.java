@@ -124,4 +124,16 @@ public interface PersonService {
     List<Map<String,Object>> querylevelSelectionClass(String levelName)throws Exception;
 
     void delAward(String id)throws Exception;
+
+    List<Map<String,Object>> queryDisciplineAndPunishment(String studentNo) throws Exception;
+
+    List<Map<String,Object>> queryGroupActivitiesList(String studentNo)throws Exception;
+
+    void addDisciplineAndPunishmentByUpdate(DisciplineAndPunishmen disciplineAndPunishmen)throws Exception;
+
+    void delDisciplineAndPunishment(String id)throws Exception;
+
+    void addGroupActivitiesByUpdate(GroupActivities groupActivities)throws Exception;
+
+    void delGroupActivities(String id)throws Exception;
 }
