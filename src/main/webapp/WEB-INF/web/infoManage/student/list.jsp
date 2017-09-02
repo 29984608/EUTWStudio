@@ -981,22 +981,23 @@
                 $("#updateStudent_Award_or_punishment").html("")
                 for (let i = 0; i < AwardOrPunishmentList.length; i++) {
                     $("#updateStudent_Award_or_punishment").append(`<tr style="margin-bottom: 20px;">
-                                        <th colspan="2"><span>时间：
+                                        <th colspan="1" width="25%"><span>时间：
                                             <div class="layui-input-inline">
                                                 <input name="date" lay-verify="date" placeholder="yyyy-mm-dd"
                                                        autocomplete="off" class="layui-input updateStudent_Award_or_punishment_date"
+                                                       onclick="layui.laydate({elem: this})"
                                                         type="text" id="updateStudent_Award_or_punishment_date">
                                             </div>
                                            </th>
 
-                                        <th colspan="4" width="600px"><span>内容：
+                                        <th colspan="3" width="50%"><span>内容：
                                             <div class="layui-input-inline" style="width: 90%">
                                                 <input type="text" name="text"
                                                        placeholder="内容" autocomplete="off" class="layui-input updateStudent_Award_or_punishment_content" id="updateStudent_Award_or_punishment_content">
                                              </div>
                                         </span></th>
-                                        <th>证明人：<span  class="updateStudent_witness"id = "updateStudent_witness"></span></th>
-                                        <th>
+                                        <th colspan="1" width="15%">证明人：<span  class="updateStudent_witness"id = "updateStudent_witness"></span></th>
+                                        <th colspan="1" width="10%">
                                             <button class="layui-btn  layui-btn-danger" onclick="student.delAward(this,` + AwardOrPunishmentList[i].id + `)" style="margin-bottom: 10px;float: right;"><i class="layui-icon">&#xe640;</i> 删除</button>
 </th>
                                     </tr>`)
@@ -1021,6 +1022,7 @@
                                             <div class="layui-input-inline">
                                                 <input name="date" lay-verify="date" placeholder="yyyy-mm-dd"
                                                        autocomplete="off" class="layui-input updateStudent_disciplineAndPunishment_date"
+                                                       onclick="layui.laydate({elem: this})"
                                                         type="text" id="updateStudent_disciplineAndPunishment_date">
                                             </div>
                                            </th>
@@ -1055,6 +1057,7 @@
                                             <div class="layui-input-inline">
                                                 <input name="date" lay-verify="date" placeholder="yyyy-mm-dd"
                                                        autocomplete="off" class="layui-input updateStudent_GroupActivities_date"
+                                                       onclick="layui.laydate({elem: this})"
                                                         type="text" id="updateStudent_GroupActivities_date">
                                             </div>
                                            </th>

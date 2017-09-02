@@ -209,6 +209,7 @@
                     <tbody id="family">
                     </tbody>
                 </table>
+
                 <h4 style="color: #00ab9f;font-weight: bold ;padding-top: 15px;">教育经历</h4>
                 <table class="layui-table lay-even " data-name="articleCatData"
                        style="border: 0px solid red">
@@ -851,7 +852,7 @@
                                     </tbody>
                                 </table>
 
-
+                                <br>
                                 <h4 style="color: #00ab9f;font-weight: bold ;padding-top: 15px;">家庭成员</h4>
                                 <table class="layui-table lay-even " data-name="articleCatData"
                                        style="border: 0px solid red" id="family_member_information_list">
@@ -863,7 +864,8 @@
                                         class="layui-icon">&#xe61f;</i> 添加成员信息
                                 </button>
 
-
+                                <br>
+                                <br>
                                 <h4 style="color: #00ab9f;font-weight: bold ;padding-top: 15px;">教育经历</h4>
                                 <table class="layui-table lay-even " data-name="articleCatData"
                                        style="border: 0px solid red" id="updateStudent_Educational_experience">
@@ -1170,6 +1172,7 @@
 
                                     </tbody>
                                 </table>
+                                <br>
                                 <h4 style="color: #00ab9f;font-weight: bold ;padding-top: 15px;">社区管理</h4>
                                 <table class="layui-table lay-even " data-name="articleCatData"
                                        style="border: 0px solid red">
@@ -1528,6 +1531,7 @@
                                     </tbody>
                                 </table>
 
+                                <br>
                                 <h4 style="color: #00ab9f;font-weight: bold ;padding-top: 15px;">获奖与荣誉</h4>
                                 <table class="layui-table lay-even " data-name="articleCatData"
                                        style="border: 0px solid red" id="updateStudent_Award_or_punishment">
@@ -1539,6 +1543,8 @@
                                         class="layui-icon">&#xe61f;</i> 添加获奖与荣誉
                                 </button>
 
+                                <br>
+                                <br>
                                 <h4 style="color: #00ab9f;font-weight: bold ;padding-top: 15px;">违纪与处分</h4>
                                 <table class="layui-table lay-even " data-name="articleCatData"
                                        style="border: 0px solid red" id="updateStudent_disciplineAndPunishment">
@@ -1550,6 +1556,8 @@
                                         class="layui-icon">&#xe61f;</i> 添加违纪与处分
                                 </button>
 
+                                <br>
+                                <br>
                                 <h4 style="color: #00ab9f;font-weight: bold ;padding-top: 15px;">团学活动</h4>
                                 <table class="layui-table lay-even " data-name="articleCatData"
                                        style="border: 0px solid red" id="updateStudent_GroupActivities">
