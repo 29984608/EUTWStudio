@@ -276,9 +276,21 @@
     let addAwardOrPunishmentInfoIndex;
     let allProfessionInfo;
     let addExperienceByUpdateOffOpen;
+<<<<<<< HEAD
     let addDisciplineAndPunishmentInfoIndex;
     let disciplineAndPunishmentListInfo;
     let groupActivitiesListInfo;
+=======
+
+    $(function () {
+        <shiro:lacksPermission name="student:basicInfo">
+        $("#student_info").find("input").attr({disabled: "disabled"});
+        $("#student_info").find("select").attr({disabled: "disabled"});
+        $("#student_info").find("radio").attr({disabled: "disabled"});
+
+        </shiro:lacksPermission>
+    })
+>>>>>>> bc1b78602487f53b55273c6e9926197cac24f333
     function showDormInfo() {
         let info = [];
         let area = $("#queryAreas").find("option:selected").text();
