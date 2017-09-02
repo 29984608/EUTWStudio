@@ -136,4 +136,10 @@ public interface PersonService {
     void addGroupActivitiesByUpdate(GroupActivities groupActivities)throws Exception;
 
     void delGroupActivities(String id)throws Exception;
+
+    void updateGroupActivitiesInfo(List<Map<String, Object>> groupActivitiesList)throws Exception;
+
+    void updateDisciplineAndPunishmentInfo(List<Map<String, Object>> disciplineAndPunishmentList)throws Exception;
+
+    void updateAwardOrPunishmentInfo(List<Map<String, Object>> awardOrPunishmentList)throws Exception;
 }

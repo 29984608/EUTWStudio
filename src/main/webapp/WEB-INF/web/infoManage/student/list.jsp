@@ -289,6 +289,7 @@
 
         </shiro:lacksPermission>
     })
+
     function showDormInfo() {
         let info = [];
         let area = $("#queryAreas").find("option:selected").text();
@@ -299,6 +300,7 @@
         if (room !== "请选择") info.push(room);
         $("#updateDorms").val(info.join("-"))
     }
+
     layui.use(['jquery', 'layer', 'element', 'laypage', 'form', 'laytpl', 'tree'], function () {
         window.jQuery = window.$ = layui.jquery;
         window.layer = layui.layer;
@@ -457,10 +459,10 @@
                     $("#idcard").text("").append(data.student[0].idcard);
                     $("#native_place").html(data.student[0].native_place);
                     $("#born").html(getBirthday(data.student[0].idcard));
-                    if( data.student[0].political_status === "请选择"){
+                    if (data.student[0].political_status === "请选择") {
                         $("#political_status").text("");
 
-                    }else {
+                    } else {
                         $("#political_status").text("").append(data.student[0].political_status);
                     }
                     $("#blood").text("").append(data.student[0].blood);
@@ -474,7 +476,7 @@
                     $("#family").html("")
 
                     for (var i = 0; i < data.family.length; i++) {
-                        if(data.family[i].political_status === "请选择"){
+                        if (data.family[i].political_status === "请选择") {
                             data.family[i].political_status = "";
                         }
                         $("#family").append("<tr> <th colspan='5' >" + data.family[i].relationship + "：" + data.family[i].name + "</th>" +
@@ -562,7 +564,7 @@
                             $("input:radio[value='" + studentList.gender + "'][name='sexOfUpdate']").prop('checked', 'true');
                             if (famousFamily != null) {
                                 $("#updateStudentNationalities").html("").append(loadOptionsHtmlOfFamousFamilyList(famousFamilyList, studentList.famous_family));
-                            }else{
+                            } else {
                                 $("#updateStudentNationalities").html("").append(loadOptionsHtmlOfFamousFamilyList(famousFamilyList, "-"));
                             }
                             $("#updateStudentIdCard").val(studentList.idcard);
@@ -1045,7 +1047,7 @@
             },
 
             //团学活动显示列表
-            updateStudentGroupActivities:function (groupActivitiesList) {
+            updateStudentGroupActivities: function (groupActivitiesList) {
                 $("#updateStudent_GroupActivities").html("")
                 for (let i = 0; i < groupActivitiesList.length; i++) {
                     $("#updateStudent_GroupActivities").append(`<tr style="margin-bottom: 20px;">
@@ -1098,7 +1100,7 @@
                 });
             },
 
-            addGroupActivitiesInfo:function () {
+            addGroupActivitiesInfo: function () {
                 addGroupActivitiesIndex = layer.open({
                     type: 1,
                     title: "添加团学活动",
@@ -1145,7 +1147,7 @@
                             studentNo: studentNo,
                             date: dateAwardOrPunishment,
                             centent: contentAwardOrPunishment,
-                            witness:witness
+                            witness: witness
                         },
                         function (data) {
                             if (data.result) {
@@ -1279,7 +1281,7 @@
             },
 
             //删除违纪与处分按钮
-            delDisciplineAndPunishment:function (t,id) {
+            delDisciplineAndPunishment: function (t, id) {
                 layer.confirm('该操作直接删除，无需更新。确定删除？', {icon: 3, title: '提示'}, function (index) {
                     let studentNo = studentInfo.no;
                     $.post(baseUrl + "/student/delDisciplineAndPunishment",
@@ -1294,7 +1296,7 @@
             },
 
             //删除团学活动记录按钮
-            delGroupActivities:function (t,id) {
+            delGroupActivities: function (t, id) {
                 layer.confirm('该操作直接删除，无需更新。确定删除？', {icon: 3, title: '提示'}, function (index) {
                     let studentNo = studentInfo.no;
                     $.post(baseUrl + "/student/delGroupActivities",
@@ -1333,7 +1335,7 @@
             },
 
             isOther: function (political) {
-                if (political != "中共党员" && political != "预备党员" && political != "共青团员" && political != "积极分子" && political != "群众" && political != "请选择" )
+                if (political != "中共党员" && political != "预备党员" && political != "共青团员" && political != "积极分子" && political != "群众" && political != "请选择")
                     return true;
 
                 return false;
@@ -1587,6 +1589,43 @@
                     update_duties_start_list.push($(update_duties[i]).val())
                     experienceIds.push(experienceInfo[i].id)
                 }
+                //获奖与荣誉
+                let updateStudent_Award_or_punishment_date = $(".updateStudent_Award_or_punishment_date");
+                let updateStudent_Award_or_punishment_content = $(".updateStudent_Award_or_punishment_content");
+
+                var updateStudent_Award_or_punishment_date_list = [];
+                var updateStudent_Award_or_punishment_content_list = [];
+                var updateStudent_Award_or_punishment_id_list = [];
+                for (let i = 0; i < AwardOrPunishmentInfo.length; i++) {
+                    updateStudent_Award_or_punishment_date_list.push($(updateStudent_Award_or_punishment_date[i]).val());
+                    updateStudent_Award_or_punishment_content_list.push($(updateStudent_Award_or_punishment_content[i]).val());
+                    updateStudent_Award_or_punishment_id_list.push(AwardOrPunishmentInfo[i].id);
+                }
+                //违纪与处分
+                let updateStudent_disciplineAndPunishment_dates = $(".updateStudent_disciplineAndPunishment_date");
+                let updateStudent_disciplineAndPunishment_contents = $(".updateStudent_disciplineAndPunishment_content");
+
+                var updateStudent_disciplineAndPunishment_date_list = [];
+                var updateStudent_disciplineAndPunishment_content_list = [];
+                var updateStudent_disciplineAndPunishment_id_list = [];
+                for (let i = 0; i < disciplineAndPunishmentListInfo.length; i++) {
+                    updateStudent_disciplineAndPunishment_date_list.push($(updateStudent_disciplineAndPunishment_dates[i]).val());
+                    updateStudent_disciplineAndPunishment_content_list.push($(updateStudent_disciplineAndPunishment_contents[i]).val());
+                    updateStudent_disciplineAndPunishment_id_list.push(disciplineAndPunishmentListInfo[i].id);
+                }
+                //团学活动
+                let updateStudent_GroupActivities_date = $(".updateStudent_GroupActivities_date");
+                let updateStudent_GroupActivities_content = $(".updateStudent_GroupActivities_content");
+
+                var updateStudent_groupActivities_date_list = [];
+                var updateStudent_groupActivities_content_list = [];
+                var updateStudent_groupActivities_id_list = [];
+                for (let i = 0; i < groupActivitiesListInfo.length; i++) {
+                    updateStudent_groupActivities_date_list.push($(updateStudent_GroupActivities_date[i]).val());
+                    updateStudent_groupActivities_content_list.push($(updateStudent_GroupActivities_content[i]).val());
+                    updateStudent_groupActivities_id_list.push(groupActivitiesListInfo[i].id);
+                }
+
                 $("#educational_experience").val();
 
                 //学业信息
@@ -1765,12 +1804,27 @@
                             community_teacher_id: community_teacher_id,
 
                             //奖助学金
-                            first_scholarship :first_scholarship,
-                            first_stipend :first_stipend,
-                            second_scholarship :second_scholarship,
-                            second_stipend :second_stipend,
-                            third_scholarship :third_scholarship,
-                            third_stipend :third_stipend
+                            first_scholarship: first_scholarship,
+                            first_stipend: first_stipend,
+                            second_scholarship: second_scholarship,
+                            second_stipend: second_stipend,
+                            third_scholarship: third_scholarship,
+                            third_stipend: third_stipend,
+
+                            //荣誉与获奖
+                            updateStudent_Award_or_punishment_date_list:updateStudent_Award_or_punishment_date_list,
+                            updateStudent_Award_or_punishment_content_list:updateStudent_Award_or_punishment_content_list,
+                            updateStudent_Award_or_punishment_id_list:updateStudent_Award_or_punishment_id_list,
+
+                            //违纪与处分
+                            updateStudent_disciplineAndPunishment_date_list:updateStudent_disciplineAndPunishment_date_list,
+                            updateStudent_disciplineAndPunishment_content_list:updateStudent_disciplineAndPunishment_content_list,
+                            updateStudent_disciplineAndPunishment_id_list:updateStudent_disciplineAndPunishment_id_list,
+
+                            //团学活动
+                            updateStudent_groupActivities_date_list:updateStudent_groupActivities_date_list,
+                            updateStudent_groupActivities_content_list:updateStudent_groupActivities_content_list,
+                            updateStudent_groupActivities_id_list:updateStudent_groupActivities_id_list,
 
                         },
 
