@@ -817,6 +817,7 @@
                             $("#Amount_of_arrears2").val(studentList.arrears_second_year);
                             $("#Amount_of_arrears3").val(studentList.arrears_third_year);
                             $("#Amount_of_arrears4").val(studentList.arrears_forth_year);
+                            $("#Amount_of_arrears5").val(studentList.arrears_fifth_year);
 
                             if (studentList.arrears_first_year != null && studentList.arrears_first_year != '0') {
                                 $("#showAmount_of_arrears").show();
@@ -839,6 +840,11 @@
                                 $("#showAmount_of_arrears4").show();
                             } else {
                                 $("#showAmount_of_arrears4").hide();
+                            }
+                            if (studentList.arrears_fifth_year != null && studentList.arrears_fifth_year != '0') {
+                                $("#showAmount_of_arrears5").show();
+                            } else {
+                                $("#showAmount_of_arrears5").hide();
                             }
 
                             $("input[type='radio'][name='update_hard_type'][value='" + studentList.hard_type + "']").attr("checked", "checked");
@@ -1740,6 +1746,13 @@
                     var payment_status_forth_year = $("#update_payment_status4").find('option:selected').text()
                     var arrears_forth_year = '0'
                 }
+                if ($("#update_payment_status5").find('option:selected').text() == "欠费") {
+                    var payment_status_fifth_year = $("#update_payment_status5").find('option:selected').text()
+                    var arrears_fifth_year = $("#Amount_of_arrears5").val()
+                } else {
+                    var payment_status_fifth_year = $("#update_payment_status5").find('option:selected').text()
+                    var arrears_fifth_year = '0'
+                }
 
                 //实践类型
                 if ($("#update_practical_type").find('option:selected').text() == "其它") {
@@ -1829,6 +1842,8 @@
                             arrears_third_year: arrears_third_year,
                             payment_status_forth_year: payment_status_forth_year,
                             arrears_forth_year: arrears_forth_year,
+                            payment_status_fifth_year: payment_status_fifth_year,
+                            arrears_fifth_year: arrears_fifth_year,
 
                             practice_learning_type: practice_learning_type,
                             area_id: area_id,
@@ -2196,6 +2211,13 @@
                     $("#showAmount_of_arrears4").show();
                 } else {
                     $("#showAmount_of_arrears4").hide();
+                }
+            })
+            form.on('select(update_payment_status5)', function (data) {
+                if (data.value == 5) {
+                    $("#showAmount_of_arrears5").show();
+                } else {
+                    $("#showAmount_of_arrears5").hide();
                 }
             })
             //监听实践类型
