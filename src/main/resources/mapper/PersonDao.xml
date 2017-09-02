@@ -1122,4 +1122,51 @@ WHERE student.no =#{studentNo}
         WHERE id = #{id}
     </delete>
 
+    <update id="updateGroupActivitiesInfo" parameterType="map">
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+            UPDATE t_group_activities groupActivities
+            <set>
+                <if test="item.updateStudent_groupActivities_date_list != null">
+                    groupActivities.date = #{item.updateStudent_groupActivities_date_list},
+                </if>
+
+                <if test="item.updateStudent_groupActivities_content_list != null">
+                    groupActivities.content = #{item.updateStudent_groupActivities_content_list},
+                </if>
+            </set>
+            WHERE groupActivities.id = #{item.updateStudent_groupActivities_id_list}
+        </foreach>
+    </update>
+
+    <update id="updateDisciplineAndPunishmentInfo" parameterType="map">
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+            UPDATE t_discipline_and_punishment disciplineAndPunishment
+            <set>
+                <if test="item.updateStudent_disciplineAndPunishment_date_list != null">
+                    disciplineAndPunishment.date = #{item.updateStudent_disciplineAndPunishment_date_list},
+                </if>
+
+                <if test="item.updateStudent_disciplineAndPunishment_content_list != null">
+                    disciplineAndPunishment.content = #{item.updateStudent_disciplineAndPunishment_content_list},
+                </if>
+            </set>
+            WHERE disciplineAndPunishment.id = #{item.updateStudent_disciplineAndPunishment_id_list}
+        </foreach>
+    </update>
+    <update id="updateAwardOrPunishmentInfo" parameterType="map">
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+            UPDATE t_own_punishment ownPunishment
+            <set>
+                <if test="item.updateStudent_Award_or_punishment_date_list != null">
+                    ownPunishment.date = #{item.updateStudent_Award_or_punishment_date_list},
+                </if>
+
+                <if test="item.updateStudent_Award_or_punishment_content_list != null">
+                    ownPunishment.centent = #{item.updateStudent_Award_or_punishment_content_list},
+                </if>
+            </set>
+            WHERE ownPunishment.id = #{item.updateStudent_Award_or_punishment_id_list}
+        </foreach>
+    </update>
+
 </mapper>

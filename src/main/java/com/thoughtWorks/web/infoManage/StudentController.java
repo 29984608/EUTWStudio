@@ -78,8 +78,8 @@ public class StudentController {
         try {
 
             data.putAll(personService.updateByStudentNo(studentNo));
-            data.put("msg", Constant.SEARCH_SUCCESS);
             data.put("result", true);
+            data.put("msg", Constant.SEARCH_SUCCESS);
         } catch (Exception e) {
             new RuntimeException(e);
             data.put("msg", Constant.SEARCH_FAILURE);
@@ -149,9 +149,19 @@ public class StudentController {
                                     @RequestParam(value = "updateStudentParent_employerList[]", required = false, defaultValue = "") List updateStudentParent_employerList,
                                     @RequestParam(value = "updateStudentParent_dutiesList[]", required = false, defaultValue = "") List updateStudentParent_dutiesList,
                                     @RequestParam(value = "updateStudentParentIds[]", required = false, defaultValue = "") List updateStudentParentIds,
-                                    @RequestParam(value = "updateStudentParent_phoneList[]", required = false, defaultValue = "") List updateStudentParent_phoneList) {
+                                    @RequestParam(value = "updateStudentParent_phoneList[]", required = false, defaultValue = "") List updateStudentParent_phoneList,
+                                    @RequestParam(value = "updateStudent_groupActivities_date_list[]", required = false, defaultValue = "") List updateStudent_groupActivities_date_list,
+                                    @RequestParam(value = "updateStudent_groupActivities_content_list[]", required = false, defaultValue = "") List updateStudent_groupActivities_content_list,
+                                    @RequestParam(value = "updateStudent_groupActivities_id_list[]", required = false, defaultValue = "") List updateStudent_groupActivities_id_list,
+                                    @RequestParam(value = "updateStudent_disciplineAndPunishment_date_list[]", required = false, defaultValue = "") List updateStudent_disciplineAndPunishment_date_list,
+                                    @RequestParam(value = "updateStudent_disciplineAndPunishment_content_list[]", required = false, defaultValue = "") List updateStudent_disciplineAndPunishment_content_list,
+                                    @RequestParam(value = "updateStudent_disciplineAndPunishment_id_list[]", required = false, defaultValue = "") List updateStudent_disciplineAndPunishment_id_list,
+                                    @RequestParam(value = "updateStudent_Award_or_punishment_date_list[]", required = false, defaultValue = "") List updateStudent_Award_or_punishment_date_list,
+                                    @RequestParam(value = "updateStudent_Award_or_punishment_content_list[]", required = false, defaultValue = "") List updateStudent_Award_or_punishment_content_list,
+                                    @RequestParam(value = "updateStudent_Award_or_punishment_id_list[]", required = false, defaultValue = "") List updateStudent_Award_or_punishment_id_list) {
 
         try {
+            //教育经历
             List<Map<String, Object>> experiences = new ArrayList<>();
             for (int i = 0; i < educational_experience_start_list.size(); i++) {
                 Map<String, Object> experience = new HashMap<>();
@@ -168,6 +178,7 @@ public class StudentController {
                 personService.updateExperienceList(experiences);
             }
 
+            //家庭成员信息
             List<Map<String, Object>> familyList = new ArrayList<>();
             for (int i = 0; i < familyInfoCount; i++) {
                 Map<String, Object> family = new HashMap<>();
@@ -181,6 +192,42 @@ public class StudentController {
             }
             if (null != familyList && familyList.size() != 0) {
                 personService.updateFamilyInfo(familyList);
+            }
+            //荣誉与获奖
+            List<Map<String, Object>> awardOrPunishmentList = new ArrayList<>();
+            for (int i = 0; i < updateStudent_Award_or_punishment_id_list.size(); i++) {
+                Map<String, Object> awardOrPunishment = new HashMap<>();
+                awardOrPunishment.put("updateStudent_Award_or_punishment_date_list", updateStudent_Award_or_punishment_date_list.get(i));
+                awardOrPunishment.put("updateStudent_Award_or_punishment_content_list", updateStudent_Award_or_punishment_content_list.get(i));
+                awardOrPunishment.put("updateStudent_Award_or_punishment_id_list", updateStudent_Award_or_punishment_id_list.get(i));
+                awardOrPunishmentList.add(awardOrPunishment);
+            }
+            if (null != awardOrPunishmentList && awardOrPunishmentList.size() != 0) {
+                personService.updateAwardOrPunishmentInfo(awardOrPunishmentList);
+            }
+            //违纪与处分
+            List<Map<String, Object>> disciplineAndPunishmentList = new ArrayList<>();
+            for (int i = 0; i < updateStudent_groupActivities_id_list.size(); i++) {
+                Map<String, Object> disciplineAndPunishment = new HashMap<>();
+                disciplineAndPunishment.put("updateStudent_disciplineAndPunishment_date_list", updateStudent_disciplineAndPunishment_date_list.get(i));
+                disciplineAndPunishment.put("updateStudent_disciplineAndPunishment_content_list", updateStudent_disciplineAndPunishment_content_list.get(i));
+                disciplineAndPunishment.put("updateStudent_disciplineAndPunishment_id_list", updateStudent_disciplineAndPunishment_id_list.get(i));
+                disciplineAndPunishmentList.add(disciplineAndPunishment);
+            }
+            if (null != disciplineAndPunishmentList && disciplineAndPunishmentList.size() != 0) {
+                personService.updateDisciplineAndPunishmentInfo(disciplineAndPunishmentList);
+            }
+            //团学活动
+            List<Map<String, Object>> groupActivitiesList = new ArrayList<>();
+            for (int i = 0; i < updateStudent_groupActivities_id_list.size(); i++) {
+                Map<String, Object> groupActivities = new HashMap<>();
+                groupActivities.put("updateStudent_groupActivities_date_list", updateStudent_groupActivities_date_list.get(i));
+                groupActivities.put("updateStudent_groupActivities_content_list", updateStudent_groupActivities_content_list.get(i));
+                groupActivities.put("updateStudent_groupActivities_id_list", updateStudent_groupActivities_id_list.get(i));
+                groupActivitiesList.add(groupActivities);
+            }
+            if (null != groupActivitiesList && groupActivitiesList.size() != 0) {
+                personService.updateGroupActivitiesInfo(groupActivitiesList);
             }
             //添加修改日志到沟通反馈页面
 //            CommunicationContent content = new CommunicationContent(studentUpdate.getNo(), personService.queryStudentNameByStudentNo(studentUpdate.getNo()), "基本信息");

@@ -154,5 +154,11 @@ public interface PersonDao {
     void addGroupActivitiesByUpdate(GroupActivities groupActivities);
 
     void delGroupActivities(@Param("id") String id);
+
+    void updateGroupActivitiesInfo(@Param("list")List<Map<String, Object>> groupActivitiesList);
+
+    void updateDisciplineAndPunishmentInfo(@Param("list")List<Map<String, Object>> disciplineAndPunishmentList);
+
+    void updateAwardOrPunishmentInfo(@Param("list")List<Map<String, Object>> awardOrPunishmentList);
 }
 
