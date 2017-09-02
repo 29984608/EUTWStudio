@@ -54,6 +54,7 @@ public class StudentUpdate {
     private String payment_status_second_year;
     private String payment_status_third_year;
     private String payment_status_forth_year;
+    private String payment_status_fifth_year;
     private String practice_learning_type;
     private String stay_type;
     private String off_school_stay_address;
@@ -68,6 +69,7 @@ public class StudentUpdate {
     private String arrears_third_year;
     private String arrears_second_year;
     private String arrears_forth_year;
+    private String arrears_fifth_year;
     private String teacher_id;
     private String community_teacher_id;
     private String group;
@@ -78,6 +80,22 @@ public class StudentUpdate {
     private String second_stipend;
     private String third_scholarship;
     private String third_stipend;
+
+    public String getPayment_status_fifth_year() {
+        return payment_status_fifth_year;
+    }
+
+    public void setPayment_status_fifth_year(String payment_status_fifth_year) {
+        this.payment_status_fifth_year = payment_status_fifth_year;
+    }
+
+    public String getArrears_fifth_year() {
+        return arrears_fifth_year;
+    }
+
+    public void setArrears_fifth_year(String arrears_fifth_year) {
+        this.arrears_fifth_year = arrears_fifth_year;
+    }
 
     public String getPayment_status_forth_year() {
         return payment_status_forth_year;
