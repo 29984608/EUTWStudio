@@ -968,7 +968,7 @@
                     $("#updateStudent_Award_or_punishment").append(`<tr style="margin-bottom: 20px;">
                                         <th colspan="2"><span>时间：
                                             <div class="layui-input-inline">
-                                                <input name="date" lay-verify="date" placeholder="yyyy-mm-dd" readonly="readonly"
+                                                <input name="date" lay-verify="date" placeholder="yyyy-mm-dd"
                                                        autocomplete="off" class="layui-input updateStudent_Award_or_punishment_date"
                                                         type="text" id="updateStudent_Award_or_punishment_date">
                                             </div>
@@ -976,7 +976,7 @@
 
                                         <th colspan="4" width="600px"><span>内容：
                                             <div class="layui-input-inline" style="width: 90%">
-                                                <input type="text" name="text" readonly="readonly"
+                                                <input type="text" name="text"
                                                        placeholder="内容" autocomplete="off" class="layui-input updateStudent_Award_or_punishment_content" id="updateStudent_Award_or_punishment_content">
                                              </div>
                                         </span></th>
@@ -1004,7 +1004,7 @@
                     $("#updateStudent_disciplineAndPunishment").append(`<tr style="margin-bottom: 20px;">
                                         <th colspan="2"><span>时间：
                                             <div class="layui-input-inline">
-                                                <input name="date" lay-verify="date" placeholder="yyyy-mm-dd" readonly="readonly"
+                                                <input name="date" lay-verify="date" placeholder="yyyy-mm-dd"
                                                        autocomplete="off" class="layui-input updateStudent_disciplineAndPunishment_date"
                                                         type="text" id="updateStudent_disciplineAndPunishment_date">
                                             </div>
@@ -1046,7 +1046,7 @@
 
                                         <th colspan="4" width="600px"><span>内容：
                                             <div class="layui-input-inline" style="width: 90%">
-                                                <input type="text" name="text" readonly="readonly"
+                                                <input type="text" name="text"
                                                        placeholder="内容" autocomplete="off" class="layui-input updateStudent_GroupActivities_content" id="updateStudent_GroupActivities_content">
                                              </div>
                                         </span></th>
