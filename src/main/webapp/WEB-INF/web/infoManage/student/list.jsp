@@ -431,7 +431,6 @@
             },
             preview: function (studentNo) {
                 $.post(baseUrl + "/student/update", {studentNo: studentNo}, function (data) {
-                    console.log(data)
                     $("#phone").html(data.student[0].student_contact_method);
                     $("#qq").html(data.student[0].qq);
                     $("#email").html(data.student[0].email);
@@ -1111,7 +1110,7 @@
                     $("#updateStudent_disciplineAndPunishment").append(`<tr style="margin-bottom: 20px;">
                                         <th colspan="2"><span>时间：
                                             <div class="layui-input-inline">
-                                                <input name="date" lay-verify="date" placeholder="yyyy-mm-dd"
+                                                        <input name="date" lay-verify="date" placeholder="yyyy-MM-dd"
                                                        autocomplete="off" class="layui-input updateStudent_disciplineAndPunishment_date"
                                                        onclick="layui.laydate({elem: this})"
                                                         type="text" id="updateStudent_disciplineAndPunishment_date">
@@ -1220,6 +1219,7 @@
                 })
             },
             addStudentFamilyInfo: function () {
+//                document.getElementById("add_family_member_information_list").reset();
                 addStudentFamilyInfoIndex = layer.open({
                     type: 1,
                     title: "添加学生家庭信息",

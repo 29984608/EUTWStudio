@@ -2178,7 +2178,7 @@
     let this_pre_school_work = '';
 
     function selectProvince13(e) {
-        alert(e.options[e.selectedIndex].text)
+//        alert(e.options[e.selectedIndex].text)
         P_pre_school_work = e.options[e.selectedIndex].text;
         if (P_pre_school_work === "—— 省 ——") {
             $("#pre_school_work").val("");

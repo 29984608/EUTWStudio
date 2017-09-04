@@ -416,12 +416,12 @@ public class StudentController {
             personService.addDisciplineAndPunishmentByUpdate(disciplineAndPunishmen);
             List<Map<String,Object>> disciplineAndPunishmentList = personService.queryDisciplineAndPunishment(disciplineAndPunishmen.getStudentNo());
 
-            return Result.success(disciplineAndPunishmentList,Constant.SEARCH_SUCCESS);
+            return Result.success(disciplineAndPunishmentList,Constant.ADD_SUCCESS);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return Result.failure(null, Constant.SEARCH_FAILURE);
+        return Result.failure(null, Constant.ADD_FAILURE);
     }
     @RequestMapping("/addGroupActivitiesByUpdate")
     @ResponseBody
@@ -431,12 +431,12 @@ public class StudentController {
             personService.addGroupActivitiesByUpdate(groupActivities);
             List<Map<String,Object>> groupActivitiesList = personService.queryGroupActivitiesList(groupActivities.getStudentNo());
 
-            return Result.success(groupActivitiesList,Constant.SEARCH_SUCCESS);
+            return Result.success(groupActivitiesList,Constant.ADD_SUCCESS);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return Result.failure(null, Constant.SEARCH_FAILURE);
+        return Result.failure(null, Constant.ADD_FAILURE);
     }
 
     @RequestMapping("/delDisciplineAndPunishment")
