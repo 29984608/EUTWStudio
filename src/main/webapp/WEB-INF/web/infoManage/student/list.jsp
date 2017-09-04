@@ -1111,7 +1111,7 @@
                     $("#updateStudent_disciplineAndPunishment").append(`<tr style="margin-bottom: 20px;">
                                         <th colspan="2"><span>时间：
                                             <div class="layui-input-inline">
-                                                <input name="date" lay-verify="date" placeholder="yyyy-mm-dd"
+                                                        <input name="date" lay-verify="date" placeholder="yyyy-mm-dd"
                                                        autocomplete="off" class="layui-input updateStudent_disciplineAndPunishment_date"
                                                        onclick="layui.laydate({elem: this})"
                                                         type="text" id="updateStudent_disciplineAndPunishment_date">
