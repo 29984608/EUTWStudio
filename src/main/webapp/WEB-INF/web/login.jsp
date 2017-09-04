@@ -16,7 +16,7 @@
 <style type="text/css">
     *{margin:0;padding:0;list-style-type:none;}
     a,img{border:0;}
-    .clock div{position:relative;float:left;background:white;border-radius:6px;width:96px;height:80px;line-height:80px;text-align:center;font-size:27px;margin:0px 5px;}
+    .clock div{position:relative;float:left;background:white;border-radius:6px;width:96px;height:80px;line-height:80px;text-align:center;font-size:40px;margin:0px 5px;}
 </style>
 <body>
 
@@ -40,9 +40,9 @@
                     </div>
                     <div class="wrapper">
                         <div class='clock' style="font-size: 16px;">
-                            <div ><span id ="year"> </span>年</div>
-                            <div ><span id = "month"></span>月</div>
-                            <div ><span id = "date"></span>日</div>
+                            <div ><span id ="year"> </span></div>
+                            <div ><span id = "month"></span></div>
+                            <div ><span id = "date"></span></div>
                         </div>
                     </div>
 
