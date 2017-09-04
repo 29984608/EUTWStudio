@@ -1869,7 +1869,7 @@
 </div>
 
 <div id="addDisciplineAndPunishment" style="display: none;">
-    <table class="layui-table lay-even " data-name="articleCatData"
+    <table class="layui-table lay-even layui-form" data-name="articleCatData"
            style="border: 0px solid red" id="add_addDisciplineAndPunishment_list">
         <tbody id="add_addDisciplineAndPunishmentInfo">
         <tr>
@@ -1881,6 +1881,54 @@
                         <input type="text" name="date" id="dateDisciplineAndPunishment" lay-verify="date"
                                placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input"
                                onclick="layui.laydate({elem: this})">
+                    </div>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <label class="layui-form-label" style="width: auto;margin-right: 0px">类别</label>
+                <div class="layui-input-inline" >
+                    <select lay-filter="dateDisciplineAndPunishmentCategory" id="dateDisciplineAndPunishmentCategory">
+                        <option value=""></option>
+                        <option value="">请选择</option>
+                        <option value="1">违纪处分</option>
+                        <option value="2">安全隐患</option>
+                    </select>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label class="layui-form-label" style="width: auto;margin-right: 0px">行为</label>
+                <div class="layui-input-inline" >
+                    <select lay-filter="dateDisciplineAndPunishmentBehavior" id="dateDisciplineAndPunishmentBehavior">
+                        <option value=""></option>
+                        <option value="">请选择</option>
+                    </select>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label class="layui-form-label" style="width: auto;margin-right: 0px">级别</label>
+                <div class="layui-input-inline" >
+                    <select lay-filter="dateDisciplineAndPunishmentRank" id="dateDisciplineAndPunishmentRank">
+                        <option value=""></option>
+                        <option value="">请选择</option>
+                    </select>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <div class="layui-form-item">
+                    <label class="layui-form-label" style="width: auto;margin-right: 0px">证明人</label>
+                    <div class="layui-input-inline" style="width: 160px">
+                        <input type="text" name="witness" id="witnessByDiscipline" style="background-color: #EEEEEE"
+                               autocomplete="off" class="layui-input" disabled="disabled">
                     </div>
                 </div>
             </td>

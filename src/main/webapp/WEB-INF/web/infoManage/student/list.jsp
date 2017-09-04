@@ -1116,33 +1116,74 @@
                 $("#updateStudent_disciplineAndPunishment").html("")
                 for (let i = 0; i < disciplineAndPunishmentList.length; i++) {
                     $("#updateStudent_disciplineAndPunishment").append(`<tr style="margin-bottom: 20px;">
-                                        <th colspan="2"><span>时间：
-                                            <div class="layui-input-inline">
+                                        <th colspan="1"><span>时间：
+                                            <div class="layui-input-inline" style="width: 60%">
                                                         <input name="date" lay-verify="date" placeholder="yyyy-MM-dd"
                                                        autocomplete="off" class="layui-input updateStudent_disciplineAndPunishment_date"
                                                        onclick="layui.laydate({elem: this})"
                                                         type="text" id="updateStudent_disciplineAndPunishment_date">
                                             </div>
                                            </th>
+                                           <th colspan="1">
+                                            <label class="layui-form-label" style="width: auto;margin-right: 0px">类别</label>
+                <div class="layui-input-inline" style="width: 60%">
+                    <select lay-filter="show_dateDisciplineAndPunishmentCategory" id="show_dateDisciplineAndPunishmentCategory">
+                        <option value=""></option>
+                        <option value="">请选择</option>
+                        <option value="1">违纪处分</option>
+                        <option value="2">安全隐患</option>
+                    </select>
+                </div>
+</th>
+                                           <th colspan="1">
+                                           <label class="layui-form-label" style="width: auto;margin-right: 0px">行为</label>
+                <div class="layui-input-inline" style="width: 60%">
+                    <select lay-filter="show_dateDisciplineAndPunishmentBehavior" id="show_dateDisciplineAndPunishmentBehavior">
+                        <option value=""></option>
+                        <option value="">请选择</option>
+                    </select>
+                </div>
+</th>
+                                           <th colspan="1">
+                                           <label class="layui-form-label" style="width: auto;margin-right: 0px">级别</label>
+                <div class="layui-input-inline" style="width: 60%">
+                    <select lay-filter="show_dateDisciplineAndPunishmentRank" id="show_dateDisciplineAndPunishmentRank">
+                        <option value=""></option>
+                        <option value="">请选择</option>
+                    </select>
+                </div>
+</th>
+                                           <th colspan="1">
+                                           <div class="layui-form-item">
+                    <label class="layui-form-label" style="width: auto;margin-right: 0px">证明人</label>
+                    <div class="layui-input-inline" style="width: 50%">
+                        <input type="text" name="witness" id="show_witnessByDiscipline" style="background-color: #EEEEEE;"
+                               autocomplete="off" class="layui-input show_witnessByDiscipline" disabled="disabled">
+                    </div>
+                </div>
+</th>
 
-                                        <th colspan="4" width="600px"><span>内容：
+                                       <!-- <th colspan="1" width="600px"><span>内容：
                                             <div class="layui-input-inline" style="width: 90%">
                                                 <input type="text" name="text"
                                                        placeholder="内容" autocomplete="off" class="layui-input updateStudent_disciplineAndPunishment_content" id="updateStudent_disciplineAndPunishment_content">
                                              </div>
-                                        </span></th>
-                                        <th>
+                                        </span></th>-->
+                                        <th colspan="1">
                                             <button class="layui-btn  layui-btn-danger" onclick="student.delDisciplineAndPunishment(this,` + disciplineAndPunishmentList[i].id + `)" style="margin-bottom: 10px;float: right;"><i class="layui-icon">&#xe640;</i> 删除</button>
 </th>
                                     </tr>`)
 
                 }
+                form.render();
 
                 let updateStudent_disciplineAndPunishment_date = $(".updateStudent_disciplineAndPunishment_date");
                 let updateStudent_disciplineAndPunishment_content = $(".updateStudent_disciplineAndPunishment_content");
+                let show_witnessByDiscipline = $(".show_witnessByDiscipline");
                 for (let i = 0; i < disciplineAndPunishmentList.length; i++) {
                     $(updateStudent_disciplineAndPunishment_date[i]).val(disciplineAndPunishmentList[i].date);
                     $(updateStudent_disciplineAndPunishment_content[i]).val(disciplineAndPunishmentList[i].content);
+                    $(show_witnessByDiscipline[i]).val(disciplineAndPunishmentList[i].witness);
                 }
             },
 
@@ -1195,7 +1236,7 @@
                 addDisciplineAndPunishmentInfoIndex = layer.open({
                     type: 1,
                     title: "添加违纪与处分",
-                    area: ["40%", "40%"],
+                    area: ["40%", "70%"],
                     content: $("#addDisciplineAndPunishment")
 
                 });
@@ -2034,6 +2075,99 @@
             })
         }
 
+        function showDateDisciplineAndPunishmentBehavior(num) {
+            if (num == 1){
+                $("#dateDisciplineAndPunishmentBehavior").html(`
+                       <option value=""></option>
+                       <option value="">请选择</option>
+                       <option value="1">考试违规</option>
+                       <option value="2">妨碍公共管理</option>
+                       <option value="3">侵犯他人权利</option>
+                       <option value="4">危害公共安全</option>
+                       <option value="5">扰乱公共秩序</option>
+                       <option value="6">违法犯罪</option>
+                       <option value="7">其他</option>
+                    `);
+                $("#dateDisciplineAndPunishmentRank").html(`
+                       <option value=""></option>
+                       <option value="">请选择</option>
+                       <option value="1">警告</option>
+                       <option value="2">严重警告</option>
+                       <option value="3">记过</option>
+                       <option value="4">留校查看</option>
+                       <option value="5">开出学籍</option>
+                    `);
+                form.render();
+            }
+            if (num == 2){
+                $("#dateDisciplineAndPunishmentBehavior").html(`
+                    <option value=""></option>
+                    <option value="">请选择</option>
+                       <option value="1">身体疾病</option>
+                       <option value="2">情绪失控</option>
+                       <option value="3">行为失常</option>
+                       <option value="4">家庭突变</option>
+                       <option value="5">性格偏执</option>
+                       <option value="6">校园贷款</option>
+                       <option value="7">经济纠纷</option>
+                       <option value="8">其他</option>
+                    `);
+                $("#dateDisciplineAndPunishmentRank").html(`
+                       <option value=""></option>
+                       <option value="">请选择</option>
+                       <option value="1">一般预警</option>
+                       <option value="2">特殊预警</option>
+                    `);
+                form.render();
+            }
+        }
+        function showDateDisciplineAndPunishmentBehaviorByUpdate(num) {
+            if (num == 1){
+                $("#show_dateDisciplineAndPunishmentBehavior").html(`
+                       <option value=""></option>
+                       <option value="">请选择</option>
+                       <option value="1">考试违规</option>
+                       <option value="2">妨碍公共管理</option>
+                       <option value="3">侵犯他人权利</option>
+                       <option value="4">危害公共安全</option>
+                       <option value="5">扰乱公共秩序</option>
+                       <option value="6">违法犯罪</option>
+                       <option value="7">其他</option>
+                    `);
+                $("#show_dateDisciplineAndPunishmentRank").html(`
+                       <option value=""></option>
+                       <option value="">请选择</option>
+                       <option value="1">警告</option>
+                       <option value="2">严重警告</option>
+                       <option value="3">记过</option>
+                       <option value="4">留校查看</option>
+                       <option value="5">开出学籍</option>
+                    `);
+                form.render();
+            }
+            if (num == 2){
+                $("#show_dateDisciplineAndPunishmentBehavior").html(`
+                    <option value=""></option>
+                    <option value="">请选择</option>
+                       <option value="1">身体疾病</option>
+                       <option value="2">情绪失控</option>
+                       <option value="3">行为失常</option>
+                       <option value="4">家庭突变</option>
+                       <option value="5">性格偏执</option>
+                       <option value="6">校园贷款</option>
+                       <option value="7">经济纠纷</option>
+                       <option value="8">其他</option>
+                    `);
+                $("#show_dateDisciplineAndPunishmentRank").html(`
+                       <option value=""></option>
+                       <option value="">请选择</option>
+                       <option value="1">一般预警</option>
+                       <option value="2">特殊预警</option>
+                    `);
+                form.render();
+            }
+        }
+
         function loadAllProfession() {
             $.post(baseUrl + "/student/queryProfessionByDepartment", function (data) {
                 $("#profession_search").html(`<option value="">专业</option>`).append(loadOptionsHtml(data.allProfessionList, "-"));
@@ -2378,7 +2512,14 @@
                     $("#classes_search").html(`<option value="">班级</option>` + loadOptionsHtml(dataResult.classList));
                     form.render();
                 })
-            })
+            });
+            //违纪处分：根据类别确定行为
+            form.on('select(dateDisciplineAndPunishmentCategory)', function (data) {
+                showDateDisciplineAndPunishmentBehavior(data.value);
+            });
+            form.on('select(show_dateDisciplineAndPunishmentCategory)', function (data) {
+                showDateDisciplineAndPunishmentBehaviorByUpdate(data.value);
+            });
 
             //图片上传
             layui.use('upload', function () {
