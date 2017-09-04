@@ -283,10 +283,14 @@
     let searchLevel;
 
     $(function () {
+        //基本信息
         <shiro:lacksPermission name="student:basicInfo">
         $("#student_info").find("input").attr({disabled: "disabled"});
         $("#student_info").find("select").attr({disabled: "disabled"});
         $("#student_info").find("radio").attr({disabled: "disabled"});
+        </shiro:lacksPermission>
+        //家庭成员信息
+        <shiro:lacksPermission name="student:familyInfo">
 
         </shiro:lacksPermission>
     })
@@ -780,11 +784,15 @@
                             for (var i = 0; i < count7; i++) {
                                 if ($("#update_practical_type").get(0).options[i].text == studentList.practice_learning_type) {
                                     $("#update_practical_type").get(0).options[i].selected = true;
+                                    $("#units_or_projects_practical_type").val(studentList.units_or_projects_practical_type);
+                                    $("#show_units_or_projects_practical_type").show();
                                 }
-                                if (studentList.practice_learning_type != "合作企业" && studentList.practice_learning_type != "自主实习" && studentList.practice_learning_type != "创新创业" && studentList.practice_learning_type != "专升本" && studentList.practice_learning_type != "") {
+                                if (studentList.practice_learning_type != "合作企业" && studentList.practice_learning_type != "自主实习" && studentList.practice_learning_type != "创新创业" && studentList.practice_learning_type != "专升本" && studentList.practice_learning_type != null) {
                                     $("#update_practical_type").get(0).options[count7 - 1].selected = true;
                                     $("#show_other_practical_type").show();
                                     $("#other_practical_type").val(studentList.practice_learning_type);
+                                    $("#units_or_projects_practical_type").val(studentList.units_or_projects_practical_type);
+                                    $("#show_units_or_projects_practical_type").show();
                                 }
 
                             }
@@ -1789,6 +1797,8 @@
                 } else {
                     var practice_learning_type = $("#update_practical_type").find('option:selected').text()
                 }
+                //单位或项目
+                var units_or_projects_practical_type = $("#units_or_projects_practical_type").val();
 
                 //宿舍信息
                 if ($("#queryAreas").val() != "" || $("#queryFloors").val() != "" || $("#queryRooms").val() != "") {
@@ -1875,6 +1885,7 @@
                             arrears_fifth_year: arrears_fifth_year,
 
                             practice_learning_type: practice_learning_type,
+                            units_or_projects_practical_type: units_or_projects_practical_type,
                             area_id: area_id,
                             floor_id: floor_id,
                             room_id: room_id,
@@ -2257,6 +2268,11 @@
                     $("#show_other_practical_type").show();
                 } else {
                     $("#show_other_practical_type").hide();
+                }
+                if (data.value !== '') {
+                    $("#show_units_or_projects_practical_type").show();
+                } else {
+                    $("#show_units_or_projects_practical_type").hide();
                 }
             });
 

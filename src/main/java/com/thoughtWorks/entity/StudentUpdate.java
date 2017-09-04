@@ -80,6 +80,15 @@ public class StudentUpdate {
     private String second_stipend;
     private String third_scholarship;
     private String third_stipend;
+    private String units_or_projects_practical_type;
+
+    public String getUnits_or_projects_practical_type() {
+        return units_or_projects_practical_type;
+    }
+
+    public void setUnits_or_projects_practical_type(String units_or_projects_practical_type) {
+        this.units_or_projects_practical_type = units_or_projects_practical_type;
+    }
 
     public String getPayment_status_fifth_year() {
         return payment_status_fifth_year;
@@ -753,6 +762,7 @@ public class StudentUpdate {
                 ", payment_status_second_year='" + payment_status_second_year + '\'' +
                 ", payment_status_third_year='" + payment_status_third_year + '\'' +
                 ", payment_status_forth_year='" + payment_status_forth_year + '\'' +
+                ", payment_status_fifth_year='" + payment_status_fifth_year + '\'' +
                 ", practice_learning_type='" + practice_learning_type + '\'' +
                 ", stay_type='" + stay_type + '\'' +
                 ", off_school_stay_address='" + off_school_stay_address + '\'' +
@@ -767,6 +777,7 @@ public class StudentUpdate {
                 ", arrears_third_year='" + arrears_third_year + '\'' +
                 ", arrears_second_year='" + arrears_second_year + '\'' +
                 ", arrears_forth_year='" + arrears_forth_year + '\'' +
+                ", arrears_fifth_year='" + arrears_fifth_year + '\'' +
                 ", teacher_id='" + teacher_id + '\'' +
                 ", community_teacher_id='" + community_teacher_id + '\'' +
                 ", group='" + group + '\'' +
@@ -776,6 +787,7 @@ public class StudentUpdate {
                 ", second_stipend='" + second_stipend + '\'' +
                 ", third_scholarship='" + third_scholarship + '\'' +
                 ", third_stipend='" + third_stipend + '\'' +
+                ", units_or_projects_practical_type='" + units_or_projects_practical_type + '\'' +
                 '}';
     }
 }

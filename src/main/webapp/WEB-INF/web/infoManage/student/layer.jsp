@@ -1218,11 +1218,18 @@
                                                     <option value="5">其它</option>
                                                 </select>
                                             </div>
-                                             <span id="show_other_practical_type" style="display: none">实践类型:
+                                             <span id="show_other_practical_type" style="display: none">实践类型名称:
                                                     <div class="layui-input-inline">
-                                                      <input type="text" name="otherPartyName" placeholder="请输入事件类型名称"
+                                                      <input type="text" name="otherPartyName" placeholder="请输入其他实践类型名称"
                                                              autocomplete="off" class="layui-input"
                                                              id="other_practical_type" style="width: 100%">
+                                                    </div>
+                                            </span>
+                                            <span id="show_units_or_projects_practical_type" style="display: none">单位或项目:
+                                                    <div class="layui-input-inline">
+                                                      <input type="text" name="otherPartyName" placeholder="请输入单位或项目名称"
+                                                             autocomplete="off" class="layui-input"
+                                                             id="units_or_projects_practical_type" style="width: 100%">
                                                     </div>
                                             </span>
                                         </span></th>
