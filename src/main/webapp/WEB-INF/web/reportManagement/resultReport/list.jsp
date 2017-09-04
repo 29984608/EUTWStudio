@@ -263,7 +263,7 @@
                                     <td>` + credit + `</td>
                                     <td>` + score + `</td>
                                 </tr>`;
-                    if (i <= 25) {
+                    if (i < 35) {
                         $("#left_result").append(_html);
                     } else {
                         $("#right_result").append(_html);
@@ -298,8 +298,21 @@
     })
 
 
-    function printPdf() {
-        pdf(document.getElementById("container"), $("#name").text(), "a4");
+    function printPdff() {
+
+        var headstr = "<html><head><title></title></head><body>";
+        var footstr = "</body>";
+        var printData = document.getElementById("container").innerHTML;// 获得 div 里的所有 html 数据
+        var oldstr = document.body.innerHTML;
+        document.body.innerHTML = headstr+printData+footstr;
+        window.print();
+        document.body.innerHTML = oldstr;
+        return false;
+//        var printData = document.getElementById("container").innerHTML;// 获得 div 里的所有 html 数据
+//
+//        window.document.body.innerHTML = printData; //把 html 里的数据 复制给 body 的 html 数据 ，相当于重置了 整个页面的 内容
+//        window.print(); // 开始打印
+//        pdf(document.getElementById("container"), $("#name").text(), "a4");
     }
 </script>
 

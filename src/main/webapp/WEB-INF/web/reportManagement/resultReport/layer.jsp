@@ -34,12 +34,15 @@
     {{# }); }}
 
 </script>
+<style  media="print">
+
+</style>
 <div id="preview" style="display: none;width: auto;margin-top: 20px">
-    <button class="layui-btn " style="float: right" onclick="printPdf()">
+    <button class="layui-btn " style="float: right" onclick="printPdff()">
         <i class="layui-icon">&#xe60a;</i>导出 PDF
     </button>
     <section class="larry-grid">
-        <div class="larry-personal" id="container" style="height: 1600px;width: 83%">
+        <div class="larry-personal" id="container" style="height: 1700px;width: 83% ;border: 1px solid red">
             <div style="margin:20px 5%;height: auto">
                 <div>
                     <h2 style="color: #20a1a1;text-align: center;font-weight: bold;padding: 15px">
@@ -71,8 +74,8 @@
                         </tr>
                     </table>
 
-                    <div style="float: left;width: 50%;height: 1200px">
-                        <table class="layui-table"  lay-skin="nob" style="border-right: 2px dashed #e8e8e8">
+                    <div style="float: left;width: 50%;height: 1400px ;">
+                        <table class="layui-table"  lay-skin="nob" >
                             <colgroup>
                                 <col width="15%">
                                 <col width="15%">
@@ -95,9 +98,8 @@
                             </tbody>
                         </table>
                     </div>
-                    <div style="float: left;width: 50%;height: 1170px">
-                        <table class="layui-table" lay-even="" lay-skin="nob"
-                        >
+                    <div style="float: left;width: 50%;height: 1400px">
+                        <table class="layui-table"  lay-skin="nob">
                             <colgroup>
                                 <col width="20%">
                                 <col width="15%">
