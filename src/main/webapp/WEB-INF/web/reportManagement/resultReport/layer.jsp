@@ -34,15 +34,18 @@
     {{# }); }}
 
 </script>
-<style  media="print">
-
+<style  >
+    .layui-table td{
+        font-size: 13px;
+        padding: 6px 15px;
+    }
 </style>
 <div id="preview" style="display: none;width: auto;margin-top: 20px">
-    <button class="layui-btn " style="float: right" onclick="printPdff()">
+    <button class="layui-btn " style="float: right" onclick="printPdf()">
         <i class="layui-icon">&#xe60a;</i>导出 PDF
     </button>
     <section class="larry-grid">
-        <div class="larry-personal" id="container" style="height: 1700px;width: 83% ;border: 1px solid red">
+        <div class="larry-personal" id="container" style="height: 1480px;width: 83% ;">
             <div style="margin:20px 5%;height: auto">
                 <div>
                     <h2 style="color: #20a1a1;text-align: center;font-weight: bold;padding: 15px">
@@ -74,14 +77,14 @@
                         </tr>
                     </table>
 
-                    <div style="float: left;width: 50%;height: 1400px ;">
-                        <table class="layui-table"  lay-skin="nob" >
+                    <div style="float: left;width: 50%;height: 1200px;">
+                        <table class="layui-table"  lay-skin="nob"  style="font-size: 13px">
                             <colgroup>
+                                <col width="10%">
                                 <col width="15%">
-                                <col width="15%">
-                                <col width="40%">
-                                <col width="15%">
-                                <col width="15%">
+                                <col width="50%">
+                                <col width="10%">
+                                <col width="10%">
                                 <col>
                             </colgroup>
                             <thead>
@@ -93,19 +96,19 @@
                                 <th>成绩</th>
                             </tr>
                             </thead>
-                            <tbody id="left_result">
+                            <tbody id="left_result" style="font-size: 13px">
 
                             </tbody>
                         </table>
                     </div>
-                    <div style="float: left;width: 50%;height: 1400px">
-                        <table class="layui-table"  lay-skin="nob">
+                    <div style="float: left;width: 50%;height: 1200px">
+                        <table class="layui-table"  lay-skin="nob" style="font-size: 13px">
                             <colgroup>
-                                <col width="20%">
+                                <col width="10%">
                                 <col width="15%">
-                                <col width="35%">
-                                <col width="15%">
-                                <col width="15%">
+                                <col width="50%">
+                                <col width="10%">
+                                <col width="10%">
                                 <col>
                             </colgroup>
                             <thead>
@@ -117,7 +120,7 @@
                                 <th>成绩</th>
                             </tr>
                             </thead>
-                            <tbody id="right_result">
+                            <tbody id="right_result" style="font-size: 13px">
 
                             </tbody>
 

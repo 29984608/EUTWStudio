@@ -298,7 +298,7 @@
     })
 
 
-    function printPdff() {
+    function printPdf() {
 
         var headstr = "<html><head><title></title></head><body>";
         var footstr = "</body>";
