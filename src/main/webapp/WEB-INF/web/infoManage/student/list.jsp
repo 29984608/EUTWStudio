@@ -40,7 +40,7 @@
 
     .layui-table td {
         font-size: 12px;
-        padding: 7px 15px;
+        padding: 6px 15px;
 
     }
 </style>
@@ -262,7 +262,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div id="demo1"></div>
+                <div id="demo1" style="margin-top: -10px;"></div>
             </div>
         </div>
     </div>
