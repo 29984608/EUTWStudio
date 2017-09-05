@@ -30,6 +30,9 @@
     .layui-form-radio i {
         font-size: 15px;
     }
+    .layui-disabled{
+        background: none;
+    }
 </style>
 
 <section class="larry-grid layui-form">
@@ -40,7 +43,7 @@
 
                     <div class="layui-form-item">
                         <div class="layui-input-inline">
-                            <div class="layui-inline">
+                            <div class="layui-inline" style="margin-bottom: -12px;">
                                 <div class="layui-input-inline">
                                     <select name="modules" lay-filter="department" lay-search=""
                                             id="department_search">
@@ -114,7 +117,7 @@
                         <div class="layui-form-item">
                             <div class="layui-form-inline">
                                 <div>
-                                    <label class="layui-form-label" style="font-size: 13px">性别</label>
+                                    <label class="layui-form-label" style="font-size: x-small;font-weight: lighter">性别</label>
                                     <div class="layui-input-inline" id="sexQuery" style="width: 250px;">
                                         <input type="radio" name="sexQuery" value="" title="全部" checked="">
                                         <input type="radio" name="sexQuery" value="M" title="男">
@@ -122,7 +125,7 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <label class="layui-form-label" style="font-size: 13px">住宿类型</label>
+                                    <label class="layui-form-label" style="font-size: x-small">住宿类型</label>
                                     <div class="layui-input-inline" id="TypeOfAccommodation"
                                          onclick="student.showDormAndHideDorm()" style="width: 260px">
 
@@ -282,18 +285,21 @@
     let groupActivitiesListInfo;
     let searchLevel;
 
-    $(function () {
+    function showDisabled() {
         //基本信息
-        <shiro:lacksPermission name="student:basicInfo">
+        <shiro:lacksPermission name="student:basicInfo1">
         $("#student_info").find("input").attr({disabled: "disabled"});
         $("#student_info").find("select").attr({disabled: "disabled"});
         $("#student_info").find("radio").attr({disabled: "disabled"});
         </shiro:lacksPermission>
-        //家庭成员信息
-        <shiro:lacksPermission name="student:familyInfo">
 
+        //家庭成员信息
+        <shiro:lacksPermission name="student:familyInfo1">
+        $("#family_member_information").find("input").attr({disabled: "disabled"});
+        $("#family_member_information").find("select").attr({disabled: "disabled"});
+        $("#family_member_information").find("radio").attr({disabled: "disabled"});
         </shiro:lacksPermission>
-    })
+    }
 
     function showDormInfo() {
         let info = [];
@@ -707,7 +713,7 @@
                             $("#update_pre_school_staff").val(studentList.pre_school_staff);
 
                             student.familyFnformation(familyList);
-
+                            showDisabled();
 
                             $("input[type='radio'][name='whetherToTransfer'][value='" + studentList.account_in + "']").attr("checked", "checked");
                             $("input[type='radio'][name='is_the_file_transferred'][value='" + studentList.file_in + "']").attr("checked", "checked");
@@ -907,6 +913,7 @@
 
                         }
                     }
+
                 })
                 layer.open({
                     type: 1,
@@ -1127,37 +1134,39 @@
                                            <th colspan="1">
                                             <label class="layui-form-label" style="width: auto;margin-right: 0px">类别</label>
                 <div class="layui-input-inline" style="width: 60%">
-                    <select lay-filter="show_dateDisciplineAndPunishmentCategory" id="show_dateDisciplineAndPunishmentCategory">
-                        <option value=""></option>
-                        <option value="">请选择</option>
-                        <option value="1">违纪处分</option>
-                        <option value="2">安全隐患</option>
-                    </select>
+                     <div class="layui-form-item" style="margin-bottom: 0px";>
+                    <div class="layui-input-inline" style="width: 85%">
+                        <input type="text" name="witness" id="show_dateDisciplineAndPunishmentCategory"
+                               autocomplete="off" class="layui-input show_dateDisciplineAndPunishmentCategory" disabled="disabled">
+                    </div>
+                </div>
                 </div>
 </th>
                                            <th colspan="1">
                                            <label class="layui-form-label" style="width: auto;margin-right: 0px">行为</label>
                 <div class="layui-input-inline" style="width: 60%">
-                    <select lay-filter="show_dateDisciplineAndPunishmentBehavior" id="show_dateDisciplineAndPunishmentBehavior">
-                        <option value=""></option>
-                        <option value="">请选择</option>
-                    </select>
+                         <div class="layui-form-item" style="margin-bottom: 0px";>
+                    <div class="layui-input-inline" style="width: 85%">
+                        <input type="text" name="witness" id="show_dateDisciplineAndPunishmentBehavior"
+                               autocomplete="off" class="layui-input show_dateDisciplineAndPunishmentBehavior" disabled="disabled">
+                    </div>
                 </div>
 </th>
                                            <th colspan="1">
                                            <label class="layui-form-label" style="width: auto;margin-right: 0px">级别</label>
                 <div class="layui-input-inline" style="width: 60%">
-                    <select lay-filter="show_dateDisciplineAndPunishmentRank" id="show_dateDisciplineAndPunishmentRank">
-                        <option value=""></option>
-                        <option value="">请选择</option>
-                    </select>
+                        <div class="layui-form-item" style="margin-bottom: 0px";>
+                    <div class="layui-input-inline" style="width: 85%">
+                        <input type="text" name="witness" id="show_dateDisciplineAndPunishmentRank"
+                               autocomplete="off" class="layui-input show_dateDisciplineAndPunishmentRank" disabled="disabled">
+                    </div>
                 </div>
 </th>
                                            <th colspan="1">
-                                           <div class="layui-form-item">
+                                           <div class="layui-form-item" style="margin-bottom: 0px";>
                     <label class="layui-form-label" style="width: auto;margin-right: 0px">证明人</label>
                     <div class="layui-input-inline" style="width: 50%">
-                        <input type="text" name="witness" id="show_witnessByDiscipline" style="background-color: #EEEEEE;"
+                        <input type="text" name="witness" id="show_witnessByDiscipline"
                                autocomplete="off" class="layui-input show_witnessByDiscipline" disabled="disabled">
                     </div>
                 </div>
@@ -1180,6 +1189,9 @@
                 let updateStudent_disciplineAndPunishment_date = $(".updateStudent_disciplineAndPunishment_date");
                 let updateStudent_disciplineAndPunishment_content = $(".updateStudent_disciplineAndPunishment_content");
                 let show_witnessByDiscipline = $(".show_witnessByDiscipline");
+                let show_dateDisciplineAndPunishmentCategory = $(".show_dateDisciplineAndPunishmentCategory")
+                let show_dateDisciplineAndPunishmentBehavior = $(".show_dateDisciplineAndPunishmentBehavior")
+                let show_dateDisciplineAndPunishmentRank = $(".show_dateDisciplineAndPunishmentRank");
                 for (let i = 0; i < disciplineAndPunishmentList.length; i++) {
                     $(updateStudent_disciplineAndPunishment_date[i]).val(disciplineAndPunishmentList[i].date);
                     $(updateStudent_disciplineAndPunishment_content[i]).val(disciplineAndPunishmentList[i].content);
@@ -2121,7 +2133,7 @@
                 form.render();
             }
         }
-        function showDateDisciplineAndPunishmentBehaviorByUpdate(num) {
+        /*function showDateDisciplineAndPunishmentBehaviorByUpdate(num) {
             if (num == 1){
                 $("#show_dateDisciplineAndPunishmentBehavior").html(`
                        <option value=""></option>
@@ -2166,7 +2178,7 @@
                     `);
                 form.render();
             }
-        }
+        }*/
 
         function loadAllProfession() {
             $.post(baseUrl + "/student/queryProfessionByDepartment", function (data) {
@@ -2273,6 +2285,12 @@
                 $("#studentEmail").val($(this).val() + "@qq.com");
             })
         }
+        //监听违纪处分中的类别
+       /* function monitorDiscipByCategory() {
+            form.on('select(show_dateDisciplineAndPunishmentCategory)', function (data) {
+                showDateDisciplineAndPunishmentBehaviorByUpdate(data.value);
+            });
+        }*/
 
         $(function () {
 //            student.list();
@@ -2287,7 +2305,6 @@
             student.queryAreaAndFloorOfUpdate()
             queryAreaAndFloor();
             form.render();
-
 
             $("#studentPhone").formatInput({
                 formatArr: [3, 4, 4],
@@ -2517,9 +2534,7 @@
             form.on('select(dateDisciplineAndPunishmentCategory)', function (data) {
                 showDateDisciplineAndPunishmentBehavior(data.value);
             });
-            form.on('select(show_dateDisciplineAndPunishmentCategory)', function (data) {
-                showDateDisciplineAndPunishmentBehaviorByUpdate(data.value);
-            });
+
 
             //图片上传
             layui.use('upload', function () {
