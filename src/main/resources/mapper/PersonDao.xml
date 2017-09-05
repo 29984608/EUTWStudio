@@ -875,6 +875,9 @@ WHERE student.no =#{studentNo}
             <if test="pre_school_work != null ">
                 t_student.pre_school_work = #{pre_school_work},
             </if>
+            <if test="units_or_projects_practical_type != null ">
+                t_student.units_or_projects_practical_type = #{units_or_projects_practical_type},
+            </if>
             <if test="group != null ">
                 t_student.group = #{group},
             </if>

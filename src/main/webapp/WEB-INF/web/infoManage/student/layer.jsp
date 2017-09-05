@@ -1218,11 +1218,18 @@
                                                     <option value="5">其它</option>
                                                 </select>
                                             </div>
-                                             <span id="show_other_practical_type" style="display: none">实践类型:
+                                             <span id="show_other_practical_type" style="display: none">实践类型名称:
                                                     <div class="layui-input-inline">
-                                                      <input type="text" name="otherPartyName" placeholder="请输入事件类型名称"
+                                                      <input type="text" name="otherPartyName" placeholder="请输入其他实践类型名称"
                                                              autocomplete="off" class="layui-input"
                                                              id="other_practical_type" style="width: 100%">
+                                                    </div>
+                                            </span>
+                                            <span id="show_units_or_projects_practical_type" style="display: none">单位或项目:
+                                                    <div class="layui-input-inline">
+                                                      <input type="text" name="otherPartyName" placeholder="请输入单位或项目名称"
+                                                             autocomplete="off" class="layui-input"
+                                                             id="units_or_projects_practical_type" style="width: 100%">
                                                     </div>
                                             </span>
                                         </span></th>
@@ -1862,7 +1869,7 @@
 </div>
 
 <div id="addDisciplineAndPunishment" style="display: none;">
-    <table class="layui-table lay-even " data-name="articleCatData"
+    <table class="layui-table lay-even layui-form" data-name="articleCatData"
            style="border: 0px solid red" id="add_addDisciplineAndPunishment_list">
         <tbody id="add_addDisciplineAndPunishmentInfo">
         <tr>
@@ -1874,6 +1881,54 @@
                         <input type="text" name="date" id="dateDisciplineAndPunishment" lay-verify="date"
                                placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input"
                                onclick="layui.laydate({elem: this})">
+                    </div>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <label class="layui-form-label" style="width: auto;margin-right: 0px">类别</label>
+                <div class="layui-input-inline" >
+                    <select lay-filter="dateDisciplineAndPunishmentCategory" id="dateDisciplineAndPunishmentCategory">
+                        <option value=""></option>
+                        <option value="">请选择</option>
+                        <option value="1">违纪处分</option>
+                        <option value="2">安全隐患</option>
+                    </select>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label class="layui-form-label" style="width: auto;margin-right: 0px">行为</label>
+                <div class="layui-input-inline" >
+                    <select lay-filter="dateDisciplineAndPunishmentBehavior" id="dateDisciplineAndPunishmentBehavior">
+                        <option value=""></option>
+                        <option value="">请选择</option>
+                    </select>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label class="layui-form-label" style="width: auto;margin-right: 0px">级别</label>
+                <div class="layui-input-inline" >
+                    <select lay-filter="dateDisciplineAndPunishmentRank" id="dateDisciplineAndPunishmentRank">
+                        <option value=""></option>
+                        <option value="">请选择</option>
+                    </select>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <div class="layui-form-item">
+                    <label class="layui-form-label" style="width: auto;margin-right: 0px">证明人</label>
+                    <div class="layui-input-inline" style="width: 160px">
+                        <input type="text" name="witness" id="witnessByDiscipline" style="background-color: #EEEEEE"
+                               autocomplete="off" class="layui-input" disabled="disabled">
                     </div>
                 </div>
             </td>
