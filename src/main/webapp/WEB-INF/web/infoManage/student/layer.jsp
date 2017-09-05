@@ -554,7 +554,7 @@
                                     <tr>
                                         <th colspan="6"><span style="font-weight: bold"></span>
                                             <div class="layui-input-inline" style="width: 100%">
-                                                <label class="layui-form-label" style="width: auto;margin-left: -15px">身份证住址: </label>
+                                                <label class="layui-form-label" style="width: auto;margin-left: -15px">身份证地址: </label>
                                                 <div class="layui-input-inline" style="width: 60%">
                                                     <input type="text" name="idcard_address" placeholder="请输入身份证住址"
                                                            autocomplete="off" class="layui-input"
@@ -821,7 +821,7 @@
                                         <th colspan="3">
                                         <span>
                                             <div class="layui-form-item" style="margin-bottom: 0px">
-                                                <label class="layui-form-label" style="width: auto">入学前学校名称:</label>
+                                                <label class="layui-form-label" style="width: auto">入学前学校名称或工作单位:</label>
                                                 <div class="layui-input-block">
                                                     <input type="text" name="detailedAddress" placeholder="请输入详细地址"
                                                            autocomplete="off" class="layui-input"
@@ -946,7 +946,7 @@
                                         </span></th>
                                     </tr>
 
-                                    <tr>
+                               <%--     <tr>
                                         <th colspan="2"><span style="font-weight: bold"></span>
                                             <div class="layui-input-inline" style="width: 100%">
                                                 <label class="layui-form-label" style="width: auto;margin-left: -15px">来校前毕业学校或工作单位：</label>
@@ -957,10 +957,10 @@
                                                            id="pre_school_work"
                                                            style="border: none">
                                                 </div>
-                                                <%--<span style="float: right">--%>
-                                                <%--<button class="layui-btn"--%>
-                                                <%--onclick="student.show_pre_school_work()">编辑地址信息</button>--%>
-                                                <%--</span>--%>
+                                                &lt;%&ndash;<span style="float: right">&ndash;%&gt;
+                                                &lt;%&ndash;<button class="layui-btn"&ndash;%&gt;
+                                                &lt;%&ndash;onclick="student.show_pre_school_work()">编辑地址信息</button>&ndash;%&gt;
+                                                &lt;%&ndash;</span>&ndash;%&gt;
                                             </div>
                                             <div id="show_pre_school_work"
                                                  style="display: none;">
@@ -1005,7 +1005,7 @@
                                                        id="update_pre_school_staff">
                                              </div>
                                         </span></th>
-                                    </tr>
+                                    </tr>--%>
 
                                     <tr>
                                         <th colspan="3">学生类型：<span>
@@ -1514,23 +1514,36 @@
                                         </th>
                                     </tr>
                                     <tr>
-                                        <th colspan="2"><span style="margin-right: 30px;">一年级:</span>奖学金：
+                                        <th colspan="2"><span style="margin-right: 30px;">年份:</span>
+                                            <div class="layui-input-inline">
+                                                <select name="first_scholarship" lay-filter="updateStudentBloodType"
+                                                        id="first_scholarship_particularYear">
+                                                    <option value=""></option>
+                                                    <option value="">请选择</option>
+                                                    <option  value="2015">2015</option>
+                                                    <option value="2016">2016</option>
+                                                    <option value="2017">2017</option>
+                                                    <option value="2018">2018</option>
+                                                </select>
+                                            </div>
+                                        </th>
+                                        <th colspan="2"><span style="margin-right: 30px;"></span>奖学金：
                                             <div class="layui-input-inline">
                                                 <select name="first_scholarship" lay-filter="updateStudentBloodType"
                                                         id="first_scholarship">
-                                                    <option value="">请选择</option>
+                                                    <option value=""></option>
                                                     <option value="">请选择</option>
                                                     <option  value="国家奖学金">国家奖学金</option>
                                                     <option value="励志奖学金">励志奖学金</option>
                                                 </select>
                                             </div>
                                         </th>
-                                        <th colspan="3">助学金：
+                                        <th colspan="2">助学金：
                                             <div class="layui-input-inline">
 
                                                 <select name="first_stipend" lay-filter="updateStudentBloodType"
                                                         id="first_stipend">
-                                                    <option value="">请选择</option>
+                                                    <option value=""></option>
                                                     <option value="">请选择</option>
                                                     <option value="一般贫困">一般贫困</option>
                                                     <option value="特殊贫困">特殊贫困</option>
@@ -1541,23 +1554,36 @@
                                     </tr>
 
                                     <tr>
-                                        <th colspan="2"><span style="margin-right: 30px;">二年级:</span>奖学金：
+                                        <th colspan="2"><span style="margin-right: 30px;">年份:</span>
+                                            <div class="layui-input-inline">
+                                                <select name="first_scholarship" lay-filter="updateStudentBloodType"
+                                                        id="second_scholarship_particularYear">
+                                                    <option value=""></option>
+                                                    <option value="">请选择</option>
+                                                    <option  value="2015">2015</option>
+                                                    <option value="2016">2016</option>
+                                                    <option value="2017">2017</option>
+                                                    <option value="2018">2018</option>
+                                                </select>
+                                            </div>
+                                        </th>
+                                        <th colspan="2"><span style="margin-right: 30px;"></span>奖学金：
                                             <div class="layui-input-inline">
                                                 <select name="second_scholarship" lay-filter="updateStudentBloodType"
                                                         id="second_scholarship">
-                                                    <option value="">请选择</option>
+                                                    <option value=""></option>
                                                     <option value="">请选择</option>
                                                     <option value="国家奖学金">国家奖学金</option>
                                                     <option value="励志奖学金">励志奖学金</option>
                                                 </select>
                                             </div>
                                         </th>
-                                        <th colspan="3">助学金：
+                                        <th colspan="2">助学金：
                                             <div class="layui-input-inline">
 
                                                 <select name="second_stipend" lay-filter="updateStudentBloodType"
                                                         id="second_stipend">
-                                                    <option value="">请选择</option>
+                                                    <option value=""></option>
                                                     <option value="">请选择</option>
                                                     <option value="一般贫困">一般贫困</option>
                                                     <option value="特殊贫困">特殊贫困</option>
@@ -1568,23 +1594,36 @@
                                     </tr>
 
                                     <tr>
-                                        <th colspan="2"><span style="margin-right: 30px;">三年级:</span>奖学金：
+                                        <th colspan="2"><span style="margin-right: 30px;">年份:</span>
+                                            <div class="layui-input-inline">
+                                                <select name="first_scholarship" lay-filter="updateStudentBloodType"
+                                                        id="third_scholarship_particularYear">
+                                                    <option value=""></option>
+                                                    <option value="">请选择</option>
+                                                    <option  value="2015">2015</option>
+                                                    <option value="2016">2016</option>
+                                                    <option value="2017">2017</option>
+                                                    <option value="2018">2018</option>
+                                                </select>
+                                            </div>
+                                        </th>
+                                        <th colspan="2"><span style="margin-right: 30px;"></span>奖学金：
                                             <div class="layui-input-inline">
                                                 <select name="third_scholarship" lay-filter="updateStudentBloodType"
                                                         id="third_scholarship">
-                                                    <option value="">请选择</option>
+                                                    <option value=""></option>
                                                     <option value="">请选择</option>
                                                     <option value="国家奖学金">国家奖学金</option>
                                                     <option value="励志奖学金">励志奖学金</option>
                                                 </select>
                                             </div>
                                         </th>
-                                        <th colspan="3">助学金：
+                                        <th colspan="2">助学金：
                                             <div class="layui-input-inline">
 
                                                 <select name="third_stipend" lay-filter="updateStudentBloodType"
                                                         id="third_stipend">
-                                                    <option value="">请选择</option>
+                                                    <option value=""></option>
                                                     <option value="">请选择</option>
                                                     <option value="一般贫困">一般贫困</option>
                                                     <option value="特殊贫困">特殊贫困</option>
