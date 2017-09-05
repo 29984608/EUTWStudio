@@ -30,6 +30,9 @@
     .layui-form-radio i {
         font-size: 15px;
     }
+    .layui-elem-quote{
+
+    }
 </style>
 
 <section class="larry-grid layui-form">
@@ -38,7 +41,7 @@
             <form id="update-form" lay-filter="role-add" class="layui-form layui-form-pane" method="post">
                 <blockquote class="layui-elem-quote mylog-info-tit">
 
-                    <div class="layui-form-item">
+                    <div class="layui-form-item" style="margin-bottom: 1px;">
                         <div class="layui-input-inline">
                             <div class="layui-inline">
                                 <div class="layui-input-inline">
@@ -111,7 +114,7 @@
                         </div>
                     </div>
                     <div>
-                        <div class="layui-form-item">
+                        <div class="layui-form-item" style="margin-bottom: 1px;">
                             <div class="layui-form-inline">
                                 <div>
                                     <label class="layui-form-label" style="font-size: 13px">性别</label>
@@ -161,7 +164,7 @@
                         </div>
                     </div>
 
-                    <div class="layui-form-item">
+                    <div class="layui-form-item" style="margin-bottom: 1px;">
                         <span id="dorm">
                             <div class="layui-input-inline">
                                 <div class="layui-inline">
