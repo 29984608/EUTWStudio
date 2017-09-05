@@ -37,7 +37,7 @@
 <style  >
     .layui-table td{
         font-size: 13px;
-        padding: 6px 15px;
+        padding: 5px 15px;
     }
 </style>
 <div id="preview" style="display: none;width: auto;margin-top: 20px">
@@ -45,7 +45,7 @@
         <i class="layui-icon">&#xe60a;</i>导出 PDF
     </button>
     <section class="larry-grid">
-        <div class="larry-personal" id="container" style="height: 1480px;width: 83% ;">
+        <div class="larry-personal" id="container" style="height: 1410px;width: 83% ;">
             <div style="margin:20px 5%;height: auto">
                 <div>
                     <h2 style="color: #20a1a1;text-align: center;font-weight: bold;padding: 15px">
@@ -77,12 +77,12 @@
                         </tr>
                     </table>
 
-                    <div style="float: left;width: 50%;height: 1200px;">
+                    <div style="float: left;width: 50%;height: 1130px;">
                         <table class="layui-table"  lay-skin="nob"  style="font-size: 13px">
                             <colgroup>
                                 <col width="10%">
-                                <col width="15%">
-                                <col width="50%">
+                                <col width="10%">
+                                <col width="55%">
                                 <col width="10%">
                                 <col width="10%">
                                 <col>
@@ -101,12 +101,12 @@
                             </tbody>
                         </table>
                     </div>
-                    <div style="float: left;width: 50%;height: 1200px">
+                    <div style="float: left;width: 50%;height: 1130px">
                         <table class="layui-table"  lay-skin="nob" style="font-size: 13px">
                             <colgroup>
                                 <col width="10%">
-                                <col width="15%">
-                                <col width="50%">
+                                <col width="10%">
+                                <col width="55%">
                                 <col width="10%">
                                 <col width="10%">
                                 <col>
