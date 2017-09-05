@@ -37,6 +37,12 @@
     .layui-disabled{
         background: none;
     }
+
+    .layui-table td {
+        font-size: 12px;
+        padding: 7px 15px;
+
+    }
 </style>
 
 <section class="larry-grid layui-form">
