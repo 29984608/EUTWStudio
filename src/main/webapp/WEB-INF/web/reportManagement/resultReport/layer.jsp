@@ -81,9 +81,9 @@
                         <table class="layui-table"  lay-skin="nob"  style="font-size: 13px">
                             <colgroup>
                                 <col width="10%">
-                                <col width="10%">
-                                <col width="55%">
-                                <col width="10%">
+                                <col width="15%">
+                                <col width="52%">
+                                <col width="13%">
                                 <col width="10%">
                                 <col>
                             </colgroup>
@@ -105,9 +105,9 @@
                         <table class="layui-table"  lay-skin="nob" style="font-size: 13px">
                             <colgroup>
                                 <col width="10%">
-                                <col width="10%">
-                                <col width="55%">
-                                <col width="10%">
+                                <col width="15%">
+                                <col width="52%">
+                                <col width="13%">
                                 <col width="10%">
                                 <col>
                             </colgroup>
