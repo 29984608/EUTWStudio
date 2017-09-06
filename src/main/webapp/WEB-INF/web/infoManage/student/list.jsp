@@ -40,7 +40,7 @@
 
     .layui-table td {
         font-size: 12px;
-        padding: 6px 15px;
+        padding: 4px 15px;
 
     }
 </style>
