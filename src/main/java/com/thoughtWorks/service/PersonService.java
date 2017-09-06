@@ -72,6 +72,9 @@ public interface PersonService {
 
     List<Map<String, Object>> queryStudentExperienceList(String studentNo) throws Exception;
 
+    List<Map<String, Object>> queryStudentScholarshipsList(String studentNo) throws Exception;
+
+
     List<Map<String, Object>> queryTeacherCommunity(String no) throws Exception;
 
 

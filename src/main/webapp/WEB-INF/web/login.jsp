@@ -40,7 +40,7 @@
 <body>
 
 <div style="height: 20%;width:100%;z-index: 10000;;text-align: left;">
-    <div style="padding: 6.7% 0 0 5%;display: inline-block;">
+    <div style="padding: 6.0% 0 0 5%;display: inline-block;">
         <img src="${baseurl}/public/loginStyle/assets/img/backgrounds/eurasia__.jpg" height="55px">
     </div>
     <span style="color: #21a1a1;font-size: 30px;font-weight: bold;margin: 20px 0 0 20px;display: inline-block">高职学院欢迎您！</span>
