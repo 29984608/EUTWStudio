@@ -951,7 +951,7 @@
                                             <div class="layui-inline" onclick="student.showSAT_score()">
                                                <input name="student_type" value="高考录取" title="高考录取"
                                                       type="radio">
-                                               <input name="student_type" value="自助招生" title="自助招生" type="radio">
+                                               <input name="student_type" value="综合评价" title="综合评价" type="radio">
                                             </div>
                                         </div>
                                              </div>

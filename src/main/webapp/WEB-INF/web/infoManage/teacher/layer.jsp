@@ -44,7 +44,7 @@
                 <input type="radio" name="gender" value="女" title="女" checked>
             </div>
             <label class="layui-form-label" style="width:120px;">身份证</label>
-            <div class="layui-input-inline" style="width:150px;">
+            <div class="layui-input-inline" style="width:250px;">
                 <input type="text" name="identityCard"
                        placeholder="请输入身份证" id="identityCard-add" autocomplete="off" class="layui-input ">
             </div>
@@ -54,9 +54,19 @@
             <label class="layui-form-label" style="width:80px;">岗位</label>
             <div class="layui-input-inline">
                 <select id="classify" name="classify" lay-filter="classify">
+                    <option value=""></option>
+                    <option value="">请选择</option>
                     <option value="1">职业导师</option>
                     <option value="2">行政管理</option>
                     <option value="3">社区辅导员</option>
+                    <option value="4">学院顾问</option>
+                    <option value="5">学术专家</option>
+                    <option value="6">学院领导</option>
+                    <option value="7">行政主管</option>
+                    <option value="8">专职教师</option>
+                    <option value="9">聘任教师</option>
+                    <option value="10">兼职教师</option>
+                    <option value="11">企业教师</option>
                 </select>
             </div>
 
