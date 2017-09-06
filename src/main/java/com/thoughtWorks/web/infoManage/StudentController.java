@@ -210,7 +210,6 @@ public class StudentController {
             for (int i = 0; i < updateStudent_groupActivities_id_list.size(); i++) {
                 Map<String, Object> disciplineAndPunishment = new HashMap<>();
                 disciplineAndPunishment.put("updateStudent_disciplineAndPunishment_date_list", updateStudent_disciplineAndPunishment_date_list.get(i));
-                disciplineAndPunishment.put("updateStudent_disciplineAndPunishment_content_list", updateStudent_disciplineAndPunishment_content_list.get(i));
                 disciplineAndPunishment.put("updateStudent_disciplineAndPunishment_id_list", updateStudent_disciplineAndPunishment_id_list.get(i));
                 disciplineAndPunishmentList.add(disciplineAndPunishment);
             }
@@ -222,7 +221,6 @@ public class StudentController {
             for (int i = 0; i < updateStudent_groupActivities_id_list.size(); i++) {
                 Map<String, Object> groupActivities = new HashMap<>();
                 groupActivities.put("updateStudent_groupActivities_date_list", updateStudent_groupActivities_date_list.get(i));
-                groupActivities.put("updateStudent_groupActivities_content_list", updateStudent_groupActivities_content_list.get(i));
                 groupActivities.put("updateStudent_groupActivities_id_list", updateStudent_groupActivities_id_list.get(i));
                 groupActivitiesList.add(groupActivities);
             }
