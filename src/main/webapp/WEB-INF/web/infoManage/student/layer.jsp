@@ -1659,7 +1659,6 @@
                                 <button class="layui-btn" onclick="student.addDisciplineAndPunishmentInfo()"><i
                                         class="layui-icon">&#xe61f;</i> 添加违纪与处分
                                 </button>
-
                                 <br>
                                 <br>
                                 <h4 style="color: #00ab9f;font-weight: bold ;padding-top: 15px;">团学活动</h4>
@@ -1973,17 +1972,6 @@
             </td>
         </tr>
 
-        <tr>
-            <td>
-                <div class="layui-form-item">
-                    <label class="layui-form-label" style="width: auto;margin-right: 0px">内容</label>
-                    <div class="layui-input-inline" style="width: 85%">
-                        <input type="text" name="staffExperience" id="contentDisciplineAndPunishment" lay-verify="required"
-                               placeholder="请输入详细内容" autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-            </td>
-        </tr>
         </tbody>
     </table>
     <button class="layui-btn" style="float: right;margin-bottom: 10px;margin-right: 30px"
@@ -1992,11 +1980,10 @@
 </div>
 
 <div id="addGroupActivities" style="display: none;">
-    <table class="layui-table lay-even " data-name="articleCatData"
+    <table class="layui-table lay-even layui-form" data-name="articleCatData"
            style="border: 0px solid red" id="add_addGroupActivitiesIndex_list">
         <tbody id="add_addGroupActivitiesIndexInfo">
         <tr>
-
             <td>
                 <div class="layui-inline">
                     <label class="layui-form-label" style="width: auto">时间</label>
@@ -2011,15 +1998,55 @@
 
         <tr>
             <td>
-                <div class="layui-form-item">
-                    <label class="layui-form-label" style="width: auto;margin-right: 0px">内容</label>
-                    <div class="layui-input-inline" style="width: 85%">
-                        <input type="text" name="staffExperience" id="contentGroupActivities" lay-verify="required"
-                               placeholder="请输入详细内容" autocomplete="off" class="layui-input">
+                <label class="layui-form-label" style="width: auto;margin-right: 0px">类型</label>
+                <div class="layui-input-inline" >
+                    <select lay-filter="typesOfDisciplineAndPunishmentRank" id="typesOfGroupActivities">
+                        <option value=""></option>
+                        <option value="">请选择</option>
+                        <option value="1">兴趣部落</option>
+                        <option value="2">党员培训</option>
+                        <option value="3">团日活动</option>
+                        <option value="4">大型活动</option>
+                        <option value="5">其它</option>
+                    </select>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <div class="layui-form-item" style="margin-bottom: 0px">
+                    <label class="layui-form-label" style="width: auto;margin-right: 0px">学时</label>
+                    <div class="layui-input-inline" style="width: 35%">
+                        <input type="text" name="staffExperience" id="hoursOfSchoolGroupActivities" lay-verify="required"
+                               placeholder="请输入学时" autocomplete="off" class="layui-input">
                     </div>
                 </div>
             </td>
         </tr>
+        <tr>
+            <td>
+                <div class="layui-form-item" style="margin-bottom: 0px">
+                    <label class="layui-form-label" style="width: auto;margin-right: 0px">名称</label>
+                    <div class="layui-input-inline" style="width: 35%">
+                        <input type="text" name="staffExperience" id="headingGroupActivities" lay-verify="required"
+                               placeholder="请输入详细名称" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="layui-form-item" style="margin-bottom: 0px">
+                    <label class="layui-form-label" style="width: auto;margin-right: 0px">证明人</label>
+                    <div class="layui-input-inline" style="width: 35%">
+                        <input type="text" name="staffExperience" id="witnessGroupActivities" lay-verify="required"
+                               placeholder="" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+            </td>
+        </tr>
+
         </tbody>
     </table>
     <button class="layui-btn" style="float: right;margin-bottom: 10px;margin-right: 30px"
@@ -2034,6 +2061,8 @@
 <script src="${baseurl}/js/separator.js" charset="utf-8"></script>
 <script type="text/javascript">
     $("#witness").val("<shiro:principal property="name"/>");
+    $("#witnessByDiscipline").val("<shiro:principal property="name"/>");
+    $("#witnessGroupActivities").val("<shiro:principal property="name"/>");
     $("#distpicker").distpicker({
         autoSelect: false
     });

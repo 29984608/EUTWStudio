@@ -205,6 +205,11 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
+    public void revokeDisciplineAndPunishment(String id,String revokeDiscipline) throws Exception {
+        personDao.revokeDisciplineAndPunishment(id,revokeDiscipline);
+    }
+
+    @Override
     public Map<String, Object> queryStudentsByLikes(ActiveUser user, SearchDto searchDto) throws Exception {
         Map<String, Object> result = new HashMap<>();
         Map<String, Object> data = new HashMap<>();

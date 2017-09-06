@@ -466,4 +466,19 @@ public class StudentController {
 
         return Result.failure(null, Constant.DELETE_FAILURE);
     }
+
+    @RequestMapping("/revokeDisciplineAndPunishment")
+    @ResponseBody
+    public Result revokeDisciplineAndPunishment(String id, String revokeDiscipline) {
+        try {
+            personService.revokeDisciplineAndPunishment(id,revokeDiscipline);
+
+            return Result.success(null, Constant.DELETE_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return Result.failure(null, Constant.DELETE_FAILURE);
+    }
+
 }

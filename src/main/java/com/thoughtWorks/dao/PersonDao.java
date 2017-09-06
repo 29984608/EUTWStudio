@@ -164,5 +164,7 @@ public interface PersonDao {
     void updateDisciplineAndPunishmentInfo(@Param("list")List<Map<String, Object>> disciplineAndPunishmentList);
 
     void updateAwardOrPunishmentInfo(@Param("list")List<Map<String, Object>> awardOrPunishmentList);
+
+    void revokeDisciplineAndPunishment(@Param("id") String id,@Param("revokeDiscipline") String revokeDiscipline);
 }
 

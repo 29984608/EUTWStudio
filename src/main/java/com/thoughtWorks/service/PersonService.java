@@ -142,4 +142,6 @@ public interface PersonService {
     void updateDisciplineAndPunishmentInfo(List<Map<String, Object>> disciplineAndPunishmentList)throws Exception;
 
     void updateAwardOrPunishmentInfo(List<Map<String, Object>> awardOrPunishmentList)throws Exception;
+
+    void revokeDisciplineAndPunishment(String id,String revokeDiscipline)throws Exception;
 }

@@ -1089,7 +1089,7 @@ WHERE student.no =#{studentNo}
         insert into t_own_punishment (date,centent,studentNo,witness) values (#{date},#{centent},#{studentNo},#{witness})
     </insert>
     <insert id="addDisciplineAndPunishmentByUpdate" parameterType="disciplineAndPunishmen">
-        insert into t_discipline_and_punishment (date,content,studentNo) values (#{date},#{content},#{studentNo})
+        insert into t_discipline_and_punishment (date,studentNo,category,behavior,rank,witness) values (#{date},#{studentNo},#{category},#{behavior},#{rank},#{witness})
     </insert>
 
     <select id="showAutoProfessionListByDepartment" parameterType="string" resultType="map">
@@ -1131,7 +1131,7 @@ WHERE student.no =#{studentNo}
     </delete>
 
     <insert id="addGroupActivitiesByUpdate" parameterType="GroupActivities">
-        insert into t_group_activities (date,content,studentNo) values (#{date},#{content},#{studentNo});
+        insert into t_group_activities (date,studentNo,types,hours,heading,witness) values (#{date},#{studentNo},#{types},#{hours},#{heading},#{witness});
     </insert>
 
     <delete id="delGroupActivities" parameterType="string">
@@ -1184,6 +1184,11 @@ WHERE student.no =#{studentNo}
             </set>
             WHERE ownPunishment.id = #{item.updateStudent_Award_or_punishment_id_list}
         </foreach>
+    </update>
+
+    <update id="revokeDisciplineAndPunishment" parameterType="string">
+        UPDATE t_discipline_and_punishment SET revokeDiscipline = #{revokeDiscipline}
+        WHERE id = #{id}
     </update>
 
 </mapper>

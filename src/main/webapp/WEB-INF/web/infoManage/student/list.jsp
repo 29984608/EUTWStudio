@@ -1126,13 +1126,13 @@
             updateStudentDisciplineAndPunishment: function (disciplineAndPunishmentList) {
                 $("#updateStudent_disciplineAndPunishment").html("")
                 for (let i = 0; i < disciplineAndPunishmentList.length; i++) {
-                    $("#updateStudent_disciplineAndPunishment").append(`<tr style="margin-bottom: 20px;">
+                    $("#updateStudent_disciplineAndPunishment").append(`<tr style="margin-bottom: 20px; css="this_updateStudent_disciplineAndPunishment">
                                         <th colspan="1"><span>时间：
                                             <div class="layui-input-inline" style="width: 60%">
                                                         <input name="date" lay-verify="date" placeholder="yyyy-MM-dd"
                                                        autocomplete="off" class="layui-input updateStudent_disciplineAndPunishment_date"
                                                        onclick="layui.laydate({elem: this})"
-                                                        type="text" id="updateStudent_disciplineAndPunishment_date">
+                                                        type="text" id="updateStudent_disciplineAndPunishment_date" disabled="disabled">
                                             </div>
                                            </th>
                                            <th colspan="1">
@@ -1176,30 +1176,33 @@
                 </div>
 </th>
 
-                                       <!-- <th colspan="1" width="600px"><span>内容：
-                                            <div class="layui-input-inline" style="width: 90%">
-                                                <input type="text" name="text"
-                                                       placeholder="内容" autocomplete="off" class="layui-input updateStudent_disciplineAndPunishment_content" id="updateStudent_disciplineAndPunishment_content">
-                                             </div>
-                                        </span></th>-->
-                                        <th colspan="1">
-                                            <button class="layui-btn  layui-btn-danger" onclick="student.delDisciplineAndPunishment(this,` + disciplineAndPunishmentList[i].id + `)" style="margin-bottom: 10px;float: right;"><i class="layui-icon">&#xe640;</i> 删除</button>
+                                        <th colspan="1" width="100px">
+                                            <button class="layui-btn " onclick="student.revokeDisciplineAndPunishment(this,` + disciplineAndPunishmentList[i].id + `)" style="margin-bottom: 10px;float: right;"><i class="layui-icon">&#xe65c;</i> 撤销</button>
 </th>
                                     </tr>`)
-
                 }
                 form.render();
-
+//                                            <button class="layui-btn  layui-btn-danger" onclick="student.delDisciplineAndPunishment(this,` + disciplineAndPunishmentList[i].id + `)" style="margin-bottom: 10px;float: right;"><i class="layui-icon">&#xe640;</i> 删除</button>
                 let updateStudent_disciplineAndPunishment_date = $(".updateStudent_disciplineAndPunishment_date");
                 let updateStudent_disciplineAndPunishment_content = $(".updateStudent_disciplineAndPunishment_content");
                 let show_witnessByDiscipline = $(".show_witnessByDiscipline");
                 let show_dateDisciplineAndPunishmentCategory = $(".show_dateDisciplineAndPunishmentCategory")
                 let show_dateDisciplineAndPunishmentBehavior = $(".show_dateDisciplineAndPunishmentBehavior")
                 let show_dateDisciplineAndPunishmentRank = $(".show_dateDisciplineAndPunishmentRank");
+                let this_updateStudent_disciplineAndPunishment = $(".this_updateStudent_disciplineAndPunishment");
                 for (let i = 0; i < disciplineAndPunishmentList.length; i++) {
                     $(updateStudent_disciplineAndPunishment_date[i]).val(disciplineAndPunishmentList[i].date);
                     $(updateStudent_disciplineAndPunishment_content[i]).val(disciplineAndPunishmentList[i].content);
                     $(show_witnessByDiscipline[i]).val(disciplineAndPunishmentList[i].witness);
+                    $(show_dateDisciplineAndPunishmentCategory[i]).val(disciplineAndPunishmentList[i].category);
+                    $(show_dateDisciplineAndPunishmentBehavior[i]).val(disciplineAndPunishmentList[i].behavior);
+                    $(show_dateDisciplineAndPunishmentRank[i]).val(disciplineAndPunishmentList[i].rank);
+                }
+
+                for (let i = 0; i < disciplineAndPunishmentList.length; i++) {
+                    if(disciplineAndPunishmentList[i].revokeDiscipline == 'none'){
+                        $(this_updateStudent_disciplineAndPunishment[i]).css({background:"#DDEDFB"});
+                    }
                 }
             },
 
@@ -1208,22 +1211,56 @@
                 $("#updateStudent_GroupActivities").html("")
                 for (let i = 0; i < groupActivitiesList.length; i++) {
                     $("#updateStudent_GroupActivities").append(`<tr style="margin-bottom: 20px;">
-                                        <th colspan="2"><span>时间：
-                                            <div class="layui-input-inline">
+                                        <th colspan="1"><span>时间：
+                                            <div class="layui-input-inline" style="width: 60%;">
                                                 <input name="date" lay-verify="date" placeholder="yyyy-mm-dd"
                                                        autocomplete="off" class="layui-input updateStudent_GroupActivities_date"
                                                        onclick="layui.laydate({elem: this})"
-                                                        type="text" id="updateStudent_GroupActivities_date">
+                                                        type="text" id="updateStudent_GroupActivities_date" disabled="disabled">
                                             </div>
                                            </th>
 
-                                        <th colspan="4" width="600px"><span>内容：
-                                            <div class="layui-input-inline" style="width: 90%">
-                                                <input type="text" name="text"
-                                                       placeholder="内容" autocomplete="off" class="layui-input updateStudent_GroupActivities_content" id="updateStudent_GroupActivities_content">
-                                             </div>
-                                        </span></th>
-                                        <th>
+                                                                                 <th colspan="1">
+                                            <label class="layui-form-label" style="width: auto;margin-right: 0px">类型</label>
+                <div class="layui-input-inline" style="width: 60%">
+                     <div class="layui-form-item" style="margin-bottom: 0px";>
+                    <div class="layui-input-inline" style="width: 85%">
+                        <input type="text" name="witness" id="show_updateStudent_GroupActivities_types"
+                               autocomplete="off" class="layui-input show_updateStudent_GroupActivities_types" disabled="disabled">
+                    </div>
+                </div>
+                </div>
+</th>
+                                           <th colspan="1">
+                                           <label class="layui-form-label" style="width: auto;margin-right: 0px">学时</label>
+                <div class="layui-input-inline" style="width: 60%">
+                         <div class="layui-form-item" style="margin-bottom: 0px";>
+                    <div class="layui-input-inline" style="width: 85%">
+                        <input type="text" name="witness" id="show_updateStudent_GroupActivities_hours"
+                               autocomplete="off" class="layui-input show_updateStudent_GroupActivities_hours" disabled="disabled">
+                    </div>
+                </div>
+</th>
+                                           <th colspan="1">
+                                           <label class="layui-form-label" style="width: auto;margin-right: 0px">名称</label>
+                <div class="layui-input-inline" style="width: 60%">
+                        <div class="layui-form-item" style="margin-bottom: 0px";>
+                    <div class="layui-input-inline" style="width: 85%">
+                        <input type="text" name="witness" id="show_updateStudent_GroupActivities_heading"
+                               autocomplete="off" class="layui-input show_updateStudent_GroupActivities_heading" disabled="disabled">
+                    </div>
+                </div>
+</th>
+                                           <th colspan="1">
+                                           <div class="layui-form-item" style="margin-bottom: 0px";>
+                    <label class="layui-form-label" style="width: auto;margin-right: 0px">证明人</label>
+                    <div class="layui-input-inline" style="width: 50%">
+                        <input type="text" name="witness" id="show_updateStudent_GroupActivities_witness"
+                               autocomplete="off" class="layui-input show_updateStudent_GroupActivities_witness" disabled="disabled">
+                    </div>
+                </div>
+</th>
+  <th colspan="1">
                                             <button class="layui-btn  layui-btn-danger" onclick="student.delGroupActivities(this,` + groupActivitiesList[i].id + `)" style="margin-bottom: 10px;float: right;"><i class="layui-icon">&#xe640;</i> 删除</button>
 </th>
                                     </tr>`)
@@ -1232,10 +1269,18 @@
 
                 let updateStudent_GroupActivities_date = $(".updateStudent_GroupActivities_date");
                 let updateStudent_GroupActivities_content = $(".updateStudent_GroupActivities_content");
+                let show_updateStudent_GroupActivities_types = $(".show_updateStudent_GroupActivities_types");
+                let show_updateStudent_GroupActivities_hours = $(".show_updateStudent_GroupActivities_hours");
+                let show_updateStudent_GroupActivities_heading = $(".show_updateStudent_GroupActivities_heading");
+                let show_updateStudent_GroupActivities_witness = $(".show_updateStudent_GroupActivities_witness");
                 for (let i = 0; i < groupActivitiesList.length; i++) {
                     $(updateStudent_GroupActivities_date[i]).val(groupActivitiesList[i].date);
-                    $(updateStudent_GroupActivities_content[i]).val(groupActivitiesList[i].content);
+                    $(show_updateStudent_GroupActivities_types[i]).val(groupActivitiesList[i].types);
+                    $(show_updateStudent_GroupActivities_hours[i]).val(groupActivitiesList[i].hours);
+                    $(show_updateStudent_GroupActivities_heading[i]).val(groupActivitiesList[i].heading);
+                    $(show_updateStudent_GroupActivities_witness[i]).val(groupActivitiesList[i].witness);
                 }
+                console.log(groupActivitiesList)
             },
 
             addAwardOrPunishmentInfo: function () {
@@ -1262,7 +1307,7 @@
                 addGroupActivitiesIndex = layer.open({
                     type: 1,
                     title: "添加团学活动",
-                    area: ["40%", "40%"],
+                    area: ["40%", "65%"],
                     content: $("#addGroupActivities")
 
                 });
@@ -1323,7 +1368,10 @@
             //添加违纪与处分的弹框
             addDisciplineAndPunishmentByUpdate: function () {
                 let dateDisciplineAndPunishment = $("#dateDisciplineAndPunishment").val();
-                let contentDisciplineAndPunishment = $("#contentDisciplineAndPunishment").val();
+                let category = $("#dateDisciplineAndPunishmentCategory").find("option:selected").text();
+                let behavior = $("#dateDisciplineAndPunishmentBehavior").find("option:selected").text();
+                let rank = $("#dateDisciplineAndPunishmentRank").find("option:selected").text();
+                let witness = $("#witnessByDiscipline").val();
 
                 layer.confirm('该操作将直接添加，无需更新！是否添加？', {icon: 3, title: '提示'}, function (index) {
                     let studentNo = studentInfo.no;
@@ -1331,7 +1379,10 @@
                         {
                             studentNo: studentNo,
                             date: dateDisciplineAndPunishment,
-                            content: contentDisciplineAndPunishment,
+                            category:category,
+                            behavior:behavior,
+                            rank:rank,
+                            witness:witness,
                         },
                         function (data) {
                             if (data.result) {
@@ -1347,7 +1398,10 @@
             //添加团学活动的弹框
             addGroupActivitiesIndexByUpdate: function () {
                 let dateGroupActivities = $("#dateGroupActivities").val();
-                let contentGroupActivities = $("#contentGroupActivities").val();
+                let typesOfGroupActivities = $("#typesOfGroupActivities").find("option:selected").text();
+                let hoursOfSchoolGroupActivities = $("#hoursOfSchoolGroupActivities").val();
+                let headingGroupActivities = $("#headingGroupActivities").val();
+                let witnessGroupActivities = $("#witnessGroupActivities").val();
 
                 layer.confirm('该操作将直接添加，无需更新！是否添加？', {icon: 3, title: '提示'}, function (index) {
                     let studentNo = studentInfo.no;
@@ -1355,7 +1409,10 @@
                         {
                             studentNo: studentNo,
                             date: dateGroupActivities,
-                            content: contentGroupActivities,
+                            types: typesOfGroupActivities,
+                            hours: hoursOfSchoolGroupActivities,
+                            heading: headingGroupActivities,
+                            witness: witnessGroupActivities,
                         },
                         function (data) {
                             if (data.result) {
@@ -1449,6 +1506,21 @@
                             if (data.result) {
                                 layer.msg("删除成功!");
                                 $(t).parents("tr").remove();
+                            }
+                        })
+                })
+            },
+            //撤销违纪与处分按钮
+            revokeDisciplineAndPunishment: function (t, id) {
+                layer.confirm('该操作直接撤销，无需更新。确定撤销？', {icon: 3, title: '提示'}, function (index) {
+                    let studentNo = studentInfo.no;
+                    let revokeDiscipline = "none";
+                    $.post(baseUrl + "/student/revokeDisciplineAndPunishment",
+                        {id: id, studentNo: studentNo,revokeDiscipline:revokeDiscipline},
+                        function (data) {
+                            if (data.result) {
+                                layer.msg("撤销成功!");
+                                $(t).parents("tr").css({background:"#DDEDFB"});
                             }
                         })
                 })
