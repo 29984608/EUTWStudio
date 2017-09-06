@@ -297,16 +297,18 @@
     let groupActivitiesListInfo;
     var searchLevel;
 
-    function showDisabled() {
+    $(function () {
         //基本信息
-        <shiro:lacksPermission name="student:basicInfo1">
+        <shiro:lacksPermission name="student:basicInfo">
         $("#student_info").find("input").attr({disabled: "disabled"});
         $("#student_info").find("select").attr({disabled: "disabled"});
         $("#student_info").find("radio").attr({disabled: "disabled"});
         </shiro:lacksPermission>
+    })
 
+    function showDisabled() {
         //家庭成员信息
-        <shiro:lacksPermission name="student:familyInfo1">
+        <shiro:lacksPermission name="student:familyInfo">
         $("#family_member_information").find("input").attr({disabled: "disabled"});
         $("#family_member_information").find("select").attr({disabled: "disabled"});
         $("#family_member_information").find("radio").attr({disabled: "disabled"});
