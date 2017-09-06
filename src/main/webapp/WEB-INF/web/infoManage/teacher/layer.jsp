@@ -149,7 +149,7 @@
                 <input type="radio" name="gender" id="gender-woman" value="女" title="女">
             </div>
             <label class="layui-form-label" style="width:120px;">身份证</label>
-            <div class="layui-input-inline" style="width:150px;">
+            <div class="layui-input-inline" style="width:250px;">
                 <input type="text"
                        placeholder="请输入工号" disabled id="identityCard-update" autocomplete="off" class="layui-input ">
             </div>

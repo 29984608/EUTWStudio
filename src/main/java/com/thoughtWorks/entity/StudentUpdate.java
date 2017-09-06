@@ -84,6 +84,42 @@ public class StudentUpdate {
     private String third_scholarship;
     private String third_stipend;
     private String units_or_projects_practical_type;
+    private String units_or_projects_practical_type_contact;
+    private String units_or_projects_practical_type_contact_phone;
+    private String updateOffCampusContactPhone;
+    private String updateOffCampusContactName;
+
+    public String getUpdateOffCampusContactPhone() {
+        return updateOffCampusContactPhone;
+    }
+
+    public void setUpdateOffCampusContactPhone(String updateOffCampusContactPhone) {
+        this.updateOffCampusContactPhone = updateOffCampusContactPhone;
+    }
+
+    public String getUpdateOffCampusContactName() {
+        return updateOffCampusContactName;
+    }
+
+    public void setUpdateOffCampusContactName(String updateOffCampusContactName) {
+        this.updateOffCampusContactName = updateOffCampusContactName;
+    }
+
+    public String getUnits_or_projects_practical_type_contact() {
+        return units_or_projects_practical_type_contact;
+    }
+
+    public void setUnits_or_projects_practical_type_contact(String units_or_projects_practical_type_contact) {
+        this.units_or_projects_practical_type_contact = units_or_projects_practical_type_contact;
+    }
+
+    public String getUnits_or_projects_practical_type_contact_phone() {
+        return units_or_projects_practical_type_contact_phone;
+    }
+
+    public void setUnits_or_projects_practical_type_contact_phone(String units_or_projects_practical_type_contact_phone) {
+        this.units_or_projects_practical_type_contact_phone = units_or_projects_practical_type_contact_phone;
+    }
 
     public String getFirst_year() {
         return first_year;

@@ -896,6 +896,12 @@ WHERE student.no =#{studentNo}
             <if test="units_or_projects_practical_type != null ">
                 t_student.units_or_projects_practical_type = #{units_or_projects_practical_type},
             </if>
+            <if test="units_or_projects_practical_type_contact != null ">
+                t_student.units_or_projects_practical_type_contact = #{units_or_projects_practical_type_contact},
+            </if>
+            <if test="units_or_projects_practical_type_contact_phone != null ">
+                t_student.units_or_projects_practical_type_contact_phone = #{units_or_projects_practical_type_contact_phone},
+            </if>
             <if test="group != null ">
                 t_student.group = #{group},
             </if>
@@ -946,6 +952,12 @@ WHERE student.no =#{studentNo}
             </if>
             <if test="off_school_stay_address != null ">
                 t_student.off_school_stay_address = #{off_school_stay_address},
+            </if>
+            <if test="updateOffCampusContactPhone != null ">
+                t_student.updateOffCampusContactPhone = #{updateOffCampusContactPhone},
+            </if>
+            <if test="updateOffCampusContactName != null ">
+                t_student.updateOffCampusContactName = #{updateOffCampusContactName},
             </if>
             <if test="area_id != null ">
                 t_student.area_id = #{area_id},
