@@ -293,7 +293,7 @@
     let addGroupActivitiesIndex;
     let disciplineAndPunishmentListInfo;
     let groupActivitiesListInfo;
-    let searchLevel;
+    var searchLevel;
 
     function showDisabled() {
         //基本信息
@@ -616,9 +616,9 @@
                 });
 
             },
-            studentUpdate: function (studentName, studentNo) {
+            studentUpdate: function (studentName, studentNo,level) {
                 //当前搜索条件下的年级
-                searchLevel = $("#level_search").val();
+                searchLevel = level;
                 $.ajax({
                     url: "${baseurl}/student/studentUpdate",
                     data: {studentNo: studentNo,searchLevel:searchLevel},
@@ -717,6 +717,8 @@
                             $("#detailedAddresses").val(studentList.actual_address);
                             $("#update_name_of_the_source").val(studentList.origin_address);
                             $("#updateOffCampusAddress").val(studentList.off_school_stay_address);
+                            $("#updateOffCampusContactPhone").val(studentList.updateOffCampusContactPhone);
+                            $("#updateOffCampusContactName").val(studentList.updateOffCampusContactName);
 
                             $("#updateStudentZip_code").val(studentList.family_zip_code);
                             $("#updateStudentHome_phone").val(studentList.family_phone);
@@ -802,16 +804,24 @@
                                 if ($("#update_practical_type").get(0).options[i].text == studentList.practice_learning_type) {
                                     $("#update_practical_type").get(0).options[i].selected = true;
                                     $("#units_or_projects_practical_type").val(studentList.units_or_projects_practical_type);
+                                    $("#units_or_projects_practical_type_contact").val(studentList.units_or_projects_practical_type_contact);
+                                    $("#units_or_projects_practical_type_contact_phone").val(studentList.units_or_projects_practical_type_contact_phone);
                                     $("#show_units_or_projects_practical_type").show();
+                                    $("#show_units_or_projects_practical_type_contact").show();
+                                    $("#show_units_or_projects_practical_type_contact_phone").show();
+
                                 }
                                 if (studentList.practice_learning_type != "合作企业" && studentList.practice_learning_type != "自主实习" && studentList.practice_learning_type != "创新创业" && studentList.practice_learning_type != "专升本" && studentList.practice_learning_type != null) {
                                     $("#update_practical_type").get(0).options[count7 - 1].selected = true;
                                     $("#show_other_practical_type").show();
                                     $("#other_practical_type").val(studentList.practice_learning_type);
                                     $("#units_or_projects_practical_type").val(studentList.units_or_projects_practical_type);
+                                    $("#units_or_projects_practical_type_contact").val(studentList.units_or_projects_practical_type_contact);
+                                    $("#units_or_projects_practical_type_contact_phone").val(studentList.units_or_projects_practical_type_contact_phone);
                                     $("#show_units_or_projects_practical_type").show();
+                                    $("#show_units_or_projects_practical_type_contact").show();
+                                    $("#show_units_or_projects_practical_type_contact_phone").show();
                                 }
-
                             }
 
                             var count10 = $("#student_group option").length;
@@ -1187,12 +1197,13 @@
 </th>
 
                                         <th colspan="1" width="100px">
+                                         <button class="layui-btn  layui-btn-danger" onclick="student.delDisciplineAndPunishment(this,\` + disciplineAndPunishmentList[i].id + \`)" style="margin-bottom: 10px;float: right;"><i class="layui-icon">&#xe640;</i> 删除</button>
                                             <button class="layui-btn " onclick="student.revokeDisciplineAndPunishment(this,` + disciplineAndPunishmentList[i].id + `)" style="margin-bottom: 10px;float: right;"><i class="layui-icon">&#xe65c;</i> 撤销</button>
 </th>
                                     </tr>`)
                 }
                 form.render();
-//                                            <button class="layui-btn  layui-btn-danger" onclick="student.delDisciplineAndPunishment(this,` + disciplineAndPunishmentList[i].id + `)" style="margin-bottom: 10px;float: right;"><i class="layui-icon">&#xe640;</i> 删除</button>
+//
                 let updateStudent_disciplineAndPunishment_date = $(".updateStudent_disciplineAndPunishment_date");
                 let updateStudent_disciplineAndPunishment_content = $(".updateStudent_disciplineAndPunishment_content");
                 let show_witnessByDiscipline = $(".show_witnessByDiscipline");
@@ -1241,19 +1252,19 @@
                 </div>
                 </div>
 </th>
-                                           <th colspan="1">
-                                           <label class="layui-form-label" style="width: auto;margin-right: 0px">学时</label>
-                <div class="layui-input-inline" style="width: 60%">
+                                           <th colspan="1" style="width: 10%">
+                                           <label class="layui-form-label" style="width: auto;margin-right: 0px;padding-left: 0px;padding-right: 0px;">学时</label>
+                <div class="layui-input-inline" style="width: 65%">
                          <div class="layui-form-item" style="margin-bottom: 0px";>
                     <div class="layui-input-inline" style="width: 85%">
                         <input type="text" name="witness" id="show_updateStudent_GroupActivities_hours"
-                               autocomplete="off" class="layui-input show_updateStudent_GroupActivities_hours" disabled="disabled">
+                               autocomplete="off" class="layui-input show_updateStudent_GroupActivities_hours">
                     </div>
                 </div>
 </th>
-                                           <th colspan="1">
+                                           <th colspan="1" style="width: 30%">
                                            <label class="layui-form-label" style="width: auto;margin-right: 0px">名称</label>
-                <div class="layui-input-inline" style="width: 60%">
+                <div class="layui-input-inline" style="width: 80%">
                         <div class="layui-form-item" style="margin-bottom: 0px";>
                     <div class="layui-input-inline" style="width: 85%">
                         <input type="text" name="witness" id="show_updateStudent_GroupActivities_heading"
@@ -1687,6 +1698,8 @@
                     detailedAddresses += $("#detailedOffCampusAddress").val();
                     var off_school_stay_address = detailedAddresses;
                 }
+                var updateOffCampusContactPhone = $("#updateOffCampusContactPhone").val();
+                var updateOffCampusContactName = $("#updateOffCampusContactName").val();
                 //籍贯
                 if ($("#province9").find("option:selected").text() == "—— 省 ——" || $("#city9").find("option:selected").text() == "—— 市 ——" || $("#district9").find("option:selected").text() == "—— 区/县 ——" || $("#detailedOffCampusAddress").val() != null) {
                     var native_place = $("#updateStudentNativePlace").val();
@@ -1938,6 +1951,8 @@
                 }
                 //单位或项目
                 var units_or_projects_practical_type = $("#units_or_projects_practical_type").val();
+                var units_or_projects_practical_type_contact = $("#units_or_projects_practical_type_contact").val();
+                var units_or_projects_practical_type_contact_phone = $("#units_or_projects_practical_type_contact_phone").val();
 
                 //宿舍信息
                 if ($("#queryAreas").val() != "" || $("#queryFloors").val() != "" || $("#queryRooms").val() != "") {
@@ -1990,6 +2005,8 @@
                             famous_family: famous_family,
                             department_id: department_id,
                             off_school_stay_address: off_school_stay_address,
+                            updateOffCampusContactPhone: updateOffCampusContactPhone,
+                            updateOffCampusContactName: updateOffCampusContactName,
                             native_place: native_place,
                             political_status: political_status,
                             pre_school_education: pre_school_education,
@@ -2028,6 +2045,8 @@
 
                             practice_learning_type: practice_learning_type,
                             units_or_projects_practical_type: units_or_projects_practical_type,
+                            units_or_projects_practical_type_contact: units_or_projects_practical_type_contact,
+                            units_or_projects_practical_type_contact_phone: units_or_projects_practical_type_contact_phone,
                             area_id: area_id,
                             floor_id: floor_id,
                             room_id: room_id,
@@ -2378,6 +2397,7 @@
                 level: level
             },
                 function (data) {
+                console.log(data)
                 if (data.result) {
                     $("#student_class").html("<option value=''>请选择</option>" + loadOptionsHtml(data.data, "-"));
                 }
@@ -2421,6 +2441,14 @@
                 delimiter: '-'
             });
             $("#updateStudent_emergency_contact_phone").formatInput({
+                formatArr: [3, 4, 4],
+                delimiter: '-'
+            });
+            $("#units_or_projects_practical_type_contact_phone").formatInput({
+                formatArr: [3, 4, 4],
+                delimiter: '-'
+            });
+            $("#updateOffCampusContactPhone").formatInput({
                 formatArr: [3, 4, 4],
                 delimiter: '-'
             });
@@ -2528,8 +2556,12 @@
                 }
                 if (data.value !== '') {
                     $("#show_units_or_projects_practical_type").show();
+                    $("#show_units_or_projects_practical_type_contact").show();
+                    $("#show_units_or_projects_practical_type_contact_phone").show();
                 } else {
                     $("#show_units_or_projects_practical_type").hide();
+                    $("#show_units_or_projects_practical_type_contact").hide();
+                    $("#show_units_or_projects_practical_type_contact_phone").hide();
                 }
             });
 
