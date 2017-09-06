@@ -250,6 +250,8 @@
                             <th>方向</th>
                             <th>学籍状态</th>
                             <th>班级</th>
+                            <th>职业导师</th>
+                            <th>社区辅导员</th>
                             <th>住宿类型</th>
                             <th>区</th>
                             <th>楼层</th>
@@ -453,7 +455,6 @@
             },
             preview: function (studentNo) {
                 $.post(baseUrl + "/student/update", {studentNo: studentNo}, function (data) {
-                    console.log(data)
                     $("#phone").html(data.student[0].student_contact_method);
                     $("#qq").html(data.student[0].qq);
                     $("#email").html(data.student[0].email);
@@ -1303,7 +1304,6 @@
                     $(show_updateStudent_GroupActivities_heading[i]).val(groupActivitiesList[i].heading);
                     $(show_updateStudent_GroupActivities_witness[i]).val(groupActivitiesList[i].witness);
                 }
-                console.log(groupActivitiesList)
             },
 
             addAwardOrPunishmentInfo: function () {

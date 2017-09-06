@@ -89,13 +89,17 @@
         student.level,
         student.stay_type,
         student.student_status,
+        student.teacher_id,
+        student.community_teacher_id,
         department.name department,
         profession.name profession,
         direction.name direction,
         class.name classes,
         area.name area,
         floor.name floor,
-        room.name room
+        room.name room,
+        teacher.name teacher_name,
+        teacherCommunity.name community_teacher_name
         FROM t_student student
 
         LEFT JOIN (SELECT
@@ -132,6 +136,16 @@
         id,
         name
         FROM t_room) room ON room.id = student.room_id
+        LEFT JOIN (SELECT
+        t_teacher.no,
+        name,
+        gender
+        FROM t_teacher) teacher ON teacher.no = student.teacher_id
+        LEFT JOIN (SELECT
+        t_teacher.no,
+        name,
+        gender
+        FROM t_teacher) teacherCommunity ON teacherCommunity.no = student.community_teacher_id
 
         WHERE
         # department_id = department.id
