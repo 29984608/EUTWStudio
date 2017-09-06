@@ -724,6 +724,10 @@ WHERE student.no =#{studentNo}
         select * from t_student_experience
         WHERE no = #{studentNo}
     </select>
+    <select id="queryStudentScholarshipsList" resultType="map">
+        select * from t_scholarships
+        WHERE no = #{studentNo}
+    </select>
 
     <insert id="insertCommunityTeacher">
         INSERT t_teacher_community (no,area_id,floor_id) VALUES
@@ -959,8 +963,14 @@ WHERE student.no =#{studentNo}
             <if test="first_scholarship != null ">
                 t_student.first_scholarship = #{first_scholarship},
             </if>
+            <if test="first_year != null ">
+                t_student.first_year = #{first_year},
+            </if>
             <if test="first_stipend != null ">
                 t_student.first_stipend = #{first_stipend},
+            </if>
+            <if test="second_year != null ">
+                t_student.second_year = #{second_year},
             </if>
             <if test="second_scholarship != null ">
                 t_student.second_scholarship = #{second_scholarship},
@@ -970,6 +980,9 @@ WHERE student.no =#{studentNo}
             </if>
             <if test="third_scholarship != null ">
                 t_student.third_scholarship = #{third_scholarship},
+            </if>
+            <if test="third_year != null ">
+                t_student.third_year = #{third_year},
             </if>
             <if test="third_stipend != null ">
                 t_student.third_stipend = #{third_stipend}

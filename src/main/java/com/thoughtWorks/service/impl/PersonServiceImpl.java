@@ -418,6 +418,10 @@ public class PersonServiceImpl implements PersonService {
     public List<Map<String, Object>> queryStudentExperienceList(String studentNo) throws Exception {
         return personDao.queryStudentExperienceList(studentNo);
     }
+    @Override
+    public List<Map<String, Object>> queryStudentScholarshipsList(String studentNo) throws Exception {
+        return personDao.queryStudentScholarshipsList(studentNo);
+    }
 
     @Override
     public List<Map<String, Object>> queryTeacherCommunity(String no) throws Exception {

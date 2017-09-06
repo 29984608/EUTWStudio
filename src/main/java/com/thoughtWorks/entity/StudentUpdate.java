@@ -74,13 +74,40 @@ public class StudentUpdate {
     private String community_teacher_id;
     private String group;
 
+    private String first_year;
     private String first_scholarship;
     private String first_stipend;
+    private String second_year;
     private String second_scholarship;
     private String second_stipend;
+    private String third_year;
     private String third_scholarship;
     private String third_stipend;
     private String units_or_projects_practical_type;
+
+    public String getFirst_year() {
+        return first_year;
+    }
+
+    public void setFirst_year(String first_year) {
+        this.first_year = first_year;
+    }
+
+    public String getSecond_year() {
+        return second_year;
+    }
+
+    public void setSecond_year(String second_year) {
+        this.second_year = second_year;
+    }
+
+    public String getThird_year() {
+        return third_year;
+    }
+
+    public void setThird_year(String third_year) {
+        this.third_year = third_year;
+    }
 
     public String getUnits_or_projects_practical_type() {
         return units_or_projects_practical_type;
@@ -781,10 +808,13 @@ public class StudentUpdate {
                 ", teacher_id='" + teacher_id + '\'' +
                 ", community_teacher_id='" + community_teacher_id + '\'' +
                 ", group='" + group + '\'' +
+                ", first_year='" + first_year + '\'' +
                 ", first_scholarship='" + first_scholarship + '\'' +
                 ", first_stipend='" + first_stipend + '\'' +
+                ", second_year='" + second_year + '\'' +
                 ", second_scholarship='" + second_scholarship + '\'' +
                 ", second_stipend='" + second_stipend + '\'' +
+                ", third_year='" + third_year + '\'' +
                 ", third_scholarship='" + third_scholarship + '\'' +
                 ", third_stipend='" + third_stipend + '\'' +
                 ", units_or_projects_practical_type='" + units_or_projects_practical_type + '\'' +

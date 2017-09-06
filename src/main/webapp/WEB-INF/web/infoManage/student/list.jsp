@@ -451,6 +451,7 @@
             },
             preview: function (studentNo) {
                 $.post(baseUrl + "/student/update", {studentNo: studentNo}, function (data) {
+                    console.log(data)
                     $("#phone").html(data.student[0].student_contact_method);
                     $("#qq").html(data.student[0].qq);
                     $("#email").html(data.student[0].email);
@@ -598,9 +599,9 @@
                     for (var i = 0; i < data.ownPunishment.length; i++) {
                         $("#own_punishment").append("<tr><th>" + data.ownPunishment[i].date + " —— " + data.ownPunishment[i].centent + "</th><th>证明人："+data.ownPunishment[i].witness+"</th></tr>");
                     }
-                    $("#t_discipline_and_punishment").text("");
+                    $("#t_discipline_and_punishment").append("<tr><th>时间</th><th> 类别</th><th> 行为</th><th> 级别</th><th> 证明人</th><th> 是否撤销</th></tr>");
                     for (var i = 0; i < data.disciplineAndPunishment.length; i++) {
-                        $("#t_discipline_and_punishment").append("<tr><th>" + data.disciplineAndPunishment[i].date + " —— " + data.disciplineAndPunishment[i].content + "</th></tr>");
+                        $("#t_discipline_and_punishment").append("<tr><th>" + data.disciplineAndPunishment[i].date + " </th><th>" + data.disciplineAndPunishment[i].category + "</th><th>" + data.disciplineAndPunishment[i].behavior + "</th><th>" + data.disciplineAndPunishment[i].rank + "</th><th>" + data.disciplineAndPunishment[i].witness + "</th><th>未撤销</th></tr>");
                     }
                     $("#t_group_activities").text("");
                     for (var i = 0; i < data.groupActivities.length; i++) {
@@ -641,11 +642,11 @@
                             let directionList = data.directionList;
                             let classesList = data.classesList;
                             let experienceList = data.experienceList;
+                            let scholarshipsList = data.scholarshipsList;
                             let teacherList = data.teacherList;
                             let famousFamilyList = data.famousFamilyList;
                             let disciplineAndPunishmentList = data.disciplineAndPunishmentList;
                             let groupActivitiesList = data.groupActivitiesList;
-
                             $("#studentPhone").val(studentList.student_contact_method);
                             $("#studentQQ").val(studentList.qq);
                             $("#studentEmail").val(studentList.email);
@@ -856,7 +857,10 @@
                                     $("#third_scholarship").get(0).options[i].selected = true;
                                 }
                             }
-
+                            //奖助学金年份
+                                    $("#first_scholarship_particularYear").html(`<option value=""></option>` + loadOptionsHtmlToYear(studentList.level,studentList.first_year));
+                                    $("#second_scholarship_particularYear").html(`<option value=""></option>` + loadOptionsHtmlToYear(studentList.level,studentList.second_year));
+                                    $("#third_scholarship_particularYear").html(`<option value=""></option>` + loadOptionsHtmlToYear(studentList.level,studentList.third_year));
                             //职业导师
                             let update_career_mentor1 = teacherList.filter(item => item.classify === "职业导师");
                             $("#update_career_mentor").html("").append(`<option value=""></option>` + loadOptionsHtmlToTeacher(update_career_mentor1, studentList.teacher_id));
@@ -1954,10 +1958,13 @@
                 var own_punishment = $("#update_award_or_honor").val();
 
                 //奖助学金
+                var first_year = $("#first_scholarship_particularYear").val();
                 var first_scholarship = $("#first_scholarship").val();
                 var first_stipend = $("#first_stipend").val();
+                var second_year = $("#second_scholarship_particularYear").val();
                 var second_scholarship = $("#second_scholarship").val();
                 var second_stipend = $("#second_stipend").val();
+                var third_year = $("#third_scholarship_particularYear").val();
                 var third_scholarship = $("#third_scholarship").val();
                 var third_stipend = $("#third_stipend").val();
 
@@ -2053,11 +2060,14 @@
                             community_teacher_id: community_teacher_id,
 
                             //奖助学金
+                            first_year: first_year,
                             first_scholarship: first_scholarship,
                             first_stipend: first_stipend,
+                            second_year: second_year,
                             second_scholarship: second_scholarship,
                             second_stipend: second_stipend,
                             third_scholarship: third_scholarship,
+                            third_year: third_year,
                             third_stipend: third_stipend,
 
                             //荣誉与获奖
@@ -2332,6 +2342,20 @@
                 } else {
                     _html += `<option value="` + data[i].no + `">` + data[i].name + `</option>`;
                 }
+            }
+
+            return _html;
+        }
+        function loadOptionsHtmlToYear(year, selectId) {
+            let years = parseInt(year);
+            let _html = "<option value=''>请选择</option>";
+            for (let i = 0; i < 5; ++i) {
+                if (selectId == years) {
+                    _html += `<option  selected value="` + years + `">` + years + `</option>`;
+                } else {
+                    _html += `<option value="` + years + `">` + years + `</option>`;
+                }
+                years ++;
             }
 
             return _html;

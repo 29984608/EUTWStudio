@@ -165,8 +165,8 @@
                         <th colspan="2">QQ：<span id="qq"></span></th>
                     </tr>
                     <tr>
-                        <th colspan="6">入学前学校名称：<span id="preSchoolName"></span></th>
-                        <th colspan="7">籍贯：<span id="native_place"></span></th>
+                        <th colspan="8">入学前学校名称或工作单位：<span id="preSchoolName"></span></th>
+                        <th colspan="5 ">籍贯：<span id="native_place"></span></th>
                     </tr>
 
                     <tr>
@@ -1538,10 +1538,7 @@
                                                         id="first_scholarship_particularYear">
                                                     <option value=""></option>
                                                     <option value="">请选择</option>
-                                                    <option  value="2015">2015</option>
-                                                    <option value="2016">2016</option>
-                                                    <option value="2017">2017</option>
-                                                    <option value="2018">2018</option>
+
                                                 </select>
                                             </div>
                                         </th>
@@ -1578,10 +1575,7 @@
                                                         id="second_scholarship_particularYear">
                                                     <option value=""></option>
                                                     <option value="">请选择</option>
-                                                    <option  value="2015">2015</option>
-                                                    <option value="2016">2016</option>
-                                                    <option value="2017">2017</option>
-                                                    <option value="2018">2018</option>
+
                                                 </select>
                                             </div>
                                         </th>
@@ -1618,10 +1612,7 @@
                                                         id="third_scholarship_particularYear">
                                                     <option value=""></option>
                                                     <option value="">请选择</option>
-                                                    <option  value="2015">2015</option>
-                                                    <option value="2016">2016</option>
-                                                    <option value="2017">2017</option>
-                                                    <option value="2018">2018</option>
+
                                                 </select>
                                             </div>
                                         </th>
