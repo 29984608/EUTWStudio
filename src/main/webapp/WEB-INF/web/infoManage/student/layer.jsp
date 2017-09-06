@@ -935,6 +935,9 @@
                                                         <option value="留级">留级</option>
                                                         <option value="流失">流失</option>
                                                         <option value="休学">休学</option>
+                                                        <option value="结业">结业</option>
+                                                        <option value="延修">延修</option>
+                                                        <option value="毕业">毕业</option>
                                                 </select>
                                             </div>
                                         </span></th>
