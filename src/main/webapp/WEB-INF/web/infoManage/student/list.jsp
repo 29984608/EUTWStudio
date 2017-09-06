@@ -314,6 +314,22 @@
         $("#family_member_information").find("radio").attr({disabled: "disabled"});
         </shiro:lacksPermission>
     }
+    function showExperience() {
+        //教育经历
+        <shiro:lacksPermission name="student:experience">
+        $("#educational_experience").find("input").attr({disabled: "disabled"});
+        $("#educational_experience").find("select").attr({disabled: "disabled"});
+        $("#educational_experience").find("radio").attr({disabled: "disabled"});
+        </shiro:lacksPermission>
+    }
+    function showExperience() {
+        //教育经历
+        <shiro:lacksPermission name="student:academicInformation">
+        $("#updateStudent_Academic_information").find("input").attr({disabled: "disabled"});
+        $("#updateStudent_Academic_information").find("select").attr({disabled: "disabled"});
+        $("#updateStudent_Academic_information").find("radio").attr({disabled: "disabled"});
+        </shiro:lacksPermission>
+    }
 
     function showDormInfo() {
         let info = [];
@@ -760,6 +776,8 @@
                             $("#student_class").html("").append(`<option value=""></option>` + loadOptionsHtml(oneShowClasses, studentList.classes_id));
                             form.render();
                             student.educationalExperience(experienceList);
+                            showExperience();
+                            form.render();
 
                             $("input[type='radio'][name='student_type1'][value='" + studentList.student_type + "']").attr("checked", "checked");
                             $("#upadte_SAT_score").val(studentList.sat_score);
@@ -922,7 +940,17 @@
 //                            $("#update_award_or_honor").val(studentList.own_punishment);
                             student.updateStudentAwardOrPunishment(AwardOrPunishmentList);
                             student.queryAreaAndFloorAndRoomByRoomIdOfUpdate(studentList.room_id)
+
                             student.updateStudentDisciplineAndPunishment(disciplineAndPunishmentList);
+                            let this_updateStudent_disciplineAndPunishment = $(".this_updateStudent_disciplineAndPunishment");
+                            for (let i = 0; i < disciplineAndPunishmentList.length; i++) {
+                                if(disciplineAndPunishmentList[i].revokeDiscipline == 'none'){
+                                alert(disciplineAndPunishmentList[i].revokeDiscipline)
+                                    $(this_updateStudent_disciplineAndPunishment[i]).css({background:"#DDEDFB"});
+                                }
+                            }
+                            form.render();
+
                             student.updateStudentGroupActivities(groupActivitiesList);
                             //如果住宿类型为校外,则隐藏宿舍信息,否则显示
                             //1表示校内,2表示校外
@@ -1149,7 +1177,7 @@
             updateStudentDisciplineAndPunishment: function (disciplineAndPunishmentList) {
                 $("#updateStudent_disciplineAndPunishment").html("")
                 for (let i = 0; i < disciplineAndPunishmentList.length; i++) {
-                    $("#updateStudent_disciplineAndPunishment").append(`<tr style="margin-bottom: 20px; css="this_updateStudent_disciplineAndPunishment">
+                    $("#updateStudent_disciplineAndPunishment").append(`<tr style="margin-bottom: 20px; class="this_updateStudent_disciplineAndPunishment">
                                         <th colspan="1"><span>时间：
                                             <div class="layui-input-inline" style="width: 60%">
                                                         <input name="date" lay-verify="date" placeholder="yyyy-MM-dd"
@@ -1213,7 +1241,7 @@
                 let show_dateDisciplineAndPunishmentCategory = $(".show_dateDisciplineAndPunishmentCategory")
                 let show_dateDisciplineAndPunishmentBehavior = $(".show_dateDisciplineAndPunishmentBehavior")
                 let show_dateDisciplineAndPunishmentRank = $(".show_dateDisciplineAndPunishmentRank");
-                let this_updateStudent_disciplineAndPunishment = $(".this_updateStudent_disciplineAndPunishment");
+
                 for (let i = 0; i < disciplineAndPunishmentList.length; i++) {
                     $(updateStudent_disciplineAndPunishment_date[i]).val(disciplineAndPunishmentList[i].date);
                     $(updateStudent_disciplineAndPunishment_content[i]).val(disciplineAndPunishmentList[i].content);
@@ -1223,11 +1251,6 @@
                     $(show_dateDisciplineAndPunishmentRank[i]).val(disciplineAndPunishmentList[i].rank);
                 }
 
-                for (let i = 0; i < disciplineAndPunishmentList.length; i++) {
-                    if(disciplineAndPunishmentList[i].revokeDiscipline == 'none'){
-                        $(this_updateStudent_disciplineAndPunishment[i]).css({background:"#DDEDFB"});
-                    }
-                }
             },
 
             //团学活动显示列表

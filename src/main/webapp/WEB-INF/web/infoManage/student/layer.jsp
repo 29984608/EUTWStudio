@@ -931,7 +931,7 @@
                                 <br>
                                 <h4 style="color: #00ab9f;font-weight: bold ;padding-top: 15px;">学业状态</h4>
                                 <table class="layui-table lay-even " data-name="articleCatData"
-                                       style="border: 0px solid red" id="updateStudent_Academic information">
+                                       style="border: 0px solid red" id="updateStudent_Academic_information">
                                     <tbody>
 
                                     <tr>
