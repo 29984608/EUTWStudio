@@ -1507,6 +1507,24 @@
                                                                    id="detailedOffCampusAddress">
                                                         </div>
                                                     </div>
+                                                    <div>
+                                                        <span>
+                                                            <label class="layui-form-label" style="width: auto;margin-left: -15px">联系人: </label>
+                                                        <div class="layui-input-inline" style="width: 60%">
+                                                            <input type="text" name="idcard_address" placeholder="请输入联系人姓名"
+                                                                   autocomplete="off" class="layui-input"
+                                                                   id="updateOffCampusContactName"
+                                                                   readonly style="border: none">
+                                                        </div>
+                                                            <label class="layui-form-label" style="width: auto;margin-left: -15px">联系人电话: </label>
+                                                        <div class="layui-input-inline" style="width: 60%">
+                                                            <input type="text" name="idcard_address" placeholder="请输入联系人姓名"
+                                                                   autocomplete="off" class="layui-input"
+                                                                   id="updateOffCampusContactPhone"
+                                                                   readonly style="border: none">
+                                                        </div>
+                                                        </span>
+                                                    </div>
                                                 </form>
 
                                             </div>
