@@ -37,6 +37,12 @@
     .layui-disabled{
         background: none;
     }
+
+    .layui-table td {
+        font-size: 12px;
+        padding: 6px 15px;
+
+    }
 </style>
 
 <section class="larry-grid layui-form">
@@ -256,7 +262,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div id="demo1"></div>
+                <div id="demo1" style="margin-top: -10px;"></div>
             </div>
         </div>
     </div>
