@@ -598,15 +598,22 @@
                     //获奖与荣誉
                     $("#own_punishment").text("");
                     for (var i = 0; i < data.ownPunishment.length; i++) {
-                        $("#own_punishment").append("<tr><th>" + data.ownPunishment[i].date + " —— " + data.ownPunishment[i].centent + "</th><th>证明人："+data.ownPunishment[i].witness+"</th></tr>");
+                        $("#own_punishment").append("<tr><th>" + data.ownPunishment[i].date + " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; " + data.ownPunishment[i].centent + "</th><th>证明人："+data.ownPunishment[i].witness+"</th></tr>");
                     }
-                    $("#t_discipline_and_punishment").append("<tr><th>时间</th><th> 类别</th><th> 行为</th><th> 级别</th><th> 证明人</th><th> 是否撤销</th></tr>");
+                    $("#t_discipline_and_punishment").html("<tr><th>时间</th><th> 类别</th><th> 行为</th><th> 级别</th><th> 证明人</th><th> 是否撤销</th></tr>");
                     for (var i = 0; i < data.disciplineAndPunishment.length; i++) {
-                        $("#t_discipline_and_punishment").append("<tr><th>" + data.disciplineAndPunishment[i].date + " </th><th>" + data.disciplineAndPunishment[i].category + "</th><th>" + data.disciplineAndPunishment[i].behavior + "</th><th>" + data.disciplineAndPunishment[i].rank + "</th><th>" + data.disciplineAndPunishment[i].witness + "</th><th>未撤销</th></tr>");
+                        let revokeDiscipline = "";
+                        if(data.disciplineAndPunishment[i].revokeDiscipline === "none"){
+                            revokeDiscipline = "已撤销";
+                        }else {
+                            revokeDiscipline = "未撤销";
+                        }
+                        $("#t_discipline_and_punishment").append("<tr><th>" + data.disciplineAndPunishment[i].date + " </th><th>" + data.disciplineAndPunishment[i].category + "</th><th>" + data.disciplineAndPunishment[i].behavior + "</th><th>" + data.disciplineAndPunishment[i].rank + "</th><th>" + data.disciplineAndPunishment[i].witness + "</th><th>"+revokeDiscipline+"</th></tr>");
                     }
-                    $("#t_group_activities").text("");
+                    console.log(data)
+                    $("#t_group_activities").html("<tr><th>时间</th><th> 类别</th><th> 学时</th><th> 名称</th><th> 证明人</th></tr>");
                     for (var i = 0; i < data.groupActivities.length; i++) {
-                        $("#t_group_activities").append("<tr><th>" + data.groupActivities[i].date + " —— " + data.groupActivities[i].content + "</th></tr>");
+                        $("#t_group_activities").append("<tr><th>" + data.groupActivities[i].date + " </th><th>" + data.groupActivities[i].types + "</th><th>" + data.groupActivities[i].hours+ "</th><th>" +data.groupActivities[i].heading + "</th><th>" + data.groupActivities[i].witness + "</th></tr>");
                     }
                 });
                 layer.open({
