@@ -1216,7 +1216,7 @@
             updateStudentDisciplineAndPunishment: function (disciplineAndPunishmentList) {
                 $("#updateStudent_disciplineAndPunishment").html("")
                 for (let i = 0; i < disciplineAndPunishmentList.length; i++) {
-                    $("#updateStudent_disciplineAndPunishment").append(`<tr style="margin-bottom: 20px; class="this_updateStudent_disciplineAndPunishment">
+                    $("#updateStudent_disciplineAndPunishment").append(`<tr style="margin-bottom: 20px;" class="this_updateStudent_disciplineAndPunishment">
                                         <th colspan="1"><span>时间：
                                             <div class="layui-input-inline" style="width: 60%">
                                                         <input name="date" lay-verify="date" placeholder="yyyy-MM-dd"
@@ -1267,7 +1267,7 @@
 </th>
 
                                         <th colspan="1" width="100px">
-                                         <button class="layui-btn  layui-btn-danger" onclick="student.delDisciplineAndPunishment(this,\` + disciplineAndPunishmentList[i].id + \`)" style="margin-bottom: 10px;float: right;"><i class="layui-icon">&#xe640;</i> 删除</button>
+                                         <button class="layui-btn  layui-btn-danger" onclick="student.delDisciplineAndPunishment(this,` + disciplineAndPunishmentList[i].id + `)" style="margin-bottom: 10px;float: right;"><i class="layui-icon">&#xe640;</i> 删除</button>
                                             <button class="layui-btn " onclick="student.revokeDisciplineAndPunishment(this,` + disciplineAndPunishmentList[i].id + `)" style="margin-bottom: 10px;float: right;"><i class="layui-icon">&#xe65c;</i> 撤销</button>
 </th>
                                     </tr>`)
@@ -1288,6 +1288,14 @@
                     $(show_dateDisciplineAndPunishmentCategory[i]).val(disciplineAndPunishmentList[i].category);
                     $(show_dateDisciplineAndPunishmentBehavior[i]).val(disciplineAndPunishmentList[i].behavior);
                     $(show_dateDisciplineAndPunishmentRank[i]).val(disciplineAndPunishmentList[i].rank);
+                }
+
+                let this_updateStudent_disciplineAndPunishment = $(".this_updateStudent_disciplineAndPunishment");
+                console.log(this_updateStudent_disciplineAndPunishment)
+                for(let i = 0;i<disciplineAndPunishmentList.length;i++){
+                   if(disciplineAndPunishmentList[i].revokeDiscipline == "none"){
+                       $(this_updateStudent_disciplineAndPunishment[i]).css({background: "#808080"});
+                   }
                 }
 
             },
