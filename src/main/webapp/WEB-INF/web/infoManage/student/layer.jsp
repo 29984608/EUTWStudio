@@ -909,7 +909,7 @@
 
                                     </tbody>
                                 </table>
-                                <button class="layui-btn" onclick="student.addStudentFamilyInfo()"><i
+                                <button class="layui-btn" onclick="student.addStudentFamilyInfo()" id="showButton_addStudentFamilyInfo"><i
                                         class="layui-icon">&#xe61f;</i> 添加成员信息
                                 </button>
 
@@ -922,7 +922,7 @@
 
                                     </tbody>
                                 </table>
-                                <button class="layui-btn" onclick="student.addExperienceInfo()"><i
+                                <button class="layui-btn" onclick="student.addExperienceInfo()" id="showButton_addExperienceInfo"><i
                                         class="layui-icon">&#xe61f;</i> 添加教育经历
                                 </button>
 
@@ -958,6 +958,7 @@
                                                         <option value="结业">结业</option>
                                                         <option value="延修">延修</option>
                                                         <option value="毕业">毕业</option>
+                                                        <option value="预科">预科</option>
                                                 </select>
                                             </div>
                                         </span></th>
@@ -1634,7 +1635,7 @@
 
                                     </tbody>
                                 </table>
-                                <button class="layui-btn" onclick="student.addAwardOrPunishmentInfo()"><i
+                                <button class="layui-btn" onclick="student.addAwardOrPunishmentInfo()" id="showButton_addAwardOrPunishmentInfo"><i
                                         class="layui-icon">&#xe61f;</i> 添加获奖或荣誉
                                 </button>
 
@@ -1647,7 +1648,7 @@
 
                                     </tbody>
                                 </table>
-                                <button class="layui-btn" onclick="student.addDisciplineAndPunishmentInfo()"><i
+                                <button class="layui-btn" onclick="student.addDisciplineAndPunishmentInfo()" id="showButton_addDisciplineAndPunishmentInfo"><i
                                         class="layui-icon">&#xe61f;</i> 添加违纪或处分
                                 </button>
                                 <br>
@@ -1659,7 +1660,7 @@
 
                                     </tbody>
                                 </table>
-                                <button class="layui-btn" onclick="student.addGroupActivitiesInfo()"><i
+                                <button class="layui-btn" onclick="student.addGroupActivitiesInfo()" id="showButton_addGroupActivitiesInfo"><i
                                         class="layui-icon">&#xe61f;</i> 添加团学活动
                                 </button>
 

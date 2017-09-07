@@ -330,6 +330,8 @@
         $("#family_member_information").find("input").attr({disabled: "disabled"});
         $("#family_member_information").find("select").attr({disabled: "disabled"});
         $("#family_member_information").find("radio").attr({disabled: "disabled"});
+        $("#family_member_information").find("button").attr({disabled: "disabled"});
+        $("#showButton_addStudentFamilyInfo").attr({disabled: "disabled"});
         </shiro:lacksPermission>
     }
     function showExperience() {
@@ -338,6 +340,8 @@
         $("#educational_experience").find("input").attr({disabled: "disabled"});
         $("#educational_experience").find("select").attr({disabled: "disabled"});
         $("#educational_experience").find("radio").attr({disabled: "disabled"});
+        $("#educational_experience").find("button").attr({disabled: "disabled"});
+        $("#showButton_addExperienceInfo").attr({disabled: "disabled"});
         </shiro:lacksPermission>
     }
     function awardOrPunishment() {
@@ -346,6 +350,8 @@
         $("#updateStudent_Award_or_punishment").find("input").attr({disabled: "disabled"});
         $("#updateStudent_Award_or_punishment").find("select").attr({disabled: "disabled"});
         $("#updateStudent_Award_or_punishment").find("radio").attr({disabled: "disabled"});
+        $("#updateStudent_Award_or_punishment").find("button").attr({disabled: "disabled"});
+        $("#showButton_addAwardOrPunishmentInfo").attr({disabled: "disabled"});
         </shiro:lacksPermission>
     }
     function disciplineAndPunishment() {
@@ -354,14 +360,18 @@
         $("#updateStudent_disciplineAndPunishment").find("input").attr({disabled: "disabled"});
         $("#updateStudent_disciplineAndPunishment").find("select").attr({disabled: "disabled"});
         $("#updateStudent_disciplineAndPunishment").find("radio").attr({disabled: "disabled"});
+        $("#updateStudent_disciplineAndPunishment").find("button").attr({disabled: "disabled"});
+        $("#showButton_addDisciplineAndPunishmentInfo").attr({disabled: "disabled"});
         </shiro:lacksPermission>
     }
     function groupActivities() {
-        //违纪或处分
+        //团学活动
         <shiro:lacksPermission name="student:groupActivities">
         $("#updateStudent_GroupActivities").find("input").attr({disabled: "disabled"});
         $("#updateStudent_GroupActivities").find("select").attr({disabled: "disabled"});
         $("#updateStudent_GroupActivities").find("radio").attr({disabled: "disabled"});
+        $("#updateStudent_GroupActivities").find("button").attr({disabled: "disabled"});
+        $("#showButton_addGroupActivitiesInfo").attr({disabled: "disabled"});
         </shiro:lacksPermission>
     }
 
@@ -1050,7 +1060,7 @@
                            </span></th>
                             <th colspan="4">工作单位：<span>
                                <div class="layui-input-inline">
-                                   <input type="text" name="text" style="width: 150%"
+                                   <input type="text" name="text" style="width: 200%"
                                           placeholder="请输入内容" autocomplete="off" class="layui-input updateStudentParent_employer"
                                           id="updateStudentParent_employer">
                                 </div>
@@ -1295,10 +1305,10 @@
                 }
 
                 let this_updateStudent_disciplineAndPunishment = $(".this_updateStudent_disciplineAndPunishment");
-                console.log(this_updateStudent_disciplineAndPunishment)
                 for(let i = 0;i<disciplineAndPunishmentList.length;i++){
                    if(disciplineAndPunishmentList[i].revokeDiscipline == "none"){
-                       $(this_updateStudent_disciplineAndPunishment[i]).css({background: "#808080"});
+                       $(this_updateStudent_disciplineAndPunishment[i]).css({background: "#A9A9A9"});
+                       $(this_updateStudent_disciplineAndPunishment[i]).find("button:last").css({display:"none"});
                    }
                 }
 
@@ -1335,7 +1345,7 @@
                          <div class="layui-form-item" style="margin-bottom: 0px";>
                     <div class="layui-input-inline" style="width: 85%">
                         <input type="text" name="witness" id="show_updateStudent_GroupActivities_hours"
-                               autocomplete="off" class="layui-input show_updateStudent_GroupActivities_hours">
+                               autocomplete="off" class="layui-input show_updateStudent_GroupActivities_hours" disabled="disabled">
                     </div>
                 </div>
 </th>
@@ -1617,7 +1627,8 @@
                         function (data) {
                             if (data.result) {
                                 layer.msg("撤销成功!");
-                                $(t).parents("tr").css({background:"#DDEDFB"});
+                                $(t).parents("tr").css({background:"#A9A9A9"});
+                                $(t).parents("tr").find("button:last").css({display:"none"});
                             }
                         })
                 })
