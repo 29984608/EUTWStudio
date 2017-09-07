@@ -543,12 +543,16 @@
                     $("#height").text("").append(data.student[0].height);
                     $("#weight").text("").append(data.student[0].weight);
                     $("#health_status").text("").append(data.student[0].health_status);
-                    $("#firstScholarship").text("").append(data.student[0].first_scholarship);
-                    $("#secondScholarship").text("").append(data.student[0].second_scholarship);
-                    $("#thirdScholarship").text("").append(data.student[0].third_scholarship);
-                    $("#firstStipend").text("").append(data.student[0].first_stipend);
-                    $("#secondStipend").text("").append(data.student[0].second_stipend);
-                    $("#thirdStipend").text("").append(data.student[0].third_stipend);
+                    $("#scholarship").html("<tr><th>年份</th><th>奖学金</th><th>助学金</th></tr>");
+                    if(data.student[0].first_year !== undefined && data.student[0].first_year !== "" ){
+                        $("#scholarship").append("<tr><th>"+data.student[0].first_year+"</th><th>"+data.student[0].first_scholarship+"</th><th>"+data.student[0].first_stipend+"</th></tr>");
+                    }
+                    if(data.student[0].second_year !== undefined && data.student[0].second_year !== ""){
+                        $("#scholarship").append("<tr><th>"+data.student[0].second_year+"</th><th>"+data.student[0].second_scholarship+"</th><th>"+data.student[0].second_stipend+"</th></tr>");
+                    }
+                    if(data.student[0].third_year !== undefined && data.student[0].third_year !== ""){
+                        $("#scholarship").append("<tr><th>"+data.student[0].third_year+"</th><th>"+data.student[0].third_scholarship+"</th><th>"+data.student[0].third_stipend+"</th></tr>");
+                    }
                     $("#is_marry").text("").append(data.student[0].is_marry);
                     $("#family_zip_code").text("").append(data.student[0].family_zip_code);
                     $("#student_contact_method").text("").append(data.student[0].student_contact_method);
