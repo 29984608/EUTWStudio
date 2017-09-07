@@ -1211,7 +1211,7 @@
                                 <h4 style="color: #00ab9f;font-weight: bold ;padding-top: 15px;">社区管理</h4>
                                 <table class="layui-table lay-even " data-name="articleCatData"
                                        style="border: 0px solid red">
-                                    <tbody>
+                                    <tbody id="communityManagement">
                                     <tr>
 
                                         <th colspan="2">社区辅导员：<span>
@@ -1481,7 +1481,7 @@
                                                             <input type="text" name="idcard_address" placeholder="请输入联系人姓名"
                                                                    autocomplete="off" class="layui-input"
                                                                    id="updateOffCampusContactName"
-                                                                   style="border: none">
+                                                                   >
                                                         </div>
                                                         </span>
                                                 <span>联系人电话:
@@ -1489,7 +1489,7 @@
                                                             <input type="text" name="idcard_address" placeholder="请输入联系人电话"
                                                                    autocomplete="off" class="layui-input"
                                                                    id="updateOffCampusContactPhone"
-                                                                   style="border: none">
+                                                                   >
                                                         </div>
                                                         </span>
                                             </div>

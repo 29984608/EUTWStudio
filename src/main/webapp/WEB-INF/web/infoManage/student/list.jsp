@@ -304,6 +304,24 @@
         $("#student_info").find("select").attr({disabled: "disabled"});
         $("#student_info").find("radio").attr({disabled: "disabled"});
         </shiro:lacksPermission>
+        //学业状态
+        <shiro:lacksPermission name="student:academicInformation">
+        $("#updateStudent_Academic_information").find("input").attr({disabled: "disabled"});
+        $("#updateStudent_Academic_information").find("select").attr({disabled: "disabled"});
+        $("#updateStudent_Academic_information").find("radio").attr({disabled: "disabled"});
+        </shiro:lacksPermission>
+        //社区管理
+        <shiro:lacksPermission name="student:communityManagement">
+        $("#communityManagement").find("input").attr({disabled: "disabled"});
+        $("#communityManagement").find("select").attr({disabled: "disabled"});
+        $("#communityManagement").find("radio").attr({disabled: "disabled"});
+        </shiro:lacksPermission>
+        //奖学金或助学金
+        <shiro:lacksPermission name="student:updateStudentScholarships">
+        $("#updateStudent_scholarships").find("input").attr({disabled: "disabled"});
+        $("#updateStudent_scholarships").find("select").attr({disabled: "disabled"});
+        $("#updateStudent_scholarships").find("radio").attr({disabled: "disabled"});
+        </shiro:lacksPermission>
     })
 
     function showDisabled() {
@@ -322,12 +340,28 @@
         $("#educational_experience").find("radio").attr({disabled: "disabled"});
         </shiro:lacksPermission>
     }
-    function showExperience() {
-        //教育经历
-        <shiro:lacksPermission name="student:academicInformation">
-        $("#updateStudent_Academic_information").find("input").attr({disabled: "disabled"});
-        $("#updateStudent_Academic_information").find("select").attr({disabled: "disabled"});
-        $("#updateStudent_Academic_information").find("radio").attr({disabled: "disabled"});
+    function awardOrPunishment() {
+        //荣誉或获奖
+        <shiro:lacksPermission name="student:awardOrPunishment">
+        $("#updateStudent_Award_or_punishment").find("input").attr({disabled: "disabled"});
+        $("#updateStudent_Award_or_punishment").find("select").attr({disabled: "disabled"});
+        $("#updateStudent_Award_or_punishment").find("radio").attr({disabled: "disabled"});
+        </shiro:lacksPermission>
+    }
+    function disciplineAndPunishment() {
+        //违纪或处分
+        <shiro:lacksPermission name="student:disciplineAndPunishment">
+        $("#updateStudent_disciplineAndPunishment").find("input").attr({disabled: "disabled"});
+        $("#updateStudent_disciplineAndPunishment").find("select").attr({disabled: "disabled"});
+        $("#updateStudent_disciplineAndPunishment").find("radio").attr({disabled: "disabled"});
+        </shiro:lacksPermission>
+    }
+    function groupActivities() {
+        //违纪或处分
+        <shiro:lacksPermission name="student:groupActivities">
+        $("#updateStudent_GroupActivities").find("input").attr({disabled: "disabled"});
+        $("#updateStudent_GroupActivities").find("select").attr({disabled: "disabled"});
+        $("#updateStudent_GroupActivities").find("radio").attr({disabled: "disabled"});
         </shiro:lacksPermission>
     }
 
@@ -946,19 +980,17 @@
 
 //                            $("#update_award_or_honor").val(studentList.own_punishment);
                             student.updateStudentAwardOrPunishment(AwardOrPunishmentList);
+                            awardOrPunishment();
+                            form.render();
                             student.queryAreaAndFloorAndRoomByRoomIdOfUpdate(studentList.room_id)
 
                             student.updateStudentDisciplineAndPunishment(disciplineAndPunishmentList);
-                            let this_updateStudent_disciplineAndPunishment = $(".this_updateStudent_disciplineAndPunishment");
-                            for (let i = 0; i < disciplineAndPunishmentList.length; i++) {
-                                if(disciplineAndPunishmentList[i].revokeDiscipline == 'none'){
-                                alert(disciplineAndPunishmentList[i].revokeDiscipline)
-                                    $(this_updateStudent_disciplineAndPunishment[i]).css({background:"#DDEDFB"});
-                                }
-                            }
+                            disciplineAndPunishment();
                             form.render();
 
                             student.updateStudentGroupActivities(groupActivitiesList);
+                            groupActivities();
+                            form.render();
                             //如果住宿类型为校外,则隐藏宿舍信息,否则显示
                             //1表示校内,2表示校外
                             if (studentList.stay_type == "2") {
