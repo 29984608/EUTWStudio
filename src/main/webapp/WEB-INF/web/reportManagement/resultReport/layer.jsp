@@ -80,11 +80,11 @@
                     <div style="float: left;width: 50%;height: 1130px;">
                         <table class="layui-table"  lay-skin="nob"  style="font-size: 13px">
                             <colgroup>
-                                <col width="10%">
-                                <col width="15%">
-                                <col width="52%">
                                 <col width="13%">
-                                <col width="10%">
+                                <col width="13%">
+                                <col width="48%">
+                                <col width="13%">
+                                <col width="13%">
                                 <col>
                             </colgroup>
                             <thead>
@@ -104,11 +104,11 @@
                     <div style="float: left;width: 50%;height: 1130px">
                         <table class="layui-table"  lay-skin="nob" style="font-size: 13px">
                             <colgroup>
-                                <col width="10%">
-                                <col width="15%">
-                                <col width="52%">
                                 <col width="13%">
-                                <col width="10%">
+                                <col width="13%">
+                                <col width="48%">
+                                <col width="13%">
+                                <col width="13%">
                                 <col>
                             </colgroup>
                             <thead>

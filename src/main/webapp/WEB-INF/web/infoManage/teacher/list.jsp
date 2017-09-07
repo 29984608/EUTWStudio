@@ -106,16 +106,15 @@
             },
             chooseClassify: function (id) {
 
-                if (id == 1) {//职业导师
+                if (id == "职业导师") {//职业导师
                     $("#show_dept").hide();
                     $("#show_community").hide();
                     $("#show_career").show();
-                } else if (id == 2) {//辅导员或行政
+                } else if (id == "行政") {//行政
                     $("#show_dept").show();
                     $("#show_career").hide();
                     $("#show_community").hide();
-                } else if (id == 3) {//辅导员或行政
-                    $("#show_community").show();
+                } else {//辅导员
                     $("#show_career").hide();
                     $("#show_dept").hide();
                 }
@@ -212,12 +211,7 @@
             add: function () {
                 $.post(baseUrl + "/teacher/loadDepartmentsAndDirectionsAndClasses", function (data) {
                     if (data.result) {
-//                        let departments = data.data.departments;
-//                        let directions = data.data.directions;
                         let classess = data.data.classess;
-
-//                        $("#department").html(teacher.loadDepartmentOrDirection(departments, "-"));
-//                        $("#direction").html(teacher.loadDepartmentOrDirection(directions, "-"));
                         $("#classes").html(teacher.loadClasses(classess, "-"));
                         $("#no-add").val("");
                         $("#name-add").val("");
@@ -237,8 +231,6 @@
 
                 $.post(baseUrl + "/teacher/loadDirectionsAndClassesByDepartmentId", {departmentId: departmentId}, function (data) {
                     if (data.result) {
-//                        let departments = data.data.departments;
-//                        let directions = data.data.directions;
                         let classess = data.data.classess;
                         let depts = data.data.depts;
                         $("#id").val(no)
@@ -253,10 +245,13 @@
                             $("#show_dept_update").hide();
                             $("#show_community_update").hide();
                             $("#show_career_update").show();
-//                            $("#department-update").html(teacher.loadDepartmentOrDirection(departments, departmentId));
-//                            $("#direction-update").html(teacher.loadDepartmentOrDirection(directions, directionId));
                             $("#classes-update").html(teacher.loadClasses(classess, no));
-                        } else if (classify === "社区辅导员") {
+                        } else if (classify === "行政"){
+                            $("#show_community_update").hide();
+                            $("#show_career_update").hide();
+                            $("#show_dept_update").show();
+                            $("#dept_update").html(teacher.loadDepartmentOrDirection(depts, deptId))
+                        }else  {
                             $("#show_dept_update").hide();
                             $("#show_career_update").hide();
                             $("#show_community_update").show();
@@ -266,12 +261,7 @@
                                 teacher.queryFloorAndArea(_no, floorsId);
                             });
                         }
-                        else {
-                            $("#show_community_update").hide();
-                            $("#show_career_update").hide();
-                            $("#show_dept_update").show();
-                            $("#dept_update").html(teacher.loadDepartmentOrDirection(depts, deptId))
-                        }
+
                         form.render();
                         layer.open({
                             type: 1,

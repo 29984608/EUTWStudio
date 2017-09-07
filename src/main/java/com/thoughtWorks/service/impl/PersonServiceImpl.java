@@ -36,7 +36,6 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public void addTeacher(Teacher teacher, String classIds, String floorIds, int areaId) throws Exception {
         List<String> ids;
-        List<String> floorId;
         int roleId = 0;
         if (teacher.getClassify().equals("3")) {
             teacher.setClassify("社区辅导员");
@@ -44,8 +43,6 @@ public class PersonServiceImpl implements PersonService {
             teacher.setDirectionId("0");
             teacher.setDeptId(0);
             roleId = 0;
-            floorId = Arrays.asList(floorIds.split(","));
-//            if (floorId.size() != 0) personDao.insertCommunityTeacher(teacher.getNo(),areaId, floorId);
             personDao.addTeacher(teacher);
 
         } else {
@@ -64,7 +61,6 @@ public class PersonServiceImpl implements PersonService {
             personDao.addTeacher(teacher);
         }
         String str = teacher.getIdentityCard();
-        teacher.setClassify("教师");
         if (str.length() >= 6) {
             teacher.setIdentityCard(str.substring(str.length() - 6));
         }
@@ -76,8 +72,6 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public void updateTeacher(Teacher teacher, String classIds, String floorIds, int areaId) throws Exception {
         List<String> ids;
-        List<String> floorId;
-        int _areaId = areaId;
         if (teacher.getClassify().equals("职业导师")) {
             ids = Arrays.asList(classIds.split(","));
             trainModuleDao.deleteTeacherAllClassesId(teacher.getNo());
@@ -88,9 +82,7 @@ public class PersonServiceImpl implements PersonService {
         } else {
             teacher.setDepartmentId("0");
             teacher.setDirectionId("0");
-            floorId = Arrays.asList(floorIds.split(","));
             trainModuleDao.deleteTeacherCommunityAllClassesId(teacher.getNo());
-//            if (floorId.size() != 0) personDao.insertCommunityTeacher(teacher.getNo(),_areaId, floorId);
         }
         personDao.updateTeacher(teacher);
     }
