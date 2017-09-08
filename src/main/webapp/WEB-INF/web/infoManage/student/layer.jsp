@@ -131,7 +131,7 @@
             {{#}}}
         </td>
 
-        <td width="170px">
+        <td  style="padding-right: 5px;padding-left: 5px;">
 
             <%--<shiro:hasPermission name="communication:update">--%>
             <button class="layui-btn layui-btn-mini " style="background: #21a1a1"
@@ -140,7 +140,7 @@
             </button>
             <%--</shiro:hasPermission>--%>
             <%--<shiro:hasPermission name="communication:delete">--%>
-            <button class="layui-btn layui-btn-mini  " onclick="student.preview('{{item.no}}')">
+            <button class="layui-btn layui-btn-mini  " onclick="student.preview('{{item.no}}')" style="padding-right: 5px;margin-left: 0px;">
                 <i class="layui-icon">&#xe60a;</i>预览
             </button>
             <%--</shiro:hasPermission>--%>
