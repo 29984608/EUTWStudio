@@ -36,6 +36,9 @@
         SET t_role.name = #{name}, t_role.available = #{available}
         WHERE t_role.id = #{id}
     </update>
+    <update id="deletePermission" parameterType="string">
+          delete from t_role where id = #{roleId}
+    </update>
     <select id="queryList" parameterType="Map" resultType="Map">
         SELECT *
         FROM t_role

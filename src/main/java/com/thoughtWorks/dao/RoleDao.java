@@ -24,6 +24,8 @@ public interface RoleDao {
 
     void update(Role role);
 
+    void deletePermission(String roleId);
+
     void deleteRolePermissions(@Param("shouldDelete") List<String> shouldDelete, @Param("roleId") String roleId);
 
     void addRolePermissions(@Param("shouldInsert") List<String> shouldInsert, @Param("roleId") String roleId);
