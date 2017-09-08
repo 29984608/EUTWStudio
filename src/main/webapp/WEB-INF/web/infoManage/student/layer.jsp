@@ -1326,18 +1326,26 @@
                                         </div>
                                         </span></th>
 
-                                        <th colspan="4">健康状况：<span>
-                                            <div class="layui-input-inline">
-                                                <div class="layui-inline" pane="" id="health">
-                                                    <label class="layui-form-label" style="width: auto"></label>
-                                                    <div class="layui-inline">
-                                                       <input name="health" value="良好" title="良好"
-                                                              type="radio">
-                                                       <input name="health" value="其它" title="其它" type="radio">
+                                        <th colspan="4">健康状况：
+                                            <span>
+                                                <div class="layui-input-inline">
+                                                    <div class="layui-inline" pane="" id="health">
+                                                        <label class="layui-form-label" style="width: auto"></label>
+                                                        <div class="layui-inline" onclick="student.show_updateOtherHealthStatus()">
+                                                           <input name="health" value="良好" title="良好"
+                                                                  type="radio">
+                                                           <input name="health" value="其它" title="其它" type="radio">
+                                                        </div>
                                                     </div>
+                                                 </div>
+                                            </span>
+                                            <span style="display: none;" id="show_updateOtherHealthStatus">
+                                                 <div class="layui-input-inline" style="width: 60%">
+                                                    <input type="text" name="idcard_address" placeholder="请输入健康状况信息"
+                                                           autocomplete="off" class="layui-input" id="updateOtherHealthStatus">
                                                 </div>
-                                             </div>
-                                        </span></th>
+                                            </span>
+                                        </th>
                                     </tr>
 
                                     <tr class="layui-form">
@@ -1709,7 +1717,7 @@
            style="border: 0px solid red" id="add_family_member_information_list">
         <tbody id="add_family_member_information">
         <tr>
-            <td>
+            <td colspan="6">
                 <div class="layui-inline">
                     <label class="layui-form-label">称谓</label>
                     <%--<div class="layui-input-inline">
@@ -1734,7 +1742,9 @@
                     </div>
                 </div>
             </td>
-            <td>
+        </tr>
+        <tr>
+            <td colspan="6">
                 <div class="layui-inline">
                     <label class="layui-form-label">姓名</label>
                     <div class="layui-input-inline">
@@ -1744,6 +1754,8 @@
                     </div>
                 </div>
             </td>
+        </tr>
+        <tr>
             <td>
                 <div class="layui-inline">
                     <label class="layui-form-label">职务</label>
@@ -1767,6 +1779,8 @@
                     </div>
                 </div>
             </td>
+        </tr>
+        <tr>
             <td>
                 <div class="layui-inline">
                     <label class="layui-form-label" style="width: auto">工作单位</label>
@@ -1798,9 +1812,10 @@
                     </div>
                 </div>
             </td>
-            <td>
-                <div class="layui-inline" placeholder="请输入相关内容" id="show_other_family_political_status"
-                     style="display: none">
+        </tr>
+        <tr>
+            <td style="display: none" id="show_other_family_political_status">
+                <div class="layui-inline" placeholder="请输入相关内容">
                     <label class="layui-form-label" style="width: auto">其它党派</label>
                     <div class="layui-input-inline">
                         <input type="tel" name="phone"
@@ -1848,8 +1863,8 @@
         <tr>
             <td>
                 <div class="layui-form-item">
-                    <label class="layui-form-label" style="width: auto">学校</label>
-                    <div class="layui-input-block">
+                    <label class="layui-form-label" style="width: auto">学校&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    <div class="layui-input-inline">
                         <input type="text" name="placeExperience" id="placeExperience" lay-verify="required"
                                placeholder="请输入" autocomplete="off" class="layui-input">
                     </div>
@@ -1859,8 +1874,8 @@
         <tr>
             <td>
                 <div class="layui-form-item">
-                    <label class="layui-form-label" style="width: auto">证明人</label>
-                    <div class="layui-input-block">
+                    <label class="layui-form-label" style="width: auto">证明人&nbsp;&nbsp;&nbsp;</label>
+                    <div class="layui-input-inline">
                         <input type="text" name="staffExperience" id="staffExperience" lay-verify="required"
                                placeholder="请输入" autocomplete="off" class="layui-input">
                     </div>
