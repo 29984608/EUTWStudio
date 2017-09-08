@@ -437,7 +437,7 @@
                         departmentId: department_search,
                         level: level_search,
                         directionId: direction_search,
-                        professionSearch: profession_search,
+                        professionId: profession_search,
                         classesId: classes_search,
                         teacherId: teacher_id,
                         communityTeacherId: community_teacher_id,

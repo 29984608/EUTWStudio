@@ -151,10 +151,8 @@ public class StudentController {
                                     @RequestParam(value = "updateStudentParentIds[]", required = false, defaultValue = "") List updateStudentParentIds,
                                     @RequestParam(value = "updateStudentParent_phoneList[]", required = false, defaultValue = "") List updateStudentParent_phoneList,
                                     @RequestParam(value = "updateStudent_groupActivities_date_list[]", required = false, defaultValue = "") List updateStudent_groupActivities_date_list,
-                                    @RequestParam(value = "updateStudent_groupActivities_content_list[]", required = false, defaultValue = "") List updateStudent_groupActivities_content_list,
                                     @RequestParam(value = "updateStudent_groupActivities_id_list[]", required = false, defaultValue = "") List updateStudent_groupActivities_id_list,
                                     @RequestParam(value = "updateStudent_disciplineAndPunishment_date_list[]", required = false, defaultValue = "") List updateStudent_disciplineAndPunishment_date_list,
-                                    @RequestParam(value = "updateStudent_disciplineAndPunishment_content_list[]", required = false, defaultValue = "") List updateStudent_disciplineAndPunishment_content_list,
                                     @RequestParam(value = "updateStudent_disciplineAndPunishment_id_list[]", required = false, defaultValue = "") List updateStudent_disciplineAndPunishment_id_list,
                                     @RequestParam(value = "updateStudent_Award_or_punishment_date_list[]", required = false, defaultValue = "") List updateStudent_Award_or_punishment_date_list,
                                     @RequestParam(value = "updateStudent_Award_or_punishment_content_list[]", required = false, defaultValue = "") List updateStudent_Award_or_punishment_content_list,
@@ -207,7 +205,7 @@ public class StudentController {
             }
             //违纪与处分
             List<Map<String, Object>> disciplineAndPunishmentList = new ArrayList<>();
-            for (int i = 0; i < updateStudent_groupActivities_id_list.size(); i++) {
+            for (int i = 0; i < updateStudent_disciplineAndPunishment_id_list.size(); i++) {
                 Map<String, Object> disciplineAndPunishment = new HashMap<>();
                 disciplineAndPunishment.put("updateStudent_disciplineAndPunishment_date_list", updateStudent_disciplineAndPunishment_date_list.get(i));
                 disciplineAndPunishment.put("updateStudent_disciplineAndPunishment_id_list", updateStudent_disciplineAndPunishment_id_list.get(i));

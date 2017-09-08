@@ -174,8 +174,8 @@
         <if test=" searchDto.directionId !=''">
             and student.direction_id = #{searchDto.directionId}
         </if>
-        <if test=" searchDto.professionSearch !=''">
-            and student.profession_id = #{searchDto.professionSearch}
+        <if test=" searchDto.professionId !=''">
+            and student.profession_id = #{searchDto.professionId}
         </if>
 
         <if test=" searchDto.teacherId !=''">
@@ -267,8 +267,8 @@
             and student.stay_type = #{searchDto.TypeOfAccommodation}
         </if>
 
-        <if test=" searchDto.professionSearch !=''">
-            and student.profession_id = #{searchDto.professionSearch}
+        <if test=" searchDto.professionId !=''">
+            and student.profession_id = #{searchDto.professionId}
         </if>
 
         <if test=" searchDto.studentStatusSearch != ''">
