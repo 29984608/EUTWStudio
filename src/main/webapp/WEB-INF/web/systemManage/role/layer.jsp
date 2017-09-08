@@ -80,6 +80,11 @@
                     <i class="layui-icon">&#xe60a;</i>配置权限
                 </button>
             </shiro:hasPermission>
+            <shiro:hasPermission name="rolePermission:delete">
+                <button class="layui-btn layui-btn-mini  layui-btn-danger" onclick="role.deletePermission({{item.id}})">
+                    <i class="layui-icon">&#xe60a;</i>删除角色
+                </button>
+            </shiro:hasPermission>
         </td>
     </tr>
     {{# }); }}

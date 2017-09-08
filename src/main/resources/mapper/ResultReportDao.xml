@@ -113,7 +113,7 @@
             score,
             is_pass
         FROM t_result
-        WHERE no = #{no} ORDER BY is_pass DESC,nature ASC
+        WHERE no = #{no} ORDER BY is_pass DESC,nature ASC,testTime ASC
     </select>
     <select id="queryTotalCredits" parameterType="map" resultType="int">
         SELECT school_score score FROM t_train_program module

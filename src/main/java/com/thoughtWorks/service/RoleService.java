@@ -15,6 +15,8 @@ public interface RoleService {
 
     Map<String, Object> viewPermission(String roleId) throws Exception;
 
+     void deletePermission(String roleId) throws Exception;
+
     Role query(String roleId) throws Exception;
 
     void update(Role role) throws Exception;

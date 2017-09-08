@@ -41,6 +41,10 @@ public class RoleServiceImpl implements RoleService {
     public void update(Role role) throws Exception {
         roleDao.update(role);
     }
+    @Override
+    public void deletePermission(String roleId) throws Exception {
+        roleDao.deletePermission(roleId);
+    }
 
     @Override
     public void updateRolePermissions(String hasPers, String updatePers, String roleId) throws Exception {

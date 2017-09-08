@@ -30,10 +30,10 @@
                     <table id="example" class="layui-table lay-even " data-name="articleCatData">
                         <thead>
                         <colgroup>
-                            <col width="100">
                             <col width="200">
-                            <col width="100">
-                            <col width="200">
+                            <col width="400">
+                            <col width="300">
+                            <col width="300">
                         </colgroup>
                         <tr>
                             <th>序号</th>
@@ -164,6 +164,22 @@
                     }
                 })
 
+            }
+            ,deletePermission: function (roleId) {
+                layer.confirm('确定删除？', {icon: 3, title: '提示'}, function (index) {
+                    layer.close(index);
+                    $.ajax({
+                        url: baseUrl + "/userRole/deletePermission",
+                        type:"post",
+                        data: {roleId: roleId},
+                        success: function (data) {
+                            layer.msg(data.msg);
+                            if (data.result) {
+                                setTimeout("location.reload()", 500);
+                            }
+                        }
+                    })
+                });
             }
             ,
             showRoleTree: function (nodes) {
