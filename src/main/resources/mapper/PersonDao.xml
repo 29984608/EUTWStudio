@@ -884,6 +884,9 @@ WHERE student.no =#{studentNo}
             <if test="file_in != null ">
                 t_student.file_in = #{file_in},
             </if>
+            <if test="otherHealthStatus!= null ">
+                t_student.otherHealthStatus = #{otherHealthStatus},
+            </if>
             <if test="pre_school_name != null ">
                 t_student.pre_school_name = #{pre_school_name},
             </if>

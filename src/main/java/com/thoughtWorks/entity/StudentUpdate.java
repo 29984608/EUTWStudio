@@ -90,6 +90,16 @@ public class StudentUpdate {
     private String units_or_projects_practical_type_contact_phone;
     private String updateOffCampusContactPhone;
     private String updateOffCampusContactName;
+    private String otherHealthStatus;
+
+    public String getOtherHealthStatus() {
+        return otherHealthStatus;
+    }
+
+    public void setOtherHealthStatus(String otherHealthStatus) {
+        this.otherHealthStatus = otherHealthStatus;
+    }
+
 
     public String getPayment_status_sixth_year() {
         return payment_status_sixth_year;

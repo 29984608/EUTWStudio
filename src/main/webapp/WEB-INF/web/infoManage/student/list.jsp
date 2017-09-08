@@ -751,6 +751,7 @@
 
 
                             $("input:radio[value='" + studentList.health_status + "']").prop('checked', 'true');
+                            $("#updateOtherHealthStatus").val(studentList.otherHealthStatus);
                             $("input:radio[value=" + studentList.student_type + "]").prop('checked', 'true');
 
                             var count = $("#updateStudentBloodType option").length;
@@ -1017,6 +1018,7 @@
                             student.updateStudentGroupActivities(groupActivitiesList);
                             groupActivities();
                             form.render();
+                            student.showLoad_updateOtherHealthStatus();
                             //如果住宿类型为校外,则隐藏宿舍信息,否则显示
                             //1表示校内,2表示校外
                             if (studentList.stay_type == "2") {
@@ -1660,6 +1662,22 @@
                         })
                 })
             },
+            //当健康状况为其它时，显示输入框
+            show_updateOtherHealthStatus: function () {
+                if($("#health").find("input:checked").val()=="其它"){
+                    $("#show_updateOtherHealthStatus").show();
+                }else{
+                    $("#show_updateOtherHealthStatus").hide();
+                }
+            },
+            //当页面加载时，根据单选按钮判断是否显示健康状况的输入框
+            showLoad_updateOtherHealthStatus: function () {
+                if($("#health").find("input:checked").val()=="其它"){
+                    $("#show_updateOtherHealthStatus").show();
+                }else{
+                    $("#show_updateOtherHealthStatus").hide();
+                }
+            },
             addExperienceByUpdate: function () {
                 let startDateExperience = $("#startDateExperience").val();
                 let endDateExperience = $("#endDateExperience").val();
@@ -1768,6 +1786,7 @@
                 var weight = $("#updateStudentWight").val();
                 var famous_family = $("#updateStudentNationalities").val();
                 var health_status = $('#health input[name="health"]:checked ').val();
+                var otherHealthStatus = $('#updateOtherHealthStatus').val();
                 var student_type = $('#updateStudentType input[name="student_type"]:checked').val();
                 var stay_type = $('#update_accommodation_type input[name="accommodation_type"]:checked ').val();
                 var is_out = $('#update_isOut input[name="isOut"]:checked ').val();
@@ -2102,6 +2121,7 @@
                             weight: weight,
                             head_image: imgName,
                             health_status: health_status,
+                            otherHealthStatus: otherHealthStatus,
                             student_type: student_type,
                             born: born,
                             name: name,
@@ -2352,52 +2372,7 @@
                 form.render();
             }
         }
-        /*function showDateDisciplineAndPunishmentBehaviorByUpdate(num) {
-            if (num == 1){
-                $("#show_dateDisciplineAndPunishmentBehavior").html(`
-                       <option value=""></option>
-                       <option value="">请选择</option>
-                       <option value="1">考试违规</option>
-                       <option value="2">妨碍公共管理</option>
-                       <option value="3">侵犯他人权利</option>
-                       <option value="4">危害公共安全</option>
-                       <option value="5">扰乱公共秩序</option>
-                       <option value="6">违法犯罪</option>
-                       <option value="7">其他</option>
-                    `);
-                $("#show_dateDisciplineAndPunishmentRank").html(`
-                       <option value=""></option>
-                       <option value="">请选择</option>
-                       <option value="1">警告</option>
-                       <option value="2">严重警告</option>
-                       <option value="3">记过</option>
-                       <option value="4">留校查看</option>
-                       <option value="5">开出学籍</option>
-                    `);
-                form.render();
-            }
-            if (num == 2){
-                $("#show_dateDisciplineAndPunishmentBehavior").html(`
-                    <option value=""></option>
-                    <option value="">请选择</option>
-                       <option value="1">身体疾病</option>
-                       <option value="2">情绪失控</option>
-                       <option value="3">行为失常</option>
-                       <option value="4">家庭突变</option>
-                       <option value="5">性格偏执</option>
-                       <option value="6">校园贷款</option>
-                       <option value="7">经济纠纷</option>
-                       <option value="8">其他</option>
-                    `);
-                $("#show_dateDisciplineAndPunishmentRank").html(`
-                       <option value=""></option>
-                       <option value="">请选择</option>
-                       <option value="1">一般预警</option>
-                       <option value="2">特殊预警</option>
-                    `);
-                form.render();
-            }
-        }*/
+
 
         function loadAllProfession() {
             $.post(baseUrl + "/student/queryProfessionByDepartment", function (data) {

@@ -1326,18 +1326,26 @@
                                         </div>
                                         </span></th>
 
-                                        <th colspan="4">健康状况：<span>
-                                            <div class="layui-input-inline">
-                                                <div class="layui-inline" pane="" id="health">
-                                                    <label class="layui-form-label" style="width: auto"></label>
-                                                    <div class="layui-inline">
-                                                       <input name="health" value="良好" title="良好"
-                                                              type="radio">
-                                                       <input name="health" value="其它" title="其它" type="radio">
+                                        <th colspan="4">健康状况：
+                                            <span>
+                                                <div class="layui-input-inline">
+                                                    <div class="layui-inline" pane="" id="health">
+                                                        <label class="layui-form-label" style="width: auto"></label>
+                                                        <div class="layui-inline" onclick="student.show_updateOtherHealthStatus()">
+                                                           <input name="health" value="良好" title="良好"
+                                                                  type="radio">
+                                                           <input name="health" value="其它" title="其它" type="radio">
+                                                        </div>
                                                     </div>
+                                                 </div>
+                                            </span>
+                                            <span style="display: none;" id="show_updateOtherHealthStatus">
+                                                 <div class="layui-input-inline" style="width: 60%">
+                                                    <input type="text" name="idcard_address" placeholder="请输入健康状况信息"
+                                                           autocomplete="off" class="layui-input" id="updateOtherHealthStatus">
                                                 </div>
-                                             </div>
-                                        </span></th>
+                                            </span>
+                                        </th>
                                     </tr>
 
                                     <tr class="layui-form">
