@@ -947,6 +947,12 @@ WHERE student.no =#{studentNo}
             <if test="arrears_fifth_year != null ">
                 t_student.arrears_fifth_year = #{arrears_fifth_year},
             </if>
+            <if test="arrears_sixth_year != null ">
+                t_student.arrears_sixth_year = #{arrears_sixth_year},
+            </if>
+            <if test="payment_status_sixth_year != null ">
+                t_student.payment_status_sixth_year = #{payment_status_sixth_year},
+            </if>
             <if test="practice_learning_type != null ">
                 t_student.practice_learning_type = #{practice_learning_type},
             </if>

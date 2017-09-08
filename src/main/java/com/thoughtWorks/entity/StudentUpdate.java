@@ -55,6 +55,7 @@ public class StudentUpdate {
     private String payment_status_third_year;
     private String payment_status_forth_year;
     private String payment_status_fifth_year;
+    private String payment_status_sixth_year;
     private String practice_learning_type;
     private String stay_type;
     private String off_school_stay_address;
@@ -70,6 +71,7 @@ public class StudentUpdate {
     private String arrears_second_year;
     private String arrears_forth_year;
     private String arrears_fifth_year;
+    private String arrears_sixth_year;
     private String teacher_id;
     private String community_teacher_id;
     private String group;
@@ -88,6 +90,22 @@ public class StudentUpdate {
     private String units_or_projects_practical_type_contact_phone;
     private String updateOffCampusContactPhone;
     private String updateOffCampusContactName;
+
+    public String getPayment_status_sixth_year() {
+        return payment_status_sixth_year;
+    }
+
+    public void setPayment_status_sixth_year(String payment_status_sixth_year) {
+        this.payment_status_sixth_year = payment_status_sixth_year;
+    }
+
+    public String getArrears_sixth_year() {
+        return arrears_sixth_year;
+    }
+
+    public void setArrears_sixth_year(String arrears_sixth_year) {
+        this.arrears_sixth_year = arrears_sixth_year;
+    }
 
     public String getUpdateOffCampusContactPhone() {
         return updateOffCampusContactPhone;

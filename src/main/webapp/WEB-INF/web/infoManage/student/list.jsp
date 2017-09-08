@@ -875,6 +875,12 @@
                                     $("#update_payment_status5").get(0).options[i].selected = true;
                                 }
                             }
+                            var count6Bypay = $("#update_payment_status6 option").length;
+                            for (var i = 0; i < count6Bypay; i++) {
+                                if ($("#update_payment_status6").get(0).options[i].text == studentList.payment_status_sixth_year) {
+                                    $("#update_payment_status6").get(0).options[i].selected = true;
+                                }
+                            }
                             var count7 = $("#update_practical_type option").length;
                             for (var i = 0; i < count7; i++) {
                                 if ($("#update_practical_type").get(0).options[i].text == studentList.practice_learning_type) {
@@ -960,6 +966,7 @@
                             $("#Amount_of_arrears3").val(studentList.arrears_third_year);
                             $("#Amount_of_arrears4").val(studentList.arrears_forth_year);
                             $("#Amount_of_arrears5").val(studentList.arrears_fifth_year);
+                            $("#Amount_of_arrears6").val(studentList.arrears_sixth_year);
 
                             if (studentList.arrears_first_year != null && studentList.arrears_first_year != '0') {
                                 $("#showAmount_of_arrears").show();
@@ -987,6 +994,11 @@
                                 $("#showAmount_of_arrears5").show();
                             } else {
                                 $("#showAmount_of_arrears5").hide();
+                            }
+                            if (studentList.arrears_sixth_year != null && studentList.arrears_sixth_year != '0') {
+                                $("#showAmount_of_arrears6").show();
+                            } else {
+                                $("#showAmount_of_arrears6").hide();
                             }
 
                             $("input[type='radio'][name='update_hard_type'][value='" + studentList.hard_type + "']").attr("checked", "checked");
@@ -2029,6 +2041,13 @@
                     var payment_status_fifth_year = $("#update_payment_status5").find('option:selected').text()
                     var arrears_fifth_year = '0'
                 }
+                if ($("#update_payment_status6").find('option:selected').text() == "欠费") {
+                    var payment_status_sixth_year = $("#update_payment_status6").find('option:selected').text()
+                    var arrears_sixth_year = $("#Amount_of_arrears6").val()
+                } else {
+                    var payment_status_sixth_year = $("#update_payment_status6").find('option:selected').text()
+                    var arrears_sixth_year = '0'
+                }
 
                 //实践类型
                 if ($("#update_practical_type").find('option:selected').text() == "其它") {
@@ -2129,6 +2148,8 @@
                             arrears_forth_year: arrears_forth_year,
                             payment_status_fifth_year: payment_status_fifth_year,
                             arrears_fifth_year: arrears_fifth_year,
+                            payment_status_sixth_year: payment_status_sixth_year,
+                            arrears_sixth_year: arrears_sixth_year,
 
                             practice_learning_type: practice_learning_type,
                             units_or_projects_practical_type: units_or_projects_practical_type,
@@ -2632,6 +2653,13 @@
                     $("#showAmount_of_arrears5").show();
                 } else {
                     $("#showAmount_of_arrears5").hide();
+                }
+            })
+            form.on('select(update_payment_status6)', function (data) {
+                if (data.value == 5) {
+                    $("#showAmount_of_arrears6").show();
+                } else {
+                    $("#showAmount_of_arrears6").hide();
                 }
             })
             //监听实践类型
