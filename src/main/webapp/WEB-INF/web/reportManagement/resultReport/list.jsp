@@ -180,6 +180,7 @@
             preview: function (no) {
                 $.post(baseUrl + "/resultReport/preview", {studentNo: no}, function (data) {
                     if (data.result) {
+                        console.log(data)
                         resultReport.loadStudentInfo(data.student);
                         $("#totalCredit").text(data.totalCredit)
                         if (data.results != null)
