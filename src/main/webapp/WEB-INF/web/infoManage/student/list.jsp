@@ -366,7 +366,7 @@
     }
     function groupActivities() {
         //团学活动
-        <shiro:lacksPermission name="student:groupActivities">
+        <shiro:lacksPermission name="student:groupActivites">
         $("#updateStudent_GroupActivities").find("input").attr({disabled: "disabled"});
         $("#updateStudent_GroupActivities").find("select").attr({disabled: "disabled"});
         $("#updateStudent_GroupActivities").find("radio").attr({disabled: "disabled"});
