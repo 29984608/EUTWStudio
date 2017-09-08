@@ -69,12 +69,12 @@
         <div class="layui-form-item">
             <label class="layui-form-label">课程学分</label>
             <div class="layui-input-inline">
-                <input type="number" name="schoolScore"
+                <input type="text" name="schoolScore"
                        placeholder="请输入课程学分" id="add-schoolScore" autocomplete="off" class="layui-input ">
             </div>
             <label class="layui-form-label">课程学时</label>
             <div class="layui-input-inline">
-                <input type="number" name="schoolHours"
+                <input type="text" name="schoolHours"
                        placeholder="请输入课程学时" id="add-schoolHours" autocomplete="off" class="layui-input ">
             </div>
             <label class="layui-form-label">开课学期</label>

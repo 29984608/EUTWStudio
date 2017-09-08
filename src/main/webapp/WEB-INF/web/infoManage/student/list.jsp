@@ -1452,7 +1452,7 @@
                 addStudentFamilyInfoIndex = layer.open({
                     type: 1,
                     title: "添加学生家庭信息",
-                    area: ["100%", "100%"],
+                    area: ["40%", "80%"],
                     content: $("#addStudentFamily")
 
                 });
