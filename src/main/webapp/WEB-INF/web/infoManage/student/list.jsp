@@ -745,6 +745,7 @@
                             if (studentList.religion != "") {
                                 $("#religiousBelief").val(studentList.religion);
                                 $("#religiousBelief_has").prop({checked: true});
+//                                $("#religiousBelief").
                             } else {
                                 $("#religiousBelief_none").prop({checked: true});
                             }
@@ -752,7 +753,7 @@
 
                             $("input:radio[value='" + studentList.health_status + "']").prop('checked', 'true');
                             $("#updateOtherHealthStatus").val(studentList.otherHealthStatus);
-                            $("input:radio[value=" + studentList.student_type + "]").prop('checked', 'true');
+                            $("input:r-adio[value=" + studentList.student_type + "]").prop('checked', 'true');
 
                             var count = $("#updateStudentBloodType option").length;
                             for (var i = 0; i < count; i++) {
@@ -788,6 +789,10 @@
                             $("input:radio[value='" + studentList.student_classify + "']").prop('checked', 'true');
                             $("input:radio[value='" + studentList.is_out + "']").prop('checked', 'true');
                             $("#Identity_card_address").val(studentList.idcard_address);
+
+                            //党派或团体组织
+                            $("#partyOrGroupOrganization").find("input[value='" + studentList.partyOrGroupOrganization + "']").prop({checked:true});
+                            $("#partyOrGroupOrganizationText").val(studentList.partyOrGroupOrganizationText);
 
                             $("#detailedAddresses").val(studentList.actual_address);
                             $("#update_name_of_the_source").val(studentList.origin_address);
@@ -1026,6 +1031,7 @@
                             groupActivities();
                             form.render();
                             student.showLoad_updateOtherHealthStatus();
+                            student.showPartyOrGroupOrganization();
                             //如果住宿类型为校外,则隐藏宿舍信息,否则显示
                             //1表示校内,2表示校外
                             if (studentList.stay_type == "2") {
@@ -1778,6 +1784,14 @@
 
                 return _html;
             },
+            //显示党派或团体组织文本输入框
+            showPartyOrGroupOrganization: function () {
+                if($("#partyOrGroupOrganization").find("input:checked").val() == "有"){
+                    $("#showPartyOrGroupOrganizationText").show();
+                }else {
+                    $("#showPartyOrGroupOrganizationText").hide();
+                }
+            },
 
             updateStudentList: function () {
 
@@ -1798,7 +1812,10 @@
                 var stay_type = $('#update_accommodation_type input[name="accommodation_type"]:checked ').val();
                 var is_out = $('#update_isOut input[name="isOut"]:checked ').val();
                 var blood = $("#updateStudentBloodType").find("option:selected").text()
+                var religionText = $("#religiousBeliefText").val();
                 var religion = $("#religiousBelief").val();
+                alert(religion)
+                alert(religionText)
                 if ($("#updateStudentPoliticalOutlook").find("option:selected").text() == "其它党派") {
                     var political_status = $("#otherUpdateStudentPoliticalOutlook").val()
                 } else {
@@ -1877,6 +1894,10 @@
                 var emergency_contact_method = $("#updateStudent_emergency_contact_phone").val();
                 var account_in = $("#whetherToTransfer input[name='whetherToTransfer']:checked").val()
                 var area_origin_name = $("#birthplaceName input[name='birthplaceName']:checked").val()
+
+                //党派或团体组织
+                var partyOrGroupOrganization = $("#partyOrGroupOrganization").find("input:checked").val();
+                var partyOrGroupOrganizationText = $("#partyOrGroupOrganizationText").val();
 
                 //入学前档案所在单位
                 if ($("#province2").find("option:selected").text() == "—— 省 ——" || $("#city2").find("option:selected").text() == "—— 市 ——" || $("#district2").find("option:selected").text() == "—— 区/县 ——" || $("#updateStudent_Pre_enrollment_file_unit_detailed").val() == "") {
@@ -2242,6 +2263,9 @@
                             updateStudent_disciplineAndPunishment_date_list:updateStudent_disciplineAndPunishment_date_list,
                             updateStudent_disciplineAndPunishment_content_list:updateStudent_disciplineAndPunishment_content_list,
                             updateStudent_disciplineAndPunishment_id_list:updateStudent_disciplineAndPunishment_id_list,
+                            //党派或团体组织
+                            partyOrGroupOrganization:partyOrGroupOrganization,
+                            partyOrGroupOrganizationText:partyOrGroupOrganizationText,
 
                             //团学活动
                             updateStudent_groupActivities_date_list:updateStudent_groupActivities_date_list,
@@ -2728,11 +2752,11 @@
             //监听宗教信仰
             form.on('radio(religiousBelief)', function (data) {
 
-                if (data.value === "1") {
-                    $("#religiousBelief").show();
+                if (data.value === "有") {
+                    $("#showReligiousBeliefText").show();
                 } else {
-                    $("#religiousBelief").val("");
-                    $("#religiousBelief").hide();
+                    $("#religiousBeliefText").val("");
+                    $("#showReligiousBeliefText").hide();
                 }
             });
             //监听学生政治面貌

@@ -91,6 +91,8 @@ public class StudentUpdate {
     private String updateOffCampusContactPhone;
     private String updateOffCampusContactName;
     private String otherHealthStatus;
+    private String partyOrGroupOrganization;
+    private String partyOrGroupOrganizationText;
 
     private String first_time_medical_insurance;
     private String second_time_medical_insurance;
@@ -99,6 +101,21 @@ public class StudentUpdate {
     private String second_medical_insurance;
     private String third_medical_insurance;
 
+    public String getPartyOrGroupOrganization() {
+        return partyOrGroupOrganization;
+    }
+
+    public void setPartyOrGroupOrganization(String partyOrGroupOrganization) {
+        this.partyOrGroupOrganization = partyOrGroupOrganization;
+    }
+
+    public String getPartyOrGroupOrganizationText() {
+        return partyOrGroupOrganizationText;
+    }
+
+    public void setPartyOrGroupOrganizationText(String partyOrGroupOrganizationText) {
+        this.partyOrGroupOrganizationText = partyOrGroupOrganizationText;
+    }
 
     public String getFirst_time_medical_insurance() {
         return first_time_medical_insurance;

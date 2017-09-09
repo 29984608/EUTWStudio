@@ -526,7 +526,6 @@
                                         </div>
                                     </span>
                                         </th>
-
                                         <th colspan="3">城乡生源名称：<span>
                                         <div class="layui-inline" pane="" id="birthplaceName">
                                             <label class="layui-form-label" style="width: auto"></label>
@@ -576,6 +575,23 @@
                                                        id="updateStudent_emergency_contact_phone">
                                              </div>
                                         </span></th>
+                                    </tr>
+
+                                    <tr>
+                                        <th colspan="6">党派或团体组织：
+                                            <div class="layui-inline" pane="" id="partyOrGroupOrganization">
+                                                <div class="layui-inline" onclick="student.showPartyOrGroupOrganization()">
+                                                    <input name="partyOrGroupOrganization" value="有" title="有"
+                                                           type="radio">
+                                                    <input name="partyOrGroupOrganization" value="无" title="无" type="radio">
+                                                </div>
+                                            </div>
+                                            <div class="layui-input-inline" style="width: 70%" id="showPartyOrGroupOrganizationText">
+                                                <input type="text" name="text"
+                                                       placeholder="何时何地经何人介绍加入何党派或团体组织" autocomplete="off" class="layui-input"
+                                                       id="partyOrGroupOrganizationText">
+                                            </div>
+                                        </th>
                                     </tr>
 
 
@@ -1314,15 +1330,15 @@
                                         <th colspan="3"><span>宗教信仰：</span>
 
                                             <div class="layui-input-inline" style="width: 80%">
-                                                <div class="layui-inline">
-                                                    <input name="religiousBelief" value="0" lay-filter="religiousBelief"
-                                                           title="无" type="radio" id="religiousBelief_none">
-                                                    <input name="religiousBelief" value="1" lay-filter="religiousBelief"
-                                                           title="有" type="radio" id="religiousBelief_has">
+                                                <div class="layui-inline" id="religiousBelief">
+                                                    <input name="religiousBelief" value="无" lay-filter="religiousBelief"
+                                                           type="radio" id="religiousBelief_none">
+                                                    <input name="religiousBelief" value="有" lay-filter="religiousBelief"
+                                                           type="radio" id="religiousBelief_has">
                                                 </div>
-                                                <div class="layui-inline" style="width: 60%">
-                                                    <input type="text" name="title" id="religiousBelief"
-                                                           autocomplete="off" placeholder="无" style="display: none"
+                                                <div class="layui-inline" style="width: 60%;display: none" id="showReligiousBeliefText">
+                                                    <input type="text" name="title" id="religiousBeliefText"
+                                                           autocomplete="off" placeholder="无"
                                                            class="layui-input">
                                                 </div>
                                             </div>
