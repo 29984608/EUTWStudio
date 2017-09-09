@@ -335,8 +335,8 @@
                     <div id="container1" style=" background: #fff">
                         <h1 style="text-align: center;color:#00ab9f;margin-top: 20px;font-size: 28px;">西安欧亚学院高职学院学生信息页面</h1>
                         <div style="margin-top: 40px;">
-                            <div style="float: left;width: 25%">
-                                <div style="margin: 30px 10px;border: 1px ;">
+                            <div style="float: left;width: 20%">
+                                <div style="margin: 30px 0px;border: 1px ;">
                                     <div style="float: left;margin: 10px 37%">
                                         <div style="width:140px; height: 200px;border: 2px solid #e2e2e2;margin-bottom: 10px">
                                             <img id="imagesToUpdate" class="head_image" style="width: 100%"
@@ -347,7 +347,7 @@
                                                    lay-title="图片上传">
                                         </div>
                                     </div>
-                                    <div style="margin:10px 30px;">
+                                    <div style="margin:10px 0px;">
                                         <table class="layui-table lay-even " data-name="articleCatData">
                                             <tbody>
                                             <tr>
@@ -397,7 +397,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div style="width: 75%; height: 100%; float: left;padding-left: 25px">
+                            <div style="width: 80%; height: 100%; float: left;padding-left: 25px">
                                 <h4 style="color: #00ab9f;font-weight: bold">基本信息</h4>
                                 <table class="layui-table lay-even" id="student_info" data-name="articleCatData"
                                        style="border: 0px solid red">

@@ -255,9 +255,11 @@
             addAjax: function () {
                 let no = $(".no").val();
                 let direction = $("#direction").val();
-                let talkName = $("#talkName").text();
+                let talkName = $("#studentName").val();
                 let contents = "";
                 let contentNodes = $(".add-contents");
+                let communicationMode = $("#communicationMode").val();
+                let communicationPhone = $("#communicationPhone").val();
                 for (let i = 0; i < contentNodes.length; ++i) {
                     contents += $(contentNodes[i]).val() + "$%$";
                 }
@@ -266,6 +268,8 @@
                     "studentId": no,
                     "direction": direction,
                     "talkName": talkName,
+                    "communicationMode": communicationMode,
+                    "communicationPhone": communicationPhone,
                     "content": contents
                 }
                 $.post(baseUrl + "/communication/add", data, function (data) {
@@ -473,6 +477,5 @@
         pdf(document.getElementById("container"), $("#name").text(), "a4");
     }
 </script>
-
 
 </html>

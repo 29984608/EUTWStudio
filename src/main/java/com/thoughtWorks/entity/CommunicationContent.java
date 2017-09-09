@@ -8,6 +8,8 @@ public class CommunicationContent {
     private String studentId;
     private String talkName;
     private String direction;
+    private String communicationPhone;
+    private String communicationMode;
     private String content;
     private Date time;
 
@@ -18,6 +20,22 @@ public class CommunicationContent {
         this.studentId = studentId;
         this.talkName = talkName;
         this.content = content;
+    }
+
+    public String getCommunicationPhone() {
+        return communicationPhone;
+    }
+
+    public void setCommunicationPhone(String communicationPhone) {
+        this.communicationPhone = communicationPhone;
+    }
+
+    public String getCommunicationMode() {
+        return communicationMode;
+    }
+
+    public void setCommunicationMode(String communicationMode) {
+        this.communicationMode = communicationMode;
     }
 
     public long getId() {
@@ -84,6 +102,8 @@ public class CommunicationContent {
                 ", studentId='" + studentId + '\'' +
                 ", talkName='" + talkName + '\'' +
                 ", direction='" + direction + '\'' +
+                ", communicationPhone='" + communicationPhone + '\'' +
+                ", communicationMode='" + communicationMode + '\'' +
                 ", content='" + content + '\'' +
                 ", time=" + time +
                 '}';

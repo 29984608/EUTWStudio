@@ -79,7 +79,7 @@
     {{# }); }}
 
 </script>
-<div id="add" style="display: none;width: auto;margin-top: 20px">
+<div id="add" style="display: none;width: auto;margin-top: 20px" class="layui-form">
     <form class="layui-form layui-form-pane" id="add_form" style="padding: 30px">
         <input type="hidden" name="no" class="no">
         <div class="layui-form-item layui-form-pane">
@@ -108,10 +108,28 @@
                 </select>
             </div>
 
+            <label class="layui-form-label " style="font-size: 13px">沟通方式</label>
+            <div class="layui-input-inline">
+                <select name="modules" id="communicationMode" lay-verify="required" lay-search="">
+                    <option value="面谈">面谈</option>
+                    <option value="电话">电话</option>
+                    <option value="QQ">QQ</option>
+                    <option value="微信">微信</option>
+                    <option value="书信">书信</option>
+                </select>
+            </div>
+
             <label class="layui-form-label " style="font-size: 13px">沟通对象</label>
             <div class="layui-input-inline">
                 <input type="radio" name="name" id="student_radio" lay-filter="talk" value="student" title="学生" checked>
                 <input type="radio" name="name" lay-filter="talk" value="parent" title="家长">
+            </div>
+
+            <label class="layui-form-label " style="font-size: 13px">电话</label>
+            <div class="layui-input-inline">
+                <div class="layui-input-inline">
+                    <input type="tel" name="phone" lay-verify="phone" autocomplete="off" class="layui-input" id="communicationPhone">
+                </div>
             </div>
         </div>
 
@@ -136,7 +154,7 @@
             </div>
         </div>
     </form>
-    <a class="layui-btn" onclick="communication.addAjax()" style="width: 115px;margin-left: 30px">立即提交</a>
+    <a class="lay-submit layui-btn" onclick="communication.addAjax()" style="width: 115px;margin-left: 30px">立即提交</a>
 
 </div>
 
