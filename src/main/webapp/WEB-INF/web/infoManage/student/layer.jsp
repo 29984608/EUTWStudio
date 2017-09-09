@@ -1356,7 +1356,63 @@
                                     </tr>
 
                                     <tr>
-                                        <th colspan="6">住宿类型:<span>
+                                        <th colspan="3">第一年医保：
+                                            <div class="layui-input-inline">
+                                            <select name="first_scholarship" lay-filter="updateStudentBloodType"
+                                                    id="first_time_medical_insurance">
+                                                <option value=""></option>
+                                                <option value="">请选择</option>
+
+                                            </select>
+                                            </div>
+                                            <span>
+                                        <div class="layui-inline" pane="" id="first_medical_insurance">
+                                            <label class="layui-form-label" style="width: auto"></label>
+                                               <input name="first_medical_insurance" value="有" title="有"
+                                                      type="radio">
+                                               <input name="first_medical_insurance" value="无" title="无" type="radio">
+                                        </div>
+                                        </span>
+                                        </th>
+                                        <th colspan="3">第二年医保：
+                                            <div class="layui-input-inline">
+                                                <select name="first_scholarship" lay-filter="updateStudentBloodType"
+                                                        id="second_time_medical_insurance">
+                                                    <option value=""></option>
+                                                    <option value="">请选择</option>
+
+                                                </select>
+                                            </div>
+                                            <span>
+                                        <div class="layui-inline" pane="" id="second_medical_insurance">
+                                            <label class="layui-form-label" style="width: auto"></label>
+                                               <input name="second_medical_insurance" value="有" title="有"
+                                                      type="radio">
+                                               <input name="second_medical_insurance" value="无" title="无" type="radio">
+                                        </div>
+                                        </span>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="3">第三年医保：
+                                            <div class="layui-input-inline">
+                                                <select name="first_scholarship" lay-filter="updateStudentBloodType"
+                                                        id="third_time_medical_insurance">
+                                                    <option value=""></option>
+                                                    <option value="">请选择</option>
+
+                                                </select>
+                                            </div>
+                                            <span>
+                                        <div class="layui-inline" pane="" id="third_medical_insurance">
+                                            <label class="layui-form-label" style="width: auto"></label>
+                                               <input name="third_medical_insurance" value="有" title="有"
+                                                      type="radio">
+                                               <input name="third_medical_insurance" value="无" title="无" type="radio">
+                                        </div>
+                                        </span>
+                                        </th>
+                                        <th colspan="3">住宿类型:<span>
                                         <div class="layui-inline" pane="" id="update_accommodation_type">
                                             <label class="layui-form-label" style="width: auto"></label>
                                             <div class="layui-inline" onclick="student.showAreaInfo()">
@@ -1365,7 +1421,8 @@
                                                <input name="accommodation_type" value="1" title="校内" type="radio">
                                             </div>
                                         </div>
-                                    </span></th>
+                                        </span>
+                                        </th>
                                     </tr>
 
                                     <tr id="dorms">

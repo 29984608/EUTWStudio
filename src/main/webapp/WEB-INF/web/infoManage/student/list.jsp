@@ -954,6 +954,13 @@
                                     $("#first_scholarship_particularYear").html(`<option value=""></option>` + loadOptionsHtmlToYear(studentList.level,studentList.first_year));
                                     $("#second_scholarship_particularYear").html(`<option value=""></option>` + loadOptionsHtmlToYear(studentList.level,studentList.second_year));
                                     $("#third_scholarship_particularYear").html(`<option value=""></option>` + loadOptionsHtmlToYear(studentList.level,studentList.third_year));
+                            //医保年份
+                                    $("#first_time_medical_insurance").html(`<option value=""></option>` + loadOptionsHtmlTomedicalInsurance(studentList.level,studentList.first_time_medical_insurance));
+                                    $("#second_time_medical_insurance").html(`<option value=""></option>` + loadOptionsHtmlTomedicalInsurance(studentList.level,studentList.second_time_medical_insurance));
+                                    $("#third_time_medical_insurance").html(`<option value=""></option>` + loadOptionsHtmlTomedicalInsurance(studentList.level,studentList.third_time_medical_insurance));
+                                    $("#first_medical_insurance").find("input[value=" + studentList.first_medical_insurance + "]").prop('checked', 'true');
+                                    $("#second_medical_insurance").find("input[value=" + studentList.second_medical_insurance + "]").prop('checked', 'true');
+                                    $("#third_medical_insurance").find("input[value=" + studentList.third_medical_insurance + "]").prop('checked', 'true');
                             //职业导师
                             let update_career_mentor1 = teacherList.filter(item => item.classify === "职业导师");
                             $("#update_career_mentor").html("").append(`<option value=""></option>` + loadOptionsHtmlToTeacher(update_career_mentor1, studentList.teacher_id));
@@ -2108,6 +2115,15 @@
                 var third_scholarship = $("#third_scholarship").val();
                 var third_stipend = $("#third_stipend").val();
 
+                //医保信息
+                var first_time_medical_insurance = $("#first_time_medical_insurance").val()
+                var second_time_medical_insurance = $("#second_time_medical_insurance").val()
+                var third_time_medical_insurance = $("#third_time_medical_insurance").val()
+                var first_medical_insurance =  $('input[name="first_medical_insurance"]:checked').val();
+                var second_medical_insurance =  $('input[name="second_medical_insurance"]:checked').val();
+                var third_medical_insurance =  $('input[name="third_medical_insurance"]:checked').val();
+
+
                 layer.confirm('确定修改？', {icon: 3, title: '提示'}, function (index) {
                     layer.close(index);
                     $.post(baseUrl + "/student/updateStudentAjax",
@@ -2231,7 +2247,13 @@
                             updateStudent_groupActivities_date_list:updateStudent_groupActivities_date_list,
                             updateStudent_groupActivities_content_list:updateStudent_groupActivities_content_list,
                             updateStudent_groupActivities_id_list:updateStudent_groupActivities_id_list,
-
+                            //医保
+                            first_time_medical_insurance:first_time_medical_insurance,
+                            second_time_medical_insurance:second_time_medical_insurance,
+                            third_time_medical_insurance:third_time_medical_insurance,
+                            first_medical_insurance:first_medical_insurance,
+                            second_medical_insurance:second_medical_insurance,
+                            third_medical_insurance:third_medical_insurance
                         },
 
                         function (data) {
@@ -2449,6 +2471,20 @@
             return _html;
         }
         function loadOptionsHtmlToYear(year, selectId) {
+            let years = parseInt(year);
+            let _html = "<option value=''>请选择</option>";
+            for (let i = 0; i < 5; ++i) {
+                if (selectId == years) {
+                    _html += `<option  selected value="` + years + `">` + years + `</option>`;
+                } else {
+                    _html += `<option value="` + years + `">` + years + `</option>`;
+                }
+                years ++;
+            }
+
+            return _html;
+        }
+        function loadOptionsHtmlTomedicalInsurance(year, selectId) {
             let years = parseInt(year);
             let _html = "<option value=''>请选择</option>";
             for (let i = 0; i < 5; ++i) {

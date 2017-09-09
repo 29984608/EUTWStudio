@@ -92,6 +92,62 @@ public class StudentUpdate {
     private String updateOffCampusContactName;
     private String otherHealthStatus;
 
+    private String first_time_medical_insurance;
+    private String second_time_medical_insurance;
+    private String third_time_medical_insurance;
+    private String first_medical_insurance;
+    private String second_medical_insurance;
+    private String third_medical_insurance;
+
+
+    public String getFirst_time_medical_insurance() {
+        return first_time_medical_insurance;
+    }
+
+    public void setFirst_time_medical_insurance(String first_time_medical_insurance) {
+        this.first_time_medical_insurance = first_time_medical_insurance;
+    }
+
+    public String getSecond_time_medical_insurance() {
+        return second_time_medical_insurance;
+    }
+
+    public void setSecond_time_medical_insurance(String second_time_medical_insurance) {
+        this.second_time_medical_insurance = second_time_medical_insurance;
+    }
+
+    public String getThird_time_medical_insurance() {
+        return third_time_medical_insurance;
+    }
+
+    public void setThird_time_medical_insurance(String third_time_medical_insurance) {
+        this.third_time_medical_insurance = third_time_medical_insurance;
+    }
+
+    public String getFirst_medical_insurance() {
+        return first_medical_insurance;
+    }
+
+    public void setFirst_medical_insurance(String first_medical_insurance) {
+        this.first_medical_insurance = first_medical_insurance;
+    }
+
+    public String getSecond_medical_insurance() {
+        return second_medical_insurance;
+    }
+
+    public void setSecond_medical_insurance(String second_medical_insurance) {
+        this.second_medical_insurance = second_medical_insurance;
+    }
+
+    public String getThird_medical_insurance() {
+        return third_medical_insurance;
+    }
+
+    public void setThird_medical_insurance(String third_medical_insurance) {
+        this.third_medical_insurance = third_medical_insurance;
+    }
+
     public String getOtherHealthStatus() {
         return otherHealthStatus;
     }
@@ -854,6 +910,7 @@ public class StudentUpdate {
                 ", payment_status_third_year='" + payment_status_third_year + '\'' +
                 ", payment_status_forth_year='" + payment_status_forth_year + '\'' +
                 ", payment_status_fifth_year='" + payment_status_fifth_year + '\'' +
+                ", payment_status_sixth_year='" + payment_status_sixth_year + '\'' +
                 ", practice_learning_type='" + practice_learning_type + '\'' +
                 ", stay_type='" + stay_type + '\'' +
                 ", off_school_stay_address='" + off_school_stay_address + '\'' +
@@ -869,6 +926,7 @@ public class StudentUpdate {
                 ", arrears_second_year='" + arrears_second_year + '\'' +
                 ", arrears_forth_year='" + arrears_forth_year + '\'' +
                 ", arrears_fifth_year='" + arrears_fifth_year + '\'' +
+                ", arrears_sixth_year='" + arrears_sixth_year + '\'' +
                 ", teacher_id='" + teacher_id + '\'' +
                 ", community_teacher_id='" + community_teacher_id + '\'' +
                 ", group='" + group + '\'' +
@@ -882,6 +940,17 @@ public class StudentUpdate {
                 ", third_scholarship='" + third_scholarship + '\'' +
                 ", third_stipend='" + third_stipend + '\'' +
                 ", units_or_projects_practical_type='" + units_or_projects_practical_type + '\'' +
+                ", units_or_projects_practical_type_contact='" + units_or_projects_practical_type_contact + '\'' +
+                ", units_or_projects_practical_type_contact_phone='" + units_or_projects_practical_type_contact_phone + '\'' +
+                ", updateOffCampusContactPhone='" + updateOffCampusContactPhone + '\'' +
+                ", updateOffCampusContactName='" + updateOffCampusContactName + '\'' +
+                ", otherHealthStatus='" + otherHealthStatus + '\'' +
+                ", first_time_medical_insurance='" + first_time_medical_insurance + '\'' +
+                ", second_time_medical_insurance='" + second_time_medical_insurance + '\'' +
+                ", third_time_medical_insurance='" + third_time_medical_insurance + '\'' +
+                ", first_medical_insurance='" + first_medical_insurance + '\'' +
+                ", second_medical_insurance='" + second_medical_insurance + '\'' +
+                ", third_medical_insurance='" + third_medical_insurance + '\'' +
                 '}';
     }
 }
