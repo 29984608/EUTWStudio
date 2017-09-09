@@ -986,6 +986,15 @@ WHERE student.no =#{studentNo}
             <if test="religion != null ">
                 t_student.religion = #{religion},
             </if>
+            <if test="religionText != null ">
+                t_student.religionText = #{religionText},
+            </if>
+            <if test="Pre_admissionOrReward != null ">
+                t_student.Pre_admissionOrReward = #{Pre_admissionOrReward},
+            </if>
+            <if test="Pre_admissionOrRewardText != null ">
+                t_student.Pre_admissionOrRewardText = #{Pre_admissionOrRewardText},
+            </if>
             <if test="partyOrGroupOrganization != null ">
                 t_student.partyOrGroupOrganization = #{partyOrGroupOrganization},
             </if>

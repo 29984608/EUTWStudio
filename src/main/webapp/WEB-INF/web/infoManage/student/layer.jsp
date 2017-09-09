@@ -594,6 +594,23 @@
                                         </th>
                                     </tr>
 
+                                    <tr>
+                                        <th colspan="6">入学前受过何奖励或处分：
+                                            <div class="layui-inline" pane="" id="Pre_admissionOrReward">
+                                                <div class="layui-inline" onclick="student.showPre_admissionOrReward()">
+                                                    <input name="Pre_admissionOrReward" value="有" title="有"
+                                                           type="radio">
+                                                    <input name="Pre_admissionOrReward" value="无" title="无" type="radio">
+                                                </div>
+                                            </div>
+                                            <div class="layui-input-inline" style="width: 70%" id="showPre_admissionOrRewardText">
+                                                <input type="text" name="text"
+                                                       placeholder="何时何地因何原因受过何奖励或处分" autocomplete="off" class="layui-input"
+                                                       id="Pre_admissionOrRewardText">
+                                            </div>
+                                        </th>
+                                    </tr>
+
 
                                     <tr>
                                         <th colspan="6"><span style="font-weight: bold"></span>
@@ -1332,9 +1349,9 @@
                                             <div class="layui-input-inline" style="width: 80%">
                                                 <div class="layui-inline" id="religiousBelief">
                                                     <input name="religiousBelief" value="无" lay-filter="religiousBelief"
-                                                           type="radio" id="religiousBelief_none">
+                                                           title="无" type="radio" id="religiousBelief_none">
                                                     <input name="religiousBelief" value="有" lay-filter="religiousBelief"
-                                                           type="radio" id="religiousBelief_has">
+                                                           title="有" type="radio" id="religiousBelief_has">
                                                 </div>
                                                 <div class="layui-inline" style="width: 60%;display: none" id="showReligiousBeliefText">
                                                     <input type="text" name="title" id="religiousBeliefText"

@@ -65,6 +65,7 @@ public class StudentUpdate {
     private String counselor_id;
     private String is_out;
     private String religion;
+    private String religionText;
     private String hard_type;
     private String arrears_first_year;
     private String arrears_third_year;
@@ -100,6 +101,32 @@ public class StudentUpdate {
     private String first_medical_insurance;
     private String second_medical_insurance;
     private String third_medical_insurance;
+    private String Pre_admissionOrReward;
+    private String Pre_admissionOrRewardText;
+
+    public String getPre_admissionOrReward() {
+        return Pre_admissionOrReward;
+    }
+
+    public void setPre_admissionOrReward(String pre_admissionOrReward) {
+        Pre_admissionOrReward = pre_admissionOrReward;
+    }
+
+    public String getPre_admissionOrRewardText() {
+        return Pre_admissionOrRewardText;
+    }
+
+    public void setPre_admissionOrRewardText(String pre_admissionOrRewardText) {
+        Pre_admissionOrRewardText = pre_admissionOrRewardText;
+    }
+
+    public String getReligionText() {
+        return religionText;
+    }
+
+    public void setReligionText(String religionText) {
+        this.religionText = religionText;
+    }
 
     public String getPartyOrGroupOrganization() {
         return partyOrGroupOrganization;
