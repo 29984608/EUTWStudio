@@ -986,6 +986,21 @@ WHERE student.no =#{studentNo}
             <if test="religion != null ">
                 t_student.religion = #{religion},
             </if>
+            <if test="religionText != null ">
+                t_student.religionText = #{religionText},
+            </if>
+            <if test="Pre_admissionOrReward != null ">
+                t_student.Pre_admissionOrReward = #{Pre_admissionOrReward},
+            </if>
+            <if test="Pre_admissionOrRewardText != null ">
+                t_student.Pre_admissionOrRewardText = #{Pre_admissionOrRewardText},
+            </if>
+            <if test="partyOrGroupOrganization != null ">
+                t_student.partyOrGroupOrganization = #{partyOrGroupOrganization},
+            </if>
+            <if test="partyOrGroupOrganizationText != null ">
+                t_student.partyOrGroupOrganizationText = #{partyOrGroupOrganizationText},
+            </if>
             <if test="hard_type != null ">
                 t_student.hard_type = #{hard_type},
             </if>
@@ -1022,23 +1037,23 @@ WHERE student.no =#{studentNo}
             <if test="third_stipend != null ">
                 t_student.third_stipend = #{third_stipend},
             </if>
-<if test="first_time_medical_insurance != null ">
-                t_student.first_time_medical_insurance = #{first_time_medical_insurance},
-            </if>
-<if test="second_time_medical_insurance != null ">
-                t_student.second_time_medical_insurance = #{second_time_medical_insurance},
-            </if>
-<if test="third_time_medical_insurance != null ">
-                t_student.third_time_medical_insurance = #{third_time_medical_insurance},
-            </if>
-<if test="first_medical_insurance != null ">
-                t_student.first_medical_insurance = #{first_medical_insurance},
-            </if>
-<if test="second_medical_insurance != null ">
-                t_student.second_medical_insurance = #{second_medical_insurance},
-            </if>
-<if test="third_medical_insurance != null ">
-                t_student.third_medical_insurance = #{third_medical_insurance}
+            <if test="first_time_medical_insurance != null ">
+                            t_student.first_time_medical_insurance = #{first_time_medical_insurance},
+                        </if>
+            <if test="second_time_medical_insurance != null ">
+                            t_student.second_time_medical_insurance = #{second_time_medical_insurance},
+                        </if>
+            <if test="third_time_medical_insurance != null ">
+                            t_student.third_time_medical_insurance = #{third_time_medical_insurance},
+                        </if>
+            <if test="first_medical_insurance != null ">
+                            t_student.first_medical_insurance = #{first_medical_insurance},
+                        </if>
+            <if test="second_medical_insurance != null ">
+                            t_student.second_medical_insurance = #{second_medical_insurance},
+                        </if>
+            <if test="third_medical_insurance != null ">
+                            t_student.third_medical_insurance = #{third_medical_insurance}
             </if>
 
         </set>
