@@ -693,6 +693,7 @@
             studentUpdate: function (studentName, studentNo,level) {
                 //当前搜索条件下的年级
                 searchLevel = level;
+                $("input[type='radio']").removeAttr("checked");
                 $.ajax({
                     url: "${baseurl}/student/studentUpdate",
                     data: {studentNo: studentNo,searchLevel:searchLevel},
@@ -721,6 +722,8 @@
                             let famousFamilyList = data.famousFamilyList;
                             let disciplineAndPunishmentList = data.disciplineAndPunishmentList;
                             let groupActivitiesList = data.groupActivitiesList;
+
+
                             $("#studentPhone").val(studentList.student_contact_method);
                             $("#studentQQ").val(studentList.qq);
                             $("#studentEmail").val(studentList.email);
@@ -1732,6 +1735,7 @@
                 if (student_type === "高考录取") {
                     $("#show_SAT_score").show();
                 } else {
+                    $("#upadte_SAT_score").val("");
                     $("#show_SAT_score").hide();
                 }
             },

@@ -185,7 +185,7 @@
                         <th colspan="2">QQ：<span id="qq"></span></th>
                     </tr>
                     <tr>
-                        <th colspan="6">入学前学校名称：<span id="preSchoolName"></span></th>
+                        <th colspan="6">入学前学校名称或工作单位:：<span id="preSchoolName"></span></th>
                         <th colspan="7">籍贯：<span id="native_place"></span></th>
                     </tr>
 

@@ -875,7 +875,7 @@ WHERE student.no =#{studentNo}
             <if test="area_origin_name != null ">
                 t_student.area_origin_name = #{area_origin_name},
             </if>
-            <if test="sat_score != null  and sat_score !=''">
+            <if test="sat_score != null  ">
                 t_student.sat_score = #{sat_score},
             </if>
             <if test="pre_school_file_where_location != null ">
