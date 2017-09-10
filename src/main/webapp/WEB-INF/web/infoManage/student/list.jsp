@@ -530,6 +530,18 @@
                     $("#famous_family").html(data.student[0].famousFamily);
                     $("#studentClassify").html(data.student[0].student_classify);
                     $("#preSchoolName").html(data.student[0].pre_school_name);
+
+                    if(data.student[0].Pre_admissionOrReward === "无"){
+                        $("#PreAdmissionOrReward").html("无");
+                    }else {
+                        $("#PreAdmissionOrReward").html(data.student[0].Pre_admissionOrRewardText);
+                    }
+                    if(data.student[0].partyOrGroupOrganization === "无"){
+                        $("#party_OrGroupOrganization").html("无");
+                    }else {
+                        $("#party_OrGroupOrganization").html(data.student[0].partyOrGroupOrganizationText);
+                    }
+                    $("#preSchoolName").html(data.student[0].pre_school_name);
                     $("#account_in").html(data.student[0].account_in);
                     $("#idcard_address").html(data.student[0].idcard_address);
                     $("#studentClassify").html(data.student[0].student_classify);
@@ -553,6 +565,38 @@
                     $("#height").text("").append(data.student[0].height);
                     $("#weight").text("").append(data.student[0].weight);
                     $("#health_status").text("").append(data.student[0].health_status);
+
+                    if(data.student[0].first_time_medical_insurance == undefined){
+                        $("#first_time_medical_insurance_preview").html("");
+                    }else{
+                        $("#first_time_medical_insurance_preview").text("").append(data.student[0].first_time_medical_insurance+"年");
+                    }
+                    if(data.student[0].second_time_medical_insurance == undefined){
+                        $("#second_time_medical_insurance_preview").html("");
+                    }else {
+                        $("#second_time_medical_insurance_preview").text("").append(data.student[0].second_time_medical_insurance + "年");
+                    }
+                    if(data.student[0].third_time_medical_insurance == undefined){
+                        $("#third_time_medical_insurance_preview").html("");
+                    }else {
+                        $("#third_time_medical_insurance_preview").text("").append(data.student[0].third_time_medical_insurance + "年");
+                    }
+                    if(data.student[0].first_medical_insurance == undefined){
+                        $("#first_medical_insurance_preview").html("");
+                    }else {
+                        $("#first_medical_insurance_preview").text("").append("（" + data.student[0].first_medical_insurance + "）");
+                    }
+                    if(data.student[0].second_medical_insurance == undefined){
+                        $("#second_medical_insurance_preview").html("");
+                    }else {
+                        $("#second_medical_insurance_preview").text("").append("（" + data.student[0].second_medical_insurance + "）");
+                    }
+                    if(data.student[0].third_medical_insurance == undefined){
+                        $("#third_medical_insurance_preview").html("");
+                    }else {
+                        $("#third_medical_insurance_preview").text("").append("（" + data.student[0].third_medical_insurance + "）");
+                    }
+
                     $("#scholarship").html("<tr><th>年份</th><th>奖学金</th><th>助学金</th></tr>");
                     if(data.student[0].first_year !== undefined && data.student[0].first_year !== "" ){
                         $("#scholarship").append("<tr><th>"+data.student[0].first_year+"</th><th>"+data.student[0].first_scholarship+"</th><th>"+data.student[0].first_stipend+"</th></tr>");
@@ -599,17 +643,22 @@
                     $("#teacherCommunity").html(data.student[0].teacherCommunity);
                     $("#student_status").html(data.student[0].student_status);
                     $("#practice_learning_type").html(data.student[0].practice_learning_type);
+                    $("#units_or_projects_practical_type_preview").html(data.student[0].units_or_projects_practical_type);
+                    $("#units_or_projects_practical_type_contact_preview").html(data.student[0].units_or_projects_practical_type_contact);
+                    $("#units_or_projects_practical_type_contact_phone_preview").html(data.student[0].units_or_projects_practical_type_contact_phone);
                     $("#group").html(data.student[0].group);
                     $("#payment_status_first_year").html(data.student[0].payment_status_first_year);
                     $("#payment_status_second_year").html(data.student[0].payment_status_second_year);
                     $("#payment_status_third_year").html(data.student[0].payment_status_third_year);
-                    $("#payment_status_forth_year").html(data.student[0].payment_status_forth_year  );
+                    $("#payment_status_forth_year").html(data.student[0].payment_status_forth_year);
                     $("#payment_status_fifth_year").html(data.student[0].payment_status_fifth_year);
+                    $("#payment_status_sixth_year").html(data.student[0].payment_status_sixth_year);
                     $("#arrears_first_year").html("："+data.student[0].arrears_first_year+"元");
                     $("#arrears_second_year").html("："+data.student[0].arrears_second_year+"元");
                     $("#arrears_third_year").html("："+data.student[0].arrears_third_year+"元");
                     $("#arrears_forth_year").html("："+data.student[0].arrears_forth_year+"元");
                     $("#arrears_fifth_year").html("："+data.student[0].arrears_fifth_year+"元");
+                    $("#arrears_sixth_year").html("："+data.student[0].arrears_sixth_year+"元");
                     if(data.student[0].payment_status_first_year === "欠费"){
                         $("#arrears_first_year").css("display","inline");
                     }else{
@@ -636,23 +685,32 @@
                     }else{
                         $("#arrears_fifth_year").css("display","none");
                     }
-
-                    $("#area").html(data.student[0].area);
-                    $("#floor").html(data.student[0].floor);
-                    $("#room").html(data.student[0].room);
-                    $("#hard_type").html(data.student[0].hard_type);
-                    let stay_type ="";
-                    if(data.student[0].stay_type ==="1"){
-                        stay_type = "校内";
+                    if(data.student[0].payment_status_sixth_year === "欠费"){
+                        $("#arrears_sixth_year").css("display","inline");
                     }else{
-                        stay_type ="校外";
+                        $("#arrears_sixth_year").css("display","none");
                     }
-                    $("#stay_type").html(stay_type);
+
+//                    $("#area").html(data.student[0].area);
+//                    $("#floor").html(data.student[0].floor);
+//                    $("#room").html(data.student[0].room);
+                    $("#hard_type").html(data.student[0].hard_type);
+                    if(data.student[0].stay_type ==="1"){
+                        $("#stay_type").html("校内");
+                        $("#DormitoryInformation").html("宿舍位置："+data.student[0].area+"&nbsp;-&nbsp;"+data.student[0].floor+"&nbsp;-&nbsp;"+data.student[0].room+"房间");
+                    }else if(data.student[0].stay_type ==="2"){
+                        $("#stay_type").html("校外");
+                        $("#DormitoryInformation").html("校外住址信息："+data.student[0].off_school_stay_address+"&nbsp;&nbsp;&nbsp;&nbsp;联系人："+data.student[0].updateOffCampusContactName+"&nbsp;&nbsp;&nbsp;&nbsp;联系人电话："+data.student[0].updateOffCampusContactPhone);
+                    }else {
+                        $("#stay_type").html("暂无");
+                        $("#DormitoryInformation").html("住址信息：暂无");
+                    }
+
                     $("#is_out").html(data.student[0].is_out);
-                    if(data.student[0].religion === ""){
+                    if(data.student[0].religion === "无"){
                         $("#religion").html("无");
                     }else{
-                        $("#religion").html(data.student[0].religion);
+                        $("#religion").html(data.student[0].religionText);
                     }
                     if( data.student[0].political_status === "请选择"){
                         $("#political_status").text("暂无");

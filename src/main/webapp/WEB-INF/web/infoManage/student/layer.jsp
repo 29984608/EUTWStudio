@@ -185,10 +185,21 @@
                         <th colspan="2">QQ：<span id="qq"></span></th>
                     </tr>
                     <tr>
-                        <th colspan="6">入学前学校名称或工作单位:：<span id="preSchoolName"></span></th>
-                        <th colspan="7">籍贯：<span id="native_place"></span></th>
+                        <th colspan="8">籍贯：<span id="native_place"></span></th>
+                        <th colspan="5">入学前学校名称或工作单位：<span id="preSchoolName"></span></th>
                     </tr>
-
+                        <tr>
+                        <th colspan="8">入学前党派或团体组织：<span id="party_OrGroupOrganization"></span></th>
+                        <th colspan="5">入学前受过何奖励或处分：<span id="PreAdmissionOrReward"></span></th>
+                    </tr>
+                    <tr>
+                        <th colspan="6">档案是否转入：<span id="file_in"></span></th>
+                        <th colspan="7">入学前档案所在单位：<span id="pre_school_file_where_location"></span></th>
+                    </tr>
+                    <tr>
+                        <th colspan="6">户口是否转入：<span id="account_in"></span></th>
+                        <th colspan="7">入学前户口所在派出所：<span id="pre_school_account_where_station"></span></th>
+                    </tr>
                     <tr>
                         <th colspan="6">邮编编码：<span id="family_zip_code"></span></th>
                         <th colspan="7">身份证住址：<span id="idcard_address"></span></th>
@@ -201,14 +212,7 @@
                         <th colspan="6">城乡生源名称：<span id="area_origin_name"></span></th>
                         <th colspan="7">生源所在地名称：<span id="origin_address"></span></th>
                     </tr>
-                    <tr>
-                        <th colspan="6">档案是否转入：<span id="file_in"></span></th>
-                        <th colspan="7">入学前档案所在单位：<span id="pre_school_file_where_location"></span></th>
-                    </tr>
-                    <tr>
-                        <th colspan="6">户口是否转入：<span id="account_in"></span></th>
-                        <th colspan="7">入学前户口所在派出所：<span id="pre_school_account_where_station"></span></th>
-                    </tr>
+
                     <tr>
                         <th colspan="6">紧急联系人：<span id="emergency_contact_name"></span></th>
                         <th colspan="7">联系方式：<span id="emergency_contact_method"></span></th>
@@ -246,10 +250,15 @@
                         <th>就业方向：<span id="direction"></span></th>
                     </tr>
                     <tr>
-                        <th>班级：<span id="classes"></span></th>
-                        <th>组别：<span id="group"></span></th>
+                        <th >班级：<span id="classes"></span></th>
+                        <th >组别：<span id="group"></span></th>
                         <th colspan="2">实践类型：<span id="practice_learning_type"></span></th>
 
+                    </tr>
+                    <tr>
+                        <th colspan="2">实践单位或项目：<span id="units_or_projects_practical_type_preview"></span></th>
+                        <th >联系人：<span id="units_or_projects_practical_type_contact_preview"></span></th>
+                        <th >联系人电话：<span id="units_or_projects_practical_type_contact_phone_preview"></span></th>
                     </tr>
                     <tr>
                         <th colspan="4">缴费状态：
@@ -258,6 +267,7 @@
                             第三年：(<span id="payment_status_third_year"></span><span id="arrears_third_year" style="display: none"></span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             第四年：(<span id="payment_status_forth_year"></span><span id="arrears_forth_year" style="display: none"></span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             第五年：(<span id="payment_status_fifth_year"></span><span id="arrears_fifth_year" style="display: none"></span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            第六年：(<span id="payment_status_sixth_year"></span><span id="arrears_sixth_year" style="display: none"></span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </th>
                     </tr>
                     </tbody>
@@ -269,16 +279,14 @@
                     <tbody>
 
                     <tr>
-                        <th>社区辅导员：<span id="teacherCommunity"></span></th>
-
-                        <th colspan="2">宿舍位置：<span id="area"></span>&nbsp;-&nbsp;<span
-                                id="floor"></span>&nbsp;-&nbsp;<span id="room"></span>房间
+                    <th >住宿类型：<span id="stay_type"></span></th>
+                        <th colspan="3" id ="DormitoryInformation">
                         </th>
-                        <th  >住宿类型：<span id="stay_type"></span></th>
                     </tr>
                     <tr>
-                        <th  >华侨、港澳台：<span id="is_out"></span></th>
-                        <th colspan="2">政治面貌：<span id="political_status"></span></th>
+                        <th>社区辅导员：<span id="teacherCommunity"></span></th>
+                        <th >华侨、港澳台：<span id="is_out"></span></th>
+                        <th >政治面貌：<span id="political_status"></span></th>
                         <th  >宗教信仰：<span id="religion"></span></th>
                     </tr>
                     <tr>
@@ -286,6 +294,11 @@
                         <th width="25%">身高：<span id="height"></span>cm</th>
                         <th width="25%" >体重：<span id="weight"></span>kg</th>
                         <th width="25%">健康状况：<span id="health_status"></span></th>
+                    </tr>
+                    <tr>
+                        <th >第一年医保：<span id="first_time_medical_insurance_preview"></span><span id="first_medical_insurance_preview"></span></th>
+                        <th >第二年医保：<span id="second_time_medical_insurance_preview"></span><span id="second_medical_insurance_preview"></span></th>
+                        <th  colspan="2">第三年医保：<span id="third_time_medical_insurance_preview"></span><span id="third_medical_insurance_preview"></span></th>
                     </tr>
                     </tbody>
                 </table>
@@ -578,7 +591,7 @@
                                     </tr>
 
                                     <tr>
-                                        <th colspan="6">党派或团体组织：
+                                        <th colspan="6">入学前党派或团体组织：
                                             <div class="layui-inline" pane="" id="partyOrGroupOrganization">
                                                 <div class="layui-inline" onclick="student.showPartyOrGroupOrganization()">
                                                     <input name="partyOrGroupOrganization" value="有" title="有"
