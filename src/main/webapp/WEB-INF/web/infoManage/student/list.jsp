@@ -905,7 +905,11 @@
                             form.render();
 
                             $("input[type='radio'][name='student_type1'][value='" + studentList.student_type + "']").attr("checked", "checked");
-                            $("#upadte_SAT_score").val(studentList.sat_score);
+                            if(studentList.student_type == "高考录取"){
+                                $("#upadte_SAT_score").val(studentList.sat_score);
+                            }else {
+                                $("#show_SAT_score").hide();
+                            }
                             $("#pre_school_work").val(studentList.pre_school_work);
 
 

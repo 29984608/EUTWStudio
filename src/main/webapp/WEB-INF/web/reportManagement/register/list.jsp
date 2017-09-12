@@ -258,8 +258,8 @@
                 $("#pre_school_staff").text(student.pre_school_staff == undefined ? "无" : student.pre_school_staff);
                 $("#health_status").text(student.health_status == undefined ? "无" : student.health_status);
                 $("#idcard").text(student.idcard == undefined ? "无" : student.idcard);
-                $("#own_experience").text(student.partyOrGroupOrganizationText == undefined ? "无" : student.partyOrGroupOrganizationText);
-                $("#own_punishment").text(student.Pre_admissionOrRewardText == undefined ? "无" : student.Pre_admissionOrRewardText);
+                $("#own_experience").text(student.partyOrGroupOrganizationText == "" ? "无" : student.partyOrGroupOrganizationText);
+                $("#own_punishment").text(student.Pre_admissionOrRewardText == "" ? "无" : student.Pre_admissionOrRewardText);
 
             },
             showStudentExperienceInfo: function (experiences) {
