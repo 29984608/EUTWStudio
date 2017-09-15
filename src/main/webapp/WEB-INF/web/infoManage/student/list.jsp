@@ -18,6 +18,11 @@
     <script src="${baseurl}/js/city/main.js"></script>
     <script src="${baseurl}/js/city/distpicker.data.js"></script>
 
+    <%--导出pdf--%>
+    <script src='${baseurl}/public/pdfMake/pdfmake.min.js'></script>
+    <script src='${baseurl}/public/pdfMake/vfs_fonts.js'></script>
+    <script src='${baseurl}/public/pdfMake/pdfMake.js'></script>
+
 </head>
 
 <body>
@@ -272,6 +277,7 @@
 </body>
 
 <%@include file="layer.jsp" %>
+<%@include file="pdf.jsp" %>
 <script src="${baseurl}/js/searchJs.js"/>
 <script type="text/javascript" src="${baseurl}/public/js/pdf/html2canvas.js"></script>
 <script type="text/javascript">
@@ -513,8 +519,17 @@
 
                 return _html;
             },
+            pdfMake:function (studentNo) {
+                $.post(baseUrl + "/student/update", {studentNo: studentNo}, function (data) {
+                    printPDF(data);
+                });
+            },
             preview: function (studentNo) {
                 $.post(baseUrl + "/student/update", {studentNo: studentNo}, function (data) {
+
+                    $("#pdfmake").html("").append(`<button class='layui-btn ' style='float: right' onclick='student.pdfMake(${data.student[0].no})'>
+                            <i class='layui-icon'>&#xe60a;</i>导出 PDF
+                            </button>`);
                     $("#phone").html(data.student[0].student_contact_method);
                     $("#qq").html(data.student[0].qq);
                     $("#email").html(data.student[0].email);
@@ -734,7 +749,6 @@
                         }
                         $("#t_discipline_and_punishment").append("<tr><th>" + data.disciplineAndPunishment[i].date + " </th><th>" + data.disciplineAndPunishment[i].category + "</th><th>" + data.disciplineAndPunishment[i].behavior + "</th><th>" + data.disciplineAndPunishment[i].rank + "</th><th>" + data.disciplineAndPunishment[i].witness + "</th><th>"+revokeDiscipline+"</th></tr>");
                     }
-                    console.log(data)
                     $("#t_group_activities").html("<tr><th>时间</th><th> 类别</th><th> 学时</th><th> 名称</th><th> 证明人</th></tr>");
                     for (var i = 0; i < data.groupActivities.length; i++) {
                         $("#t_group_activities").append("<tr><th>" + data.groupActivities[i].date + " </th><th>" + data.groupActivities[i].types + "</th><th>" + data.groupActivities[i].hours+ "</th><th>" +data.groupActivities[i].heading + "</th><th>" + data.groupActivities[i].witness + "</th></tr>");
@@ -780,7 +794,6 @@
                             let famousFamilyList = data.famousFamilyList;
                             let disciplineAndPunishmentList = data.disciplineAndPunishmentList;
                             let groupActivitiesList = data.groupActivitiesList;
-
 
                             $("#studentPhone").val(studentList.student_contact_method);
                             $("#studentQQ").val(studentList.qq);
@@ -905,7 +918,11 @@
                             form.render();
 
                             $("input[type='radio'][name='student_type1'][value='" + studentList.student_type + "']").attr("checked", "checked");
-                            $("#upadte_SAT_score").val(studentList.sat_score);
+                            if(studentList.student_type == "高考录取"){
+                                $("#upadte_SAT_score").val(studentList.sat_score);
+                            }else {
+                                $("#show_SAT_score").hide();
+                            }
                             $("#pre_school_work").val(studentList.pre_school_work);
 
 
