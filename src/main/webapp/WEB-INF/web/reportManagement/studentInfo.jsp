@@ -94,7 +94,6 @@
                     if (data.result) {
                         let date = new Date();
                         $("#time").text(date.getFullYear() + " 年 " + (date.getMonth() + 1) + " 月 " + date.getDate() + " 日");
-                        console.log(data.data);
                         studentInfo.showPages(data.data);
 //                        studentInfo.showPage(data.data);
                     } else {
@@ -106,7 +105,6 @@
                 location.href = baseUrl + "/studentInfoReport/exportExcel";
             },
             showPage: function (departments) {
-                console.log(departments)
                 let _html = "";
                 for (let i = 0; i < departments.length; ++i) {
                     department = departments[i];
@@ -239,9 +237,6 @@
                         }
                     }
                 }
-
-//                console.log(_htmlPage)
-
                 $("#report").html(_htmlPage);
             }
         }
