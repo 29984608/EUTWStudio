@@ -94,7 +94,8 @@
                     if (data.result) {
                         let date = new Date();
                         $("#time").text(date.getFullYear() + " 年 " + (date.getMonth() + 1) + " 月 " + date.getDate() + " 日");
-                        studentInfo.showPage(data.data);
+                        studentInfo.showPages(data.data);
+//                        studentInfo.showPage(data.data);
                     } else {
                         layer.msg(data.msg);
                     }
@@ -112,14 +113,14 @@
                     let directions = levels[0]["directions"];
                     if (directions === undefined || directions.length === 0) continue;
                     let classess = directions[0]["classess"];
-                    if (classess === undefined || classess.length === 0) continue;
                     let reportCount = (classess[0])["reportCount"]["statisticCount"];
+                    if (classess === undefined || classess.length === 0) continue;
 
                     _html += `<tr>`;
                     _html += `<th rowspan="` + studentInfo.getDepartmentRows(department) + `">` + department["departmentName"] + `</th>`;
                     _html += `<th rowspan="` + studentInfo.getLevelRows(levels[0]) + `">` + levels[0]["level"] + `</th>`;
                     _html += `<th rowspan="` + studentInfo.getDirectionRows(directions[0]) + `">` + directions[0]["directionName"] + `</th>
-                        <th >` + classess[0]["classesName"] + `</th>`;
+                    _html +=  <th>` + classess[0]["classesName"] + `</th>`;
                     _html += studentInfo.getReportCount(reportCount);
                     _html += `</tr>`;
                     _html += studentInfo.loadClassess(classess);
@@ -217,6 +218,26 @@
                     <td> ` + reportCount["专升本"] + ` </td>
                     <td> ` + reportCount["其它"] + ` </td>
                     `
+            },
+
+
+            showPages: function (departments) {
+                let _htmlPage = '';
+                for(let countDepartments = 0;countDepartments<departments.length;countDepartments++){
+                    for(let countLevels = 0;countLevels<departments[countDepartments].levels.length;countLevels++){
+                        for (let countDirections = 0;countDirections<departments[countDepartments].levels[countLevels].directions.length;countDirections++){
+                            for(let countClass = 0;countClass<departments[countDepartments].levels[countLevels].directions[countDirections].classess.length;countClass++){
+                                _htmlPage += `<tr>
+                                                 <td>` + departments[countDepartments].departmentName + `</td>
+                                                 <td>` + departments[countDepartments].levels[countLevels].level + `</td>
+                                                 <td>` + departments[countDepartments].levels[countLevels].directions[countDirections].directionName + `</td>
+                                                 <td>` + departments[countDepartments].levels[countLevels].directions[countDirections].classess[countClass].classesName + `</td>`;
+                                _htmlPage += studentInfo.getReportCount(departments[countDepartments].levels[countLevels].directions[countDirections].classess[countClass]["reportCount"]["statisticCount"]) + `</tr>`
+                            }
+                        }
+                    }
+                }
+                $("#report").html(_htmlPage);
             }
         }
         $(function () {
