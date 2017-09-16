@@ -4,6 +4,7 @@ import com.thoughtWorks.dto.Result;
 import com.thoughtWorks.dto.SearchDto;
 import com.thoughtWorks.entity.*;
 import com.thoughtWorks.service.PersonService;
+import com.thoughtWorks.service.StudentDataOutputService;
 import com.thoughtWorks.util.Constant;
 import com.thoughtWorks.util.ImgUtil;
 import com.thoughtWorks.util.PageUtil;
@@ -27,6 +28,8 @@ public class StudentController {
 
     @Autowired
     private PersonService personService;
+    @Autowired
+    private StudentDataOutputService studentDataOutputService;
     @Autowired
     private UpdateStudentUtil updateStudentUtil;
 
