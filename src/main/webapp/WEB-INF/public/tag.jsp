@@ -10,5 +10,5 @@
 <script>
     var baseUrl = "${baseurl}";
     var ADDRESS_SPLIT_FLAG = "-";
-    var HEAD_IMAGE_PREFIX = baseUrl+"/images/user/"
+    var HEAD_IMAGE_PREFIX = baseUrl+"images/user"
 </script>
