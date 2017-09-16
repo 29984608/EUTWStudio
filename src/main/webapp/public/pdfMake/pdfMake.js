@@ -1,4 +1,4 @@
-function pdfmake(content) {
+function pdfmake(content,fileName) {
 
     var dd = content;
 
@@ -16,6 +16,6 @@ function pdfmake(content) {
             bolditalics: '微软雅黑.ttf',
         }
     };
-    pdfMake.createPdf(dd).download("导出的PDF", function () {
+    pdfMake.createPdf(dd).download(fileName, function () {
     });
 }

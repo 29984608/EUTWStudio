@@ -527,7 +527,7 @@
             preview: function (studentNo) {
                 $.post(baseUrl + "/student/update", {studentNo: studentNo}, function (data) {
 
-                    $("#pdfmake").html("").append(`<button class='layui-btn ' style='float: right' onclick='student.pdfMake(${data.student[0].no})'>
+                    $("#pdfmake").html("").append(`<button class='layui-btn ' style='float: right' onclick='student.pdfMake(`+data.student[0].no+`)'>
                             <i class='layui-icon'>&#xe60a;</i>导出 PDF
                             </button>`);
                     $("#phone").html(data.student[0].student_contact_method);
@@ -640,7 +640,7 @@
                     }
                     $("#emergency_contact_name").html(data.student[0].emergency_contact_name);
                     $("#emergency_contact_method").html(data.student[0].emergency_contact_method);
-                    $("#experience_div").html("")
+                    $("#experience_div").html("");
                     for (var i = 0; i < data.experience.length; i++) {
                         $("#experience_div").append("<tr class='experience_divToEveryOne'> <th>时间：" + data.experience[i].start_time + "——" + data.experience[i].end_time + "</th>" +
                             "<th> 学校名称：" + data.experience[i].work_place + "</th>" +
