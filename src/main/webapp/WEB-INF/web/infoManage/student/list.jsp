@@ -526,7 +526,7 @@
             },
             preview: function (studentNo) {
                 $.post(baseUrl + "/student/update", {studentNo: studentNo}, function (data) {
-
+                    console.log(data);
                     $("#pdfmake").html("").append(`<button class='layui-btn ' style='float: right' onclick='student.pdfMake(`+data.student[0].no+`)'>
                             <i class='layui-icon'>&#xe60a;</i>导出 PDF
                             </button>`);

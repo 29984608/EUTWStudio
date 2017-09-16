@@ -308,15 +308,15 @@
                                 [{
                                     text: "入学前党派或团体组织：" + (partyOrGroupOrganization === undefined ? "" : partyOrGroupOrganization),
                                     fontSize: 8,
-                                    colSpan: 3,
+                                    colSpan: 7,
                                     margin: [0, 10, 0, 10]
-                                }, {}, {},
-                                    {
-                                        text: "入学前受过何奖励或处分：" + (Pre_admissionOrReward === undefined ? "" : Pre_admissionOrReward),
-                                        fontSize: 8,
-                                        colSpan: 4,
-                                        margin: [0, 10, 0, 10]
-                                    }, {}, {}, {}],
+                                }],
+                                [{
+                                    text: "入学前受过何奖励或处分：" + (Pre_admissionOrReward === undefined ? "" : Pre_admissionOrReward),
+                                    fontSize: 8,
+                                    colSpan: 7,
+                                    margin: [0, 10, 0, 10]
+                                }],
                                 [{
                                     text: "档案是否转入：" + (studentInfo.file_in === undefined ? "" : studentInfo.file_in),
                                     fontSize: 8,
