@@ -162,7 +162,15 @@
 
                 $.post(baseUrl + "/trainProgram/loadModuleCoursesByProgram", {id: id}, function (data) {
                     if (data.result) {
-                        $("#modelCourses-preview").html(trainProgram.loadHasModuleCourse(data.data));
+                        $("#modelCourses-preview").html(`
+                            <tr >
+                            <th style="width: 400px">课程</th>
+                            <th>学分</th>
+                            <th>课时</th>
+                            <th>选修/必修</th>
+                            <th>考试类型</th>
+                            </tr>`);
+                        $("#modelCourses-preview").append(trainProgram.loadHasModuleCourse(data.data));
                         form.render();
                         layer.open({
                             type: 1,
@@ -253,40 +261,33 @@
                 for (let i = 0; i < moduleCourses.length; ++i) {
                     moduleCourses[i].nature === "选修" ? electiveSocre += moduleCourses[i].schoolScore : compulsorySocre += moduleCourses[i].schoolScore;
                     if (moduleCourses[i].id !== moduleId) {
-                        totalHtml += `<div class="modules"  data='` + moduleId + `'> <div class="layui-form-item">
-                                          <label class="" style="margin-left: 5%">` + moduleCourses[i - 1].moduleName + `</label>
+                        totalHtml += `<tr class="modules"  data='` + moduleId + `'>
+                                          <th colspan="5" height="35px" style="background-color: rgb(238, 238, 238);">` + moduleCourses[i - 1].moduleName + `</th></tr>
                                              `
-                            + _html + `
-
-                                       </div></div>`;
+                            + _html;
 
                         moduleId = moduleCourses[i].id;
-                        _html = ` <div class="layui-input-block" >
-                                            <p style="color: black"  class="course" >
-                                                <span style="margin-right: 0px"> ` + moduleCourses[i].courseName + `</span>
-                                                <span style="margin-right: 0px">/` + moduleCourses[i].schoolScore + ` 学分</span>
-                                                <span style="margin-right: 0px">/` + moduleCourses[i].schoolHours + ` 课时</span>
-                                                <span style="margin-right: 0px">/` + moduleCourses[i].nature + `</span>
-                                                <span style="margin-right: 0px">/` +(moduleCourses[i].testMethodName!==undefined ?moduleCourses[i].testMethodName:"暂无")+ `</span>
-                                            </p>
-                                   </div>`
+                        _html = ` <tr>
+                                                <th > ` + moduleCourses[i].courseName + `</th>
+                                                <th>` + moduleCourses[i].schoolScore + ` 学分</th>
+                                                <th>` + moduleCourses[i].schoolHours + ` 课时</th>
+                                                <th>` + moduleCourses[i].nature + `</th>
+                                                <th>` +(moduleCourses[i].testMethodName!==undefined ?moduleCourses[i].testMethodName:"暂无")+ `</th>
+                                   </tr>`
                     } else {
-                        _html += ` <div class="layui-input-block" >
-                                        <p style="color: black"  class="course" >
-                                            <span style="margin-right: 0px">` + moduleCourses[i].courseName + `</span>
-                                            <span style="margin-right: 0px">/` + moduleCourses[i].schoolScore + ` 学分</span>
-                                            <span style="margin-right: 0px">/` + moduleCourses[i].schoolHours + ` 课时</span>
-                                            <span style="margin-right: 0px">/` + moduleCourses[i].nature + `</span>
-                                            <span style="margin-right: 0px">/` + (moduleCourses[i].testMethodName!==undefined ?moduleCourses[i].testMethodName:"暂无") + `</span>
-                                        </p>
-                                  </div>`
+                        _html += ` <tr>
+                                            <th>` + moduleCourses[i].courseName + `</th>
+                                            <th>` + moduleCourses[i].schoolScore + ` 学分</th>
+                                            <th>` + moduleCourses[i].schoolHours + ` 课时</th>
+                                            <th>` + moduleCourses[i].nature + `</th>
+                                            <th>` + (moduleCourses[i].testMethodName!==undefined ?moduleCourses[i].testMethodName:"暂无") + `</th>
+                                  </tr>`
                     }
                     if (i === moduleCourses.length - 1 && moduleCourses[i].id === moduleId) {
-                        totalHtml += ` <div class="modules"  data='` + moduleId + `'> <div class="layui-form-item">
-                                          <label class=""  style="margin-left: 5%">` + moduleCourses[i].moduleName + `</label>
+                        totalHtml += ` <tr class="modules"  data='` + moduleId + `'>
+                                          <th colspan="5" height="35px" style="background-color: rgb(238, 238, 238)">` + moduleCourses[i].moduleName + `</th></tr>
                                             `
-                            + _html + `
-                                       </div></div>`;
+                            + _html;
                     }
                 }
 
