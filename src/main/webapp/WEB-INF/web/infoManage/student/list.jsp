@@ -236,6 +236,8 @@
                                 <a class="layui-btn" onclick="currentIndex = 1;student.list()"><i class="layui-icon">&#xe615;</i>搜索</a>
                             </div>
                         </div>
+                            &nbsp;&nbsp;&nbsp;
+                                <a class="layui-btn" onclick="currentIndex = 1;dataOutput.showDataOutput(searchInfo)" style="float: right;"><i class="layui-icon">&#xe615;</i>导出数据</a>
                     </div>
 
                 </blockquote>
@@ -278,6 +280,7 @@
 
 <%@include file="layer.jsp" %>
 <%@include file="pdf.jsp" %>
+<%@include file="dataOutput.jsp" %>
 <script src="${baseurl}/js/searchJs.js"/>
 <script type="text/javascript" src="${baseurl}/public/js/pdf/html2canvas.js"></script>
 <script type="text/javascript">
@@ -302,6 +305,7 @@
     let disciplineAndPunishmentListInfo;
     let groupActivitiesListInfo;
     var searchLevel;
+    let searchInfo;
 
     $(function () {
         //基本信息
@@ -433,29 +437,28 @@
                 let sex = $("input[name='sexQuery']:checked").val();
                 let TypeOfAccommodation = $("input[name='TypeOfAccommodation']:checked").val();
                 let studentStatusSearch = $("#student_status_search").val();
+                searchInfo = {currentIndex: currentIndex,
+                    pageSize: pageSize,
+                    departmentId: department_search,
+                    level: level_search,
+                    directionId: direction_search,
+                    professionId: profession_search,
+                    classesId: classes_search,
+                    teacherId: teacher_id,
+                    communityTeacherId: community_teacher_id,
+                    areaId: area_search,
+                    floorId: floor_search,
+                    roomId: roomNo_search,
+                    studentNo: studentNo_search,
+                    name: name,
+                    sex: sex,
+                    TypeOfAccommodation: TypeOfAccommodation,
+                    studentStatusSearch: studentStatusSearch}
 
                 $.ajax({
                     url: baseUrl + "student/list",
                     type: "post",
-                    data: {
-                        currentIndex: currentIndex,
-                        pageSize: pageSize,
-                        departmentId: department_search,
-                        level: level_search,
-                        directionId: direction_search,
-                        professionId: profession_search,
-                        classesId: classes_search,
-                        teacherId: teacher_id,
-                        communityTeacherId: community_teacher_id,
-                        areaId: area_search,
-                        floorId: floor_search,
-                        roomId: roomNo_search,
-                        studentNo: studentNo_search,
-                        name: name,
-                        sex: sex,
-                        TypeOfAccommodation: TypeOfAccommodation,
-                        studentStatusSearch: studentStatusSearch
-                    },
+                    data: searchInfo,
                     success: function (data) {
                         if (data.result) {
                             currentIndex = data.page.currentIndex;
@@ -984,7 +987,7 @@
                                     $("#update_practical_type").get(0).options[count7 - 1].selected = true;
                                     $("#show_other_practical_type").show();
                                     $("#other_practical_type").val(studentList.practice_learning_type);
-                                    $("#units_or_projects_practical_type").val(studentList.units_or_projects_practical_type);
+                                    $("#units_or_projects_practical_type").val(studentList.practice_learning_type);
                                     $("#units_or_projects_practical_type_contact").val(studentList.units_or_projects_practical_type_contact);
                                     $("#units_or_projects_practical_type_contact_phone").val(studentList.units_or_projects_practical_type_contact_phone);
                                     $("#show_units_or_projects_practical_type").show();
@@ -2572,7 +2575,7 @@
         }
 
         function loadOptionsHtmlOfClass(data) {
-            let _html = "<option value=''>请选择</option><option value=''>请选择</option>";
+            let _html = "<option value=''></option><option value=''>请选择</option>";
             for (let i = 0; i < data.length; ++i) {
                 _html += `<option value="` + data[i].id + `">` + data[i].name + `</option>`;
             }
@@ -2701,7 +2704,7 @@
                 let department_id = data.value;
 //                根据系动态选择专业
                 $.post(baseUrl + "/student/showAutoClassAndProAndDirByDepartment", {departmentId: department_id}, function (resultData) {
-                    $("#profession_search").html(loadOptionsHtmlOfClass(resultData.data.professionList));
+                    $("#profession_search").html(`<option value="">专业</option>` + loadOptionsHtmlOfClass(resultData.data.professionList));
 //                    $("#profession_search").html(`<option value="">专业</option>` + loadOptionsHtmlOfClass(resultData.data.professionList));
                     form.render();
                 })
