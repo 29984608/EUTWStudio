@@ -30,4 +30,18 @@ public interface PermissionDao {
     void updateFirstMenu(Permission permission);
 
     void deleteHasPermissionById(String id);
+
+    List<Map<String, Object>> queryPermissionsByParentId(String id);
+
+    Permission queryPermissionsById(Long parentId);
+
+    void deletePermissionByParentId(String id);
+
+    void updatePermission(Permission permission);
+
+    List<String> queryIdsByParents(String id);
+
+    void deletePermissionsByIds(@Param("ids") List<String> ids);
+
+    void deleteHasPermissionsByIds(@Param("ids") List<String> ids);
 }

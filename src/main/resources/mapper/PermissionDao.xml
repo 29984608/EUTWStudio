@@ -9,11 +9,37 @@
         FROM t_permission
         WHERE sortstring = 1
     </select>
+    <delete id="deletePermissionByParentId" parameterType="string">
+        DELETE FROM t_permission
+        WHERE parentid = #{id}
+    </delete>
+    <delete id="deletePermissionsByIds" parameterType="string">
+        DELETE FROM t_permission WHERE parentid in
+        <foreach collection="ids" open="(" close=")" separator="," item="item">
+            #{item}
+        </foreach>
+    </delete>
+    <delete id="deleteHasPermissionsByIds" parameterType="string">
+        DELETE FROM t_role_permission WHERE sys_permission_id in
+        <foreach collection="ids" open="(" close=")" separator="," item="item">
+            #{item}
+        </foreach>
+    </delete>
     <insert id="addPermission" parameterType="Permission">
         INSERT INTO t_permission (id, name, type, url, icon, parentid, parentids, sortstring, available, percode)
         VALUES (#{id}, #{name}, #{type}, #{url}, #{icon}, #{parentId}, #{parentIds}, #{sortString}, #{available},
                 #{perCode})
     </insert>
+    <update id="updatePermission" parameterType="Permission">
+        UPDATE t_permission
+        SET name = #{name}, percode = #{perCode}
+        WHERE id = #{id}
+    </update>
+    <select id="queryIdsByParents" parameterType="string" resultType="string">
+        SELECT id
+        FROM t_permission
+        WHERE parentid = #{id}
+    </select>
     <select id="getSysUserByUserName" resultType="ActiveUser" parameterType="string">
         SELECT
             username,
@@ -26,12 +52,27 @@
     </select>
     <update id="updateFirstMenu" parameterType="Permission">
         UPDATE t_permission
-        SET name = #{name} , url = #{url}
+        SET name = #{name}, url = #{url}
         WHERE id = #{id}
     </update>
     <delete id="deleteHasPermissionById" parameterType="string">
-        DELETE FROM t_role_permission WHERE sys_permission_id = #{id}
+        DELETE FROM t_role_permission
+        WHERE sys_permission_id = #{id}
     </delete>
+    <select id="queryPermissionsByParentId" parameterType="string" resultType="map">
+        SELECT
+            id,
+            name,
+            url,
+            percode
+        FROM t_permission
+        WHERE parentid = #{id}
+    </select>
+    <select id="queryPermissionsById" parameterType="long" resultType="Permission">
+        SELECT *
+        FROM t_permission
+        WHERE id = #{id}
+    </select>
     <delete id="delete" parameterType="string">
         DELETE FROM t_permission
         WHERE id = #{id}

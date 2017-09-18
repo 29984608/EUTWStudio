@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/menu")
@@ -51,13 +52,77 @@ public class MenuController {
         }
     }
 
-    @RequestMapping("updateFirstMenu")
+    @RequestMapping("addPermission")
     @ResponseBody
-    public Result updateFirstMenu(Permission permission) {
+    public Result addPermission(Permission permission) {
+        try {
+            permissionService.addPer(permission);
+
+            return Result.success(null, Constant.ADD_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Result.success(null, Constant.ADD_FAILURE);
+        }
+    }
+
+    @RequestMapping("addSecondMenu")
+    @ResponseBody
+    public Result addSecondMenu(Permission permission) {
+        try {
+            permissionService.addSecondMenu(permission);
+
+            return Result.success(null, Constant.ADD_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Result.success(null, Constant.ADD_FAILURE);
+        }
+    }
+    @RequestMapping("updatePermission")
+    @ResponseBody
+    public Result updatePermission(Permission permission) {
+        try {
+            permissionDao.updatePermission(permission);
+
+            return Result.success(null, Constant.UPDATE_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Result.success(null, Constant.UPDATE_FAILURE);
+        }
+    }
+
+    @RequestMapping("deleteSecondMenu")
+    @ResponseBody
+    public Result deleteSecondMenu(String id) {
+        try {
+            permissionService.deleteSecondMenu(id);
+
+            return Result.success(null, Constant.DELETE_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Result.success(null, Constant.DELETE_FAILURE);
+        }
+    }
+
+    @RequestMapping("updateMenu")
+    @ResponseBody
+    public Result updateMenu(Permission permission) {
         try {
             permissionDao.updateFirstMenu(permission);
 
             return Result.success(null, Constant.UPDATE_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Result.success(null, Constant.UPDATE_FAILURE);
+        }
+    }
+
+    @RequestMapping("secondMenus")
+    @ResponseBody
+    public Result secondMenus(String id) {
+        try {
+            List<Map<String, Object>> secondMenus = permissionService.secondMenus(id);
+
+            return Result.success(secondMenus, Constant.UPDATE_SUCCESS);
         } catch (Exception e) {
             e.printStackTrace();
             return Result.success(null, Constant.UPDATE_FAILURE);
