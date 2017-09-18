@@ -275,7 +275,7 @@
                     type:"post",
                     data:data,
                     success:function (data) {
-                        window.confirm("文件下载成功！");
+//                        window.confirm("文件下载成功！");
                     }
                 })
             },
