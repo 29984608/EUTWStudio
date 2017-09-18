@@ -40,8 +40,27 @@ public class PermissionServiceImpl implements PermissionService {
 
     @Override
     public List<Map<String, String>> getSideMenus(String parentId, String roleId) throws Exception {
-        List<Map<String, String>> sideMenus = permissionDao.getSideMenus(parentId, roleId);
-        return sideMenus;
+        return permissionDao.getSideMenus(parentId, roleId);
+    }
+
+    @Override
+    public void addFirstMenu(Permission permission) throws Exception {
+        permission.setType("menu");
+        permission.setParentId((long)1);
+        permission.setParentId((long)1);
+        permission.setParentIds("0/1/");
+        permission.setSortString("1");
+        permission.setAvailable("1");
+        addPermission(permission);
+    }
+
+    private void addPermission(Permission permission) {
+        permissionDao.addPermission(permission);
+    }
+
+    @Override
+    public List<Permission> queryFirstMenus() throws Exception {
+        return permissionDao.queryFirstMenus();
     }
 
     @Override

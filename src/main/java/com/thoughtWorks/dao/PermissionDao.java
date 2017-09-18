@@ -20,4 +20,10 @@ public interface PermissionDao {
     List<Map<String, String>> getSideMenus(@Param("parentId") String parentId,@Param("roleId") String roleId);
 
     List<Map<String,String>> queryMenus(int roleId);
+
+    List<Permission> queryFirstMenus();
+
+    void addPermission(Permission permission);
+
+    void delete(String id)throws Exception;
 }

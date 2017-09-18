@@ -94,6 +94,7 @@ public class RoleServiceImpl implements RoleService {
         roleDao.updateUserRole(user);
     }
 
+
     private List<String> shouldDeletePers(List<String> oldPermissions, List<String> newPermissions) {
         List<String> shouldDelete = new ArrayList<>();
         for (String permission : oldPermissions) {
