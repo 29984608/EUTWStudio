@@ -33,6 +33,7 @@ public class ExcelReportUtil {
 
         try {
             workbook.write(out);
+            out.flush();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -120,7 +121,7 @@ public class ExcelReportUtil {
         cellStyle.setFont(font);
     }
 
-    protected CellStyle setAlignmentCenter(CellStyle cellStyle,HSSFCell cell) {
+    protected CellStyle setAlignmentCenter(CellStyle cellStyle, HSSFCell cell) {
         cellStyle.setAlignment(HSSFCellStyle.ALIGN_CENTER);
         cellStyle.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);
         cell.setCellStyle(cellStyle);
@@ -128,12 +129,13 @@ public class ExcelReportUtil {
         return cellStyle;
     }
 
-    protected CellStyle setCellFontStyle(CellStyle cellStyle,HSSFCell cell,short fontSize) {
+    protected CellStyle setCellFontStyle(CellStyle cellStyle, HSSFCell cell, short fontSize) {
         setFontSize(cellStyle, fontSize);
         cell.setCellStyle(cellStyle);
 
         return cellStyle;
     }
+
     protected void setDefaultRowHeight(HSSFSheet sheet, Integer height) {
         Iterator<Row> rowIterator = sheet.rowIterator();
         rowIterator.next();
