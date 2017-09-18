@@ -51,7 +51,7 @@
     layui.use(['jquery', 'layer', 'element', 'laypage', 'form', 'laytpl'], function () {
         window.jQuery = window.$ = layui.jquery;
         window.layer = layui.layer;
-        var element = layui.element(),
+        let element = layui.element(),
             form = layui.form(),
             laytpl = layui.laytpl;
 
@@ -77,14 +77,13 @@
                     title: '菜单添加'
                     , content: $("#add")
                 });
-
             },
             addMenuAjax: function () {
                 let data = $("#menu-add").serialize();
-                $.post('${baseurl}/menu/addMenu', data, (data) => {
-                    layer.msg(data.msg);
+                $.post('${baseurl}/menu/addFirstMenu', data, (data) => {
+                        layer.msg(data.msg);
                         if (data.result) {
-                           setTimeout('location.reload()',500);
+                            setTimeout('location.reload()', 500);
                         }
                     }
                 )
@@ -99,8 +98,25 @@
                 });
             }
             ,
-            updateMenu: function () {
-
+            update: function (id, name, url) {
+                $("#update_id").val(id);
+                $("#update_name").val(name);
+                $("#update_url").val(url);
+                layer.open({
+                    type: 1,
+                    title: '菜单添加'
+                    , content: $("#update")
+                });
+            },
+            updateMenuAjax: function () {
+                let data = $("#update_form").serialize();
+                $.post('${baseurl}/menu/updateFirstMenu', data, (data) => {
+                        layer.msg(data.msg);
+                        if (data.result) {
+                            setTimeout('location.reload()', 500);
+                        }
+                    }
+                )
             }
             ,
             viewPermission: function (roleId) {

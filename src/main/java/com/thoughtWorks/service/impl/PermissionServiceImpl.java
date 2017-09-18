@@ -54,6 +54,12 @@ public class PermissionServiceImpl implements PermissionService {
         addPermission(permission);
     }
 
+    @Override
+    public void delete(String id) throws Exception {
+        permissionDao.delete(id);
+        permissionDao.deleteHasPermissionById(id);
+    }
+
     private void addPermission(Permission permission) {
         permissionDao.addPermission(permission);
     }

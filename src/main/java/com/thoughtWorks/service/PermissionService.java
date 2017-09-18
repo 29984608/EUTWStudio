@@ -23,4 +23,6 @@ public interface PermissionService {
     List<Permission> queryFirstMenus()throws Exception;
 
     void addFirstMenu(Permission permission)throws Exception;
+
+    void delete(String id)throws Exception;
 }

@@ -25,29 +25,29 @@
 </div>
 <div id="update" style="margin: 10px;display: none">
     <form id="update_form" class="layui-form layui-form-pane" method="post">
+        <input type="hidden" id="update_id" name="id"
+               autocomplete="off" class="layui-input ">
         <div class="layui-form-item">
-            <input type="hidden" id="update_id" name="id"/>
             <label class="layui-form-label">角色名称</label>
             <div class="layui-input-inline">
-                <input type="text" id="update_name" name="name" required jq-verify="required" jq-error="请输入角色名称"
-                       autocomplete="off" class="layui-input ">
+                <input type="text" id="update_name" name="name"
+                       class="layui-input ">
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">状态</label>
+            <label class="layui-form-label">url</label>
             <div class="layui-input-inline">
-                <input type="radio" id="update_available_true" name="available" title="启用" value="true"/>
-                <input type="radio" id="update_available_false" name="available" title="禁用" value="false"/>
+                <input type="text" id="update_url" name="url"
+                       class="layui-input ">
             </div>
         </div>
         <div class="layui-form-item">
             <div class="layui-input-block">
-                <a class="layui-btn" onclick="menu.updateRole()">立即提交</a>
+                <a class="layui-btn" onclick="menu.updateMenuAjax()">立即提交</a>
             </div>
         </div>
     </form>
 </div>
-<div id="tree" style="display: none;padding: 30px 0 0 30px"></div>
 <script id="list-tpl" type="text/html">
     {{# layui.each(d.data, function(index, item){ }}
     <tr>
@@ -56,7 +56,7 @@
         <td>{{ item.url}}</td>
         <td>
             <button class="layui-btn layui-btn-mini " style="background: #21a1a1"
-                    onclick="menu.update('{{item.id}}')">
+                    onclick="menu.update('{{item.id}}','{{item.name}}','{{item.url}}')">
                 <i class="layui-icon">&#xe642;</i>修改
             </button>
             <button class="layui-btn layui-btn-mini  layui-btn-danger" onclick="menu.delete('{{item.id}}')">

@@ -38,9 +38,9 @@ public class MenuController {
         }
     }
 
-    @RequestMapping("addMenu")
+    @RequestMapping("addFirstMenu")
     @ResponseBody
-    public Result addMenu(Permission permission) {
+    public Result addFirstMenu(Permission permission) {
         try {
             permissionService.addFirstMenu(permission);
 
@@ -51,11 +51,24 @@ public class MenuController {
         }
     }
 
+    @RequestMapping("updateFirstMenu")
+    @ResponseBody
+    public Result updateFirstMenu(Permission permission) {
+        try {
+            permissionDao.updateFirstMenu(permission);
+
+            return Result.success(null, Constant.UPDATE_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Result.success(null, Constant.UPDATE_FAILURE);
+        }
+    }
+
     @RequestMapping("delete")
     @ResponseBody
     public Result delete(String id) {
         try {
-            permissionDao.delete(id);
+            permissionService.delete(id);
 
             return Result.success(null, Constant.DELETE_SUCCESS);
         } catch (Exception e) {

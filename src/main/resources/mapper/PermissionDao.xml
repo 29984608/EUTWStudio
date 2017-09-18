@@ -24,8 +24,17 @@
         FROM t_user
         WHERE username = #{userName}
     </select>
+    <update id="updateFirstMenu" parameterType="Permission">
+        UPDATE t_permission
+        SET name = #{name} , url = #{url}
+        WHERE id = #{id}
+    </update>
+    <delete id="deleteHasPermissionById" parameterType="string">
+        DELETE FROM t_role_permission WHERE sys_permission_id = #{id}
+    </delete>
     <delete id="delete" parameterType="string">
-        DELETE FROM t_permission WHERE id=#{id}
+        DELETE FROM t_permission
+        WHERE id = #{id}
     </delete>
 
     <select id="findMenuListByRoleId" resultType="Permission" parameterType="int">

@@ -26,4 +26,8 @@ public interface PermissionDao {
     void addPermission(Permission permission);
 
     void delete(String id)throws Exception;
+
+    void updateFirstMenu(Permission permission);
+
+    void deleteHasPermissionById(String id);
 }
