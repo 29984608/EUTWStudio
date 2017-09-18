@@ -39,4 +39,6 @@ public interface RoleDao {
     List<Role> queryAll();
 
     void updateUserRole(ActiveUser user);
+
+    List<Permission> queryFirstMenus();
 }

@@ -18,306 +18,162 @@
 </head>
 <body>
 <div class="larry-grid larry-wrapper">
-    <div class="row" id="infoSwitch">
-        <blockquote class="layui-elem-quote col-md-12 head-con">
-            <div>尊敬的admin<span id="weather"></span></div>
-            <i class="larry-icon larry-guanbi close" id="closeInfo"></i>
-        </blockquote>
+    <%--<div class="row" id="infoSwitch">--%>
+        <%--<blockquote class="layui-elem-quote col-md-12 head-con">--%>
+            <%--<div>尊敬的admin<span id="weather"></span></div>--%>
+            <%--<i class="larry-icon larry-guanbi close" id="closeInfo"></i>--%>
+        <%--</blockquote>--%>
+    <%--</div>--%>
+        <div style="width: 1000px;float: left">
+            <blockquote class="layui-elem-quote">尊敬的用户您好</blockquote>
+        </div>
+    <div class="row shortcut" id="shortcut">
+        <%--<div class="col-xs-12 col-sm-6 col-md-4 col-lg-2 ">--%>
+        <%--<section class="panel clearfix">--%>
+        <%--<div class="symbol shortcut-bg1"><i class="larry-icon larry-daishenhe1"--%>
+        <%--data-icon="larry-daishenhe1"></i></div>--%>
+        <%--<div class="value">--%>
+        <%--<a data-href="html/temp.html">--%>
+        <%--<h1 id="count1">10</h1>--%>
+        <%--</a>--%>
+        <%--<p>待审的文章</p>--%>
+        <%--</div>--%>
+        <%--</section>--%>
+        <%--</div>--%>
+
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-2 " style="float: right">
+            <a onclick="teacher.add()">
+                <div class="panel">
+                    <div class="symbol shortcut-bg2"><i class="larry-icon larry-fabu2" data-icon="larry-fabu2"></i>
+                    </div>
+                    <div class="value">
+                        <h1>22</h1>
+                        <p>我要发布通知</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+
+
     </div>
-    <%--<div class="row shortcut" id="shortcut">--%>
-        <%--<div class="col-xs-12 col-sm-6 col-md-4 col-lg-2 ">--%>
-            <%--<section class="panel clearfix">--%>
-                <%--<div class="symbol shortcut-bg1"><i class="larry-icon larry-daishenhe1"--%>
-                                                    <%--data-icon="larry-daishenhe1"></i></div>--%>
-                <%--<div class="value">--%>
-                    <%--<a data-href="html/temp.html">--%>
-                        <%--<h1 id="count1">10</h1>--%>
-                    <%--</a>--%>
-                    <%--<p>待审的文章</p>--%>
-                <%--</div>--%>
-            <%--</section>--%>
-        <%--</div>--%>
-        <%--<div class="col-xs-12 col-sm-6 col-md-4 col-lg-2 ">--%>
-            <%--<section class="panel">--%>
-                <%--<div class="symbol shortcut-bg2"><i class="larry-icon larry-fabu2" data-icon="larry-fabu2"></i></div>--%>
-                <%--<div class="value">--%>
-                    <%--<a data-href="html/temp.html">--%>
-                        <%--<h1 id="count2">26</h1>--%>
-                    <%--</a>--%>
-                    <%--<p>我发布的文章</p>--%>
-                <%--</div>--%>
-            <%--</section>--%>
-        <%--</div>--%>
-    <%--</div>--%>
-    <%--<!-- 首页信息 -->--%>
-    <%--<div class="row system">--%>
-        <%--<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">--%>
-            <%--<section class="panel">--%>
-                <%--<header class="panel-heading bm0">--%>
-                    <%--<span class='span-title'>Acey</span>--%>
-                    <%--<span class="tools pull-right"><a href="javascript:;" class="iconpx-chevron-down"></a></span>--%>
-                <%--</header>--%>
-                <%--<div class="panel-body">--%>
-                    <%--<div class="larry-table">--%>
-                        <%--<table class="layui-table larry-table-info">--%>
-                            <%--<colgroup>--%>
-                                <%--<col width="150">--%>
-                                <%--<col>--%>
-                            <%--</colgroup>--%>
-                            <%--<tbody>--%>
-                            <%--<tr>--%>
-                                <%--<td><span class="tit">2017-6-24</span></td>--%>
-                                <%--<td><span class="info">角色权限页面、角色对应的权限树状显示</span></td>--%>
-                            <%--</tr>--%>
-                            <%--<tr>--%>
-                                <%--<td><span class="tit">2017-6-25</span></td>--%>
-                                <%--<td><span class="info">完成角色权限分配功能、到按钮级</span></td>--%>
-                            <%--</tr>--%>
-                            <%--<tr>--%>
-                                <%--<td><span class="tit">2017-6-26</span></td>--%>
-                                <%--<td><span class="info">数据表设计、完成用户角色分配、培养模块</span></td>--%>
-                            <%--</tr>--%>
-                            <%--<tr>--%>
-                                <%--<td><span class="tit">2017-6-27</span></td>--%>
-                                <%--<td><span class="info">完成系、专业、方向的页面和功能实现</span></td>--%>
-                            <%--</tr>--%>
-                            <%--<tr>--%>
-                                <%--<td><span class="tit">2017-6-28</span></td>--%>
-                                <%--<td><span class="info">完成教师的列表显示、班级CURD、沟通反馈的添加和编辑页面;</span></td>--%>
-                            <%--</tr>--%>
-                            <%--<tr>--%>
-                                <%--<td><span class="tit">2017-6-29</span></td>--%>
-                                <%--<td><span class="info">完成教师分配班级 删除,分配班级的学生信息列表显示</span></td>--%>
-                            <%--</tr>--%>
-                            <%--<tr>--%>
-                                <%--<td><span class="tit">2017-6-30</span></td>--%>
-                                <%--<td><span class="info">完成学生班级分配、沟通反馈学生信息显示、添加沟通反馈</span></td>--%>
-                            <%--</tr>--%>
-                            <%--<tr>--%>
-                                <%--<td><span class="tit">2017-7-1</span></td>--%>
-                                <%--<td><span class="info">完成沟通反馈的预览、修改，课程信息的CURD</span></td>--%>
-                            <%--</tr>--%>
-                            <%--<tr>--%>
-                                <%--<td><span class="tit">2017-7-3</span></td>--%>
-                                <%--<td><span class="info">完成人才培养方案CURDP</span></td>--%>
-                            <%--</tr>--%>
-                            <%--<tr>--%>
-                                <%--<td><span class="tit">2017-7-4</span></td>--%>
-                                <%--<td><span class="info">一些小的修改</span></td>--%>
-                            <%--</tr>--%>
-                            <%--<tr>--%>
-                                <%--<td><span class="tit">2017-7-5</span></td>--%>
-                                <%--<td><span class="info">excel 导入导出 util</span></td>--%>
-                            <%--</tr>--%>
-                            <%--<tr>--%>
-                                <%--<td><span class="tit">2017-7-6</span></td>--%>
-                                <%--<td><span class="info">excel 更改,jspdf 将 html 导出 pdf(太模糊),整理学生信息字段</span></td>--%>
-                            <%--</tr>--%>
-                            <%--<tr>--%>
-                                <%--<td><span class="tit">2017-7-7</span></td>--%>
-                                <%--<td><span class="info">报表整理(每张报表需要什么信息) 专业报表页面</span></td>--%>
-                            <%--</tr>--%>
-                            <%--<tr>--%>
-                                <%--<td><span class="tit">2017-7-8</span></td>--%>
-                                <%--<td><span class="info">导出 pdf（清晰版）</span></td>--%>
-                            <%--</tr>--%>
-                            <%--<tr>--%>
-                                <%--<td><span class="tit">2017-7-9</span></td>--%>
-                                <%--<td><span class="info">完成专业报1表、fix 班级维护模糊查询 bug </span></td>--%>
-                            <%--</tr>--%>
-                            <%--<tr>--%>
-                                <%--<td><span class="tit">2017-7-10</span></td>--%>
-                                <%--<td><span class="info">专业报表 excel 导出</span></td>--%>
-                            <%--</tr>--%>
-                            <%--</tbody>--%>
-                        <%--</table>--%>
-                    <%--</div>--%>
-                <%--</div>--%>
-            <%--</section>--%>
+        <blockquote class="layui-elem-quote">这个貌似不用多介绍，因为你已经在太多的地方都看到</blockquote>
 
-        <%--</div>--%>
-        <%--<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">--%>
-            <%--<section class="panel">--%>
-                <%--<header class="panel-heading bm0">--%>
-                    <%--<span class='span-title'>毛良伟</span>--%>
-                    <%--<span class="tools pull-right"><a href="javascript:;" class="iconpx-chevron-down"></a></span>--%>
-                <%--</header>--%>
-                <%--<div class="panel-body">--%>
-                    <%--<div class="larry-table">--%>
-                        <%--<table class="layui-table larry-table-info">--%>
-                            <%--<colgroup>--%>
-                                <%--<col width="150">--%>
-                                <%--<col>--%>
-                            <%--</colgroup>--%>
-                            <%--<tbody>--%>
-                            <%--<tr>--%>
-                                <%--<td><span class="tit">2017-6-24</span>--%>
-                                <%--</td>--%>
-                                <%--<td><span class="info">完成沟通信息模块页面，添加小图标</span></td>--%>
-                            <%--</tr>--%>
-                            <%--<tr>--%>
-                                <%--<td><span class="tit">2017-6-25</span>--%>
-                                <%--</td>--%>
-                                <%--<td><span class="info">给沟通反馈页面添加时间轴预览，修改分页样式，添加编辑时间轴功能</span></td>--%>
-                            <%--</tr>--%>
-                            <%--<tr>--%>
-                                <%--<td><span class="tit">2017-7-8</span>--%>
-                                <%--</td>--%>
-                                <%--<td><span class="info">学生信息显示到页面,完成部分分页功能</span></td>--%>
-                            <%--</tr>--%>
-                            <%--<tr>--%>
-                                <%--<td><span class="tit">2017-7-9</span>--%>
-                                <%--</td>--%>
-                                <%--<td><span class="info">分页功能完善,完成搜索功能</span></td>--%>
-                            <%--</tr>--%>
+        <blockquote class="layui-elem-quote layui-quote-nm">layui 2.0 提供强力驱动</blockquote>
+</div>
 
-                            <%--<tr>--%>
-                                <%--<td><span class="tit">2017-7-10</span>--%>
-                                <%--</td>--%>
-                                <%--<td><span class="info">设计学生成绩单静态页面,将学生信息字段,添加到数据库</span></td>--%>
-                            <%--</tr>--%>
-
-                            <%--<tr>--%>
-                                <%--<td><span class="tit">2017-7-12</span>--%>
-                                <%--</td>--%>
-                                <%--<td><span class="info">完成考核方式页面,并实现增删改</span></td>--%>
-                            <%--</tr>--%>
-
-                            <%--<tr>--%>
-                                <%--<td><span class="tit">2017-7-15</span>--%>
-                                <%--</td>--%>
-                                <%--<td><span class="info">完成区,宿舍,楼层的维护,并整合</span></td>--%>
-                            <%--</tr>--%>
-
-                            <%--<tr>--%>
-                                <%--<td><span class="tit">2017-7-16</span>--%>
-                                <%--</td>--%>
-                                <%--<td><span class="info">添加学生信息字段</span></td>--%>
-                            <%--</tr>--%>
-
-                            <%--</tbody>--%>
-                        <%--</table>--%>
-                    <%--</div>--%>
-                <%--</div>--%>
-            <%--</section>--%>
-
-        <%--</div>--%>
-        <%--<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">--%>
-            <%--<section class="panel">--%>
-                <%--<header class="panel-heading bm0">--%>
-                    <%--<span class='span-title'>马欢欢</span>--%>
-                    <%--<span class="tools pull-right"><a href="javascript:;" class="iconpx-chevron-down"></a></span>--%>
-                <%--</header>--%>
-                <%--<div class="panel-body">--%>
-                    <%--<div class="larry-table">--%>
-                        <%--<table class="layui-table larry-table-info">--%>
-                            <%--<colgroup>--%>
-                                <%--<col width="150">--%>
-                                <%--<col>--%>
-                            <%--</colgroup>--%>
-                            <%--<tbody>--%>
-                            <%--<tr>--%>
-                                <%--<td><span class="tit">2017-6-24</span>--%>
-                                <%--</td>--%>
-                                <%--<td><span class="info">完成沟通信息模块页面，添加小图标</span></td>--%>
-                            <%--</tr>--%>
-                            <%--<tr>--%>
-                                <%--<td><span class="tit">2017-6-25</span>--%>
-                                <%--</td>--%>
-                                <%--<td><span class="info">完成静态页面：学生信息页面、系信息页面、专业信息页面 </span></td>--%>
-                            <%--</tr>--%>
-                            <%--<tr>--%>
-                                <%--<td><span class="tit">2017-7-13</span>--%>
-                                <%--</td>--%>
-                                <%--<td><span class="info">完成添加教师类别字段对应显示不同部门和所属系，辅导员、行政 </span></td>--%>
-                            <%--</tr>--%>
-                            <%--<tr>--%>
-                                <%--<td><span class="tit">2017-7-14</span>--%>
-                                <%--</td>--%>
-                                <%--<td><span class="info">完成验证添加教师存在相同账户功能 </span></td>--%>
-                            <%--</tr>--%>
-                            <%--<tr>--%>
-                                <%--<td><span class="tit">2017-7-15</span>--%>
-                                <%--</td>--%>
-                                <%--<td><span class="info">完成页面沟通反馈按照系、年级、方向班级、学号、姓名、楼层、楼号、房间号 表单的关联 </span></td>--%>
-                            <%--</tr>--%>
-                            <%--<tr>--%>
-                                <%--<td><span class="tit">2017-7-16</span>--%>
-                                <%--</td>--%>
-                                <%--<td><span class="info">完成沟通反馈搜索功能：按照不同信息搜索完成 </span></td>--%>
-                            <%--</tr>--%>
-                            <%--<tr>--%>
-                                <%--<td><span class="tit">2017-7-17</span>--%>
-                                <%--</td>--%>
-                                <%--<td><span class="info">预览学生成长经历中增加学生基本信息，沟通反馈页面分页功能完成</span></td>--%>
-                            <%--</tr>--%>
-                            <%--<tr>--%>
-                                <%--<td><span class="tit">2017-7-18</span>--%>
-                                <%--</td>--%>
-                                <%--<td><span class="info">成长记录完成：页面及显示个人信息和沟通记录功能完成</span></td>--%>
-                            <%--</tr>--%>
-                            <%--<tr>--%>
-                                <%--<td><span class="tit">2017-7-19</span>--%>
-                                <%--</td>--%>
-                                <%--<td><span class="info">学生预览个人信息页面：完成学生预览页面布局</span></td>--%>
-                            <%--</tr>--%>
-                            <%--<tr>--%>
-                                <%--<td><span class="tit">2017-7-20</span>--%>
-                                <%--</td>--%>
-                                <%--<td><span class="info">预览所有信息完成：预览学生所有信息</span></td>--%>
-                            <%--</tr>--%>
-
-                            <%--</tbody>--%>
-                        <%--</table>--%>
-                    <%--</div>--%>
-                <%--</div>--%>
-            <%--</section>--%>
-
-        <%--</div>--%>
-        <%--<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">--%>
-            <%--<section class="panel">--%>
-                <%--<header class="panel-heading bm0">--%>
-                    <%--<span class='span-title'>样式</span>--%>
-                    <%--<span class="tools pull-right"><a href="javascript:;" class="iconpx-chevron-down"></a></span>--%>
-                <%--</header>--%>
-                <%--<div class="panel-body">--%>
-                    <%--<div class="larry-table">--%>
-                        <%--<table class="layui-table larry-table-info">--%>
-                            <%--<colgroup>--%>
-                                <%--<col width="150">--%>
-                                <%--<col>--%>
-                            <%--</colgroup>--%>
-                            <%--<tbody>--%>
-                            <%--<tr>--%>
-                                <%--<td>--%>
-                                    <%--<button class="layui-btn"><i class="layui-icon">&#xe61f;</i> 添加</button>--%>
-                                    <%--<button class="layui-btn"><i class="layui-icon">&#xe615;</i> 搜索</button>--%>
-                                    <%--<button class="layui-btn " style="background: #21a1a1"><i class="layui-icon">&#xe642;</i> 编辑--%>
-                                    <%--</button>--%>
-                                    <%--<button class="layui-btn  layui-btn-danger"><i class="layui-icon">&#xe640;</i> 删除--%>
-                                    <%--</button>--%>
-                                    <%--<button class="layui-btn"><i class="layui-icon">&#xe60a;</i> 预览</button>--%>
-                                    <%--<button class="layui-btn"><i class="layui-icon">&#xe621;</i> 打印</button>--%>
-                                    <%--<button class="layui-btn"><i class="layui-icon">&#xe61e;</i> 导出</button>--%>
-                                <%--</td>--%>
-                            <%--</tr>--%>
-
-                            <%--</tbody>--%>
-                        <%--</table>--%>
-                    <%--</div>--%>
-                <%--</div>--%>
-            <%--</section>--%>
-
-        <%--</div>--%>
-    <%--</div>--%>
 
 </div>
 <script type="text/javascript" src="${baseurl}/public/common/layui/layui.js"></script>
 <script type="text/javascript" src="${baseurl}/public/common/js/jquery-3.2.0.min.js"></script>
 <script type="text/javascript" src="${baseurl}/public/common/bootstrap/js/bootstrap.min.js"></script>
-<%--<script type="text/javascript" src="${baseurl}/public/common/jsplugin/jquery.leoweather.min.js"></script>--%>
+<script type="text/javascript" src="${baseurl}/public/common/jsplugin/jquery.leoweather.min.js"></script>
 <script type="text/javascript" src="${baseurl}/public/common/jsplugin/echarts.min.js"></script>
 <!-- 引入当前页面js文件 -->
 <script type="text/javascript" src="${baseurl}/public/js/main.js"></script>
+<script>
+    layui.use('layedit', function () {
+        var layedit = layui.layedit
+            , $ = layui.jquery;
+
+        //构建一个默认的编辑器
+        //自定义工具栏
+        layedit.build('LAY_demo1', {
+            tool: ['face', 'strong', 'italic', 'underline', 'del', '|', 'link', 'left', 'center', 'right']
+            , height: 300
+        })
+        var index = layedit.build('LAY_demo1');
+
+        //编辑器外部操作
+        var active = {
+            content: function () {
+                alert(layedit.getContent(index)); //获取编辑器内容
+            }
+            , text: function () {
+                alert(layedit.getText(index)); //获取编辑器纯文本内容
+            }
+            , selection: function () {
+                alert(layedit.getSelection(index));
+            }
+        };
+
+        $('.site-demo-layedit').on('click', function () {
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+        });
+
+
+    });
+</script>
+<script type="text/javascript">
+    layui.use(['jquery', 'layer', 'element', 'laypage', 'form', 'laytpl', 'tree', 'layedit'], function () {
+        window.jQuery = window.$ = layui.jquery;
+        window.layer = layui.layer;
+
+        var element = layui.element(),
+            form = layui.form(),
+            layedit = layui.layedit,
+            laytpl = layui.laytpl;
+
+
+        teacher = {
+            add: function () {
+                layer.open({
+                    type: 1,
+                    title: '发布通知',
+                    area: ["100%", "100%"]
+                    , content: $("#notice")
+                });
+
+            },
+            delete: function (id) {
+                layer.confirm('确定删除？', {icon: 3, title: '提示'}, function (index) {
+                    layer.close(index);
+                    $.post(baseUrl + "/teacher/delete", {id: id}, function (data) {
+                        layer.msg(data.msg);
+                        setTimeout("location.reload()", 500);
+                    })
+                });
+            },
+            addAjax: function () {
+                let data = $("#add-form").serialize();
+                let classedIds = "";
+                let floorIds = "";
+                let classes = $(".classId");
+                let floors = $(".floorId");
+                for (let i = 0; i < classes.length; ++i) {
+                    if ($(classes[i]).prop("checked")) classedIds += $(classes[i]).val() + ",";
+                }
+                data += "&classIds=" + classedIds;
+                for (let i = 0; i < floors.length; ++i) {
+                    if ($(floors[i]).prop("checked")) floorIds += $(floors[i]).val() + ",";
+                }
+
+                data += "&floorIds=" + floorIds;
+
+                $.post(baseUrl + "/teacher/add", data, function (data) {
+                    layer.msg(data.msg);
+                    if (data.msg) {
+                        setTimeout("location.reload()", 500);
+                    }
+                })
+            },
+        };
+    });
+
+</script>
+<div id="notice" style="display: none">
+    <div style="margin-bottom: 20px; width: 600px;">
+
+        <textarea class="layui-textarea" id="LAY_demo1" style="display: none">
+  把编辑器的初始内容放在这textarea即可
+</textarea>
+        <div class="site-demo-button" style="margin-top: 20px;">
+            <button class="layui-btn site-demo-layedit" data-type="content">获取编辑器内容</button>
+            <button class="layui-btn site-demo-layedit" data-type="text">获取编辑器纯文本内容</button>
+            <button class="layui-btn site-demo-layedit" data-type="selection">获取编辑器选中内容</button>
+        </div>
+    </div>
+</div>
 </body>
 </html>

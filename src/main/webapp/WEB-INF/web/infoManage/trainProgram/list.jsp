@@ -162,13 +162,18 @@
 
                 $.post(baseUrl + "/trainProgram/loadModuleCoursesByProgram", {id: id}, function (data) {
                     if (data.result) {
+                        console.log(data)
                         $("#modelCourses-preview").html(`
                             <tr >
-                            <th style="width: 400px">课程</th>
-                            <th>学分</th>
-                            <th>课时</th>
-                            <th>选修/必修</th>
-                            <th>考试类型</th>
+                            <th style="width: 60px">序号</th>
+                            <th>课程代码</th>
+                            <th style="width: 300px">课程名称</th>
+                            <th>课程学分</th>
+                            <th>学时</th>
+                            <th>课程性质</th>
+                            <th>考试方式</th>
+                            <th>课程简介</th>
+                            <th>教师简介</th>
                             </tr>`);
                         $("#modelCourses-preview").append(trainProgram.loadHasModuleCourse(data.data));
                         form.render();
@@ -251,6 +256,7 @@
             },
             loadHasModuleCourse: function (allModuleCourses) {
                 let electiveSocre = 0, compulsorySocre = 0;
+                let no = 1;
 
                 let moduleCourses = [];
                 for (let i = 0; i < allModuleCourses.length; ++i)
@@ -262,30 +268,38 @@
                     moduleCourses[i].nature === "选修" ? electiveSocre += moduleCourses[i].schoolScore : compulsorySocre += moduleCourses[i].schoolScore;
                     if (moduleCourses[i].id !== moduleId) {
                         totalHtml += `<tr class="modules"  data='` + moduleId + `'>
-                                          <th colspan="5" height="35px" style="background-color: rgb(238, 238, 238);">` + moduleCourses[i - 1].moduleName + `</th></tr>
+                                          <th colspan="9" height="35px" style="background-color: rgb(238, 238, 238);">` + moduleCourses[i - 1].moduleName + `</th></tr>
                                              `
                             + _html;
 
                         moduleId = moduleCourses[i].id;
                         _html = ` <tr>
+                                                <th > ` + (no++) + `</th>
+                                                <th > ` + moduleCourses[i].code + `</th>
                                                 <th > ` + moduleCourses[i].courseName + `</th>
                                                 <th>` + moduleCourses[i].schoolScore + ` 学分</th>
                                                 <th>` + moduleCourses[i].schoolHours + ` 课时</th>
                                                 <th>` + moduleCourses[i].nature + `</th>
                                                 <th>` +(moduleCourses[i].testMethodName!==undefined ?moduleCourses[i].testMethodName:"暂无")+ `</th>
+                                                 <th> 暂无 </th>
+                                                 <th>暂无</th>
                                    </tr>`
                     } else {
                         _html += ` <tr>
+                                            <th > ` + (no++) + `</th>
+                                            <th>` + moduleCourses[i].code + `</th>
                                             <th>` + moduleCourses[i].courseName + `</th>
                                             <th>` + moduleCourses[i].schoolScore + ` 学分</th>
                                             <th>` + moduleCourses[i].schoolHours + ` 课时</th>
                                             <th>` + moduleCourses[i].nature + `</th>
                                             <th>` + (moduleCourses[i].testMethodName!==undefined ?moduleCourses[i].testMethodName:"暂无") + `</th>
+                                            <th> 暂无 </th>
+                                            <th> 暂无 </th>
                                   </tr>`
                     }
                     if (i === moduleCourses.length - 1 && moduleCourses[i].id === moduleId) {
                         totalHtml += ` <tr class="modules"  data='` + moduleId + `'>
-                                          <th colspan="5" height="35px" style="background-color: rgb(238, 238, 238)">` + moduleCourses[i].moduleName + `</th></tr>
+                                          <th colspan="9" height="35px" style="background-color: rgb(238, 238, 238)">` + moduleCourses[i].moduleName + `</th></tr>
                                             `
                             + _html;
                     }
