@@ -62,6 +62,7 @@
           course.id           courseId,
           course.name         courseName,
           course.nature,
+          course.code,
           course.school_score schoolScore,
           course.school_hours schoolHours,
           testMethod.name testMethodName

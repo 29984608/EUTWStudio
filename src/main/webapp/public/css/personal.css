@@ -131,13 +131,14 @@ header.larry-personal-tit span{
 }
 .layui-field-box .layui-table tr th,
 .layui-field-box .layui-table tr td{
-	text-align: center;
+	/*text-align: center;*/
 /* 	padding: 0px; */
+
 }
 .layui-field-box .layui-table tr th:first-child,
 .layui-field-box .layui-table tr td:first-child{
 	width: 40px;
-	padding: 0px;
+	padding: 9px 15px;
 }
 .layui-field-box .layui-table tr th:nth-child(2){
 	padding: 0px;
