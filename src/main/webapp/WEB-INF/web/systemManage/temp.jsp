@@ -19,7 +19,7 @@
         <div class="layui-tab">
             <blockquote class="layui-elem-quote mylog-info-tit">
                 <ul class="layui-tab-title">
-                    <li class="layui-btn " onclick="role.addRole()"><i class="layui-icon">&#xe61f;</i>添加角色
+                    <li class="layui-btn " onclick="role.addMenu()"><i class="layui-icon">&#xe61f;</i>添加角色
                     </li>
                 </ul>
             </blockquote>

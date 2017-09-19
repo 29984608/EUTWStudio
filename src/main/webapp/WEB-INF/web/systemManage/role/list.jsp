@@ -17,7 +17,7 @@
             <blockquote class="layui-elem-quote mylog-info-tit">
                 <ul class="layui-tab-title">
                     <shiro:hasPermission name="rolePermission:add">
-                        <li class="layui-btn " onclick="role.addRole()"><i class="layui-icon">&#xe61f;</i>添加角色
+                        <li class="layui-btn " onclick="role.addMenu()"><i class="layui-icon">&#xe61f;</i>添加角色
                         </li>
                     </shiro:hasPermission>
 
@@ -109,7 +109,7 @@
                 });
 
             },
-            addRole: function () {
+            addMenu: function () {
                 layer.open({
                     type: 1,
                     title: '角色添加'
