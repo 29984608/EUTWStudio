@@ -4,20 +4,15 @@ package com.thoughtWorks.web.reportManagement;
 import com.thoughtWorks.dto.SearchDto;
 import com.thoughtWorks.entity.StudentUpdate;
 import com.thoughtWorks.service.StudentDataOutputService;
-import com.thoughtWorks.util.reportUtil.DirectionReportUtil;
 import com.thoughtWorks.util.reportUtil.StudentDataOutputReportUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.OutputStream;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -41,30 +36,9 @@ public class StudentDataOutputController {
             new StudentDataOutputReportUtil().setTheHeader(studentUpdate);
             checkData(studentUpdate, exportedData, dataOutputStudents);
             ResponseEntity<byte[]> responseEntity = null;
-            StudentDataOutputReportUtil studentDataOutputReportUtil = new StudentDataOutputReportUtil();
-            Map<String, String> headers = studentDataOutputReportUtil.setTheHeader(studentUpdate);
-            String fileName = "学生数据报表.xls";
-            String path = request.getServletContext().getRealPath("images/temp") + "/" + fileName;
-            File file = new File(path);
-            new StudentDataOutputReportUtil().exportExcel(headers, exportedData, file, fileName.substring(0, fileName.lastIndexOf(".")));
+            File file = studentDataOutputService.newStudentDataOutput(request,exportedData,studentUpdate);
             responseEntity = getResponseEntity(file);
-
-            //读取要下载的文件，保存到文件输入流
-            FileInputStream in = new FileInputStream(path);
-            //创建输出流
-            OutputStream out = response.getOutputStream();
-            //创建缓冲区
-            byte buffer[] = new byte[1024];
-            int len = 0;
-            //循环将输入流中的内容读取到缓冲区当中
-            while ((len = in.read(buffer)) > 0) {
-                //输出缓冲区的内容到浏览器，实现文件下载
-                out.write(buffer, 0, len);
-            }
-            //关闭文件输入流
-            in.close();
-            //关闭输出流
-            out.close();
+            file.delete();
 
             return responseEntity;
         } catch (Exception e) {

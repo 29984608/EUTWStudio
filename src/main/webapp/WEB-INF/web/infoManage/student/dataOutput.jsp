@@ -270,14 +270,7 @@
                     updateOffCampusContactPhone:updateOffCampusContactPhone,
                 }
                 let data = Object.assign(studentDate,searchData);
-                $.ajax({
-                    url:baseUrl + "/dataOutput/list",
-                    type:"post",
-                    data:data,
-                    success:function (data) {
-//                        window.confirm("文件下载成功！");
-                    }
-                })
+                location.href = baseUrl + "/dataOutput/list?" + JSON.stringify(data).replace(/:/g,"=").replace(/,/g,"&").replace(/{/g,"").replace(/}/g,"").replace(/"/g,"");
             },
             //信息全部选中
             selectAll: function (data) {
