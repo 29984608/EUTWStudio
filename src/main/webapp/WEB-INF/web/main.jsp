@@ -16,52 +16,140 @@
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/common.css" media="all">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/main.css" media="all">
 </head>
+<style type="text/css">
+    *{
+
+    }
+    .h1, .h2, .h3, h1, h2, h3{
+        margin: 0px;
+        font-size: 18px;
+
+    }
+    .layui-colla-title{
+        background-color: #ffffff;
+    }
+</style>
 <body>
-<div class="larry-grid larry-wrapper">
-    <%--<div class="row" id="infoSwitch">--%>
-        <%--<blockquote class="layui-elem-quote col-md-12 head-con">--%>
-            <%--<div>尊敬的admin<span id="weather"></span></div>--%>
-            <%--<i class="larry-icon larry-guanbi close" id="closeInfo"></i>--%>
-        <%--</blockquote>--%>
-    <%--</div>--%>
-        <div style="width: 1000px;float: left">
-            <blockquote class="layui-elem-quote">尊敬的用户您好</blockquote>
-        </div>
-    <div class="row shortcut" id="shortcut">
-        <%--<div class="col-xs-12 col-sm-6 col-md-4 col-lg-2 ">--%>
-        <%--<section class="panel clearfix">--%>
-        <%--<div class="symbol shortcut-bg1"><i class="larry-icon larry-daishenhe1"--%>
-        <%--data-icon="larry-daishenhe1"></i></div>--%>
-        <%--<div class="value">--%>
-        <%--<a data-href="html/temp.html">--%>
-        <%--<h1 id="count1">10</h1>--%>
-        <%--</a>--%>
-        <%--<p>待审的文章</p>--%>
-        <%--</div>--%>
-        <%--</section>--%>
-        <%--</div>--%>
-
-        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-2 " style="float: right">
-            <a onclick="teacher.add()">
-                <div class="panel">
-                    <div class="symbol shortcut-bg2"><i class="larry-icon larry-fabu2" data-icon="larry-fabu2"></i>
-                    </div>
-                    <div class="value">
-                        <h1>22</h1>
-                        <p>我要发布通知</p>
-                    </div>
+    <div style="width: 95%;margin: 0 auto">
+        <blockquote class="layui-elem-quote" id="admin">尊敬的<span><shiro:principal property="name"/></span>您好<i class="larry-icon larry-guanbi close" id="closeInfo"></i></blockquote>
+    </div>
+        <fieldset class="layui-elem-field layui-field-title"style="margin-top: 10px;width: 95%;margin: 0 auto;margin-bottom: 10px;">
+            <legend>公告栏</legend>
+        </fieldset>
+    <div class="" style="width: 95%;margin: 0 auto;font-size: 16px;">
+        <div class="layui-collapse " lay-filter="test">
+            <div class="layui-colla-item">
+                <h2 class="layui-colla-title" style="height: 90px;">
+                    公告：完成本周作业及案例分析<span style="font-size: 12px;color: darkgray;float: right">发时间： 2017.09.25 15:33:30</span><br>
+                    <p style="font-size: 14px;text-indent: 2em;">同学们，3月15日作业截止日期延期一天，变为3月17日下午五点半，请同学们及时提交作业<span style="font-size: 12px;color: darkgray;float: right">发布人：付宏科 </span></p>
+                </h2>
+                <div class="layui-colla-content">
+                    <p style="font-size: 14px;">有不少其他答案说是因为JS太差。我下面的答案已经说了，这不是根本性的原因。但除此之外，我还要纠正一些对JS具体问题的误解。JS当初是被作为脚本语言设计的，所以某些问题并不是JS设计得差或者是JS设计者的失误。比如var的作用域问题，并不是“错误”，而是当时绝大部分脚本语言都是这样的，如perl/php/sh等。模块的问题也是，脚本语言几乎都没有模块/命名空间功能。弱类型、for-in之类的问题也是，只不过现在用那些老的脚本语言的人比较少，所以很多人都误以为是JS才有的坑。另外有人说JS是半残语言，满足不了开发需求，1999年就该死。半残这个嘛，就夸张了。JS虽然有很多问题，但是设计总体还是优秀的。——来自知乎@贺师俊</p>
                 </div>
-            </a>
+            </div>
+            <div class="layui-colla-item">
+                <h2 class="layui-colla-title" style="height: 90px;">
+                    公告：完成本周作业及案例分析<span style="font-size: 12px;color: darkgray;float: right">发时间： 2017.09.25 15:33:30</span><br>
+                    <p style="font-size: 14px;text-indent: 2em;">同学们，3月15日作业截止日期延期一天，变为3月17日下午五点半，请同学们及时提交作业<span style="font-size: 12px;color: darkgray;float: right">发布人：付宏科 </span></p>
+                </h2>
+                <div class="layui-colla-content">
+                    <p style="font-size: 14px;">有不少其他答案说是因为JS太差。我下面的答案已经说了，这不是根本性的原因。但除此之外，我还要纠正一些对JS具体问题的误解。JS当初是被作为脚本语言设计的，所以某些问题并不是JS设计得差或者是JS设计者的失误。比如var的作用域问题，并不是“错误”，而是当时绝大部分脚本语言都是这样的，如perl/php/sh等。模块的问题也是，脚本语言几乎都没有模块/命名空间功能。弱类型、for-in之类的问题也是，只不过现在用那些老的脚本语言的人比较少，所以很多人都误以为是JS才有的坑。另外有人说JS是半残语言，满足不了开发需求，1999年就该死。半残这个嘛，就夸张了。JS虽然有很多问题，但是设计总体还是优秀的。——来自知乎@贺师俊</p>
+                </div>
+            </div>
+            <div class="layui-colla-item">
+                <h2 class="layui-colla-title" style="height: 90px;">
+                    公告：完成本周作业及案例分析<span style="font-size: 12px;color: darkgray;float: right">发时间： 2017.09.25 15:33:30</span><br>
+                    <p style="font-size: 14px;text-indent: 2em;">同学们，3月15日作业截止日期延期一天，变为3月17日下午五点半，请同学们及时提交作业<span style="font-size: 12px;color: darkgray;float: right">发布人：付宏科 </span></p>
+                </h2>
+                <div class="layui-colla-content">
+                    <p style="font-size: 14px;">有不少其他答案说是因为JS太差。我下面的答案已经说了，这不是根本性的原因。但除此之外，我还要纠正一些对JS具体问题的误解。JS当初是被作为脚本语言设计的，所以某些问题并不是JS设计得差或者是JS设计者的失误。比如var的作用域问题，并不是“错误”，而是当时绝大部分脚本语言都是这样的，如perl/php/sh等。模块的问题也是，脚本语言几乎都没有模块/命名空间功能。弱类型、for-in之类的问题也是，只不过现在用那些老的脚本语言的人比较少，所以很多人都误以为是JS才有的坑。另外有人说JS是半残语言，满足不了开发需求，1999年就该死。半残这个嘛，就夸张了。JS虽然有很多问题，但是设计总体还是优秀的。——来自知乎@贺师俊</p>
+                </div>
+            </div>
+            <div class="layui-colla-item">
+                <h2 class="layui-colla-title" style="height: 90px;">
+                    公告：完成本周作业及案例分析<span style="font-size: 12px;color: darkgray;float: right">发时间： 2017.09.25 15:33:30</span><br>
+                    <p style="font-size: 14px;text-indent: 2em;">同学们，3月15日作业截止日期延期一天，变为3月17日下午五点半，请同学们及时提交作业<span style="font-size: 12px;color: darkgray;float: right">发布人：付宏科 </span></p>
+                </h2>
+                <div class="layui-colla-content">
+                    <p style="font-size: 14px;">有不少其他答案说是因为JS太差。我下面的答案已经说了，这不是根本性的原因。但除此之外，我还要纠正一些对JS具体问题的误解。JS当初是被作为脚本语言设计的，所以某些问题并不是JS设计得差或者是JS设计者的失误。比如var的作用域问题，并不是“错误”，而是当时绝大部分脚本语言都是这样的，如perl/php/sh等。模块的问题也是，脚本语言几乎都没有模块/命名空间功能。弱类型、for-in之类的问题也是，只不过现在用那些老的脚本语言的人比较少，所以很多人都误以为是JS才有的坑。另外有人说JS是半残语言，满足不了开发需求，1999年就该死。半残这个嘛，就夸张了。JS虽然有很多问题，但是设计总体还是优秀的。——来自知乎@贺师俊</p>
+                </div>
+            </div>
+            <div class="layui-colla-item">
+                <h2 class="layui-colla-title" style="height: 90px;">
+                    公告：完成本周作业及案例分析<span style="font-size: 12px;color: darkgray;float: right">发时间： 2017.09.25 15:33:30</span><br>
+                    <p style="font-size: 14px;text-indent: 2em;">同学们，3月15日作业截止日期延期一天，变为3月17日下午五点半，请同学们及时提交作业<span style="font-size: 12px;color: darkgray;float: right">发布人：付宏科 </span></p>
+                </h2>
+                <div class="layui-colla-content">
+                    <p style="font-size: 14px;">有不少其他答案说是因为JS太差。我下面的答案已经说了，这不是根本性的原因。但除此之外，我还要纠正一些对JS具体问题的误解。JS当初是被作为脚本语言设计的，所以某些问题并不是JS设计得差或者是JS设计者的失误。比如var的作用域问题，并不是“错误”，而是当时绝大部分脚本语言都是这样的，如perl/php/sh等。模块的问题也是，脚本语言几乎都没有模块/命名空间功能。弱类型、for-in之类的问题也是，只不过现在用那些老的脚本语言的人比较少，所以很多人都误以为是JS才有的坑。另外有人说JS是半残语言，满足不了开发需求，1999年就该死。半残这个嘛，就夸张了。JS虽然有很多问题，但是设计总体还是优秀的。——来自知乎@贺师俊</p>
+                </div>
+            </div>
+            <div class="layui-colla-item">
+                <h2 class="layui-colla-title" style="height: 90px;">
+                    公告：完成本周作业及案例分析<span style="font-size: 12px;color: darkgray;float: right">发时间： 2017.09.25 15:33:30</span><br>
+                    <p style="font-size: 14px;text-indent: 2em;">同学们，3月15日作业截止日期延期一天，变为3月17日下午五点半，请同学们及时提交作业<span style="font-size: 12px;color: darkgray;float: right">发布人：付宏科 </span></p>
+                </h2>
+                <div class="layui-colla-content">
+                    <p style="font-size: 14px;">有不少其他答案说是因为JS太差。我下面的答案已经说了，这不是根本性的原因。但除此之外，我还要纠正一些对JS具体问题的误解。JS当初是被作为脚本语言设计的，所以某些问题并不是JS设计得差或者是JS设计者的失误。比如var的作用域问题，并不是“错误”，而是当时绝大部分脚本语言都是这样的，如perl/php/sh等。模块的问题也是，脚本语言几乎都没有模块/命名空间功能。弱类型、for-in之类的问题也是，只不过现在用那些老的脚本语言的人比较少，所以很多人都误以为是JS才有的坑。另外有人说JS是半残语言，满足不了开发需求，1999年就该死。半残这个嘛，就夸张了。JS虽然有很多问题，但是设计总体还是优秀的。——来自知乎@贺师俊</p>
+                </div>
+            </div>
+            <div class="layui-colla-item">
+                <h2 class="layui-colla-title" style="height: 90px;">
+                    公告：完成本周作业及案例分析<span style="font-size: 12px;color: darkgray;float: right">发时间： 2017.09.25 15:33:30</span><br>
+                    <p style="font-size: 14px;text-indent: 2em;">同学们，3月15日作业截止日期延期一天，变为3月17日下午五点半，请同学们及时提交作业<span style="font-size: 12px;color: darkgray;float: right">发布人：付宏科 </span></p>
+                </h2>
+                <div class="layui-colla-content">
+                    <p style="font-size: 14px;">有不少其他答案说是因为JS太差。我下面的答案已经说了，这不是根本性的原因。但除此之外，我还要纠正一些对JS具体问题的误解。JS当初是被作为脚本语言设计的，所以某些问题并不是JS设计得差或者是JS设计者的失误。比如var的作用域问题，并不是“错误”，而是当时绝大部分脚本语言都是这样的，如perl/php/sh等。模块的问题也是，脚本语言几乎都没有模块/命名空间功能。弱类型、for-in之类的问题也是，只不过现在用那些老的脚本语言的人比较少，所以很多人都误以为是JS才有的坑。另外有人说JS是半残语言，满足不了开发需求，1999年就该死。半残这个嘛，就夸张了。JS虽然有很多问题，但是设计总体还是优秀的。——来自知乎@贺师俊</p>
+                </div>
+            </div>
+            <div class="layui-colla-item">
+                <h2 class="layui-colla-title" style="height: 90px;">
+                    公告：完成本周作业及案例分析<span style="font-size: 12px;color: darkgray;float: right">发时间： 2017.09.25 15:33:30</span><br>
+                    <p style="font-size: 14px;text-indent: 2em;">同学们，3月15日作业截止日期延期一天，变为3月17日下午五点半，请同学们及时提交作业<span style="font-size: 12px;color: darkgray;float: right">发布人：付宏科 </span></p>
+                </h2>
+                <div class="layui-colla-content">
+                    <p style="font-size: 14px;">有不少其他答案说是因为JS太差。我下面的答案已经说了，这不是根本性的原因。但除此之外，我还要纠正一些对JS具体问题的误解。JS当初是被作为脚本语言设计的，所以某些问题并不是JS设计得差或者是JS设计者的失误。比如var的作用域问题，并不是“错误”，而是当时绝大部分脚本语言都是这样的，如perl/php/sh等。模块的问题也是，脚本语言几乎都没有模块/命名空间功能。弱类型、for-in之类的问题也是，只不过现在用那些老的脚本语言的人比较少，所以很多人都误以为是JS才有的坑。另外有人说JS是半残语言，满足不了开发需求，1999年就该死。半残这个嘛，就夸张了。JS虽然有很多问题，但是设计总体还是优秀的。——来自知乎@贺师俊</p>
+                </div>
+            </div>
+            <div class="layui-colla-item">
+                <h2 class="layui-colla-title" style="height: 90px;">
+                    公告：完成本周作业及案例分析<span style="font-size: 12px;color: darkgray;float: right">发时间： 2017.09.25 15:33:30</span><br>
+                    <p style="font-size: 14px;text-indent: 2em;">同学们，3月15日作业截止日期延期一天，变为3月17日下午五点半，请同学们及时提交作业<span style="font-size: 12px;color: darkgray;float: right">发布人：付宏科 </span></p>
+                </h2>
+                <div class="layui-colla-content">
+                    <p style="font-size: 14px;">有不少其他答案说是因为JS太差。我下面的答案已经说了，这不是根本性的原因。但除此之外，我还要纠正一些对JS具体问题的误解。JS当初是被作为脚本语言设计的，所以某些问题并不是JS设计得差或者是JS设计者的失误。比如var的作用域问题，并不是“错误”，而是当时绝大部分脚本语言都是这样的，如perl/php/sh等。模块的问题也是，脚本语言几乎都没有模块/命名空间功能。弱类型、for-in之类的问题也是，只不过现在用那些老的脚本语言的人比较少，所以很多人都误以为是JS才有的坑。另外有人说JS是半残语言，满足不了开发需求，1999年就该死。半残这个嘛，就夸张了。JS虽然有很多问题，但是设计总体还是优秀的。——来自知乎@贺师俊</p>
+                </div>
+            </div>
+            <div class="layui-colla-item">
+                <h2 class="layui-colla-title" style="height: 90px;">
+                    公告：完成本周作业及案例分析<span style="font-size: 12px;color: darkgray;float: right">发时间： 2017.09.25 15:33:30</span><br>
+                    <p style="font-size: 14px;text-indent: 2em;">同学们，3月15日作业截止日期延期一天，变为3月17日下午五点半，请同学们及时提交作业<span style="font-size: 12px;color: darkgray;float: right">发布人：付宏科 </span></p>
+                </h2>
+                <div class="layui-colla-content">
+                    <p style="font-size: 14px;">有不少其他答案说是因为JS太差。我下面的答案已经说了，这不是根本性的原因。但除此之外，我还要纠正一些对JS具体问题的误解。JS当初是被作为脚本语言设计的，所以某些问题并不是JS设计得差或者是JS设计者的失误。比如var的作用域问题，并不是“错误”，而是当时绝大部分脚本语言都是这样的，如perl/php/sh等。模块的问题也是，脚本语言几乎都没有模块/命名空间功能。弱类型、for-in之类的问题也是，只不过现在用那些老的脚本语言的人比较少，所以很多人都误以为是JS才有的坑。另外有人说JS是半残语言，满足不了开发需求，1999年就该死。半残这个嘛，就夸张了。JS虽然有很多问题，但是设计总体还是优秀的。——来自知乎@贺师俊</p>
+                </div>
+            </div>
+            <div class="layui-colla-item">
+                <h2 class="layui-colla-title" style="height: 90px;">
+                    公告：完成本周作业及案例分析<span style="font-size: 12px;color: darkgray;float: right">发时间： 2017.09.25 15:33:30</span><br>
+                    <p style="font-size: 14px;text-indent: 2em;">同学们，3月15日作业截止日期延期一天，变为3月17日下午五点半，请同学们及时提交作业<span style="font-size: 12px;color: darkgray;float: right">发布人：付宏科 </span></p>
+                </h2>
+                <div class="layui-colla-content">
+                    <p style="font-size: 14px;">有不少其他答案说是因为JS太差。我下面的答案已经说了，这不是根本性的原因。但除此之外，我还要纠正一些对JS具体问题的误解。JS当初是被作为脚本语言设计的，所以某些问题并不是JS设计得差或者是JS设计者的失误。比如var的作用域问题，并不是“错误”，而是当时绝大部分脚本语言都是这样的，如perl/php/sh等。模块的问题也是，脚本语言几乎都没有模块/命名空间功能。弱类型、for-in之类的问题也是，只不过现在用那些老的脚本语言的人比较少，所以很多人都误以为是JS才有的坑。另外有人说JS是半残语言，满足不了开发需求，1999年就该死。半残这个嘛，就夸张了。JS虽然有很多问题，但是设计总体还是优秀的。——来自知乎@贺师俊</p>
+                </div>
+            </div>
+
         </div>
-
-
 
     </div>
-        <blockquote class="layui-elem-quote">这个貌似不用多介绍，因为你已经在太多的地方都看到</blockquote>
 
-        <blockquote class="layui-elem-quote layui-quote-nm">layui 2.0 提供强力驱动</blockquote>
-</div>
+        <script>
+            //注意：折叠面板 依赖 element 模块，否则无法进行功能性操作
+            layui.use('element', function(){
+                var element = layui.element;
 
+                //…
+            });
+        </script>
 
 </div>
 <script type="text/javascript" src="${baseurl}/public/common/layui/layui.js"></script>
@@ -71,40 +159,6 @@
 <script type="text/javascript" src="${baseurl}/public/common/jsplugin/echarts.min.js"></script>
 <!-- 引入当前页面js文件 -->
 <script type="text/javascript" src="${baseurl}/public/js/main.js"></script>
-<script>
-    layui.use('layedit', function () {
-        var layedit = layui.layedit
-            , $ = layui.jquery;
-
-        //构建一个默认的编辑器
-        //自定义工具栏
-        layedit.build('LAY_demo1', {
-            tool: ['face', 'strong', 'italic', 'underline', 'del', '|', 'link', 'left', 'center', 'right']
-            , height: 300
-        })
-        var index = layedit.build('LAY_demo1');
-
-        //编辑器外部操作
-        var active = {
-            content: function () {
-                alert(layedit.getContent(index)); //获取编辑器内容
-            }
-            , text: function () {
-                alert(layedit.getText(index)); //获取编辑器纯文本内容
-            }
-            , selection: function () {
-                alert(layedit.getSelection(index));
-            }
-        };
-
-        $('.site-demo-layedit').on('click', function () {
-            var type = $(this).data('type');
-            active[type] ? active[type].call(this) : '';
-        });
-
-
-    });
-</script>
 <script type="text/javascript">
     layui.use(['jquery', 'layer', 'element', 'laypage', 'form', 'laytpl', 'tree', 'layedit'], function () {
         window.jQuery = window.$ = layui.jquery;
@@ -115,15 +169,16 @@
             layedit = layui.layedit,
             laytpl = layui.laytpl;
 
-
         teacher = {
             add: function () {
+                $("#notice").show();
                 layer.open({
                     type: 1,
                     title: '发布通知',
                     area: ["100%", "100%"]
                     , content: $("#notice")
                 });
+                form.render();
 
             },
             delete: function (id) {
@@ -158,22 +213,19 @@
                     }
                 })
             },
+
         };
+        $(function () {
+            $("#notice").hide();
+
+            $("#closeInfo").click(function () {
+                $("#admin").fadeOut("slow");
+            });
+        });
     });
 
-</script>
-<div id="notice" style="display: none">
-    <div style="margin-bottom: 20px; width: 600px;">
 
-        <textarea class="layui-textarea" id="LAY_demo1" style="display: none">
-  把编辑器的初始内容放在这textarea即可
-</textarea>
-        <div class="site-demo-button" style="margin-top: 20px;">
-            <button class="layui-btn site-demo-layedit" data-type="content">获取编辑器内容</button>
-            <button class="layui-btn site-demo-layedit" data-type="text">获取编辑器纯文本内容</button>
-            <button class="layui-btn site-demo-layedit" data-type="selection">获取编辑器选中内容</button>
-        </div>
-    </div>
-</div>
+</script>
+
 </body>
 </html>
