@@ -270,7 +270,6 @@
                     updateOffCampusContactPhone:updateOffCampusContactPhone,
                 }
                 let data = Object.assign(studentDate,dataSearchInfo);
-                alert(JSON.stringify(studentDate))
                 location.href = baseUrl + "/dataOutput/list?" + JSON.stringify(data).replace(/:/g,"=").replace(/,/g,"&").replace(/{/g,"").replace(/}/g,"").replace(/"/g,"");
             },
             //信息全部选中

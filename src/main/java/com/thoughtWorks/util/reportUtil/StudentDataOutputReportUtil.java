@@ -33,7 +33,6 @@ public class StudentDataOutputReportUtil extends ExcelReportUtil {
     @Override
     protected void writeCellData(HSSFSheet sheet, List<Map<String, Object>> dataset, HSSFWorkbook workbook) {
         try {
-
             rowIndex = 2;
             int count = 0;
             for (Map<String, Object> department : dataset) {
