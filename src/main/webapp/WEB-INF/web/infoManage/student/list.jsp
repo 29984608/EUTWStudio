@@ -237,7 +237,7 @@
                             </div>
                         </div>
                             &nbsp;&nbsp;&nbsp;
-                                <a class="layui-btn" onclick="currentIndex = 1;dataOutput.showDataOutput(searchInfo)" style="float: right;display: none" id="showButtonByDataOutput"><i class="layui-icon">&#xe615;</i>导出数据</a>
+                                <a class="layui-btn" onclick="currentIndex = 1;dataOutput.showDataOutput(dataSearchInfo)" style="float: right;display: none" id="showButtonByDataOutput"><i class="layui-icon">&#xe615;</i>导出数据</a>
                     </div>
 
                 </blockquote>
@@ -304,8 +304,9 @@
     let addGroupActivitiesIndex;
     let disciplineAndPunishmentListInfo;
     let groupActivitiesListInfo;
-    var searchLevel;
+    let searchLevel;
     let searchInfo;
+    let dataSearchInfo ;
 
     $(function () {
         //基本信息
@@ -438,6 +439,7 @@
                 let sex = $("input[name='sexQuery']:checked").val();
                 let TypeOfAccommodation = $("input[name='TypeOfAccommodation']:checked").val();
                 let studentStatusSearch = $("#student_status_search").val();
+                //搜索条件
                 searchInfo = {currentIndex: currentIndex,
                     pageSize: pageSize,
                     departmentId: department_search,
@@ -455,6 +457,26 @@
                     sex: sex,
                     TypeOfAccommodation: TypeOfAccommodation,
                     studentStatusSearch: studentStatusSearch}
+
+                //搜索条件导出报表时，有字段重名
+                dataSearchInfo = {currentIndex: currentIndex,
+                    pageSize: pageSize,
+                    departmentId: department_search,
+                    dataLevel: level_search,
+                    directionId: direction_search,
+                    professionId: profession_search,
+                    classesId: classes_search,
+                    teacherId: teacher_id,
+                    communityTeacherId: community_teacher_id,
+                    areaId: area_search,
+                    floorId: floor_search,
+                    roomId: roomNo_search,
+                    studentNo: studentNo_search,
+                    dataName: name,
+                    sex: sex,
+                    TypeOfAccommodation: TypeOfAccommodation,
+                    studentStatusSearch: studentStatusSearch}
+
 
                 $.ajax({
                     url: baseUrl + "student/list",

@@ -142,7 +142,7 @@
                 })
             },
 
-            submitData: function (searchData) {
+            submitData: function (dataSearchInfo) {
                 let no = $("input[name='no']:checked").val() + "--" + $("input[name='no']:checked").prop("name");
                 let name = $("input[name='name']:checked").val() + "--" + $("input[name='name']:checked").prop("name");
                 let gender = $("input[name='gender']:checked").val() + "--" + $("input[name='gender']:checked").prop("name");
@@ -269,7 +269,8 @@
                     updateOffCampusContactName:updateOffCampusContactName,
                     updateOffCampusContactPhone:updateOffCampusContactPhone,
                 }
-                let data = Object.assign(studentDate,searchData);
+                let data = Object.assign(studentDate,dataSearchInfo);
+                alert(JSON.stringify(studentDate))
                 location.href = baseUrl + "/dataOutput/list?" + JSON.stringify(data).replace(/:/g,"=").replace(/,/g,"&").replace(/{/g,"").replace(/}/g,"").replace(/"/g,"");
             },
             //信息全部选中

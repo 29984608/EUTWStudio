@@ -55,7 +55,6 @@ public class CommunicationController {
     @RequestMapping("add")
     @ResponseBody
     public Result add(CommunicationContent communicationContent) {
-        System.out.println(communicationContent);
         try {
             ActiveUser user = (ActiveUser) SecurityUtils.getSubject().getPrincipal();
             communicationContent.setTeacherId(user.getUserName());

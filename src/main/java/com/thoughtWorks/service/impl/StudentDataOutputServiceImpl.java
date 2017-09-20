@@ -1,7 +1,7 @@
 package com.thoughtWorks.service.impl;
 
 import com.thoughtWorks.dao.StudentDataOutputDao;
-import com.thoughtWorks.dto.SearchDto;
+import com.thoughtWorks.dto.DataSearchDto;
 import com.thoughtWorks.entity.StudentUpdate;
 import com.thoughtWorks.service.StudentDataOutputService;
 import com.thoughtWorks.util.reportUtil.StudentDataOutputReportUtil;
@@ -20,23 +20,23 @@ public class StudentDataOutputServiceImpl implements StudentDataOutputService {
     @Resource
     private StudentDataOutputDao studentDataOutputDao;
     @Override
-    public List<Map<String, Object>> queryStudentList(SearchDto searchDto) throws Exception {
+    public List<Map<String, Object>> queryStudentList(DataSearchDto dataSearchDto) throws Exception {
         Map<String, Object> data = new HashMap<>();
-        searchDto.setStudentNo("%" + searchDto.getStudentNo() + "%");
-        searchDto.setName("%" + searchDto.getName() + "%");
-        searchDto.setRoomId("%" + searchDto.getRoomId() + "%");
-        if (searchDto.getSex() == null) {
-            searchDto.setSex("%" + "%");
+        dataSearchDto.setStudentNo("%" + dataSearchDto.getStudentNo() + "%");
+        dataSearchDto.setDataName("%" + dataSearchDto.getDataName() + "%");
+        dataSearchDto.setRoomId("%" + dataSearchDto.getRoomId() + "%");
+        if (dataSearchDto.getSex() == null) {
+            dataSearchDto.setSex("%" + "%");
         } else {
-            searchDto.setSex("%" + searchDto.getSex() + "%");
+            dataSearchDto.setSex("%" + dataSearchDto.getSex() + "%");
         }
 
-        if (searchDto.getTypeOfAccommodation() == null) {
-            searchDto.setTypeOfAccommodation("");
+        if (dataSearchDto.getTypeOfAccommodation() == null) {
+            dataSearchDto.setTypeOfAccommodation("");
         } else {
-            searchDto.setTypeOfAccommodation(searchDto.getTypeOfAccommodation());
+            dataSearchDto.setTypeOfAccommodation(dataSearchDto.getTypeOfAccommodation());
         }
-        data.put("searchDto", searchDto);
+        data.put("dataSearchDto", dataSearchDto);
 
         return studentDataOutputDao.queryStudentList(data);
     }

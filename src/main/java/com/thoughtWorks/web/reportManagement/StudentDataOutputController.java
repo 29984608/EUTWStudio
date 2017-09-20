@@ -1,7 +1,7 @@
 package com.thoughtWorks.web.reportManagement;
 
 
-import com.thoughtWorks.dto.SearchDto;
+import com.thoughtWorks.dto.DataSearchDto;
 import com.thoughtWorks.entity.StudentUpdate;
 import com.thoughtWorks.service.StudentDataOutputService;
 import com.thoughtWorks.util.reportUtil.StudentDataOutputReportUtil;
@@ -29,10 +29,10 @@ public class StudentDataOutputController {
     StudentDataOutputService studentDataOutputService;
 
     @RequestMapping("/list")
-    public ResponseEntity<byte[]> list(StudentUpdate studentUpdate, SearchDto searchDto, HttpServletRequest request, HttpServletResponse response) {
+    public ResponseEntity<byte[]> list(StudentUpdate studentUpdate, DataSearchDto dataSearchDto, HttpServletRequest request, HttpServletResponse response) {
         try {
             List<Map<String, Object>> exportedData = new ArrayList<>();
-            List<Map<String, Object>> dataOutputStudents = studentDataOutputService.queryStudentList(searchDto);
+            List<Map<String, Object>> dataOutputStudents = studentDataOutputService.queryStudentList(dataSearchDto);
             new StudentDataOutputReportUtil().setTheHeader(studentUpdate);
             checkData(studentUpdate, exportedData, dataOutputStudents);
             ResponseEntity<byte[]> responseEntity = null;
@@ -55,7 +55,7 @@ public class StudentDataOutputController {
                 singleData.put(studentUpdate.getNo().split("--")[1], dataOutputStudent.get(studentUpdate.getNo().split("--")[1]));
             }
             if (studentUpdate.getName() != null) {
-//                    singleData.put(studentUpdate.getName().split("--")[1], dataOutputStudent.get(studentUpdate.getName().split("--")[1]));
+                    singleData.put(studentUpdate.getName().split("--")[1], dataOutputStudent.get(studentUpdate.getName().split("--")[1]));
             }
             if (studentUpdate.getGender() != null) {
                 singleData.put(studentUpdate.getGender().split("--")[1], dataOutputStudent.get(studentUpdate.getGender().split("--")[1]));
@@ -67,7 +67,7 @@ public class StudentDataOutputController {
                 singleData.put(studentUpdate.getDirection_id().split("--")[1], dataOutputStudent.get(studentUpdate.getDirection_id().split("--")[1]));
             }
             if (studentUpdate.getLevel() != null) {
-//                    singleData.put(studentUpdate.getLevel().split("--")[1], dataOutputStudent.get(studentUpdate.getLevel().split("--")[1]));
+                    singleData.put(studentUpdate.getLevel().split("--")[1], dataOutputStudent.get(studentUpdate.getLevel().split("--")[1]));
             }
             if (studentUpdate.getClasses_id() != null) {
                 singleData.put(studentUpdate.getClasses_id().split("--")[1], dataOutputStudent.get(studentUpdate.getClasses_id().split("--")[1]));

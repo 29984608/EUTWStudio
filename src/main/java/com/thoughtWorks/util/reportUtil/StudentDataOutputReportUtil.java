@@ -77,7 +77,7 @@ public class StudentDataOutputReportUtil extends ExcelReportUtil {
             headers.put(studentUpdate.getNo().split("--")[1], studentUpdate.getNo().split("--")[0]);
         }
         if (studentUpdate.getName() != null) {
-//            headers.put(studentUpdate.getName().split("--")[1], studentUpdate.getName().split("--")[0]);
+            headers.put(studentUpdate.getName().split("--")[1], studentUpdate.getName().split("--")[0]);
         }
         if (studentUpdate.getGender() != null) {
             headers.put(studentUpdate.getGender().split("--")[1], studentUpdate.getGender().split("--")[0]);
@@ -89,7 +89,7 @@ public class StudentDataOutputReportUtil extends ExcelReportUtil {
             headers.put(studentUpdate.getDirection_id().split("--")[1], studentUpdate.getDirection_id().split("--")[0]);
         }
         if (studentUpdate.getLevel() != null) {
-//            headers.put(studentUpdate.getLevel().split("--")[1], studentUpdate.getLevel().split("--")[0]);
+            headers.put(studentUpdate.getLevel().split("--")[1], studentUpdate.getLevel().split("--")[0]);
         }
         if (studentUpdate.getClasses_id() != null) {
             headers.put(studentUpdate.getClasses_id().split("--")[1], studentUpdate.getClasses_id().split("--")[0]);
