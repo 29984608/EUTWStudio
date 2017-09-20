@@ -3,6 +3,7 @@ package com.thoughtWorks.util.reportUtil;
 import com.thoughtWorks.entity.StudentUpdate;
 import com.thoughtWorks.util.excelUtil.ExcelReportUtil;
 import org.apache.poi.hssf.usermodel.*;
+import org.apache.poi.ss.util.CellRangeAddress;
 
 import java.util.HashMap;
 import java.util.List;
@@ -19,6 +20,7 @@ public class StudentDataOutputReportUtil extends ExcelReportUtil {
     protected void writeHeaders(HSSFSheet sheet, Map<String, String> headers) {
         this.sheet = sheet;
         row = sheet.createRow(1);
+        row.setHeight((short) 0x190);
 
         int columnIndex = 0;
         for (String key : headers.keySet()) {
@@ -33,14 +35,33 @@ public class StudentDataOutputReportUtil extends ExcelReportUtil {
         try {
 
             rowIndex = 2;
+            int count = 0;
             for (Map<String, Object> department : dataset) {
                 row = sheet.createRow(rowIndex);
-
                 int columnIndex = 0;
                 for (String key : department.keySet()) {
+                    if (department.get(key) != null && department.get(key) != "") {
+                        int strLenth = department.get(key).toString().length();
+                        if (strLenth < 2) {
+                            sheet.setColumnWidth((short) count, (short) 1000);
+                        } else if (strLenth < 8) {
+                            sheet.setColumnWidth((short) count, (short) 2000);
+                        } else if (strLenth < 12) {
+                            sheet.setColumnWidth((short) count, (short) 4000);
+                        } else if (strLenth < 20) {
+                            sheet.setColumnWidth((short) count, (short) 6000);
+                        } else {
+                            sheet.setColumnWidth((short) count, (short) 10000);
+                        }
+                    }
                     cell = row.createCell(columnIndex);
-                    cell.setCellValue(new HSSFRichTextString(department.get(key) + ""));
+                    if (department.get(key) != null && department.get(key) != "请选择") {
+                        cell.setCellValue(new HSSFRichTextString(department.get(key) + ""));
+                    } else {
+                        cell.setCellValue(new HSSFRichTextString(""));
+                    }
                     columnIndex++;
+                    count++;
                 }
                 rowIndex++;
             }
@@ -48,6 +69,7 @@ public class StudentDataOutputReportUtil extends ExcelReportUtil {
             e.printStackTrace();
         }
     }
+
 
     public Map<String, String> setTheHeader(StudentUpdate studentUpdate) {
         Map<String, String> headers = new HashMap<>();

@@ -237,7 +237,7 @@
                             </div>
                         </div>
                             &nbsp;&nbsp;&nbsp;
-                                <a class="layui-btn" onclick="currentIndex = 1;dataOutput.showDataOutput(searchInfo)" style="float: right;"><i class="layui-icon">&#xe615;</i>导出数据</a>
+                                <a class="layui-btn" onclick="currentIndex = 1;dataOutput.showDataOutput(searchInfo)" style="float: right;display: none" id="showButtonByDataOutput"><i class="layui-icon">&#xe615;</i>导出数据</a>
                     </div>
 
                 </blockquote>
@@ -422,6 +422,7 @@
             },
 
             list: function () {
+                $("#showButtonByDataOutput").show();
                 let department_search = $("#department_search").val();
                 let level_search = $("#level_search").val();
                 let direction_search = $("#direction_search").val();

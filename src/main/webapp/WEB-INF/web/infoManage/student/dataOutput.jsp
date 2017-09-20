@@ -114,7 +114,7 @@
         </div>
         <div class="layui-form-item">
             <div class="layui-input-block" style="margin-left: 0">
-                <a class="layui-btn layui-btn-primary" onclick="dataOutput.submitData(searchData)">导出Excel</a>
+                <a class="layui-btn" onclick="dataOutput.submitData(searchData)">导出Excel</a>
                 <button type="reset" class="layui-btn layui-btn-primary">重置</button>
             </div>
         </div>
