@@ -30,11 +30,10 @@
                 </div>
             </div>
                 <textarea class="layui-textarea" id="LAY_demo1"  style="display: none">
-                    请输入内容
                 </textarea>
 
                 <div class="site-demo-button" style="margin-top: 20px;">
-                    <button class="layui-btn site-demo-layedit" data-type="content">发布</button>
+                    <p class="layui-btn site-demo-layedit" data-type="content">发布</p>
                 </div>
 
         </div>
@@ -54,7 +53,6 @@
 
         notice = {
             add: function (title, content) {
-                alert(888)
                 var date = new Date();
                 var year = date.getFullYear();
                 var month = date.getMonth()+1;
@@ -63,12 +61,16 @@
                 var minute = date.getMinutes();
                 var second = date.getSeconds();
                 let time = year+'年'+month+'月'+day+'日 '+hour+':'+minute+':'+second
-                $.post(baseUrl + "/notice/update", {
+                $.post(baseUrl + "/notice/add", {
                     name: "<shiro:principal property="name"/>",
                     title:title,
                     content:content,
                     time:time
                     }, function (data) {
+                    layer.msg(data.msg);
+                    if (data.msg) {
+                        setTimeout("location.reload()", 1000);
+                    }
                 })
             }
         }
@@ -104,15 +106,10 @@
         //编辑器外部操作
         var active = {
             content: function(){
-                alert(layedit.getContent(index) ); //获取编辑器内容
+                var content = layedit.getContent(index);
+                alert(content); //获取编辑器内容
                 alert($("#title").val());
-                notice.add($("#title").val(), layedit.getContent(index));
-            }
-            ,text: function(){
-                alert(layedit.getText(index)); //获取编辑器纯文本内容
-            }
-            ,selection: function(){
-                alert(layedit.getSelection(index));
+                notice.add($("#title").val(), content);
             }
         };
 
@@ -121,11 +118,6 @@
             active[type] ? active[type].call(this) : '';
         });
 
-        //自定义工具栏
-        layedit.build('LAY_demo2', {
-            tool: ['face', 'link', 'unlink', '|', 'left', 'center', 'right']
-            ,height: 100
-        })
     });
 </script>
 
