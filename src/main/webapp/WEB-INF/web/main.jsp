@@ -84,7 +84,7 @@
             list: function () {
                 $.post(baseUrl + "/notice/list", function (data) {
                     console.log(data);
-                    layer.msg(data.msg);
+//                    layer.msg(data.msg);
                     notice.showMassage(data.data);
                     element.init();
                 });
