@@ -29,12 +29,14 @@ public class StudentInfoReportServiceImpl implements StudentInfoReportService {
         headers.put("level", "年级");
         headers.put("directionName", "就业方向");
         headers.put("classesName", "班级名称");
+        headers.put("teacherName", "职业导师");
         for (String type : types)
             headers.put(type, type);
         String fileName = "高职学院学籍管理班级人数统计报表.xls";
 
         String path = request.getServletContext().getRealPath("images/temp") + "/" + fileName;
         File file = new File(path);
+        System.out.println(this.studentInfoList());
         new StudentInfoReportUtil().exportExcel(headers, this.studentInfoList(), file, fileName.substring(0, fileName.lastIndexOf(".")));
 
         return file;
@@ -82,6 +84,7 @@ public class StudentInfoReportServiceImpl implements StudentInfoReportService {
     private void createDepartmentName(List<Map<String, Object>> studentInfoReport, Map<String, Object> student) {
         Map<String, Object> department = new HashMap<>();
         department.put("departmentName", student.get("departmentName"));
+        department.put("teacherName", student.get("teacherName"));
         department.put("levels", createDepartmentLevels());
 
         studentInfoReport.add(department);
@@ -174,6 +177,7 @@ public class StudentInfoReportServiceImpl implements StudentInfoReportService {
     private void createClassess(List<Map<String, Object>> classess, Map<String, Object> student) {
         Map<String, Object> classes = new HashMap<>();
         classes.put("classesName", student.get("classesName"));
+        classes.put("teacherName", student.get("teacherName"));
         classes.put("reportCount", new StudentInfoReportStatistic());
 
         classess.add(classes);

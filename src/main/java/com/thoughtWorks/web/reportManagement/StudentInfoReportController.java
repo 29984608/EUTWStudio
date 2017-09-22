@@ -34,6 +34,7 @@ public class StudentInfoReportController {
         try {
             List<Map<String, Object>> data = studentInfoReportService.studentInfoList();
 
+            System.out.println("00000000000000000000000"+studentInfoReportService.studentInfoList());
             return Result.success(data, Constant.SEARCH_SUCCESS);
         } catch (Exception e) {
             e.printStackTrace();

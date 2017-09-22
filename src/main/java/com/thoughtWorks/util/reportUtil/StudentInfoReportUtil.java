@@ -2,10 +2,12 @@ package com.thoughtWorks.util.reportUtil;
 
 import com.thoughtWorks.entity.StudentInfoReportStatistic;
 import com.thoughtWorks.util.excelUtil.ExcelReportUtil;
+import org.apache.poi.hssf.record.ObjRecord;
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.util.CellRangeAddress;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -14,7 +16,7 @@ public class StudentInfoReportUtil extends ExcelReportUtil {
     private HSSFRow row;
     private HSSFCell cell;
     private int rowIndex;
-    private String[] types = {"班级人数", "合作企业", "自主实习", "创新创业", "专升本", "其它", "在读", "休学", "入伍","留级", "退学", "流失", "复学", "欠费"};
+    private String[] types = {"班级人数", "合作企业", "自主实习", "创新创业", "专升本", "其它", "在读", "休学", "入伍", "留级", "退学", "流失", "复学", "欠费"};
 
     @Override
     protected void writeHeaders(HSSFSheet sheet, Map<String, String> headers) {
@@ -38,12 +40,15 @@ public class StudentInfoReportUtil extends ExcelReportUtil {
             sheet.setColumnWidth((short) 3, (short) 4000);
 
             for (Map<String, Object> department : dataset) {
+                System.out.println("977986310" + department.get("teacherName"));
                 row = sheet.createRow(rowIndex);
                 cell = row.createCell(0);
                 cell.setCellValue(new HSSFRichTextString(department.get("departmentName").toString()));
                 setAlignmentCenter(createCellStyle(), cell);
                 int rowspan = getDepartmentRowspan(department);
                 mergeRows(rowspan, 0, 0);
+
+//                fillTheProfessionalMentor(dataset);
 
                 fillDepartmentLevels((List<Map<String, Object>>) department.get("levels"));
             }
@@ -52,9 +57,20 @@ public class StudentInfoReportUtil extends ExcelReportUtil {
         }
     }
 
+    private void fillTheProfessionalMentor(List<Map<String, Object>> dataset) {
+        for (Map<String, Object> teacherName : dataset) {
+            row = sheet.createRow(rowIndex);
+            cell = row.createCell(4);
+            cell.setCellValue(new HSSFRichTextString(teacherName.get("teacherName").toString()));
+            setAlignmentCenter(createCellStyle(), cell);
+            int rowspan = 4;
+            mergeRows(rowspan, 4, 4);
+        }
+    }
+
     private void fillDepartmentLevels(List<Map<String, Object>> levels) {
         for (Map<String, Object> level : levels) {
-            if(((List)(level.get("directions"))).size() == 0) continue;
+            if (((List) (level.get("directions"))).size() == 0) continue;
             cell = row.createCell(1);
             cell.setCellValue(new HSSFRichTextString(level.get("level").toString()));
             setAlignmentCenter(createCellStyle(), cell);
@@ -68,7 +84,7 @@ public class StudentInfoReportUtil extends ExcelReportUtil {
     private void fillLevelDirection(List<Map<String, Object>> directions) {
 
         for (Map<String, Object> direction : directions) {
-            if(((List)(direction.get("classess"))).size() == 0) continue;
+            if (((List) (direction.get("classess"))).size() == 0) continue;
             cell = row.createCell(2);
             cell.setCellValue(new HSSFRichTextString(direction.get("directionName").toString()));
             setAlignmentCenter(createCellStyle(), cell);
@@ -85,7 +101,9 @@ public class StudentInfoReportUtil extends ExcelReportUtil {
             int column = 3;
             cell = row.createCell(column++);
             cell.setCellValue(new HSSFRichTextString(classes.get("classesName").toString()));
-            Map<String,Integer>  reportCount = ((StudentInfoReportStatistic) classes.get("reportCount")).getStatisticCount();
+            cell = row.createCell(column++);
+            cell.setCellValue(new HSSFRichTextString(classes.get("teacherName").toString()));
+            Map<String, Integer> reportCount = ((StudentInfoReportStatistic) classes.get("reportCount")).getStatisticCount();
             for (String key : types) {
                 cell = row.createCell(column++);
                 cell.setCellValue(new HSSFRichTextString(reportCount.get(key).toString()));
@@ -120,6 +138,12 @@ public class StudentInfoReportUtil extends ExcelReportUtil {
 
     private int getDirectionRowspan(Map<String, Object> direction) {
         return ((List) (direction.get("classess"))).size();
+    }
+
+    private int getTeacherRowspan(Map<String, Object> teacherName) {
+        int result = 0;
+
+        return ((List) (teacherName.get("teacherName"))).size();
     }
 
 

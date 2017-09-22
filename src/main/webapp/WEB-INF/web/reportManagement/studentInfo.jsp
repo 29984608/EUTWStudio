@@ -31,10 +31,11 @@
                 </div>
                 <table class="layui-table">
                     <colgroup>
-                        <col width="160">
+                        <col width="170">
                         <col width="70">
                         <col width="160">
                         <col width="160">
+                        <col width="100">
                         <col width="70">
                         <col width="70">
                         <col width="70">
@@ -46,7 +47,7 @@
                         <col width="70">
                         <col width="70">
                         <col width="70">
-                        <col width="120">
+                        <col width="100">
                         <col width="70">
                     </colgroup>
                     <thead>
@@ -55,6 +56,7 @@
                         <td>年级</td>
                         <td>就业方向</td>
                         <td>班级名称</td>
+                        <td>职业导师</td>
                         <td>班级人数</td>
                         <td>班级休学</td>
                         <td>班级退学</td>
@@ -91,6 +93,7 @@
         studentInfo = {
             list: function () {
                 $.post(baseUrl + "/studentInfoReport/list", function (data) {
+                    console.log(data.data);
                     if (data.result) {
                         let date = new Date();
                         $("#time").text(date.getFullYear() + " 年 " + (date.getMonth() + 1) + " 月 " + date.getDate() + " 日");
@@ -231,7 +234,8 @@
                                                  <td>` + departments[countDepartments].departmentName + `</td>
                                                  <td>` + departments[countDepartments].levels[countLevels].level + `</td>
                                                  <td>` + departments[countDepartments].levels[countLevels].directions[countDirections].directionName + `</td>
-                                                 <td>` + departments[countDepartments].levels[countLevels].directions[countDirections].classess[countClass].classesName + `</td>`;
+                                                 <td>` + departments[countDepartments].levels[countLevels].directions[countDirections].classess[countClass].classesName + `</td>
+                                                 <td>` + departments[countDepartments].teacherName + `</td>`;
                                 _htmlPage += studentInfo.getReportCount(departments[countDepartments].levels[countLevels].directions[countDirections].classess[countClass]["reportCount"]["statisticCount"]) + `</tr>`
                             }
                         }
