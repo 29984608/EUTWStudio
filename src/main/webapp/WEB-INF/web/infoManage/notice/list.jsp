@@ -99,7 +99,6 @@
             ,'right' //右对齐
             ,'link' //超链接
             ,'unlink' //清除链接
-            ,'face' //表情
         ]
         });
 
@@ -107,8 +106,6 @@
         var active = {
             content: function(){
                 var content = layedit.getContent(index);
-                alert(content); //获取编辑器内容
-                alert($("#title").val());
                 notice.add($("#title").val(), content);
             }
         };

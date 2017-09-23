@@ -626,12 +626,34 @@
                     font: "微软雅黑"
                 }
             };
-            pdfmake(content, "西安欧亚学院" + studentInfo.name + "学生档案");
+        pdfmak(content, "西安欧亚学院" + studentInfo.name + "学生档案");
         }
     }
 </script>
 
 <script>
+
+    function pdfmak(content,fileName) {
+        var dd = content;
+
+        pdfMake.fonts = {
+            Roboto: {
+                normal: 'Roboto-Regular.ttf',
+                bold: 'Roboto-Medium.ttf',
+                italics: 'Roboto-Italic.ttf',
+                bolditalics: 'Roboto-Italic.ttf'
+            },
+            微软雅黑: {
+                normal: '微软雅黑.ttf',
+                bold: '微软雅黑.ttf',
+                italics: '微软雅黑.ttf',
+                bolditalics: '微软雅黑.ttf',
+            }
+        };
+        pdfMake.createPdf(dd).download(fileName, function () {
+        });
+    }
+
     function ImageDataURL(urls) {//urls必須是字符串或字符串數組
         this.completenum = 0;
         this.totalnum = 0;
