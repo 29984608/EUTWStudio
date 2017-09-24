@@ -39,7 +39,8 @@
     .layui-elem-quote {
         padding-bottom: 1px;
     }
-    .layui-disabled{
+
+    .layui-disabled {
         background: none;
     }
 
@@ -132,7 +133,8 @@
                         <div class="layui-form-item" style="margin-bottom: 1px;">
                             <div class="layui-form-inline">
                                 <div>
-                                    <label class="layui-form-label" style="font-size: x-small;font-weight: lighter">性别</label>
+                                    <label class="layui-form-label"
+                                           style="font-size: x-small;font-weight: lighter">性别</label>
                                     <div class="layui-input-inline" id="sexQuery" style="width: 250px;">
                                         <input type="radio" name="sexQuery" value="" title="全部" checked="">
                                         <input type="radio" name="sexQuery" value="M" title="男">
@@ -236,8 +238,10 @@
                                 <a class="layui-btn" onclick="currentIndex = 1;student.list()"><i class="layui-icon">&#xe615;</i>搜索</a>
                             </div>
                         </div>
-                            &nbsp;&nbsp;&nbsp;
-                                <a class="layui-btn" onclick="currentIndex = 1;dataOutput.showDataOutput(dataSearchInfo)" style="float: right;display: none" id="showButtonByDataOutput"><i class="layui-icon">&#xe615;</i>导出数据</a>
+                        &nbsp;&nbsp;&nbsp;
+                        <a class="layui-btn" onclick="currentIndex = 1;dataOutput.showDataOutput(dataSearchInfo)"
+                           style="float: right;display: none" id="showButtonByDataOutput"><i
+                                class="layui-icon">&#xe615;</i>导出数据</a>
                     </div>
 
                 </blockquote>
@@ -306,7 +310,7 @@
     let groupActivitiesListInfo;
     let searchLevel;
     let searchInfo;
-    let dataSearchInfo ;
+    let dataSearchInfo;
 
     $(function () {
         //基本信息
@@ -345,6 +349,7 @@
         $("#showButton_addStudentFamilyInfo").attr({disabled: "disabled"});
         </shiro:lacksPermission>
     }
+
     function showExperience() {
         //教育经历
         <shiro:lacksPermission name="student:experience">
@@ -355,6 +360,7 @@
         $("#showButton_addExperienceInfo").attr({disabled: "disabled"});
         </shiro:lacksPermission>
     }
+
     function awardOrPunishment() {
         //荣誉或获奖
         <shiro:lacksPermission name="student:awardOrPunishment">
@@ -365,6 +371,7 @@
         $("#showButton_addAwardOrPunishmentInfo").attr({disabled: "disabled"});
         </shiro:lacksPermission>
     }
+
     function disciplineAndPunishment() {
         //违纪或处分
         <shiro:lacksPermission name="student:disciplineAndPunishment">
@@ -375,6 +382,7 @@
         $("#showButton_addDisciplineAndPunishmentInfo").attr({disabled: "disabled"});
         </shiro:lacksPermission>
     }
+
     function groupActivities() {
         //团学活动
         <shiro:lacksPermission name="student:groupActivites">
@@ -423,7 +431,9 @@
             },
 
             list: function () {
-                $("#showButtonByDataOutput").show();
+                <shiro:hasPermission name="student:updateShowButtonByDataOutput">
+                    $("#showButtonByDataOutput").show();
+                </shiro:hasPermission>
                 let department_search = $("#department_search").val();
                 let level_search = $("#level_search").val();
                 let direction_search = $("#direction_search").val();
@@ -440,7 +450,8 @@
                 let TypeOfAccommodation = $("input[name='TypeOfAccommodation']:checked").val();
                 let studentStatusSearch = $("#student_status_search").val();
                 //搜索条件
-                searchInfo = {currentIndex: currentIndex,
+                searchInfo = {
+                    currentIndex: currentIndex,
                     pageSize: pageSize,
                     departmentId: department_search,
                     level: level_search,
@@ -456,10 +467,12 @@
                     name: name,
                     sex: sex,
                     TypeOfAccommodation: TypeOfAccommodation,
-                    studentStatusSearch: studentStatusSearch}
+                    studentStatusSearch: studentStatusSearch
+                }
 
                 //搜索条件导出报表时，有字段重名
-                dataSearchInfo = {currentIndex: currentIndex,
+                dataSearchInfo = {
+                    currentIndex: currentIndex,
                     pageSize: pageSize,
                     departmentId: department_search,
                     dataLevel: level_search,
@@ -475,7 +488,8 @@
                     dataName: name,
                     sex: sex,
                     TypeOfAccommodation: TypeOfAccommodation,
-                    studentStatusSearch: studentStatusSearch}
+                    studentStatusSearch: studentStatusSearch
+                }
 
 
                 $.ajax({
@@ -545,7 +559,7 @@
 
                 return _html;
             },
-            pdfMake:function (studentNo) {
+            pdfMake: function (studentNo) {
                 $.post(baseUrl + "/student/update", {studentNo: studentNo}, function (data) {
                     printPDF(data);
                 });
@@ -553,7 +567,7 @@
             preview: function (studentNo) {
                 $.post(baseUrl + "/student/update", {studentNo: studentNo}, function (data) {
                     console.log(data);
-                    $("#pdfmake").html("").append(`<button class='layui-btn ' style='float: right' onclick='student.pdfMake(`+data.student[0].no+`)'>
+                    $("#pdfmake").html("").append(`<button class='layui-btn ' style='float: right' onclick='student.pdfMake(` + data.student[0].no + `)'>
                             <i class='layui-icon'>&#xe60a;</i>导出 PDF
                             </button>`);
                     $("#phone").html(data.student[0].student_contact_method);
@@ -572,14 +586,14 @@
                     $("#studentClassify").html(data.student[0].student_classify);
                     $("#preSchoolName").html(data.student[0].pre_school_name);
 
-                    if(data.student[0].Pre_admissionOrReward === "无"){
+                    if (data.student[0].Pre_admissionOrReward === "无") {
                         $("#PreAdmissionOrReward").html("无");
-                    }else {
+                    } else {
                         $("#PreAdmissionOrReward").html(data.student[0].Pre_admissionOrRewardText);
                     }
-                    if(data.student[0].partyOrGroupOrganization === "无"){
+                    if (data.student[0].partyOrGroupOrganization === "无") {
                         $("#party_OrGroupOrganization").html("无");
-                    }else {
+                    } else {
                         $("#party_OrGroupOrganization").html(data.student[0].partyOrGroupOrganizationText);
                     }
                     $("#preSchoolName").html(data.student[0].pre_school_name);
@@ -607,46 +621,46 @@
                     $("#weight").text("").append(data.student[0].weight);
                     $("#health_status").text("").append(data.student[0].health_status);
 
-                    if(data.student[0].first_time_medical_insurance == undefined){
+                    if (data.student[0].first_time_medical_insurance == undefined) {
                         $("#first_time_medical_insurance_preview").html("");
-                    }else{
-                        $("#first_time_medical_insurance_preview").text("").append(data.student[0].first_time_medical_insurance+"年");
+                    } else {
+                        $("#first_time_medical_insurance_preview").text("").append(data.student[0].first_time_medical_insurance + "年");
                     }
-                    if(data.student[0].second_time_medical_insurance == undefined){
+                    if (data.student[0].second_time_medical_insurance == undefined) {
                         $("#second_time_medical_insurance_preview").html("");
-                    }else {
+                    } else {
                         $("#second_time_medical_insurance_preview").text("").append(data.student[0].second_time_medical_insurance + "年");
                     }
-                    if(data.student[0].third_time_medical_insurance == undefined){
+                    if (data.student[0].third_time_medical_insurance == undefined) {
                         $("#third_time_medical_insurance_preview").html("");
-                    }else {
+                    } else {
                         $("#third_time_medical_insurance_preview").text("").append(data.student[0].third_time_medical_insurance + "年");
                     }
-                    if(data.student[0].first_medical_insurance == undefined){
+                    if (data.student[0].first_medical_insurance == undefined) {
                         $("#first_medical_insurance_preview").html("");
-                    }else {
+                    } else {
                         $("#first_medical_insurance_preview").text("").append("（" + data.student[0].first_medical_insurance + "）");
                     }
-                    if(data.student[0].second_medical_insurance == undefined){
+                    if (data.student[0].second_medical_insurance == undefined) {
                         $("#second_medical_insurance_preview").html("");
-                    }else {
+                    } else {
                         $("#second_medical_insurance_preview").text("").append("（" + data.student[0].second_medical_insurance + "）");
                     }
-                    if(data.student[0].third_medical_insurance == undefined){
+                    if (data.student[0].third_medical_insurance == undefined) {
                         $("#third_medical_insurance_preview").html("");
-                    }else {
+                    } else {
                         $("#third_medical_insurance_preview").text("").append("（" + data.student[0].third_medical_insurance + "）");
                     }
 
                     $("#scholarship").html("<tr><th>年份</th><th>奖学金</th><th>助学金</th></tr>");
-                    if(data.student[0].first_year !== undefined && data.student[0].first_year !== "" ){
-                        $("#scholarship").append("<tr><th>"+data.student[0].first_year+"</th><th>"+data.student[0].first_scholarship+"</th><th>"+data.student[0].first_stipend+"</th></tr>");
+                    if (data.student[0].first_year !== undefined && data.student[0].first_year !== "") {
+                        $("#scholarship").append("<tr><th>" + data.student[0].first_year + "</th><th>" + data.student[0].first_scholarship + "</th><th>" + data.student[0].first_stipend + "</th></tr>");
                     }
-                    if(data.student[0].second_year !== undefined && data.student[0].second_year !== ""){
-                        $("#scholarship").append("<tr><th>"+data.student[0].second_year+"</th><th>"+data.student[0].second_scholarship+"</th><th>"+data.student[0].second_stipend+"</th></tr>");
+                    if (data.student[0].second_year !== undefined && data.student[0].second_year !== "") {
+                        $("#scholarship").append("<tr><th>" + data.student[0].second_year + "</th><th>" + data.student[0].second_scholarship + "</th><th>" + data.student[0].second_stipend + "</th></tr>");
                     }
-                    if(data.student[0].third_year !== undefined && data.student[0].third_year !== ""){
-                        $("#scholarship").append("<tr><th>"+data.student[0].third_year+"</th><th>"+data.student[0].third_scholarship+"</th><th>"+data.student[0].third_stipend+"</th></tr>");
+                    if (data.student[0].third_year !== undefined && data.student[0].third_year !== "") {
+                        $("#scholarship").append("<tr><th>" + data.student[0].third_year + "</th><th>" + data.student[0].third_scholarship + "</th><th>" + data.student[0].third_stipend + "</th></tr>");
                     }
                     $("#is_marry").text("").append(data.student[0].is_marry);
                     $("#family_zip_code").text("").append(data.student[0].family_zip_code);
@@ -694,90 +708,90 @@
                     $("#payment_status_forth_year").html(data.student[0].payment_status_forth_year);
                     $("#payment_status_fifth_year").html(data.student[0].payment_status_fifth_year);
                     $("#payment_status_sixth_year").html(data.student[0].payment_status_sixth_year);
-                    $("#arrears_first_year").html("："+data.student[0].arrears_first_year+"元");
-                    $("#arrears_second_year").html("："+data.student[0].arrears_second_year+"元");
-                    $("#arrears_third_year").html("："+data.student[0].arrears_third_year+"元");
-                    $("#arrears_forth_year").html("："+data.student[0].arrears_forth_year+"元");
-                    $("#arrears_fifth_year").html("："+data.student[0].arrears_fifth_year+"元");
-                    $("#arrears_sixth_year").html("："+data.student[0].arrears_sixth_year+"元");
-                    if(data.student[0].payment_status_first_year === "欠费"){
-                        $("#arrears_first_year").css("display","inline");
-                    }else{
-                        $("#arrears_first_year").css("display","none");
+                    $("#arrears_first_year").html("：" + data.student[0].arrears_first_year + "元");
+                    $("#arrears_second_year").html("：" + data.student[0].arrears_second_year + "元");
+                    $("#arrears_third_year").html("：" + data.student[0].arrears_third_year + "元");
+                    $("#arrears_forth_year").html("：" + data.student[0].arrears_forth_year + "元");
+                    $("#arrears_fifth_year").html("：" + data.student[0].arrears_fifth_year + "元");
+                    $("#arrears_sixth_year").html("：" + data.student[0].arrears_sixth_year + "元");
+                    if (data.student[0].payment_status_first_year === "欠费") {
+                        $("#arrears_first_year").css("display", "inline");
+                    } else {
+                        $("#arrears_first_year").css("display", "none");
                     }
-                    if(data.student[0].payment_status_second_year === "欠费"){
-                        $("#arrears_second_year").css("display","inline");
-                    }else{
-                        $("#arrears_second_year").css("display","none");
+                    if (data.student[0].payment_status_second_year === "欠费") {
+                        $("#arrears_second_year").css("display", "inline");
+                    } else {
+                        $("#arrears_second_year").css("display", "none");
                     }
 
-                    if(data.student[0].payment_status_third_year === "欠费"){
-                        $("#arrears_third_year").css("display","inline");
-                    }else{
-                        $("#arrears_third_year").css("display","none");
+                    if (data.student[0].payment_status_third_year === "欠费") {
+                        $("#arrears_third_year").css("display", "inline");
+                    } else {
+                        $("#arrears_third_year").css("display", "none");
                     }
-                    if(data.student[0].payment_status_forth_year === "欠费"){
-                        $("#arrears_forth_year").css("display","inline");
-                    }else{
-                        $("#arrears_forth_year").css("display","none");
+                    if (data.student[0].payment_status_forth_year === "欠费") {
+                        $("#arrears_forth_year").css("display", "inline");
+                    } else {
+                        $("#arrears_forth_year").css("display", "none");
                     }
-                    if(data.student[0].payment_status_fifth_year === "欠费"){
-                        $("#arrears_fifth_year").css("display","inline");
-                    }else{
-                        $("#arrears_fifth_year").css("display","none");
+                    if (data.student[0].payment_status_fifth_year === "欠费") {
+                        $("#arrears_fifth_year").css("display", "inline");
+                    } else {
+                        $("#arrears_fifth_year").css("display", "none");
                     }
-                    if(data.student[0].payment_status_sixth_year === "欠费"){
-                        $("#arrears_sixth_year").css("display","inline");
-                    }else{
-                        $("#arrears_sixth_year").css("display","none");
+                    if (data.student[0].payment_status_sixth_year === "欠费") {
+                        $("#arrears_sixth_year").css("display", "inline");
+                    } else {
+                        $("#arrears_sixth_year").css("display", "none");
                     }
 
 //                    $("#area").html(data.student[0].area);
 //                    $("#floor").html(data.student[0].floor);
 //                    $("#room").html(data.student[0].room);
                     $("#hard_type").html(data.student[0].hard_type);
-                    if(data.student[0].stay_type ==="1"){
+                    if (data.student[0].stay_type === "1") {
                         $("#stay_type").html("校内");
-                        $("#DormitoryInformation").html("宿舍位置："+data.student[0].area+"&nbsp;-&nbsp;"+data.student[0].floor+"&nbsp;-&nbsp;"+data.student[0].room+"房间");
-                    }else if(data.student[0].stay_type ==="2"){
+                        $("#DormitoryInformation").html("宿舍位置：" + data.student[0].area + "&nbsp;-&nbsp;" + data.student[0].floor + "&nbsp;-&nbsp;" + data.student[0].room + "房间");
+                    } else if (data.student[0].stay_type === "2") {
                         $("#stay_type").html("校外");
-                        $("#DormitoryInformation").html("校外住址信息："+data.student[0].off_school_stay_address+"&nbsp;&nbsp;&nbsp;&nbsp;联系人："+data.student[0].updateOffCampusContactName+"&nbsp;&nbsp;&nbsp;&nbsp;联系人电话："+data.student[0].updateOffCampusContactPhone);
-                    }else {
+                        $("#DormitoryInformation").html("校外住址信息：" + data.student[0].off_school_stay_address + "&nbsp;&nbsp;&nbsp;&nbsp;联系人：" + data.student[0].updateOffCampusContactName + "&nbsp;&nbsp;&nbsp;&nbsp;联系人电话：" + data.student[0].updateOffCampusContactPhone);
+                    } else {
                         $("#stay_type").html("暂无");
                         $("#DormitoryInformation").html("住址信息：暂无");
                     }
 
                     $("#is_out").html(data.student[0].is_out);
-                    if(data.student[0].religion === "无"){
+                    if (data.student[0].religion === "无") {
                         $("#religion").html("无");
-                    }else{
+                    } else {
                         $("#religion").html(data.student[0].religionText);
                     }
-                    if( data.student[0].political_status === "请选择"){
+                    if (data.student[0].political_status === "请选择") {
                         $("#political_status").text("暂无");
 
-                    }else {
+                    } else {
                         $("#political_status").html(data.student[0].political_status);
                     }
 
                     //获奖与荣誉
                     $("#own_punishment").text("");
                     for (var i = 0; i < data.ownPunishment.length; i++) {
-                        $("#own_punishment").append("<tr><th>" + data.ownPunishment[i].date + " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; " + data.ownPunishment[i].centent + "</th><th>证明人："+data.ownPunishment[i].witness+"</th></tr>");
+                        $("#own_punishment").append("<tr><th>" + data.ownPunishment[i].date + " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; " + data.ownPunishment[i].centent + "</th><th>证明人：" + data.ownPunishment[i].witness + "</th></tr>");
                     }
                     $("#t_discipline_and_punishment").html("<tr><th>时间</th><th> 类别</th><th> 行为</th><th> 级别</th><th> 证明人</th><th> 是否撤销</th></tr>");
                     for (var i = 0; i < data.disciplineAndPunishment.length; i++) {
                         let revokeDiscipline = "";
-                        if(data.disciplineAndPunishment[i].revokeDiscipline === "none"){
+                        if (data.disciplineAndPunishment[i].revokeDiscipline === "none") {
                             revokeDiscipline = "已撤销";
-                        }else {
+                        } else {
                             revokeDiscipline = "未撤销";
                         }
-                        $("#t_discipline_and_punishment").append("<tr><th>" + data.disciplineAndPunishment[i].date + " </th><th>" + data.disciplineAndPunishment[i].category + "</th><th>" + data.disciplineAndPunishment[i].behavior + "</th><th>" + data.disciplineAndPunishment[i].rank + "</th><th>" + data.disciplineAndPunishment[i].witness + "</th><th>"+revokeDiscipline+"</th></tr>");
+                        $("#t_discipline_and_punishment").append("<tr><th>" + data.disciplineAndPunishment[i].date + " </th><th>" + data.disciplineAndPunishment[i].category + "</th><th>" + data.disciplineAndPunishment[i].behavior + "</th><th>" + data.disciplineAndPunishment[i].rank + "</th><th>" + data.disciplineAndPunishment[i].witness + "</th><th>" + revokeDiscipline + "</th></tr>");
                     }
                     $("#t_group_activities").html("<tr><th>时间</th><th> 类别</th><th> 学时</th><th> 名称</th><th> 证明人</th></tr>");
                     for (var i = 0; i < data.groupActivities.length; i++) {
-                        $("#t_group_activities").append("<tr><th>" + data.groupActivities[i].date + " </th><th>" + data.groupActivities[i].types + "</th><th>" + data.groupActivities[i].hours+ "</th><th>" +data.groupActivities[i].heading + "</th><th>" + data.groupActivities[i].witness + "</th></tr>");
+                        $("#t_group_activities").append("<tr><th>" + data.groupActivities[i].date + " </th><th>" + data.groupActivities[i].types + "</th><th>" + data.groupActivities[i].hours + "</th><th>" + data.groupActivities[i].heading + "</th><th>" + data.groupActivities[i].witness + "</th></tr>");
                     }
                 });
                 layer.open({
@@ -788,13 +802,13 @@
                 });
 
             },
-            studentUpdate: function (studentName, studentNo,level) {
+            studentUpdate: function (studentName, studentNo, level) {
                 //当前搜索条件下的年级
                 searchLevel = level;
                 $("input[type='radio']").removeAttr("checked");
                 $.ajax({
                     url: "${baseurl}/student/studentUpdate",
-                    data: {studentNo: studentNo,searchLevel:searchLevel},
+                    data: {studentNo: studentNo, searchLevel: searchLevel},
                     success: function (data) {
                         if (data.result) {
 
@@ -891,10 +905,10 @@
                             $("#Identity_card_address").val(studentList.idcard_address);
 
                             //党派或团体组织
-                            $("#partyOrGroupOrganization").find("input[value='" + studentList.partyOrGroupOrganization + "']").prop({checked:true});
+                            $("#partyOrGroupOrganization").find("input[value='" + studentList.partyOrGroupOrganization + "']").prop({checked: true});
                             $("#partyOrGroupOrganizationText").val(studentList.partyOrGroupOrganizationText);
                             //入学前受过何奖励或处分
-                            $("#Pre_admissionOrReward").find("input[value='" + studentList.Pre_admissionOrReward + "']").prop({checked:true});
+                            $("#Pre_admissionOrReward").find("input[value='" + studentList.Pre_admissionOrReward + "']").prop({checked: true});
                             $("#Pre_admissionOrRewardText").val(studentList.Pre_admissionOrRewardText);
 
                             $("#detailedAddresses").val(studentList.actual_address);
@@ -944,9 +958,9 @@
                             form.render();
 
                             $("input[type='radio'][name='student_type1'][value='" + studentList.student_type + "']").attr("checked", "checked");
-                            if(studentList.student_type == "高考录取"){
+                            if (studentList.student_type == "高考录取") {
                                 $("#upadte_SAT_score").val(studentList.sat_score);
-                            }else {
+                            } else {
                                 $("#show_SAT_score").hide();
                             }
                             $("#pre_school_work").val(studentList.pre_school_work);
@@ -1063,16 +1077,16 @@
                                 }
                             }
                             //奖助学金年份
-                                    $("#first_scholarship_particularYear").html(`<option value=""></option>` + loadOptionsHtmlToYear(studentList.level,studentList.first_year));
-                                    $("#second_scholarship_particularYear").html(`<option value=""></option>` + loadOptionsHtmlToYear(studentList.level,studentList.second_year));
-                                    $("#third_scholarship_particularYear").html(`<option value=""></option>` + loadOptionsHtmlToYear(studentList.level,studentList.third_year));
+                            $("#first_scholarship_particularYear").html(`<option value=""></option>` + loadOptionsHtmlToYear(studentList.level, studentList.first_year));
+                            $("#second_scholarship_particularYear").html(`<option value=""></option>` + loadOptionsHtmlToYear(studentList.level, studentList.second_year));
+                            $("#third_scholarship_particularYear").html(`<option value=""></option>` + loadOptionsHtmlToYear(studentList.level, studentList.third_year));
                             //医保年份
-                                    $("#first_time_medical_insurance").html(`<option value=""></option>` + loadOptionsHtmlTomedicalInsurance(studentList.level,studentList.first_time_medical_insurance));
-                                    $("#second_time_medical_insurance").html(`<option value=""></option>` + loadOptionsHtmlTomedicalInsurance(studentList.level,studentList.second_time_medical_insurance));
-                                    $("#third_time_medical_insurance").html(`<option value=""></option>` + loadOptionsHtmlTomedicalInsurance(studentList.level,studentList.third_time_medical_insurance));
-                                    $("#first_medical_insurance").find("input[value=" + studentList.first_medical_insurance + "]").prop('checked', 'true');
-                                    $("#second_medical_insurance").find("input[value=" + studentList.second_medical_insurance + "]").prop('checked', 'true');
-                                    $("#third_medical_insurance").find("input[value=" + studentList.third_medical_insurance + "]").prop('checked', 'true');
+                            $("#first_time_medical_insurance").html(`<option value=""></option>` + loadOptionsHtmlTomedicalInsurance(studentList.level, studentList.first_time_medical_insurance));
+                            $("#second_time_medical_insurance").html(`<option value=""></option>` + loadOptionsHtmlTomedicalInsurance(studentList.level, studentList.second_time_medical_insurance));
+                            $("#third_time_medical_insurance").html(`<option value=""></option>` + loadOptionsHtmlTomedicalInsurance(studentList.level, studentList.third_time_medical_insurance));
+                            $("#first_medical_insurance").find("input[value=" + studentList.first_medical_insurance + "]").prop('checked', 'true');
+                            $("#second_medical_insurance").find("input[value=" + studentList.second_medical_insurance + "]").prop('checked', 'true');
+                            $("#third_medical_insurance").find("input[value=" + studentList.third_medical_insurance + "]").prop('checked', 'true');
                             //职业导师
                             let update_career_mentor1 = teacherList.filter(item => item.classify === "职业导师");
                             $("#update_career_mentor").html("").append(`<option value=""></option>` + loadOptionsHtmlToTeacher(update_career_mentor1, studentList.teacher_id));
@@ -1440,11 +1454,11 @@
                 }
 
                 let this_updateStudent_disciplineAndPunishment = $(".this_updateStudent_disciplineAndPunishment");
-                for(let i = 0;i<disciplineAndPunishmentList.length;i++){
-                   if(disciplineAndPunishmentList[i].revokeDiscipline == "none"){
-                       $(this_updateStudent_disciplineAndPunishment[i]).css({background: "#A9A9A9"});
-                       $(this_updateStudent_disciplineAndPunishment[i]).find("button:last").css({display:"none"});
-                   }
+                for (let i = 0; i < disciplineAndPunishmentList.length; i++) {
+                    if (disciplineAndPunishmentList[i].revokeDiscipline == "none") {
+                        $(this_updateStudent_disciplineAndPunishment[i]).css({background: "#A9A9A9"});
+                        $(this_updateStudent_disciplineAndPunishment[i]).find("button:last").css({display: "none"});
+                    }
                 }
 
             },
@@ -1621,10 +1635,10 @@
                         {
                             studentNo: studentNo,
                             date: dateDisciplineAndPunishment,
-                            category:category,
-                            behavior:behavior,
-                            rank:rank,
-                            witness:witness,
+                            category: category,
+                            behavior: behavior,
+                            rank: rank,
+                            witness: witness,
                         },
                         function (data) {
                             if (data.result) {
@@ -1758,12 +1772,12 @@
                     let studentNo = studentInfo.no;
                     let revokeDiscipline = "none";
                     $.post(baseUrl + "/student/revokeDisciplineAndPunishment",
-                        {id: id, studentNo: studentNo,revokeDiscipline:revokeDiscipline},
+                        {id: id, studentNo: studentNo, revokeDiscipline: revokeDiscipline},
                         function (data) {
                             if (data.result) {
                                 layer.msg("撤销成功!");
-                                $(t).parents("tr").css({background:"#A9A9A9"});
-                                $(t).parents("tr").find("button:last").css({display:"none"});
+                                $(t).parents("tr").css({background: "#A9A9A9"});
+                                $(t).parents("tr").find("button:last").css({display: "none"});
                             }
                         })
                 })
@@ -1785,17 +1799,17 @@
             },
             //当健康状况为其它时，显示输入框
             show_updateOtherHealthStatus: function () {
-                if($("#health").find("input:checked").val()=="其它"){
+                if ($("#health").find("input:checked").val() == "其它") {
                     $("#show_updateOtherHealthStatus").show();
-                }else{
+                } else {
                     $("#show_updateOtherHealthStatus").hide();
                 }
             },
             //当页面加载时，根据单选按钮判断是否显示健康状况的输入框
             showLoad_updateOtherHealthStatus: function () {
-                if($("#health").find("input:checked").val()=="其它"){
+                if ($("#health").find("input:checked").val() == "其它") {
                     $("#show_updateOtherHealthStatus").show();
-                }else{
+                } else {
                     $("#show_updateOtherHealthStatus").hide();
                 }
             },
@@ -1895,18 +1909,18 @@
             },
             //显示党派或团体组织文本输入框
             showPartyOrGroupOrganization: function () {
-                if($("#partyOrGroupOrganization").find("input:checked").val() == "有"){
+                if ($("#partyOrGroupOrganization").find("input:checked").val() == "有") {
                     $("#showPartyOrGroupOrganizationText").show();
-                }else {
+                } else {
                     $("#showPartyOrGroupOrganizationText").hide();
                     $("#partyOrGroupOrganizationText").val("");
                 }
             },
             //显示入学前受过何奖励或处分输入框
             showPre_admissionOrReward: function () {
-                if($("#Pre_admissionOrReward").find("input:checked").val() == "有"){
+                if ($("#Pre_admissionOrReward").find("input:checked").val() == "有") {
                     $("#showPre_admissionOrRewardText").show();
-                }else {
+                } else {
                     $("#showPre_admissionOrRewardText").hide();
                     $("#Pre_admissionOrRewardText").val("");
                 }
@@ -2260,9 +2274,9 @@
                 var first_time_medical_insurance = $("#first_time_medical_insurance").val()
                 var second_time_medical_insurance = $("#second_time_medical_insurance").val()
                 var third_time_medical_insurance = $("#third_time_medical_insurance").val()
-                var first_medical_insurance =  $('input[name="first_medical_insurance"]:checked').val();
-                var second_medical_insurance =  $('input[name="second_medical_insurance"]:checked').val();
-                var third_medical_insurance =  $('input[name="third_medical_insurance"]:checked').val();
+                var first_medical_insurance = $('input[name="first_medical_insurance"]:checked').val();
+                var second_medical_insurance = $('input[name="second_medical_insurance"]:checked').val();
+                var third_medical_insurance = $('input[name="third_medical_insurance"]:checked').val();
 
 
                 layer.confirm('确定修改？', {icon: 3, title: '提示'}, function (index) {
@@ -2376,32 +2390,32 @@
                             third_stipend: third_stipend,
 
                             //荣誉与获奖
-                            updateStudent_Award_or_punishment_date_list:updateStudent_Award_or_punishment_date_list,
-                            updateStudent_Award_or_punishment_content_list:updateStudent_Award_or_punishment_content_list,
-                            updateStudent_Award_or_punishment_id_list:updateStudent_Award_or_punishment_id_list,
+                            updateStudent_Award_or_punishment_date_list: updateStudent_Award_or_punishment_date_list,
+                            updateStudent_Award_or_punishment_content_list: updateStudent_Award_or_punishment_content_list,
+                            updateStudent_Award_or_punishment_id_list: updateStudent_Award_or_punishment_id_list,
 
                             //违纪与处分
-                            updateStudent_disciplineAndPunishment_date_list:updateStudent_disciplineAndPunishment_date_list,
-                            updateStudent_disciplineAndPunishment_content_list:updateStudent_disciplineAndPunishment_content_list,
-                            updateStudent_disciplineAndPunishment_id_list:updateStudent_disciplineAndPunishment_id_list,
+                            updateStudent_disciplineAndPunishment_date_list: updateStudent_disciplineAndPunishment_date_list,
+                            updateStudent_disciplineAndPunishment_content_list: updateStudent_disciplineAndPunishment_content_list,
+                            updateStudent_disciplineAndPunishment_id_list: updateStudent_disciplineAndPunishment_id_list,
                             //党派或团体组织
-                            partyOrGroupOrganization:partyOrGroupOrganization,
-                            partyOrGroupOrganizationText:partyOrGroupOrganizationText,
+                            partyOrGroupOrganization: partyOrGroupOrganization,
+                            partyOrGroupOrganizationText: partyOrGroupOrganizationText,
                             //入学前受过何奖励或处分
-                            Pre_admissionOrReward:Pre_admissionOrReward,
-                            Pre_admissionOrRewardText:Pre_admissionOrRewardText,
+                            Pre_admissionOrReward: Pre_admissionOrReward,
+                            Pre_admissionOrRewardText: Pre_admissionOrRewardText,
 
                             //团学活动
-                            updateStudent_groupActivities_date_list:updateStudent_groupActivities_date_list,
-                            updateStudent_groupActivities_content_list:updateStudent_groupActivities_content_list,
-                            updateStudent_groupActivities_id_list:updateStudent_groupActivities_id_list,
+                            updateStudent_groupActivities_date_list: updateStudent_groupActivities_date_list,
+                            updateStudent_groupActivities_content_list: updateStudent_groupActivities_content_list,
+                            updateStudent_groupActivities_id_list: updateStudent_groupActivities_id_list,
                             //医保
-                            first_time_medical_insurance:first_time_medical_insurance,
-                            second_time_medical_insurance:second_time_medical_insurance,
-                            third_time_medical_insurance:third_time_medical_insurance,
-                            first_medical_insurance:first_medical_insurance,
-                            second_medical_insurance:second_medical_insurance,
-                            third_medical_insurance:third_medical_insurance
+                            first_time_medical_insurance: first_time_medical_insurance,
+                            second_time_medical_insurance: second_time_medical_insurance,
+                            third_time_medical_insurance: third_time_medical_insurance,
+                            first_medical_insurance: first_medical_insurance,
+                            second_medical_insurance: second_medical_insurance,
+                            third_medical_insurance: third_medical_insurance
                         },
 
                         function (data) {
@@ -2497,7 +2511,7 @@
         }
 
         function showDateDisciplineAndPunishmentBehavior(num) {
-            if (num == 1){
+            if (num == 1) {
                 $("#dateDisciplineAndPunishmentBehavior").html(`
                        <option value=""></option>
                        <option value="">请选择</option>
@@ -2520,7 +2534,7 @@
                     `);
                 form.render();
             }
-            if (num == 2){
+            if (num == 2) {
                 $("#dateDisciplineAndPunishmentBehavior").html(`
                     <option value=""></option>
                     <option value="">请选择</option>
@@ -2618,6 +2632,7 @@
 
             return _html;
         }
+
         function loadOptionsHtmlToYear(year, selectId) {
             let years = parseInt(year);
             let _html = "<option value=''>请选择</option>";
@@ -2627,11 +2642,12 @@
                 } else {
                     _html += `<option value="` + years + `">` + years + `</option>`;
                 }
-                years ++;
+                years++;
             }
 
             return _html;
         }
+
         function loadOptionsHtmlTomedicalInsurance(year, selectId) {
             let years = parseInt(year);
             let _html = "<option value=''>请选择</option>";
@@ -2641,7 +2657,7 @@
                 } else {
                     _html += `<option value="` + years + `">` + years + `</option>`;
                 }
-                years ++;
+                years++;
             }
 
             return _html;
@@ -2660,16 +2676,16 @@
         function queryClassByDirectionIdAndLevel(directionId, level) {
             $.post(baseUrl + "/studentClass/queryClassByDirectionIdAndLevel",
                 {
-                directionId: directionId,
-                level: level
-            },
+                    directionId: directionId,
+                    level: level
+                },
                 function (data) {
-                console.log(data)
-                if (data.result) {
-                    $("#student_class").html("<option value=''>请选择</option>" + loadOptionsHtml(data.data, "-"));
-                }
-                form.render();
-            })
+                    console.log(data)
+                    if (data.result) {
+                        $("#student_class").html("<option value=''>请选择</option>" + loadOptionsHtml(data.data, "-"));
+                    }
+                    form.render();
+                })
         }
 
         //实时监听qq输入动态生成qq邮箱
@@ -2678,12 +2694,13 @@
                 $("#studentEmail").val($(this).val() + "@qq.com");
             })
         }
+
         //监听违纪处分中的类别
-       /* function monitorDiscipByCategory() {
-            form.on('select(show_dateDisciplineAndPunishmentCategory)', function (data) {
-                showDateDisciplineAndPunishmentBehaviorByUpdate(data.value);
-            });
-        }*/
+        /* function monitorDiscipByCategory() {
+             form.on('select(show_dateDisciplineAndPunishmentCategory)', function (data) {
+                 showDateDisciplineAndPunishmentBehaviorByUpdate(data.value);
+             });
+         }*/
 
         $(function () {
 //            student.list();
@@ -2913,7 +2930,10 @@
             //监听系,从而动态获取相应的班级、现专业、就业方向
             form.on('select(student_departments)', function (data) {
                 let department_id = data.value;
-                $.post(baseUrl + "/student/showAutoClassAndProAndDirByDepartment", {departmentId: department_id,searchLevel:searchLevel}, function (resultData) {
+                $.post(baseUrl + "/student/showAutoClassAndProAndDirByDepartment", {
+                    departmentId: department_id,
+                    searchLevel: searchLevel
+                }, function (resultData) {
                     $("#student_class").html(loadOptionsHtmlOfClass(resultData.data.classesList));
                     $("#studentsNowProfessional").html(loadOptionsHtmlOfClass(resultData.data.professionList));
                     $("#employment_direction").html(loadOptionsHtmlOfClass(resultData.data.directionList));

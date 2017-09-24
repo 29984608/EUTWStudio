@@ -5,7 +5,8 @@
         width: 150px;
         border: 1px solid #c7c7c7;
     }
-    .layui-form-checkbox{
+
+    .layui-form-checkbox {
         margin-bottom: 10px;
     }
 </style>
@@ -114,7 +115,7 @@
         </div>
         <div class="layui-form-item">
             <div class="layui-input-block" style="margin-left: 0">
-                <a class="layui-btn" onclick="dataOutput.submitData(searchData)">导出Excel</a>
+                <a class="layui-btn" onclick="dataOutput.submitData(searchData)" id="submitData">导出Excel</a>
                 <button type="reset" class="layui-btn layui-btn-primary">重置</button>
             </div>
         </div>
@@ -141,7 +142,6 @@
                     content: $("#dataView")
                 })
             },
-
             submitData: function (dataSearchInfo) {
                 let no = $("input[name='no']:checked").val() + "--" + $("input[name='no']:checked").prop("name");
                 let name = $("input[name='name']:checked").val() + "--" + $("input[name='name']:checked").prop("name");
@@ -230,54 +230,54 @@
                     pre_school_account_where_station: pre_school_account_where_station,
                     idcard_address: idcard_address,
                     actual_address: actual_address,
-                    teacherId:teacherId,
-                    student_status:student_status,
-                    student_type:student_type,
-                    sat_score:sat_score,
-                    profession_id:profession_id,
-                    department_id:department_id,
-                    origin_profession_id:origin_profession_id,
-                    direction_id:direction_id,
-                    classes_id:classes_id,
-                    group:group,
-                    payment_status_first_year:payment_status_first_year,
-                    payment_status_second_year:payment_status_second_year,
-                    payment_status_third_year:payment_status_third_year,
-                    payment_status_forth_year:payment_status_forth_year,
-                    payment_status_fifth_year:payment_status_fifth_year,
-                    payment_status_sixth_year:payment_status_sixth_year,
-                    practice_learning_type:practice_learning_type,
-                    units_or_projects_practical_type_contact:units_or_projects_practical_type_contact,
-                    units_or_projects_practical_type_contact_phone:units_or_projects_practical_type_contact_phone,
-                    community_teacher_id:community_teacher_id,
-                    political_status:political_status,
-                    height:height,
-                    weight:weight,
-                    blood:blood,
-                    health_status:health_status,
-                    religionText:religionText,
-                    is_out:is_out,
-                    first_time_medical_insurance:first_time_medical_insurance,
-                    first_medical_insurance:first_medical_insurance1,
-                    second_time_medical_insurance:second_time_medical_insurance,
-                    second_medical_insurance:second_medical_insurance1,
-                    third_time_medical_insurance:third_time_medical_insurance,
-                    third_medical_insurance:third_medical_insurance1,
-                    stay_type:stay_type,
-                    write:write,
-                    off_school_stay_address:off_school_stay_address,
-                    updateOffCampusContactName:updateOffCampusContactName,
-                    updateOffCampusContactPhone:updateOffCampusContactPhone,
+                    teacherId: teacherId,
+                    student_status: student_status,
+                    student_type: student_type,
+                    sat_score: sat_score,
+                    profession_id: profession_id,
+                    department_id: department_id,
+                    origin_profession_id: origin_profession_id,
+                    direction_id: direction_id,
+                    classes_id: classes_id,
+                    group: group,
+                    payment_status_first_year: payment_status_first_year,
+                    payment_status_second_year: payment_status_second_year,
+                    payment_status_third_year: payment_status_third_year,
+                    payment_status_forth_year: payment_status_forth_year,
+                    payment_status_fifth_year: payment_status_fifth_year,
+                    payment_status_sixth_year: payment_status_sixth_year,
+                    practice_learning_type: practice_learning_type,
+                    units_or_projects_practical_type_contact: units_or_projects_practical_type_contact,
+                    units_or_projects_practical_type_contact_phone: units_or_projects_practical_type_contact_phone,
+                    community_teacher_id: community_teacher_id,
+                    political_status: political_status,
+                    height: height,
+                    weight: weight,
+                    blood: blood,
+                    health_status: health_status,
+                    religionText: religionText,
+                    is_out: is_out,
+                    first_time_medical_insurance: first_time_medical_insurance,
+                    first_medical_insurance: first_medical_insurance1,
+                    second_time_medical_insurance: second_time_medical_insurance,
+                    second_medical_insurance: second_medical_insurance1,
+                    third_time_medical_insurance: third_time_medical_insurance,
+                    third_medical_insurance: third_medical_insurance1,
+                    stay_type: stay_type,
+                    write: write,
+                    off_school_stay_address: off_school_stay_address,
+                    updateOffCampusContactName: updateOffCampusContactName,
+                    updateOffCampusContactPhone: updateOffCampusContactPhone,
                 }
-                let data = Object.assign(studentDate,dataSearchInfo);
-                location.href = baseUrl + "/dataOutput/list?" + JSON.stringify(data).replace(/:/g,"=").replace(/,/g,"&").replace(/{/g,"").replace(/}/g,"").replace(/"/g,"");
+                let data = Object.assign(studentDate, dataSearchInfo);
+                location.href = baseUrl + "/dataOutput/list?" + JSON.stringify(data).replace(/:/g, "=").replace(/,/g, "&").replace(/{/g, "").replace(/}/g, "").replace(/"/g, "");
             },
             //信息全部选中
             selectAll: function (data) {
-                if ($(data).find("input[name='baseInfo']:checked").val() !== undefined){
-                    $(data).parent().find("input[type='checkbox']").prop("checked",true);
-                }else {
-                    $(data).parent().find("input[type='checkbox']").prop("checked",false);
+                if ($(data).find("input[name='baseInfo']:checked").val() !== undefined) {
+                    $(data).parent().find("input[type='checkbox']").prop("checked", true);
+                } else {
+                    $(data).parent().find("input[type='checkbox']").prop("checked", false);
                 }
                 form.render();
             },
