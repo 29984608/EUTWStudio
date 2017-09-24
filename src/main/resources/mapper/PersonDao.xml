@@ -208,8 +208,7 @@
                 and room.name LIKE #{searchDto.roomId}
             </if>
         </if>
-
-        ORDER BY -student_status DESC ,no
+        ORDER BY department.id DESC,level DESC ,profession.id ASC,direction.id DESC,class.id ASC
         limit #{start},#{pageSize};
     </select>
     <select id="queryStudentsListCount" resultType="long">

@@ -93,7 +93,7 @@
         studentInfo = {
             list: function () {
                 $.post(baseUrl + "/studentInfoReport/list", function (data) {
-                    console.log(data.data);
+                    console.log(data);
                     if (data.result) {
                         let date = new Date();
                         $("#time").text(date.getFullYear() + " 年 " + (date.getMonth() + 1) + " 月 " + date.getDate() + " 日");

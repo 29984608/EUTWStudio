@@ -33,7 +33,7 @@
     <div style="width: 95%;margin: 0 auto">
         <blockquote class="layui-elem-quote" id="admin">尊敬的<span><shiro:principal property="name"/></span>您好<i class="larry-icon larry-guanbi close" id="closeInfo"></i></blockquote>
     </div>
-        <fieldset class="layui-elem-field layui-field-title"style="margin-top: 10px;width: 95%;margin: 0 auto;margin-bottom: 10px;">
+        <fieldset class="layui-elem-field layui-field-title"style="margin-top: 10px;width: 95%;margin: 10 auto;margin-bottom: 10px;">
             <legend>公告栏</legend>
         </fieldset>
     <div class="" style="width: 95%;margin: 0 auto;font-size: 16px; " >
@@ -115,6 +115,10 @@
             notice.list();
         });
 
+    });
+
+    $("#closeInfo").click(function () {
+        $("#admin").hide();
     });
 
 </script>
