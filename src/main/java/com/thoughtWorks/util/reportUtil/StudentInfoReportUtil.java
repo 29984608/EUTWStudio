@@ -40,7 +40,6 @@ public class StudentInfoReportUtil extends ExcelReportUtil {
             sheet.setColumnWidth((short) 3, (short) 4000);
 
             for (Map<String, Object> department : dataset) {
-                System.out.println("977986310" + department.get("teacherName"));
                 row = sheet.createRow(rowIndex);
                 cell = row.createCell(0);
                 cell.setCellValue(new HSSFRichTextString(department.get("departmentName").toString()));
@@ -102,11 +101,16 @@ public class StudentInfoReportUtil extends ExcelReportUtil {
             cell = row.createCell(column++);
             cell.setCellValue(new HSSFRichTextString(classes.get("classesName").toString()));
             cell = row.createCell(column++);
-            cell.setCellValue(new HSSFRichTextString(classes.get("teacherName").toString()));
+            if (null != classes.get("teacherName")) {
+                cell.setCellValue(new HSSFRichTextString(classes.get("teacherName").toString()));
+            }else{
+                cell.setCellValue(new HSSFRichTextString(""));
+
+            }
             Map<String, Integer> reportCount = ((StudentInfoReportStatistic) classes.get("reportCount")).getStatisticCount();
             for (String key : types) {
                 cell = row.createCell(column++);
-                cell.setCellValue(new HSSFRichTextString(reportCount.get(key).toString()));
+                cell.setCellValue(new HSSFRichTextString((reportCount.get(key) == 0 ? "":reportCount.get(key) .toString())));
             }
 
             row = sheet.createRow(++rowIndex);

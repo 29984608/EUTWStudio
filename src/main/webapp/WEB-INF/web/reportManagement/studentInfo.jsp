@@ -207,19 +207,19 @@
             },
             getReportCount: function (reportCount) {
                 return `
-                    <td> ` + reportCount["班级人数"] + ` </td>
-                    <td> ` + reportCount["休学"] + ` </td>
-                    <td> ` + reportCount["退学"] + ` </td>
-                    <td> ` + reportCount["留级"] + ` </td>
-                    <td> ` + reportCount["流失"] + ` </td>
-                    <td> ` + reportCount["复学"] + ` </td>
-                    <td> ` + reportCount["入伍"] + ` </td>
-                    <td> ` + reportCount["欠费"] + ` </td>
-                    <td> ` + reportCount["合作企业"] + ` </td>
-                    <td> ` + reportCount["自主实习"] + ` </td>
-                    <td> ` + reportCount["创新创业"] + ` </td>
-                    <td> ` + reportCount["专升本"] + ` </td>
-                    <td> ` + reportCount["其它"] + ` </td>
+                    <td> ` + (reportCount["班级人数"] == 0?'':reportCount["班级人数"]) + ` </td>
+                    <td> ` + (reportCount["休学"] == 0?'':reportCount["休学"])+ ` </td>
+                    <td> ` + (reportCount["退学"] == 0?'':reportCount["退学"])+ ` </td>
+                    <td> ` + (reportCount["留级"] == 0?'':reportCount["留级"])+ ` </td>
+                    <td> ` + (reportCount["流失"] == 0?'':reportCount["流失"])+ ` </td>
+                    <td> ` + (reportCount["复学"] == 0?'':reportCount["复学"])+ ` </td>
+                    <td> ` + (reportCount["入伍"] == 0?'':reportCount["入伍"])+ ` </td>
+                    <td> ` + (reportCount["欠费"] == 0?'':reportCount["欠费"])+ ` </td>
+                    <td> ` + (reportCount["合作企业"] == 0?'':reportCount["合作企业"])+ ` </td>
+                    <td> ` + (reportCount["自主实习"] == 0?'':reportCount["自主实习"])+ ` </td>
+                    <td> ` + (reportCount["创新创业"] == 0?'':reportCount["创新创业"])+ ` </td>
+                    <td> ` + (reportCount["专升本"] == 0?'':reportCount["专升本"])+ ` </td>
+                    <td> ` + (reportCount["其它"] == 0?'':reportCount["其它"])+ ` </td>
                     `
             },
 
@@ -230,12 +230,13 @@
                     for(let countLevels = 0;countLevels<departments[countDepartments].levels.length;countLevels++){
                         for (let countDirections = 0;countDirections<departments[countDepartments].levels[countLevels].directions.length;countDirections++){
                             for(let countClass = 0;countClass<departments[countDepartments].levels[countLevels].directions[countDirections].classess.length;countClass++){
+                                let teacherName = departments[countDepartments].levels[countLevels].directions[countDirections].classess[countClass].teacherName;
                                 _htmlPage += `<tr>
                                                  <td>` + departments[countDepartments].departmentName + `</td>
                                                  <td>` + departments[countDepartments].levels[countLevels].level + `</td>
                                                  <td>` + departments[countDepartments].levels[countLevels].directions[countDirections].directionName + `</td>
                                                  <td>` + departments[countDepartments].levels[countLevels].directions[countDirections].classess[countClass].classesName + `</td>
-                                                 <td>` + departments[countDepartments].teacherName + `</td>`;
+                                                 <td>` + (teacherName == null?'无':teacherName ) + `</td>`;
                                 _htmlPage += studentInfo.getReportCount(departments[countDepartments].levels[countLevels].directions[countDirections].classess[countClass]["reportCount"]["statisticCount"]) + `</tr>`
                             }
                         }

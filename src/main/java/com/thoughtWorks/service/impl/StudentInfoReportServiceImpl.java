@@ -36,7 +36,6 @@ public class StudentInfoReportServiceImpl implements StudentInfoReportService {
 
         String path = request.getServletContext().getRealPath("images/temp") + "/" + fileName;
         File file = new File(path);
-        System.out.println(this.studentInfoList());
         new StudentInfoReportUtil().exportExcel(headers, this.studentInfoList(), file, fileName.substring(0, fileName.lastIndexOf(".")));
 
         return file;
@@ -47,7 +46,7 @@ public class StudentInfoReportServiceImpl implements StudentInfoReportService {
         List<Map<String, Object>> students = studentInfoReportDao.studentInfoList(getSearchLevels());
 
         if (null == students || students.size() == 0) return new ArrayList<>();
-        return statisticReport(students);
+            return statisticReport(students);
     }
 
     private List<Map<String, Object>> statisticReport(List<Map<String, Object>> students) {
