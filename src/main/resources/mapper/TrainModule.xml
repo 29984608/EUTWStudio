@@ -71,7 +71,6 @@
                      FROM t_course) course ON module.id = course.module_id
           LEFT JOIN (SELECT *
                      FROM t_test_method) testMethod ON testMethod.id = course.method
-        ORDER BY module_id ASC;
     </select>
     <select id="queryTrainModuleTotalCount" resultType="long">
         SELECT count(1)
@@ -164,7 +163,10 @@
             <if test="semester != ''">
                 and semester = #{semester}
             </if>
-            AND t_course.name LIKE #{name} LIMIT #{start}, #{end}
+
+            AND t_course.name LIKE #{name}
+            ORDER BY departmentId DESC,id,moduleName
+            LIMIT #{start}, #{end}
         </where>
 
     </select>

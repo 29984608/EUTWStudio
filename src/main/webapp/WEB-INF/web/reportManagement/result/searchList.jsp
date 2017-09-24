@@ -18,6 +18,13 @@
     <div class="larry-personal">
         <div class="layui-tab">
             <blockquote class="layui-elem-quote mylog-info-tit" style="height: 70px">
+                    <div class="layui-inline">
+                        <div class="layui-input-inline"  style="width: 200px;margin-bottom: 10px;">
+                            <select lay-filter="level" id="level_search">
+                                <option value="">年级</option>
+                            </select>
+                        </div>
+                    </div>
                 <div class="layui-inline">
                     <div class="layui-input-inline" style="width: 200px;margin-bottom: 10px;">
                         <input type="text" name="courseCode" id="course_code_search" lay-verify="title"
@@ -151,6 +158,7 @@
                 let data = {
                     courseCode: $("#course_code_search").val(),
                     courseName: $("#course_name_search").val(),
+                    level: $("#level_search").val(),
                     lessThanScore: $("#less_than_score_score").val(),
                     moreThanScore: $("#more_than_score_score").val(),
                     currentIndex: currentIndex,
@@ -176,21 +184,32 @@
                     }
                 });
             },
+            loadAllLevels: function () {
+                $("#level_search").html(`<option value="">年级</option><option value="">请选择</option>`);
+                let levels = getSearchLevels().reverse();
+
+                levels.forEach(level => {
+                    $("#level_search").append(`<option value="` + level + `">` + level + `</option>`);
+                });
+            },
             exportExcel: function () {
                 let courseCode = $("#course_code_search").val()
                 let courseName = $("#course_name_search").val()
+                let level =$("#level_search").val()
                 let lessThanScore = $("#less_than_score_score").val()
                 let moreThanScore = $("#more_than_score_score").val()
                 location.href = baseUrl + "/result/exportSearchReportExcel?" +
                     "courseCode=" + courseCode +
                     "&courseName=" + courseName +
+                    "&level=" + level +
                     "&lessThanScore=" + lessThanScore +
                     "&moreThanScore=" + moreThanScore
             }
         };
         $(function () {
 //            search_.list();
-
+            search_.loadAllLevels();
+            form.render();
         });
     })
 

@@ -4,6 +4,8 @@ import com.thoughtWorks.dao.TrainModuleDao;
 import com.thoughtWorks.dto.Result;
 import com.thoughtWorks.dto.SearchDto;
 import com.thoughtWorks.entity.Classes;
+import com.thoughtWorks.entity.Notice;
+import com.thoughtWorks.service.NoticeService;
 import com.thoughtWorks.service.TrainModuleService;
 import com.thoughtWorks.util.Constant;
 import com.thoughtWorks.util.PageUtil;
@@ -20,7 +22,7 @@ import java.util.Map;
 @RequestMapping("/notice")
 public class NoticeController {
     @Resource
-    private TrainModuleDao trainModuleDao;
+    private NoticeService noticeService;
 
     @RequestMapping()
     public String index() {
@@ -29,9 +31,9 @@ public class NoticeController {
 
     @RequestMapping("add")
     @ResponseBody
-    public Result addManual(SearchDto searchDto) {
+    public Result addManual(Notice notice) {
         try {
-            trainModuleDao.addClassesManual(searchDto);
+            noticeService.addNotice(notice);
 
             return Result.success(null, Constant.ADD_SUCCESS);
         } catch (Exception e) {
@@ -40,5 +42,29 @@ public class NoticeController {
 
         return Result.failure(null, Constant.ADD_FAILURE);
     }
+
+    @RequestMapping("list")
+    @ResponseBody
+    public Result list() {
+        try {
+            List<Map<String, Object> >   list = noticeService.list();
+            return Result.success(list, Constant.SEARCH_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return Result.failure(null,Constant.SEARCH_FAILURE);
+    }
+    @RequestMapping("delete")
+        @ResponseBody
+        public Result delete(int id) {
+            try {
+                noticeService.delete(id);
+                return Result.success(null, Constant.DELETE_SUCCESS);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return Result.failure(null,Constant.DELETE_FAILURE);
+        }
+
 
 }

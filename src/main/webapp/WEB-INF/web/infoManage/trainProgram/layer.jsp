@@ -107,9 +107,22 @@
                 西安欧亚学院高职学院2017级物业方向人才培养方案
             </legend>
             <div class="layui-field-box">
-                <div  style="margin: 3%  10%">
+                <div  style="margin: 3%  5%">
+
                     <table class="layui-table lay-even " data-name="articleCatData"
                            style="border: 0px solid red">
+                        <colgroup>
+                            <col width="100">
+                            <col width="50">
+                            <col width="100">
+                            <col width="220">
+                            <col width="100">
+                            <col width="100">
+                            <col width="100">
+                            <col width="220">
+                            <col width="100">
+                            <col width="100">
+                        </colgroup>
                         <tbody id="modelCourses-preview">
 
                         </tbody>

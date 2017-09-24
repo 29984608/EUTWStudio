@@ -92,6 +92,7 @@ public class ResultServiceImpl implements ResultService {
         Map<String, Object> data = new HashMap<>();
         data.put("courseCode", searchDto.getCourseCode());
         data.put("courseName", "%" + searchDto.getCourseName() + "%");
+        data.put("level", searchDto.getLevel());
         data.put("lessThanScore", Integer.parseInt("".equals(searchDto.getLessThanScore()) ? "0" : searchDto.getLessThanScore()));
         data.put("moreThanScore", Integer.parseInt("".equals(searchDto.getMoreThanScore()) ? "100" : searchDto.getMoreThanScore()));
         data.put("start", (pageUtil.getCurrentIndex() - 1) * pageUtil.getPageSize());
