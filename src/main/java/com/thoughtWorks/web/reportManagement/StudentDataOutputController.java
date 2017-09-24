@@ -11,9 +11,11 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.File;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 import static com.thoughtWorks.util.FileUtil.getResponseEntity;
 
@@ -55,7 +57,7 @@ public class StudentDataOutputController {
                     singleData.put(studentUpdate.getName().split("--")[1], dataOutputStudent.get(studentUpdate.getName().split("--")[1]));
             }
             if (studentUpdate.getGender() != null) {
-                singleData.put(studentUpdate.getGender().split("--")[1], dataOutputStudent.get(studentUpdate.getGender().split("--")[1]) == "M" ? "男" : "女");
+                singleData.put(studentUpdate.getGender().split("--")[1], dataOutputStudent.get(studentUpdate.getGender().split("--")[1]).toString().equals("M") ? "男" : "女");
             }
             if (studentUpdate.getDepartment_id() != null) {
                 singleData.put(studentUpdate.getDepartment_id().split("--")[1], dataOutputStudent.get("department"));

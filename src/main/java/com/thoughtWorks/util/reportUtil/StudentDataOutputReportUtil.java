@@ -24,7 +24,11 @@ public class StudentDataOutputReportUtil extends ExcelReportUtil {
         int columnIndex = 0;
         for (String key : headers.keySet()) {
             HSSFCell cell = row.createCell(columnIndex++);
-            cell.setCellValue(new HSSFRichTextString(headers.get(key)));
+            if (!key.equals("undefined")) {
+                cell.setCellValue(new HSSFRichTextString(headers.get(key)));
+            }else {
+                cell.setCellValue(new HSSFRichTextString(""));
+            }
         }
         setDefaultRowHeight(sheet, 18);
     }
