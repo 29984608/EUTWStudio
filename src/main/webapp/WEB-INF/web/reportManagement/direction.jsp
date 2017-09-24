@@ -79,7 +79,6 @@
 
                     _html += `
                      <tr>
-                        <th>` + (++index) + `</th>
                         <th rowspan="` + directions.length + `">` + department.departmentName + `</th>
                         <th>` + directions[0].directionName + `</th>
                         `;
@@ -100,7 +99,6 @@
                         levels = direction.levels;
                         _html += `
                              <tr>
-                                <th>` + (++index) + `</th>
                                 <th>` + direction.directionName + `</th>
                           `;
                         for (let j = 0; j < levels.length; ++j) {
@@ -114,7 +112,6 @@
                         rowSumCount = 0;
                     }
                     _html += `<tr style="background: #e8e8e8">
-                         <th>` + (++index) + `</th>
                           <th style='font-weight: bold'>小计</th>
                           <th></th>
                           <th>`+littleCount[0]+`</th>
@@ -126,7 +123,6 @@
                         totalCount[i] += littleCount[i];
                 });
                 _html += `<tr>
-                         <th>` + (++index) + `</th>
                           <th style='font-weight: bold'>总计</th>
                           <th></th>
                           <th>` + totalCount[0] + `</th>
@@ -139,7 +135,6 @@
             loadTableHead: function () {
                 $("#head").html("");
                 $("#head").append(`
-                        <td>序号</td>
                         <td>系名称</td>
                         <td>就业方向</td>
                 `);
