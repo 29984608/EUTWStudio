@@ -426,7 +426,6 @@ public class StudentController {
     @ResponseBody
     public Result addGroupActivitiesByUpdate(GroupActivities groupActivities) {
         try {
-            System.out.println(groupActivities);
             personService.addGroupActivitiesByUpdate(groupActivities);
             List<Map<String,Object>> groupActivitiesList = personService.queryGroupActivitiesList(groupActivities.getStudentNo());
 

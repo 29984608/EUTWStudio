@@ -23,7 +23,6 @@ public class DirectionReportServiceImpl implements DirectionReportService {
         List<Map<String, Object>> directionList = this.directionList();
         List<Integer> searchLevels = DateUtil.getSearchLevels();
         Map<String, String> headers = new HashMap<>();
-        headers.put("index", "序号系");
         headers.put("departmentName", "系");
         headers.put("directionName", "就业方向");
         headers.put("level1", Integer.toString(searchLevels.get(0)));

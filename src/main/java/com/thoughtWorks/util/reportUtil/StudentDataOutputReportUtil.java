@@ -3,9 +3,8 @@ package com.thoughtWorks.util.reportUtil;
 import com.thoughtWorks.entity.StudentUpdate;
 import com.thoughtWorks.util.excelUtil.ExcelReportUtil;
 import org.apache.poi.hssf.usermodel.*;
-import org.apache.poi.ss.util.CellRangeAddress;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -25,7 +24,11 @@ public class StudentDataOutputReportUtil extends ExcelReportUtil {
         int columnIndex = 0;
         for (String key : headers.keySet()) {
             HSSFCell cell = row.createCell(columnIndex++);
-            cell.setCellValue(new HSSFRichTextString(headers.get(key)));
+            if (!key.equals("undefined")) {
+                cell.setCellValue(new HSSFRichTextString(headers.get(key)));
+            }else {
+                cell.setCellValue(new HSSFRichTextString(""));
+            }
         }
         setDefaultRowHeight(sheet, 18);
     }
@@ -55,7 +58,7 @@ public class StudentDataOutputReportUtil extends ExcelReportUtil {
                     }
                     cell = row.createCell(columnIndex);
                     if (department.get(key) != null && department.get(key) != "请选择") {
-                        cell.setCellValue(new HSSFRichTextString(department.get(key) + ""));
+                        cell.setCellValue(new HSSFRichTextString(department.get(key).toString()));
                     } else {
                         cell.setCellValue(new HSSFRichTextString(""));
                     }
@@ -71,7 +74,7 @@ public class StudentDataOutputReportUtil extends ExcelReportUtil {
 
 
     public Map<String, String> setTheHeader(StudentUpdate studentUpdate) {
-        Map<String, String> headers = new HashMap<>();
+        Map<String, String> headers = new LinkedHashMap<>();
         if (studentUpdate.getNo() != null) {
             headers.put(studentUpdate.getNo().split("--")[1], studentUpdate.getNo().split("--")[0]);
         }

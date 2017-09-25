@@ -11,10 +11,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -29,13 +28,13 @@ public class StudentDataOutputController {
     StudentDataOutputService studentDataOutputService;
 
     @RequestMapping("/list")
-    public ResponseEntity<byte[]> list(StudentUpdate studentUpdate, DataSearchDto dataSearchDto, HttpServletRequest request, HttpServletResponse response) {
+    public ResponseEntity<byte[]> list(StudentUpdate studentUpdate, DataSearchDto dataSearchDto, HttpServletRequest request) {
         try {
             List<Map<String, Object>> exportedData = new ArrayList<>();
             List<Map<String, Object>> dataOutputStudents = studentDataOutputService.queryStudentList(dataSearchDto);
             new StudentDataOutputReportUtil().setTheHeader(studentUpdate);
             checkData(studentUpdate, exportedData, dataOutputStudents);
-            ResponseEntity<byte[]> responseEntity = null;
+            ResponseEntity<byte[]> responseEntity;
             File file = studentDataOutputService.newStudentDataOutput(request,exportedData,studentUpdate);
             responseEntity = getResponseEntity(file);
             file.delete();
@@ -50,7 +49,7 @@ public class StudentDataOutputController {
 
     private void checkData(StudentUpdate studentUpdate, List<Map<String, Object>> exportedData, List<Map<String, Object>> dataOutputStudents) {
         for (Map<String, Object> dataOutputStudent : dataOutputStudents) {
-            Map<String, Object> singleData = new HashMap<>();
+            Map<String, Object> singleData = new LinkedHashMap<>();
             if (studentUpdate.getNo() != null) {
                 singleData.put(studentUpdate.getNo().split("--")[1], dataOutputStudent.get(studentUpdate.getNo().split("--")[1]));
             }
@@ -58,25 +57,25 @@ public class StudentDataOutputController {
                     singleData.put(studentUpdate.getName().split("--")[1], dataOutputStudent.get(studentUpdate.getName().split("--")[1]));
             }
             if (studentUpdate.getGender() != null) {
-                singleData.put(studentUpdate.getGender().split("--")[1], dataOutputStudent.get(studentUpdate.getGender().split("--")[1]));
+                singleData.put(studentUpdate.getGender().split("--")[1], dataOutputStudent.get(studentUpdate.getGender().split("--")[1]).toString().equals("M") ? "男" : "女");
             }
             if (studentUpdate.getDepartment_id() != null) {
-                singleData.put(studentUpdate.getDepartment_id().split("--")[1], dataOutputStudent.get(studentUpdate.getDepartment_id().split("--")[1]));
+                singleData.put(studentUpdate.getDepartment_id().split("--")[1], dataOutputStudent.get("department"));
             }
             if (studentUpdate.getDirection_id() != null) {
-                singleData.put(studentUpdate.getDirection_id().split("--")[1], dataOutputStudent.get(studentUpdate.getDirection_id().split("--")[1]));
+                singleData.put(studentUpdate.getDirection_id().split("--")[1], dataOutputStudent.get("direction"));
             }
             if (studentUpdate.getLevel() != null) {
                     singleData.put(studentUpdate.getLevel().split("--")[1], dataOutputStudent.get(studentUpdate.getLevel().split("--")[1]));
             }
             if (studentUpdate.getClasses_id() != null) {
-                singleData.put(studentUpdate.getClasses_id().split("--")[1], dataOutputStudent.get(studentUpdate.getClasses_id().split("--")[1]));
+                singleData.put(studentUpdate.getClasses_id().split("--")[1], dataOutputStudent.get("classes"));
             }
             if (studentUpdate.getProfession_id() != null) {
-                singleData.put(studentUpdate.getProfession_id().split("--")[1], dataOutputStudent.get(studentUpdate.getProfession_id().split("--")[1]));
+                singleData.put(studentUpdate.getProfession_id().split("--")[1], dataOutputStudent.get("profession"));
             }
             if (studentUpdate.getOrigin_profession_id() != null) {
-                singleData.put(studentUpdate.getOrigin_profession_id().split("--")[1], dataOutputStudent.get(studentUpdate.getOrigin_profession_id().split("--")[1]));
+                singleData.put(studentUpdate.getOrigin_profession_id().split("--")[1], dataOutputStudent.get("origin_profession"));
             }
             if (studentUpdate.getParent_name() != null) {
                 singleData.put(studentUpdate.getParent_name().split("--")[1], dataOutputStudent.get(studentUpdate.getParent_name().split("--")[1]));
@@ -112,13 +111,13 @@ public class StudentDataOutputController {
                 singleData.put(studentUpdate.getBlood().split("--")[1], dataOutputStudent.get(studentUpdate.getBlood().split("--")[1]));
             }
             if (studentUpdate.getHeight() != null) {
-                singleData.put(studentUpdate.getHeight().split("--")[1], dataOutputStudent.get(studentUpdate.getHeight().split("--")[1]));
+                singleData.put(studentUpdate.getHeight().split("--")[1], dataOutputStudent.get(studentUpdate.getHeight().split("--")[1])+"CM");
             }
             if (studentUpdate.getIs_marry() != null) {
                 singleData.put(studentUpdate.getIs_marry().split("--")[1], dataOutputStudent.get(studentUpdate.getIs_marry().split("--")[1]));
             }
             if (studentUpdate.getWeight() != null) {
-                singleData.put(studentUpdate.getWeight().split("--")[1], dataOutputStudent.get(studentUpdate.getWeight().split("--")[1]));
+                singleData.put(studentUpdate.getWeight().split("--")[1], dataOutputStudent.get(studentUpdate.getWeight().split("--")[1])+"KG");
             }
             if (studentUpdate.getPolitical_status() != null) {
                 singleData.put(studentUpdate.getPolitical_status().split("--")[1], dataOutputStudent.get(studentUpdate.getPolitical_status().split("--")[1]));

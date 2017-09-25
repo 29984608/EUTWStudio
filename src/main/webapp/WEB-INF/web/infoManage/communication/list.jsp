@@ -4,6 +4,7 @@
 <head>
     <title></title>
     <script type="text/javascript" src="${baseurl}/public/common/js/jquery-3.2.0.min.js"></script>
+    <script src="${baseurl}/js/separator.js" charset="utf-8"></script>
     <script src="${baseurl}/public/common/layui/layui.js" charset="utf-8"></script>
     <link rel="stylesheet" href="${baseurl}/public/common/layui/css/layui.css" media="all">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/common/layui/css/layui.css" media="all">
@@ -250,6 +251,10 @@
                         layer.msg(data.msg);
                     }
                 })
+                $("#communicationPhone").formatInput({
+                    formatArr: [3, 4, 4],
+                    delimiter: '-'
+                });
 
             },
             addAjax: function () {

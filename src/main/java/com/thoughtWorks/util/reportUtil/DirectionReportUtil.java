@@ -40,7 +40,7 @@ public class DirectionReportUtil extends ExcelReportUtil {
 
                 for (int j = 0; j < directions.size(); ++j) {
                     HSSFRow row = sheet.createRow(rowIndex++);
-                    HSSFCell cell =  setSerialNumber(rowIndex, row);
+                    HSSFCell cell;
                     //系
                     cell = row.createCell(1);
                     cell.setCellValue(new HSSFRichTextString(department.get("departmentName").toString()));
@@ -69,7 +69,7 @@ public class DirectionReportUtil extends ExcelReportUtil {
                 //小计
                 HSSFRow row = sheet.createRow(rowIndex++);
                 //序号
-                HSSFCell cell = setSerialNumber(rowIndex, row);
+                HSSFCell cell;
                 cell = row.createCell(1);
                 cell.setCellValue(new HSSFRichTextString("小计"));
 
@@ -80,7 +80,7 @@ public class DirectionReportUtil extends ExcelReportUtil {
             //总计
             HSSFRow row = sheet.createRow(rowIndex++);
             //序号
-            HSSFCell cell = setSerialNumber(rowIndex, row);
+            HSSFCell cell;
             cell = row.createCell(1);
             cell.setCellValue(new HSSFRichTextString("总计"));
             fillNumCount(totalCount, row);
@@ -109,11 +109,11 @@ public class DirectionReportUtil extends ExcelReportUtil {
         for(int i = 0; i<totalCount.length;++i)
             totalCount[i] += littleCount[i];
     }
-    private HSSFCell setSerialNumber(int rowIndex, HSSFRow row) {
-        //序号
-        HSSFCell cell = row.createCell(0);
-        cell.setCellValue(new HSSFRichTextString(String.valueOf(rowIndex - 2)));
-
-        return cell;
-    }
+//    private HSSFCell setSerialNumber(int rowIndex, HSSFRow row) {
+//        //序号
+//        HSSFCell cell = row.createCell(0);
+//        cell.setCellValue(new HSSFRichTextString(String.valueOf(rowIndex - 2)));
+//
+//        return cell;
+//    }
 }
