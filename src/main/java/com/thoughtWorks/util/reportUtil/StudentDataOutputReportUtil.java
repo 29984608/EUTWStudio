@@ -27,8 +27,6 @@ public class StudentDataOutputReportUtil extends ExcelReportUtil {
             HSSFCell cell = row.createCell(columnIndex++);
             if (!key.equals("undefined")) {
                 cell.setCellValue(new HSSFRichTextString(headers.get(key)));
-            }else {
-                cell.setCellValue(new HSSFRichTextString(""));
             }
         }
         setDefaultRowHeight(sheet, 18);
@@ -43,25 +41,25 @@ public class StudentDataOutputReportUtil extends ExcelReportUtil {
                 row = sheet.createRow(rowIndex);
                 int columnIndex = 0;
                 for (String key : department.keySet()) {
-                    if (department.get(key) != null && department.get(key) != "") {
-                        int strLenth = department.get(key).toString().length();
-                        if (strLenth < 2) {
-                            sheet.setColumnWidth((short) count, (short) 1000);
-                        } else if (strLenth < 8) {
-                            sheet.setColumnWidth((short) count, (short) 4000);
-                        } else if (strLenth < 14) {
-                            sheet.setColumnWidth((short) count, (short) 6000);
-                        } else if (strLenth < 20) {
-                            sheet.setColumnWidth((short) count, (short) 8000);
-                        } else {
-                            sheet.setColumnWidth((short) count, (short) 10000);
+                    if (key != "undefined"){
+                        if (department.get(key) != null && department.get(key) != "" && department.get(key) != "undefined") {
+                            int strLenth = department.get(key).toString().length();
+                            if (strLenth < 2) {
+                                sheet.setColumnWidth((short) count, (short) 1000);
+                            } else if (strLenth < 8) {
+                                sheet.setColumnWidth((short) count, (short) 4000);
+                            } else if (strLenth < 14) {
+                                sheet.setColumnWidth((short) count, (short) 6000);
+                            } else if (strLenth < 20) {
+                                sheet.setColumnWidth((short) count, (short) 8000);
+                            } else {
+                                sheet.setColumnWidth((short) count, (short) 10000);
+                            }
                         }
                     }
                     cell = row.createCell(columnIndex);
                     if (department.get(key) != null && !Objects.equals(department.get(key).toString(), "请选择")) {
                         cell.setCellValue(new HSSFRichTextString(department.get(key).toString()));
-                    } else {
-                        cell.setCellValue(new HSSFRichTextString(""));
                     }
                     columnIndex++;
                     count++;
