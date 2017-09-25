@@ -206,6 +206,7 @@
                 return _html;
             },
             getReportCount: function (reportCount) {
+
                 return `
                     <td> ` + (reportCount["班级人数"] == 0?'':reportCount["班级人数"]) + ` </td>
                     <td> ` + (reportCount["休学"] == 0?'':reportCount["休学"])+ ` </td>
@@ -226,9 +227,14 @@
 
             showPages: function (departments) {
                 let _htmlPage = '';
+                let reportCount;
+                let countClasses,countXiuXue,countTuiXue,counLiuJi,countLiuShi,countFuWei,countRuWu,countQianFei,countHeQi,countZiShi,countChuang,countZhuanBen,countQiTa;
+                let countClassesSum = 0,countXiuXueSum = 0,countTuiXueSum = 0,counLiuJiSum = 0,countLiuShiSum = 0,countFuWeiSum = 0,countRuWuSum = 0,countQianFeiSum = 0,countHeQiSum = 0,countZiShiSum = 0,countChuangSum = 0,countZhuanBenSum = 0,countQiTaSum = 0;
                 for(let countDepartments = 0;countDepartments<departments.length;countDepartments++){
+                    countClasses = 0,countXiuXue=0, countTuiXue = 0, counLiuJi = 0, countLiuShi = 0, countFuWei = 0, countRuWu = 0, countQianFei = 0, countHeQi = 0, countZiShi = 0, countChuang = 0, countZhuanBen = 0, countQiTa = 0;
                     for(let countLevels = 0;countLevels<departments[countDepartments].levels.length;countLevels++){
                         for (let countDirections = 0;countDirections<departments[countDepartments].levels[countLevels].directions.length;countDirections++){
+
                             for(let countClass = 0;countClass<departments[countDepartments].levels[countLevels].directions[countDirections].classess.length;countClass++){
                                 let teacherName = departments[countDepartments].levels[countLevels].directions[countDirections].classess[countClass].teacherName;
                                 _htmlPage += `<tr>
@@ -238,10 +244,45 @@
                                                  <td>` + departments[countDepartments].levels[countLevels].directions[countDirections].classess[countClass].classesName + `</td>
                                                  <td>` + (teacherName == null?'无':teacherName ) + `</td>`;
                                 _htmlPage += studentInfo.getReportCount(departments[countDepartments].levels[countLevels].directions[countDirections].classess[countClass]["reportCount"]["statisticCount"]) + `</tr>`
+                                reportCount = departments[countDepartments].levels[countLevels].directions[countDirections].classess[countClass]["reportCount"]["statisticCount"];
+                                countClasses +=reportCount["班级人数"];
+                                countXiuXue +=reportCount["休学"];
+                                countTuiXue +=reportCount["退学"];
+                                counLiuJi +=reportCount["留级"];
+                                countLiuShi +=reportCount["流失"];
+                                countFuWei +=reportCount["复学"];
+                                countRuWu +=reportCount["入伍"];
+                                countQianFei +=reportCount["欠费"];
+                                countHeQi +=reportCount["合作企业"];
+                                countZiShi +=reportCount["自主实习"];
+                                countChuang +=reportCount["创新创业"];
+                                countZhuanBen +=reportCount["专升本"];
+                                countQiTa +=reportCount["其它"];
                             }
                         }
                     }
+                    _htmlPage += `<tr style="background-color:  #e8e8e8;"><td colspan="5"  align="center" >小计</td><td>`+countClasses+`</td><td>`+countXiuXue+`</td><td>`+countTuiXue+`</td><td>`+counLiuJi+`</td>
+                                    <td>`+countLiuShi+`</td><td>`+countFuWei+`</td><td>`+countRuWu+`</td><td>`+countQianFei+`</td><td>`+countHeQi+`</td>
+                                    <td>`+countZiShi+`</td><td>`+countChuang+`</td><td>`+countZhuanBen+`</td><td>`+countQiTa+`</td>
+                                    </tr>`;
+                    countClassesSum  +=countClasses;
+                    countXiuXueSum +=countXiuXue;
+                    countTuiXueSum +=countTuiXue;
+                    counLiuJiSum +=counLiuJi;
+                    countLiuShiSum +=countLiuShi;
+                    countFuWeiSum +=countFuWei;
+                    countRuWuSum +=countRuWu;
+                    countQianFeiSum +=countQianFei;
+                    countHeQiSum +=countHeQi;
+                    countZiShiSum +=countZiShi;
+                    countChuangSum +=countChuang;
+                    countZhuanBenSum +=countZhuanBen;
+                    countQiTaSum +=countQiTa;
                 }
+                _htmlPage += `<tr style="background-color:  #e8e8e8;"><td colspan="5"  align="center" >总计</td><td>`+countClassesSum+`</td><td>`+countXiuXueSum+`</td><td>`+countTuiXueSum+`</td><td>`+counLiuJiSum+`</td>
+                                    <td>`+countLiuShiSum+`</td><td>`+countFuWeiSum+`</td><td>`+countRuWuSum+`</td><td>`+countQianFeiSum+`</td><td>`+countHeQiSum+`</td>
+                                    <td>`+countZiShiSum+`</td><td>`+countChuangSum+`</td><td>`+countZhuanBenSum+`</td><td>`+countQiTaSum+`</td>
+                                    </tr>`;
                 $("#report").html(_htmlPage);
             }
         }
