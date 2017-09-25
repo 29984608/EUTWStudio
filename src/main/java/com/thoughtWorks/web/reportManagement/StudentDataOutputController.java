@@ -35,7 +35,7 @@ public class StudentDataOutputController {
             new StudentDataOutputReportUtil().setTheHeader(studentUpdate);
             checkData(studentUpdate, exportedData, dataOutputStudents);
             ResponseEntity<byte[]> responseEntity;
-            File file = studentDataOutputService.newStudentDataOutput(request,exportedData,studentUpdate);
+            File file = studentDataOutputService.newStudentDataOutput(request, exportedData, studentUpdate);
             responseEntity = getResponseEntity(file);
             file.delete();
 
@@ -54,10 +54,12 @@ public class StudentDataOutputController {
                 singleData.put(studentUpdate.getNo().split("--")[1], dataOutputStudent.get(studentUpdate.getNo().split("--")[1]));
             }
             if (studentUpdate.getName() != null) {
-                    singleData.put(studentUpdate.getName().split("--")[1], dataOutputStudent.get(studentUpdate.getName().split("--")[1]));
+                singleData.put(studentUpdate.getName().split("--")[1], dataOutputStudent.get(studentUpdate.getName().split("--")[1]));
             }
             if (studentUpdate.getGender() != null) {
-                singleData.put(studentUpdate.getGender().split("--")[1], dataOutputStudent.get(studentUpdate.getGender().split("--")[1]).toString().equals("M") ? "男" : "女");
+                if (dataOutputStudent.get(studentUpdate.getGender().split("--")[1]) != null) {
+                    singleData.put(studentUpdate.getGender().split("--")[1], dataOutputStudent.get(studentUpdate.getGender().split("--")[1]).toString().equals("M") ? "男" : "女");
+                }
             }
             if (studentUpdate.getDepartment_id() != null) {
                 singleData.put(studentUpdate.getDepartment_id().split("--")[1], dataOutputStudent.get("department"));
@@ -66,7 +68,7 @@ public class StudentDataOutputController {
                 singleData.put(studentUpdate.getDirection_id().split("--")[1], dataOutputStudent.get("direction"));
             }
             if (studentUpdate.getLevel() != null) {
-                    singleData.put(studentUpdate.getLevel().split("--")[1], dataOutputStudent.get(studentUpdate.getLevel().split("--")[1]));
+                singleData.put(studentUpdate.getLevel().split("--")[1], dataOutputStudent.get(studentUpdate.getLevel().split("--")[1]));
             }
             if (studentUpdate.getClasses_id() != null) {
                 singleData.put(studentUpdate.getClasses_id().split("--")[1], dataOutputStudent.get("classes"));
@@ -111,13 +113,13 @@ public class StudentDataOutputController {
                 singleData.put(studentUpdate.getBlood().split("--")[1], dataOutputStudent.get(studentUpdate.getBlood().split("--")[1]));
             }
             if (studentUpdate.getHeight() != null) {
-                singleData.put(studentUpdate.getHeight().split("--")[1], dataOutputStudent.get(studentUpdate.getHeight().split("--")[1])+"CM");
+                singleData.put(studentUpdate.getHeight().split("--")[1], dataOutputStudent.get(studentUpdate.getHeight().split("--")[1]));
             }
             if (studentUpdate.getIs_marry() != null) {
                 singleData.put(studentUpdate.getIs_marry().split("--")[1], dataOutputStudent.get(studentUpdate.getIs_marry().split("--")[1]));
             }
             if (studentUpdate.getWeight() != null) {
-                singleData.put(studentUpdate.getWeight().split("--")[1], dataOutputStudent.get(studentUpdate.getWeight().split("--")[1])+"KG");
+                singleData.put(studentUpdate.getWeight().split("--")[1], dataOutputStudent.get(studentUpdate.getWeight().split("--")[1]));
             }
             if (studentUpdate.getPolitical_status() != null) {
                 singleData.put(studentUpdate.getPolitical_status().split("--")[1], dataOutputStudent.get(studentUpdate.getPolitical_status().split("--")[1]));

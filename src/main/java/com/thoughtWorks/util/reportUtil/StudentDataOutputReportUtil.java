@@ -7,6 +7,7 @@ import org.apache.poi.hssf.usermodel.*;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class StudentDataOutputReportUtil extends ExcelReportUtil {
 
@@ -47,17 +48,17 @@ public class StudentDataOutputReportUtil extends ExcelReportUtil {
                         if (strLenth < 2) {
                             sheet.setColumnWidth((short) count, (short) 1000);
                         } else if (strLenth < 8) {
-                            sheet.setColumnWidth((short) count, (short) 2000);
-                        } else if (strLenth < 12) {
                             sheet.setColumnWidth((short) count, (short) 4000);
-                        } else if (strLenth < 20) {
+                        } else if (strLenth < 14) {
                             sheet.setColumnWidth((short) count, (short) 6000);
+                        } else if (strLenth < 20) {
+                            sheet.setColumnWidth((short) count, (short) 8000);
                         } else {
                             sheet.setColumnWidth((short) count, (short) 10000);
                         }
                     }
                     cell = row.createCell(columnIndex);
-                    if (department.get(key) != null && department.get(key) != "请选择") {
+                    if (department.get(key) != null && !Objects.equals(department.get(key).toString(), "请选择")) {
                         cell.setCellValue(new HSSFRichTextString(department.get(key).toString()));
                     } else {
                         cell.setCellValue(new HSSFRichTextString(""));
