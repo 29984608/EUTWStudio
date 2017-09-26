@@ -94,7 +94,8 @@
             showPage: function (data) {
                 let _html = "";
                 data.forEach((item, index) => {
-                    _html += `<tr>
+                    if (item.originProfession != undefined || item.originProfessionId != undefined){
+                        _html += `<tr>
                          <th>` + (index + 1) + `</th>
                           <th>` + item.no + `</th>
                           <th>` + item.name + `</th>
@@ -104,6 +105,7 @@
                           <th>` + item.originProfession + `</th>
                           <th>` + item.originProfessionId + `</th>
                     </tr>`;
+                    }
                 })
                 $("#report").html(_html);
             },
