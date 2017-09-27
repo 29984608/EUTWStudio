@@ -28,7 +28,7 @@
             <input type="checkbox" value="邮政编码" name="family_zip_code" title="邮政编码">
             <input type="checkbox" value="户口是否转入" name="account_in" title="户口是否转入">
             <input type="checkbox" value="城乡生源名称" name="area_origin_name" title="城乡生源名称">
-            <input type="checkbox" value="档案是否转入" name="file_in" title="档案是否转入">
+            <input type="checkbox" value="档案是否转入" name="file_in" title="档案是否转入">r
             <input type="checkbox" value="入学前学校名称或工作单位" name="pre_school_name" title="入学前学校名称或工作单位">
             <input type="checkbox" value="紧急联系人" name="emergency_contact_name" title="紧急联系人">
             <input type="checkbox" value="联系方式" name="emergency_contact_method" title="联系方式">
