@@ -22,7 +22,7 @@ public class StudentInfoReportServiceImpl implements StudentInfoReportService {
 
     @Override
     public File exportReport(HttpServletRequest request) throws Exception {
-        String[] types = {"班级人数", "合作企业", "自主实习", "创新创业", "专升本", "其它", "在读", "休学", "入伍", "留级", "退学", "流失", "复学", "欠费"};
+        String[] types = {"班级人数", "休学", "退学", "留级", "流失", "复学", "入伍", "欠费", "合作企业", "自主实习", "创新创业", "专升本", "其它", "在读"};
 
         Map<String, String> headers = new LinkedHashMap<>();
         headers.put("departmentName", "系别");
