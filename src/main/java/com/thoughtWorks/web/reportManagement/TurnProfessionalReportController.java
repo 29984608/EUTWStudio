@@ -1,7 +1,6 @@
 package com.thoughtWorks.web.reportManagement;
 
 import com.thoughtWorks.dto.Result;
-import com.thoughtWorks.service.CommunicationReportService;
 import com.thoughtWorks.service.TurnProfessionalReportService;
 import com.thoughtWorks.util.Constant;
 import org.springframework.http.ResponseEntity;

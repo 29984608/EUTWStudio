@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -50,9 +51,14 @@ public class ResultReportServiceImpl implements ResultReportService {
 
         List<Integer> scores = resultReportDao.queryTotalCredits(student);
         if (scores.size() == 0 || null == scores.get(0)) return totalScore;
-        for (int score : scores) {
-            totalScore += score;
+        for (int i = 0;i<scores.size();i++) {
+            if (scores.get(i) != null) {
+                totalScore += scores.get(i);
+            }
         }
+        /*for (int score : scores) {
+            totalScore += score;
+        }*/
 
         return totalScore;
     }

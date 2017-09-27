@@ -54,7 +54,7 @@
 
         profession = {
             list: function () {
-                layer.msg("查询中......");
+//                layer.msg("查询中......");
                 $.post(baseUrl + "/professionReport/list", function (data) {
                     if (data.result) {
                         let date = new Date();

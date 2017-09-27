@@ -29,7 +29,6 @@
           profession.code professionId,
           profession.name profession
 
-
         FROM t_student student
 
           LEFT JOIN (SELECT
