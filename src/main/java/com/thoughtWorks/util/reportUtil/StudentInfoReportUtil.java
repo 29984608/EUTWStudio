@@ -16,7 +16,7 @@ public class StudentInfoReportUtil extends ExcelReportUtil {
     private HSSFRow row;
     private HSSFCell cell;
     private int rowIndex;
-    private String[] types = {"班级人数", "合作企业", "自主实习", "创新创业", "专升本", "其它", "在读", "休学", "入伍", "留级", "退学", "流失", "复学", "欠费"};
+    private String[] types = {"班级人数", "休学", "退学", "留级", "流失", "复学", "入伍", "欠费", "合作企业", "自主实习", "创新创业", "专升本", "其它", "在读"};
 
     @Override
     protected void writeHeaders(HSSFSheet sheet, Map<String, String> headers) {
@@ -48,9 +48,9 @@ public class StudentInfoReportUtil extends ExcelReportUtil {
                 mergeRows(rowspan, 0, 0);
 
 //                fillTheProfessionalMentor(dataset);
-
                 fillDepartmentLevels((List<Map<String, Object>>) department.get("levels"));
             }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
