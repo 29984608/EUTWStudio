@@ -18,7 +18,7 @@
         <foreach collection="list" item="item" open="(" separator="," close=")">
             #{item}
         </foreach>
-        ORDER BY student.department_id DESC ,student.direction_id DESC ,level ASC
+        ORDER BY student.department_id DESC ,student.direction_id DESC ,level ASC,classesName ASC
     </select>
     <select id="queryTurnProfessional" parameterType="string" resultType="map">
         SELECT

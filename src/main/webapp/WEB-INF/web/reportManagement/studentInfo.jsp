@@ -11,9 +11,14 @@
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/common/css/global.css" media="all">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/common.css" media="all">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/personal.css" media="all">
-
+<style>
+    .layui-table td, .layui-table th{
+        font-size: 12px;
+    }
+</style>
 </head>
 <body>
+
 <section class=" layui-form">
     <div class="larry-personal">
         <div class="layui-tab">
@@ -29,9 +34,9 @@
                     西安欧亚学院高职学院学籍管理班级人数统计报表
                     <%--(<span style="font-size: 13px;" id="time">2017-6-3 12:12:21</span>)--%>
                 </div>
-                <table class="layui-table">
+                <table class="layui-table" >
                     <colgroup>
-                        <col width="170">
+                        <col width="180">
                         <col width="70">
                         <col width="160">
                         <col width="160">
@@ -74,7 +79,7 @@
                         <td>在读</td>
                     </tr>
                     </thead>
-                    <tbody id="report">
+                    <tbody id="report" >
 
                     </tbody>
                 </table>
@@ -95,7 +100,6 @@
         studentInfo = {
             list: function () {
                 $.post(baseUrl + "/studentInfoReport/list", function (data) {
-                    console.log(data);
                     if (data.result) {
                         let date = new Date();
                         $("#time").text(date.getFullYear() + " 年 " + (date.getMonth() + 1) + " 月 " + date.getDate() + " 日");
