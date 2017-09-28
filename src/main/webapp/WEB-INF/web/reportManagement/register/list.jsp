@@ -21,9 +21,48 @@
     }
 
     #stu_info td {
-        font-size: 12px;
-        text-align: center
+        text-align: center;
+        font-size:   12px;
     }
+
+    #actual{
+        padding: 0px 2px;
+    }
+    /*导出PDF样式*/
+    @media   print   {
+        #stu_info td   {
+            text-align: center;
+            font-size:   12px;
+            padding: 3px 5px;
+            -webkit-transform-origin-x: 0;
+            -webkit-transform: scale(0.80);
+        }
+        #head_image1{
+
+        }
+        #head_image{
+            width:130px;
+            height:150px;
+            margin: -2em -5em;
+        }
+        #head li {
+            float: left;
+            font-size: 14px;
+            margin: 5px 0 1% 3%;
+            font-weight: 400;
+        }
+        #excel{
+            display: none;
+        }
+        #actual{
+           padding: 0px 2px;
+        }
+        #title{
+            margin-left: 32%;
+            margin-top: 0px;
+        }
+    }
+
 </style>
 <body>
 <section class="larry-grid layui-form">
@@ -325,7 +364,8 @@
                 });
             },
             exportRegisterReport: function () {
-                location.href = baseUrl + "/newStudentRegister/exportRegisterReport?no=" + $("#no").text() + "";
+                printPdf()
+//                location.href = baseUrl + "/newStudentRegister/exportRegisterReport?no=" + $("#no").text() + "";
             }
         };
         $(function () {
@@ -348,6 +388,18 @@
             });
         });
     })
+    function printPdf() {
+
+        var headstr = "<html><head><title>123131</title></head><body>";
+        var footstr = "</body>";
+        var printData = document.getElementById("preview").innerHTML;// 获得 div 里的所有 html 数据
+        var oldstr = document.body.innerHTML;
+        document.body.innerHTML = headstr+printData+footstr;
+
+        window.print();
+        document.body.innerHTML = oldstr;
+        return false;
+    }
 
 </script>
 

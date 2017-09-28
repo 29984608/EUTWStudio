@@ -309,11 +309,6 @@
         window.print();
         document.body.innerHTML = oldstr;
         return false;
-//        var printData = document.getElementById("container").innerHTML;// 获得 div 里的所有 html 数据
-//
-//        window.document.body.innerHTML = printData; //把 html 里的数据 复制给 body 的 html 数据 ，相当于重置了 整个页面的 内容
-//        window.print(); // 开始打印
-//        pdf(document.getElementById("container"), $("#name").text(), "a4");
     }
 </script>
 

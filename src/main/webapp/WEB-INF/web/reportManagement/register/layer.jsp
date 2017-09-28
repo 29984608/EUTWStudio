@@ -34,11 +34,12 @@
     {{# }); }}
 
 </script>
+
 <div id="preview" style="display: none;width: auto;margin-top: 20px;text-align: center;padding: 2%">
-    <button class="layui-btn " style="float:right;" onclick="resultReport.exportRegisterReport()">
-        <i class="layui-icon">&#xe61e;</i>导出 Excel
+    <button class="layui-btn " id = "excel" style="float:right;" onclick="resultReport.exportRegisterReport()">
+        <i class="layui-icon">&#xe61e;</i>导出 PDF
     </button>
-    <h2>西安欧亚学院学生入学登记表</h2>
+    <h2 id = "title">西安欧亚学院学生入学登记表</h2>
     <div id="head">
         <ul>
             <li>
@@ -79,10 +80,11 @@
             <td>民族</td>
             <td id="famous_family"></td>
 
-            <td>婚否</td>
-            <td id="is_marry"></td>
+            <td >婚否</td>
+            <td width="170px"id="is_marry"></td>
 
-            <td width="100px" style="padding: 0" rowspan="4"><img id="head_image" src="${baseurl}/images/user/user.jpg"
+            <td id="head_image1" width="100px" style="padding: 0" rowspan="4">
+                <img id="head_image" src="${baseurl}/images/user/user.jpg"
                                                                   width="100px"
                                                                   height="150px"></td>
         </tr>
@@ -100,7 +102,7 @@
             <td colspan="3" id="student_classify">☐本科 ☐专升本 ☐专科</td>
         </tr>
         <tr>
-            <td>家庭住址</td>
+            <td id = "actual">家庭住址<br>(文书可达)</td>
             <td colspan="5" id="actual_address"></td>
 
             <td>邮编</td>
@@ -155,6 +157,9 @@
             <td colspan="1">联系电话</td>
         </tr>
         <tr id="family"></tr>
+
         </tbody>
     </table>
+    <span style="float: left;margin-left: 50px;font-size: 14px;" >本人承诺以上信息属实，因信息不实产生的一切法律责任由本人承担，与校方无关。</span>
+    <span style="float: right ;font-size: 14px;margin-right: 50px;text-align: left">本人签名：<br>日期：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;年&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;月&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日</span>
 </div>

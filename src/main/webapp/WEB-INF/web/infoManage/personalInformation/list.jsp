@@ -29,7 +29,6 @@
     <div class="larry-personal">
         <div class="layui-tab">
             <div id="update" style=" height: 100%;">
-                <div id="pdfmake"></div>
                 <div class="container" id="container" style=" background: #fff;width: 800px; ">
                     <h1 style="text-align: center;margin-left: -30px;margin-top: 40px; ;color:#00ab9f ">西安欧亚学院<span id="studentName1"></span>学生档案</h1>
 
