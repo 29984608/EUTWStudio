@@ -29,9 +29,10 @@
     <div class="larry-personal">
         <div class="layui-tab">
             <div id="update" style=" height: 100%;">
+                <div id="pdfmake"></div>
                 <div class="container" id="container" style=" background: #fff;width: 800px; ">
-                    <h1 style="text-align: center;margin-left: -30px;margin-top: 40px; ;color:#00ab9f ">西安欧亚学院<span
-                            id="studentName1"></span>学生档案</h1>
+                    <h1 style="text-align: center;margin-left: -30px;margin-top: 40px; ;color:#00ab9f ">西安欧亚学院<span id="studentName1"></span>学生档案</h1>
+
                     <div style="margin-top: 40px;">
                         <div style="width: 100%; height: 100%; float: left;padding-left: 25px">
                             <h4 style="color: #00ab9f;font-weight: bold">基本信息</h4>
@@ -39,49 +40,70 @@
                                    style="border: 0px solid red">
                                 <tbody>
                                 <tr>
-                                    <th colspan="3" style="width:140px;">学号：<span id="studentNo"></span></th>
+                                    <th colspan="3" style="width: 230px;">学号：<span id="studentNo"></span></th>
                                     <th colspan="4" style="width:125px;">姓名：<span id="studentName"></span></th>
-                                    <th colspan="1" style="width:60px;">性别：<span id="studentSex"></span></th>
-                                    <th colspan="1" style="width:87px;">民族：<span id="famous_family"></span></th>
-                                    <th colspan="3" style="width:220px">身份证号：<span id="idcard"></span></th>
+                                    <th colspan="1" >性别：<span id="studentSex"></span></th>
+                                    <th colspan="3" style="width: 120px;">民族：<span id="famous_family"></span></th>
+                                    <th>婚否：<span id="is_marry"></span></th>
                                     <th rowspan=" 3 " style="padding: 1px;">
                                         <div style="width:100px; height: 140px; border: 0px solid #00ab9f">
-                                            <img id="images" style="width:100%" height="100%"/>
+                                            <img id="images" class="head_image" style="width:100%;" height="100%"/>
                                         </div>
                                     </th>
                                 </tr>
                                 <tr>
-
-                                    <th colspan="3" style="width:162px;">出生日期：<span id="born"></span></th>
-                                    <th colspan="5" style="width:230px;">籍贯：<span id="native_place"></span></th>
-                                    <th colspan="3" style="width:190px;">政治面貌：<span id="political_status"></span></th>
-                                    <th>婚否：<span id="is_marry"></span></th>
+                                    <th colspan="6" style="width:220px">身份证号：<span id="idcard"></span></th>
+                                    <th colspan="4" style="width:162px;">出生日期：<span id="born"></span></th>
+                                    <%--<th colspan="5" style="width:190px;">政治面貌：<span id="political_status"></span></th>--%>
+                                    <th colspan="2" style="width:230px;">入学前文化程度：<span id="preSchoolEducation"></span></th>
                                 </tr>
                                 <tr>
-                                    <th colspan="3" style="width:120px;">血型：<span id="blood"></span></th>
-                                    <th colspan="3">身高：<span id="height"></span>cm</th>
-                                    <th colspan="3" style="width:170px;">体重：<span id="weight"></span>kg</th>
-                                    <th colspan="3">健康状况：<span id="health_status"></span></th>
-                                </tr>
-                                <tr>
-                                    <th colspan="5">联系方式：<span id="phone"></span></th>
-                                    <th colspan="4">qq：<span id="qq"></span></th>
+                                    <th colspan="6">联系方式：<span id="phone"></span></th>
                                     <th colspan="4">邮箱：<span id="email"></span></th>
+                                    <th colspan="2">QQ：<span id="qq"></span></th>
                                 </tr>
                                 <tr>
-                                    <th colspan="9">家庭住址：<span id="actual_address"></span></th>
-                                    <th colspan="2">邮编编码：<span id="family_zip_code"></span></th>
-                                    <th colspan="2">联系电话：<span id="student_contact_method"></span></th>
+                                    <th colspan="8">籍贯：<span id="native_place"></span></th>
+                                    <th colspan="5">入学前学校名称或工作单位：<span id="preSchoolName"></span></th>
                                 </tr>
-                                <tbody id="family">
-                                </tbody>
                                 <tr>
-                                    <th colspan="5">紧急联系人：<span id="emergency_contact_name"></span></th>
+                                    <th colspan="8">入学前党派或团体组织：<span id="party_OrGroupOrganization"></span></th>
+                                    <th colspan="5">入学前受过何奖励或处分：<span id="PreAdmissionOrReward"></span></th>
+                                </tr>
+                                <tr>
+                                    <th colspan="6">档案是否转入：<span id="file_in"></span></th>
+                                    <th colspan="7">入学前档案所在单位：<span id="pre_school_file_where_location"></span></th>
+                                </tr>
+                                <tr>
+                                    <th colspan="6">户口是否转入：<span id="account_in"></span></th>
+                                    <th colspan="7">入学前户口所在派出所：<span id="pre_school_account_where_station"></span></th>
+                                </tr>
+                                <tr>
+                                    <th colspan="6">邮编编码：<span id="family_zip_code"></span></th>
+                                    <th colspan="7">身份证住址：<span id="idcard_address"></span></th>
+                                </tr>
+                                <tr>
+                                    <th colspan="6">生源类别 ：<span id="studentClassify"></span></th>
+                                    <th colspan="7">家庭实际住址：<span id="actual_address"></span></th>
+                                </tr>
+                                <tr>
+                                    <th colspan="6">城乡生源名称：<span id="area_origin_name"></span></th>
+                                    <th colspan="7">生源所在地名称：<span id="origin_address"></span></th>
+                                </tr>
 
-                                    <th colspan="8">联系方式：<span id="emergency_contact_method"></span></th>
+                                <tr>
+                                    <th colspan="6">紧急联系人：<span id="emergency_contact_name"></span></th>
+                                    <th colspan="7">联系方式：<span id="emergency_contact_method"></span></th>
                                 </tr>
                                 </tbody>
                             </table>
+                            <h4 style="color: #00ab9f;font-weight: bold ;padding-top: 15px;">家庭成员</h4>
+                            <table class="layui-table lay-even " data-name="articleCatData"
+                                   style="border: 0px solid red">
+                                <tbody id="family">
+                                </tbody>
+                            </table>
+
                             <h4 style="color: #00ab9f;font-weight: bold ;padding-top: 15px;">教育经历</h4>
                             <table class="layui-table lay-even " data-name="articleCatData"
                                    style="border: 0px solid red">
@@ -89,48 +111,101 @@
 
                                 </tbody>
                             </table>
-                            <h4 style="color: #00ab9f;font-weight: bold ;padding-top: 15px;">学业信息</h4>
+                            <h4 style="color: #00ab9f;font-weight: bold ;padding-top: 15px;">学业状态</h4>
                             <table class="layui-table lay-even " data-name="articleCatData"
                                    style="border: 0px solid red">
                                 <tbody>
                                 <tr>
                                     <th width="25%">学籍状态：<span id="student_status"></span></th>
+                                    <th width="25%">职业导师：<span id="teacherName"></span></th>
                                     <th width="25%">学生类别：<span id="student_type"></span></th>
                                     <th width="25%">高考成绩：<span id="sat_score"></span></th>
-                                    <th width="25%">职业导师：<span id="teacherName"></span></th>
-
                                 </tr>
                                 <tr>
                                     <th>录取专业：<span id="profession"></span></th>
+                                    <th>系：<span id="department"></span></th>
                                     <th>现专业：<span id="originProfession"></span></th>
                                     <th>就业方向：<span id="direction"></span></th>
+                                </tr>
+                                <tr>
                                     <th >班级：<span id="classes"></span></th>
+                                    <th >组别：<span id="group"></span></th>
+                                    <th colspan="2">实践类型：<span id="practice_learning_type"></span></th>
 
                                 </tr>
                                 <tr>
-                                    <th colspan="3">缴费状态：
-                                        第一年：(<span id="payment_status_first_year"></span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        第二年：(<span id="payment_status_second_year"></span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        第三年：(<span id="payment_status_third_year"></span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
+                                    <th colspan="2">实践单位或项目：<span id="units_or_projects_practical_type_preview"></span></th>
+                                    <th >联系人：<span id="units_or_projects_practical_type_contact_preview"></span></th>
+                                    <th >联系人电话：<span id="units_or_projects_practical_type_contact_phone_preview"></span></th>
+                                </tr>
+                                <tr>
+                                    <th colspan="4">缴费状态：
+                                        第一年：(<span id="payment_status_first_year"></span><span id="arrears_first_year" style="display: none">：21441元</span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        第二年：(<span id="payment_status_second_year"></span><span id="arrears_second_year" style="display: none"></span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        第三年：(<span id="payment_status_third_year"></span><span id="arrears_third_year" style="display: none"></span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        第四年：(<span id="payment_status_forth_year"></span><span id="arrears_forth_year" style="display: none"></span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        第五年：(<span id="payment_status_fifth_year"></span><span id="arrears_fifth_year" style="display: none"></span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        第六年：(<span id="payment_status_sixth_year"></span><span id="arrears_sixth_year" style="display: none"></span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     </th>
-                                    <th colspan="1">实践类型：<span id="practice_learning_type"></span></th>
+                                </tr>
+                                </tbody>
+                            </table>
 
+                            <h4 style="color: #00ab9f;font-weight: bold ;padding-top: 15px;">社区管理</h4>
+                            <table class="layui-table lay-even " data-name="articleCatData"
+                                   style="border: 0px solid red">
+                                <tbody>
+
+                                <tr>
+                                    <th >住宿类型：<span id="stay_type"></span></th>
+                                    <th colspan="3" id ="DormitoryInformation">
+                                    </th>
                                 </tr>
                                 <tr>
                                     <th>社区辅导员：<span id="teacherCommunity"></span></th>
-
-                                    <th colspan="2">宿舍位置：<span id="area"></span>&nbsp;-&nbsp;<span
-                                            id="floor"></span>&nbsp;-&nbsp;<span id="room"></span>房间
-                                    </th>
-                                    <th colspan="1">困难类别：<span id="hard_type"></span></th>
+                                    <th >华侨、港澳台：<span id="is_out"></span></th>
+                                    <th >政治面貌：<span id="political_status"></span></th>
+                                    <th  >宗教信仰：<span id="religion"></span></th>
                                 </tr>
+                                <tr>
+                                    <th width="25%">血型：<span id="blood"></span></th>
+                                    <th width="25%">身高：<span id="height"></span>cm</th>
+                                    <th width="25%" >体重：<span id="weight"></span>kg</th>
+                                    <th width="25%">健康状况：<span id="health_status"></span></th>
+                                </tr>
+                                <tr>
+                                    <th >第一年医保：<span id="first_time_medical_insurance_preview"></span><span id="first_medical_insurance_preview"></span></th>
+                                    <th >第二年医保：<span id="second_time_medical_insurance_preview"></span><span id="second_medical_insurance_preview"></span></th>
+                                    <th  colspan="2">第三年医保：<span id="third_time_medical_insurance_preview"></span><span id="third_medical_insurance_preview"></span></th>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <h4 style="color: #00ab9f;font-weight: bold ;padding-top: 15px;">奖学金或助学金</h4>
+                            <table class="layui-table lay-even " data-name="articleCatData"
+                                   style="border: 0px solid red">
+                                <tbody id="scholarship">
+
                                 </tbody>
                             </table>
                             <h4 style="color: #00ab9f;font-weight: bold ;padding-top: 15px;">获奖或荣誉</h4>
                             <table class="layui-table lay-even " data-name="articleCatData"
                                    style="border: 0px solid red">
                                 <tbody id="own_punishment">
+
+                                </tbody>
+                            </table>
+
+                            <h4 style="color: #00ab9f;font-weight: bold ;padding-top: 15px;">违纪或处分</h4>
+                            <table class="layui-table lay-even " data-name="articleCatData"
+                                   style="border: 0px solid red">
+                                <tbody id="t_discipline_and_punishment">
+
+                                </tbody>
+                            </table>
+                            <h4 style="color: #00ab9f;font-weight: bold ;padding-top: 15px;">团学活动</h4>
+                            <table class="layui-table lay-even " data-name="articleCatData"
+                                   style="border: 0px solid red">
+                                <tbody id="t_group_activities">
 
                                 </tbody>
                             </table>
