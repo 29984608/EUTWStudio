@@ -165,39 +165,31 @@
 
     <div class="container" id="container" style="padding: 35px 15px 35px 60px;width: 55%">
         <div style="border: 1px solid #DBDBDB;height: 1100px;">
-            <div style="margin-top: 500px;text-align: right;margin-right: 50px;line-height: normal">
-                <span style="font-size: 22px;font-weight: bold">西安欧亚学院高职学院学生沟通反馈报告</span><br>
+            <img style="width: 200px;height: 60px;margin: 30px 40px;" src="${baseurl}/images/public/logo_.png"/>
+            <div style="margin-top: 400px;text-align: right;margin-right: 50px;line-height: normal">
+                <span style="font-size: 22px;font-weight: bold">西安欧亚学院高职学院学生成长报告</span><br>
                 <span style="font-weight: bold;margin-top: 20px;">
-                    姓名：<span style="font-size: 12px" id="name"></span>&nbsp;&nbsp;&nbsp;
-                    性别：<span style="font-size: 12px" id="gender"></span>&nbsp;&nbsp;&nbsp;<br/>
-                    籍贯：<span style="font-size: 12px" id="native_place"></span>&nbsp;&nbsp;&nbsp;
-                    身份证号：<span style="font-size: 12px" id="idcard"></span>&nbsp;&nbsp;&nbsp;<br>
-                    专业：<span style="font-size: 12px" id="profession"></span>&nbsp;&nbsp;&nbsp;
-                    就业方向：<span style="font-size: 12px" id="direction2"></span>&nbsp;&nbsp;&nbsp;
-                    班级：<span style="font-size: 12px" id="political_status"></span>&nbsp;&nbsp;&nbsp;
+                    姓名：<span style="font-size: 12px" id="name"></span><br/>
+                    性别：<span style="font-size: 12px" id="gender"></span><br/>
+                    籍贯：<span style="font-size: 12px" id="native_place"></span><br/>
+                    身份证号：<span style="font-size: 12px" id="idcard"></span><br>
+                    专业：<span style="font-size: 12px" id="profession"></span><br/>
+                    就业方向：<span style="font-size: 12px" id="direction2"></span><br/>
+                    班级：<span style="font-size: 12px" id="political_status"></span><br/>
                 </span>
             </div>
             <div style="height: 200px;margin-top: 40px;">
-                <span style="float:left;display: block;width: 40%;height: 200px;background-color: #285560"></span>
-                <span style="float:left;display: block;width: 18%;height: 200px;background-color: #2F7284"></span>
-                <span style="float:left;display: block;width: 18%;height: 200px;background-color: #5C9CAE"></span>
+                <span style="float:left;display: block;width: 40%;height: 200px;background-color: #009688"></span>
+                <span style="float:left;display: block;width: 18%;height: 200px;background-color: #33B8AD"></span>
+                <span style="float:left;display: block;width: 18%;height: 200px;background-color: #2fd2c3"></span>
                 <span style="float:left;display: block;width: 18%;height: 200px;text-align: center;font-weight: lighter"><span
                         style="font-size: 150px;color: grey;">></span></span>
-                <span style="float:left;display: block;width: 6%;height: 200px;background-color: #5C9CAE"></span>
+                <span style="float:left;display: block;width: 6%;height: 200px;background-color: #4ED9C6"></span>
             </div>
         </div>
         <div id="communication_container" style="border: 1px solid #DBDBDB;margin: 30px 0;padding: 30px 30px;">
-            <blockquote class="layui-elem-quote layui-quote-nm">
-            <span style="display:inline-block;line-height:25px;font-size: 14px;font-weight: bold;">时间：2017-3-28 &nbsp;&nbsp;&nbsp;沟通老师：付老师 &nbsp;&nbsp;&nbsp; 沟通对象：吕俊杰
-                <br>沟通项目：学业指导  &nbsp;&nbsp;&nbsp;沟通方式：面谈  &nbsp;&nbsp;&nbsp;电话：15682145362</span></blockquote>
-            <div class="layui-form-item  content_node" style="margin-top: 10px;">
-                <label class="layui-form-label " style="font-size: 13px">Q</label>
-                <input class="layui-textarea add-contents textarea"
-                       style="width: 80%;min-height: 30px;height: 38px;font-size: 12px;margin-bottom: 5px"></input>
-                <label class="layui-form-label " style="font-size: 13px">A</label>
-                <input  class="layui-textarea add-contents textarea"
-                       style="width: 80%;min-height: 50px;height: 70px;font-size: 12px;margin-left: .9%"></input>
-            </div>
+
+        </div>
         </div>
 
     </div>
@@ -290,13 +282,15 @@
         let QA = "";
         let count =1;
         for (let index = 0; index < contents.length; index += 2) {
-            QA +=` <div class="layui-form-item  content_node" style="margin-top: 10px;">
-                <label class="layui-form-label " style="font-size: 13px">Q` + (count) + `</label>
-                <input class="layui-textarea add-contents textarea" readonly
-                       style="width: 80%;min-height: 30px;height: 38px;font-size: 12px;margin-bottom: 5px" value="` + contents[index] + `">
-                <label class="layui-form-label " style="font-size: 13px">A` + (count++) + `</label>
-                <input  class="layui-textarea add-contents textarea" readonly
-                       style="width: 80%;min-height: 50px;height: 70px;font-size: 12px;margin-left: .9%" value="` + contents[index + 1] + `">
+            QA +=` <div class="layui-form-item  " style="margin-top: 10px;">
+            <div style="line-height: 25px;">
+                <div  style="font-size: 13px;width: 8%;float: left;font-weight: bold;text-align: right">Q` + (count) + `：</div>
+                <div style="width: 90%;min-height: 20px;float: left;font-size: 12px;margin-bottom: 5px;">` + contents[index] + `<br></div>
+            </div>
+            <div style="line-height: 25px;">
+                <div style="font-size: 13px;width: 8%;float: left;font-weight: bold;text-align: right">A` + (count++) + `：</div>
+                <div   style="width: 90%;float: left;min-height: 20px;font-size: 12px;"> ` + contents[index + 1] + `</div>
+            </div>
             </div>`;
 
         }
