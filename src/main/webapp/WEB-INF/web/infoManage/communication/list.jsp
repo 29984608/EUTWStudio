@@ -17,6 +17,10 @@
     <link rel="stylesheet" href="${baseurl}/public/css/timeAsix/css/responsive.css" type="text/css" media="screen">
     <link rel="stylesheet" href="${baseurl}/public/css/timeAsix/inc/colorbox.css" type="text/css" media="screen">
     <script type="text/javascript" src="${baseurl}/js/searchJs.js"></script>
+    <%--PDF--%>
+    <%--导出pdf--%>
+    <script src='${baseurl}/public/pdfMake/pdfmake.min.js'></script>
+    <script src='${baseurl}/public/pdfMake/vfs_fonts.js'></script>
 
 </head>
 <body>
@@ -143,6 +147,7 @@
 </body>
 
 <%@include file="layer.jsp" %>
+<%@include file="pdf.jsp" %>
 <script type="text/javascript" src="${baseurl}/public/css/timeAsix/inc/colorbox.js"></script>
 <script type="text/javascript" src="${baseurl}/public/css/timeAsix/js/timeliner.min.js"></script>
 <script>
@@ -480,7 +485,8 @@
     ;
 
     function printPdf() {
-        pdf(document.getElementById("container"), $("#name").text(), "a4");
+//        pdf(document.getElementById("container"), $("#name").text(), "a4");
+        printPDF("1");
     }
 </script>
 

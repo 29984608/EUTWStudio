@@ -193,10 +193,10 @@
             <div class="layui-form-item  content_node" style="margin-top: 10px;">
                 <label class="layui-form-label " style="font-size: 13px">Q</label>
                 <input class="layui-textarea add-contents textarea"
-                       style="width: 80%;min-height: 30px;height: 38px;font-size: 12px;margin-bottom: 5px"></input>
+                       style="width: 80%;min-height: 30px;height: 38px;font-size: 12px;margin-bottom: 5px" />
                 <label class="layui-form-label " style="font-size: 13px">A</label>
                 <input  class="layui-textarea add-contents textarea"
-                       style="width: 80%;min-height: 50px;height: 70px;font-size: 12px;margin-left: .9%"></input>
+                       style="width: 80%;min-height: 50px;height: 70px;font-size: 12px;margin-left: .9%" />
             </div>
         </div>
 
