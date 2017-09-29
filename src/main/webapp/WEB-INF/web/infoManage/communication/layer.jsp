@@ -62,12 +62,12 @@
                     添加反馈
                 </button>
             </shiro:hasPermission>
-            <shiro:hasPermission name="communication:update">
-                <button class="layui-btn layui-btn-mini " style="background: #21a1a1"
-                        onclick="communication.previewOrUpdate('{{ item.name}}','{{item.no}}','update')">
-                    修改
-                </button>
-            </shiro:hasPermission>
+            <%--<shiro:hasPermission name="communication:update">--%>
+            <%--<button class="layui-btn layui-btn-mini " style="background: #21a1a1"--%>
+            <%--onclick="communication.previewOrUpdate('{{ item.name}}','{{item.no}}','update')">--%>
+            <%--修改--%>
+            <%--</button>--%>
+            <%--</shiro:hasPermission>--%>
             <shiro:hasPermission name="communication:preview">
                 <button class="layui-btn layui-btn-mini  "
                         onclick="communication.previewOrUpdate('{{ item.name}}','{{item.no}}','preview')">
@@ -128,7 +128,8 @@
             <label class="layui-form-label " style="font-size: 13px">电话</label>
             <div class="layui-input-inline">
                 <div class="layui-input-inline">
-                    <input type="tel" name="phone" lay-verify="phone" autocomplete="off" class="layui-input" id="communicationPhone">
+                    <input type="tel" name="phone" lay-verify="phone" autocomplete="off" class="layui-input"
+                           id="communicationPhone">
                 </div>
             </div>
         </div>
@@ -161,51 +162,46 @@
 <div id="update" style="display: none;background: #fff;">
     <a class="layui-btn" onclick="printPdf()" id="printPDF" style="float: right"><i class="layui-icon">&#xe630;</i>导出
         PDF</a>
-    <div class="container" id="container" style="padding: 35px 15px 35px 60px;width: 750px">
 
-        <h2 style="text-align: center;margin-left: -30px">西安欧亚学院高职学院<span id="who" style="display: none"></span>学生沟通反馈报告
-        </h2>
-        <div style="margin:40px 0">
-
-            <table class="layui-table lay-even " data-name="articleCatData">
-                <thead>
-                <tr>
-                    <th style="font-size: 12px">姓名</th>
-                    <th style="font-size: 12px">性别</th>
-                    <th style="font-size: 12px">籍贯</th>
-                    <th style="font-size: 12px">身份证号码</th>
-                    <th style="font-size: 12px">专业</th>
-                    <th style="font-size: 12px">就业方向</th>
-                    <th style="font-size: 12px">班级</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <th style="font-size: 12px" id="name"></th>
-                    <th style="font-size: 12px" id="gender"></th>
-                    <th style="font-size: 12px" id="native_place"></th>
-                    <th style="font-size: 12px" id="idcard"></th>
-                    <th style="font-size: 12px" id="profession"></th>
-                    <th style="font-size: 12px" id="direction2"></th>
-                    <th style="font-size: 12px" id="political_status"></th>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <div id="timelineContainer" class="timelineContainer">
-
-            <div class="timelineToggle"><p><a class="expandAll ">+ 全部展开</a></p></div>
-
-            <br class="clear">
-            <div id="communication_container">
-
+    <div class="container" id="container" style="padding: 35px 15px 35px 60px;width: 55%">
+        <div style="border: 1px solid #DBDBDB;height: 1100px;">
+            <div style="margin-top: 500px;text-align: right;margin-right: 50px;line-height: normal">
+                <span style="font-size: 22px;font-weight: bold">西安欧亚学院高职学院学生沟通反馈报告</span><br>
+                <span style="font-weight: bold;margin-top: 20px;">
+                    姓名：<span style="font-size: 12px" id="name"></span>&nbsp;&nbsp;&nbsp;
+                    性别：<span style="font-size: 12px" id="gender"></span>&nbsp;&nbsp;&nbsp;<br/>
+                    籍贯：<span style="font-size: 12px" id="native_place"></span>&nbsp;&nbsp;&nbsp;
+                    身份证号：<span style="font-size: 12px" id="idcard"></span>&nbsp;&nbsp;&nbsp;<br>
+                    专业：<span style="font-size: 12px" id="profession"></span>&nbsp;&nbsp;&nbsp;
+                    就业方向：<span style="font-size: 12px" id="direction2"></span>&nbsp;&nbsp;&nbsp;
+                    班级：<span style="font-size: 12px" id="political_status"></span>&nbsp;&nbsp;&nbsp;
+                </span>
             </div>
-
-
-            <br class="clear">
+            <div style="height: 200px;margin-top: 40px;">
+                <span style="float:left;display: block;width: 40%;height: 200px;background-color: #285560"></span>
+                <span style="float:left;display: block;width: 18%;height: 200px;background-color: #2F7284"></span>
+                <span style="float:left;display: block;width: 18%;height: 200px;background-color: #5C9CAE"></span>
+                <span style="float:left;display: block;width: 18%;height: 200px;text-align: center;font-weight: lighter"><span
+                        style="font-size: 150px;color: grey;">></span></span>
+                <span style="float:left;display: block;width: 6%;height: 200px;background-color: #5C9CAE"></span>
+            </div>
         </div>
+        <div id="communication_container" style="border: 1px solid #DBDBDB;margin: 30px 0;padding: 30px 30px;">
+            <blockquote class="layui-elem-quote layui-quote-nm">
+            <span style="display:inline-block;line-height:25px;font-size: 14px;font-weight: bold;">时间：2017-3-28 &nbsp;&nbsp;&nbsp;沟通老师：付老师 &nbsp;&nbsp;&nbsp; 沟通对象：吕俊杰
+                <br>沟通项目：学业指导  &nbsp;&nbsp;&nbsp;沟通方式：面谈  &nbsp;&nbsp;&nbsp;电话：15682145362</span></blockquote>
+            <div class="layui-form-item  content_node" style="margin-top: 10px;">
+                <label class="layui-form-label " style="font-size: 13px">Q</label>
+                <input class="layui-textarea add-contents textarea"
+                       style="width: 80%;min-height: 30px;height: 38px;font-size: 12px;margin-bottom: 5px"></input>
+                <label class="layui-form-label " style="font-size: 13px">A</label>
+                <input  class="layui-textarea add-contents textarea"
+                       style="width: 80%;min-height: 50px;height: 70px;font-size: 12px;margin-left: .9%"></input>
+            </div>
+        </div>
+
     </div>
+</div>
 
 </div>
 
@@ -250,23 +246,16 @@
     };
 
 
-    function showCommunicationContents(data, type) {
+    function showCommunicationContent(data, type) {
         let communication = ""
         for (let i = 0; i < data.length - 1; ++i) {
             let com = data[i];
-            communication += `
-            <div class="timelineMajor">
-                <h2 class="timelineMajorMarker">
-                <span>` + com.time + `</span></h2>
-                <dl class="timelineMinor">
-                    <dt id="id` + com.id + `">
-                    <a id='exportPDFName'>` + com.teacherName + ` - ` + com.direction + ` - ` + com.talkName + `</a></dt>
-                    <%--QA 容器--%>
-                    <dd class="timelineEvent" id="id` + com.id + `EX" style="display:none;">
-                `;
+            communication += `<blockquote class="layui-elem-quote layui-quote-nm">
+            <span style="display:inline-block;line-height:25px;font-size: 14px;font-weight: bold;">时间：` + com.time + ` &nbsp;&nbsp;&nbsp;沟通老师：` + com.teacherName + ` &nbsp;&nbsp;&nbsp; 沟通对象：` + com.talkName + `
+                <br>沟通项目：` + com.direction + `  &nbsp;&nbsp;&nbsp;沟通方式：` + com.communicationMode + `  &nbsp;&nbsp;&nbsp;电话：` + com.communicationPhone + `</span></blockquote>
+`;
 
-            communication += type === "preview" ? loadPreviewQA(com.contents) : loadEditQA(com.contents, com.id);
-            communication += `</dd></dl></div>`;
+            communication +=  loadPreviewQA(com.contents);
 
         }
 
@@ -299,19 +288,17 @@
 
     function loadPreviewQA(contents) {
         let QA = "";
+        let count =1;
         for (let index = 0; index < contents.length; index += 2) {
-            QA += `
-             <dl class="timelineMinor">
-                <dt id="` + index + `"><a style="font-size: 12px;color: peru">Q&A</a></dt>
-                <dd class="timelineEvent" id="` + index + `EX" style="display:none;">
-               <p style="font-size: 12px;"
-                           class=" contents"> <a style="font-size: 12px;color: peru">Q：</a> ` + contents[index] + `</p>
-                   <p style="font-size: 12px;"
-                              class=" contents"> <a style="font-size: 12px;color: peru">A：</a> ` + contents[index + 1] + `</p>
-                    <br class="clear">
-                </dd>
-            </dl>
-         `;
+            QA +=` <div class="layui-form-item  content_node" style="margin-top: 10px;">
+                <label class="layui-form-label " style="font-size: 13px">Q` + (count) + `</label>
+                <input class="layui-textarea add-contents textarea" readonly
+                       style="width: 80%;min-height: 30px;height: 38px;font-size: 12px;margin-bottom: 5px" value="` + contents[index] + `">
+                <label class="layui-form-label " style="font-size: 13px">A` + (count++) + `</label>
+                <input  class="layui-textarea add-contents textarea" readonly
+                       style="width: 80%;min-height: 50px;height: 70px;font-size: 12px;margin-left: .9%" value="` + contents[index + 1] + `">
+            </div>`;
+
         }
         return QA;
     }

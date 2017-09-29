@@ -481,7 +481,9 @@
             talk_name    talkName,
             content,
             time,
-            direction
+            direction,
+            communicationPhone,
+            communicationMode
         FROM t_communication communication
             LEFT JOIN (SELECT
                            no,
