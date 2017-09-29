@@ -38,9 +38,11 @@ public class CommunicationController {
         Map<String, Object> data = new HashMap<>();
 
         try {
-            List<Map<String, String>> students = personService.queryStudentsByTeacherHasClasses(searchDto, page);
+            List<Map<String, String>> allProfessionList = personService.queryAllStudentsProfessionList();
+            List<Map<String, String>> student = personService.queryStudentsByTeacherHasClasses(searchDto, page);
 
-            data.put("students", students);
+            data.put("student", student);
+            data.put("allProfessionList", allProfessionList);
             data.put("result", true);
             data.put("page", page);
             data.put("msg", Constant.SEARCH_SUCCESS);

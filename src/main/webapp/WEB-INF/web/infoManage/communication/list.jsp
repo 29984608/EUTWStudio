@@ -17,7 +17,29 @@
     <link rel="stylesheet" href="${baseurl}/public/css/timeAsix/css/responsive.css" type="text/css" media="screen">
     <link rel="stylesheet" href="${baseurl}/public/css/timeAsix/inc/colorbox.css" type="text/css" media="screen">
     <script type="text/javascript" src="${baseurl}/js/searchJs.js"></script>
+    <style>
+        .layui-form-radio span {
+            font-size: 10px;
+        }
 
+        .layui-form-radio i {
+            font-size: 15px;
+        }
+
+        .layui-elem-quote {
+            padding-bottom: 1px;
+        }
+
+        .layui-disabled {
+            background: none;
+        }
+
+        .layui-table td,.layui-table th {
+            font-size: 12px;
+            padding: 4px 15px;
+
+        }
+    </style>
 </head>
 <body>
 <section class="larry-grid layui-form">
@@ -100,34 +122,24 @@
         <div class="layui-tab-content larry-personal-body clearfix mylog-info-box">
             <div class="layui-form">
                 <table class="layui-table">
-                    <colgroup>
-                        <col width="80">
-                        <col width="100">
-                        <col width="100">
-                        <col width="200">
-                        <col width="80">
-                        <col width="200">
-                        <col width="200">
-                        <col width="200">
-                        <col width="120">
-                        <col width="100">
-                        <col width="140">
-                        <col width="400">
-                    </colgroup>
                     <thead>
                     <tr>
-                        <th style="font-size: 12px">学号</th>
-                        <th style="font-size: 12px">姓名</th>
-                        <th style="font-size: 12px">性别</th>
-                        <th style="font-size: 12px">系名称</th>
-                        <th style="font-size: 12px">年级</th>
-                        <th style="font-size: 12px">方向</th>
-                        <th style="font-size: 12px">专业</th>
-                        <th style="font-size: 12px">班级</th>
-                        <th style="font-size: 12px">区号</th>
-                        <th style="font-size: 12px">层号</th>
-                        <th style="font-size: 12px">房间号</th>
-                        <th style="font-size: 12px">操作</th>
+                        <th style="height: 48px;">学号</th>
+                        <th>姓名</th>
+                        <th>性别</th>
+                        <th>系</th>
+                        <th>年级</th>
+                        <th>专业</th>
+                        <th>方向</th>
+                        <th>学籍状态</th>
+                        <th>班级</th>
+                        <th>职业导师</th>
+                        <th>社区辅导员</th>
+                        <th>住宿类型</th>
+                        <th>区</th>
+                        <th>楼层</th>
+                        <th>宿舍</th>
+                        <th>操作</th>
                     </tr>
                     </thead>
                     <tbody id="list">
@@ -219,6 +231,7 @@
                     type: "post",
                     success: function (data) {
                         if (data.result) {
+                            console.log(data)
                             currentIndex = data.page.currentIndex;
                             totalSize = data.page.totalSize;
                             showTotalCount(data.page.totalCount);
@@ -412,7 +425,7 @@
             queryClassByDirectionId: function (id) {
                 $.post(baseUrl + "/studentClass/queryClassesByDirectionId", {id: id}, function (data) {
                     if (data.result) {
-                        $("#queryClass").html(`<option value=''></option>班级<option value="">请选择</option>`).append(loadOptionsHtml(data.data, "-"))
+                        $("#queryClass").html(`<option value=''>班级</option><option value="">请选择</option>`).append(loadOptionsHtml(data.data, "-"))
                     }
                     form.render();
                 })
@@ -459,7 +472,7 @@
                         var queryAreaOfRoom = data.data.queryAreaOfRoom
                         var queryFloorOfRoom = data.data.queryFloorOfRoom
                         $("#queryAreaOfRoom").html(communication.loadDepartmentOrDirection(queryAreaOfRoom, id))
-                        $("#queryFloor").html(`<option value="">层号</option><option value=''>请选择</option>`).append(communication.loadDepartmentOrDirection(queryFloorOfRoom, "-"))
+                        $("#queryFloor").html(`<option value="">层号</option>`).append(communication.loadDepartmentOrDirection(queryFloorOfRoom, "-"))
 
                         form.render();
                     }
@@ -470,7 +483,7 @@
                 $.post(baseUrl + "dorm/room/showFloorsAndRooms", {floorId: data.value}, function (data) {
                     if (data.result) {
                         var queryRoomList = data.data.queryRoomList
-                        $("#queryRoom").html(communication.loadDepartmentOrDirection(queryRoomList, "-"))
+                        $("#queryRoom").html(`<option value=''>请选择</option>`).append(communication.loadDepartmentOrDirection(queryRoomList, "-"))
                         form.render();
                     }
                 })

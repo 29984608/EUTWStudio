@@ -1,55 +1,118 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <script id="list-tpl" type="text/html">
-    {{# layui.each(d.students, function(index, item){ }}
+    {{# layui.each(d.student, function(index,item){ }}
     <tr>
-        <td style="font-size: 12px">{{ item.no}}</td>
-        <td style="font-size: 12px">{{ item.name}}</td>
-        <td style="font-size: 12px">{{ item.gender === "M" ? "男" : "女"}}</td>
-        <td style="font-size: 12px">
+        <td>
+            {{# if(item.no === undefined){ }}
+            无
+            {{# }else{ }}
+            {{ item.no}}
+            {{#}}}
+        </td>
+
+        <td>
+            {{# if(item.name === undefined){ }}
+            无
+            {{# }else{ }}
+            {{ item.name}}
+            {{#}}}
+        </td>
+        <td>
+            {{# if(item.gender === undefined){ }}
+            无
+            {{# }else{ }}
+            {{ item.gender === "F" ? "女" : "男"}}
+            {{#}}}
+        </td>
+        <td>
             {{# if(item.department === undefined){ }}
             无
             {{# }else{ }}
             {{ item.department}}
             {{#}}}
         </td>
-        <td style="font-size: 12px">{{ item.level}}</td>
-        <td style="font-size: 12px">
-            {{# if(item.direction === undefined){ }}
+        <td>
+            {{# if(item.level === undefined){ }}
             无
             {{# }else{ }}
-            {{ item.direction}}
+            {{ item.level}}
             {{#}}}
         </td>
-        <td style="font-size: 12px">
+        <td>
             {{# if(item.profession === undefined){ }}
             无
             {{# }else{ }}
             {{ item.profession}}
             {{#}}}
         </td>
-        <td style="font-size: 12px">
+        <td>
+            {{# if(item.direction === undefined){ }}
+            无
+            {{# }else{ }}
+            {{ item.direction}}
+            {{#}}}
+        </td>
+        //学籍状态
+        <td>
+            {{# if(item.student_status === undefined){ }}
+            无
+            {{# }else { }}
+            {{item.student_status}}
+            {{#}}}
+        </td>
+
+        <td>
             {{# if(item.classes === undefined){ }}
             无
             {{# }else{ }}
             {{ item.classes}}
             {{#}}}
         </td>
-        <td style="font-size: 12px">
-            {{# if(item.area === undefined){ }}
+
+        <td >
+            {{# if(item.teacher_name === undefined){ }}
+            无
+            {{# }else{ }}
+            {{ item.teacher_name}}
+            {{#}}}
+        </td>
+
+        <td >
+            {{# if(item.community_teacher_name === undefined){ }}
+            无
+            {{# }else{ }}
+            {{ item.community_teacher_name}}
+            {{#}}}
+        </td>
+
+        <td style="width: 60px">
+            {{# if(item.stay_type === "1"){ }}
+            校内
+            {{# }else{ }}
+            {{item.stay_type === "2" ? "校外" : ""}}
+            {{#}}}
+        </td>
+
+        <td>
+            {{# if(item.stay_type !== "1" || item.area === undefined){ }}
             无
             {{# }else{ }}
             {{ item.area}}
             {{#}}}
         </td>
+
         <td>
-            {{# if(item.floor === undefined){ }}
+            {{# if(item.stay_type !== "1" || item.floor === undefined){ }}
             无
             {{# }else{ }}
             {{ item.floor}}
             {{#}}}
         </td>
-        <td style="font-size: 12px">
-            {{# if(item.room === undefined){ }}
+
+        <td>
+            {{# if(item.stay_type !== "1"){ }}
+            无
+            {{# }else if(item.room == undefined){ }}
             无
             {{# }else{ }}
             {{ item.room}}

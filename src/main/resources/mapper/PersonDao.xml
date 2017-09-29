@@ -148,11 +148,7 @@
         FROM t_teacher) teacherCommunity ON teacherCommunity.no = student.community_teacher_id
 
         WHERE
-        # department_id = department.id
-        # AND direction_id = direction.id
-        # AND profession_id = profession.id
 
-        # and
         student.name LIKE #{searchDto.name}
         and student.no LIKE #{searchDto.studentNo}
         and student.gender LIKE #{searchDto.sex}
@@ -310,13 +306,19 @@
         student.name,
         student.gender,
         student.level,
-        direction.name direction,
-        profession.name profession,
-        class.name classes,
+        student.stay_type,
+        student.student_status,
+        student.teacher_id,
+        student.community_teacher_id,
         department.name department,
+        profession.name profession,
+        direction.name direction,
+        class.name classes,
         area.name area,
         floor.name floor,
-        room.name room
+        room.name room,
+        teacher.name teacher_name,
+        teacherCommunity.name community_teacher_name
         FROM t_student student
 
         LEFT JOIN (SELECT
@@ -353,6 +355,16 @@
         id,
         name
         FROM t_room) room ON room.id = student.room_id
+        LEFT JOIN (SELECT
+        t_teacher.no,
+        name,
+        gender
+        FROM t_teacher) teacher ON teacher.no = student.teacher_id
+        LEFT JOIN (SELECT
+        t_teacher.no,
+        name,
+        gender
+        FROM t_teacher) teacherCommunity ON teacherCommunity.no = student.community_teacher_id
 
         <where>
             student.name LIKE #{searchDto.name}
@@ -366,6 +378,9 @@
             <if test="searchDto.professionId !='' and searchDto.professionId != null">
                 and student.level = #{searchDto.professionId}
             </if>
+            <if test="searchDto.directionId !='' and searchDto.directionId != null">
+                and student.direction_id = #{searchDto.directionId}
+            </if>
 
             <if test="searchDto.areaId !='' and searchDto.areaId !=null">
                 and student.area_id = #{searchDto.areaId}
@@ -378,6 +393,7 @@
             </if>
 
         </where>
+        ORDER BY department.id DESC,level DESC ,profession.id ASC,direction.id DESC,class.id ASC
         LIMIT #{start}, #{pageSize}
 
     </select>
