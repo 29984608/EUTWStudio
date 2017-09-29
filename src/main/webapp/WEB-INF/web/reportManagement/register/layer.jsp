@@ -90,7 +90,7 @@
         </tr>
         <tr>
             <td >籍贯</td>
-            <td  id="origin_address"></td>
+            <td colspan="2" id="origin_address"></td>
 
             <td>政治面貌</td>
             <td id="political_status"></td>
@@ -99,7 +99,7 @@
             <td id="pre_school_education">高中</td>
 
             <td>学生类别</td>
-            <td colspan="3" id="student_classify">☐本科 ☐专升本 ☐专科</td>
+            <td colspan="2" id="student_classify">☐本科 ☐专升本 ☐专科</td>
         </tr>
         <tr>
             <td id = "actual">家庭住址<br>(文书可达)</td>
