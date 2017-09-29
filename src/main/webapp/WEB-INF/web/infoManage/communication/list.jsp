@@ -231,7 +231,6 @@
                     type: "post",
                     success: function (data) {
                         if (data.result) {
-                            console.log(data)
                             currentIndex = data.page.currentIndex;
                             totalSize = data.page.totalSize;
                             showTotalCount(data.page.totalCount);
@@ -315,10 +314,8 @@
             previewOrUpdate: function (name, studentNo, type) {
                 $("#who").text(name);
                 $.post(baseUrl + "/communication/communication", {studentNo: studentNo}, function (data) {
-                    console.log(data);
                     if (data.result) {
                         showCommunicationContent(data.data);
-                        console.log( type);
                         $("#name").text(data.data[(data.data.length - 1)].name);
                         if (data.data[(data.data.length - 1)].gender = "M") {
                             $("#gender").text("男");
