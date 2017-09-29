@@ -97,9 +97,12 @@
                 <h2 class="layui-colla-title" style="height: 90px;">
                     公告：`+data[i].title+`<span style="font-size: 12px;color: darkgray;float: right"></span><br>
                     <p style="font-size: 12px;color: darkgray;text-indent: 2em;">发布人：`+data[i].name+`<span style="margin-left: 20px;"> 发时间： `+data[i].time+`</span>
+                    <shiro:hasPermission name="notice:delete">
+
                     <button style="float: right" class="layui-btn layui-btn-mini  layui-btn-danger" onclick="notice.delete(`+data[i].id+`)">
                         <i class="layui-icon">&#xe60a;</i>删除
                     </button>
+                    </shiro:hasPermission>
                     </p>
                     <i class="layui-icon layui-colla-icon"></i>
 

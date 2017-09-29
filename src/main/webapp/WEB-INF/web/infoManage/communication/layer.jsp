@@ -62,12 +62,12 @@
                     添加反馈
                 </button>
             </shiro:hasPermission>
-            <%--<shiro:hasPermission name="communication:update">--%>
-            <%--<button class="layui-btn layui-btn-mini " style="background: #21a1a1"--%>
-            <%--onclick="communication.previewOrUpdate('{{ item.name}}','{{item.no}}','update')">--%>
-            <%--修改--%>
-            <%--</button>--%>
-            <%--</shiro:hasPermission>--%>
+            <shiro:hasPermission name="communication:update">
+            <button class="layui-btn layui-btn-mini " style="background: #21a1a1;display: none"
+            onclick="communication.previewOrUpdate('{{ item.name}}','{{item.no}}','update')">
+            修改
+            </button>
+            </shiro:hasPermission>
             <shiro:hasPermission name="communication:preview">
                 <button class="layui-btn layui-btn-mini  "
                         onclick="communication.previewOrUpdate('{{ item.name}}','{{item.no}}','preview')">
