@@ -17,18 +17,14 @@
     <link rel="stylesheet" href="${baseurl}/public/css/timeAsix/css/responsive.css" type="text/css" media="screen">
     <link rel="stylesheet" href="${baseurl}/public/css/timeAsix/inc/colorbox.css" type="text/css" media="screen">
     <script type="text/javascript" src="${baseurl}/js/searchJs.js"></script>
-<<<<<<< HEAD
     <%--PDF--%>
     <%--导出pdf--%>
     <script src='${baseurl}/public/pdfMake/pdfmake.min.js'></script>
     <script src='${baseurl}/public/pdfMake/vfs_fonts.js'></script>
-=======
     <style>
         .layui-form-radio span {
             font-size: 10px;
         }
->>>>>>> a491394791fe5da9d1d929c47b1a678d0b94b4c6
-
         .layui-form-radio i {
             font-size: 15px;
         }
@@ -189,6 +185,7 @@
 <script type="text/javascript" src="${baseurl}/public/js/pdf/jspdf.debug.js"></script>
 <script type="text/javascript" src="${baseurl}/public/js/pdf/renderPDF.js"></script>
 <script type="text/javascript">
+    let personalCommunicationFeedbackRecords;
     let totalSize = 10;
     let currentIndex = 1;
     let pageSize = 10;
@@ -322,6 +319,8 @@
             previewOrUpdate: function (name, studentNo, type) {
                 $("#who").text(name);
                 $.post(baseUrl + "/communication/communication", {studentNo: studentNo}, function (data) {
+                    console.log(data)
+                    personalCommunicationFeedbackRecords = data;
                     if (data.result) {
                         showCommunicationContent(data.data);
                         $("#name").text(data.data[(data.data.length - 1)].name);
@@ -499,7 +498,7 @@
 
     function printPdf() {
 //        pdf(document.getElementById("container"), $("#name").text(), "a4");
-        printPDF("1");
+        printPDF(personalCommunicationFeedbackRecords);
     }
 </script>
 

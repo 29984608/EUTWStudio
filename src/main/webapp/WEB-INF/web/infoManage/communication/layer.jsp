@@ -69,7 +69,7 @@
             {{#}}}
         </td>
 
-        <td >
+        <td>
             {{# if(item.teacher_name === undefined){ }}
             无
             {{# }else{ }}
@@ -77,7 +77,7 @@
             {{#}}}
         </td>
 
-        <td >
+        <td>
             {{# if(item.community_teacher_name === undefined){ }}
             无
             {{# }else{ }}
@@ -126,10 +126,10 @@
                 </button>
             </shiro:hasPermission>
             <shiro:hasPermission name="communication:update">
-            <button class="layui-btn layui-btn-mini " style="background: #21a1a1;display: none"
-            onclick="communication.previewOrUpdate('{{ item.name}}','{{item.no}}','update')">
-            修改
-            </button>
+                <button class="layui-btn layui-btn-mini " style="background: #21a1a1;display: none"
+                        onclick="communication.previewOrUpdate('{{ item.name}}','{{item.no}}','update')">
+                    修改
+                </button>
             </shiro:hasPermission>
             <shiro:hasPermission name="communication:preview">
                 <button class="layui-btn layui-btn-mini  "
@@ -251,25 +251,22 @@
             </div>
         </div>
         <div id="communication_container" style="border: 1px solid #DBDBDB;margin: 30px 0;padding: 30px 30px;">
-<<<<<<< HEAD
             <blockquote class="layui-elem-quote layui-quote-nm">
             <span style="display:inline-block;line-height:25px;font-size: 14px;font-weight: bold;">时间：2017-3-28 &nbsp;&nbsp;&nbsp;沟通老师：付老师 &nbsp;&nbsp;&nbsp; 沟通对象：吕俊杰
                 <br>沟通项目：学业指导  &nbsp;&nbsp;&nbsp;沟通方式：面谈  &nbsp;&nbsp;&nbsp;电话：15682145362</span></blockquote>
             <div class="layui-form-item  content_node" style="margin-top: 10px;">
                 <label class="layui-form-label " style="font-size: 13px">Q</label>
                 <input class="layui-textarea add-contents textarea"
-                       style="width: 80%;min-height: 30px;height: 38px;font-size: 12px;margin-bottom: 5px" />
+                       style="width: 80%;min-height: 30px;height: 38px;font-size: 12px;margin-bottom: 5px"/>
                 <label class="layui-form-label " style="font-size: 13px">A</label>
-                <input  class="layui-textarea add-contents textarea"
-                       style="width: 80%;min-height: 50px;height: 70px;font-size: 12px;margin-left: .9%" />
+                <input class="layui-textarea add-contents textarea"
+                       style="width: 80%;min-height: 50px;height: 70px;font-size: 12px;margin-left: .9%"/>
             </div>
-=======
 
         </div>
->>>>>>> a491394791fe5da9d1d929c47b1a678d0b94b4c6
-        </div>
-
     </div>
+
+</div>
 </div>
 
 </div>
@@ -324,12 +321,13 @@
                 <br>沟通项目：` + com.direction + `  &nbsp;&nbsp;&nbsp;沟通方式：` + com.communicationMode + `  &nbsp;&nbsp;&nbsp;电话：` + com.communicationPhone + `</span></blockquote>
 `;
 
-            communication +=  loadPreviewQA(com.contents);
+            communication += loadPreviewQA(com.contents);
 
         }
 
         $("#communication_container").html(communication);
     }
+
     function loadEditQA(contents, id) {
         let QA = "";
         for (let index = 0; index < contents.length; index += 2) {
@@ -357,9 +355,9 @@
 
     function loadPreviewQA(contents) {
         let QA = "";
-        let count =1;
+        let count = 1;
         for (let index = 0; index < contents.length; index += 2) {
-            QA +=` <div class="layui-form-item  " style="margin-top: 10px;">
+            QA += ` <div class="layui-form-item  " style="margin-top: 10px;">
             <div style="line-height: 25px;">
                 <div  style="font-size: 13px;width: 8%;float: left;font-weight: bold;text-align: right">Q` + (count) + `：</div>
                 <div style="width: 90%;min-height: 20px;float: left;font-size: 12px;margin-bottom: 5px;">` + contents[index] + `<br></div>

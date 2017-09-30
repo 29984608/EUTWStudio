@@ -2,104 +2,175 @@
 
 <script type="text/javascript">
     function printPDF(data) {
-        alert(123);
-        var content = {
-            content: [
+        let communicationData = data.data;
+        let communicateContentHead = [];
+        for (let i = 0; i < communicationData.length - 1; i++) {
+            communicateContentHead.push([
                 {
-                    text: "西安欧亚学院张三的成长报告",
-                    fontSize: 22,
-                    style: "subheader",
-                    color: "#36B7AB",
-                    alignment: "center"
-                },
-                {
-                    style: "tableExample",
-                    table: {
-                        widths: [110,70,70,60,60,100],
-                        body: [
-                            [
-                                {
-                                    text: "时间：2017-09-29 18:52:47",
-                                    fontSize: 8,
-                                    margin: [0, 4, 0, 4]
-                                },
-                                {
-                                    text: "沟通老师： ****",
-                                    fontSize: 8,
-                                    margin: [0, 4, 0, 4]
-                                },
-                                {
-                                    text: "沟通对象：吕俊杰 ",
-                                    fontSize: 8,
-                                    margin: [0, 4, 0, 4]
-                                },
-                                {
-                                    text: "沟通方式：面谈",
-                                    fontSize: 8,
-                                    margin: [0, 4, 0, 4]
-                                },
-                                {
-                                    text:"沟通方式：面谈",
-                                    fontSize:8,
-                                    margin: [0, 4, 0, 4]
-                                },
-                                {
-                                    text:"电话：15291194274",
-                                    fontSize:8,
-                                    margin: [0, 4, 0, 4]
-                                },
-                            ]
-                        ],
-                    },
+                    text: "时间：" + communicationData[i].time,
+                    fontSize: 8,
+                    border: [false, true, false, true],
+                    margin: [0, 4, 0, 4]
                 },
                 {
-                    style: "tableExample",
-                    table:{
-                        width:["*"],
-                        body:[
-                            [
-                                {
-                                    text:"Q1",
-                                },
-                                {
-                                    text: "作为本地区应用技术大学商科教育领航者，西安欧亚学院以商科为载体，利用先进的教育理念，改变了传统的商科的知识结构，教学环境、教学模式、教学内容、考核方式",
-                                }
-                            ]
-                        ]
-                    },
+                    text: "沟通老师：" + communicationData[i].teacherName,
+                    fontSize: 8,
+                    border: [false, true, false, true],
+                    margin: [0, 4, 0, 4]
                 },
                 {
-                    text: "一、欧亚商科在于所有与市场相关联的经济、管理学科之间没有知识壁垒，是附属、服务于市场经济需求的复合型商科。二、在信息时代，欧亚商科遵循商业文明的规律，利用新电子商务、新金融、新物流等手段服务于教育。三、欧亚商科关注社会发展变迁、面向未来，培养有自我价值观念的终身学习者。四、欧亚商科遵循学生的认知规律，探索教与学的新范式。追求教育的新境界，在商科领域注重培养学生的批判性思维、表达与思考能力、终身学习能力，使之既适合行业需要，又适应社会快速发展需要",
-                    style: "tableExample",
+                    text: "沟通对象：" + communicationData[i].talkName,
+                    fontSize: 8,
+                    border: [false, true, false, true],
+                    margin: [0, 4, 0, 4]
                 },
-
-            ],
-            styles: {
-                header: {
-                    fontSize: 18,
-                    bold: true,
-                    margin: [0, 0, 0, 10]
+                {
+                    text: "沟通类型：" + communicationData[i].direction,
+                    fontSize: 8,
+                    border: [false, true, false, true],
+                    margin: [0, 4, 0, 4]
                 },
-                subheader: {
-                    fontSize: 16,
-                    bold: true,
-                    margin: [0, 10, 0, 5]
+                {
+                    text: "沟通方式：" + communicationData[i].communicationMode,
+                    fontSize: 8,
+                    border: [false, true, false, true],
+                    margin: [0, 4, 0, 4]
                 },
-                tableExample: {
-                    fontSize: 10,
-                    margin: [0, 5, 0, 15]
+                {
+                    text: "电话：" + communicationData[i].communicationPhone,
+                    fontSize: 8,
+                    border: [false, true, false, true],
+                    margin: [0, 4, 0, 4]
                 },
-                tableHeader: {
-                    bold: true,
-                    fontSize: 13,
-                    color: "black"
-                }
-            },
-            defaultStyle: {
-                font: "微软雅黑"
+            ]);
+            let communicationDataContent = communicationData[i].contents;
+            let contentTimes = 0;
+            for (let count = 0; count < communicationDataContent.length - 1; count += 2) {
+                contentTimes++;
+                communicateContentHead.push(
+                    [
+                        {
+                            text: "Q" + contentTimes + "：",
+                            alignment: 'center',
+                            colSpan: 1,
+                            margin: [0, 4, 0, 4],
+                            border: [false, false, false, false],
+                            style: "removeTheBorder"
+                        },
+                        {
+                            text: communicationDataContent[count],
+                            margin: [0, 4, 0, 4],
+                            border: [false, false, false, false],
+                            colSpan: 5,
+                        }, {}, {}, {}, {}
+                    ],
+                    [
+                        {
+                            text: "A" + contentTimes + "：",
+                            alignment: 'center',
+                            border: [false, false, false, false],
+                            margin: [0, 4, 0, 4],
+                            colSpan: 1,
+                            style: "removeTheBorder"
+                        },
+                        {
+                            text: communicationDataContent[count + 1],
+                            margin: [0, 4, 0, 4],
+                            border: [false, false, false, false],
+                            colSpan: 5,
+                        }, {}, {}, {}, {}
+                    ]
+                )
             }
-        };
-        pdfmake(content);
+        }
+        //图片格式转换
+        var x = new ImageDataURL([baseUrl + "/images/public/logo_1.jpg"]);
+        x.oncomplete = function () {
+            let imgs = [];
+            for (let key in this.imgdata) {
+                if (this.imgdata[key] == this.emptyobj) {
+                    imgs.push({text: '请上传头像', fontSize: 10, rowSpan: 3});
+                    continue;
+                }//不存在的圖片直接忽略
+                imgs.push({image: this.imgdata[key], fit: [150, 120], rowSpan: 3,fillColor: '#ffffff',});//在的圖片直接忽略
+            }
+
+            console.log(imgs.d1)
+            var content = {
+                content: [
+                    {
+                        style: "coverStyle",
+                        table: {
+                            widths: [120, "*", "*", "*", 240],
+                            body: [
+                                [imgs,{},{},{},{}],
+                                [{text: "\n\n\n\n\n\n\n\n\n\n\n\n"}, {text: ""}, {text: ""}, {text: ""}, {text: ""}],
+                                [{text: ""}, {text: ""}, {text: ""}, {text: ""},
+                                    {
+                                        text: "西安欧亚学院高职学院学生成长报告",
+                                        color: "#36B7AB",
+                                        fontSize: 15,
+                                    }],
+                                [{text: ""}, {text: ""}, {text: ""}, {text: ""}, {text: "姓名：陈可东"}],
+                                [{text: ""}, {text: ""}, {text: ""}, {text: ""}, {text: "籍贯："}],
+                                [{text: ""}, {text: ""}, {text: ""}, {text: ""}, {text: "身份证号：42088119981209573X"}],
+                                [{text: ""}, {text: ""}, {text: ""}, {text: ""}, {text: "专业：连锁经营管理"}],
+                                [{text: ""}, {text: ""}, {text: ""}, {text: ""}, {text: "就业方向：中英国际"}],
+                                [{text: ""}, {text: ""}, {text: ""}, {text: ""}, {text: "班级：中英1701"}],
+                                [{text: "\n\n"}, {text: ""}, {text: ""}, {text: ""}, {text: ""}],
+                                [{text: "\n\n\n\n\n\n\n\n\n\n\n\n",fillColor: '#009688'}, {text: "",fillColor: '#009688'}, {text: ""}, {text: ""}, {text: ""}],
+                                [imgs,{},{},{},{}]
+                            ]
+                        },
+                        layout: {
+                            fillColor: function (i, node) { return (i % 2 === 0) ?  '#ffffff' : null; }
+                        },
+                        layout: 'noBorders',
+                    },
+                    {
+                        style: "tableExample",
+                        table: {
+                            widths: [110, 80, 70, 75, 60, 90],
+                            body: communicateContentHead,
+                        },
+//                        layout: 'noBorders',
+                    },
+                ],
+                styles: {
+                    coverStyle: {
+                        margin: [20, 20, 20, 20]
+                    },
+                    header: {
+                        fontSize: 18,
+                        bold: true,
+                        margin: [0, 0, 0, 10]
+                    },
+                    subheader: {
+                        fontSize: 16,
+                        bold: true,
+                        margin: [0, 10, 0, 5]
+                    },
+                    tableExample: {
+                        fontSize: 8,
+                        bold: false,
+                        margin: [0, 15, 0, 15]
+                    },
+                    tableHeader: {
+                        bold: true,
+                        fontSize: 13,
+                        color: "black"
+                    },
+                    removeTheBorder: {
+                        border: "none",
+                        margin: [0, 0, 0, 0]
+                    }
+                },
+                defaultStyle: {
+                    font: "微软雅黑"
+                }
+            };
+            pdfmake(content);
+        }
     }
 </script>
 
@@ -124,5 +195,66 @@
         };
         pdfMake.createPdf(dd).download(function () {
         });
+    }
+</script>
+<script>
+    function ImageDataURL(urls) {//urls必須是字符串或字符串數組
+        this.completenum = 0;
+        this.totalnum = 0;
+        this.imgdata = new Array();
+        this.emptyobj = new Object();
+        this.oncomplete = function () {
+        };
+        this.getDataURL = function (url, index) {
+            var c = document.createElement("canvas");
+            var cxt = c.getContext("2d");
+            var img = new Image();
+            var dataurl;
+            var p;
+            p = this;
+            img.src = url;
+            img.onload = function () {
+                var i;
+                var maxwidth = 500;
+                var scale = 1.0;
+                if (img.width > maxwidth) {
+                    scale = maxwidth / img.width;
+                    c.width = maxwidth;
+                    c.height = Math.floor(img.height * scale);
+                } else {
+                    c.width = img.width;
+                    c.height = img.height;
+                }
+                cxt.drawImage(img, 0, 0, c.width, c.height);
+
+                p.imgdata[index] = c.toDataURL('image/jpeg');
+                for (i = 0; i < p.totalnum; ++i) {
+                    if (p.imgdata[i] == null) break;
+                }
+                if (i == p.totalnum) {
+                    p.oncomplete();
+                }
+            };
+            img.onerror = function () {
+                p.imgdata[index] = p.emptyobj;
+                for (i = 0; i < p.totalnum; ++i) {
+                    if (p.imgdata[i] == null) break;
+                }
+                if (i == p.totalnum) {
+                    p.oncomplete();
+                }
+            };
+        }
+        if (urls instanceof Array) {
+            this.totalnum = urls.length;
+            this.imgdata = new Array(this.totalnum);
+            for (key in urls) {
+                this.getDataURL(urls[key], key);
+            }
+        } else {
+            this.imgdata = new Array(1);
+            this.totalnum = 1;
+            this.getDataURL(urls, 0);
+        }
     }
 </script>
