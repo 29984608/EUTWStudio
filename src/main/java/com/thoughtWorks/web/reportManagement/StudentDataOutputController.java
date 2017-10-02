@@ -136,6 +136,15 @@ public class StudentDataOutputController {
             if (studentUpdate.getActual_address() != null) {
                 singleData.put(studentUpdate.getActual_address().split("--")[1], dataOutputStudent.get(studentUpdate.getActual_address().split("--")[1]));
             }
+            if (studentUpdate.getStudent_contact_method() != null) {
+                singleData.put(studentUpdate.getStudent_contact_method().split("--")[1], dataOutputStudent.get(studentUpdate.getStudent_contact_method().split("--")[1]));
+            }
+            if (studentUpdate.getQq() != null) {
+                singleData.put(studentUpdate.getQq().split("--")[1], dataOutputStudent.get(studentUpdate.getQq().split("--")[1]));
+            }
+            if (studentUpdate.getEmail() != null) {
+                singleData.put(studentUpdate.getEmail().split("--")[1], dataOutputStudent.get(studentUpdate.getEmail().split("--")[1]));
+            }
             if (studentUpdate.getOrigin_address() != null) {
                 singleData.put(studentUpdate.getOrigin_address().split("--")[1], dataOutputStudent.get(studentUpdate.getOrigin_address().split("--")[1]));
             }

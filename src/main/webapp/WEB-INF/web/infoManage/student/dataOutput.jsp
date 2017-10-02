@@ -44,6 +44,9 @@
                    title="入学前户口所在派出所">
             <input type="checkbox" value="身份证地址" name="idcard_address" title="身份证地址">
             <input type="checkbox" value="家庭实际住址" name="actual_address" title="家庭实际住址">
+            <input type="checkbox" value="手机号" name="student_contact_method" title="手机号">
+            <input type="checkbox" value="QQ" name="qq" title="QQ">
+            <input type="checkbox" value="邮箱" name="email" title="邮箱">
             <div onclick="dataOutput.selectAll(this)" style="float: right;">
                 <input type="checkbox" value="全选" name="baseInfo" title="全选">
             </div>
@@ -154,6 +157,9 @@
                 let pre_school_account_where_station = $("input[name='pre_school_account_where_station']:checked").val() + "--" + $("input[name='pre_school_account_where_station']:checked").prop("name");
                 let idcard_address = $("input[name='idcard_address']:checked").val() + "--" + $("input[name='idcard_address']:checked").prop("name");
                 let actual_address = $("input[name='actual_address']:checked").val() + "--" + $("input[name='actual_address']:checked").prop("name");
+                let student_contact_method = $("input[name='student_contact_method']:checked").val() + "--" + $("input[name='student_contact_method']:checked").prop("name");
+                let qq = $("input[name='qq']:checked").val() + "--" + $("input[name='qq']:checked").prop("name");
+                let email = $("input[name='email']:checked").val() + "--" + $("input[name='email']:checked").prop("name");
                 let teacherId = $("input[name='teacherId']:checked").val() + "--" + $("input[name='teacherId']:checked").prop("name");
                 let student_status = $("input[name='student_status']:checked").val() + "--" + $("input[name='student_status']:checked").prop("name");
                 let student_type = $("input[name='student_type']:checked").val() + "--" + $("input[name='student_type']:checked").prop("name");
@@ -217,6 +223,9 @@
                     pre_school_account_where_station: pre_school_account_where_station,
                     idcard_address: idcard_address,
                     actual_address: actual_address,
+                    student_contact_method:student_contact_method,
+                    qq:qq,
+                    email:email,
                     teacherId: teacherId,
                     student_status: student_status,
                     student_type: student_type,

@@ -158,6 +158,15 @@ public class StudentDataOutputReportUtil extends ExcelReportUtil {
         if (studentUpdate.getActual_address() != null) {
             headers.put(studentUpdate.getActual_address().split("--")[1], studentUpdate.getActual_address().split("--")[0]);
         }
+        if (studentUpdate.getStudent_contact_method() != null) {
+            headers.put(studentUpdate.getStudent_contact_method().split("--")[1], studentUpdate.getStudent_contact_method().split("--")[0]);
+        }
+        if (studentUpdate.getQq() != null) {
+            headers.put(studentUpdate.getQq().split("--")[1], studentUpdate.getQq().split("--")[0]);
+        }
+        if (studentUpdate.getEmail() != null) {
+            headers.put(studentUpdate.getEmail().split("--")[1], studentUpdate.getEmail().split("--")[0]);
+        }
         if (studentUpdate.getOrigin_address() != null) {
             headers.put(studentUpdate.getOrigin_address().split("--")[1], studentUpdate.getOrigin_address().split("--")[0]);
         }
