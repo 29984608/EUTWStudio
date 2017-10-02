@@ -100,19 +100,6 @@
                 <input type="checkbox" value="全选" name="baseInfo" title="全选">
             </div>
         </div>
-<%--
-        <h3>其它信息</h3>
-        <div id="other">
-            <input type="checkbox" name="like[write]" title="家庭成员">
-            <input type="checkbox" name="like[write]" title="教育经历">
-            <input type="checkbox" name="like[write]" title="荣誉或获奖">
-            <input type="checkbox" name="like[write]" title="违纪或处分">
-            <input type="checkbox" name="like[write]" title="团学活动">
-            <input type="checkbox" name="like[write]" title="奖学金或助学金">
-            <div onclick="dataOutput.selectAll(this)" style="float: right;">
-                <input type="checkbox" value="全选" name="baseInfo" title="全选">
-            </div>
-        </div>--%>
         <div class="layui-form-item">
             <div class="layui-input-block" style="margin-left: 0">
                 <a class="layui-btn" onclick="dataOutput.submitData(searchData)" id="submitData">导出Excel</a>

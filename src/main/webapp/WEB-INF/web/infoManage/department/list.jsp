@@ -34,7 +34,7 @@
                         <tr>
                             <th>序号</th>
                             <th>系代码</th>
-                            <th>名名称</th>
+                            <th>系名称</th>
                             <th>操作</th>
                         </tr>
                         </thead>
