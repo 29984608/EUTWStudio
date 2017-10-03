@@ -41,9 +41,10 @@
     }
 </style>
 <div id="preview" style="display: none;width: auto;margin-top: 20px">
-    <button class="layui-btn " style="float: right" onclick="printPdf()">
-        <i class="layui-icon">&#xe60a;</i>导出 PDF
-    </button>
+    <div id="pdfmake"></div>
+    <%--<button class="layui-btn " style="float: right" onclick="printPdf()">--%>
+        <%--<i class="layui-icon">&#xe60a;</i>导出 PDF--%>
+    <%--</button>--%>
     <section class="larry-grid">
         <div class="larry-personal" id="container" style="height: 1410px;width: 83% ;">
             <div style="margin:20px 5%;height: auto">

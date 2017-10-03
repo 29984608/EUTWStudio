@@ -111,6 +111,7 @@
 </body>
 
 <%@include file="layer.jsp" %>
+<%@include file="pdf.jsp" %>
 <script src="${baseurl}/js/searchJs.js"/>
 
 <script type="text/javascript" src="${baseurl}/public/js/pdf/html2canvas.js"></script>
@@ -118,6 +119,11 @@
 <script type="text/javascript" src="${baseurl}/public/js/pdf/renderPDF.js"></script>
 <script type="text/javascript" src="${baseurl}/public/common/layui/layui.js"></script>
 <script type="text/javascript" src="${baseurl}/js/searchJs.js"></script>
+
+<%--导出pdf--%>
+<script src='${baseurl}/public/pdfMake/pdfmake.min.js'></script>
+<script src='${baseurl}/public/pdfMake/vfs_fonts.js'></script>
+<script src='${baseurl}/public/pdfMake/pdfMake.js'></script>
 <script type="text/javascript">
     let resultReport;
     let totalSize = 10;
@@ -177,11 +183,20 @@
                     }
                 });
             },
+            pdfMake: function (studentNo) {
+                $.post(baseUrl + "/resultReport/preview", {studentNo: studentNo}, function (data) {
+                    printPDF(data);
+                });
+            },
             preview: function (no) {
                 $.post(baseUrl + "/resultReport/preview", {studentNo: no}, function (data) {
                     if (data.result) {
                         console.log(data)
+                        $("#pdfmake").html("").append(`<button class='layui-btn ' style='float: right' onclick='resultReport.pdfMake(` + data.student.no + `)'>
+                            <i class='layui-icon'>&#xe60a;</i>导出 PDF
+                            </button>`);
                         resultReport.loadStudentInfo(data.student);
+                        console.log(data)
                         $("#totalCredit").text(data.totalCredit)
                         if (data.results != null)
                             resultReport.loadResults(data.results);
