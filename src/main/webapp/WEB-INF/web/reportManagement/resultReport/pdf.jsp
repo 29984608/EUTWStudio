@@ -86,6 +86,7 @@ let studentInfo = data.student;
                             fontSize: 6,
                         }]);
                     }
+                }
                     for (let i = 35; i < result.length; i++) {
                         let test_time = "";
                         let nature = "";
@@ -135,7 +136,7 @@ let studentInfo = data.student;
                             }]);
                         }
                     }
-                }
+
             }if(result.length !== 0 && result.length <=35){
                 for (let i = 0; i < result.length; i++) {
                     let test_time = "";
@@ -296,13 +297,13 @@ let studentInfo = data.student;
                             widths: [100, 100],
                             body: [
                                 [{
-                                    text: "必修/实修："+data.totalCredit+"/"+elective_score,
+                                    text: "必修/实修："+data.totalCredit+"/"+compulsory_score,
                                     fontSize: 8,
                                     color: "#36B7AB",
                                     margin: [0, 13, 0, 13]
                                 },
                                     {
-                                        text: "选修/实修："+"6/"+compulsory_score,
+                                        text: "选修/实修："+"6/"+elective_score,
                                         fontSize: 8,
                                         color: "#36B7AB",
                                         margin: [0, 11, 0, 11]
