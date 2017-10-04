@@ -125,10 +125,10 @@
                                         color: "#36B7AB",
                                         fontSize: 15,
                                     }],
-                                [{text: ""}, {text: ""}, {text: ""}, {text: ""}, {text: "姓名：" + info.name}],
-                                [{text: ""}, {text: ""}, {text: ""}, {text: ""}, {text: "籍贯：" + info.famousFamily}],
+                                [{text: ""}, {text: ""}, {text: ""}, {text: ""}, {text: "姓名：" + info.name != undefined ? info.name : ""}],
+                                [{text: ""}, {text: ""}, {text: ""}, {text: ""}, {text: "籍贯：" + info.famousFamily != undefined ? info.famousFamily : ""}],
                                 [{text: ""}, {text: ""}, {text: ""}, {text: ""}, {text: "身份证号：" + info.idcard}],
-                                [{text: ""}, {text: ""}, {text: ""}, {text: ""}, {text: "专业：" + info.profession}],
+                                [{text: ""}, {text: ""}, {text: ""}, {text: ""}, {text: "专业：" + info.profession != undefined ? info.profession : ""}],
                                 [{text: ""}, {text: ""}, {text: ""}, {text: ""}, {text: "就业方向：" + info.direction}],
                                 [{text: ""}, {text: ""}, {text: ""}, {text: ""}, {text: "班级：" + info.classesName}],
                                 [{text: "\n\n"}, {text: ""}, {text: ""}, {text: ""}, {text: ""}],
@@ -180,14 +180,14 @@
                     font: "微软雅黑"
                 }
             };
-            pdfmake(content);
+            pdfmake(content,info.name + "成长报告");
         }
     }
 </script>
 
 
 <script>
-    function pdfmake(content) {
+    function pdfmake(content,fileName) {
         var dd = content;
 
         pdfMake.fonts = {
@@ -204,7 +204,7 @@
                 bolditalics: '微软雅黑.ttf',
             }
         };
-        pdfMake.createPdf(dd).download(function () {
+        pdfMake.createPdf(dd).download(fileName,function () {
         });
     }
 </script>
